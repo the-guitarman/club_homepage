@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2>Neue Mannschaft anlegen</h2>
+
+      <%= render "form.html", changeset: @changeset,
+                              action: team_path(@conn, :create) %>
+
+      <%= link "Alle Mannschaften", to: team_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

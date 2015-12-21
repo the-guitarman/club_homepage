@@ -1,0 +1,30 @@
+<h2>Show user</h2>
+
+<ul>
+
+  <li>
+    <strong>Login:</strong>
+    <%= @user.login %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+
+  <li>
+    <strong>Birthday:</strong>
+    <%#= @user.birthday %>
+    <%= Timex.DateFormat.format!(@user.birthday, "%d.%m.%Y", :strftime) %>
+  </li>
+
+</ul>
+
+<%= link "Zurück", to: managed_user_path(@conn, :index) %> | 
+<%#= link "Ändern", to: managed_user_path(@conn, :edit, @user) %> | 
+<%#= link "Löschen", to: managed_user_path(@conn, :delete, @user), method: "delete" %>

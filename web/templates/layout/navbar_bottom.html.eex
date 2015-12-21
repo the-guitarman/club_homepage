@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+      <li>© Copyright 2015</li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="<%= current_link(@conn, ClubHomepage.PageController, :contact) %>">
+          <%= link "Kontakt", to: page_path(@conn, :contact), class: "btn btn-de", role: "button" %>
+        </li>
+        <li class="<%= current_link(@conn, ClubHomepage.TeamController, :impressum) %>"><%= link "Impressum", to: page_path(@conn, :impressum), class: "btn btn-de", role: "button" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

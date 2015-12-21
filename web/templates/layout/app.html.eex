@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hello Phoenix!</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+  </head>
+
+  <body>
+    <div class="fluid-container <%= action_name(@conn) %>" role="main">
+      <%= render "navbar_top.html", conn: @conn, current_user: @current_user %>
+      <%= render "flash_messages.html", conn: @conn %>
+      
+      <%= if controller_module(@conn) == ClubHomepage.PageController && action_name(@conn) == :index do %>
+        <section class="header">
+          <h1>TSV Einheit Claußnitz 1864 e.V.</h1>
+        </section>
+      <% end %>
+
+      <section id="boxcontent" class="background-image-01">
+        <%= @inner %>
+      </section>
+      
+    </div> <!-- /container -->
+
+    <footer class="footer">
+      <%= render "navbar_bottom.html", conn: @conn %>
+    </footer>
+
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Es sind folgende Fehler aufgetreten:</p>
+      <ul>
+        <%= for {attr, message} <- f.errors do %>
+          <li><%= humanize(attr) %> <%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%#= label f, :name, "name", class: "control-label" %>
+    <%= text_input f, :name, class: "form-control", placeholder: "Mannschaftsname" %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Jetzt anlegen", class: "btn btn-primary" %>
+  </div>
+<% end %>

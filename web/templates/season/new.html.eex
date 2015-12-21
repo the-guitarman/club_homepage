@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2>Neue Saison anlegen</h2>
+
+      <p>Lege jetzt eine neue Saison an. Später kannst Du dieser Spiele der Vereinsmannschaften hinzufügen.</p>
+
+      <%= render "form.html", changeset: @changeset, action: season_path(@conn, :create), years: @years %>
+
+      <%= link "Alle Saisons", to: season_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

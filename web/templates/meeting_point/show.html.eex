@@ -1,0 +1,13 @@
+<h2>Show meeting point</h2>
+
+<ul>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @meeting_point.address_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: meeting_point_path(@conn, :edit, @meeting_point) %>
+<%= link "Back", to: meeting_point_path(@conn, :index) %>

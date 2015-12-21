@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= page_path(@conn, :index) %>">
+        <img alt="" src="/images/logo_navbar.jpg">
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="<%= current_link(@conn, ClubHomepage.PageController, "the_club") %>">
+          <%= link "Verein", to: page_path(@conn, :the_club) %>
+        </li>
+        <li class="<%= current_link(@conn, ClubHomepage.PageController, :chronicle) %>">
+          <%= link "Chronik", to: page_path(@conn, :chronicle) %>
+        </li>
+        <li class="<%= current_link(@conn, ClubHomepage.PageController, :sponsors) %>">
+          <%= link "Sponsoren", to: page_path(@conn, :sponsors) %>
+        </li>
+      </ul>
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <%= if @current_user do %>
+          <li><p class="navbar-text">Angemeldet: <%= @current_user.name %></p></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stammdaten <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="<%= current_link(@conn, ClubHomepage.SecretController, :new) %>">
+                <%= link "Secrets", to: secret_path(@conn, :new) %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li class="<%= current_link(@conn, ClubHomepage.SeasonController, :index) %>">
+                <%= link "Saisons", to: season_path(@conn, :index) %>
+              </li>
+              <li class="<%= current_link(@conn, ClubHomepage.TeamController, :index) %>">
+                <%= link "Mannschaften", to: team_path(@conn, :index) %>
+              </li>
+            </ul>
+          </li>
+          <li><%= link "Logout", to: session_path(@conn, :delete, @current_user), method: "delete", class: "navbar-text" %></li>
+        <% else %>
+          <li class="<%= current_link(@conn, ClubHomepage.TeamController, :new) %>">
+            <%= link "Anmeldung", to: user_path(@conn, :new) %>
+          </li>
+          <li class="<%= current_link(@conn, ClubHomepage.SessionController, :new) %>">
+            <%= link "Login", to: session_path(@conn, :new) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

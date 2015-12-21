@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+
+      <h2>Alle Saisons</h2>
+
+      <table class="table">
+        <tbody>
+          <%= for season <- @seasons do %>
+            <tr>
+              <td><%= season.name %></td>
+
+              <td class="text-right">
+                <%#= link "Show", to: season_path(@conn, :show, season), class: "btn btn-default btn-xs" %>
+                <%#= link "Edit", to: season_path(@conn, :edit, season), class: "btn btn-default btn-xs" %>
+                <%#= link "Delete", to: season_path(@conn, :delete, season), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= link "Neue Saison anlegen", to: season_path(@conn, :new) %>
+    </div>
+  </div>
+</div>

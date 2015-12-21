@@ -1,0 +1,13 @@
+<h2>Show season</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @season.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: season_path(@conn, :edit, @season) %>
+<%= link "Back", to: season_path(@conn, :index) %>

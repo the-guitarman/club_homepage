@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h1>Unser Verein</h1>
+      <h2>Über den TSV Einheit Claußnitz<h2>
+      <p>Der Verein selbst wurde 1864 gegründet. Die Abteilung Fußball besteht seit 1911.</p>
+      <p>Neben Fußball werden im Verein auch folgende Sportartenausgeübt:
+        <ul class="list-group">
+          <li class="list-group-item"><a href="http://www.handball-claussnitz.de/" rel="nofollow" target="_blank">Handball</a></li>
+          <li class="list-group-item">Volleyball</li>
+          <li class="list-group-item">Tischtennis</li>
+          <li class="list-group-item">Leichtathletik</li>
+          <li class="list-group-item">Turnen</li>
+        </ul>
+      </p>
+      <p>Weiteres zur historischen Entwicklung können sie in der Chronik nachlesen.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2>Jetzt registrieren</h2>
+      <p>Du bist ein Vereinsmitglied? Lass Dir von einem Administrator ein Secret geben. Damit kannst Du Dich als Vereinsmitglied ausweisen und Dich registrieren.</p>
+      <%= render "form.html", changeset: @changeset,
+                        action: user_path(@conn, :create),
+                        conn: @conn,
+                        secret: @secret %>
+
+      <%#= link "Back", to: user_path(@conn, :index) %>
+    </div>
+  </div>
+</div>
