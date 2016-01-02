@@ -4,6 +4,8 @@ defmodule ClubHomepage.Season do
   schema "seasons" do
     field :name, :string
 
+    has_many :matches, ClubHomepage.Match, on_delete: :delete_all
+
     timestamps
   end
 

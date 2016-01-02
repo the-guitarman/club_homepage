@@ -9,6 +9,9 @@ defmodule ClubHomepage.Address do
     field :latitude, :float 
     field :longitude, :float
 
+    has_many :meeting_points, ClubHomepage.MeetingPoint, on_delete: :delete_all
+    has_one :opponent_team, ClubHomepage.OpponentTeam, on_delete: :delete_all
+
     timestamps
   end
 
@@ -24,8 +27,8 @@ defmodule ClubHomepage.Address do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> validate_length(:login, min: 5, message: "ist zu kurz (min. 5 Zeichen)")
-    |> validate_length(:login, max: 5, message: "ist zu lang (max. 5 Zeichen)")
+    |> validate_length(:zip_code, min: 5, message: "ist zu kurz (min. 5 Zeichen)")
+    |> validate_length(:zip_code, max: 5, message: "ist zu lang (max. 5 Zeichen)")
     |> validate_format(:zip_code, ~r/\A[0-9]+\z/i, message: "enthält ungültige Zeichen (gültig: 0-9)")
   end
 end

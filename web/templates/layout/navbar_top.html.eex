@@ -36,12 +36,18 @@
               <li class="<%= current_link(@conn, ClubHomepage.SecretController, :new) %>">
                 <%= link "Secrets", to: secret_path(@conn, :new) %>
               </li>
+              <li class="<%= current_link(@conn, ClubHomepage.UserController, :new_unregistered) %>">
+                <%= link "Vereinsmitglieder", to: managed_user_path(@conn, :index) %>
+              </li>
               <li role="separator" class="divider"></li>
               <li class="<%= current_link(@conn, ClubHomepage.SeasonController, :index) %>">
                 <%= link "Saisons", to: season_path(@conn, :index) %>
               </li>
               <li class="<%= current_link(@conn, ClubHomepage.TeamController, :index) %>">
                 <%= link "Mannschaften", to: team_path(@conn, :index) %>
+              </li>
+              <li class="<%= current_link(@conn, ClubHomepage.MatchController, :index) %>">
+                <%= link "Spiele", to: match_path(@conn, :index) %>
               </li>
             </ul>
           </li>

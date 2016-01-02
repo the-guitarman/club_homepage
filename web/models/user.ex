@@ -3,8 +3,6 @@ defmodule ClubHomepage.User do
 
   alias ClubHomepage.ModelValidator
 
-  before_insert :set_attributes
-
   schema "users" do
     field :active, :boolean
     field :birthday, Timex.Ecto.DateTime
@@ -18,6 +16,15 @@ defmodule ClubHomepage.User do
     timestamps
   end
 
+  def unregistered_changeset(model, params \\ :empty) do
+    model
+    |> cast(params, ~w(email name), ~w(login birthday active roles))
+    |> validate_length(:name, max: 100, message: "ist zu lang (max. 100 Zeichen)")
+    |> check_email
+    |> set_roles
+    |> set_active(false)
+  end
+
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -26,16 +33,13 @@ defmodule ClubHomepage.User do
   """
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, ~w(login email name birthday), ~w(active roles))
+    |> unregistered_changeset(params)
+    |> cast(params, ~w(login birthday), [])
     |> validate_length(:login, min: 6, message: "ist zu kurz (min. 6, max. 20 Zeichen)")
     |> validate_length(:login, max: 20, message: "ist zu lang (min. 6, max. 20 Zeichen)")
     |> validate_format(:login, ~r/\A[a-z0-9._-]+\z/i, message: "enthält ungültige Zeichen (gültig: 0-9 a-z . _ -)")
     |> update_change(:login, &String.downcase/1)
     |> ModelValidator.validate_uniqueness(:login, message: "ist bereits vergeben")
-    |> validate_format(:email, ~r/\A[A-Z0-9_\.&%\+\-\']+@(?:[A-Z0-9\-]+\.)+(?:[A-Z]{2,13})\z/i, message: "hat ein ungültiges Format")
-    |> update_change(:email, &String.downcase/1)
-    |> ModelValidator.validate_uniqueness(:email, message: "ist bereits vergeben")
-    |> validate_length(:name, max: 100, message: "ist zu lang (max. 100 Zeichen)")
   end
 
   def registration_changeset(model, params) do
@@ -44,20 +48,35 @@ defmodule ClubHomepage.User do
     |> cast(params, ~w(password), [])
     |> validate_length(:password, min: 6, max: 100, message: "mindestens 1 und maximal 100 Zeichen")
     |> put_pass_hash()
+    |> set_active(true)
   end
 
-  defp put_pass_hash(changeset) do
-    case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
-        put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
-      _ ->
-        changeset
-    end
+  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: pass}} = changeset) do
+    put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
   end
+  defp put_pass_hash(changeset), do: changeset
 
-  defp set_attributes(changeset) do
+  defp set_active(%Ecto.Changeset{model: %ClubHomepage.User{active: nil}} = changeset, state) do
     changeset
-    |> put_change(:active, true)
+    |> put_change(:active, state)
+  end
+  defp set_active(changeset, _state), do: changeset
+
+  defp set_roles(%Ecto.Changeset{model: %ClubHomepage.User{roles: nil}} = changeset) do
+    changeset
     |> put_change(:roles, "member")
+  end
+  defp set_roles(changeset), do: changeset
+
+  defp check_email(%Ecto.Changeset{model: %ClubHomepage.User{email: nil}} = changeset) do
+    changeset
+    |> validate_format(:email, ~r/\A[A-Z0-9_\.&%\+\-\']+@(?:[A-Z0-9\-]+\.)+(?:[A-Z]{2,13})\z/i, message: "hat ein ungültiges Format")
+    |> update_change(:email, &String.downcase/1)
+    |> ModelValidator.validate_uniqueness(:email, message: "ist bereits vergeben")
+  end
+  defp check_email(changeset) do
+    changeset
+    |> validate_format(:email, ~r/\A[A-Z0-9_\.&%\+\-\']+@(?:[A-Z0-9\-]+\.)+(?:[A-Z]{2,13})\z/i, message: "hat ein ungültiges Format")
+    |> update_change(:email, &String.downcase/1)
   end
 end

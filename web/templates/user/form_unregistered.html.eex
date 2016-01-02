@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <%= form_for @changeset, @action, fn f -> %>
+      <%= if @changeset.action do %>
+        <div class="alert alert-danger">
+          <p>Es sind folgende Fehler aufgetreten:</p>
+          <ul>
+            <%= for {attr, message} <- f.errors do %>
+              <li><%= humanize(attr) %> <%= message %></li>
+              <!--<li><%#= humanize(attr) %> <%#= translate_errors(message) %></li>-->
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%#= label f, :name, "Name", class: "control-label" %>
+        <%= text_input f, :name, class: "form-control", placeholder: "Name" %>
+      </div>
+
+      <div class="form-group">
+        <%#= label f, :email, "E-Mail", class: "control-label" %>
+        <%= email_input f, :email, class: "form-control", placeholder: "E-Mail" %>
+      </div>
+
+      <div class="form-group">
+        <%#= label f, :birthday, "Geburtstag", class: "control-label" %>
+        <%#= date_select f, :birthday, class: "form-control" %>
+        <div class="input-group date">
+          <%#= text_input f, :birthday, class: "form-control", placeholder: "Geburtstag" %>
+          <%= timex_date_input f, :birthday, class: "form-control", placeholder: "Geburtstag (optional)" %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= submit "Jetzt anlegen", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<h2>Show match</h2>
+
+<ul>
+
+  <li>
+    <strong>Season:</strong>
+    <%= @match.season_id %>
+  </li>
+
+  <li>
+    <strong>Team:</strong>
+    <%= @match.team_id %>
+  </li>
+
+  <li>
+    <strong>Opponent team:</strong>
+    <%= @match.opponent_team_id %>
+  </li>
+
+  <li>
+    <strong>Meeting point:</strong>
+    <%= @match.meeting_point_id %>
+  </li>
+
+  <li>
+    <strong>Start at:</strong>
+    <%= @match.start_at %>
+  </li>
+
+  <li>
+    <strong>Home match:</strong>
+    <%= @match.home_match %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: match_path(@conn, :edit, @match) %>
+<%= link "Back", to: match_path(@conn, :index) %>

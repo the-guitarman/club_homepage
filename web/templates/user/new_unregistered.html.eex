@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2>Vereinsmitglied anlegen</h2>
+      <p>Hier kannst Du Vereinsmitglieder anlegen, die sich (noch) nicht registriert haben, um später z.B. die Mannschaftsaufstellung planen zu können.</p>
+      <%= render "form_unregistered.html", changeset: @changeset,
+                        action: unregistered_user_path(@conn, :create_unregistered),
+                        conn: @conn %>
+
+      <%= link "Alle Vereinsmitglieder", to: managed_user_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

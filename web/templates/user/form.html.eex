@@ -7,6 +7,7 @@
           <ul>
             <%= for {attr, message} <- f.errors do %>
               <li><%= humanize(attr) %> <%= message %></li>
+              <!--<li><%#= humanize(attr) %> <%#= translate_errors(message) %></li>-->
             <% end %>
           </ul>
         </div>

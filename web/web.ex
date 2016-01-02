@@ -18,9 +18,10 @@ defmodule ClubHomepage.Web do
 
   def model do
     quote do
-      use Ecto.Model
+      use Ecto.Schema
       use Timex.Ecto.Timestamps
 
+      import Ecto
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
     end
@@ -31,7 +32,8 @@ defmodule ClubHomepage.Web do
       use Phoenix.Controller
 
       alias ClubHomepage.Repo
-      import Ecto.Model
+      import Ecto.Schema
+      import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 
       import ClubHomepage.Router.Helpers
@@ -51,6 +53,8 @@ defmodule ClubHomepage.Web do
       use Phoenix.HTML
 
       import ClubHomepage.Router.Helpers
+      import ClubHomepage.ErrorHelpers
+      #import ClubHomepage.Gettext
       import Extension.View
     end
   end
@@ -68,7 +72,8 @@ defmodule ClubHomepage.Web do
       use Phoenix.Channel
 
       alias ClubHomepage.Repo
-      import Ecto.Model
+      import Ecto.Schema
+      import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
     end
   end

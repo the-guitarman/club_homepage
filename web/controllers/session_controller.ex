@@ -13,9 +13,14 @@ defmodule ClubHomepage.SessionController do
         conn
         |> put_flash(:info, "Du bist nun eingeloggt.")
         |> redirect(to: page_path(conn, :index))
+      {:error, :inactive, conn} ->
+        conn
+        |> put_flash(:error, "Dein Login/E-Mail-Adresse ist deaktiviert. Bitte kontaktiere den Webmaster.")
+        |> render("new.html")
+
       {:error, _reason, conn} ->
         conn
-        |> put_flash(:error, "Dein Login/E-Mail Adresse oder Dein Passwort sind ungültig. Bitte achte auf Groß- und Kleinschreibung.")
+        |> put_flash(:error, "Dein Login/E-Mail-Adresse oder Dein Passwort sind ungültig. Bitte achte auf Groß- und Kleinschreibung.")
         |> render("new.html")
     end
   end

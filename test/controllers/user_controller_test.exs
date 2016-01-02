@@ -4,6 +4,7 @@ defmodule ClubHomepage.UserControllerTest do
   alias ClubHomepage.User
 
   import ClubHomepage.Factory
+  import ClubHomepage.Test.Support.Auth
 
   @valid_attrs %{birthday: "17.04.1988", email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
   @invalid_attrs %{}
@@ -19,9 +20,51 @@ defmodule ClubHomepage.UserControllerTest do
   end
 
   test "try to lists all entries on index with login", %{conn: conn} do
+    user = create(:user)
+    unregistered_user = create(:unregistered_user)
     conn = login(conn)
     conn = get conn, managed_user_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing users"
+    assert html_response(conn, 200) =~ "Alle Vereinsmitglieder"
+    assert html_response(conn, 200) =~ "<td>#{user.email}</td>"
+    assert html_response(conn, 200) =~ "<td>#{unregistered_user.email}</td>"
+  end
+
+  test "renders form for new unregistered users without current_user logged in", %{conn: conn} do
+    conn = get conn, unregistered_user_path(conn, :new_unregistered)
+    assert redirected_to(conn) =~ "/"
+  end
+
+  test "renders form for new unregistered users with current_user logged in", %{conn: conn} do
+    conn = login(conn)
+    conn = get conn, unregistered_user_path(conn, :new_unregistered)
+    assert html_response(conn, 200) =~ "<h2>Vereinsmitglied anlegen</h2>"
+  end
+
+  test "tries to create unregistered user without current_user is logged in", %{conn: conn} do
+    conn = post conn, unregistered_user_path(conn, :create_unregistered), user: @valid_attrs
+    assert redirected_to(conn) =~ "/"
+  end
+
+  test "tries to create unregistered user with current_user is logged in", %{conn: conn} do
+    conn = login(conn)
+    conn = post conn, unregistered_user_path(conn, :create_unregistered), user: %{}
+    refute html_response(conn, 200) =~ "Secret wird benötigt"
+    refute html_response(conn, 200) =~ "Login can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Name can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Email can&#39;t be blank"
+    refute html_response(conn, 200) =~ "Birthday can&#39;t be blank"
+  end
+
+
+  test "create unregistered user with current_user is logged in", %{conn: conn} do
+    conn = login(conn)
+    user_attributes = %{email: "total-new-email@example.com", name: "total-new-name"}
+    conn = post conn, unregistered_user_path(conn, :create_unregistered), user: user_attributes
+
+    assert redirected_to(conn) == unregistered_user_path(conn, :new_unregistered)
+    unregistered_user = Repo.get_by(User, email: user_attributes.email)
+    assert unregistered_user.name == user_attributes.name
+    assert unregistered_user.active == false
   end
 
   test "renders form for new users without secret parameter", %{conn: conn} do
@@ -111,9 +154,4 @@ defmodule ClubHomepage.UserControllerTest do
   #   assert redirected_to(conn) == user_path(conn, :index)
   #   refute Repo.get(User, user.id)
   # end
-
-  defp login(conn) do
-    user = create(:user)
-    assign(conn, :current_user, user)
-  end
 end

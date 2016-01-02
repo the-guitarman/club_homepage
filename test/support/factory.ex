@@ -11,12 +11,23 @@ defmodule ClubHomepage.Factory do
       email: sequence(:email, &"mail-#{&1}@example.de"),
       login: sequence(:login, &"my_login-#{&1}"), 
       name: sequence(:login, &"my name #{&1}"), 
-      password: Comeonin.Bcrypt.hashpwsalt("my password")
+      password_hash: Comeonin.Bcrypt.hashpwsalt("my password"),
+      active: true
+    }
+  end
+
+  def factory(:unregistered_user) do
+    %ClubHomepage.User{
+      email: sequence(:email, &"mail-#{&1}@example.de"),
+      name: sequence(:login, &"my name #{&1}"),
     }
   end
 
   def factory(:secret) do
-    %ClubHomepage.Secret{}
+    %ClubHomepage.Secret{
+      key: SecureRandom.urlsafe_base64,
+      expires_at: Timex.Date.local |> Timex.Date.add(Timex.Time.to_timestamp(7, :days))
+    }
   end
 
   def factory(:team) do

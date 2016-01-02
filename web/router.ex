@@ -38,10 +38,14 @@ defmodule ClubHomepage.Router do
     pipe_through [:browser, :require_user]
     
     resources "/secrets", SecretController, only: [:new, :create, :show, :delete]
+    get "/users/new", UserController, :new_unregistered, as: :unregistered_user
+    post "/users", UserController, :create_unregistered, as: :unregistered_user
     resources "/users", UserController, only: [:index, :show, :edit, :update, :delete], as: :managed_user
 
     resources "/addresses", AddressController
     resources "/meeting_points", MeetingPointController
+    resources "/opponent_teams", OpponentTeamController
+    resources "/matches", MatchController
     
     resources "/teams", TeamController, only: [:index, :new, :create, :edit, :update, :delete]
     resources "/seasons", SeasonController

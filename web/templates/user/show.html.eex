@@ -1,30 +1,38 @@
-<h2>Show user</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2>Show user</h2>
 
-<ul>
+      <ul>
 
-  <li>
-    <strong>Login:</strong>
-    <%= @user.login %>
-  </li>
+        <li>
+          <strong>Login:</strong>
+          <%= @user.login %>
+        </li>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @user.name %>
-  </li>
+        <li>
+          <strong>Name:</strong>
+          <%= @user.name %>
+        </li>
 
-  <li>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </li>
+        <li>
+          <strong>Email:</strong>
+          <%= @user.email %>
+        </li>
 
-  <li>
-    <strong>Birthday:</strong>
-    <%#= @user.birthday %>
-    <%= Timex.DateFormat.format!(@user.birthday, "%d.%m.%Y", :strftime) %>
-  </li>
+        <% if @user.birthday do %>
+        <li>
+          <strong>Birthday:</strong>
+          <%#= @user.birthday %>
+          <%= Timex.DateFormat.format!(@user.birthday, "%d.%m.%Y", :strftime) %>
+        </li>
+        <% end %>
 
-</ul>
+      </ul>
 
-<%= link "Zurück", to: managed_user_path(@conn, :index) %> | 
-<%#= link "Ändern", to: managed_user_path(@conn, :edit, @user) %> | 
-<%#= link "Löschen", to: managed_user_path(@conn, :delete, @user), method: "delete" %>
+      <%= link "Alle Vereinsmitglieder", to: managed_user_path(@conn, :index) %><!-- |
+      <%#= link "Ändern", to: managed_user_path(@conn, :edit, @user) %> |
+      <%#= link "Löschen", to: managed_user_path(@conn, :delete, @user), method: "delete" %>-->
+    </div>
+  </div>
+</div>

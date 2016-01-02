@@ -1,4 +1,6 @@
 defmodule Extension.Controller do
+  # https://github.com/bitwalker/timex#formatting-a-datetime-via-strftime
+
   def parse_date_field(params, field, format \\ "%d.%m.%Y") do
     field_name = Atom.to_string(field)
 
@@ -19,5 +21,9 @@ defmodule Extension.Controller do
       {:ok, timex_datetime} -> Map.put(params, field_name, timex_datetime)
       _ -> Map.put(params, field_name, nil)
     end
+  end
+
+  def parse_datetime_field(params, field, format \\ "%d.%m.%Y %H:%M:%S") do
+    parse_date_field(params, field, format)
   end
 end

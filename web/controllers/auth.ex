@@ -56,11 +56,12 @@ defmodule ClubHomepage.Auth do
     |> configure_session(renew: true)
   end
 
-    
   def login_by_login_or_email_and_pass(conn, login_or_email, given_pass, opts) do
     user = find_user(login_or_email, opts)
     cond do
-      user && checkpw(given_pass, user.password_hash) ->
+      user && user.active == false ->
+        {:error, :inactive, conn}
+      user && user.password_hash && checkpw(given_pass, user.password_hash) ->
         {:ok, login(conn, user)}
       user ->
         {:error, :unauthorized, conn}

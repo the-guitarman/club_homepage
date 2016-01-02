@@ -31,4 +31,17 @@ defmodule Extension.View do
     end
     Phoenix.HTML.Form.text_input(form, field, opts)
   end
+
+  def timex_datetime_input(%{model: model, params: params} = form, field, opts \\ []) do
+    field_name = Atom.to_string(field)
+    case Map.fetch(params, field_name) do
+      {:ok, nil} -> nil
+      {:ok, timex_datetime} ->
+        {:ok, date_string} = Timex.DateFormat.format(timex_datetime, "%d.%m.%Y %H:%M:%S", :strftime)
+        params = Map.put(params, field_name, date_string)
+        form = Map.put(form, :params, params)
+      :error -> Map.get(model, field)
+    end
+    Phoenix.HTML.Form.text_input(form, field, opts)
+  end
 end

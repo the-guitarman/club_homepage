@@ -1,37 +1,45 @@
-<h2>Listing users</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2>Alle Vereinsmitglieder</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Login</th>
-      <th>Name</th>
-      <th>E-Mail</th>
-      <th>Aktiv</th>
-      <th>Geburtstag</th>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Login</th>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>Aktiv</th>
+            <th>Geburtstag</th>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for user <- @users do %>
-    <tr>
-      <td><%= user.login %></td>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.active %></td>
-      <td>
-        <%#= user.birthday %>
-        <%= Timex.DateFormat.format!(user.birthday, "%d.%m.%Y", :strftime) %>
-      </td>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <%= for user <- @users do %>
+          <tr>
+            <td><%= user.login %></td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.active %></td>
+            <td>
+              <%= if user.birthday do %>
+                <%#= user.birthday %>
+                <%= Timex.DateFormat.format!(user.birthday, "%d.%m.%Y", :strftime) %>
+              <% end %>
+            </td>
 
-      <td class="text-right">
-        <%= link "Show", to: managed_user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
-        <%#= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
-        <%#= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+            <td class="text-right">
+              <%= link "Show", to: managed_user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
+              <%#= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
+              <%#= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-<%= link "New user", to: user_path(@conn, :new) %>
+      <%= link "Neues Vereinsmitglied anlegen", to: unregistered_user_path(@conn, :new_unregistered) %>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,24 @@ defmodule ClubHomepage.UserController do
     render(conn, "index.html", users: users)
   end
 
+  def new_unregistered(conn, _params) do
+    changeset = User.unregistered_changeset(%User{})
+    render(conn, "new_unregistered.html", changeset: changeset)
+  end
+
+  def create_unregistered(conn, %{"user" => user_params}) do
+    user_params = parse_date_field(user_params, :birthday)
+    changeset = User.unregistered_changeset(%User{}, user_params)
+    case Repo.insert(changeset) do
+      {:ok, _user} ->
+        conn
+        |> put_flash(:info, "Der Benutzer wurde erfolgreich angelegt.")
+        |> redirect(to: unregistered_user_path(conn, :new_unregistered))
+      {:error, changeset} ->
+        render(conn, "new_unregistered.html", changeset: changeset)
+    end
+  end
+
   def new(conn, params) do
     changeset = User.changeset(%User{})
     render(conn, "new.html", changeset: changeset, secret: params["secret"])
@@ -18,13 +36,16 @@ defmodule ClubHomepage.UserController do
 
   def create(conn, %{"user" => user_params}) do
     user_params = parse_date_field(user_params, :birthday)
-
     secret_key = user_params["secret"]
-    changeset = 
-      User.changeset(%User{}, user_params)
-      |> ClubHomepage.SecretCheck.run(secret_key)
 
-    case Repo.insert(changeset) do
+    user =
+      case user_params["email"] do
+        nil -> nil
+        email -> Repo.get_by(User, email: email)
+      end
+
+    result = get_registration_changeset(user, user_params, secret_key)
+    case result do
       {:ok, user} ->
         ClubHomepage.SecretCheck.delete(secret_key)
         conn
@@ -72,4 +93,17 @@ defmodule ClubHomepage.UserController do
   #   |> put_flash(:info, "User deleted successfully.")
   #   |> redirect(to: user_path(conn, :index))
   # end
+
+  defp get_registration_changeset(nil, user_params, secret_key) do
+    changeset =
+      User.registration_changeset(%User{}, user_params)
+      |> ClubHomepage.SecretCheck.run(secret_key)
+    Repo.insert(changeset)
+  end
+  defp get_registration_changeset(user, user_params, secret_key) do
+    changeset =
+      User.registration_changeset(user, user_params)
+      |> ClubHomepage.SecretCheck.run(secret_key)
+    Repo.update(changeset)
+  end
 end

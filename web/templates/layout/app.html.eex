@@ -23,7 +23,7 @@
       <% end %>
 
       <section id="boxcontent" class="background-image-01">
-        <%= @inner %>
+        <%= render @view_module, @view_template, assigns %>
       </section>
       
     </div> <!-- /container -->

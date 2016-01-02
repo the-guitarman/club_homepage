@@ -1,0 +1,18 @@
+<h2>Show opponent team</h2>
+
+<ul>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @opponent_team.address_id %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @opponent_team.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: opponent_team_path(@conn, :edit, @opponent_team) %>
+<%= link "Back", to: opponent_team_path(@conn, :index) %>

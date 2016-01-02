@@ -1,0 +1,31 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%#= label f, :start_at, class: "control-label" %>
+    <%#= datetime_select f, :start_at, class: "form-control" %>
+    <div class='input-group datetime' id='datetimepicker1'>
+      <%= timex_date_input f, :start_at, class: "form-control", placeholder: "Datum und Zeit des Spiels" %>
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+    <%= error_tag f, :start_at %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :home_match, class: "control-label" do %>
+      Heimspiel
+    <% end %>
+    <%= checkbox f, :home_match, class: "form-control" %>
+    <%= error_tag f, :home_match %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

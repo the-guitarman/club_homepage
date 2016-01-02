@@ -1,0 +1,6 @@
+<h2>Edit match</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: match_path(@conn, :update, @match) %>
+
+<%= link "Back", to: match_path(@conn, :index) %>

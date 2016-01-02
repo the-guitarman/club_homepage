@@ -1,8 +1,6 @@
 defmodule ClubHomepage.Secret do
   use ClubHomepage.Web, :model
 
-  before_insert :set_attributes
-
   schema "secrets" do
     field :key, :string
     field :expires_at, Timex.Ecto.DateTime
@@ -22,6 +20,7 @@ defmodule ClubHomepage.Secret do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> set_attributes
   end
 
   defp set_attributes(changeset) do

@@ -8,6 +8,5 @@ defmodule ClubHomepage.Repo.Migrations.CreateMeetingPoint do
       timestamps
     end
     create index(:meeting_points, [:address_id])
-
   end
 end
