@@ -1,6 +1,6 @@
-<h2>New opponent team</h2>
+<h2><%= gettext("create_new_opponent_team") %></h2>
 
 <%= render "form.html", changeset: @changeset,
                         action: opponent_team_path(@conn, :create) %>
 
-<%= link "Back", to: opponent_team_path(@conn, :index) %>
+<%= link gettext("all") <> " " <> gettext("opponent_teams"), to: opponent_team_path(@conn, :index) %>

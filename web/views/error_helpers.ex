@@ -5,12 +5,34 @@ defmodule ClubHomepage.ErrorHelpers do
   use Phoenix.HTML
 
   @doc """
+  Generates error css class for container element of inlined form input errors.
+  """
+  def error_cls(form, field) do
+    if form.errors[field] do
+      "has-error"
+    else
+      ""
+    end
+  end
+  def error_cls(changeset, form, field) do
+    if changeset.action do
+      error_cls(form, field)
+    else
+      ""
+    end
+  end
+
+  @doc """
   Generates tag for inlined form input errors.
   """
   def error_tag(form, field) do
     if error = form.errors[field] do
-      #content_tag :span, translate_error(error), class: "help-block"
-      content_tag :span, error, class: "help-block"
+      content_tag :span, (humanize(field) <> " " <> translate_error(error)), class: "help-block"
+    end
+  end
+  def error_tag(changeset, form, field) do
+    if changeset.action do
+      error_tag(form, field)
     end
   end
 

@@ -1,11 +1,4 @@
 <div class="container-fluid">
-  <!--
-  <div class="row">
-      <div class="col-xs-12">
-        <%#= gettext("Welcome") %>
-      </div>
-  </div>
-  -->
 
   <div class="row">
     <div class="col-md-4">
@@ -17,6 +10,7 @@
         </div>
       </div>
     </div>
+
     <div class="col-md-4">
       <div class="jumbotron content-box">
         <h2>Ergebnisse</h2>
@@ -26,6 +20,7 @@
         </div>
       </div>
     </div>
+
     <%= if Enum.count(@teams) > 0 do %>
       <div class="col-md-4">
         <div class="jumbotron content-box">
@@ -38,5 +33,6 @@
         </div>
       </div>
     <% end %>
-  </div>  
+  </div>
+
 </div>

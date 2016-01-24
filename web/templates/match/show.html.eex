@@ -1,38 +1,44 @@
-<h2>Show match</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2>
+        <%= if @match.home_match do %>
+          <%= @match.team.name %> - <%= @match.opponent_team.name %>
+        <% else %>
+          <%= @match.opponent_team.name %> - <%= @match.team.name %>
+        <% end %>
+      </h2>
 
-<ul>
+      <ul>
 
-  <li>
-    <strong>Season:</strong>
-    <%= @match.season_id %>
-  </li>
+        <li>
+          <strong>Season:</strong>
+          <%= @match.season.name %>
+        </li>
 
-  <li>
-    <strong>Team:</strong>
-    <%= @match.team_id %>
-  </li>
+        <li>
+          <strong>Meeting point:</strong>
+          <%= if @match.meeting_point do %>
+            <%= @match.meeting_point.name %>
+          <% end %>
+        </li>
 
-  <li>
-    <strong>Opponent team:</strong>
-    <%= @match.opponent_team_id %>
-  </li>
+        <li>
+          <strong>Start at:</strong>
+          <%#= @match.start_at %>
+          <%= Timex.DateFormat.format!(@match.start_at, "%d.%m.%Y %H:%M", :strftime) %>
+        </li>
 
-  <li>
-    <strong>Meeting point:</strong>
-    <%= @match.meeting_point_id %>
-  </li>
+        <li>
+          <strong>Ergebnis:</strong>
+          - : -
+        </li>
 
-  <li>
-    <strong>Start at:</strong>
-    <%= @match.start_at %>
-  </li>
+      </ul>
 
-  <li>
-    <strong>Home match:</strong>
-    <%= @match.home_match %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: match_path(@conn, :edit, @match) %>
-<%= link "Back", to: match_path(@conn, :index) %>
+      <%= link "Edit Match", to: match_path(@conn, :edit, @match), class: "btn btn-default" %>
+      <%= link gettext("delete_match"), to: match_path(@conn, :delete, @match), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      <%= link gettext("all") <> " " <> gettext("matches"), to: match_path(@conn, :index), class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

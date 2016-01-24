@@ -1,18 +1,19 @@
-<h2>Show opponent team</h2>
+<h2><%= gettext("show_opponent_team") %></h2>
 
 <ul>
 
   <li>
-    <strong>Address:</strong>
-    <%= @opponent_team.address_id %>
+    <strong><%= gettext("name") %>:</strong>
+    <%= @opponent_team.name %>
   </li>
 
   <li>
-    <strong>Name:</strong>
-    <%= @opponent_team.name %>
+    <strong><%= gettext("address") %>:</strong>
+    <%= @opponent_team.address_id %>
   </li>
 
 </ul>
 
-<%= link "Edit", to: opponent_team_path(@conn, :edit, @opponent_team) %>
-<%= link "Back", to: opponent_team_path(@conn, :index) %>
+<%= link gettext("show"), to: opponent_team_path(@conn, :show, @opponent_team), class: "btn btn-default btn-xs" %>
+<%= link gettext("edit"), to: opponent_team_path(@conn, :edit, @opponent_team), class: "btn btn-default btn-xs" %>
+<%= link ("all") <> " " <> gettext("opponent_teams"), to: opponent_team_path(@conn, :index) %>

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
-      <h1>Unser Verein</h1>
+      <h1><%= gettext("about_us") %></h1>
       <h2>Über den TSV Einheit Claußnitz<h2>
       <p>Der Verein selbst wurde 1864 gegründet. Die Abteilung Fußball besteht seit 1911.</p>
       <p>Neben Fußball werden im Verein auch folgende Sportartenausgeübt:

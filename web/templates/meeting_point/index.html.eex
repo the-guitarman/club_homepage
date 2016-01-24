@@ -1,26 +1,23 @@
-<h2>Listing meeting points</h2>
+<h2><%= gettext("all") <> " " <> gettext("meeting_points") %></h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Address</th>
+      <th><%= gettext("address") %></th>
 
       <th></th>
     </tr>
   </thead>
-  <tbody>
 <%= for meeting_point <- @meeting_points do %>
     <tr>
       <td><%= meeting_point.address_id %></td>
 
-      <td class="text-right">
-        <%= link "Show", to: meeting_point_path(@conn, :show, meeting_point), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: meeting_point_path(@conn, :edit, meeting_point), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: meeting_point_path(@conn, :delete, meeting_point), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      <td class="text-ht">
+        <%= link gettext("show"), to: meeting_point_path(@conn, :show, meeting_point), class: "btn btn-default btn-xs" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%= link "New meeting point", to: meeting_point_path(@conn, :new) %>
+<%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :new) %>

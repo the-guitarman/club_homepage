@@ -39,7 +39,14 @@ $(document).ready(function(){
 
   dateFieldAttributes['format'] = 'DD.MM.YYYY HH:mm';
   $('.input-group.datetime').datetimepicker(dateFieldAttributes);
+
   $('.input-group.date input, .input-group.datetime input').click(function(e){
     $(this).parent().find('.input-group-addon').trigger('click');
+  });
+
+  $('select').select2({
+    //tags: "true",
+    placeholder: "",
+    allowClear: true
   });
 });

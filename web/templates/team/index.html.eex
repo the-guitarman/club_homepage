@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
-      <h2>Alle Mannschaften</h2>
+      <h2><%= gettext("all") <> " " <> gettext("teams") %></h2>
 
       <p>
-        <%= link "Neue Mannschaft anlegen", to: team_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_new_team"), to: team_path(@conn, :new), class: "btn btn-default" %>
       </p>
 
       <table class="table">
@@ -13,14 +13,16 @@
               <tr>
                 <td><%= team.name %></td>
                 <td class="text-right">
-                  <%#= link "Show", to: team_path(@conn, :show, team), class: "btn btn-default btn-xs" %>
-                  <%#= link "Edit", to: team_path(@conn, :edit, team), class: "btn btn-default btn-xs" %>
-                  <%#= link "Delete", to: team_path(@conn, :delete, team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+                  <%#= link gettext("show"), to: team_path(@conn, :show, team), class: "btn btn-default btn-xs" %>
                 </td>
               </tr>
           <% end %>
         </tbody>
       </table>
+
+      <p>
+        <%= link gettext("create_new_team"), to: team_path(@conn, :new), class: "btn btn-default" %>
+      </p>
     </div>
   </div>
 </div>

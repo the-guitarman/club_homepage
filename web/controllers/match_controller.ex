@@ -1,18 +1,29 @@
 defmodule ClubHomepage.MatchController do
   use ClubHomepage.Web, :controller
 
+  alias Phoenix.HTML
+  alias Phoenix.HTML.Link
   alias ClubHomepage.Match
 
   plug :scrub_params, "match" when action in [:create, :update]
+  plug :get_season_select_options when action in [:new, :create, :edit, :update]
+  plug :get_team_select_options when action in [:new, :create, :edit, :update]
+  plug :get_opponent_team_select_options when action in [:new, :create, :edit, :update]
+  plug :get_meeting_point_select_options when action in [:new, :create, :edit, :update]
 
-  def index(conn, _params) do
-    matches = Repo.all(Match)
-    render(conn, "index.html", matches: matches)
+  def index(conn, params) do
+    matches = Repo.all(from(m in Match, preload: [:season, :team, :opponent_team, :meeting_point]))
+    render(conn, "index.html", matches: matches, next_match_parameters: next_match_parameters(params))
   end
 
-  def new(conn, _params) do
-    changeset = Match.changeset(%Match{})
-    render(conn, "new.html", changeset: changeset)
+  def new(conn, params) do
+    next_match_parameters = set_next_match_parameters(params)
+    changeset = Match.changeset(%Match{}, next_match_parameters)
+    render(conn, "new.html", changeset: changeset,
+           season_options: conn.assigns.season_options,
+           team_options: conn.assigns.team_options,
+           opponent_team_options: conn.assigns.opponent_team_options,
+           meeting_point_options: conn.assigns.meeting_point_options)
   end
 
   def create(conn, %{"match" => match_params}) do
@@ -23,14 +34,15 @@ defmodule ClubHomepage.MatchController do
       {:ok, _match} ->
         conn
         |> put_flash(:info, "Match created successfully.")
-        |> redirect(to: match_path(conn, :index))
+        |> redirect(to: match_path(conn, :index, prepare_next_match_parameters(match_params)))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    match = Repo.get!(Match, id)
+    match = Repo.one(from(m in Match, preload: [:season, :team, :opponent_team, :meeting_point], where: m.id == ^id))
+#    match = Repo.get!(Match, id)
     render(conn, "show.html", match: match)
   end
 
@@ -66,4 +78,52 @@ defmodule ClubHomepage.MatchController do
     |> put_flash(:info, "Match deleted successfully.")
     |> redirect(to: match_path(conn, :index))
   end
+
+  defp get_season_select_options(conn, _) do
+    query = from(s in ClubHomepage.Season,
+      select: {s.name, s.id},
+      order_by: [desc: s.name])
+    assign(conn, :season_options, Repo.all(query))
+  end
+
+  defp get_team_select_options(conn, _) do
+    query = from t in ClubHomepage.Team,
+      select: {t.name, t.id},
+      order_by: [asc: t.name]
+    assign(conn, :team_options, Repo.all(query))
+  end
+
+  defp get_opponent_team_select_options(conn, _) do
+    query = from ot in ClubHomepage.OpponentTeam,
+      select: {ot.name, ot.id},
+      order_by: [asc: ot.name]
+    assign(conn, :opponent_team_options, Repo.all(query))
+  end
+
+  defp get_meeting_point_select_options(conn, _) do
+    query = from mp in ClubHomepage.MeetingPoint,
+      join: a in assoc(mp, :address),
+      select: {a.street, mp.id},
+      order_by: [asc: mp.name]
+    assign(conn, :meeting_point_options, Repo.all(query))
+  end
+
+  defp prepare_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}) do
+    {:ok, start_at} =
+      start_at
+      |> Timex.Date.add(Timex.Time.to_timestamp(7, :days))
+      |> Timex.DateFormat.format("%d.%m.%Y %H:%M", :strftime)
+    %{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}
+  end
+
+  defp next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}) do
+    %{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}
+  end
+  defp next_match_parameters(_), do: nil
+
+  defp set_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at} = params) do
+    %{"start_at" => start_at} = parse_datetime_field(params, :start_at)
+    %{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}
+  end
+  defp set_next_match_parameters(_), do: %{}
 end

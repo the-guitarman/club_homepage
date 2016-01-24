@@ -8,7 +8,9 @@ defmodule ClubHomepage.Repo.Migrations.CreateOpponentTeam do
 
       timestamps
     end
+
     create index(:opponent_teams, [:address_id])
 
+    create unique_index(:opponent_teams, [:name])
   end
 end

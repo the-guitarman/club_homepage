@@ -6,7 +6,7 @@ defmodule ClubHomepage.Mixfile do
      version: "0.0.1",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix] ++ Mix.compilers, #, :gettext
+     compilers: [:phoenix, :gettext] ++ Mix.compilers, 
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
@@ -18,8 +18,8 @@ defmodule ClubHomepage.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {ClubHomepage, []},
-     applications: [:tzdata, :phoenix, :phoenix_html, :cowboy, :logger, 
-      :phoenix_ecto, :sqlite_ecto, :comeonin]] #, :gettext
+     applications: [:tzdata, :phoenix, :phoenix_html, :cowboy, :logger, :gettext, 
+      :phoenix_ecto, :sqlite_ecto, :comeonin]] 
   end
 
   # Specifies which paths to compile per environment.
@@ -32,16 +32,16 @@ defmodule ClubHomepage.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.1"},
      {:phoenix_ecto, "~> 2.0"},
-     {:sqlite_ecto, "~> 1.0.1"},
      {:phoenix_html, "~> 2.3"},
+     {:sqlite_ecto, "~> 1.0.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:dogma, "~> 0.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:comeonin, "~> 1.0"},
+     {:comeonin, "~> 2.0"},
      {:timex, "~> 0.19.0"},
      {:timex_ecto, "~> 0.7"},
      {:ex_machina, "~> 0.6"},
-     #{:gettext, "~> 0.9"},
+     {:gettext, "~> 0.9"},
      {:credo, "~> 0.2", only: [:dev, :test]}
      #{:mix_test_watch, "~> 0.2.4", only: :dev}]
     ]

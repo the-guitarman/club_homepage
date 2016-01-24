@@ -1,10 +1,10 @@
-<h2>Listing opponent teams</h2>
+<h2><%= gettext("all") <> " " <> gettext("opponent_teams") %></h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Address</th>
-      <th>Name</th>
+      <th><%= gettext("name") %></th>
+      <th><%= gettext("address") %>Address</th>
 
       <th></th>
     </tr>
@@ -12,17 +12,15 @@
   <tbody>
 <%= for opponent_team <- @opponent_teams do %>
     <tr>
-      <td><%= opponent_team.address_id %></td>
       <td><%= opponent_team.name %></td>
+      <td><%= opponent_team.address_id %></td>
 
       <td class="text-right">
-        <%= link "Show", to: opponent_team_path(@conn, :show, opponent_team), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: opponent_team_path(@conn, :edit, opponent_team), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: opponent_team_path(@conn, :delete, opponent_team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link gettext("delete"), to: opponent_team_path(@conn, :delete, opponent_team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%= link "New opponent team", to: opponent_team_path(@conn, :new) %>
+<%= link gettext("create_new_opponent_team"), to: opponent_team_path(@conn, :new) %>

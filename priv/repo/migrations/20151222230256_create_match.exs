@@ -12,10 +12,12 @@ defmodule ClubHomepage.Repo.Migrations.CreateMatch do
 
       timestamps
     end
+
     create index(:matches, [:season_id])
     create index(:matches, [:team_id])
     create index(:matches, [:opponent_team_id])
     create index(:matches, [:meeting_point_id])
 
+    create unique_index(:matches, [:season_id, :team_id, :opponent_team_id], name: "unique_match_index")
   end
 end

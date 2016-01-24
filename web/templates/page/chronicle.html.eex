@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
-      <h1>Chronik</h1>
+      <h1><%= gettext("chronicle") %></h1>
     </div>
   </div>
 </div>

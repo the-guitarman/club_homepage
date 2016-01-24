@@ -1,28 +1,28 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
-      <h2>Show user</h2>
+      <h2><%= gettext("show_user") %></h2>
 
       <ul>
 
         <li>
-          <strong>Login:</strong>
+          <strong><%= gettext("login") %>:</strong>
           <%= @user.login %>
         </li>
 
         <li>
-          <strong>Name:</strong>
+          <strong><%= gettext("name") %>:</strong>
           <%= @user.name %>
         </li>
 
         <li>
-          <strong>Email:</strong>
+          <strong><%= gettext("email") %>:</strong>
           <%= @user.email %>
         </li>
 
         <% if @user.birthday do %>
         <li>
-          <strong>Birthday:</strong>
+          <strong><%= gettext("birthday") %>:</strong>
           <%#= @user.birthday %>
           <%= Timex.DateFormat.format!(@user.birthday, "%d.%m.%Y", :strftime) %>
         </li>
@@ -30,9 +30,9 @@
 
       </ul>
 
-      <%= link "Alle Vereinsmitglieder", to: managed_user_path(@conn, :index) %><!-- |
-      <%#= link "Ändern", to: managed_user_path(@conn, :edit, @user) %> |
-      <%#= link "Löschen", to: managed_user_path(@conn, :delete, @user), method: "delete" %>-->
+      <%#= link gettext("edit"), to: user_path(@conn, :edit, @user), class: "btn btn-default btn-xs" %>
+      <%#= link gettext("delete"), to: user_path(@conn, :delete, @user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      <%= link gettext("all") <> " " <> gettext("users"), to: managed_user_path(@conn, :index) %>
     </div>
   </div>
 </div>

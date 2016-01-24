@@ -1,6 +1,8 @@
 defmodule ClubHomepage.OpponentTeam do
   use ClubHomepage.Web, :model
 
+  alias ClubHomepage.ModelValidator
+
   schema "opponent_teams" do
     field :name, :string
 
@@ -22,5 +24,6 @@ defmodule ClubHomepage.OpponentTeam do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> ModelValidator.validate_uniqueness(:name, message: "ist bereits vergeben")
   end
 end

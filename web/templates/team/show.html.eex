@@ -1,18 +1,19 @@
-<h2>Show team</h2>
+<h2><%= gettext("show_team") %></h2>
 
 <ul>
 
   <li>
-    <strong>name:</strong>
+    <strong><%= gettext("name") %>:</strong>
     <%= @team.name %>
   </li>
 
   <li>
-    <strong>Rewrite:</strong>
+    <strong><%= gettext("rewrite") %>:</strong>
     <%= @team.rewrite %>
   </li>
 
 </ul>
 
-<%= link "Edit", to: team_path(@conn, :edit, @team) %>
+<%#= link gettext("edit"), to: team_path(@conn, :edit, @team), class: "btn btn-default btn-xs" %>
+<%#= link gettext("delete"), to: team_path(@conn, :delete, @team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
 <%= link "Back", to: team_path(@conn, :index) %>

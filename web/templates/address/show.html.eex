@@ -1,4 +1,4 @@
-<h2>Show address</h2>
+<h2><%= gettext("show_address") %></h2>
 
 <ul>
 
@@ -24,5 +24,6 @@
 
 </ul>
 
-<%= link "Edit", to: address_path(@conn, :edit, @address) %>
-<%= link "Back", to: address_path(@conn, :index) %>
+<%= link gettext("edit"), to: address_path(@conn, :edit, @address), class: "btn btn-default btn-xs" %>
+<%= link gettext("delete"), to: address_path(@conn, :delete, @address), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+<%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index) %>

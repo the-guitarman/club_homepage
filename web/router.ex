@@ -8,6 +8,7 @@ defmodule ClubHomepage.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug ClubHomepage.Auth, repo: ClubHomepage.Repo
+    plug ClubHomepage.Locale, locale: "de"
   end
 
   pipeline :api do

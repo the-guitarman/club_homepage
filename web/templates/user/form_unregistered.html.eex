@@ -3,11 +3,10 @@
     <%= form_for @changeset, @action, fn f -> %>
       <%= if @changeset.action do %>
         <div class="alert alert-danger">
-          <p>Es sind folgende Fehler aufgetreten:</p>
+          <p><%= gettext("form_input_errors_notice") %></p>
           <ul>
             <%= for {attr, message} <- f.errors do %>
-              <li><%= humanize(attr) %> <%= message %></li>
-              <!--<li><%#= humanize(attr) %> <%#= translate_errors(message) %></li>-->
+              <li><%= humanize(attr) %> <%= translate_error(message) %></li>
             <% end %>
           </ul>
         </div>
@@ -15,26 +14,22 @@
 
       <div class="form-group">
         <%#= label f, :name, "Name", class: "control-label" %>
-        <%= text_input f, :name, class: "form-control", placeholder: "Name" %>
+        <%= text_input f, :name, class: "form-control", placeholder: gettext("name") %>
       </div>
 
       <div class="form-group">
         <%#= label f, :email, "E-Mail", class: "control-label" %>
-        <%= email_input f, :email, class: "form-control", placeholder: "E-Mail" %>
+        <%= email_input f, :email, class: "form-control", placeholder: gettext("email") <> "*" %>
       </div>
 
       <div class="form-group">
         <%#= label f, :birthday, "Geburtstag", class: "control-label" %>
         <%#= date_select f, :birthday, class: "form-control" %>
-        <div class="input-group date">
-          <%#= text_input f, :birthday, class: "form-control", placeholder: "Geburtstag" %>
-          <%= timex_date_input f, :birthday, class: "form-control", placeholder: "Geburtstag (optional)" %>
-          <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-        </div>
+        <%= timex_date_input f, :birthday, class: "form-control", placeholder: gettext("birthday") <> " (optional)" %>
       </div>
 
       <div class="form-group">
-        <%= submit "Jetzt anlegen", class: "btn btn-primary" %>
+        <%= submit gettext("save"), class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>

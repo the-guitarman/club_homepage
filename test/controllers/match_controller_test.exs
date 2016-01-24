@@ -3,7 +3,7 @@ defmodule ClubHomepage.MatchControllerTest do
 
   alias ClubHomepage.Match
 
-#  import ClubHomepage.Factory
+  import ClubHomepage.Factory
   import ClubHomepage.Test.Support.Auth
 
   import Ecto.Query, only: [from: 1, from: 2]
@@ -11,14 +11,34 @@ defmodule ClubHomepage.MatchControllerTest do
   @valid_attrs %{home_match: true, start_at: "17.04.2010 14:00:00"}
   @invalid_attrs %{}
 
-  setup do
+  setup context do
     conn = conn()
-    {:ok, conn: conn}
+    if context[:login] do
+      current_user = create(:user)
+      conn = assign(conn, :current_user, current_user)
+      {:ok, conn: conn, current_user: current_user}
+    else
+      {:ok, conn: conn}
+    end
   end
 
-  test "tries to list all entries on index without a user is logged in", %{conn: conn} do
-    conn = get conn, match_path(conn, :index)
-    assert redirected_to(conn) =~ "/"
+  @tag login: false
+  test "requires user authentication on all actions", %{conn: conn} do
+    user = create(:user)
+    match = create(:match)
+    Enum.each([
+      get(conn, match_path(conn, :index)),
+      get(conn, match_path(conn, :new)),
+      post(conn, match_path(conn, :create), match: @valid_attrs),
+      get(conn, match_path(conn, :show, match)),
+      get(conn, match_path(conn, :edit, match)),
+      put(conn, match_path(conn, :update, match), match: @valid_attrs),
+      delete(conn, match_path(conn, :delete, match))
+    ], fn conn ->
+      assert html_response(conn, 302)
+      assert conn.halted
+      assert redirected_to(conn) =~ "/"
+    end)
   end
 
   test "lists all entries on index with a user is logged in", %{conn: conn} do
@@ -27,20 +47,10 @@ defmodule ClubHomepage.MatchControllerTest do
     assert html_response(conn, 200) =~ "Listing matches"
   end
 
-  test "tries to render form for new resources witout a user is logged in", %{conn: conn} do
-    conn = get conn, match_path(conn, :new)
-    assert redirected_to(conn) =~ "/"
-  end
-
   test "renders form for new resources with a user is logged in", %{conn: conn} do
     conn = login(conn)
     conn = get conn, match_path(conn, :new)
     assert html_response(conn, 200) =~ "New match"
-  end
-
-  test "tries to create a match and redirects when data is valid and no user is logged in", %{conn: conn} do
-    conn = post conn, match_path(conn, :create), match: @valid_attrs
-    assert redirected_to(conn) =~ "/"
   end
 
   test "creates a match and redirects when data is valid and a user is logged in", %{conn: conn} do
@@ -52,21 +62,10 @@ defmodule ClubHomepage.MatchControllerTest do
     assert 1 == Repo.one(query)
   end
 
-  test "does not create a match when data is invalid and no user is logged in", %{conn: conn} do
-    conn = post conn, match_path(conn, :create), match: @invalid_attrs
-    assert redirected_to(conn) =~ "/"
-  end
-
   test "does not create a match and renders errors when data is invalid and a user is logged in", %{conn: conn} do
     conn = login(conn)
     conn = post conn, match_path(conn, :create), match: @invalid_attrs
     assert html_response(conn, 200) =~ "New match"
-  end
-
-  test "tries to show a match without a user is logged in", %{conn: conn} do
-    match = Repo.insert! %Match{}
-    conn = get conn, match_path(conn, :show, match)
-    assert redirected_to(conn) =~ "/"
   end
 
   test "shows a match with a user is logged in", %{conn: conn} do
@@ -91,23 +90,11 @@ defmodule ClubHomepage.MatchControllerTest do
     end
   end
 
-  test "try to render form for editing chosen resource without a user is logged in", %{conn: conn} do
-    match = Repo.insert! %Match{}
-    conn = get conn, match_path(conn, :edit, match)
-    assert redirected_to(conn) =~ "/"
-  end
-
   test "renders form for editing chosen resource with a user is logged in", %{conn: conn} do
     conn = login(conn)
     match = Repo.insert! %Match{}
     conn = get conn, match_path(conn, :edit, match)
     assert html_response(conn, 200) =~ "Edit match"
-  end
-
-  test "tries to update chosen resource and redirects when data is valid and no user is logged in", %{conn: conn} do
-    match = Repo.insert! %Match{}
-    conn = put conn, match_path(conn, :update, match), match: @valid_attrs
-    assert redirected_to(conn) =~ "/"
   end
 
   test "updates chosen resource and redirects when data is valid and a user is logged in", %{conn: conn} do
@@ -130,23 +117,11 @@ defmodule ClubHomepage.MatchControllerTest do
     assert 0 == Repo.one(query)
   end
 
-  test "does not update chosen resource when no user is logged in", %{conn: conn} do
-    match = Repo.insert! %Match{}
-    conn = put conn, match_path(conn, :update, match), match: @invalid_attrs
-    assert redirected_to(conn) =~ "/"
-  end
-
   test "does not update chosen resource and renders errors when data is invalid a user is logged in", %{conn: conn} do
     conn = login(conn)
     match = Repo.insert! %Match{}
     conn = put conn, match_path(conn, :update, match), match: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit match"
-  end
-
-  test "tries to delete chosen resource without a user is loghged in", %{conn: conn} do
-    match = Repo.insert! %Match{}
-    conn = delete conn, match_path(conn, :delete, match)
-    assert redirected_to(conn) =~ "/"
   end
 
   test "deletes chosen resource with a user is logged in", %{conn: conn} do

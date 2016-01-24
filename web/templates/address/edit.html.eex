@@ -1,6 +1,6 @@
-<h2>Edit address</h2>
+<h2><%= gettext("edit_address") %></h2>
 
 <%= render "form.html", changeset: @changeset,
                         action: address_path(@conn, :update, @address) %>
 
-<%= link "Back", to: address_path(@conn, :index) %>
+<%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index) %>

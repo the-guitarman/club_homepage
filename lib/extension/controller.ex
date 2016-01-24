@@ -23,7 +23,7 @@ defmodule Extension.Controller do
     end
   end
 
-  def parse_datetime_field(params, field, format \\ "%d.%m.%Y %H:%M:%S") do
+  def parse_datetime_field(params, field, format \\ "%d.%m.%Y %H:%M") do
     parse_date_field(params, field, format)
   end
 end

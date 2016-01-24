@@ -1,13 +1,14 @@
-<h2>Show season</h2>
+<h2><%= gettext("show_season") %></h2>
 
 <ul>
 
   <li>
-    <strong>Name:</strong>
+    <strong><%= gettext("name") %>:</strong>
     <%= @season.name %>
   </li>
 
 </ul>
 
-<%= link "Edit", to: season_path(@conn, :edit, @season) %>
-<%= link "Back", to: season_path(@conn, :index) %>
+<%= link gettext("edit"), to: season_path(@conn, :edit, @season), class: "btn btn-default btn-xs" %>
+<%#= link gettext("delete"), to: season_path(@conn, :delete, season), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+<%= link gettext("all") <> " " <> gettext("seasons"), to: season_path(@conn, :index) %>

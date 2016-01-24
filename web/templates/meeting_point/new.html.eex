@@ -1,6 +1,6 @@
-<h2>New meeting point</h2>
+<h2><%= gettext("create_new_meeting_point") %></h2>
 
 <%= render "form.html", changeset: @changeset,
                         action: meeting_point_path(@conn, :create) %>
 
-<%= link "Back", to: meeting_point_path(@conn, :index) %>
+<%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index) %>

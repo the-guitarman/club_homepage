@@ -1,4 +1,4 @@
-<h2>Show meeting point</h2>
+<h2><%= gettext("show_meeting_point") %></h2>
 
 <ul>
 
@@ -9,5 +9,6 @@
 
 </ul>
 
-<%= link "Edit", to: meeting_point_path(@conn, :edit, @meeting_point) %>
-<%= link "Back", to: meeting_point_path(@conn, :index) %>
+<%= link gettext("edit"), to: meeting_point_path(@conn, :edit, @meeting_point), class: "btn btn-default btn-xs" %>
+<%= link gettext("delete"), to: meeting_point_path(@conn, :delete, @meeting_point), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+<%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index) %>

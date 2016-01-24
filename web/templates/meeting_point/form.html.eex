@@ -1,16 +1,16 @@
 <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below:</p>
+      <p><%= gettext("form_input_errors_notice") %></p>
       <ul>
         <%= for {attr, message} <- f.errors do %>
-          <li><%= humanize(attr) %> <%= message %></li>
+          <li><%= humanize(attr) %> <%= translate_error(message) %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= submit gettext("save"), class: "btn btn-primary" %>
   </div>
 <% end %>

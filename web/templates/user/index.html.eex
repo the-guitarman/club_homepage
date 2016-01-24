@@ -1,16 +1,20 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
-      <h2>Alle Vereinsmitglieder</h2>
+      <h2><%= gettext("all") <> " " <> gettext("users") %></h2>
+
+      <p>
+        <%= link gettext("create_new_user"), to: unregistered_user_path(@conn, :new_unregistered), class: "btn btn-default" %>
+      </p>
 
       <table class="table">
         <thead>
           <tr>
-            <th>Login</th>
-            <th>Name</th>
-            <th>E-Mail</th>
-            <th>Aktiv</th>
-            <th>Geburtstag</th>
+            <th><%= gettext("login") %></th>
+            <th><%= gettext("name") %></th>
+            <th><%= gettext("email") %></th>
+            <th><%= gettext("active") %></th>
+            <th><%= gettext("birthday") %></th>
 
             <th></th>
           </tr>
@@ -30,16 +34,16 @@
             </td>
 
             <td class="text-right">
-              <%= link "Show", to: managed_user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
-              <%#= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
-              <%#= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+              <%= link gettext("show"), to: managed_user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
             </td>
           </tr>
         <% end %>
         </tbody>
       </table>
 
-      <%= link "Neues Vereinsmitglied anlegen", to: unregistered_user_path(@conn, :new_unregistered) %>
+      <p>
+        <%= link gettext("create_new_user"), to: unregistered_user_path(@conn, :new_unregistered), class: "btn btn-default" %>
+      </p>
     </div>
   </div>
 </div>

@@ -54,7 +54,7 @@ defmodule ClubHomepage.Web do
 
       import ClubHomepage.Router.Helpers
       import ClubHomepage.ErrorHelpers
-      #import ClubHomepage.Gettext
+      import ClubHomepage.Gettext
       import Extension.View
     end
   end

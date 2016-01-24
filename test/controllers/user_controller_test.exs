@@ -4,49 +4,55 @@ defmodule ClubHomepage.UserControllerTest do
   alias ClubHomepage.User
 
   import ClubHomepage.Factory
-  import ClubHomepage.Test.Support.Auth
 
   @valid_attrs %{birthday: "17.04.1988", email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
   @invalid_attrs %{}
 
-  setup do
+  setup context do
     conn = conn()
-    {:ok, conn: conn}
+    if context[:login] do
+      current_user = create(:user)
+      conn = assign(conn, :current_user, current_user)
+      {:ok, conn: conn, current_user: current_user}
+    else
+      {:ok, conn: conn}
+    end
   end
 
-  test "try to lists all entries on index without login", %{conn: conn} do
-    conn = get conn, managed_user_path(conn, :index)
-    assert redirected_to(conn) =~ "/"
+  @tag login: false
+  test "requires user authentication on all actions", %{conn: conn} do
+    user = create(:user)
+    Enum.each([
+      get(conn, managed_user_path(conn, :index)),
+      get(conn, unregistered_user_path(conn, :new_unregistered)),
+      post(conn, unregistered_user_path(conn, :create_unregistered), user: @valid_attrs),
+      get(conn, managed_user_path(conn, :show, user)),
+      get(conn, managed_user_path(conn, :show, -1))
+    ], fn conn ->
+      assert html_response(conn, 302)
+      assert conn.halted
+      assert redirected_to(conn) =~ "/"
+    end)
   end
 
-  test "try to lists all entries on index with login", %{conn: conn} do
+  @tag login: true
+  test "try to lists all entries on index with login", %{conn: conn, current_user: _current_user} do
     user = create(:user)
     unregistered_user = create(:unregistered_user)
-    conn = login(conn)
     conn = get conn, managed_user_path(conn, :index)
     assert html_response(conn, 200) =~ "Alle Vereinsmitglieder"
     assert html_response(conn, 200) =~ "<td>#{user.email}</td>"
     assert html_response(conn, 200) =~ "<td>#{unregistered_user.email}</td>"
   end
 
-  test "renders form for new unregistered users without current_user logged in", %{conn: conn} do
-    conn = get conn, unregistered_user_path(conn, :new_unregistered)
-    assert redirected_to(conn) =~ "/"
-  end
-
-  test "renders form for new unregistered users with current_user logged in", %{conn: conn} do
-    conn = login(conn)
+  @tag login: true
+  test "renders form for new unregistered users with current_user logged in", %{conn: conn, current_user: _current_user} do
     conn = get conn, unregistered_user_path(conn, :new_unregistered)
     assert html_response(conn, 200) =~ "<h2>Vereinsmitglied anlegen</h2>"
   end
 
-  test "tries to create unregistered user without current_user is logged in", %{conn: conn} do
-    conn = post conn, unregistered_user_path(conn, :create_unregistered), user: @valid_attrs
-    assert redirected_to(conn) =~ "/"
-  end
-
-  test "tries to create unregistered user with current_user is logged in", %{conn: conn} do
-    conn = login(conn)
+  @tag login: true
+  test "tries to create unregistered user with current_user is logged in", %{conn: conn, current_user: _current_user} do
     conn = post conn, unregistered_user_path(conn, :create_unregistered), user: %{}
     refute html_response(conn, 200) =~ "Secret wird benötigt"
     refute html_response(conn, 200) =~ "Login can&#39;t be blank"
@@ -55,9 +61,8 @@ defmodule ClubHomepage.UserControllerTest do
     refute html_response(conn, 200) =~ "Birthday can&#39;t be blank"
   end
 
-
-  test "create unregistered user with current_user is logged in", %{conn: conn} do
-    conn = login(conn)
+  @tag login: true
+  test "create unregistered user with current_user is logged in", %{conn: conn, current_user: _current_user} do
     user_attributes = %{email: "total-new-email@example.com", name: "total-new-name"}
     conn = post conn, unregistered_user_path(conn, :create_unregistered), user: user_attributes
 
@@ -67,17 +72,20 @@ defmodule ClubHomepage.UserControllerTest do
     assert unregistered_user.active == false
   end
 
-  test "renders form for new users without secret parameter", %{conn: conn} do
+  @tag login: true
+  test "renders form for new users without secret parameter", %{conn: conn, current_user: _current_user} do
     conn = get conn, user_path(conn, :new)
     assert html_response(conn, 200) =~ "Jetzt registrieren"
   end
 
-  test "renders form for new users with secret parameter", %{conn: conn} do
+  @tag login: true
+  test "renders form for new users with secret parameter", %{conn: conn, current_user: _current_user} do
     conn = get conn, user_path(conn, :new, secret: "sdkljsdflksdjfisd")
     assert html_response(conn, 200) =~ "Jetzt registrieren"
   end
 
-  test "creates resource and redirects when data is valid", %{conn: conn} do
+  @tag login: true
+  test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     conn = post conn, user_path(conn, :create), user: @valid_attrs
     assert html_response(conn, 200) =~ "Jetzt registrieren"
     assert html_response(conn, 200) =~ "Secret wird benötigt"
@@ -92,7 +100,8 @@ defmodule ClubHomepage.UserControllerTest do
     assert user.id == conn.assigns.current_user.id
   end
 
-  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+  @tag login: true
+  test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user} do
     conn = post conn, user_path(conn, :create), user: @invalid_attrs
     assert html_response(conn, 200) =~ "Jetzt registrieren"
     assert html_response(conn, 200) =~ "Secret wird benötigt"
@@ -102,28 +111,15 @@ defmodule ClubHomepage.UserControllerTest do
     assert html_response(conn, 200) =~ "Birthday can&#39;t be blank"
   end
 
-  test "show a user without current_user is logged in", %{conn: conn} do
-    user = create(:user)
-    conn = get conn, managed_user_path(conn, :show, user)
-    assert redirected_to(conn) =~ "/"
-  end
-
-  test "show a user with current_user is logged in", %{conn: conn} do
-    conn = login(conn)
-
+  @tag login: true
+  test "show a user with current_user is logged in", %{conn: conn, current_user: _current_user} do
     user = create(:user)
     conn = get conn, managed_user_path(conn, :show, user)
     assert html_response(conn, 200) =~ "Show user"
   end
 
-  test "renders page not found when id is nonexistent without current_user is logged in", %{conn: conn} do
-    conn = get conn, managed_user_path(conn, :show, -1)
-    assert redirected_to(conn) =~ "/"
-  end
-
-  test "renders page not found when id is nonexistent with current_user is logged in", %{conn: conn} do
-    conn = login(conn)
-
+  @tag login: true
+  test "renders page not found when id is nonexistent with current_user is logged in", %{conn: conn, current_user: _current_user} do
     assert_raise Ecto.NoResultsError, fn ->
       get conn, managed_user_path(conn, :show, -1)
     end

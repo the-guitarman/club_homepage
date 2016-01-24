@@ -1,13 +1,12 @@
-<h2>Listing addresses</h2>
+<h2><%= gettext("all") %> <%= gettext("addresses") %></h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>District</th>
-      <th>Street</th>
-      <th>Zip code</th>
-      <th>City</th>
-
+      <th><%= gettext("district") %></th>
+      <th><%= gettext("street") %></th>
+      <th><%= gettext("zip_code") %></th>
+      <th><%= gettext("city") %></th>
       <th></th>
     </tr>
   </thead>
@@ -20,13 +19,11 @@
       <td><%= address.city %></td>
 
       <td class="text-right">
-        <%= link "Show", to: address_path(@conn, :show, address), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: address_path(@conn, :edit, address), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: address_path(@conn, :delete, address), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link gettext("show"), to: address_path(@conn, :show, address), class: "btn btn-default btn-xs" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%= link "New address", to: address_path(@conn, :new) %>
+<%= link gettext("create_new_address"), to: address_path(@conn, :new) %>
