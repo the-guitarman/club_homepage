@@ -2,8 +2,9 @@
 /_build
 /db
 /deps
-/*.ez
+/env
 /priv/repo/my_seeds.exs
+/*.ez
 
 # Generate on crash by the VM
 erl_crash.dump
