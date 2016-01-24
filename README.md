@@ -1,9 +1,13 @@
 [![Code Climate](https://codeclimate.com/github/golibri/website/badges/gpa.svg)](https://codeclimate.com/github/golibri/website)
 [![Built with Spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)](http://github.com/syl20bnr/spacemacs)
 
+*Attention:* This is an after work project and neither it's finished nor it's ready for production usage.
+
 # ClubHomepage
 
-This is a website skeleton for your soccer or handball club. It's a phoenixframework projekt written in elixir. The intension is not only the inform about the club. There is a back office to register and edit club members, create and edit teams, match lists, tems selections and club news and there are live events from running matches via channels (socket connections) so that other club members are informed about a running match asap.
+This is a website skeleton for your soccer or handball club. It's a phoenixframework projekt written in elixir. The intension is not only the inform about the club. There is a back office to register and edit club members, create and edit teams, match lists, teams selections and club news and there will be live events from running matches via channels (socket connections) so that other club members are informed about a running match asap.
+
+
 
 ## Installation
 
@@ -88,3 +92,7 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
     - [ ] show a list of last matches, one for each active team
     - [ ] show a list of next matches, one for each active team
   - [ ] Back Office
+
+# Help & Donation
+
+Better ideas and solutions are gladly accepted. If you want to donate this project please use this link: https://paypal.me/guitarman/5
