@@ -7,7 +7,14 @@ This is a website skeleton for your soccer or handball club. It's a phoenixframe
 
 ## Installation
 
-This is a phoenixframework app. So you need to install Erlang, Elixir, Hex package manager and phoenix. See http://www.phoenixframework.org/docs/installation for more information.
+This is a phoenixframework app. So you need to install some requirements like Erlang, Elixir, Hex package manager, phoenix and node.js. See http://www.phoenixframework.org/docs/installation for more information.
+
+After this install project dependencies Run this commands from the project root:
+
+````
+npm install
+mix deps.get
+````
 
 ### Seed Data
 
