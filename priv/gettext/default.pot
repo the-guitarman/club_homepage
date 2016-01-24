@@ -1,0 +1,398 @@
+#: web/templates/address/edit.html.eex:6 web/templates/address/index.html.eex:1
+#: web/templates/address/new.html.eex:6 web/templates/address/show.html.eex:29
+#: web/templates/match/edit.html.eex:6 web/templates/match/index.html.eex:4
+#: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
+#: web/templates/meeting_point/edit.html.eex:6
+#: web/templates/meeting_point/index.html.eex:1
+#: web/templates/meeting_point/index.html.eex:23
+#: web/templates/meeting_point/new.html.eex:6
+#: web/templates/meeting_point/show.html.eex:14
+#: web/templates/opponent_team/edit.html.eex:6
+#: web/templates/opponent_team/index.html.eex:1
+#: web/templates/opponent_team/new.html.eex:6
+#: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
+#: web/templates/season/new.html.eex:10 web/templates/season/show.html.eex:14
+#: web/templates/secret/edit.html.eex:6 web/templates/secret/index.html.eex:4
+#: web/templates/team/edit.html.eex:6 web/templates/team/index.html.eex:4
+#: web/templates/team/new.html.eex:9 web/templates/user/edit.html.eex:6
+#: web/templates/user/index.html.eex:4
+#: web/templates/user/new_unregistered.html.eex:12
+#: web/templates/user/show.html.eex:35
+msgid "all"
+msgstr ""
+
+#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:59
+#: web/templates/match/new.html.eex:4
+msgid "create_new_match"
+msgstr ""
+
+#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:57
+msgid "create_next_new_match"
+msgstr ""
+
+#: web/templates/match/index.html.eex:21
+msgid "date_and_time"
+msgstr ""
+
+#: web/templates/match/form.html.eex:42 web/templates/match/index.html.eex:22
+msgid "home_match"
+msgstr ""
+
+#: web/templates/match/edit.html.eex:6 web/templates/match/index.html.eex:4
+#: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
+msgid "matches"
+msgstr ""
+
+#: web/templates/match/index.html.eex:20
+msgid "meeting_point"
+msgstr ""
+
+#: web/templates/match/index.html.eex:19
+msgid "opponent_team"
+msgstr ""
+
+#: web/templates/match/index.html.eex:17
+msgid "season"
+msgstr ""
+
+#: web/templates/match/index.html.eex:18
+msgid "team"
+msgstr ""
+
+#: web/templates/season/index.html.eex:8 web/templates/season/index.html.eex:26
+#: web/templates/season/new.html.eex:4
+msgid "create_new_season"
+msgstr ""
+
+#: web/templates/season/new.html.eex:6
+msgid "create_new_season_notice"
+msgstr ""
+
+#: web/templates/match/show.html.eex:40
+msgid "delete_match"
+msgstr ""
+
+#: web/templates/address/form.html.eex:4 web/templates/match/form.html.eex:4
+#: web/templates/meeting_point/form.html.eex:4
+#: web/templates/opponent_team/form.html.eex:4
+#: web/templates/season/form.html.eex:4 web/templates/secret/form.html.eex:4
+#: web/templates/team/form.html.eex:4 web/templates/user/form.html.eex:6
+#: web/templates/user/form_unregistered.html.eex:6
+msgid "form_input_errors_notice"
+msgstr ""
+
+#: web/templates/address/form.html.eex:34 web/templates/match/form.html.eex:57
+#: web/templates/meeting_point/form.html.eex:14
+#: web/templates/opponent_team/form.html.eex:19
+#: web/templates/season/form.html.eex:20 web/templates/secret/form.html.eex:18
+#: web/templates/team/form.html.eex:19 web/templates/user/form.html.eex:47
+#: web/templates/user/form_unregistered.html.eex:32
+msgid "save"
+msgstr ""
+
+#: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
+#: web/templates/season/new.html.eex:10 web/templates/season/show.html.eex:14
+msgid "seasons"
+msgstr ""
+
+#: web/templates/match/form.html.eex:36
+msgid "select_date_and_time_placeholder"
+msgstr ""
+
+#: web/templates/match/form.html.eex:29 web/templates/match/form.html.eex:29
+msgid "select_meeting_point_placeholder"
+msgstr ""
+
+#: web/templates/match/form.html.eex:24 web/templates/match/form.html.eex:24
+msgid "select_opponent_team_placeholder"
+msgstr ""
+
+#: web/templates/match/form.html.eex:14 web/templates/match/form.html.eex:14
+msgid "select_season_placeholder"
+msgstr ""
+
+#: web/templates/match/form.html.eex:19 web/templates/match/form.html.eex:19
+msgid "select_team_placeholder"
+msgstr ""
+
+#: web/templates/match/index.html.eex:48
+msgid "show_match"
+msgstr ""
+
+#: web/templates/page/the_club.html.eex:4
+msgid "about_us"
+msgstr ""
+
+#: web/templates/meeting_point/index.html.eex:6
+#: web/templates/opponent_team/index.html.eex:7
+#: web/templates/opponent_team/show.html.eex:11
+msgid "address"
+msgstr ""
+
+#: web/templates/address/form.html.eex:15
+msgid "address_district_placeholder"
+msgstr ""
+
+#: web/templates/address/form.html.eex:20
+msgid "address_street_placeholder"
+msgstr ""
+
+#: web/templates/address/form.html.eex:25
+msgid "address_zip_code_placeholder"
+msgstr ""
+
+#: web/templates/address/edit.html.eex:6 web/templates/address/index.html.eex:1
+#: web/templates/address/new.html.eex:6 web/templates/address/show.html.eex:29
+msgid "addresses"
+msgstr ""
+
+#: web/templates/page/chronicle.html.eex:4
+msgid "chronicle"
+msgstr ""
+
+#: web/templates/address/index.html.eex:9
+msgid "city"
+msgstr ""
+
+#: web/templates/page/contact.html.eex:4
+msgid "contact"
+msgstr ""
+
+#: web/templates/address/index.html.eex:29 web/templates/address/new.html.eex:1
+msgid "create_new_address"
+msgstr ""
+
+#: web/templates/meeting_point/new.html.eex:1
+msgid "create_new_meeting_point"
+msgstr ""
+
+#: web/templates/opponent_team/index.html.eex:26
+#: web/templates/opponent_team/new.html.eex:1
+msgid "create_new_opponent_team"
+msgstr ""
+
+#: web/templates/secret/index.html.eex:7 web/templates/secret/new.html.eex:4
+msgid "create_new_secret"
+msgstr ""
+
+#: web/templates/secret/new.html.eex:6
+msgid "create_new_secret_notice"
+msgstr ""
+
+#: web/templates/address/show.html.eex:28
+#: web/templates/meeting_point/show.html.eex:13
+#: web/templates/opponent_team/index.html.eex:19
+msgid "delete"
+msgstr ""
+
+#: web/templates/address/index.html.eex:6
+msgid "district"
+msgstr ""
+
+#: web/templates/address/show.html.eex:27
+#: web/templates/meeting_point/show.html.eex:12
+#: web/templates/opponent_team/show.html.eex:18
+#: web/templates/season/show.html.eex:12
+msgid "edit"
+msgstr ""
+
+#: web/templates/address/edit.html.eex:1
+msgid "edit_address"
+msgstr ""
+
+#: web/templates/meeting_point/edit.html.eex:1
+msgid "edit_meeting_point"
+msgstr ""
+
+#: web/templates/opponent_team/edit.html.eex:1
+msgid "edit_opponent_team"
+msgstr ""
+
+#: web/templates/season/edit.html.eex:1
+msgid "edit_season"
+msgstr ""
+
+#: web/templates/secret/edit.html.eex:1
+msgid "edit_secret"
+msgstr ""
+
+#: web/templates/meeting_point/edit.html.eex:6
+#: web/templates/meeting_point/index.html.eex:1
+#: web/templates/meeting_point/index.html.eex:23
+#: web/templates/meeting_point/new.html.eex:6
+#: web/templates/meeting_point/show.html.eex:14
+msgid "meeting_points"
+msgstr ""
+
+#: web/templates/opponent_team/form.html.eex:15
+#: web/templates/opponent_team/index.html.eex:6
+#: web/templates/opponent_team/show.html.eex:6
+#: web/templates/season/show.html.eex:6 web/templates/team/show.html.eex:6
+#: web/templates/user/form.html.eex:27
+#: web/templates/user/form_unregistered.html.eex:17
+#: web/templates/user/index.html.eex:14 web/templates/user/show.html.eex:14
+msgid "name"
+msgstr ""
+
+#: web/templates/opponent_team/edit.html.eex:6
+#: web/templates/opponent_team/index.html.eex:1
+#: web/templates/opponent_team/new.html.eex:6
+#: web/templates/opponent_team/show.html.eex:19
+msgid "opponent_teams"
+msgstr ""
+
+#: web/templates/page/registration_information.html.eex:4
+msgid "registration_information"
+msgstr ""
+
+#: web/templates/secret/edit.html.eex:6 web/templates/secret/index.html.eex:4
+msgid "secrets"
+msgstr ""
+
+#: web/templates/season/form.html.eex:16 web/templates/season/form.html.eex:16
+msgid "select_season_years_placeholder"
+msgstr ""
+
+#: web/templates/address/index.html.eex:22
+#: web/templates/meeting_point/index.html.eex:16
+#: web/templates/opponent_team/show.html.eex:17
+#: web/templates/user/index.html.eex:37
+msgid "show"
+msgstr ""
+
+#: web/templates/address/show.html.eex:1
+msgid "show_address"
+msgstr ""
+
+#: web/templates/meeting_point/show.html.eex:1
+msgid "show_meeting_point"
+msgstr ""
+
+#: web/templates/opponent_team/show.html.eex:1
+msgid "show_opponent_team"
+msgstr ""
+
+#: web/templates/season/show.html.eex:1
+msgid "show_season"
+msgstr ""
+
+#: web/templates/page/sponsors.html.eex:4
+msgid "sponsors"
+msgstr ""
+
+#: web/templates/address/index.html.eex:7
+msgid "street"
+msgstr ""
+
+#: web/templates/address/index.html.eex:8
+msgid "zip_code"
+msgstr ""
+
+#: web/templates/address/form.html.eex:30
+msgid "address_city_place_holder"
+msgstr ""
+
+#: web/templates/secret/show.html.eex:23
+msgid "create_new_memeber"
+msgstr ""
+
+#: web/templates/secret/show.html.eex:14
+msgid "expiry_date"
+msgstr ""
+
+#: web/templates/secret/show.html.eex:4 web/templates/secret/show.html.eex:9
+#: web/templates/user/form.html.eex:43
+msgid "secret"
+msgstr ""
+
+#: web/templates/secret/show.html.eex:21
+msgid "send_secret_via_email"
+msgstr ""
+
+#: web/templates/team/index.html.eex:7 web/templates/team/index.html.eex:24
+#: web/templates/team/new.html.eex:4
+msgid "create_new_team"
+msgstr ""
+
+#: web/templates/team/edit.html.eex:1
+msgid "edit_team"
+msgstr ""
+
+#: web/templates/session/new.html.eex:12
+msgid "log_in"
+msgstr ""
+
+#: web/templates/session/new.html.eex:4 web/templates/session/new.html.eex:7
+#: web/templates/user/form.html.eex:17 web/templates/user/index.html.eex:13
+#: web/templates/user/show.html.eex:9
+msgid "login"
+msgstr ""
+
+#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:22
+msgid "password"
+msgstr ""
+
+#: web/templates/team/edit.html.eex:6 web/templates/team/index.html.eex:4
+#: web/templates/team/new.html.eex:9
+msgid "teams"
+msgstr ""
+
+#: web/templates/user/index.html.eex:16
+msgid "active"
+msgstr ""
+
+#: web/templates/user/form.html.eex:38
+#: web/templates/user/form_unregistered.html.eex:28
+#: web/templates/user/index.html.eex:17 web/templates/user/show.html.eex:25
+msgid "birthday"
+msgstr ""
+
+#: web/templates/user/new_unregistered.html.eex:10
+msgid "create_new_unregistered_user_email_notice"
+msgstr ""
+
+#: web/templates/user/new_unregistered.html.eex:5
+msgid "create_new_unregistered_user_notice"
+msgstr ""
+
+#: web/templates/user/index.html.eex:7 web/templates/user/index.html.eex:45
+#: web/templates/user/new.html.eex:4
+#: web/templates/user/new_unregistered.html.eex:4
+msgid "create_new_user"
+msgstr ""
+
+#: web/templates/user/new.html.eex:5
+msgid "create_new_user_notice"
+msgstr ""
+
+#: web/templates/user/edit.html.eex:1
+msgid "edit_user"
+msgstr ""
+
+#: web/templates/user/form.html.eex:32
+#: web/templates/user/form_unregistered.html.eex:22
+#: web/templates/user/index.html.eex:15 web/templates/user/show.html.eex:19
+msgid "email"
+msgstr ""
+
+#: web/templates/team/show.html.eex:11
+msgid "rewrite"
+msgstr ""
+
+#: web/templates/team/show.html.eex:1
+msgid "show_team"
+msgstr ""
+
+#: web/templates/user/show.html.eex:4
+msgid "show_user"
+msgstr ""
+
+#: web/templates/team/form.html.eex:15
+msgid "team_name_placeholder"
+msgstr ""
+
+#: web/templates/user/edit.html.eex:6 web/templates/user/index.html.eex:4
+#: web/templates/user/new_unregistered.html.eex:12
+#: web/templates/user/show.html.eex:35
+msgid "users"
+msgstr ""
