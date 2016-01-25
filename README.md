@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/golibri/website/badges/gpa.svg)](https://codeclimate.com/github/golibri/website)
+[![Code Climate](https://codeclimate.com/github/the-guitarman/club_homepage/badges/gpa.svg)](https://codeclimate.com/github/the-guitarman/club_homepage)
 [![Built with Spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)](http://github.com/syl20bnr/spacemacs)
 
 *Attention:* This is an after work project and neither it's finished nor it's ready for production usage.
