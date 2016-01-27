@@ -16,6 +16,13 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def factory(:season) do
+    %{year: year} = Timex.Date.now
+    %ClubHomepage.Season{
+      name: sequence(:name, &"#{year}-#{year + &1}")
+    }
+  end
+
   def factory(:secret) do
     %ClubHomepage.Secret{
       key: SecureRandom.urlsafe_base64,
