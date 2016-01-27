@@ -12,7 +12,8 @@ config :club_homepage, ClubHomepage.Endpoint,
   secret_key_base: "/FTNk/qEtZWOZhuUwYiry4YC9G5qDxjK/DSmSzkEiuH7kzG5AxheGYE4BPEA3H9X",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: ClubHomepage.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.PG2],
+  locale: "de"
 
 # Configures Elixir's Logger
 config :logger, :console,

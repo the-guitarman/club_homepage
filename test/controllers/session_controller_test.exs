@@ -27,6 +27,7 @@ defmodule ClubHomepage.SessionControllerTest do
     conn = post conn, session_path(conn, :create), session: %{login: user.email, password: "my password"}
     #assert html_response(conn, 200) =~ "Dein Login/E-Mail Adresse oder Dein Passwort sind ungültig."
     assert redirected_to(conn) =~ "/"
+    assert html_response(conn, 302)
     #assert html_response(conn, 302) =~ "Du bist nun eingeloggt."
   end
 end

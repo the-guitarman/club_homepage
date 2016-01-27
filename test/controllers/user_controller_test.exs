@@ -40,7 +40,7 @@ defmodule ClubHomepage.UserControllerTest do
     user = create(:user)
     unregistered_user = create(:unregistered_user)
     conn = get conn, managed_user_path(conn, :index)
-    assert html_response(conn, 200) =~ "Alle Vereinsmitglieder"
+    assert html_response(conn, 200) =~ "All Club Members"
     assert html_response(conn, 200) =~ "<td>#{user.email}</td>"
     assert html_response(conn, 200) =~ "<td>#{unregistered_user.email}</td>"
   end
@@ -48,7 +48,7 @@ defmodule ClubHomepage.UserControllerTest do
   @tag login: true
   test "renders form for new unregistered users with current_user logged in", %{conn: conn, current_user: _current_user} do
     conn = get conn, unregistered_user_path(conn, :new_unregistered)
-    assert html_response(conn, 200) =~ "<h2>Vereinsmitglied anlegen</h2>"
+    assert html_response(conn, 200) =~ "<h2>Create Club Member</h2>"
   end
 
   @tag login: true
@@ -75,20 +75,20 @@ defmodule ClubHomepage.UserControllerTest do
   @tag login: true
   test "renders form for new users without secret parameter", %{conn: conn, current_user: _current_user} do
     conn = get conn, user_path(conn, :new)
-    assert html_response(conn, 200) =~ "Jetzt registrieren"
+    assert html_response(conn, 200) =~ "Save"
   end
 
   @tag login: true
   test "renders form for new users with secret parameter", %{conn: conn, current_user: _current_user} do
     conn = get conn, user_path(conn, :new, secret: "sdkljsdflksdjfisd")
-    assert html_response(conn, 200) =~ "Jetzt registrieren"
+    assert html_response(conn, 200) =~ "Save"
   end
 
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     conn = post conn, user_path(conn, :create), user: @valid_attrs
-    assert html_response(conn, 200) =~ "Jetzt registrieren"
-    assert html_response(conn, 200) =~ "Secret wird benötigt"
+    assert html_response(conn, 200) =~ "Save"
+    assert html_response(conn, 200) =~ "Secret can&#39;t be blank"
 
     secret = create(:secret)
     new_valid_attrs = Map.put(@valid_attrs, :secret, secret.key)
@@ -103,8 +103,8 @@ defmodule ClubHomepage.UserControllerTest do
   @tag login: true
   test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user} do
     conn = post conn, user_path(conn, :create), user: @invalid_attrs
-    assert html_response(conn, 200) =~ "Jetzt registrieren"
-    assert html_response(conn, 200) =~ "Secret wird benötigt"
+    assert html_response(conn, 200) =~ "Save"
+    assert html_response(conn, 200) =~ "Secret can&#39;t be blank"
     assert html_response(conn, 200) =~ "Login can&#39;t be blank"
     assert html_response(conn, 200) =~ "Name can&#39;t be blank"
     assert html_response(conn, 200) =~ "Email can&#39;t be blank"
@@ -115,7 +115,7 @@ defmodule ClubHomepage.UserControllerTest do
   test "show a user with current_user is logged in", %{conn: conn, current_user: _current_user} do
     user = create(:user)
     conn = get conn, managed_user_path(conn, :show, user)
-    assert html_response(conn, 200) =~ "Show user"
+    assert html_response(conn, 200) =~ "Show Club Member"
   end
 
   @tag login: true

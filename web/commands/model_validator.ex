@@ -11,6 +11,7 @@ defmodule ClubHomepage.ModelValidator do
   Please see: https://hexdocs.pm/ecto/Ecto.Changeset.html#unique_constraint/3
   """
   @spec validate_uniqueness( Ecto.Changeset, Atom | List, Keyword ) :: Ecto.Changeset
+  def validate_uniqueness(model, key), do: validate_uniqueness(model, key, %{})
   def validate_uniqueness(model, key, params) do
     case Application.get_env(:club_homepage, Repo)[:adapter] do
       Sqlite.Ecto ->
@@ -59,7 +60,7 @@ defmodule ClubHomepage.ModelValidator do
   defp try_to_find_value({:ok, model, value}, key) when is_atom(key) do
     case Repo.get_by(model.model.__struct__, Keyword.new([{key, value}])) do
       nil -> model
-      _   -> Changeset.add_error(model, key, "ist bereits vergeben")
+      _   -> Changeset.add_error(model, key, "already exists")
     end
   end
   defp try_to_find_value({:ok, model, values}, keys) when is_list(keys) do
@@ -74,7 +75,7 @@ defmodule ClubHomepage.ModelValidator do
     conditions = Enum.zip(keys, values) |> Enum.into(%{})
     case Repo.get_by(model.model.__struct__, conditions) do
       nil -> model
-      _   -> Changeset.add_error(model, get_model_name(model), "existiert bereits")
+      _   -> Changeset.add_error(model, get_model_name(model), "already exists")
     end
   end
 

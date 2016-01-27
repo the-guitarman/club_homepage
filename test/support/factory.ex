@@ -25,8 +25,8 @@ defmodule ClubHomepage.Factory do
 
   def factory(:team) do
     %ClubHomepage.Team{
-      name: "This is my    team without ß in the name.",
-      rewrite: "this-is-my-team-without-ss-in-the-name"
+      name: sequence(:name, &"This is my    team #{&1} without ß in the name."),
+      rewrite: sequence(:rewrite, &"this-is-my-team-#{&1}-without-ss-in-the-name")
     }
   end
 

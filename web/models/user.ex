@@ -19,7 +19,7 @@ defmodule ClubHomepage.User do
   def unregistered_changeset(model, params \\ :empty) do
     model
     |> cast(params, ~w(email name), ~w(login birthday active roles))
-    |> validate_length(:name, max: 100, message: "ist zu lang (max. 100 Zeichen)")
+    |> validate_length(:name, max: 100)
     |> check_email
     |> set_roles
     |> set_active(false)
@@ -35,18 +35,18 @@ defmodule ClubHomepage.User do
     model
     |> unregistered_changeset(params)
     |> cast(params, ~w(login birthday), [])
-    |> validate_length(:login, min: 6, message: "ist zu kurz (min. 6, max. 20 Zeichen)")
-    |> validate_length(:login, max: 20, message: "ist zu lang (min. 6, max. 20 Zeichen)")
-    |> validate_format(:login, ~r/\A[a-z0-9._-]+\z/i, message: "enthält ungültige Zeichen (gültig: 0-9 a-z . _ -)")
+    |> validate_length(:login, min: 6)
+    |> validate_length(:login, max: 20)
+    |> validate_format(:login, ~r/\A[a-z0-9._-]+\z/i)
     |> update_change(:login, &String.downcase/1)
-    |> ModelValidator.validate_uniqueness(:login, message: "ist bereits vergeben")
+    |> ModelValidator.validate_uniqueness(:login)
   end
 
   def registration_changeset(model, params) do
     model
     |> changeset(params)
     |> cast(params, ~w(password), [])
-    |> validate_length(:password, min: 6, max: 100, message: "mindestens 1 und maximal 100 Zeichen")
+    |> validate_length(:password, min: 6, max: 100)
     |> put_pass_hash()
     |> set_active(true)
   end
@@ -70,13 +70,13 @@ defmodule ClubHomepage.User do
 
   defp check_email(%Ecto.Changeset{model: %ClubHomepage.User{email: nil}} = changeset) do
     changeset
-    |> validate_format(:email, ~r/\A[A-Z0-9_\.&%\+\-\']+@(?:[A-Z0-9\-]+\.)+(?:[A-Z]{2,13})\z/i, message: "hat ein ungültiges Format")
+    |> validate_format(:email, ~r/\A[A-Z0-9_\.&%\+\-\']+@(?:[A-Z0-9\-]+\.)+(?:[A-Z]{2,13})\z/i)
     |> update_change(:email, &String.downcase/1)
-    |> ModelValidator.validate_uniqueness(:email, message: "ist bereits vergeben")
+    |> ModelValidator.validate_uniqueness(:email)
   end
   defp check_email(changeset) do
     changeset
-    |> validate_format(:email, ~r/\A[A-Z0-9_\.&%\+\-\']+@(?:[A-Z0-9\-]+\.)+(?:[A-Z]{2,13})\z/i, message: "hat ein ungültiges Format")
+    |> validate_format(:email, ~r/\A[A-Z0-9_\.&%\+\-\']+@(?:[A-Z0-9\-]+\.)+(?:[A-Z]{2,13})\z/i)
     |> update_change(:email, &String.downcase/1)
   end
 end

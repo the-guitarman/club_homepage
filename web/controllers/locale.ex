@@ -2,10 +2,11 @@ defmodule ClubHomepage.Locale do
   import Plug.Conn
 
   def init(opts) do
-    Keyword.fetch!(opts, :locale)
+    opts
   end
 
-  def call(conn, locale) do
+  def call(conn, _) do
+    locale = Application.get_env(:club_homepage, ClubHomepage.Endpoint)[:locale]
     case conn.params["locale"] || get_session(conn, :locale) || locale do
       nil     -> conn
       locale  ->

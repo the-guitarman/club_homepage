@@ -3,8 +3,8 @@ defmodule ClubHomepage.SeasonTest do
 
   alias ClubHomepage.Season
 
-  @valid_attrs %{name: "some content"}
-  @invalid_attrs %{}
+  @valid_attrs %{name: "2015-2016"}
+  @invalid_attrs %{name: "some name"}
 
   test "changeset with valid attributes" do
     changeset = Season.changeset(%Season{}, @valid_attrs)

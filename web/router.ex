@@ -8,7 +8,7 @@ defmodule ClubHomepage.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug ClubHomepage.Auth, repo: ClubHomepage.Repo
-    plug ClubHomepage.Locale, locale: "de"
+    plug ClubHomepage.Locale
   end
 
   pipeline :api do
@@ -29,7 +29,7 @@ defmodule ClubHomepage.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
 
     #resources "/teams", TeamController, only: [:show]
-    get "/teams/:rewrite", TeamController, :show, as: :team
+    get "/teams/:rewrite", TeamController, :show, as: :team_permalink
     #get "/seasons/:seasons/teams/:team"
     #get "/seasons/:seasons/teams/:team/matches"
     #get "/seasons/:seasons/teams/:team/matches/:match"
@@ -48,7 +48,7 @@ defmodule ClubHomepage.Router do
     resources "/opponent_teams", OpponentTeamController
     resources "/matches", MatchController
     
-    resources "/teams", TeamController, only: [:index, :new, :create, :edit, :update, :delete]
+    resources "/teams", TeamController, only: [:index, :new, :show, :create, :edit, :update, :delete]
     resources "/seasons", SeasonController
   end
 

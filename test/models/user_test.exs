@@ -3,24 +3,26 @@ defmodule ClubHomepage.UserTest do
 
   alias ClubHomepage.User
 
+  #import ClubHomepage.Factory
+
   @valid_attrs %{birthday: Timex.Date.from({1988, 4, 17}, :local), email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)
     assert changeset.valid?
-    refute Map.has_key?(changeset.changes, :active)
-    refute Map.has_key?(changeset.changes, :roles)
+    assert Map.has_key?(changeset.changes, :active)
+    assert Map.has_key?(changeset.changes, :roles)
 
     {:ok, user} = Repo.insert(changeset)
 
-    assert user.active == true
+    assert user.active == false
     assert user.roles == "member"
 
     changeset = User.changeset(%User{}, @valid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:login] == "ist bereits vergeben"
-    assert changeset.errors[:email] == "ist bereits vergeben"
+    assert changeset.errors[:login] == "already exists"
+    assert changeset.errors[:email] == "already exists"
   end
 
   test "changeset with invalid attributes" do
@@ -33,22 +35,22 @@ defmodule ClubHomepage.UserTest do
 
     changeset = User.changeset(%User{}, %{login: "abc"})
     refute changeset.valid?
-    assert changeset.errors[:login] == {"ist zu kurz (min. 6, max. 20 Zeichen)", [count: 6]}
+    assert changeset.errors[:login] == {"should be at least %{count} character(s)", [count: 6]}
 
     changeset = User.changeset(%User{}, %{login: "abcdefghijklmnopqrstu"})
     refute changeset.valid?
-    assert changeset.errors[:login] == {"ist zu lang (min. 6, max. 20 Zeichen)", [count: 20]}
+    assert changeset.errors[:login] == {"should be at most %{count} character(s)", [count: 20]}
 
     changeset = User.changeset(%User{}, %{login: "$%&§^#~@€()[]"})
     refute changeset.valid?
-    assert changeset.errors[:login] == "enthält ungültige Zeichen (gültig: 0-9 a-z . _ -)"
+    assert changeset.errors[:login] == "has invalid format"
 
     changeset = User.changeset(%User{}, %{email: "mail[at]example_de"})
     refute changeset.valid?
-    assert changeset.errors[:email] == "hat ein ungültiges Format"
+    assert changeset.errors[:email] == "has invalid format"
 
     changeset = User.changeset(%User{}, %{name: String.duplicate("a", 101)})
     refute changeset.valid?
-    assert changeset.errors[:name] == {"ist zu lang (max. 100 Zeichen)", [count: 100]}
+    assert changeset.errors[:name] == {"should be at most %{count} character(s)", [count: 100]}
   end
 end

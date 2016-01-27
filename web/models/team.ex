@@ -24,8 +24,8 @@ defmodule ClubHomepage.Team do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> ModelValidator.validate_uniqueness(:name, message: "ist bereits vergeben")
+    |> ModelValidator.validate_uniqueness(:name)
     |> ClubHomepage.RewriteGenerator.run(:name, :rewrite)
-    |> ModelValidator.validate_uniqueness(:rewrite, message: "ist bereits vergeben")
+    |> ModelValidator.validate_uniqueness(:rewrite)
   end
 end

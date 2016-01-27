@@ -20,7 +20,7 @@ defmodule ClubHomepage.SecretCheck do
     # end
   end
 
-  defp empty(changeset, nil), do: {:error, add_error(changeset, :secret, "wird benötigt")}
+  defp empty(changeset, nil), do: {:error, add_error(changeset, :secret, "can't be blank")}
   defp empty(changeset, _secret_key) do 
     {:ok, changeset}
   end
@@ -28,7 +28,7 @@ defmodule ClubHomepage.SecretCheck do
   defp exists({:error, changeset}, _secret_key), do: {:error, changeset, nil}
   defp exists({:ok, changeset}, secret_key) do
     case Repo.one(from s in Secret, where: s.key == ^secret_key, select: s) do
-      nil -> {:error, add_error(changeset, :secret, "wurde nicht gefunden"), nil}
+      nil -> {:error, add_error(changeset, :secret, "not found"), nil}
       secret -> {:ok, changeset, secret}
     end
   end
@@ -38,7 +38,7 @@ defmodule ClubHomepage.SecretCheck do
     case Timex.Date.compare(Timex.Date.local, secret.expires_at) do
       1 -> 
         delete(secret.key)
-        add_error(changeset, :secret, "ist abgelaufen")
+        add_error(changeset, :secret, "has expired")
       _ -> changeset
     end
   end

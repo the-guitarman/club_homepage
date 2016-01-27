@@ -3,7 +3,7 @@
 
 *Attention:* This is an after work project and neither it's finished nor it's ready for production usage.
 
-# ClubHomepage
+# Club Homepage
 
 This is a website skeleton for your soccer or handball club. It's a phoenixframework projekt written in elixir. The intension is not only the inform about the club. There is a back office to register and edit club members, create and edit teams, match lists, teams selections and club news and there will be live events from running matches via channels (socket connections) so that other club members are informed about a running match asap.
 

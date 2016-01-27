@@ -3,6 +3,8 @@ defmodule ClubHomepage.TeamTest do
 
   alias ClubHomepage.Team
 
+  import ClubHomepage.Factory
+
   @valid_attrs %{name: "This is my    team without ß in the name."}
 
   test "create a team" do
@@ -15,6 +17,22 @@ defmodule ClubHomepage.TeamTest do
 
     changeset = Team.changeset(%Team{}, @valid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:rewrite] == "ist bereits vergeben"
+    assert changeset.errors[:rewrite] == "already exists"
+  end
+
+  test "edit a team" do
+    team1 = create(:team)
+    team2 = create(:team)
+
+    changeset = Team.changeset(team2, %{name: "new team name"})
+    {:ok, team} = Repo.update(changeset)
+
+    assert team.name == "new team name"
+
+    changeset = Team.changeset(team2, %{name: team1.name})
+    {:error, errors} = Repo.update(changeset)
+    refute changeset.valid?
+    assert changeset.errors[:name] == "already exists"
+    assert changeset.errors[:rewrite] == "already exists"
   end
 end
