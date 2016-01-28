@@ -19,11 +19,11 @@ defmodule ClubHomepage.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/chronik.html", PageController, :chronicle
-    get "/der-verein.html", PageController, :the_club
-    get "/impressum.html", PageController, :impressum
-    get "/kontakt.html", PageController, :contact
-    get "/sponsoren.html", PageController, :sponsors
+    get "/chronicle.html", PageController, :chronicle
+    get "/about-us.html", PageController, :about_us
+    get "/registration-information.html", PageController, :registration_information
+    get "/contact.html", PageController, :contact
+    get "/sponsors.html", PageController, :sponsors
 
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]

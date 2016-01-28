@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="<%= current_link(@conn, ClubHomepage.PageController, "the_club") %>">
-          <%= link "Verein", to: page_path(@conn, :the_club) %>
+          <%= link "Verein", to: page_path(@conn, :about_us) %>
         </li>
         <li class="<%= current_link(@conn, ClubHomepage.PageController, :chronicle) %>">
           <%= link "Chronik", to: page_path(@conn, :chronicle) %>

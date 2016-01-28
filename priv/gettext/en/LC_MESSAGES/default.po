@@ -340,8 +340,8 @@ msgstr "Login"
 msgid "password"
 msgstr "Password"
 
-#: web/templates/team/edit.html.eex:6 web/templates/team/index.html.eex:4
-#: web/templates/team/new.html.eex:9
+#: web/templates/page/index.html.eex:27 web/templates/team/edit.html.eex:6
+#: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:9
 msgid "teams"
 msgstr "Teams"
 
@@ -404,3 +404,11 @@ msgstr "Team Name"
 #: web/templates/user/show.html.eex:35
 msgid "users"
 msgstr "Club Members"
+
+#: web/templates/page/index.html.eex:16
+msgid "latest_match_results"
+msgstr "Latest Match Results"
+
+#: web/templates/page/index.html.eex:6
+msgid "latest_news"
+msgstr "Latest News"

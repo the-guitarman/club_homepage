@@ -14,7 +14,7 @@ defmodule ClubHomepage.PageController do
     render conn, "contact.html"
   end
 
-  def impressum(conn, _params) do
+  def registration_information(conn, _params) do
     render conn, "registration_information.html"
   end
 
@@ -22,7 +22,7 @@ defmodule ClubHomepage.PageController do
     render conn, "sponsors.html"
   end
 
-  def the_club(conn, _params) do
-    render conn, "the_club.html"
+  def about_us(conn, _params) do
+    render conn, "about_us.html"
   end
 end

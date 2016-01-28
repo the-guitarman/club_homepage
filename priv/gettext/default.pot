@@ -332,8 +332,8 @@ msgstr ""
 msgid "password"
 msgstr ""
 
-#: web/templates/team/edit.html.eex:6 web/templates/team/index.html.eex:4
-#: web/templates/team/new.html.eex:9
+#: web/templates/page/index.html.eex:27 web/templates/team/edit.html.eex:6
+#: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:9
 msgid "teams"
 msgstr ""
 
@@ -395,4 +395,12 @@ msgstr ""
 #: web/templates/user/new_unregistered.html.eex:12
 #: web/templates/user/show.html.eex:35
 msgid "users"
+msgstr ""
+
+#: web/templates/page/index.html.eex:16
+msgid "latest_match_results"
+msgstr ""
+
+#: web/templates/page/index.html.eex:6
+msgid "latest_news"
 msgstr ""
