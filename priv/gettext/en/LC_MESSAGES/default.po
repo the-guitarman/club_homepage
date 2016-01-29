@@ -230,7 +230,7 @@ msgstr "Edit Secret"
 #: web/templates/meeting_point/new.html.eex:6
 #: web/templates/meeting_point/show.html.eex:14
 msgid "meeting_points"
-msgstr "Meeting Point"
+msgstr "Meeting Points"
 
 #: web/templates/opponent_team/form.html.eex:15
 #: web/templates/opponent_team/index.html.eex:6

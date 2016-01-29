@@ -16,6 +16,12 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def factory(:opponent_team) do
+    %ClubHomepage.OpponentTeam{
+      name: sequence(:name, &"Opponent Team #{&1}")
+    }
+  end
+
   def factory(:season) do
     %{year: year} = Timex.Date.now
     %ClubHomepage.Season{

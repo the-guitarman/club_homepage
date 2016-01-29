@@ -3,7 +3,7 @@ defmodule ClubHomepage.MeetingPointTest do
 
   alias ClubHomepage.MeetingPoint
 
-  @valid_attrs %{}
+  @valid_attrs %{name: "Club House", address_id: 1}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
