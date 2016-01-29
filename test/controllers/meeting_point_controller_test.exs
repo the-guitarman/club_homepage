@@ -20,7 +20,7 @@ defmodule ClubHomepage.MeetingPointControllerTest do
   end
 
   @tag login: false
-  test "requires user authentication on all actions", %{conn: conn, current_user: _current_user} do
+  test "requires user authentication on all actions", %{conn: conn} do
     meeting_point = create(:meeting_point)
     Enum.each([
       get(conn, meeting_point_path(conn, :index)),
