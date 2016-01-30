@@ -30,7 +30,7 @@ defmodule ClubHomepage.TeamTest do
     assert team.name == "new team name"
 
     changeset = Team.changeset(team2, %{name: team1.name})
-    {:error, errors} = Repo.update(changeset)
+    {:error, _errors} = Repo.update(changeset)
     refute changeset.valid?
     assert changeset.errors[:name] == "already exists"
     assert changeset.errors[:rewrite] == "already exists"

@@ -7,24 +7,31 @@ defmodule ClubHomepage.Factory do
 
   def factory(:address) do
     %ClubHomepage.Address{
-      district: sequence(:district, &"District #{&1}")
+      district: sequence(:district, &"District #{&1}"),
+      street: sequence(:street, &"Street #{&1}"),
+      zip_code: sequence(:zip_code, &"#{&1}#{&1}#{&1}#{&1}#{&1}"),
+      city: "City"
     }
   end
 
   def factory(:match) do
+    season        = create(:season)
+    team          = create(:team)
+    opponent_team = create(:opponent_team)
     %ClubHomepage.Match{
-      season_id: 1,
-      team_id: 1,
-      opponent_team_id: 1,
-      meeting_point_id: 1,
+      season_id: season.id,
+      team_id: team.id,
+      opponent_team_id: opponent_team.id,
+      #meeting_point_id: 1,
       start_at: Timex.Date.local,
       home_match: false
     }
   end
 
   def factory(:meeting_point) do
+    address = create(:address)
     %ClubHomepage.MeetingPoint{
-      address_id: 1,
+      address_id: address.id,
       name: sequence(:name, &"Meeting Point #{&1}")
     }
   end

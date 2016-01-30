@@ -5,31 +5,31 @@ defmodule ClubHomepage.MeetingPointControllerTest do
 
   import ClubHomepage.Factory
 
-  @address create(:address)
-  @valid_attrs Map.put(%{name: "Club House"}, :address_id, @address.id)
-  #@valid_attrs %{name: "Club House"}
+  @valid_attrs %{name: "Club House", address_id: 1}
   @invalid_attrs %{}
 
   setup context do
     conn = conn()
+    address = create(:address)
+    valid_attrs = %{@valid_attrs | address_id: address.id}
     if context[:login] do
       current_user = create(:user)
       conn = assign(conn, :current_user, current_user)
-      {:ok, conn: conn, current_user: current_user}
+      {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs}
     else
-      {:ok, conn: conn}
+      {:ok, conn: conn, valid_attrs: valid_attrs}
     end
   end
 
   @tag login: false
-  test "requires user authentication on all actions", %{conn: conn} do
+  test "requires user authentication on all actions", %{conn: conn, valid_attrs: valid_attrs} do
     meeting_point = create(:meeting_point)
     Enum.each([
       get(conn, meeting_point_path(conn, :index)),
       get(conn, meeting_point_path(conn, :new)),
-      post(conn, meeting_point_path(conn, :create), meeting_point: @valid_attrs),
+      post(conn, meeting_point_path(conn, :create), meeting_point: valid_attrs),
       get(conn, meeting_point_path(conn, :edit, meeting_point)),
-      put(conn, meeting_point_path(conn, :update, meeting_point), meeting_point: @valid_attrs),
+      put(conn, meeting_point_path(conn, :update, meeting_point), meeting_point: valid_attrs),
       put(conn, meeting_point_path(conn, :update, meeting_point), meeting_point: @invalid_attrs),
       get(conn, meeting_point_path(conn, :show, meeting_point)),
       get(conn, meeting_point_path(conn, :show, -1)),
@@ -42,69 +42,69 @@ defmodule ClubHomepage.MeetingPointControllerTest do
   end
 
   @tag login: true
-  test "lists all entries on index", %{conn: conn, current_user: _current_user} do
+  test "lists all entries on index", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     conn = get conn, meeting_point_path(conn, :index)
     assert html_response(conn, 200) =~ "All Meeting Points"
   end
 
   @tag login: true
-  test "renders form for new resources", %{conn: conn, current_user: _current_user} do
+  test "renders form for new resources", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     conn = get conn, meeting_point_path(conn, :new)
     assert html_response(conn, 200) =~ "Create Meeting Point"
   end
 
   @tag login: true
-  test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
-    conn = post conn, meeting_point_path(conn, :create), meeting_point: @valid_attrs
+  test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user, valid_attrs: valid_attrs} do
+
+    conn = post conn, meeting_point_path(conn, :create), meeting_point: valid_attrs
     assert redirected_to(conn) == meeting_point_path(conn, :index)
-    assert Repo.get_by(MeetingPoint, @valid_attrs)
+    assert Repo.get_by(MeetingPoint, valid_attrs)
   end
 
   @tag login: true
-  test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user} do
+  test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     conn = post conn, meeting_point_path(conn, :create), meeting_point: @invalid_attrs
     assert html_response(conn, 200) =~ "Create Meeting Point"
   end
 
   @tag login: true
-  test "shows chosen resource", %{conn: conn, current_user: _current_user} do
+  test "shows chosen resource", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     meeting_point = Repo.insert! %MeetingPoint{}
     conn = get conn, meeting_point_path(conn, :show, meeting_point)
     assert html_response(conn, 200) =~ "Show Meeting Point"
   end
 
   @tag login: true
-  test "renders page not found when id is nonexistent", %{conn: conn, current_user: _current_user} do
+  test "renders page not found when id is nonexistent", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     assert_raise Ecto.NoResultsError, fn ->
       get conn, meeting_point_path(conn, :show, -1)
     end
   end
 
   @tag login: true
-  test "renders form for editing chosen resource", %{conn: conn, current_user: _current_user} do
+  test "renders form for editing chosen resource", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     meeting_point = Repo.insert! %MeetingPoint{}
     conn = get conn, meeting_point_path(conn, :edit, meeting_point)
     assert html_response(conn, 200) =~ "Edit Meeting Point"
   end
 
   @tag login: true
-  test "updates chosen resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
+  test "updates chosen resource and redirects when data is valid", %{conn: conn, current_user: _current_user, valid_attrs: valid_attrs} do
     meeting_point = Repo.insert! %MeetingPoint{}
-    conn = put conn, meeting_point_path(conn, :update, meeting_point), meeting_point: @valid_attrs
-    IO.inspect @valid_attrs
+    conn = put conn, meeting_point_path(conn, :update, meeting_point), meeting_point: valid_attrs
     assert redirected_to(conn) == meeting_point_path(conn, :show, meeting_point)
-    assert Repo.get_by(MeetingPoint, @valid_attrs)
+    assert Repo.get_by(MeetingPoint, valid_attrs)
   end
 
   @tag login: true
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user} do
+  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     meeting_point = Repo.insert! %MeetingPoint{}
     conn = put conn, meeting_point_path(conn, :update, meeting_point), meeting_point: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit Meeting Point"
   end
 
   @tag login: true
-  test "deletes chosen resource", %{conn: conn, current_user: _current_user} do
+  test "deletes chosen resource", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     meeting_point = Repo.insert! %MeetingPoint{}
     conn = delete conn, meeting_point_path(conn, :delete, meeting_point)
     assert redirected_to(conn) == meeting_point_path(conn, :index)
