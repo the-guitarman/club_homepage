@@ -3,7 +3,7 @@ defmodule ClubHomepage.AddressTest do
 
   alias ClubHomepage.Address
 
-  @valid_attrs %{city: "some content", district: "some content", street: "some content", zip_code: "some content"}
+  @valid_attrs %{city: "some content", street: "some content", zip_code: "01234"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

@@ -3,7 +3,7 @@ defmodule ClubHomepage.MatchTest do
 
   alias ClubHomepage.Match
 
-  @valid_attrs %{home_match: true, start_at: "2010-04-17 14:00:00"}
+  @valid_attrs %{season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "2010-04-17 14:00:00"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

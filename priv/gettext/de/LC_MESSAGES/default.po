@@ -8,7 +8,7 @@ msgstr ""
 
 #: web/templates/address/edit.html.eex:6 web/templates/address/index.html.eex:1
 #: web/templates/address/new.html.eex:6 web/templates/address/show.html.eex:29
-#: web/templates/match/edit.html.eex:6 web/templates/match/index.html.eex:4
+#: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
 #: web/templates/meeting_point/edit.html.eex:6
 #: web/templates/meeting_point/index.html.eex:1
@@ -46,7 +46,7 @@ msgstr "Datum und Zeit"
 msgid "home_match"
 msgstr "Heimspiel"
 
-#: web/templates/match/edit.html.eex:6 web/templates/match/index.html.eex:4
+#: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
 msgid "matches"
 msgstr "Spiele"
@@ -127,7 +127,7 @@ msgstr "Vereinsmannschaft wählen ..."
 msgid "show_match"
 msgstr "Anzeigen"
 
-#: web/templates/page/the_club.html.eex:4
+#: web/templates/page/about_us.html.eex:4
 msgid "about_us"
 msgstr "Über uns"
 
@@ -412,3 +412,7 @@ msgstr "Spielergebnisse"
 #: web/templates/page/index.html.eex:6
 msgid "latest_news"
 msgstr "News"
+
+#: web/templates/match/edit.html.eex:4
+msgid "edit_match"
+msgstr ""

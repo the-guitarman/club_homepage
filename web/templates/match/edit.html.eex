@@ -1,6 +1,17 @@
-<h2>Edit match</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("edit_match") %></h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: match_path(@conn, :update, @match) %>
+      <%= render "form.html", changeset: @changeset,
+        action: match_path(@conn, :update, @match),
+        season_options: @season_options,
+        team_options: @team_options,
+        opponent_team_options: @opponent_team_options,
+        meeting_point_options: @meeting_point_options
+      %>
 
-<%= link gettext("all") <> " " <> gettext("matches"), to: match_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("matches"), to: match_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

@@ -41,7 +41,7 @@ defmodule ClubHomepage.MatchController do
   end
 
   def show(conn, %{"id" => id}) do
-    match = Repo.one(from(m in Match, preload: [:season, :team, :opponent_team, :meeting_point], where: m.id == ^id))
+    match = Repo.one!(from(m in Match, preload: [:season, :team, :opponent_team, :meeting_point], where: m.id == ^id))
 #    match = Repo.get!(Match, id)
     render(conn, "show.html", match: match)
   end

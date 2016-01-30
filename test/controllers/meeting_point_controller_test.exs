@@ -5,7 +5,9 @@ defmodule ClubHomepage.MeetingPointControllerTest do
 
   import ClubHomepage.Factory
 
-  @valid_attrs %{name: "Club House", address_id: 1}
+  @address create(:address)
+  @valid_attrs Map.put(%{name: "Club House"}, :address_id, @address.id)
+  #@valid_attrs %{name: "Club House"}
   @invalid_attrs %{}
 
   setup context do
@@ -89,6 +91,7 @@ defmodule ClubHomepage.MeetingPointControllerTest do
   test "updates chosen resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     meeting_point = Repo.insert! %MeetingPoint{}
     conn = put conn, meeting_point_path(conn, :update, meeting_point), meeting_point: @valid_attrs
+    IO.inspect @valid_attrs
     assert redirected_to(conn) == meeting_point_path(conn, :show, meeting_point)
     assert Repo.get_by(MeetingPoint, @valid_attrs)
   end

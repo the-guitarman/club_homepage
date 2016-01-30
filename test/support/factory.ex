@@ -5,6 +5,12 @@ defmodule ClubHomepage.Factory do
   # without Ecto
   #use ExMachina
 
+  def factory(:address) do
+    %ClubHomepage.Address{
+      district: sequence(:district, &"District #{&1}")
+    }
+  end
+
   def factory(:match) do
     %ClubHomepage.Match{
       season_id: 1,
@@ -13,6 +19,13 @@ defmodule ClubHomepage.Factory do
       meeting_point_id: 1,
       start_at: Timex.Date.local,
       home_match: false
+    }
+  end
+
+  def factory(:meeting_point) do
+    %ClubHomepage.MeetingPoint{
+      address_id: 1,
+      name: sequence(:name, &"Meeting Point #{&1}")
     }
   end
 
