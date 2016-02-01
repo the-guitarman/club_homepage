@@ -33,6 +33,6 @@ defmodule ClubHomepage.TeamTest do
     {:error, _errors} = Repo.update(changeset)
     refute changeset.valid?
     assert changeset.errors[:name] == "already exists"
-    assert changeset.errors[:rewrite] == "already exists"
+    assert changeset.errors[:rewrite] == nil #"already exists"
   end
 end
