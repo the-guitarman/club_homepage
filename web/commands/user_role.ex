@@ -1,4 +1,8 @@
 defmodule ClubHomepage.UserRole do
+  @moduledoc """
+
+  """
+
   alias Ecto.Changeset
 
   # member  - simple a member of the club, a rigistered user
@@ -8,26 +12,31 @@ defmodule ClubHomepage.UserRole do
   # administrator - has all rights
   @roles ~w(administrator member player trainer editor)
 
+  @doc """
+  Checks wether a ClubHomepage.User has a user role. Return true or false.
+  """
+  @spec has_role?( ClubHomepage.User, String ) :: Boolean
   def has_role?(user, role) do
-    user.roles
-    |> split
-    |> include?(role)
-    |> valid?(role)
+    roles = split(user.roles)
+    include?(roles, role) && valid?(role)
   end
 
-  defp split(roles) do
-    String.split(roles)
-  end
-
+  #@spec include?( List(String), String ) :: Boolean
   defp include?(roles, role) do
     Enum.member?(roles, role)
   end
 
-  defp valid?(false, _role), do: false
-  defp valid?(true, role) do
+  @spec valid?( String ) :: Boolean
+  defp valid?(role) do
     Enum.member?(@roles, role)
   end
 
+
+
+  @doc """
+  Validates a ClubHomepage.User changeset. It checks that defined user roles are in the roles attribute only and it checks, that the user roles include the member role.
+  """
+  @spec check_roles( Ecto.Changeset ) :: Ecto.Changeset
   def check_roles(%{model: model, changes: changes} = changeset) do
     changeset
     |> check_current_roles(model)
@@ -50,8 +59,7 @@ defmodule ClubHomepage.UserRole do
 
   defp clean_up_roles(roles) do
     roles
-    |> String.split
-    |> Enum.map(fn(s) -> String.strip(s) end)
+    |> split
     |> Enum.filter(fn(s) -> Enum.member?(@roles, s) end)
     |> Enum.uniq
     |> ensure_member_role_exists
@@ -63,5 +71,15 @@ defmodule ClubHomepage.UserRole do
       false -> ["member" | roles]
       _     -> roles
     end
+  end
+
+
+
+
+  #@spec split ( String ) :: List(String)
+  defp split(roles) do
+    roles
+    |> String.split
+    |> Enum.map(fn(s) -> String.strip(s) end)
   end
 end
