@@ -2,6 +2,7 @@ defmodule ClubHomepage.User do
   use ClubHomepage.Web, :model
 
   alias ClubHomepage.ModelValidator
+  alias ClubHomepage.UserRole
 
   schema "users" do
     field :active, :boolean
@@ -21,7 +22,7 @@ defmodule ClubHomepage.User do
     |> cast(params, ~w(email name), ~w(login birthday active roles))
     |> validate_length(:name, max: 100)
     |> check_email
-    |> set_roles
+    |> UserRole.check_roles
     |> set_active(false)
   end
 
@@ -61,12 +62,6 @@ defmodule ClubHomepage.User do
     |> put_change(:active, state)
   end
   defp set_active(changeset, _state), do: changeset
-
-  defp set_roles(%Ecto.Changeset{model: %ClubHomepage.User{roles: nil}} = changeset) do
-    changeset
-    |> put_change(:roles, "member")
-  end
-  defp set_roles(changeset), do: changeset
 
   defp check_email(%Ecto.Changeset{model: %ClubHomepage.User{email: nil}} = changeset) do
     changeset
