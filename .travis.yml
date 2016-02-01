@@ -3,4 +3,8 @@ elixir:
   - 1.2.1
 otp_release:
   - 18
+before_script:
+  - export PATH=`pwd`/elixir/bin:$PATH
+  - mix local.hex --force
+  - mix deps.get --only test
 script: "MIX_ENV=test mix do deps.get, test"
