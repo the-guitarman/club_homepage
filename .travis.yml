@@ -12,4 +12,4 @@ before_script:
   - export PATH="$PATH:$PWD/vendor/elixir/bin"
   - mix local.hex --force
   - mix deps.get --only test
-script: yes | MIX_ENV=test mix do deps.get, test
+script: MIX_ENV=test mix do deps.get, test
