@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/the-guitarman/club_homepage.svg?branch=master)](https://travis-ci.org/the-guitarman/club_homepage)
+[![Test Coverage](https://codeclimate.com/github/the-guitarman/club_homepage/badges/coverage.svg)](https://codeclimate.com/github/the-guitarman/club_homepage/coverage)
+[![Issue Count](https://codeclimate.com/github/the-guitarman/club_homepage/badges/issue_count.svg)](https://codeclimate.com/github/the-guitarman/club_homepage)
 [![Code Climate](https://codeclimate.com/github/the-guitarman/club_homepage/badges/gpa.svg)](https://codeclimate.com/github/the-guitarman/club_homepage)
 [![Built with Spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)](http://github.com/syl20bnr/spacemacs)
 
