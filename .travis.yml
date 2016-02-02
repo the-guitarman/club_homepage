@@ -7,11 +7,10 @@ otp_release:
   - 18.0
 sudo: false
 before_script:
-  - echo 'TRAVIS_ELIXIR_VERSION'
-  - echo $TRAVIS_ELIXIR_VERSION
   - mkdir -p vendor/elixir
-  - wget -q https://github.com/elixir-lang/elixir/releases/download/$TRAVIS_ELIXIR_VERSION/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir
+  - wget -q https://github.com/elixir-lang/elixir/releases/download/$ELIXIR/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir
   - export PATH="$PATH:$PWD/vendor/elixir/bin"
   - mix local.hex --force
   - mix deps.get --only test
-script: MIX_ENV=test mix do deps.get, test
+#script: MIX_ENV=test mix do deps.get, test
+script: MIX_ENV=test mix test
