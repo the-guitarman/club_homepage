@@ -46,6 +46,7 @@ msgstr "Date And Time"
 msgid "home_match"
 msgstr "Home Match"
 
+#: web/templates/layout/navbar_top.html.eex:50
 #: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
 msgid "matches"
@@ -98,6 +99,7 @@ msgstr "Some errors occured:"
 msgid "save"
 msgstr "Save"
 
+#: web/templates/layout/navbar_top.html.eex:44
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
 #: web/templates/season/new.html.eex:10 web/templates/season/show.html.eex:14
 msgid "seasons"
@@ -127,6 +129,7 @@ msgstr "Select team ..."
 msgid "show_match"
 msgstr "Show"
 
+#: web/templates/layout/navbar_top.html.eex:19
 #: web/templates/page/about_us.html.eex:4
 msgid "about_us"
 msgstr "About Us"
@@ -154,6 +157,7 @@ msgstr "Zip Code"
 msgid "addresses"
 msgstr "Addresses"
 
+#: web/templates/layout/navbar_top.html.eex:22
 #: web/templates/page/chronicle.html.eex:4
 msgid "chronicle"
 msgstr "Chronicle"
@@ -162,6 +166,7 @@ msgstr "Chronicle"
 msgid "city"
 msgstr "City"
 
+#: web/templates/layout/navbar_bottom.html.eex:20
 #: web/templates/page/contact.html.eex:4
 msgid "contact"
 msgstr "Contact"
@@ -249,10 +254,12 @@ msgstr "Name"
 msgid "opponent_teams"
 msgstr "Opponent Teams"
 
+#: web/templates/layout/navbar_bottom.html.eex:23
 #: web/templates/page/registration_information.html.eex:4
 msgid "registration_information"
 msgstr "Registration Information"
 
+#: web/templates/layout/navbar_top.html.eex:37
 #: web/templates/secret/edit.html.eex:6 web/templates/secret/index.html.eex:4
 msgid "secrets"
 msgstr "Secrets"
@@ -284,6 +291,7 @@ msgstr "Show Opponent Team"
 msgid "show_season"
 msgstr "Show Season"
 
+#: web/templates/layout/navbar_top.html.eex:25
 #: web/templates/page/sponsors.html.eex:4
 msgid "sponsors"
 msgstr "Sponsors"
@@ -326,6 +334,7 @@ msgstr "Create Team"
 msgid "edit_team"
 msgstr "Edit Team"
 
+#: web/templates/layout/navbar_top.html.eex:60
 #: web/templates/session/new.html.eex:12
 msgid "log_in"
 msgstr "Log in"
@@ -340,6 +349,7 @@ msgstr "Login"
 msgid "password"
 msgstr "Password"
 
+#: web/templates/layout/navbar_top.html.eex:47
 #: web/templates/page/index.html.eex:27 web/templates/team/edit.html.eex:6
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:9
 msgid "teams"
@@ -416,3 +426,15 @@ msgstr "Latest News"
 #: web/templates/match/edit.html.eex:4
 msgid "edit_match"
 msgstr "Edit Match"
+
+#: web/templates/layout/navbar_top.html.eex:54
+msgid "logout"
+msgstr "Logout"
+
+#: web/templates/layout/navbar_top.html.eex:40
+msgid "members"
+msgstr "Club Members"
+
+#: web/templates/layout/navbar_top.html.eex:57
+msgid "sign_up"
+msgstr "Sign Up"

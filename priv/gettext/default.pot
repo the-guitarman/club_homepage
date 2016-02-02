@@ -38,6 +38,7 @@ msgstr ""
 msgid "home_match"
 msgstr ""
 
+#: web/templates/layout/navbar_top.html.eex:50
 #: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
 msgid "matches"
@@ -90,6 +91,7 @@ msgstr ""
 msgid "save"
 msgstr ""
 
+#: web/templates/layout/navbar_top.html.eex:44
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
 #: web/templates/season/new.html.eex:10 web/templates/season/show.html.eex:14
 msgid "seasons"
@@ -119,6 +121,7 @@ msgstr ""
 msgid "show_match"
 msgstr ""
 
+#: web/templates/layout/navbar_top.html.eex:19
 #: web/templates/page/about_us.html.eex:4
 msgid "about_us"
 msgstr ""
@@ -146,6 +149,7 @@ msgstr ""
 msgid "addresses"
 msgstr ""
 
+#: web/templates/layout/navbar_top.html.eex:22
 #: web/templates/page/chronicle.html.eex:4
 msgid "chronicle"
 msgstr ""
@@ -154,6 +158,7 @@ msgstr ""
 msgid "city"
 msgstr ""
 
+#: web/templates/layout/navbar_bottom.html.eex:20
 #: web/templates/page/contact.html.eex:4
 msgid "contact"
 msgstr ""
@@ -241,10 +246,12 @@ msgstr ""
 msgid "opponent_teams"
 msgstr ""
 
+#: web/templates/layout/navbar_bottom.html.eex:23
 #: web/templates/page/registration_information.html.eex:4
 msgid "registration_information"
 msgstr ""
 
+#: web/templates/layout/navbar_top.html.eex:37
 #: web/templates/secret/edit.html.eex:6 web/templates/secret/index.html.eex:4
 msgid "secrets"
 msgstr ""
@@ -276,6 +283,7 @@ msgstr ""
 msgid "show_season"
 msgstr ""
 
+#: web/templates/layout/navbar_top.html.eex:25
 #: web/templates/page/sponsors.html.eex:4
 msgid "sponsors"
 msgstr ""
@@ -318,6 +326,7 @@ msgstr ""
 msgid "edit_team"
 msgstr ""
 
+#: web/templates/layout/navbar_top.html.eex:60
 #: web/templates/session/new.html.eex:12
 msgid "log_in"
 msgstr ""
@@ -332,6 +341,7 @@ msgstr ""
 msgid "password"
 msgstr ""
 
+#: web/templates/layout/navbar_top.html.eex:47
 #: web/templates/page/index.html.eex:27 web/templates/team/edit.html.eex:6
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:9
 msgid "teams"
@@ -407,4 +417,16 @@ msgstr ""
 
 #: web/templates/match/edit.html.eex:4
 msgid "edit_match"
+msgstr ""
+
+#: web/templates/layout/navbar_top.html.eex:54
+msgid "logout"
+msgstr ""
+
+#: web/templates/layout/navbar_top.html.eex:40
+msgid "members"
+msgstr ""
+
+#: web/templates/layout/navbar_top.html.eex:57
+msgid "sign_up"
 msgstr ""

@@ -16,13 +16,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="<%= current_link(@conn, ClubHomepage.PageController, "the_club") %>">
-          <%= link "Verein", to: page_path(@conn, :about_us) %>
+          <%= link gettext("about_us"), to: page_path(@conn, :about_us) %>
         </li>
         <li class="<%= current_link(@conn, ClubHomepage.PageController, :chronicle) %>">
-          <%= link "Chronik", to: page_path(@conn, :chronicle) %>
+          <%= link gettext("chronicle"), to: page_path(@conn, :chronicle) %>
         </li>
         <li class="<%= current_link(@conn, ClubHomepage.PageController, :sponsors) %>">
-          <%= link "Sponsoren", to: page_path(@conn, :sponsors) %>
+          <%= link gettext("sponsors"), to: page_path(@conn, :sponsors) %>
         </li>
       </ul>
 
@@ -34,30 +34,30 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stammdaten <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li class="<%= current_link(@conn, ClubHomepage.SecretController, :new) %>">
-                <%= link "Secrets", to: secret_path(@conn, :new) %>
+                <%= link gettext("secrets"), to: secret_path(@conn, :new) %>
               </li>
               <li class="<%= current_link(@conn, ClubHomepage.UserController, :new_unregistered) %>">
-                <%= link "Vereinsmitglieder", to: managed_user_path(@conn, :index) %>
+                <%= link gettext("members"), to: managed_user_path(@conn, :index) %>
               </li>
               <li role="separator" class="divider"></li>
               <li class="<%= current_link(@conn, ClubHomepage.SeasonController, :index) %>">
-                <%= link "Saisons", to: season_path(@conn, :index) %>
+                <%= link gettext("seasons"), to: season_path(@conn, :index) %>
               </li>
               <li class="<%= current_link(@conn, ClubHomepage.TeamController, :index) %>">
-                <%= link "Mannschaften", to: team_path(@conn, :index) %>
+                <%= link gettext("teams"), to: team_path(@conn, :index) %>
               </li>
               <li class="<%= current_link(@conn, ClubHomepage.MatchController, :index) %>">
-                <%= link "Spiele", to: match_path(@conn, :index) %>
+                <%= link gettext("matches"), to: match_path(@conn, :index) %>
               </li>
             </ul>
           </li>
-          <li><%= link "Logout", to: session_path(@conn, :delete, @current_user), method: "delete", class: "navbar-text" %></li>
+          <li><%= link gettext("logout"), to: session_path(@conn, :delete, @current_user), method: "delete", class: "navbar-text" %></li>
         <% else %>
           <li class="<%= current_link(@conn, ClubHomepage.TeamController, :new) %>">
-            <%= link "Anmeldung", to: user_path(@conn, :new) %>
+            <%= link gettext("sign_up"), to: user_path(@conn, :new) %>
           </li>
           <li class="<%= current_link(@conn, ClubHomepage.SessionController, :new) %>">
-            <%= link "Login", to: session_path(@conn, :new) %>
+            <%= link gettext("log_in"), to: session_path(@conn, :new) %>
           </li>
         <% end %>
       </ul>
