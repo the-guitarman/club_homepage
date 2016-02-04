@@ -28,6 +28,14 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def factory(:news) do
+    %ClubHomepage.News{
+      subject: sequence(:subject, &"News Subject #{&1}"),
+      body: sequence(:body, &"This is the news message #{&1}."),
+      public: true
+    }
+  end
+
   def factory(:meeting_point) do
     address = create(:address)
     %ClubHomepage.MeetingPoint{

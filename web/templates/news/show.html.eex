@@ -1,0 +1,23 @@
+<h2>Show news</h2>
+
+<ul>
+
+  <li>
+    <strong>Public:</strong>
+    <%= @news.public %>
+  </li>
+
+  <li>
+    <strong>Subject:</strong>
+    <%= @news.subject %>
+  </li>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @news.body %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: news_path(@conn, :edit, @news) %>
+<%= link "Back", to: news_path(@conn, :index) %>

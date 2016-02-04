@@ -1,0 +1,24 @@
+<h2><%= gettext("latest_news") %></h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= gettext("subject") %></th>
+      <th><%= gettext("message_body") %></th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for news <- @news do %>
+    <tr>
+      <td><%= news.subject %></td>
+      <td><%= news.body %></td>
+
+      <td class="text-right">
+        <%= link gettext("show"), to: news_path(@conn, :show_public, news), class: "btn btn-default btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

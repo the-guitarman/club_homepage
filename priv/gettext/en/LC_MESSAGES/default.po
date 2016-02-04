@@ -15,6 +15,7 @@ msgstr ""
 #: web/templates/meeting_point/index.html.eex:23
 #: web/templates/meeting_point/new.html.eex:6
 #: web/templates/meeting_point/show.html.eex:14
+#: web/templates/news/show_public.html.eex:17
 #: web/templates/opponent_team/edit.html.eex:6
 #: web/templates/opponent_team/index.html.eex:1
 #: web/templates/opponent_team/new.html.eex:6
@@ -29,42 +30,42 @@ msgstr ""
 msgid "all"
 msgstr "All"
 
-#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:59
+#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:60
 #: web/templates/match/new.html.eex:4
 msgid "create_new_match"
 msgstr "Create Match"
 
-#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:57
+#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:58
 msgid "create_next_new_match"
 msgstr "Create Next Match"
 
-#: web/templates/match/index.html.eex:21
+#: web/templates/match/index.html.eex:22
 msgid "date_and_time"
 msgstr "Date And Time"
 
-#: web/templates/match/form.html.eex:42 web/templates/match/index.html.eex:22
+#: web/templates/match/form.html.eex:42 web/templates/match/index.html.eex:23
 msgid "home_match"
 msgstr "Home Match"
 
-#: web/templates/layout/navbar_top.html.eex:50
+#: web/templates/layout/navbar_top.html.eex:47
 #: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
 msgid "matches"
 msgstr "Matches"
 
-#: web/templates/match/index.html.eex:20
+#: web/templates/match/index.html.eex:21
 msgid "meeting_point"
 msgstr "Meeting Point"
 
-#: web/templates/match/index.html.eex:19
+#: web/templates/match/index.html.eex:20
 msgid "opponent_team"
 msgstr "Opponent Team"
 
-#: web/templates/match/index.html.eex:17
+#: web/templates/match/index.html.eex:18
 msgid "season"
 msgstr "Season"
 
-#: web/templates/match/index.html.eex:18
+#: web/templates/match/index.html.eex:19
 msgid "team"
 msgstr "Team"
 
@@ -99,7 +100,7 @@ msgstr "Some errors occured:"
 msgid "save"
 msgstr "Save"
 
-#: web/templates/layout/navbar_top.html.eex:44
+#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:62
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
 #: web/templates/season/new.html.eex:10 web/templates/season/show.html.eex:14
 msgid "seasons"
@@ -125,7 +126,7 @@ msgstr "Select season ..."
 msgid "select_team_placeholder"
 msgstr "Select team ..."
 
-#: web/templates/match/index.html.eex:48
+#: web/templates/match/index.html.eex:49
 msgid "show_match"
 msgstr "Show"
 
@@ -270,6 +271,7 @@ msgstr "Select season ..."
 
 #: web/templates/address/index.html.eex:22
 #: web/templates/meeting_point/index.html.eex:16
+#: web/templates/news/index_public.html.eex:19
 #: web/templates/opponent_team/show.html.eex:17
 #: web/templates/user/index.html.eex:37
 msgid "show"
@@ -334,7 +336,7 @@ msgstr "Create Team"
 msgid "edit_team"
 msgstr "Edit Team"
 
-#: web/templates/layout/navbar_top.html.eex:60
+#: web/templates/layout/navbar_top.html.eex:57
 #: web/templates/session/new.html.eex:12
 msgid "log_in"
 msgstr "Log in"
@@ -349,8 +351,8 @@ msgstr "Login"
 msgid "password"
 msgstr "Password"
 
-#: web/templates/layout/navbar_top.html.eex:47
-#: web/templates/page/index.html.eex:27 web/templates/team/edit.html.eex:6
+#: web/templates/layout/navbar_top.html.eex:44
+#: web/templates/page/index.html.eex:37 web/templates/team/edit.html.eex:6
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:9
 msgid "teams"
 msgstr "Teams"
@@ -415,11 +417,12 @@ msgstr "Team Name"
 msgid "users"
 msgstr "Club Members"
 
-#: web/templates/page/index.html.eex:16
+#: web/templates/page/index.html.eex:26
 msgid "latest_match_results"
 msgstr "Latest Match Results"
 
-#: web/templates/page/index.html.eex:6
+#: web/templates/news/index_public.html.eex:1
+#: web/templates/news/show_public.html.eex:1 web/templates/page/index.html.eex:6
 msgid "latest_news"
 msgstr "Latest News"
 
@@ -427,7 +430,7 @@ msgstr "Latest News"
 msgid "edit_match"
 msgstr "Edit Match"
 
-#: web/templates/layout/navbar_top.html.eex:54
+#: web/templates/layout/navbar_top.html.eex:51
 msgid "logout"
 msgstr "Logout"
 
@@ -435,10 +438,22 @@ msgstr "Logout"
 msgid "members"
 msgstr "Club Members"
 
-#: web/templates/layout/navbar_top.html.eex:57
+#: web/templates/layout/navbar_top.html.eex:54
 msgid "sign_up"
 msgstr "Sign Up"
 
 #: web/templates/layout/navbar_top.html.eex:34
 msgid "master_data"
 msgstr "Master Data"
+
+#: web/templates/news/index_public.html.eex:7
+msgid "message_body"
+msgstr "Message"
+
+#: web/templates/news/show_public.html.eex:17
+msgid "news"
+msgstr "News"
+
+#: web/templates/news/index_public.html.eex:6
+msgid "subject"
+msgstr "Subject"

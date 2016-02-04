@@ -5,8 +5,18 @@
       <div class="jumbotron content-box">
         <h2><%= gettext("latest_news") %></h2>
         <div class="list-group">
-          <a class="list-group-item" href="/teams/tsv-einheit-claussnitz-herren">TSV Einheit Claußnitz Herren</a>
-          <a class="list-group-item" href="/teams/tsv-einheit-claussnitz-herren-2">TSV Einheit Claußnitz Herren 2</a>
+          <%= for news <- @news do %>
+            <%
+              link_text = content_tag(:span) do
+                datetime = content_tag(:small) do
+                  {:ok, date_string} = Timex.DateFormat.format(news.inserted_at, "%d.%m.%Y %H:%M", :strftime)
+                  date_string
+                end
+              raw(safe_to_string(datetime) <> safe_to_string(tag(:br)) <> news.subject) 
+              end
+            %>
+            <%= link link_text, to: news_path(@conn, :show_public, news), class: "list-group-item" %>
+          <% end %>
         </div>
       </div>
     </div>

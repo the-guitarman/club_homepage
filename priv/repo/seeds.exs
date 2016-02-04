@@ -47,6 +47,16 @@ unless Repo.get_by(MeetingPoint, id: 1) do
   Repo.insert(changeset)
 end
 
+# News
+unless Repo.get(News, 1) do
+  changeset = News.changeset(%News{}, %{public: true, subject: "News Subject 1", body: "News Message 1"})
+  Repo.insert(changeset)
+end
+unless Repo.get(News, 2) do
+  changeset = News.changeset(%News{}, %{public: true, subject: "News Subject 2", body: "News Message 2"})
+  Repo.insert(changeset)
+end
+
 #Opponent Teams
 opponent_team_1 = %{name: "Opponent Team 1"}
 unless Repo.get_by(OpponentTeam, name: Map.to_list(opponent_team_1)) do

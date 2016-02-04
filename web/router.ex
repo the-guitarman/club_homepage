@@ -25,14 +25,15 @@ defmodule ClubHomepage.Router do
     get "/contact.html", PageController, :contact
     get "/sponsors.html", PageController, :sponsors
 
+    get "/news", NewsController, :index_public
+    get "/news/:id", NewsController, :show_public
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
-
-    #resources "/teams", TeamController, only: [:show]
-    get "/teams/:rewrite", TeamController, :show, as: :team_permalink
-    #get "/seasons/:seasons/teams/:team"
-    #get "/seasons/:seasons/teams/:team/matches"
-    #get "/seasons/:seasons/teams/:team/matches/:match"
+    ##resources "/teams", TeamController, only: [:show]
+    #get "/teams/:rewrite", TeamController, :show, as: :team_permalink
+    ##get "/seasons/:seasons/teams/:team"
+    ##get "/seasons/:seasons/teams/:team/matches"
+    ##get "/seasons/:seasons/teams/:team/matches/:match"
   end
 
   scope "/manage", ClubHomepage do
@@ -44,10 +45,10 @@ defmodule ClubHomepage.Router do
     resources "/users", UserController, only: [:index, :show, :edit, :update, :delete], as: :managed_user
 
     resources "/addresses", AddressController
-    resources "/meeting_points", MeetingPointController
-    resources "/opponent_teams", OpponentTeamController
     resources "/matches", MatchController
-    
+    resources "/meeting_points", MeetingPointController
+    resources "/news", NewsController
+    resources "/opponent_teams", OpponentTeamController
     resources "/teams", TeamController, only: [:index, :new, :show, :create, :edit, :update, :delete]
     resources "/seasons", SeasonController
   end
