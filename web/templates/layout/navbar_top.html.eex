@@ -31,7 +31,7 @@
         <%= if @current_user do %>
           <li><p class="navbar-text">Angemeldet: <%= @current_user.name %></p></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stammdaten <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= gettext("master_data") %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li class="<%= current_link(@conn, ClubHomepage.SecretController, :new) %>">
                 <%= link gettext("secrets"), to: secret_path(@conn, :new) %>
@@ -40,9 +40,6 @@
                 <%= link gettext("members"), to: managed_user_path(@conn, :index) %>
               </li>
               <li role="separator" class="divider"></li>
-              <li class="<%= current_link(@conn, ClubHomepage.SeasonController, :index) %>">
-                <%= link gettext("seasons"), to: season_path(@conn, :index) %>
-              </li>
               <li class="<%= current_link(@conn, ClubHomepage.TeamController, :index) %>">
                 <%= link gettext("teams"), to: team_path(@conn, :index) %>
               </li>

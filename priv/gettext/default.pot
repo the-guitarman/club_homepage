@@ -430,3 +430,7 @@ msgstr ""
 #: web/templates/layout/navbar_top.html.eex:57
 msgid "sign_up"
 msgstr ""
+
+#: web/templates/layout/navbar_top.html.eex:34
+msgid "master_data"
+msgstr ""
