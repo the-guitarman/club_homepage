@@ -6,7 +6,7 @@
             <%= render "form.html", changeset: @changeset,
                         action: news_path(@conn, :create) %>
 
-                <%= link gettext("all") <> " " <> gettext("news"), to: news_path(@conn, :index), class: "btn btn-default btn-xs" %>
+                <%= link gettext("all") <> " " <> gettext("news"), to: news_path(@conn, :index), class: "btn btn-default" %>
         </div>
     </div>
 </div>

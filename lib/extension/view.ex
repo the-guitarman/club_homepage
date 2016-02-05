@@ -3,12 +3,19 @@ defmodule Extension.View do
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.Tag
 
+  def current_link(conn, module, [] = actions) when is_list(actions), do: ""
+  def current_link(conn, module, [head | tail] = actions) when is_list(actions) do
+    current_link_class(conn, module, head) <> " " <> current_link(conn, module, tail)
+  end
+
   def current_link(conn, module, action) when is_atom(action) do
     current_link_class(conn, module, action)
   end
+
   def current_link(conn, module, action) when is_bitstring(action) do
     current_link_class(conn, module, String.to_atom(action))
   end
+
   defp current_link_class(conn, module, action) do
     case Phoenix.Controller.controller_module(conn) == module && Phoenix.Controller.action_name(conn) == action do
       true -> "active"
@@ -16,12 +23,18 @@ defmodule Extension.View do
     end
   end
 
+
+
+
   def current_domain(conn) do
     case conn.port do
       80 -> conn.host
       _ -> "#{conn.host}:#{conn.port}"
     end
   end
+
+
+
 
   def timex_date_input(form, field, opts \\ []) do
     timex_input(form, field, "%d.%m.%Y", opts)
