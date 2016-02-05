@@ -1,5 +1,5 @@
-#: web/templates/address/edit.html.eex:6 web/templates/address/index.html.eex:1
-#: web/templates/address/new.html.eex:6 web/templates/address/show.html.eex:29
+#: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
+#: web/templates/address/new.html.eex:9 web/templates/address/show.html.eex:32
 #: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
 #: web/templates/meeting_point/edit.html.eex:6
@@ -7,7 +7,8 @@
 #: web/templates/meeting_point/index.html.eex:23
 #: web/templates/meeting_point/new.html.eex:6
 #: web/templates/meeting_point/show.html.eex:14
-#: web/templates/news/show_public.html.eex:17
+#: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
+#: web/templates/news/show.html.eex:26
 #: web/templates/opponent_team/edit.html.eex:6
 #: web/templates/opponent_team/index.html.eex:1
 #: web/templates/opponent_team/new.html.eex:6
@@ -76,6 +77,7 @@ msgstr ""
 
 #: web/templates/address/form.html.eex:4 web/templates/match/form.html.eex:4
 #: web/templates/meeting_point/form.html.eex:4
+#: web/templates/news/form.html.eex:4
 #: web/templates/opponent_team/form.html.eex:4
 #: web/templates/season/form.html.eex:4 web/templates/secret/form.html.eex:4
 #: web/templates/team/form.html.eex:4 web/templates/user/form.html.eex:6
@@ -85,6 +87,7 @@ msgstr ""
 
 #: web/templates/address/form.html.eex:34 web/templates/match/form.html.eex:57
 #: web/templates/meeting_point/form.html.eex:14
+#: web/templates/news/form.html.eex:32
 #: web/templates/opponent_team/form.html.eex:19
 #: web/templates/season/form.html.eex:20 web/templates/secret/form.html.eex:18
 #: web/templates/team/form.html.eex:19 web/templates/user/form.html.eex:47
@@ -145,8 +148,8 @@ msgstr ""
 msgid "address_zip_code_placeholder"
 msgstr ""
 
-#: web/templates/address/edit.html.eex:6 web/templates/address/index.html.eex:1
-#: web/templates/address/new.html.eex:6 web/templates/address/show.html.eex:29
+#: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
+#: web/templates/address/new.html.eex:9 web/templates/address/show.html.eex:32
 msgid "addresses"
 msgstr ""
 
@@ -155,7 +158,7 @@ msgstr ""
 msgid "chronicle"
 msgstr ""
 
-#: web/templates/address/index.html.eex:9
+#: web/templates/address/index.html.eex:23
 msgid "city"
 msgstr ""
 
@@ -164,7 +167,8 @@ msgstr ""
 msgid "contact"
 msgstr ""
 
-#: web/templates/address/index.html.eex:29 web/templates/address/new.html.eex:1
+#: web/templates/address/index.html.eex:7
+#: web/templates/address/index.html.eex:53 web/templates/address/new.html.eex:4
 msgid "create_new_address"
 msgstr ""
 
@@ -185,24 +189,25 @@ msgstr ""
 msgid "create_new_secret_notice"
 msgstr ""
 
-#: web/templates/address/show.html.eex:28
+#: web/templates/address/show.html.eex:31
 #: web/templates/meeting_point/show.html.eex:13
 #: web/templates/opponent_team/index.html.eex:19
 msgid "delete"
 msgstr ""
 
-#: web/templates/address/index.html.eex:6
+#: web/templates/address/index.html.eex:14
 msgid "district"
 msgstr ""
 
-#: web/templates/address/show.html.eex:27
+#: web/templates/address/show.html.eex:30
 #: web/templates/meeting_point/show.html.eex:12
+#: web/templates/news/show.html.eex:25
 #: web/templates/opponent_team/show.html.eex:18
 #: web/templates/season/show.html.eex:12
 msgid "edit"
 msgstr ""
 
-#: web/templates/address/edit.html.eex:1
+#: web/templates/address/edit.html.eex:4
 msgid "edit_address"
 msgstr ""
 
@@ -261,15 +266,14 @@ msgstr ""
 msgid "select_season_years_placeholder"
 msgstr ""
 
-#: web/templates/address/index.html.eex:22
+#: web/templates/address/index.html.eex:45
 #: web/templates/meeting_point/index.html.eex:16
-#: web/templates/news/index_public.html.eex:19
 #: web/templates/opponent_team/show.html.eex:17
 #: web/templates/user/index.html.eex:37
 msgid "show"
 msgstr ""
 
-#: web/templates/address/show.html.eex:1
+#: web/templates/address/show.html.eex:4
 msgid "show_address"
 msgstr ""
 
@@ -290,11 +294,11 @@ msgstr ""
 msgid "sponsors"
 msgstr ""
 
-#: web/templates/address/index.html.eex:7
+#: web/templates/address/index.html.eex:17
 msgid "street"
 msgstr ""
 
-#: web/templates/address/index.html.eex:8
+#: web/templates/address/index.html.eex:20
 msgid "zip_code"
 msgstr ""
 
@@ -413,8 +417,9 @@ msgstr ""
 msgid "latest_match_results"
 msgstr ""
 
-#: web/templates/news/index_public.html.eex:1
-#: web/templates/news/show_public.html.eex:1 web/templates/page/index.html.eex:6
+#: web/templates/news/index.html.eex:4
+#: web/templates/news/index_public.html.eex:4
+#: web/templates/page/index.html.eex:6
 msgid "latest_news"
 msgstr ""
 
@@ -438,14 +443,32 @@ msgstr ""
 msgid "master_data"
 msgstr ""
 
-#: web/templates/news/index_public.html.eex:7
-msgid "message_body"
-msgstr ""
-
-#: web/templates/news/show_public.html.eex:17
+#: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
+#: web/templates/news/show.html.eex:26
 msgid "news"
 msgstr ""
 
-#: web/templates/news/index_public.html.eex:6
-msgid "subject"
+#: web/templates/news/index.html.eex:7 web/templates/news/index.html.eex:44
+#: web/templates/news/new.html.eex:4
+msgid "create_new_news"
+msgstr ""
+
+#: web/templates/news/show.html.eex:4
+msgid "show_news"
+msgstr ""
+
+#: web/templates/news/edit.html.eex:4
+msgid "edit_news"
+msgstr ""
+
+#: web/templates/news/form.html.eex:27
+msgid "news_body_placeholder"
+msgstr ""
+
+#: web/templates/news/form.html.eex:15
+msgid "news_public_placeholder"
+msgstr ""
+
+#: web/templates/news/form.html.eex:21
+msgid "news_subject_placeholder"
 msgstr ""

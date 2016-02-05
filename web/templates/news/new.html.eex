@@ -1,6 +1,12 @@
-<h2>New news</h2>
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="jumbotron content-box">
+            <h2><%= gettext("create_new_news") %></h2>
 
-<%= render "form.html", changeset: @changeset,
+            <%= render "form.html", changeset: @changeset,
                         action: news_path(@conn, :create) %>
 
-<%= link "Back", to: news_path(@conn, :index) %>
+                <%= link gettext("all") <> " " <> gettext("news"), to: news_path(@conn, :index), class: "btn btn-default btn-xs" %>
+        </div>
+    </div>
+</div>

@@ -1,29 +1,57 @@
-<h2><%= gettext("all") %> <%= gettext("addresses") %></h2>
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="jumbotron content-box">
+            <h2><%= gettext("all") %> <%= gettext("addresses") %></h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th><%= gettext("district") %></th>
-      <th><%= gettext("street") %></th>
-      <th><%= gettext("zip_code") %></th>
-      <th><%= gettext("city") %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for address <- @addresses do %>
-    <tr>
-      <td><%= address.district %></td>
-      <td><%= address.street %></td>
-      <td><%= address.zip_code %></td>
-      <td><%= address.city %></td>
+            <p>
+              <%= link gettext("create_new_address"), to: address_path(@conn, :new), class: "btn btn-default btn-xs" %>
+            </p>
 
-      <td class="text-right">
-        <%= link gettext("show"), to: address_path(@conn, :show, address), class: "btn btn-default btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <%= gettext("district") %>
+                        </th>
+                        <th>
+                            <%= gettext("street") %>
+                        </th>
+                        <th>
+                            <%= gettext("zip_code") %>
+                        </th>
+                        <th>
+                            <%= gettext("city") %>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%= for address <- @addresses do %>
+                        <tr>
+                            <td>
+                                <%= address.district %>
+                            </td>
+                            <td>
+                                <%= address.street %>
+                            </td>
+                            <td>
+                                <%= address.zip_code %>
+                            </td>
+                            <td>
+                                <%= address.city %>
+                            </td>
 
-<%= link gettext("create_new_address"), to: address_path(@conn, :new) %>
+                            <td class="text-right">
+                                <%= link gettext("show"), to: address_path(@conn, :show, address), class: "btn btn-default btn-xs" %>
+                            </td>
+                        </tr>
+                        <% end %>
+                </tbody>
+            </table>
+
+            <p>
+              <%= link gettext("create_new_address"), to: address_path(@conn, :new), class: "btn btn-default btn-xs" %>
+            </p>
+        </div>
+    </div>
+</div>

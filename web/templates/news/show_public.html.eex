@@ -1,7 +1,0 @@
-<h2><%= @news.subject %></h2>
-
-<p>
-    <%= @news.body %>
-</p>
-
-<%= link gettext("all") <> " " <> gettext("news"), to: news_path(@conn, :index_public) %>

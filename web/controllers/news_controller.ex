@@ -38,11 +38,6 @@ defmodule ClubHomepage.NewsController do
     render(conn, "show.html", news: news)
   end
 
-  def show_public(conn, %{"id" => id}) do
-    news = Repo.get_by!(News, id: id, public: true)
-    render(conn, "show_public.html", news: news)
-  end
-
   def edit(conn, %{"id" => id}) do
     news = Repo.get!(News, id)
     changeset = News.changeset(news)

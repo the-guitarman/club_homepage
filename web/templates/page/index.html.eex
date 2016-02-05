@@ -15,7 +15,7 @@
               raw(safe_to_string(datetime) <> safe_to_string(tag(:br)) <> news.subject) 
               end
             %>
-            <%= link link_text, to: news_path(@conn, :show_public, news), class: "list-group-item" %>
+            <%= link link_text, to: news_path(@conn, :index_public) <> "#news-#{news.id}", class: "list-group-item" %>
           <% end %>
         </div>
       </div>

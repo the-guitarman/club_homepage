@@ -26,7 +26,6 @@ defmodule ClubHomepage.Router do
     get "/sponsors.html", PageController, :sponsors
 
     get "/news", NewsController, :index_public
-    get "/news/:id", NewsController, :show_public
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     ##resources "/teams", TeamController, only: [:show]
