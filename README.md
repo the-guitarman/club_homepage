@@ -6,7 +6,7 @@
 
 # Club Homepage
 
-This is a website skeleton for your soccer or handball club. It's a phoenixframework projekt written in elixir. The intension is not only the inform about the club. There is a back office to register and edit club members, create and edit teams, match lists, teams selections and club news and there will be live events from running matches via channels (socket connections) so that other club members are informed about a running match asap.
+This is a website skeleton for your soccer or handball club. It's a phoenixframework projekt written in elixir. The intension is not only the inform about the club. There is a back office to register and edit club members, create and edit teams, match lists, team selections and club news and there will be live events from running matches via channels (socket connections) so that other club members are informed about a running match asap.
 
 
 
@@ -14,12 +14,18 @@ This is a website skeleton for your soccer or handball club. It's a phoenixframe
 
 This is a phoenixframework app. So you need to install some requirements like Erlang, Elixir, Hex package manager, phoenix and node.js. See http://www.phoenixframework.org/docs/installation for more information.
 
-After this install project dependencies Run this commands from the project root:
+After this, install project dependencies. Run this commands from the project root:
 
 ````
 npm install
 mix deps.get
 ````
+
+## Configuration
+
+### Translations
+
+At the moment there are two languages which you can choose to run your side: english (en) and german (de, default). To change the default to en please edit the locale option within config/config.exs. 
 
 ### Seed Data
 
