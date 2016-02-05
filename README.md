@@ -63,15 +63,15 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
   - [x] User
 - [ ] Tests
   - [ ] Models
-    - [ ] Address
-    - [ ] Match
+    - [x] Address
+    - [x] Match
     - [ ] MatchEvent
     - [ ] MatchHistory
-    - [ ] MeetingPoint
-    - [ ] OpponentTeam
-    - [ ] Season
+    - [x] MeetingPoint
+    - [x] OpponentTeam
+    - [x] Season
     - [x] Secret
-    - [ ] Team
+    - [x] Team
     - [x] User
   - [ ] Plugs
     - [ ] Auth
@@ -81,15 +81,15 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
     - [ ] SecretCheck
     - [ ] UserRole
   - [ ] Controller
-    - [ ] AddressController
-    - [ ] MatchController
+    - [x] AddressController
+    - [x] MatchController
     - [ ] MatchEventController
     - [ ] MatchHistoryController
-    - [ ] MeetingPointController
-    - [ ] OpponentTeamController
-    - [ ] SeasonController
+    - [x] MeetingPointController
+    - [x] OpponentTeamController
+    - [x] SeasonController
     - [x] SecretController
-    - [ ] TeamController
+    - [x] TeamController
     - [x] UserController
 - [ ] Sites
   - [ ] Homepage
