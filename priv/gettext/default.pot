@@ -40,7 +40,7 @@ msgstr ""
 msgid "home_match"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:47
+#: web/templates/layout/navbar_top.html.eex:51
 #: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
 msgid "matches"
@@ -87,7 +87,7 @@ msgstr ""
 
 #: web/templates/address/form.html.eex:34 web/templates/match/form.html.eex:57
 #: web/templates/meeting_point/form.html.eex:14
-#: web/templates/news/form.html.eex:32
+#: web/templates/news/form.html.eex:35
 #: web/templates/opponent_team/form.html.eex:19
 #: web/templates/season/form.html.eex:20 web/templates/secret/form.html.eex:18
 #: web/templates/team/form.html.eex:19 web/templates/user/form.html.eex:47
@@ -257,7 +257,7 @@ msgstr ""
 msgid "registration_information"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:37
+#: web/templates/layout/navbar_top.html.eex:41
 #: web/templates/secret/edit.html.eex:6 web/templates/secret/index.html.eex:4
 msgid "secrets"
 msgstr ""
@@ -332,7 +332,7 @@ msgstr ""
 msgid "edit_team"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:57
+#: web/templates/layout/navbar_top.html.eex:61
 #: web/templates/session/new.html.eex:12
 msgid "log_in"
 msgstr ""
@@ -347,7 +347,7 @@ msgstr ""
 msgid "password"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:44
+#: web/templates/layout/navbar_top.html.eex:48
 #: web/templates/page/index.html.eex:37 web/templates/team/edit.html.eex:6
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:9
 msgid "teams"
@@ -417,9 +417,7 @@ msgstr ""
 msgid "latest_match_results"
 msgstr ""
 
-#: web/templates/news/index.html.eex:4
-#: web/templates/news/index_public.html.eex:4
-#: web/templates/page/index.html.eex:6
+#: web/templates/news/index.html.eex:4 web/templates/page/index.html.eex:6
 msgid "latest_news"
 msgstr ""
 
@@ -427,15 +425,15 @@ msgstr ""
 msgid "edit_match"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:51
+#: web/templates/layout/navbar_top.html.eex:55
 msgid "logout"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:40
+#: web/templates/layout/navbar_top.html.eex:44
 msgid "members"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:54
+#: web/templates/layout/navbar_top.html.eex:58
 msgid "sign_up"
 msgstr ""
 
@@ -443,12 +441,13 @@ msgstr ""
 msgid "master_data"
 msgstr ""
 
+#: web/templates/layout/navbar_top.html.eex:37
 #: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
 #: web/templates/news/show.html.eex:26
 msgid "news"
 msgstr ""
 
-#: web/templates/news/index.html.eex:7 web/templates/news/index.html.eex:44
+#: web/templates/news/index_link_bar.html.eex:3
 #: web/templates/news/new.html.eex:4
 msgid "create_new_news"
 msgstr ""
@@ -461,14 +460,18 @@ msgstr ""
 msgid "edit_news"
 msgstr ""
 
-#: web/templates/news/form.html.eex:27
+#: web/templates/news/form.html.eex:21
 msgid "news_body_placeholder"
 msgstr ""
 
-#: web/templates/news/form.html.eex:15
+#: web/templates/news/form.html.eex:28
 msgid "news_public_placeholder"
 msgstr ""
 
-#: web/templates/news/form.html.eex:21
+#: web/templates/news/form.html.eex:15
 msgid "news_subject_placeholder"
+msgstr ""
+
+#: web/templates/news/index_item.html.eex:9
+msgid "published"
 msgstr ""

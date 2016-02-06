@@ -48,7 +48,7 @@ msgstr "Datum und Zeit"
 msgid "home_match"
 msgstr "Heimspiel"
 
-#: web/templates/layout/navbar_top.html.eex:47
+#: web/templates/layout/navbar_top.html.eex:51
 #: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
 msgid "matches"
@@ -95,7 +95,7 @@ msgstr "Es sind folgende Fehler aufgetreten:"
 
 #: web/templates/address/form.html.eex:34 web/templates/match/form.html.eex:57
 #: web/templates/meeting_point/form.html.eex:14
-#: web/templates/news/form.html.eex:32
+#: web/templates/news/form.html.eex:35
 #: web/templates/opponent_team/form.html.eex:19
 #: web/templates/season/form.html.eex:20 web/templates/secret/form.html.eex:18
 #: web/templates/team/form.html.eex:19 web/templates/user/form.html.eex:47
@@ -265,7 +265,7 @@ msgstr "Gegnerische Mannschaft"
 msgid "registration_information"
 msgstr "Impressum"
 
-#: web/templates/layout/navbar_top.html.eex:37
+#: web/templates/layout/navbar_top.html.eex:41
 #: web/templates/secret/edit.html.eex:6 web/templates/secret/index.html.eex:4
 msgid "secrets"
 msgstr "Secrets"
@@ -340,7 +340,7 @@ msgstr "Neue Vereinsmannschaft anlegen"
 msgid "edit_team"
 msgstr "Vereinsmannschaft editieren"
 
-#: web/templates/layout/navbar_top.html.eex:57
+#: web/templates/layout/navbar_top.html.eex:61
 #: web/templates/session/new.html.eex:12
 msgid "log_in"
 msgstr "Login"
@@ -355,7 +355,7 @@ msgstr "Login"
 msgid "password"
 msgstr "Passwort"
 
-#: web/templates/layout/navbar_top.html.eex:44
+#: web/templates/layout/navbar_top.html.eex:48
 #: web/templates/page/index.html.eex:37 web/templates/team/edit.html.eex:6
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:9
 msgid "teams"
@@ -425,9 +425,7 @@ msgstr "Vereinsmitglieder"
 msgid "latest_match_results"
 msgstr "Spielergebnisse"
 
-#: web/templates/news/index.html.eex:4
-#: web/templates/news/index_public.html.eex:4
-#: web/templates/page/index.html.eex:6
+#: web/templates/news/index.html.eex:4 web/templates/page/index.html.eex:6
 msgid "latest_news"
 msgstr "News"
 
@@ -435,15 +433,15 @@ msgstr "News"
 msgid "edit_match"
 msgstr "Spiel ändern"
 
-#: web/templates/layout/navbar_top.html.eex:51
+#: web/templates/layout/navbar_top.html.eex:55
 msgid "logout"
 msgstr "Logout"
 
-#: web/templates/layout/navbar_top.html.eex:40
+#: web/templates/layout/navbar_top.html.eex:44
 msgid "members"
 msgstr "Vereinsmitglieder"
 
-#: web/templates/layout/navbar_top.html.eex:54
+#: web/templates/layout/navbar_top.html.eex:58
 msgid "sign_up"
 msgstr "Anmelden"
 
@@ -451,12 +449,13 @@ msgstr "Anmelden"
 msgid "master_data"
 msgstr "Stammdaten"
 
+#: web/templates/layout/navbar_top.html.eex:37
 #: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
 #: web/templates/news/show.html.eex:26
 msgid "news"
 msgstr "News"
 
-#: web/templates/news/index.html.eex:7 web/templates/news/index.html.eex:44
+#: web/templates/news/index_link_bar.html.eex:3
 #: web/templates/news/new.html.eex:4
 msgid "create_new_news"
 msgstr "News anlegen"
@@ -469,14 +468,18 @@ msgstr "News"
 msgid "edit_news"
 msgstr "News ändern"
 
-#: web/templates/news/form.html.eex:27
+#: web/templates/news/form.html.eex:21
 msgid "news_body_placeholder"
 msgstr "Nachricht"
 
-#: web/templates/news/form.html.eex:15
+#: web/templates/news/form.html.eex:28
 msgid "news_public_placeholder"
 msgstr "Öffentlich sichtbar"
 
-#: web/templates/news/form.html.eex:21
+#: web/templates/news/form.html.eex:15
 msgid "news_subject_placeholder"
 msgstr "Betreff"
+
+#: web/templates/news/index_item.html.eex:9
+msgid "published"
+msgstr "Veröffentlicht"

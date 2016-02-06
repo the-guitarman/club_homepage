@@ -106,7 +106,7 @@ defmodule ClubHomepage.NewsControllerTest do
   test "updates chosen resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     news = Repo.insert! %News{}
     conn = put conn, news_path(conn, :update, news), news: @valid_attrs
-    assert redirected_to(conn) == news_path(conn, :show, news)
+    assert redirected_to(conn) == news_path(conn, :index) <> "#news-#{news.id}"
     assert Repo.get_by(News, @valid_attrs)
   end
 

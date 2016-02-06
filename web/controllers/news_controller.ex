@@ -53,7 +53,7 @@ defmodule ClubHomepage.NewsController do
       {:ok, news} ->
         conn
         |> put_flash(:info, "News updated successfully.")
-        |> redirect(to: news_path(conn, :show, news))
+        |> redirect(to: news_path(conn, :index) <> "#news-#{news.id}")
       {:error, changeset} ->
         render(conn, "edit.html", news: news, changeset: changeset)
     end
