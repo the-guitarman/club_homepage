@@ -93,7 +93,7 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
     - [x] UserController
 - [ ] Sites
   - [ ] Homepage
-    - [ ] no user is logged in, so show public news only
+    - [x] no user is logged in, so show public news only
     - [ ] a user is logged in, show all news
     - [ ] show a list of active teams from current season
     - [ ] show a list of last matches, one for each active team

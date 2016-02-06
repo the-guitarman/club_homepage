@@ -1,0 +1,30 @@
+<div class="panel panel-default css-news-item">
+  <div class="panel-heading clearfix">
+    <div class="pull-left">
+      <h3 class="panel-title">
+        <%= raw(
+          content_tag(:span) do
+            datetime = content_tag(:small) do
+              {:ok, date_string} = Timex.DateFormat.format(@news.inserted_at, "%d.%m.%Y %H:%M", :strftime)
+              gettext("published") <> " " <> date_string
+            end
+            subject = content_tag(:a, name: "news-#{@news.id}") do
+              @news.subject
+            end
+            raw(safe_to_string(subject) <> safe_to_string(tag(:br)) <> safe_to_string(datetime))
+          end)
+        %>
+      </h3>
+    </div>
+    <%= if ClubHomepage.Auth.logged_in?(@conn, %{}) do %>
+      <div class="pull-right">
+        <%#= link "Show", to: news_path(@conn, :show, @news), class: "btn btn-default" %>
+        <%= link "Edit", to: news_path(@conn, :edit, @news), class: "btn btn-default" %>
+        <%= link "Delete", to: news_path(@conn, :delete, @news), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="panel-body">
+    <%= @news.body %>
+  </div>
+</div>

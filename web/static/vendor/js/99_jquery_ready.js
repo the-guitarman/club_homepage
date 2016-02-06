@@ -1,4 +1,7 @@
 $(document).ready(function(){
+  $(".js-home-match input[type=radio]").prop('checked', false);
+
+
   /*
   $('.input-group.date').datepicker({
       autoclose: true,

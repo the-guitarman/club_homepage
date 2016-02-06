@@ -23,7 +23,6 @@ defmodule ClubHomepage.NewsControllerTest do
   test "requires user authentication on all actions", %{conn: conn} do
     news = create(:news)
     Enum.each([
-      get(conn, news_path(conn, :index)),
       get(conn, news_path(conn, :new)),
       post(conn, news_path(conn, :create), news: @valid_attrs),
       get(conn, news_path(conn, :show, news)),
@@ -39,16 +38,26 @@ defmodule ClubHomepage.NewsControllerTest do
 
   @tag login: true
   test "lists all entries on index", %{conn: conn, current_user: _current_user} do
+    _news1 = create(:news, public: true, body: "This is news message 1.")
+    _news2 = create(:news, public: false, body: "This is news message 2.")
     conn = get conn, news_path(conn, :index)
     assert html_response(conn, 200) =~ "<h2>Latest News</h2>"
+    assert html_response(conn, 200) =~ "Create News</a>"
+    assert html_response(conn, 200) =~ "Edit</a>"
+    assert html_response(conn, 200) =~ "Delete</a>"
+    assert html_response(conn, 200) =~ "This is news message 1."
+    assert html_response(conn, 200) =~ "This is news message 2."
   end
 
   @tag login: false
   test "lists all public entries on index", %{conn: conn} do
     _news1 = create(:news, public: true, body: "This is news message 1.")
     _news2 = create(:news, public: false, body: "This is news message 2.")
-    conn = get conn, news_path(conn, :index_public)
+    conn = get conn, news_path(conn, :index)
     assert html_response(conn, 200) =~ "<h2>Latest News</h2>"
+    refute html_response(conn, 200) =~ "Create News</a>"
+    refute html_response(conn, 200) =~ "Edit</a>"
+    refute html_response(conn, 200) =~ "Delete</a>"
     assert html_response(conn, 200) =~ "This is news message 1."
     refute html_response(conn, 200) =~ "This is news message 2."
   end

@@ -3,46 +3,13 @@
         <div class="jumbotron content-box">
             <h2><%= gettext("latest_news") %></h2>
 
-            <p>
-              <%= link gettext("create_new_news"), to: news_path(@conn, :new), class: "btn btn-default btn-xs" %>
-            </p>
+            <%= render("index_link_bar.html", conn: @conn) %>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>Body</th>
-                        <th>Public</th>
+            <%= for news <- @news do %>
+              <%= render("index_item.html", conn: @conn, news: news) %>
+            <% end %>
 
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%= for news <- @news do %>
-                        <tr>
-                            <td>
-                                <%= news.subject %>
-                            </td>
-                            <td>
-                                <%= news.body %>
-                            </td>
-                            <td>
-                                <%= news.public %>
-                            </td>
-
-                            <td class="text-right">
-                                <%= link "Show", to: news_path(@conn, :show, news), class: "btn btn-default btn-xs" %>
-                                <%= link "Edit", to: news_path(@conn, :edit, news), class: "btn btn-default btn-xs" %>
-                                <%= link "Delete", to: news_path(@conn, :delete, news), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-                            </td>
-                        </tr>
-                        <% end %>
-                </tbody>
-            </table>
-
-            <p>
-              <%= link gettext("create_new_news"), to: news_path(@conn, :new), class: "btn btn-default btn-xs" %>
-            </p>
+            <%= render("index_link_bar.html", conn: @conn) %>
         </div>
     </div>
 </div>

@@ -6,13 +6,14 @@ defmodule ClubHomepage.NewsController do
   plug :scrub_params, "news" when action in [:create, :update]
 
   def index(conn, _params) do
-    news = Repo.all(News)
+    query = from(n in News, order_by: [desc: n.updated_at])
+    query =
+      case ClubHomepage.Auth.logged_in?(conn, %{}) do
+        true -> query
+        false -> from(n in query, where: n.public == true)
+      end
+    news = Repo.all(query)
     render(conn, "index.html", news: news)
-  end
-
-  def index_public(conn, _params) do
-    news = Repo.all(from(n in News, order_by: [desc: n.inserted_at], where: n.public == true))
-    render(conn, "index_public.html", news: news)
   end
 
   def new(conn, _params) do

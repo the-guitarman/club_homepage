@@ -1,8 +1,0 @@
-<div class="panel panel-default css-news-item">
-  <div class="panel-heading">
-    <h3 class="panel-title"><a name="<%= @news.id %>"><%= @news.subject %></a></h3>
-  </div>
-  <div class="panel-body">
-    <%= @news.body %>
-  </div>
-</div>

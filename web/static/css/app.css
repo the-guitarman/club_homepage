@@ -56,3 +56,7 @@ section.header h1 {
   position: relative;
   top: -12px;
 }
+
+.css-news-item form {
+  display: inline-block;
+}
