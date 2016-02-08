@@ -28,8 +28,8 @@ defmodule ClubHomepage.Router do
     get "/news", NewsController, :index
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    get "/teams/:id", TeamController, :team_page
     ##resources "/teams", TeamController, only: [:show]
-    #get "/teams/:rewrite", TeamController, :show, as: :team_permalink
     ##get "/seasons/:seasons/teams/:team"
     ##get "/seasons/:seasons/teams/:team/matches"
     ##get "/seasons/:seasons/teams/:team/matches/:match"

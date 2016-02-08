@@ -32,9 +32,10 @@ defmodule ClubHomepage.TeamController do
     team = Repo.get!(Team, id)
     render(conn, "show.html", team: team)
   end
-  def show(conn, %{"rewrite" => rewrite}) do
-    team = Repo.get_by!(Team, rewrite: rewrite)
-    render(conn, "show.html", team: team)
+
+  def team_page(conn, %{"id" => id}) do
+    team = Repo.get!(Team, id)
+    render(conn, "team_page.html", team: team)
   end
 
   def edit(conn, %{"id" => id}) do
