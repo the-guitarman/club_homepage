@@ -38,7 +38,7 @@ defmodule ClubHomepage.Web do
 
       import ClubHomepage.Router.Helpers
       import Extension.Controller
-      import ClubHomepage.Auth, only: [require_user: 2]
+      import ClubHomepage.Auth, only: [authenticate_user: 2]
     end
   end
 
@@ -63,7 +63,7 @@ defmodule ClubHomepage.Web do
     quote do
       use Phoenix.Router
 
-      import ClubHomepage.Auth, only: [require_user: 2]
+      import ClubHomepage.Auth, only: [authenticate_user: 2]
     end
   end
 

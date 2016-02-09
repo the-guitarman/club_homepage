@@ -36,7 +36,7 @@ defmodule ClubHomepage.Router do
   end
 
   scope "/manage", ClubHomepage do
-    pipe_through [:browser, :require_user]
+    pipe_through [:browser, :authenticate_user]
     
     resources "/secrets", SecretController, only: [:new, :create, :show, :delete]
     get "/users/new", UserController, :new_unregistered, as: :unregistered_user

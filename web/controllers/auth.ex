@@ -10,13 +10,25 @@ defmodule ClubHomepage.Auth do
     Keyword.fetch!(opts, :repo)
   end
 
-  def call(%Plug.Conn{:assigns => %{:current_user => _user}} = conn, _repo) do
-    conn
-  end
+  # def call(%Plug.Conn{:assigns => %{:current_user => user}} = conn, _repo) do
+  #   IO.inspect user
+  #   conn
+  # end
+  # def call(conn, repo) do
+  #   user_id = get_session(conn, :user_id)
+  #   user = user_id && repo.get(User, user_id)
+  #   assign(conn, :current_user, user)
+  # end
   def call(conn, repo) do
     user_id = get_session(conn, :user_id)
-    user = user_id && repo.get(User, user_id)
-    assign(conn, :current_user, user)
+    cond do
+      user = conn.assigns[:current_user] ->
+        put_current_user(conn, user)
+      user = user_id && repo.get(User, user_id) ->
+        put_current_user(conn, user)
+      true ->
+        assign(conn, :current_user, nil)
+    end
   end
 
   def logged_in?(conn, _options) do
@@ -27,7 +39,7 @@ defmodule ClubHomepage.Auth do
     !logged_in?(conn, options)
   end
 
-  def require_user(conn, _options) do
+  def authenticate_user(conn, _options) do
     if conn.assigns[:current_user] do
       conn
     else
@@ -54,6 +66,14 @@ defmodule ClubHomepage.Auth do
     |> assign(:current_user, user)
     |> put_session(:user_id, user.id)
     |> configure_session(renew: true)
+  end
+
+  defp put_current_user(conn, user) do
+    token = Phoenix.Token.sign(conn, "user socket", user.id)
+
+    conn
+    |> assign(:current_user, user)
+    |> assign(:user_token, token)
   end
 
   def login_by_login_or_email_and_pass(conn, login_or_email, given_pass, opts) do
