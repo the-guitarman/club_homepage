@@ -5,7 +5,7 @@ defmodule ClubHomepage.Team do
 
   schema "teams" do
     field :name, :string
-    field :rewrite, :string
+    field :slug, :string
 
     #has_many :matches, ClubHomepage.Match, on_delete: :delete_all
 
@@ -13,7 +13,7 @@ defmodule ClubHomepage.Team do
   end
 
   @required_fields ~w(name)
-  @optional_fields ~w(rewrite)
+  @optional_fields ~w(slug)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -25,7 +25,10 @@ defmodule ClubHomepage.Team do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> ModelValidator.validate_uniqueness(:name)
-    |> ClubHomepage.RewriteGenerator.run(:name, :rewrite)
-    |> ModelValidator.validate_uniqueness(:rewrite)
+    |> ClubHomepage.SlugGenerator.run(:name, :slug)
+    |> ModelValidator.validate_uniqueness(:slug)
   end
+
+  #Slugger.slugify_downcase " A b C "
+  # => "a-b-c"
 end

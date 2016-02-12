@@ -10,14 +10,14 @@ defmodule ClubHomepage.TeamTest do
   test "create a team" do
     changeset = Team.changeset(%Team{}, @valid_attrs)
     assert changeset.valid?
-    assert changeset.changes.rewrite == "this-is-my-team-without-ss-in-the-name"
+    assert changeset.changes.slug == "this-is-my-team-without-ss-in-the-name"
 
     {:ok, team} = Repo.insert(changeset)
-    assert team.rewrite == "this-is-my-team-without-ss-in-the-name"
+    assert team.slug == "this-is-my-team-without-ss-in-the-name"
 
     changeset = Team.changeset(%Team{}, @valid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:rewrite] == "already exists"
+    assert changeset.errors[:slug] == "already exists"
   end
 
   test "edit a team" do
@@ -33,6 +33,6 @@ defmodule ClubHomepage.TeamTest do
     {:error, _errors} = Repo.update(changeset)
     refute changeset.valid?
     assert changeset.errors[:name] == "already exists"
-    #assert changeset.errors[:rewrite] == nil #"already exists"
+    #assert changeset.errors[:slug] == nil #"already exists"
   end
 end

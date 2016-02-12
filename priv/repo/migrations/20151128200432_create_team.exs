@@ -4,10 +4,12 @@ defmodule ClubHomepage.Repo.Migrations.CreateTeam do
   def change do
     create table(:teams) do
       add :name, :string
-      add :rewrite, :string
+      add :slug, :string
 
       timestamps
     end
 
+    create unique_index(:teams, [:name])
+    create unique_index(:teams, [:slug])
   end
 end

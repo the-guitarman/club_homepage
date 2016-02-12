@@ -8,8 +8,8 @@
   </li>
 
   <li>
-    <strong><%= gettext("rewrite") %>:</strong>
-    <%= @team.rewrite %>
+    <strong><%= gettext("slug") %>:</strong>
+    <%= @team.slug %>
   </li>
 
 </ul>

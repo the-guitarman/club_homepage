@@ -1,0 +1,18 @@
+<h2>Show permalink</h2>
+
+<ul>
+
+  <li>
+    <strong>Source path:</strong>
+    <%= @permalink.source_path %>
+  </li>
+
+  <li>
+    <strong>Destination path:</strong>
+    <%= @permalink.destination_path %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: permalink_path(@conn, :edit, @permalink) %>
+<%= link "Back", to: permalink_path(@conn, :index) %>

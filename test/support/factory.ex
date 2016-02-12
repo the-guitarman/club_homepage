@@ -50,6 +50,14 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def factory(:permalink) do
+    team = create(:team)
+    %ClubHomepage.Permalink{
+      source_path: sequence(:source_path, &"old-#{&1}"),
+      destination_path: team.slug
+    }
+  end
+
   def factory(:season) do
     %{year: year} = Timex.Date.now
     %ClubHomepage.Season{
@@ -67,7 +75,7 @@ defmodule ClubHomepage.Factory do
   def factory(:team) do
     %ClubHomepage.Team{
       name: sequence(:name, &"This is my    team #{&1} without ß in the name."),
-      rewrite: sequence(:rewrite, &"this-is-my-team-#{&1}-without-ss-in-the-name")
+      slug: sequence(:slug, &"this-is-my-team-#{&1}-without-ss-in-the-name")
     }
   end
 

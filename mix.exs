@@ -42,7 +42,8 @@ defmodule ClubHomepage.Mixfile do
      {:timex_ecto, "~> 0.7"},
      {:ex_machina, "~> 0.6"},
      {:gettext, "~> 0.9"},
-     {:credo, "~> 0.2", only: [:dev, :test]}
+     {:credo, "~> 0.2", only: [:dev, :test]},
+     {:slugger, "~> 0.1.0"}
      #{:mix_test_watch, "~> 0.2.4", only: :dev}]
     ]
   end
