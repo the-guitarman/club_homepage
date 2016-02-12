@@ -1,9 +1,9 @@
 defmodule ClubHomepage.SlugGenerator  do
   @moduledoc """
-    Generates an url slug string from a given string or a changeset field. 
+    Generates an url slug from a given string or a changeset field. 
   """
 
-  import Ecto.Changeset, only: [fetch_field: 2, put_change: 3]
+  import Ecto.Changeset, only: [get_change: 2, put_change: 3]
 
   @doc """
   In the easiest form it takes a string and returns the slug. 
@@ -21,20 +21,25 @@ defmodule ClubHomepage.SlugGenerator  do
   """
   @spec run(String) :: String
   @spec run(Ecto.Changeset, String, String) :: Ecto.Changeset
-  def run(phrase), do: generate(phrase)
+  def run(phrase), do: slugify(phrase)
   def run(changeset, from_field, to_field) do
-    value = 
-      extract_field_value(fetch_field(changeset, from_field))
-      |> generate
-    put_change(changeset, to_field, value)
+    case get_change(changeset, convert_to_atom(from_field)) do
+      nil   -> changeset
+      value -> put_change(changeset, convert_to_atom(to_field), slugify(value))
+    end
+  end
+
+  defp convert_to_atom(text) when is_atom(text), do: text
+  defp convert_to_atom(text) when is_bitstring(text) do
+    String.to_atom(text)
   end
 
   defp extract_field_value({_, value}) do
     value
   end
 
-  defp generate(nil = phrase), do: phrase
-  defp generate(phrase) do
+  defp slugify(nil = phrase), do: phrase
+  defp slugify(phrase) do
     Slugger.slugify_downcase(phrase)
   end
 end

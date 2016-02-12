@@ -49,6 +49,9 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
 ## ToDos
 
 - [ ] write README.md
+- [ ] Apple Touch Ids
+  - [ ] apple-touch-icon-precomposed.png
+  - [ ] apple-touch-icon.png
 - [ ] Models
   - [x] Address, with lat/lng
   - [ ] League
