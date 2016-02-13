@@ -9,6 +9,7 @@
         <div class="form-group">
           <%= password_input f, :password, placeholder: gettext("password"), class: "form-control" %>
         </div>
+        <%= hidden_input f, :redirect, value: @redirect %>
         <%= submit gettext("log_in"), class: "btn btn-primary" %>
       <% end %>
     </div>

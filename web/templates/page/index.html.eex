@@ -37,7 +37,7 @@
           <h2><%= gettext("teams") %></h2>
           <div class="list-group">
             <%= for team <- @teams do %>
-              <%= link team.name, to: team_path(@conn, :team_page, team), class: "list-group-item" %>
+              <%= link team.name, to: team_path(@conn, :team_page, team.slug), class: "list-group-item" %>
             <% end %>
           </div>
         </div>

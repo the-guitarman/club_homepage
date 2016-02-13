@@ -10,15 +10,6 @@ defmodule ClubHomepage.Auth do
     Keyword.fetch!(opts, :repo)
   end
 
-  # def call(%Plug.Conn{:assigns => %{:current_user => user}} = conn, _repo) do
-  #   IO.inspect user
-  #   conn
-  # end
-  # def call(conn, repo) do
-  #   user_id = get_session(conn, :user_id)
-  #   user = user_id && repo.get(User, user_id)
-  #   assign(conn, :current_user, user)
-  # end
   def call(conn, repo) do
     user_id = get_session(conn, :user_id)
     cond do
@@ -45,7 +36,7 @@ defmodule ClubHomepage.Auth do
     else
       conn
       |> put_flash(:error, "Du musst eingeloggt sein, um diese Seite sehen zu können.")
-      |> redirect(to: Helpers.page_path(conn, :index))
+      |> redirect(to: Helpers.session_path(conn, :new, redirect: URI.encode(conn.request_path)))
       |> halt()
     end
   end

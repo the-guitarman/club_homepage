@@ -73,7 +73,7 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
     - [ ] MatchHistory
     - [x] MeetingPoint
     - [x] OpponentTeam
-    - [ ] Permalink
+    - [x] Permalink
     - [x] Season
     - [x] Secret
     - [x] Team
@@ -82,7 +82,7 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
     - [ ] Auth
   - [ ] Commands
     - [ ] ModelValidator
-    - [ ] RewriteGenerator
+    - [x] SlugGenerator
     - [ ] SecretCheck
     - [ ] UserRole
   - [ ] Controller
@@ -92,7 +92,7 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
     - [ ] MatchHistoryController
     - [x] MeetingPointController
     - [x] OpponentTeamController
-    - [ ] PermalinkController
+    - [x] PermalinkController
     - [x] SeasonController
     - [x] SecretController
     - [x] TeamController
@@ -105,6 +105,7 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
     - [ ] show a list of last matches, one for each active team
     - [ ] show a list of next matches, one for each active team
   - [ ] Back Office
+    - [x] Redirect after login
 
 # Help & Donation
 

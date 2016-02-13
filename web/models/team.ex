@@ -28,7 +28,10 @@ defmodule ClubHomepage.Team do
     |> ClubHomepage.SlugGenerator.run(:name, :slug)
     |> ModelValidator.validate_uniqueness(:slug)
   end
-
-  #Slugger.slugify_downcase " A b C "
-  # => "a-b-c"
 end
+
+#defimpl Phoenix.Param, for: ClubHomepage.Team do
+#  def to_param(%{slug: slug}) do
+#    slug
+#  end
+#end

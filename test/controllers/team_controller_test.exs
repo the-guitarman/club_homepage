@@ -75,7 +75,7 @@ defmodule ClubHomepage.TeamControllerTest do
   @tag login: false
   test "shows team page", %{conn: conn} do
     team = create(:team)
-    conn = get conn, team_path(conn, :team_page, team)
+    conn = get conn, team_path(conn, :team_page, team.slug)
     assert html_response(conn, 200) =~ "<h1>#{team.name}</h1>"
   end
 

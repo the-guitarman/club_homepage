@@ -33,8 +33,8 @@ defmodule ClubHomepage.TeamController do
     render(conn, "show.html", team: team)
   end
 
-  def team_page(conn, %{"id" => id}) do
-    team = Repo.get!(Team, id)
+  def team_page(conn, %{"slug" => slug}) do
+    team = Repo.get_by!(Team, slug: slug)
     render(conn, "team_page.html", team: team)
   end
 
@@ -50,6 +50,8 @@ defmodule ClubHomepage.TeamController do
 
     case Repo.update(changeset) do
       {:ok, team} ->
+        IO.inspect changeset.changes
+        IO.inspect changeset.model
         conn
         |> put_flash(:info, "Team updated successfully.")
         |> redirect(to: team_path(conn, :show, team))
