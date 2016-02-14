@@ -1,6 +1,7 @@
 defmodule ClubHomepage.TeamController do
   use ClubHomepage.Web, :controller
 
+  alias ClubHomepage.PermalinkGenerator
   alias ClubHomepage.Team
 
   plug :scrub_params, "team" when action in [:create, :update]
@@ -20,6 +21,7 @@ defmodule ClubHomepage.TeamController do
 
     case Repo.insert(changeset) do
       {:ok, _team} ->
+        PermalinkGenerator.run(changeset, :teams)
         conn
         |> put_flash(:info, "Team created successfully.")
         |> redirect(to: team_path(conn, :index))
@@ -50,8 +52,7 @@ defmodule ClubHomepage.TeamController do
 
     case Repo.update(changeset) do
       {:ok, team} ->
-        IO.inspect changeset.changes
-        IO.inspect changeset.model
+        PermalinkGenerator.run(changeset, :teams)
         conn
         |> put_flash(:info, "Team updated successfully.")
         |> redirect(to: team_path(conn, :show, team))

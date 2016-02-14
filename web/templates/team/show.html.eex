@@ -1,19 +1,24 @@
-<h2><%= gettext("show_team") %></h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("show_team") %></h2>
+        <ul>
 
-<ul>
+          <li>
+            <strong><%= gettext("name") %>:</strong>
+            <%= @team.name %>
+          </li>
 
-  <li>
-    <strong><%= gettext("name") %>:</strong>
-    <%= @team.name %>
-  </li>
+          <li>
+            <strong><%= gettext("slug") %>:</strong>
+            <%= @team.slug %>
+          </li>
 
-  <li>
-    <strong><%= gettext("slug") %>:</strong>
-    <%= @team.slug %>
-  </li>
+        </ul>
 
-</ul>
-
-<%#= link gettext("edit"), to: team_path(@conn, :edit, @team), class: "btn btn-default btn-xs" %>
-<%#= link gettext("delete"), to: team_path(@conn, :delete, @team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-<%= link "Back", to: team_path(@conn, :index) %>
+        <%#= link gettext("edit"), to: team_path(@conn, :edit, @team), class: "btn btn-default btn-xs" %>
+        <%#= link gettext("delete"), to: team_path(@conn, :delete, @team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link "Back", to: team_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

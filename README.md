@@ -48,10 +48,12 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
 
 ## ToDos
 
-- [ ] write README.md
-- [ ] Apple Touch Ids
+- [ ] README.md
+- [ ] Design
   - [ ] apple-touch-icon-precomposed.png
   - [ ] apple-touch-icon.png
+- [ ] Plug
+  - [ ] Permalink detection
 - [ ] Models
   - [x] Address, with lat/lng
   - [ ] League
@@ -65,6 +67,8 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
   - [x] Secret
   - [x] Team
   - [x] User
+- [ ] Controller
+  - [ ] create permalink redirection after slug change
 - [ ] Tests
   - [ ] Models
     - [x] Address

@@ -13,6 +13,7 @@
               <tr>
                 <td><%= team.name %></td>
                 <td class="text-right">
+                  <%= link gettext("edit"), to: team_path(@conn, :edit, team), class: "btn btn-default" %>
                   <%#= link gettext("show"), to: team_path(@conn, :show, team), class: "btn btn-default btn-xs" %>
                 </td>
               </tr>
