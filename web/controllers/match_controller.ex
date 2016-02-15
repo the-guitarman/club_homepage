@@ -1,8 +1,6 @@
 defmodule ClubHomepage.MatchController do
   use ClubHomepage.Web, :controller
 
-  alias Phoenix.HTML
-  alias Phoenix.HTML.Link
   alias ClubHomepage.Match
 
   plug :scrub_params, "match" when action in [:create, :update]
@@ -121,7 +119,7 @@ defmodule ClubHomepage.MatchController do
   end
   defp next_match_parameters(_), do: nil
 
-  defp set_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at} = params) do
+  defp set_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => _start_at} = params) do
     %{"start_at" => start_at} = parse_datetime_field(params, :start_at)
     %{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}
   end

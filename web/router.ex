@@ -7,6 +7,7 @@ defmodule ClubHomepage.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug ClubHomepage.PermalinkRedirection, path_prefixes: [:teams]
     plug ClubHomepage.Auth, repo: ClubHomepage.Repo
     plug ClubHomepage.Locale
   end
