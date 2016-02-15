@@ -53,8 +53,8 @@ defmodule ClubHomepage.Factory do
   def factory(:permalink) do
     team = create(:team)
     %ClubHomepage.Permalink{
-      source_path: sequence(:source_path, &"old-#{&1}"),
-      destination_path: team.slug
+      source_path: sequence(:source_path, &"/teams/old-#{&1}"),
+      destination_path: "/teams/#{team.slug}"
     }
   end
 
