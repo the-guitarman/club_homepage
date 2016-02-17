@@ -62,13 +62,13 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
   - [ ] MatchHistory
   - [x] MeetingPoint
   - [x] OpponentTeam
-  - [ ] Permalink
+  - [x] Permalink
   - [x] Season
   - [x] Secret
   - [x] Team
   - [x] User
 - [ ] Controller
-  - [ ] create permalink redirection after slug change
+  - [x] create permalink redirection after slug change
 - [ ] Tests
   - [ ] Models
     - [x] Address
