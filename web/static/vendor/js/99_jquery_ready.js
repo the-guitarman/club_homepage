@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $(".js-home-match input[type=radio]").prop('checked', false);
 
+  tinymce.init({selector: '.tinymce-editor'});
 
   /*
   $('.input-group.date').datepicker({
