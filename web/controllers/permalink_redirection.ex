@@ -2,7 +2,6 @@ defmodule ClubHomepage.PermalinkRedirection do
   import Phoenix.Controller
   import Plug.Conn
 
-  alias ClubHomepage.Router.Helpers
   alias ClubHomepage.Permalink
   alias ClubHomepage.Repo
 

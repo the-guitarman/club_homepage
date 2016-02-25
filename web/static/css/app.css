@@ -60,3 +60,11 @@ section.header h1 {
 .css-news-item form {
   display: inline-block;
 }
+
+.css-matches td.text-right,
+.css-matches td.text-left {
+  width: 45%;
+}
+.css-matches td.text-center {
+  width: 10%;
+}

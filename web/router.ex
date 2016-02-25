@@ -14,6 +14,7 @@ defmodule ClubHomepage.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug ClubHomepage.Auth, repo: ClubHomepage.Repo
   end
 
   scope "/", ClubHomepage do
@@ -29,7 +30,8 @@ defmodule ClubHomepage.Router do
     get "/news", NewsController, :index
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
-    get "/teams/:slug", TeamController, :team_page
+    get "/teams/:slug", TeamController, :team_page, as: :team_page
+    get "/teams/:slug/season/:season", TeamController, :team_page, as: :team_page_with_season
     ##resources "/teams", TeamController, only: [:show]
     ##get "/seasons/:seasons/teams/:team"
     ##get "/seasons/:seasons/teams/:team/matches"
@@ -54,8 +56,12 @@ defmodule ClubHomepage.Router do
     resources "/seasons", SeasonController
   end
 
-  # Other scopes may use custom stacks.
   # scope "/api", ClubHomepage do
   #   pipe_through :api
+
+  #   scope "/manage", ClubHomepage do
+  #     pipe_through :authenticate_user
+
+  #   end
   # end
 end

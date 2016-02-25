@@ -1,6 +1,5 @@
 defmodule Extension.Controller do
   # https://github.com/bitwalker/timex#formatting-a-datetime-via-strftime
-
   def parse_date_field(params, field, format \\ "%d.%m.%Y") do
     field_name = Atom.to_string(field)
 

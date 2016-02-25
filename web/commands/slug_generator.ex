@@ -34,10 +34,6 @@ defmodule ClubHomepage.SlugGenerator  do
     String.to_atom(text)
   end
 
-  defp extract_field_value({_, value}) do
-    value
-  end
-
   defp slugify(nil = phrase), do: phrase
   defp slugify(phrase) do
     Slugger.slugify_downcase(phrase)

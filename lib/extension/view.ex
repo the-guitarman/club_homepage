@@ -3,7 +3,7 @@ defmodule Extension.View do
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.Tag
 
-  def current_link(conn, module, [] = actions) when is_list(actions), do: ""
+  def current_link(_conn, _module, [] = actions) when is_list(actions), do: ""
   def current_link(conn, module, [head | tail] = actions) when is_list(actions) do
     current_link_class(conn, module, head) <> " " <> current_link(conn, module, tail)
   end

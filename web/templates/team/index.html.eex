@@ -11,7 +11,7 @@
         <tbody>
           <%= for team <- @teams do %>
               <tr>
-                <td><%= team.name %></td>
+                <td><%= link team.name, to: team_with_season_path(@conn, team), class: "btn" %></td>
                 <td class="text-right">
                   <%= link gettext("edit"), to: team_path(@conn, :edit, team), class: "btn btn-default" %>
                   <%#= link gettext("show"), to: team_path(@conn, :show, team), class: "btn btn-default btn-xs" %>

@@ -6,7 +6,7 @@ defmodule ClubHomepage.Match do
   schema "matches" do
     field :start_at, Timex.Ecto.DateTime
     field :home_match, :boolean, default: false
-    
+
     belongs_to :season, ClubHomepage.Season
     belongs_to :team, ClubHomepage.Team
     belongs_to :opponent_team, ClubHomepage.OpponentTeam

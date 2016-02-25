@@ -1,6 +1,7 @@
 defmodule ClubHomepage.TeamControllerTest do
   use ClubHomepage.ConnCase
 
+  alias Extension.CommonSeason
   alias ClubHomepage.Team
 
   import ClubHomepage.Factory
@@ -72,10 +73,19 @@ defmodule ClubHomepage.TeamControllerTest do
     assert html_response(conn, 200) =~ "Show Team"
   end
 
-  @tag login: false
+  @tag login: false 
   test "shows team page", %{conn: conn} do
     team = create(:team)
-    conn = get conn, team_path(conn, :team_page, team.slug)
+    season = create(:season, name: CommonSeason.current_season_name)
+    conn = get conn, team_page_path(conn, :team_page, team.slug)
+    assert redirected_to(conn) == team_page_with_season_path(conn, :team_page, team.slug, season.name)
+  end
+
+  @tag login: false
+  test "shows team with season page", %{conn: conn} do
+    team = create(:team)
+    season = create(:season)
+    conn = get conn, team_page_with_season_path(conn, :team_page, team.slug, season.name)
     assert html_response(conn, 200) =~ "<h1>#{team.name}</h1>"
   end
 

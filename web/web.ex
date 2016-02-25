@@ -38,6 +38,7 @@ defmodule ClubHomepage.Web do
 
       import ClubHomepage.Router.Helpers
       import Extension.Controller
+      import Extension.CommonSeason
       import ClubHomepage.Auth, only: [authenticate_user: 2]
     end
   end
@@ -56,6 +57,7 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.ErrorHelpers
       import ClubHomepage.Gettext
       import Extension.View
+      import Extension.CommonSeason
     end
   end
 

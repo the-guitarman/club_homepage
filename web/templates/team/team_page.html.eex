@@ -3,8 +3,58 @@
     <div class="jumbotron content-box">
       <h1><%= @team.name %></h1>
 
+      <%= if Enum.count(@seasons) > 0 do %>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="btn-group" role="group" aria-label="<%= gettext("seasons") %>">
+              <%= for season <- @seasons do %>
+                <% link_path = team_page_with_season_path(@conn, :team_page, @team.slug, season.name) %>
+                <%= if @conn.request_path == link_path do %>
+                  <button type="button" class="btn btn-default" disabled="disabled"><%= season.name %></button>
+                <% else %>
+                  <%= link season.name, to: link_path, class: "btn btn-default" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
-      <%= link gettext("all") <> " " <> gettext("teams"), to: team_path(@conn, :index) %>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="text-center"><%= @season.name %></h2>
+          <%= if Enum.count(@matches) > 0 do %>
+            <table class="table table-striped table-bordered css-matches">
+              <%= for match <- @matches do %>
+                <tr><td colspan="3" class="text-center"><%= match_datetime(match) %></td></tr>
+                <tr>
+                  <%= if match.home_match do %>
+                    <td class="text-right"><%= match.team.name %></td>
+                    <td class="text-center">- : -</td>
+                    <td class="text-left"><%= match.opponent_team.name %></td>
+                  <% else %>
+                    <td class="text-right"><%= match.opponent_team.name %></td>
+                    <td class="text-center">- : -</td>
+                    <td class="text-left"><%= match.team.name %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-info text-center">
+                <%= gettext("saison_matches_missing") %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= link gettext("all") <> " " <> gettext("teams"), to: team_path(@conn, :index) %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

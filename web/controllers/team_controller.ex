@@ -1,8 +1,10 @@
 defmodule ClubHomepage.TeamController do
   use ClubHomepage.Web, :controller
 
+  alias ClubHomepage.Match
   alias ClubHomepage.PermalinkGenerator
   alias ClubHomepage.Team
+  alias ClubHomepage.Season
 
   plug :scrub_params, "team" when action in [:create, :update]
 
@@ -35,9 +37,21 @@ defmodule ClubHomepage.TeamController do
     render(conn, "show.html", team: team)
   end
 
+  def team_page(conn, %{"slug" => slug, "season" => season_name}) do
+    team = Repo.get_by!(Team, slug: slug)
+    season = Repo.get_by!(Season, name: season_name)
+    matches = Repo.all(from(m in Match, preload: [:team, :opponent_team], where: [team_id: ^team.id, season_id: ^season.id]))
+    render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches)
+  end
   def team_page(conn, %{"slug" => slug}) do
     team = Repo.get_by!(Team, slug: slug)
-    render(conn, "team_page.html", team: team)
+    season =
+      case team_seasons(team) do
+        [] -> current_season
+        [last_team_season | _] -> last_team_season
+      end
+    #render(conn, "team_page.html", team: team, season: season, seasons: seasons)
+    redirect(conn, to: team_page_with_season_path(conn, :team_page, slug, season.name))
   end
 
   def edit(conn, %{"id" => id}) do
