@@ -50,7 +50,6 @@ defmodule ClubHomepage.TeamController do
         [] -> current_season
         [last_team_season | _] -> last_team_season
       end
-    #render(conn, "team_page.html", team: team, season: season, seasons: seasons)
     redirect(conn, to: team_page_with_season_path(conn, :team_page, slug, season.name))
   end
 
