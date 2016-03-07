@@ -1,4 +1,4 @@
-defmodule Extension.SeasonController do
+defmodule ClubHomepage.Extension.SeasonController do
   alias ClubHomepage.Repo
   alias ClubHomepage.Season
 

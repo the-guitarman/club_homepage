@@ -1,7 +1,7 @@
 defmodule ClubHomepage.SeasonController do
   use ClubHomepage.Web, :controller
 
-  import Extension.SeasonController
+  import ClubHomepage.Extension.SeasonController
 
   alias ClubHomepage.Season
 

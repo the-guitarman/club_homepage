@@ -9,7 +9,8 @@ msgstr ""
 #: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
 #: web/templates/address/new.html.eex:9 web/templates/address/show.html.eex:32
 #: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
-#: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
+#: web/templates/match/new.html.eex:14 web/templates/match/new_bulk.html.eex:12
+#: web/templates/match/show.html.eex:41
 #: web/templates/meeting_point/edit.html.eex:6
 #: web/templates/meeting_point/index.html.eex:1
 #: web/templates/meeting_point/index.html.eex:23
@@ -31,42 +32,43 @@ msgstr ""
 msgid "all"
 msgstr "All"
 
-#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:60
+#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:61
 #: web/templates/match/new.html.eex:4
 msgid "create_new_match"
 msgstr "Create Match"
 
-#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:58
+#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:59
 msgid "create_next_new_match"
 msgstr "Create Next Match"
 
-#: web/templates/match/index.html.eex:22
+#: web/templates/match/index.html.eex:23
 msgid "date_and_time"
 msgstr "Date And Time"
 
-#: web/templates/match/form.html.eex:42 web/templates/match/index.html.eex:23
+#: web/templates/match/form.html.eex:41 web/templates/match/index.html.eex:24
 msgid "home_match"
 msgstr "Home Match"
 
 #: web/templates/layout/navbar_top.html.eex:51
 #: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
-#: web/templates/match/new.html.eex:14 web/templates/match/show.html.eex:41
+#: web/templates/match/new.html.eex:14 web/templates/match/new_bulk.html.eex:12
+#: web/templates/match/show.html.eex:41
 msgid "matches"
 msgstr "Matches"
 
-#: web/templates/match/index.html.eex:21
+#: web/templates/match/index.html.eex:22
 msgid "meeting_point"
 msgstr "Meeting Point"
 
-#: web/templates/match/index.html.eex:20
+#: web/templates/match/index.html.eex:21
 msgid "opponent_team"
 msgstr "Opponent Team"
 
-#: web/templates/match/index.html.eex:18
+#: web/templates/match/index.html.eex:19
 msgid "season"
 msgstr "Season"
 
-#: web/templates/match/index.html.eex:19
+#: web/templates/match/index.html.eex:20
 msgid "team"
 msgstr "Team"
 
@@ -84,6 +86,7 @@ msgid "delete_match"
 msgstr "Delete"
 
 #: web/templates/address/form.html.eex:4 web/templates/match/form.html.eex:4
+#: web/templates/match/form_bulk.html.eex:4
 #: web/templates/meeting_point/form.html.eex:4
 #: web/templates/news/form.html.eex:4
 #: web/templates/opponent_team/form.html.eex:4
@@ -93,7 +96,8 @@ msgstr "Delete"
 msgid "form_input_errors_notice"
 msgstr "Some errors occured:"
 
-#: web/templates/address/form.html.eex:34 web/templates/match/form.html.eex:57
+#: web/templates/address/form.html.eex:34 web/templates/match/form.html.eex:56
+#: web/templates/match/form_bulk.html.eex:36
 #: web/templates/meeting_point/form.html.eex:14
 #: web/templates/news/form.html.eex:35
 #: web/templates/opponent_team/form.html.eex:19
@@ -103,34 +107,36 @@ msgstr "Some errors occured:"
 msgid "save"
 msgstr "Save"
 
-#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:62
+#: web/templates/match/index.html.eex:13 web/templates/match/index.html.eex:63
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
 #: web/templates/season/new.html.eex:10 web/templates/season/show.html.eex:14
 #: web/templates/team/team_page.html.eex:9
 msgid "seasons"
 msgstr "Seasons"
 
-#: web/templates/match/form.html.eex:36
+#: web/templates/match/form.html.eex:35
 msgid "select_date_and_time_placeholder"
 msgstr "Select date and time ..."
 
-#: web/templates/match/form.html.eex:29 web/templates/match/form.html.eex:29
+#: web/templates/match/form.html.eex:28 web/templates/match/form.html.eex:28
 msgid "select_meeting_point_placeholder"
 msgstr "Select a meeting point ..."
 
-#: web/templates/match/form.html.eex:24 web/templates/match/form.html.eex:24
+#: web/templates/match/form.html.eex:23 web/templates/match/form.html.eex:23
 msgid "select_opponent_team_placeholder"
 msgstr "Select opponent team ..."
 
-#: web/templates/match/form.html.eex:14 web/templates/match/form.html.eex:14
+#: web/templates/match/form_group_to_select_a_season.html.eex:2
+#: web/templates/match/form_group_to_select_a_season.html.eex:2
 msgid "select_season_placeholder"
 msgstr "Select season ..."
 
-#: web/templates/match/form.html.eex:19 web/templates/match/form.html.eex:19
+#: web/templates/match/form_group_to_select_a_team.html.eex:2
+#: web/templates/match/form_group_to_select_a_team.html.eex:2
 msgid "select_team_placeholder"
 msgstr "Select team ..."
 
-#: web/templates/match/index.html.eex:49
+#: web/templates/match/index.html.eex:50
 msgid "show_match"
 msgstr "Show"
 
@@ -493,3 +499,48 @@ msgstr "No matches found."
 #: web/views/team_view.ex:4
 msgid "o_clock"
 msgstr " "
+
+#: web/templates/match/index.html.eex:12 web/templates/match/new_bulk.html.eex:4
+msgid "create_new_matches"
+msgstr "Create Several Matches From JSON-String"
+
+#: web/templates/match/form_bulk.html.eex:14
+msgid "create_new_matches_step_1"
+msgstr "Please select a season and a team at first."
+
+#: web/templates/match/form_bulk.html.eex:27
+msgid "create_new_matches_step_2"
+msgstr "Type in or paste and copy the matches to create."
+
+#: web/templates/match/form_bulk.html.eex:31
+msgid "matches_json_placeholder"
+msgstr "JSON"
+
+#: web/templates/match/form_bulk.html.eex:14
+#: web/templates/match/form_bulk.html.eex:27
+msgid "step %{step}"
+msgstr "Step %{step}"
+
+#: web/templates/match/form_bulk.html.eex:39
+msgid "example"
+msgstr "Example"
+
+#: web/templates/match/form_bulk.html.eex:26
+msgid "help"
+msgstr "Help"
+
+#: web/templates/match/form_bulk.html.eex:62
+msgid "match_list_parser_notice"
+msgstr ""
+
+#: web/templates/match/form_bulk.html.eex:41
+msgid "json_matches_example_hint1"
+msgstr ""
+
+#: web/templates/match/form_bulk.html.eex:42
+msgid "json_matches_example_hint2"
+msgstr ""
+
+#: web/templates/match/form_bulk.html.eex:43
+msgid "json_matches_example_hint3"
+msgstr ""

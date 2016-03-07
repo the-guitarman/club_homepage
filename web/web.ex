@@ -37,8 +37,8 @@ defmodule ClubHomepage.Web do
       import Ecto.Query, only: [from: 1, from: 2]
 
       import ClubHomepage.Router.Helpers
-      import Extension.Controller
-      import Extension.CommonSeason
+      import ClubHomepage.Extension.Controller
+      import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Auth, only: [authenticate_user: 2]
     end
   end
@@ -56,8 +56,8 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Router.Helpers
       import ClubHomepage.ErrorHelpers
       import ClubHomepage.Gettext
-      import Extension.View
-      import Extension.CommonSeason
+      import ClubHomepage.Extension.View
+      import ClubHomepage.Extension.CommonSeason
     end
   end
 

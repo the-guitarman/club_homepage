@@ -4,7 +4,7 @@ defmodule ClubHomepage.SeasonControllerTest do
   alias ClubHomepage.Season
 
   import ClubHomepage.Factory
-  import Extension.SeasonController
+  import ClubHomepage.Extension.SeasonController
 
   @valid_attrs %{name: "2015-2016"}
   @invalid_attrs %{name: "some name"}

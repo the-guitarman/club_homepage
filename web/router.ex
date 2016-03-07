@@ -48,6 +48,8 @@ defmodule ClubHomepage.Router do
 
     resources "/addresses", AddressController
     resources "/matches", MatchController
+    get "/matches/bulk/new", MatchController, :new_bulk, as: :matches
+    post "/matches/bulk", MatchController, :create_bulk, as: :matches
     resources "/meeting_points", MeetingPointController
     resources "/news", NewsController
     resources "/opponent_teams", OpponentTeamController

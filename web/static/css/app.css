@@ -68,3 +68,7 @@ section.header h1 {
 .css-matches td.text-center {
   width: 10%;
 }
+
+.css-step {
+  font-weight: bold;
+}

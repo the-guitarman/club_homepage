@@ -1,7 +1,7 @@
 defmodule ClubHomepage.TeamControllerTest do
   use ClubHomepage.ConnCase
 
-  alias Extension.CommonSeason
+  alias ClubHomepage.Extension.CommonSeason
   alias ClubHomepage.Team
 
   import ClubHomepage.Factory

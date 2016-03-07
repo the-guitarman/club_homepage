@@ -1,4 +1,4 @@
-defmodule Extension.CommonSeason do
+defmodule ClubHomepage.Extension.CommonSeason do
   import Ecto.Query, only: [from: 1, from: 2]
   import ClubHomepage.Router.Helpers
 

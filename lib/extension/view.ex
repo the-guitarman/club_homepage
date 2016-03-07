@@ -1,4 +1,4 @@
-defmodule Extension.View do
+defmodule ClubHomepage.Extension.View do
   alias Phoenix.HTML
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.Tag

@@ -12,7 +12,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-      <li>© Copyright 2016</li>
+      <li class="navbar-text">© Copyright 2016</li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

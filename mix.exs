@@ -43,7 +43,9 @@ defmodule ClubHomepage.Mixfile do
      {:ex_machina, "~> 0.6"},
      {:gettext, "~> 0.9"},
      {:credo, "~> 0.2", only: [:dev, :test]},
-     {:slugger, "~> 0.1.0"}
+     {:slugger, "~> 0.1.0"},
+     {:json, "~> 0.3.0"},
+     {:ex_json_schema, "~> 0.3.1"}#,
      #{:mix_test_watch, "~> 0.2.4", only: :dev}]
     ]
   end

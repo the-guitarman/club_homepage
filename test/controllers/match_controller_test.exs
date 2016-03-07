@@ -56,6 +56,12 @@ defmodule ClubHomepage.MatchControllerTest do
   end
 
   @tag login: true
+  test "renders form for new bulk matches with a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
+    conn = get conn, matches_path(conn, :new_bulk)
+    assert html_response(conn, 200) =~ "<h2>Create Several Matches From JSON-String</h2>"
+  end
+
+  @tag login: true
   test "creates a match and redirects when data is valid and a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: valid_attrs} do
     query = from(m in Match, select: count(m.id))
     assert 0 == Repo.one(query)
@@ -72,11 +78,25 @@ defmodule ClubHomepage.MatchControllerTest do
     assert 1 == Repo.one(query)
   end
 
+  # @tag login: true
+  # test "creates a match and redirects when data is valid and a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: valid_attrs} do
+  #   query = from(m in Match, select: count(m.id))
+  #   assert 0 == Repo.one(query)
+  #   conn = post conn, match_path(conn, :create_bulk_matches), match: %{}
+
+  # end
+
   @tag login: true
   test "does not create a match and renders errors when data is invalid and a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     conn = post conn, match_path(conn, :create), match: @invalid_attrs
     assert html_response(conn, 200) =~ "Create Match"
   end
+
+  # @tag login: true
+  # test "does not create a match and renders errors when data is invalid and a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
+  #   conn = post conn, match_path(conn, :create_bulk_matches), match: %{}
+  #   assert html_response(conn, 200) =~ "Create Matches"
+  # end
 
   @tag login: true
   test "shows a match with a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do

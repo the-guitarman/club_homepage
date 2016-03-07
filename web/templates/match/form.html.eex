@@ -10,15 +10,14 @@
     </div>
   <% end %>
 
-  <div class="form-group <%= error_cls @changeset, f, :season_id %>">
-    <%= select(f, :season_id, @season_options, placeholder: gettext("select_season_placeholder"), prompt: gettext("select_season_placeholder")) %>
-    <%= error_tag @changeset, f, :season_id %>
-  </div>
 
-  <div class="form-group <%= error_cls @changeset, f, :team_id %>">
-    <%= select(f, :team_id, @team_options, placeholder: gettext("select_team_placeholder"), prompt: gettext("select_team_placeholder")) %>
-    <%= error_tag @changeset, f, :team_id %>
-  </div>
+  <%= render "form_group_to_select_a_season.html", f: f, changeset: @changeset,
+      season_options: @season_options
+  %>
+
+  <%= render "form_group_to_select_a_team.html", f: f, changeset: @changeset,
+      team_options: @team_options
+  %>
 
   <div class="form-group <%= error_cls @changeset, f, :opponent_team_id %>">
     <%= select(f, :opponent_team_id, @opponent_team_options, placeholder: gettext("select_opponent_team_placeholder"), prompt: gettext("select_opponent_team_placeholder")) %>

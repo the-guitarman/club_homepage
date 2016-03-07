@@ -6,6 +6,7 @@ defmodule ClubHomepage.Match do
   schema "matches" do
     field :start_at, Timex.Ecto.DateTime
     field :home_match, :boolean, default: false
+    field :json, :string, virtual: true
 
     belongs_to :season, ClubHomepage.Season
     belongs_to :team, ClubHomepage.Team
