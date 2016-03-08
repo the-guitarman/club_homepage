@@ -1,16 +1,46 @@
 defmodule ClubHomepage.MatchesJsonValidator do
+  @moduledoc """
+  """
+
   alias ClubHomepage.Match
   alias Ecto.Changeset
 
+  @doc """
+  """
+  @spec changeset() :: Ecto.Changeset
+  @spec changeset(List, Atom, Map) :: Ecto.Changeset
   def changeset do
     new_changeset
   end
   def changeset(required_fields, json_field, params) do
-    change_set =
-      new_changeset
-      |> Changeset.cast(params, required_fields, ~w())
-      |> validate_json(json_field, params)
-    %Changeset{change_set | changes: params, params: params, valid?: Enum.count(change_set.errors) == 0}
+    new_changeset
+    |> Changeset.cast(params, required_fields, ~w())
+    |> validate_json(json_field, params)
+    |> set_changeset_changes(params)
+    |> set_changeset_params(params)
+    |> set_changeset_valid
+    |> set_changeset_action
+  end
+
+  defp set_changeset_changes(change_set, params) do
+    %Changeset{change_set | changes: params}
+  end
+
+  defp set_changeset_params(change_set, params) do
+    %Changeset{change_set | params: params}
+  end
+
+  defp set_changeset_valid(change_set) do
+    %Changeset{change_set | valid?: Enum.count(change_set.errors)}
+  end
+
+  defp set_changeset_action(change_set) do
+    action = 
+      case Enum.count(change_set.errors) do
+        0 -> ""
+        _ -> "errors"
+      end
+    %Changeset{change_set | action: action}
   end
 
   defp validate_json(change_set, json_field, params) do
@@ -39,18 +69,21 @@ defmodule ClubHomepage.MatchesJsonValidator do
           "team_name" => %{"type" => "string"},
           "matches"   => %{
             "type"       => "array",
-            "properties" => %{
-              "start_at" => %{"type" => "string"},
-              "home"     => %{"type" => "string"},
-              "guest"    => %{"type" => "string"}
+            "items" => %{
+              "type" => "object",
+              "properties" => %{
+                "start_at" => %{"type" => "string"},
+                "home"     => %{"type" => "string"},
+                "guest"    => %{"type" => "string"}
+              },
+              "required" => ["start_at", "home", "guest"]
             }
           }
-        }
+        },
+        "required" => ["team_name", "matches"]
       }
       |> ExJsonSchema.Schema.resolve
       |> ExJsonSchema.Validator.validate(map)
-    IO.puts "--result"
-    IO.inspect result
     case result do
       :ok              -> change_set
       {:error, errors} -> add_error(change_set, field, join_json_schema_errors(errors))
@@ -104,8 +137,7 @@ defmodule ClubHomepage.MatchesJsonValidator do
   end
 
   defp add_error(change_set, field, value) do
-    %Changeset{change_set | action: "errors"}
-    |> Changeset.add_error(field, value)
+    Changeset.add_error(change_set, field, value)
   end
 
   defp string(name) when is_binary(name), do: name
