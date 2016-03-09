@@ -31,13 +31,13 @@ defmodule ClubHomepage.MatchesJsonValidator do
   end
 
   defp set_changeset_valid(change_set) do
-    %Changeset{change_set | valid?: Enum.count(change_set.errors)}
+    %Changeset{change_set | valid?: Enum.count(change_set.errors) == 0}
   end
 
   defp set_changeset_action(change_set) do
     action = 
       case Enum.count(change_set.errors) do
-        0 -> ""
+        0 -> nil
         _ -> "errors"
       end
     %Changeset{change_set | action: action}
@@ -99,7 +99,7 @@ defmodule ClubHomepage.MatchesJsonValidator do
     ) |> Enum.join(", ")
   end
 
-  defp validate_json_content(change_set, field, %{"team_name" => team_name, "matches" => matches} = _map) do
+  defp validate_json_content(change_set, field, %{"team_name" => team_name, "matches" => matches} = _map) when is_list(matches) do
     for match <- matches do
       change_set = 
         case match do
@@ -115,7 +115,7 @@ defmodule ClubHomepage.MatchesJsonValidator do
   end
   defp validate_json_content(change_set, _field, _map), do: change_set
 
-  defp validate_start_at(change_set, field, key, value) do
+  defp validate_start_at(change_set, field, key, value) when is_binary(value) do
     [_, date_time] = String.split(value, ",")
     result =
       String.strip(date_time)
@@ -124,6 +124,9 @@ defmodule ClubHomepage.MatchesJsonValidator do
       {:ok, _datetime} -> change_set
       {:error, error}  -> add_error(change_set, field, "#{key}: #{error}")
     end
+  end
+  defp validate_start_at(change_set, field, key, _map) do
+    add_error(change_set, field, "#{key}: missing or wrong type")
   end
 
   defp validate_string_value(change_set, field, key, value) when is_binary(value) do
@@ -151,6 +154,6 @@ defmodule ClubHomepage.MatchesJsonValidator do
   end
 
   defp new_changeset do
-    %Changeset{model: %Match{}}
+    %Changeset{model: %Match{}, action: nil, valid?: true, changes: %{}, params: nil, errors: []}
   end
 end
