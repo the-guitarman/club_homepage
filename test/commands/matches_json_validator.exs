@@ -4,7 +4,6 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
   doctest ClubHomepage.MatchesJsonValidator
 
   alias ClubHomepage.MatchesJsonValidator
-  #alias ClubHomepage.Match
 
   @params %{"json" => "{\r\n  \"team_name\": \"Name meiner Vereinsmannschaft\",\r\n  \"matches\": [\r\n    {\r\n      \"start_at\": \"Sonntag, 13.03.2016 - 12:00 Uhr\",\r\n      \"home\": \"Name der gegnerischen Mannschaft 1\",\r\n      \"guest\": \"Name meiner Vereinsmannschaft\"\r\n    },\r\n    {\r\n      \"start_at\": \"Sonntag, 03.04.2016 - 14:00 Uhr\",\r\n      \"home\": \"Name meiner Vereinsmannschaft\",\r\n      \"guest\": \"Name def gegnerischen Mannschaft 2\"\r\n    }\r\n  ]\r\n}"}
 
@@ -93,7 +92,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "team_name: missing", json: "#/team_name: Type mismatch. Expected String but got Integer."]
+    assert changeset.errors == [json: "team_name: missing or wrong type", json: "#/team_name: Type mismatch. Expected String but got Integer."]
   end
 
   test "get a changeset for json with matches[0][start_at] has wrong value" do

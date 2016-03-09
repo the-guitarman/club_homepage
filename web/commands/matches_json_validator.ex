@@ -1,11 +1,13 @@
 defmodule ClubHomepage.MatchesJsonValidator do
   @moduledoc """
+  This module creates a changeset and validates a json string for its schema and content. The changeset could be used with a form_for in the frontend to show te errors.
   """
 
   alias ClubHomepage.Match
   alias Ecto.Changeset
 
   @doc """
+  Returns a changeset. If params includes a json it validates it. Without a parameters it returns an empty changeset.
   """
   @spec changeset() :: Ecto.Changeset
   @spec changeset(List, Atom, Map) :: Ecto.Changeset
@@ -136,7 +138,7 @@ defmodule ClubHomepage.MatchesJsonValidator do
    end
   end
   defp validate_string_value(change_set, field, key, _value) do
-    add_error(change_set, field, "#{key}: missing")
+    add_error(change_set, field, "#{key}: missing or wrong type")
   end
 
   defp add_error(change_set, field, value) do
