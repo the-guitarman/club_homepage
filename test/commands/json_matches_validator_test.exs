@@ -1,14 +1,14 @@
-defmodule ClubHomepage.PermalinkGeneratorTest do
+defmodule ClubHomepage.JsonMatchesValidatorTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case, async: true
-  doctest ClubHomepage.MatchesJsonValidator
+  doctest ClubHomepage.JsonMatchesValidator
 
-  alias ClubHomepage.MatchesJsonValidator
+  alias ClubHomepage.JsonMatchesValidator
 
   @params %{"json" => "{\r\n  \"team_name\": \"Name meiner Vereinsmannschaft\",\r\n  \"matches\": [\r\n    {\r\n      \"start_at\": \"Sonntag, 13.03.2016 - 12:00 Uhr\",\r\n      \"home\": \"Name der gegnerischen Mannschaft 1\",\r\n      \"guest\": \"Name meiner Vereinsmannschaft\"\r\n    },\r\n    {\r\n      \"start_at\": \"Sonntag, 03.04.2016 - 14:00 Uhr\",\r\n      \"home\": \"Name meiner Vereinsmannschaft\",\r\n      \"guest\": \"Name def gegnerischen Mannschaft 2\"\r\n    }\r\n  ]\r\n}"}
 
   test "get an empty changeset" do
-    changeset = MatchesJsonValidator.changeset
+    changeset = JsonMatchesValidator.changeset
     assert changeset.action == nil
     assert changeset.valid? == true
     assert changeset.changes == %{}
@@ -17,7 +17,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
   end
 
   test "get a changeset for valid json" do
-    changeset = MatchesJsonValidator.changeset([:json], :json, @params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, @params)
     assert changeset.action == nil
     assert changeset.valid? == true
     assert changeset.changes == @params
@@ -27,7 +27,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with team_name is missing" do
     params = delete_key_from_json(@params, "team_name")
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params
@@ -37,7 +37,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with matches is missing" do
     params = delete_key_from_json(@params, "matches")
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params
@@ -47,7 +47,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with matches[0][start_at] is missing" do
     params = delete_key_from_json(@params, ["matches", "start_at"])
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params
@@ -57,7 +57,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with matches[0][home] is missing" do
     params = delete_key_from_json(@params, ["matches", "home"])
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params
@@ -67,7 +67,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with matches[0][guest] is missing" do
     params = delete_key_from_json(@params, ["matches", "guest"])
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params
@@ -77,7 +77,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with matches key has wrong value" do
     params = set_wrong_value_json(@params, "matches")
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params
@@ -87,7 +87,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with team_name key has wrong value" do
     params = set_wrong_value_json(@params, "team_name")
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params
@@ -97,7 +97,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with matches[0][start_at] has wrong value" do
     params = set_wrong_value_json(@params, ["matches", "start_at"])
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params
@@ -107,7 +107,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with matches[0][home] has wrong value" do
     params = set_wrong_value_json(@params, ["matches", "home"])
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params
@@ -117,7 +117,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
 
   test "get a changeset for json with matches[0][guest] has wrong value" do
     params = set_wrong_value_json(@params, ["matches", "guest"])
-    changeset = MatchesJsonValidator.changeset([:json], :json, params)
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
     assert changeset.action == "errors"
     assert changeset.valid? == false
     assert changeset.changes == params

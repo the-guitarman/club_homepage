@@ -1,4 +1,4 @@
-defmodule ClubHomepage.MatchesJsonValidator do
+defmodule ClubHomepage.JsonMatchesValidator do
   @moduledoc """
   This module creates a changeset and validates a json string for its schema and content. The changeset could be used with a form_for in the frontend to show te errors.
   """
@@ -22,6 +22,12 @@ defmodule ClubHomepage.MatchesJsonValidator do
     |> set_changeset_params(params)
     |> set_changeset_valid
     |> set_changeset_action
+  end
+
+  def to_timex_date_format(value) do
+    [_, date_time] = String.split(value, ",")
+    String.strip(date_time)
+    |> Timex.DateFormat.parse("%d.%m.%Y - %H:%M Uhr", :strftime)
   end
 
   defp set_changeset_changes(change_set, params) do
@@ -118,11 +124,7 @@ defmodule ClubHomepage.MatchesJsonValidator do
   defp validate_json_content(change_set, _field, _map), do: change_set
 
   defp validate_start_at(change_set, field, key, value) when is_binary(value) do
-    [_, date_time] = String.split(value, ",")
-    result =
-      String.strip(date_time)
-      |> Timex.DateFormat.parse("%d.%m.%Y - %H:%M Uhr", :strftime)
-    case result do
+    case to_timex_date_format(value) do
       {:ok, _datetime} -> change_set
       {:error, error}  -> add_error(change_set, field, "#{key}: #{error}")
     end

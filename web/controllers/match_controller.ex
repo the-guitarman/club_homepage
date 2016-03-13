@@ -2,7 +2,7 @@ defmodule ClubHomepage.MatchController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.Match
-  alias ClubHomepage.MatchesJsonValidator
+  alias ClubHomepage.JsonMatchesValidator
 
   plug :scrub_params, "match" when action in [:create, :update]
   plug :get_season_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
@@ -40,7 +40,7 @@ defmodule ClubHomepage.MatchController do
   end
 
   def new_bulk(conn, _params) do
-    changeset = MatchesJsonValidator.changeset
+    changeset = JsonMatchesValidator.changeset
     render(conn, "new_bulk.html", changeset: changeset,
            season_options: conn.assigns.season_options,
            team_options: conn.assigns.team_options)
@@ -48,9 +48,10 @@ defmodule ClubHomepage.MatchController do
 
   def create_bulk(conn, %{"match" => match_params}) do
     json_field_name = :json
-    changeset = MatchesJsonValidator.changeset([:season_id, :team_id, json_field_name], json_field_name, match_params)
+    changeset = JsonMatchesValidator.changeset([:season_id, :team_id, json_field_name], json_field_name, match_params)
     if changeset.valid? do
       {:ok, map} = JSON.decode(match_params[Atom.to_string(json_field_name)])
+      IO.inspect map
       #redirect(to: match_path(conn, :index))
       render(conn, "new_bulk.html", changeset: changeset,
              season_options: conn.assigns.season_options,
