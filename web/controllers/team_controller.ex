@@ -40,8 +40,12 @@ defmodule ClubHomepage.TeamController do
   def team_page(conn, %{"slug" => slug, "season" => season_name}) do
     team = Repo.get_by!(Team, slug: slug)
     season = Repo.get_by!(Season, name: season_name)
-    matches = Repo.all(from(m in Match, preload: [:team, :opponent_team], where: [team_id: ^team.id, season_id: ^season.id]))
-    render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches)
+
+    query = from(m in Match, preload: [:team, :opponent_team], where: [team_id: ^team.id, season_id: ^season.id])
+    start_at = to_timex_ecto_datetime(Timex.Date.local)
+    matches = Repo.all(from m in query, where: m.start_at > ^start_at)
+    latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at)
+    render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches)
   end
   def team_page(conn, %{"slug" => slug}) do
     team = Repo.get_by!(Team, slug: slug)

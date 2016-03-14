@@ -1,0 +1,20 @@
+<table class="table table-striped table-bordered css-matches">
+  <%= for match <- @matches do %>
+    <tr><td colspan="3" class="text-center"><%= match_datetime(match) %></td></tr>
+    <tr>
+      <%= if match.home_match do %>
+        <td class="text-right"><%= match.team.name %></td>
+        <td class="text-center">
+          <%= match_result(match) %>
+        </td>
+        <td class="text-left"><%= match.opponent_team.name %></td>
+      <% else %>
+        <td class="text-right"><%= match.opponent_team.name %></td>
+        <td class="text-center">
+          <%= match_result(match) %>
+        </td>
+        <td class="text-left"><%= match.team.name %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
