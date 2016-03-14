@@ -6,6 +6,8 @@ defmodule ClubHomepage.Match do
   schema "matches" do
     field :start_at, Timex.Ecto.DateTime
     field :home_match, :boolean, default: false
+    field :team_goals, :integer
+    field :opponent_team_goals, :integer
     field :json, :string, virtual: true
 
     belongs_to :season, ClubHomepage.Season
@@ -17,7 +19,7 @@ defmodule ClubHomepage.Match do
   end
 
   @required_fields ~w(season_id team_id opponent_team_id start_at home_match)
-  @optional_fields ~w(meeting_point_id)
+  @optional_fields ~w(meeting_point_id team_goals opponent_team_goals)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

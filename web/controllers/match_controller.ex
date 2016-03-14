@@ -2,6 +2,7 @@ defmodule ClubHomepage.MatchController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.Match
+  alias ClubHomepage.JsonMatchesCreator
   alias ClubHomepage.JsonMatchesValidator
 
   plug :scrub_params, "match" when action in [:create, :update]
@@ -50,8 +51,7 @@ defmodule ClubHomepage.MatchController do
     json_field_name = :json
     changeset = JsonMatchesValidator.changeset([:season_id, :team_id, json_field_name], json_field_name, match_params)
     if changeset.valid? do
-      {:ok, map} = JSON.decode(match_params[Atom.to_string(json_field_name)])
-      IO.inspect map
+      JsonMatchesCreator.run(changeset, "json")
       #redirect(to: match_path(conn, :index))
       render(conn, "new_bulk.html", changeset: changeset,
              season_options: conn.assigns.season_options,

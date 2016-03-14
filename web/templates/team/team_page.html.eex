@@ -30,11 +30,15 @@
                 <tr>
                   <%= if match.home_match do %>
                     <td class="text-right"><%= match.team.name %></td>
-                    <td class="text-center">- : -</td>
+                    <td class="text-center">
+                      <%= match_result(match) %>
+                    </td>
                     <td class="text-left"><%= match.opponent_team.name %></td>
                   <% else %>
                     <td class="text-right"><%= match.opponent_team.name %></td>
-                    <td class="text-center">- : -</td>
+                    <td class="text-center">
+                      <%= match_result(match) %>
+                    </td>
                     <td class="text-left"><%= match.team.name %></td>
                   <% end %>
                 </tr>

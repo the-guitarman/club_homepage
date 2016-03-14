@@ -47,22 +47,35 @@ defmodule ClubHomepage.Extension.View do
   defp timex_input(%{model: model, params: params} = form, field, format, opts) do
     field_name = Atom.to_string(field)
     case Map.fetch(params, field_name) do
-      {:ok, nil} -> nil
+      {:ok, nil} ->
+        nil
       {:ok, timex_datetime} -> 
-        {:ok, date_string} = Timex.DateFormat.format(timex_datetime, format, :strftime)
+        date_string = timex_datetime_to_string(timex_datetime, format)
         params = Map.put(params, field_name, date_string)
         form = Map.put(form, :params, params)
-      :error -> Map.get(model, field)
+      :error ->
+        timex_datetime = Map.get(model, field)
+        if timex_datetime do
+          date_string = timex_datetime_to_string(timex_datetime, format)
+          params = Map.put(params, field_name, date_string)
+          form = Map.put(form, :params, params)
+        end
     end
-    field_css_class = case String.contains?(format, ["%H", "%M"]) do
-      true -> "datetime"
-      false -> "date"
-    end
+    field_css_class = 
+      case String.contains?(format, ["%H", "%M"]) do
+        true -> "datetime"
+        false -> "date"
+      end
     Tag.content_tag(:div, class: "input-group #{field_css_class}") do
       button = Tag.content_tag(:span, class: "input-group-addon") do
         Tag.content_tag(:i, "", class: "glyphicon glyphicon-calendar")
       end
       HTML.raw(HTML.safe_to_string(Form.text_input(form, field, opts)) <> HTML.safe_to_string(button))
     end
+  end
+
+  defp timex_datetime_to_string(datetime, format) do
+    {:ok, date_string} = Timex.DateFormat.format(datetime, format, :strftime)
+    date_string
   end
 end
