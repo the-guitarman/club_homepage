@@ -3,6 +3,8 @@ defmodule ClubHomepage.Extension.View do
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.Tag
 
+  import ClubHomepage.Extension.CommonTimex
+
   def current_link(_conn, _module, [] = actions) when is_list(actions), do: ""
   def current_link(conn, module, [head | tail] = actions) when is_list(actions) do
     current_link_class(conn, module, head) <> " " <> current_link(conn, module, tail)
@@ -72,10 +74,5 @@ defmodule ClubHomepage.Extension.View do
       end
       HTML.raw(HTML.safe_to_string(Form.text_input(form, field, opts)) <> HTML.safe_to_string(button))
     end
-  end
-
-  defp timex_datetime_to_string(datetime, format) do
-    {:ok, date_string} = Timex.DateFormat.format(datetime, format, :strftime)
-    date_string
   end
 end

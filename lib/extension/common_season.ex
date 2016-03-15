@@ -1,6 +1,7 @@
 defmodule ClubHomepage.Extension.CommonSeason do
   import Ecto.Query, only: [from: 1, from: 2]
   import ClubHomepage.Router.Helpers
+  import ClubHomepage.Extension.CommonTimex
 
   alias ClubHomepage.Match
   alias ClubHomepage.Repo
@@ -11,13 +12,16 @@ defmodule ClubHomepage.Extension.CommonSeason do
     Repo.all(from(s in Season, where: s.id in ^season_ids))
   end
 
-  def latest_team_season(team) do
+  def current_team_season(team) do
+    date =
+      to_timex_ecto_datetime(Timex.Date.local)
+      |> Timex.Date.add(Timex.Time.to_timestamp(30, :days)) 
     query = from m in Match,
-            join: s in assoc(m, :season),
             where: m.team_id == ^team.id,
-            group_by: m.season_id,
+            where: m.start_at < ^date,
             select: m.season_id,
-            order_by: [desc: s.name]
+            order_by: [asc: m.start_at],
+            limit: 1
     case Repo.one(query) do
       nil -> nil
       season_id -> Repo.get(Season, season_id)
@@ -25,7 +29,7 @@ defmodule ClubHomepage.Extension.CommonSeason do
   end
 
   def team_with_season_path(conn, team) do
-    case latest_team_season(team) do
+    case current_team_season(team) do
       nil    -> team_page_path(conn, :team_page, team.slug)
       season -> team_page_with_season_path(conn, :team_page, team.slug, season.name)
     end

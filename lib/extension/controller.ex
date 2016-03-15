@@ -27,9 +27,4 @@ defmodule ClubHomepage.Extension.Controller do
   def parse_datetime_field(params, field, format \\ "%d.%m.%Y %H:%M") do
     parse_date_field(params, field, format)
   end
-
-  def to_timex_ecto_datetime(timex_datetime) do
-    {:ok, timex_ecto_datetime} = Timex.Ecto.DateTime.cast(timex_datetime)
-    timex_ecto_datetime
-  end
 end
