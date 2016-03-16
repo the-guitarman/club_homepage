@@ -1,0 +1,26 @@
+<h2>Listing competitions</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for competition <- @competitions do %>
+    <tr>
+      <td><%= competition.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: competition_path(@conn, :show, competition), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: competition_path(@conn, :edit, competition), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: competition_path(@conn, :delete, competition), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New competition", to: competition_path(@conn, :new) %>

@@ -7,6 +7,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
   alias ClubHomepage.PermalinkGenerator
   alias ClubHomepage.Team
 
+  import ClubHomepage.Factory
   import Ecto.Query, only: [from: 1, from: 2]
 
   test "delete if a new object with same slug is created" do
@@ -36,7 +37,8 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
   end
 
   defp create_team do
-    changeset = Team.changeset(%Team{}, %{name: "New Team"})
+    competition = create(:competition)
+    changeset = Team.changeset(%Team{}, %{competition_id: competition.id, name: "New Team"})
     Repo.insert(changeset)
     changeset
   end

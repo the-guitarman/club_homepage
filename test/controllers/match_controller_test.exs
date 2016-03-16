@@ -7,15 +7,16 @@ defmodule ClubHomepage.MatchControllerTest do
 
   import Ecto.Query, only: [from: 1, from: 2]
 
-  @valid_attrs %{season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "17.04.2010 14:00"}
+  @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "17.04.2010 14:00"}
   @invalid_attrs %{}
 
   setup context do
     conn = conn()
+    competition   = create(:competition)
     season        = create(:season)
     team          = create(:team)
     opponent_team = create(:opponent_team)
-    valid_attrs = %{@valid_attrs | season_id: season.id, team_id: team.id, opponent_team_id: opponent_team.id}
+    valid_attrs = %{@valid_attrs | competition_id: competition.id, season_id: season.id, team_id: team.id, opponent_team_id: opponent_team.id}
     if context[:login] do
       current_user = create(:user)
       conn = assign(conn, :current_user, current_user)

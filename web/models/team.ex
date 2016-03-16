@@ -7,12 +7,13 @@ defmodule ClubHomepage.Team do
     field :name, :string
     field :slug, :string
 
-    #has_many :matches, ClubHomepage.Match, on_delete: :delete_all
+    has_many :matches, ClubHomepage.Match, on_delete: :delete_all
+    belongs_to :competition, ClubHomepage.Competition
 
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(competition_id name)
   @optional_fields ~w(slug)
 
   @doc """
@@ -24,6 +25,7 @@ defmodule ClubHomepage.Team do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> ModelValidator.foreign_key_constraint(:competition_id)
     |> ModelValidator.validate_uniqueness(:name)
     |> ClubHomepage.SlugGenerator.run(:name, :slug)
     |> ModelValidator.validate_uniqueness(:slug)

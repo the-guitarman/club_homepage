@@ -4,6 +4,7 @@ defmodule ClubHomepage.JsonMatchesCreator do
   """
 
   alias ClubHomepage.JsonMatchesValidator
+  alias ClubHomepage.Competition
   alias ClubHomepage.Match
   alias ClubHomepage.OpponentTeam
   alias ClubHomepage.Repo
@@ -32,6 +33,7 @@ defmodule ClubHomepage.JsonMatchesCreator do
   defp create_match(season_id, team_id, match_map, team_name) do
     map =
       match_map
+      |> Map.put("competition_id", competition_id(match_map["competition"]))
       |> Map.put("season_id", season_id)
       |> Map.put("team_id", team_id)
       |> Map.put("opponent_team_id", opponent_team_id(opponent_team_name(team_name, match_map)))
@@ -50,6 +52,24 @@ defmodule ClubHomepage.JsonMatchesCreator do
 
   defp home_match(team_name, match_map) do
     match_map["home"] == team_name
+  end
+
+  defp competition_id(name) do
+    competition = find_or_create_competition(name)
+    competition.id
+  end
+
+  defp find_or_create_competition(name) do
+    case Repo.get_by(Competition, name: name) do
+      nil -> create_competition(name)
+      competition -> competition
+    end
+  end
+
+  defp create_competition(name) do
+    changeset = Competition.changeset(%Competition{}, %{name: name})
+    {:ok, competition} = Repo.insert(changeset)
+    competition
   end
 
   defp opponent_team_name(team_name, match_map) do

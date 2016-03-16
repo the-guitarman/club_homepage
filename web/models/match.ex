@@ -10,6 +10,7 @@ defmodule ClubHomepage.Match do
     field :opponent_team_goals, :integer
     field :json, :string, virtual: true
 
+    belongs_to :competition, ClubHomepage.Competition
     belongs_to :season, ClubHomepage.Season
     belongs_to :team, ClubHomepage.Team
     belongs_to :opponent_team, ClubHomepage.OpponentTeam
@@ -18,7 +19,7 @@ defmodule ClubHomepage.Match do
     timestamps
   end
 
-  @required_fields ~w(season_id team_id opponent_team_id start_at home_match)
+  @required_fields ~w(competition_id season_id team_id opponent_team_id start_at home_match)
   @optional_fields ~w(meeting_point_id team_goals opponent_team_goals)
 
   @doc """
@@ -30,6 +31,7 @@ defmodule ClubHomepage.Match do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> ModelValidator.foreign_key_constraint(:competition_id)
     |> ModelValidator.foreign_key_constraint(:season_id)
     |> ModelValidator.foreign_key_constraint(:team_id)
     |> ModelValidator.foreign_key_constraint(:opponent_team_id)

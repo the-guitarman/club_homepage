@@ -1,0 +1,13 @@
+<h2>Show competition</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @competition.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: competition_path(@conn, :edit, @competition) %>
+<%= link "Back", to: competition_path(@conn, :index) %>

@@ -5,13 +5,14 @@ defmodule ClubHomepage.JsonMatchesCreatorTest do
 
   alias ClubHomepage.JsonMatchesValidator
   alias ClubHomepage.JsonMatchesCreator
+  alias ClubHomepage.Competition
   alias ClubHomepage.Match
   alias ClubHomepage.OpponentTeam
 
   import ClubHomepage.Factory
   import Ecto.Query, only: [from: 1, from: 2]
 
-  @params %{"json" => "{\r\n  \"team_name\": \"Club Team\",\r\n  \"matches\": [\r\n    {\r\n      \"start_at\": \"Sonntag, 13.03.2016 - 12:00 Uhr\",\r\n      \"home\": \"Opponent Team 1\",\r\n      \"guest\": \"Club Team\"\r\n    },\r\n    {\r\n      \"start_at\": \"Sonntag, 03.04.2016 - 14:00 Uhr\",\r\n      \"home\": \"Club Team\",\r\n      \"guest\": \"Opponent Team 2\"\r\n    }\r\n  ]\r\n}"}
+  @params %{"json" => "{\r\n  \"team_name\": \"Club Team\",\r\n  \"matches\": [\r\n    {\r\n      \"competition\": \"League A\",\r\n      \"start_at\": \"Sonntag, 13.03.2016 - 12:00 Uhr\",\r\n      \"home\": \"Opponent Team 1\",\r\n      \"guest\": \"Club Team\"\r\n    },\r\n    {\r\n      \"competition\": \"Super Cup\",\r\n      \"start_at\": \"Sonntag, 03.04.2016 - 14:00 Uhr\",\r\n      \"home\": \"Club Team\",\r\n      \"guest\": \"Opponent Team 2\"\r\n    }\r\n  ]\r\n}"}
 
   test "create matches from json" do
     season = create(:season)
@@ -23,12 +24,13 @@ defmodule ClubHomepage.JsonMatchesCreatorTest do
     changeset = JsonMatchesValidator.changeset(["season_id", "team_id", "json"], "json", params)
     assert changeset.valid?
 
+    assert count(Competition) == 1
     assert count(Match) == 0
     assert count(OpponentTeam) == 0
 
     records_count = JsonMatchesCreator.run(changeset, "json")
     assert records_count == 0
-
+    assert count(Competition) == 3
     assert count(Match) == 2
     assert count(OpponentTeam) == 2
 

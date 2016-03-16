@@ -14,11 +14,19 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def factory(:competition) do
+    %ClubHomepage.Competition{
+      name: "League 1"
+    }
+  end
+
   def factory(:match) do
+    competition   = create(:competition)
     season        = create(:season)
     team          = create(:team)
     opponent_team = create(:opponent_team)
     %ClubHomepage.Match{
+      competition_id: competition.id,
       season_id: season.id,
       team_id: team.id,
       opponent_team_id: opponent_team.id,
@@ -73,7 +81,9 @@ defmodule ClubHomepage.Factory do
   end
 
   def factory(:team) do
+    competition = create(:competition)
     %ClubHomepage.Team{
+      competition_id: competition.id, 
       name: sequence(:name, &"This is my    team #{&1} without ß in the name."),
       slug: sequence(:slug, &"this-is-my-team-#{&1}-without-ss-in-the-name")
     }

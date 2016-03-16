@@ -80,6 +80,7 @@ defmodule ClubHomepage.JsonMatchesValidator do
             "items" => %{
               "type" => "object",
               "properties" => %{
+                "competition" => %{"type" => "string"},
                 "start_at" => %{"type" => "string"},
                 "home"     => %{"type" => "string"},
                 "guest"    => %{"type" => "string"}
@@ -111,8 +112,9 @@ defmodule ClubHomepage.JsonMatchesValidator do
     for match <- matches do
       change_set = 
         case match do
-          %{"start_at" => start_at, "guest" => guest, "home" => home} ->
+          %{"competition" => competition, "start_at" => start_at, "guest" => guest, "home" => home} ->
             change_set
+            |> validate_string_value(field, "competition", competition)
             |> validate_start_at(field, "start_at", start_at)
             |> validate_string_value(field, "home", home)
             |> validate_string_value(field, "guest", guest)

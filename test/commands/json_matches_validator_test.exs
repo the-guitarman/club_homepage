@@ -5,7 +5,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
 
   alias ClubHomepage.JsonMatchesValidator
 
-  @params %{"json" => "{\r\n  \"team_name\": \"Name meiner Vereinsmannschaft\",\r\n  \"matches\": [\r\n    {\r\n      \"start_at\": \"Sonntag, 13.03.2016 - 12:00 Uhr\",\r\n      \"home\": \"Name der gegnerischen Mannschaft 1\",\r\n      \"guest\": \"Name meiner Vereinsmannschaft\"\r\n    },\r\n    {\r\n      \"start_at\": \"Sonntag, 03.04.2016 - 14:00 Uhr\",\r\n      \"home\": \"Name meiner Vereinsmannschaft\",\r\n      \"guest\": \"Name def gegnerischen Mannschaft 2\"\r\n    }\r\n  ]\r\n}"}
+  @params %{"json" => "{\r\n  \"team_name\": \"Name meiner Vereinsmannschaft\",\r\n  \"matches\": [\r\n    {\r\n      \"competition\": \"League 1\",\r\n      \"start_at\": \"Sonntag, 13.03.2016 - 12:00 Uhr\",\r\n      \"home\": \"Name der gegnerischen Mannschaft 1\",\r\n      \"guest\": \"Name meiner Vereinsmannschaft\"\r\n    },\r\n    {\r\n      \"competition\": \"Super Cup\",\r\n      \"start_at\": \"Sonntag, 03.04.2016 - 14:00 Uhr\",\r\n      \"home\": \"Name meiner Vereinsmannschaft\",\r\n      \"guest\": \"Name def gegnerischen Mannschaft 2\"\r\n    }\r\n  ]\r\n}"}
 
   test "get an empty changeset" do
     changeset = JsonMatchesValidator.changeset
