@@ -33,7 +33,7 @@ mix deps.get
 The project comes with sqlite support. You are free to use another database linke postgres or mysql. Don't forget to *change the username and password* to a role that has the correct database creation permissions. Therefore please see: 
 
 - lib/club_homepage/repo.ex
-- config/(dev|test|prod).ex
+- config/(dev|test|prod).exs
 
 Now create and migrate the database:
 
@@ -68,7 +68,18 @@ MIX_ENV=prod mix run priv/repo/seeds.exs
 
 ### Run
 
-Run the app in production mode:
+For development environment:
+
+````
+mix phoenix.server 
+````
+
+See `http://localhost:4000`
+
+
+For production environment:
+
+At first open config/prod.exs and set your host name or ip address.
 
 ````
 MIX_ENV=prod mix phoenix.server 
@@ -76,8 +87,14 @@ MIX_ENV=prod mix phoenix.server
 
 ## License
 
-Everything may break everytime. Therefore this package is licensed under
+This project has a dual license.
+
+This package is licensed under
 the **LGPL 3.0**. Do whatever you want with it, but please give improvements and bugfixes back so everyone can benefit.
+
+For commercial usage please contact me at first.
+
+*Note:* Everything may break at every time.  
 
 ## ToDos
 
