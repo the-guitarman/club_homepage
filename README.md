@@ -14,11 +14,32 @@ This is a website skeleton for your soccer or handball club. It's a phoenixframe
 
 This is a phoenixframework app. So you need to install some requirements like Erlang, Elixir, Hex package manager, phoenix and node.js. See http://www.phoenixframework.org/docs/installation for more information.
 
-After this, install project dependencies. Run this commands from the project root:
+Current Project Versions: 
+
+- Elixir: v1.2.1
+- Phoenix: v1.1.4
+
+Now clone the project and install the project dependencies. Run these commands:
 
 ````
+git clone git@github.com:the-guitarman/club_homepage.git
+cd club_homepage
 npm install
 mix deps.get
+````
+
+### Database Setup
+
+The project comes with sqlite support. You are free to use another database linke postgres or mysql. Don't forget to *change the username and password* to a role that has the correct database creation permissions. Therefore please see: 
+
+- lib/club_homepage/repo.ex
+- config/(dev|test|prod).ex
+
+Now create and migrate the database:
+
+````
+mix ecto.create
+mix ecto.migrate
 ````
 
 ## Configuration
@@ -39,6 +60,18 @@ MIX_ENV=dev mix run priv/repo/seeds.exs
 For production environment:
 ````
 MIX_ENV=prod mix run priv/repo/seeds.exs
+````
+
+### Logo & Background-Image
+
+
+
+### Run
+
+Run the app in production mode:
+
+````
+MIX_ENV=prod mix phoenix.server 
 ````
 
 ## License
