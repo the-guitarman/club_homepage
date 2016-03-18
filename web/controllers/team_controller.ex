@@ -7,6 +7,7 @@ defmodule ClubHomepage.TeamController do
   alias ClubHomepage.Season
 
   plug :scrub_params, "team" when action in [:create, :update]
+  plug :get_competition_select_options when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
     teams = Repo.all(Team)
@@ -15,7 +16,9 @@ defmodule ClubHomepage.TeamController do
 
   def new(conn, _params) do
     changeset = Team.changeset(%Team{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset,
+           competition_options: conn.assigns.competition_options
+    )
   end
 
   def create(conn, %{"team" => team_params}) do
@@ -41,7 +44,7 @@ defmodule ClubHomepage.TeamController do
     team = Repo.get_by!(Team, slug: slug)
     season = Repo.get_by!(Season, name: season_name)
 
-    query = from(m in Match, preload: [:team, :opponent_team], where: [team_id: ^team.id, season_id: ^season.id])
+    query = from(m in Match, preload: [:competition, :team, :opponent_team], where: [team_id: ^team.id, season_id: ^season.id])
     start_at = to_timex_ecto_datetime(Timex.Date.local)
     matches = Repo.all(from m in query, where: m.start_at > ^start_at)
     latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at)
@@ -88,5 +91,12 @@ defmodule ClubHomepage.TeamController do
     conn
     |> put_flash(:info, "Team deleted successfully.")
     |> redirect(to: team_path(conn, :index))
+  end
+
+  defp get_competition_select_options(conn, _) do
+    query = from(s in ClubHomepage.Competition,
+                 select: {s.name, s.id},
+                 order_by: [desc: s.name])
+    assign(conn, :competition_options, Repo.all(query))
   end
 end

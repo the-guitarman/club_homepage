@@ -1,6 +1,6 @@
 <table class="table table-striped table-bordered css-matches">
   <%= for match <- @matches do %>
-    <tr><td colspan="3" class="text-center"><%= match_datetime(match) %></td></tr>
+    <tr><td colspan="3" class="text-center"><%= match_datetime(match) %>, <%= match.competition.name %></td></tr>
     <tr>
       <%= if match.home_match do %>
         <td class="text-right"><%= match.team.name %></td>

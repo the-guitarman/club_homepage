@@ -1,15 +1,9 @@
 <%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p><%= gettext("form_input_errors_notice") %></p>
-      <ul>
-        <%= for {attr, message} <- f.errors do %>
-          <li><%= humanize(attr) %> <%= translate_error(message) %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= show_form_errors(@changeset, f) %>
 
+  <%= render "form_group_to_select_a_competition.html", f: f, changeset: @changeset,
+      competition_options: @competition_options
+  %>
 
   <%= render "form_group_to_select_a_season.html", f: f, changeset: @changeset,
       season_options: @season_options

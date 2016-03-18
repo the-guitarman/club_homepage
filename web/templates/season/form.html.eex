@@ -1,19 +1,13 @@
 <%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p><%= gettext("form_input_errors_notice") %></p>
-      <ul>
-        <%= for {attr, message} <- f.errors do %>
-          <li><%= humanize(attr) %> <%= translate_error(message) %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= show_form_errors(@changeset, f) %>
 
-  <div class="form-group">
+  <p><%= gettext("season_form_notice") %></p>
+
+  <div class="form-group <%= error_cls @changeset, f, :name %>">
     <%#= label f, :name, "Name", class: "control-label" %>
     <%#= text_input f, :name, class: "form-control" %>
     <%= select(f, :name, @years, promt: gettext("select_season_years_placeholder"), placeholder: gettext("select_season_years_placeholder")) %>
+    <%= error_tag f, :name %>
   </div>
 
   <div class="form-group">

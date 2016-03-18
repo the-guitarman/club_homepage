@@ -44,6 +44,9 @@
                 <%= link gettext("members"), to: managed_user_path(@conn, :index) %>
               </li>
               <li role="separator" class="divider"></li>
+              <li class="<%= current_link(@conn, ClubHomepage.CompetitionController, :index) %>">
+                <%= link gettext("competitions"), to: competition_path(@conn, :index) %>
+              </li>
               <li class="<%= current_link(@conn, ClubHomepage.TeamController, :index) %>">
                 <%= link gettext("teams"), to: team_path(@conn, :index) %>
               </li>

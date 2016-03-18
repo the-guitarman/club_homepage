@@ -3,6 +3,8 @@ defmodule ClubHomepage.Extension.View do
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.Tag
 
+  import ClubHomepage.ErrorHelpers 
+  import ClubHomepage.Gettext
   import ClubHomepage.Extension.CommonTimex
 
   def current_link(_conn, _module, [] = actions) when is_list(actions), do: ""
@@ -73,6 +75,27 @@ defmodule ClubHomepage.Extension.View do
         Tag.content_tag(:i, "", class: "glyphicon glyphicon-calendar")
       end
       HTML.raw(HTML.safe_to_string(Form.text_input(form, field, opts)) <> HTML.safe_to_string(button))
+    end
+  end
+
+
+
+
+  def show_form_errors(changeset, f) do
+    if changeset.action do
+      Tag.content_tag(:div, class: "alert alert-danger") do
+        p_tag = Tag.content_tag(:p) do
+          gettext("form_input_errors_notice")
+        end
+        ul_tag = Tag.content_tag(:ul) do
+          for {attr, message} <- f.errors do
+            Tag.content_tag(:li) do
+              Form.humanize(attr) <> " " <> translate_error(message)
+            end
+          end
+        end
+        HTML.raw(HTML.safe_to_string(p_tag) <> HTML.safe_to_string(ul_tag))
+      end
     end
   end
 end

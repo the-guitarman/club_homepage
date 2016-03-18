@@ -6,6 +6,7 @@ defmodule ClubHomepage.MatchController do
   alias ClubHomepage.JsonMatchesValidator
 
   plug :scrub_params, "match" when action in [:create, :update]
+  plug :get_competition_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
   plug :get_season_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
   plug :get_team_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
   plug :get_opponent_team_select_options when action in [:new, :create, :edit, :update]
@@ -20,6 +21,7 @@ defmodule ClubHomepage.MatchController do
     next_match_parameters = set_next_match_parameters(params)
     changeset = Match.changeset(%Match{}, next_match_parameters)
     render(conn, "new.html", changeset: changeset,
+           competition_options: conn.assigns.competition_options,
            season_options: conn.assigns.season_options,
            team_options: conn.assigns.team_options,
            opponent_team_options: conn.assigns.opponent_team_options,
@@ -100,6 +102,13 @@ defmodule ClubHomepage.MatchController do
     conn
     |> put_flash(:info, "Match deleted successfully.")
     |> redirect(to: match_path(conn, :index))
+  end
+
+  defp get_competition_select_options(conn, _) do
+    query = from(s in ClubHomepage.Competition,
+                 select: {s.name, s.id},
+                 order_by: [desc: s.name])
+    assign(conn, :competition_options, Repo.all(query))
   end
 
   defp get_season_select_options(conn, _) do

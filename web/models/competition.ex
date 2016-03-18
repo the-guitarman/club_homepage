@@ -1,6 +1,8 @@
 defmodule ClubHomepage.Competition do
   use ClubHomepage.Web, :model
 
+  alias ClubHomepage.ModelValidator
+
   schema "competitions" do
     field :name, :string
 
@@ -22,5 +24,6 @@ defmodule ClubHomepage.Competition do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> ModelValidator.validate_uniqueness(:name)
   end
 end

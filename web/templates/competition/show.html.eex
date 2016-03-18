@@ -1,13 +1,19 @@
-<h2>Show competition</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("show_competition") %></h2>
 
-<ul>
+      <ul>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @competition.name %>
-  </li>
+        <li>
+          <strong><%= gettext("name") %>:</strong>
+          <%= @competition.name %>
+        </li>
 
-</ul>
+      </ul>
 
-<%= link "Edit", to: competition_path(@conn, :edit, @competition) %>
-<%= link "Back", to: competition_path(@conn, :index) %>
+      <%= link "Edit", to: competition_path(@conn, :edit, @competition) %>
+      <%= link "Back", to: competition_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

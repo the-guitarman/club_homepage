@@ -39,13 +39,13 @@ defmodule ClubHomepage.CompetitionControllerTest do
   @tag login: true
   test "lists all entries on index", %{conn: conn, current_user: _current_user} do
     conn = get conn, competition_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing competitions"
+    assert html_response(conn, 200) =~ "All Competitions"
   end
 
   @tag login: true
   test "renders form for new resources", %{conn: conn, current_user: _current_user} do
     conn = get conn, competition_path(conn, :new)
-    assert html_response(conn, 200) =~ "New competition"
+    assert html_response(conn, 200) =~ "Create Competition"
   end
 
   @tag login: true
@@ -58,14 +58,14 @@ defmodule ClubHomepage.CompetitionControllerTest do
   @tag login: true
   test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user} do
     conn = post conn, competition_path(conn, :create), competition: @invalid_attrs
-    assert html_response(conn, 200) =~ "New competition"
+    assert html_response(conn, 200) =~ "Create Competition"
   end
 
   @tag login: true
   test "shows chosen resource", %{conn: conn, current_user: _current_user} do
     competition = Repo.insert! %Competition{}
     conn = get conn, competition_path(conn, :show, competition)
-    assert html_response(conn, 200) =~ "Show competition"
+    assert html_response(conn, 200) =~ "Competition"
   end
 
   @tag login: true
@@ -79,7 +79,7 @@ defmodule ClubHomepage.CompetitionControllerTest do
   test "renders form for editing chosen resource", %{conn: conn, current_user: _current_user} do
     competition = Repo.insert! %Competition{}
     conn = get conn, competition_path(conn, :edit, competition)
-    assert html_response(conn, 200) =~ "Edit competition"
+    assert html_response(conn, 200) =~ "Edit Competition"
   end
 
   @tag login: true
@@ -94,7 +94,7 @@ defmodule ClubHomepage.CompetitionControllerTest do
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user} do
     competition = Repo.insert! %Competition{}
     conn = put conn, competition_path(conn, :update, competition), competition: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit competition"
+    assert html_response(conn, 200) =~ "Edit Competition"
   end
 
   @tag login: true

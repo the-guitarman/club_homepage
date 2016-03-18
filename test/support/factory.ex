@@ -16,7 +16,7 @@ defmodule ClubHomepage.Factory do
 
   def factory(:competition) do
     %ClubHomepage.Competition{
-      name: "League 1"
+      name: sequence(:name, &"League #{&1}")
     }
   end
 

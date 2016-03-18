@@ -8,8 +8,11 @@ msgstr ""
 
 #: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
 #: web/templates/address/new.html.eex:9 web/templates/address/show.html.eex:32
-#: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
-#: web/templates/match/new.html.eex:14 web/templates/match/new_bulk.html.eex:12
+#: web/templates/competition/edit.html.eex:10
+#: web/templates/competition/index.html.eex:4
+#: web/templates/competition/new.html.eex:10
+#: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
+#: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:41
 #: web/templates/meeting_point/edit.html.eex:6
 #: web/templates/meeting_point/index.html.eex:1
@@ -22,53 +25,53 @@ msgstr ""
 #: web/templates/opponent_team/index.html.eex:1
 #: web/templates/opponent_team/new.html.eex:6
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
-#: web/templates/season/new.html.eex:10 web/templates/season/show.html.eex:14
+#: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
 #: web/templates/secret/edit.html.eex:6 web/templates/secret/index.html.eex:4
-#: web/templates/team/edit.html.eex:9 web/templates/team/index.html.eex:4
-#: web/templates/team/new.html.eex:9 web/templates/team/team_page.html.eex:55
+#: web/templates/team/edit.html.eex:11 web/templates/team/index.html.eex:4
+#: web/templates/team/new.html.eex:11 web/templates/team/team_page.html.eex:44
 #: web/templates/user/edit.html.eex:6 web/templates/user/index.html.eex:4
 #: web/templates/user/new_unregistered.html.eex:12
 #: web/templates/user/show.html.eex:35
 msgid "all"
 msgstr "Alle"
 
-#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:61
+#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:62
 #: web/templates/match/new.html.eex:4
 msgid "create_new_match"
 msgstr "Neues Spiel anlegen"
 
-#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:59
+#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:60
 msgid "create_next_new_match"
 msgstr "Nächstes Spiel anlegen"
 
-#: web/templates/match/index.html.eex:23
+#: web/templates/match/index.html.eex:24
 msgid "date_and_time"
 msgstr "Datum und Zeit"
 
-#: web/templates/match/form.html.eex:41 web/templates/match/index.html.eex:24
+#: web/templates/match/form.html.eex:35 web/templates/match/index.html.eex:25
 msgid "home_match"
 msgstr "Heimspiel"
 
-#: web/templates/layout/navbar_top.html.eex:51
-#: web/templates/match/edit.html.eex:14 web/templates/match/index.html.eex:4
-#: web/templates/match/new.html.eex:14 web/templates/match/new_bulk.html.eex:12
+#: web/templates/layout/navbar_top.html.eex:54
+#: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
+#: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:41
 msgid "matches"
 msgstr "Spiele"
 
-#: web/templates/match/index.html.eex:22
+#: web/templates/match/index.html.eex:23
 msgid "meeting_point"
 msgstr "Treffpunkt"
 
-#: web/templates/match/index.html.eex:21
+#: web/templates/match/index.html.eex:22
 msgid "opponent_team"
 msgstr "Gegnerisches Team"
 
-#: web/templates/match/index.html.eex:19
+#: web/templates/match/index.html.eex:20
 msgid "season"
 msgstr "Saison"
 
-#: web/templates/match/index.html.eex:20
+#: web/templates/match/index.html.eex:21
 msgid "team"
 msgstr "Team"
 
@@ -77,52 +80,44 @@ msgstr "Team"
 msgid "create_new_season"
 msgstr "Neue Saison anlegen"
 
-#: web/templates/season/new.html.eex:6
-msgid "create_new_season_notice"
-msgstr "Lege jetzt eine neue Saison an. Später kannst Du dieser Spiele der Vereinsmannschaften hinzufügen."
-
 #: web/templates/match/show.html.eex:40
 msgid "delete_match"
 msgstr "Spiel löschen"
 
-#: web/templates/address/form.html.eex:4 web/templates/match/form.html.eex:4
-#: web/templates/match/form_bulk.html.eex:4
-#: web/templates/meeting_point/form.html.eex:4
-#: web/templates/news/form.html.eex:4
-#: web/templates/opponent_team/form.html.eex:4
-#: web/templates/season/form.html.eex:4 web/templates/secret/form.html.eex:4
-#: web/templates/team/form.html.eex:4 web/templates/user/form.html.eex:6
-#: web/templates/user/form_unregistered.html.eex:6
+#: lib/extension/view.ex:88 web/templates/match/form_bulk.html.eex:4
 msgid "form_input_errors_notice"
 msgstr "Es sind folgende Fehler aufgetreten:"
 
-#: web/templates/address/form.html.eex:34 web/templates/match/form.html.eex:56
+#: web/templates/address/form.html.eex:29
+#: web/templates/competition/form.html.eex:13
+#: web/templates/match/form.html.eex:60
 #: web/templates/match/form_bulk.html.eex:36
-#: web/templates/meeting_point/form.html.eex:14
-#: web/templates/news/form.html.eex:35
-#: web/templates/opponent_team/form.html.eex:19
-#: web/templates/season/form.html.eex:20 web/templates/secret/form.html.eex:18
-#: web/templates/team/form.html.eex:19 web/templates/user/form.html.eex:47
-#: web/templates/user/form_unregistered.html.eex:32
+#: web/templates/meeting_point/form.html.eex:5
+#: web/templates/news/form.html.eex:26
+#: web/templates/opponent_team/form.html.eex:11
+#: web/templates/permalink/form.html.eex:17
+#: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:11
+#: web/templates/team/form.html.eex:15 web/templates/user/form.html.eex:44
+#: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr "Speichern"
 
-#: web/templates/match/index.html.eex:13 web/templates/match/index.html.eex:63
+#: web/templates/match/index.html.eex:14 web/templates/match/index.html.eex:66
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
-#: web/templates/season/new.html.eex:10 web/templates/season/show.html.eex:14
+#: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
 #: web/templates/team/team_page.html.eex:9
 msgid "seasons"
 msgstr "Saisons"
 
-#: web/templates/match/form.html.eex:35
+#: web/templates/match/form.html.eex:29
 msgid "select_date_and_time_placeholder"
-msgstr "Bitte Datum und Zeit auswählen ..."
+msgstr "Datum und Zeit auswählen ..."
 
-#: web/templates/match/form.html.eex:28 web/templates/match/form.html.eex:28
+#: web/templates/match/form.html.eex:22 web/templates/match/form.html.eex:22
 msgid "select_meeting_point_placeholder"
 msgstr "Treffpunkt wählen ..."
 
-#: web/templates/match/form.html.eex:23 web/templates/match/form.html.eex:23
+#: web/templates/match/form.html.eex:17 web/templates/match/form.html.eex:17
 msgid "select_opponent_team_placeholder"
 msgstr "Gegnerisches Team wählen ..."
 
@@ -136,7 +131,7 @@ msgstr "Saison wählen ..."
 msgid "select_team_placeholder"
 msgstr "Vereinsmannschaft wählen ..."
 
-#: web/templates/match/index.html.eex:50
+#: web/templates/match/index.html.eex:51
 msgid "show_match"
 msgstr "Anzeigen"
 
@@ -151,15 +146,15 @@ msgstr "Über uns"
 msgid "address"
 msgstr "Adresse"
 
-#: web/templates/address/form.html.eex:15
+#: web/templates/address/form.html.eex:6
 msgid "address_district_placeholder"
 msgstr "Ortsteil"
 
-#: web/templates/address/form.html.eex:20
+#: web/templates/address/form.html.eex:12
 msgid "address_street_placeholder"
 msgstr "Straße"
 
-#: web/templates/address/form.html.eex:25
+#: web/templates/address/form.html.eex:18
 msgid "address_zip_code_placeholder"
 msgstr "Postleitzahl (PLZ)"
 
@@ -224,23 +219,23 @@ msgstr "Ändern"
 
 #: web/templates/address/edit.html.eex:4
 msgid "edit_address"
-msgstr "Adresse editieren"
+msgstr "Adresse ändern/bearbeiten"
 
 #: web/templates/meeting_point/edit.html.eex:1
 msgid "edit_meeting_point"
-msgstr "Treffpunkt editieren"
+msgstr "Treffpunkt ändern/bearbeiten"
 
 #: web/templates/opponent_team/edit.html.eex:1
 msgid "edit_opponent_team"
-msgstr "Gegnerische Mannschaft editieren"
+msgstr "Gegnerische Mannschaft ändern/bearbeiten"
 
 #: web/templates/season/edit.html.eex:1
 msgid "edit_season"
-msgstr "Saison editieren"
+msgstr "Saison ändern/bearbeiten"
 
 #: web/templates/secret/edit.html.eex:1
 msgid "edit_secret"
-msgstr "Secret editieren"
+msgstr "Secret ändern/bearbeiten"
 
 #: web/templates/meeting_point/edit.html.eex:6
 #: web/templates/meeting_point/index.html.eex:1
@@ -250,12 +245,14 @@ msgstr "Secret editieren"
 msgid "meeting_points"
 msgstr "Treffpunkte"
 
-#: web/templates/opponent_team/form.html.eex:15
+#: web/templates/competition/index.html.eex:12
+#: web/templates/competition/show.html.eex:9
+#: web/templates/opponent_team/form.html.eex:6
 #: web/templates/opponent_team/index.html.eex:6
 #: web/templates/opponent_team/show.html.eex:6
 #: web/templates/season/show.html.eex:6 web/templates/team/show.html.eex:8
-#: web/templates/user/form.html.eex:27
-#: web/templates/user/form_unregistered.html.eex:17
+#: web/templates/user/form.html.eex:20
+#: web/templates/user/form_unregistered.html.eex:8
 #: web/templates/user/index.html.eex:14 web/templates/user/show.html.eex:14
 msgid "name"
 msgstr "Name"
@@ -277,7 +274,7 @@ msgstr "Impressum"
 msgid "secrets"
 msgstr "Secrets"
 
-#: web/templates/season/form.html.eex:16 web/templates/season/form.html.eex:16
+#: web/templates/season/form.html.eex:9 web/templates/season/form.html.eex:9
 msgid "select_season_years_placeholder"
 msgstr "Saison wählen"
 
@@ -317,7 +314,7 @@ msgstr "Straße"
 msgid "zip_code"
 msgstr "PLZ"
 
-#: web/templates/address/form.html.eex:30
+#: web/templates/address/form.html.eex:24
 msgid "address_city_place_holder"
 msgstr "Ort"
 
@@ -330,7 +327,7 @@ msgid "expiry_date"
 msgstr "Ablaufdatum"
 
 #: web/templates/secret/show.html.eex:4 web/templates/secret/show.html.eex:9
-#: web/templates/user/form.html.eex:43
+#: web/templates/user/form.html.eex:39
 msgid "secret"
 msgstr "Secret"
 
@@ -345,27 +342,27 @@ msgstr "Neue Vereinsmannschaft anlegen"
 
 #: web/templates/team/edit.html.eex:4
 msgid "edit_team"
-msgstr "Vereinsmannschaft editieren"
+msgstr "Vereinsmannschaft ändern/bearbeiten"
 
-#: web/templates/layout/navbar_top.html.eex:61
+#: web/templates/layout/navbar_top.html.eex:64
 #: web/templates/session/new.html.eex:13
 msgid "log_in"
 msgstr "Login"
 
 #: web/templates/session/new.html.eex:4 web/templates/session/new.html.eex:7
-#: web/templates/user/form.html.eex:17 web/templates/user/index.html.eex:13
+#: web/templates/user/form.html.eex:8 web/templates/user/index.html.eex:13
 #: web/templates/user/show.html.eex:9
 msgid "login"
 msgstr "Login"
 
-#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:22
+#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:14
 msgid "password"
 msgstr "Passwort"
 
-#: web/templates/layout/navbar_top.html.eex:48
-#: web/templates/page/index.html.eex:37 web/templates/team/edit.html.eex:9
-#: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:9
-#: web/templates/team/team_page.html.eex:55
+#: web/templates/layout/navbar_top.html.eex:51
+#: web/templates/page/index.html.eex:37 web/templates/team/edit.html.eex:11
+#: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
+#: web/templates/team/team_page.html.eex:44
 msgid "teams"
 msgstr "Vereinsmannschaften"
 
@@ -373,8 +370,8 @@ msgstr "Vereinsmannschaften"
 msgid "active"
 msgstr "aktiv"
 
-#: web/templates/user/form.html.eex:38
-#: web/templates/user/form_unregistered.html.eex:28
+#: web/templates/user/form.html.eex:33
+#: web/templates/user/form_unregistered.html.eex:21
 #: web/templates/user/index.html.eex:17 web/templates/user/show.html.eex:25
 msgid "birthday"
 msgstr "Geburtstag"
@@ -399,10 +396,10 @@ msgstr "Du bist ein Vereinsmitglied? Lass Dir von einem Administrator ein Secret
 
 #: web/templates/user/edit.html.eex:1
 msgid "edit_user"
-msgstr "Vereinsmitglied editieren"
+msgstr "Vereinsmitglied ändern/bearbeiten"
 
-#: web/templates/user/form.html.eex:32
-#: web/templates/user/form_unregistered.html.eex:22
+#: web/templates/user/form.html.eex:26
+#: web/templates/user/form_unregistered.html.eex:14
 #: web/templates/user/index.html.eex:15 web/templates/user/show.html.eex:19
 msgid "email"
 msgstr "E-Mail"
@@ -415,7 +412,7 @@ msgstr "Vereinsmannschaft"
 msgid "show_user"
 msgstr "Vereinsmitglied"
 
-#: web/templates/team/form.html.eex:15
+#: web/templates/team/form.html.eex:10
 msgid "team_name_placeholder"
 msgstr "Mannschaftsname"
 
@@ -437,7 +434,7 @@ msgstr "News"
 msgid "edit_match"
 msgstr "Spiel ändern"
 
-#: web/templates/layout/navbar_top.html.eex:55
+#: web/templates/layout/navbar_top.html.eex:58
 msgid "logout"
 msgstr "Logout"
 
@@ -445,7 +442,7 @@ msgstr "Logout"
 msgid "members"
 msgstr "Vereinsmitglieder"
 
-#: web/templates/layout/navbar_top.html.eex:58
+#: web/templates/layout/navbar_top.html.eex:61
 msgid "sign_up"
 msgstr "Anmelden"
 
@@ -472,15 +469,15 @@ msgstr "News"
 msgid "edit_news"
 msgstr "News ändern"
 
-#: web/templates/news/form.html.eex:21
+#: web/templates/news/form.html.eex:12
 msgid "news_body_placeholder"
 msgstr "Nachricht"
 
-#: web/templates/news/form.html.eex:28
+#: web/templates/news/form.html.eex:19
 msgid "news_public_placeholder"
 msgstr "Öffentlich sichtbar"
 
-#: web/templates/news/form.html.eex:15
+#: web/templates/news/form.html.eex:6
 msgid "news_subject_placeholder"
 msgstr "Betreff"
 
@@ -492,15 +489,16 @@ msgstr "Veröffentlicht"
 msgid "slug"
 msgstr "Permalink"
 
-#: web/templates/team/team_page.html.eex:46
+#: web/templates/team/team_page.html.eex:35
 msgid "saison_matches_missing"
 msgstr "Es sind keine Spiele für diese Mannschaft gespeichert."
 
-#: web/views/team_view.ex:4
+#: web/views/team_view.ex:6
 msgid "o_clock"
 msgstr "Uhr"
 
-#: web/templates/match/index.html.eex:12 web/templates/match/new_bulk.html.eex:4
+#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:64
+#: web/templates/match/new_bulk.html.eex:4
 msgid "create_new_matches"
 msgstr "Mehrere Spiele aus einem JSON-String anlegen"
 
@@ -529,7 +527,7 @@ msgstr "Beispiel"
 msgid "help"
 msgstr "Hilfe"
 
-#: web/templates/match/form_bulk.html.eex:62
+#: web/templates/match/form_bulk.html.eex:63
 msgid "match_list_parser_notice"
 msgstr "Du kennst fussball.de und hast Programmierkenntnisse in Go? Dann kannst Du folgendes Programm benutzen um den Spielplan einer Mannschaft Deiner Wahl im JSON-Format von fussball.de herunter zu laden:"
 
@@ -544,3 +542,59 @@ msgstr "Der Schlüssel \"matches\" enthält in den eckigen Klammern [] die anzul
 #: web/templates/match/form_bulk.html.eex:43
 msgid "json_matches_example_hint3"
 msgstr "Für ein Spiel werden Datum + Uhrzeit (\"start_at\") benötigt sowie die Namen der beiden Mannschaften (\"home\", \"guest\"). Der Name der eigenen Mannschaft muss mit dem \"team_name\" übereinstimmen, was zur Erkennung und Zuordnung zu der in Schritt 1 ausgewählen Mannschaft nötig ist."
+
+#: web/templates/competition/form.html.eex:8
+msgid "competition_placeholder"
+msgstr "Wettbewerb"
+
+#: web/templates/competition/edit.html.eex:10
+#: web/templates/competition/index.html.eex:4
+#: web/templates/competition/new.html.eex:10
+#: web/templates/layout/navbar_top.html.eex:48
+#: web/templates/match/index.html.eex:13 web/templates/match/index.html.eex:65
+msgid "competitions"
+msgstr "Wettbewerbe"
+
+#: web/templates/competition/index.html.eex:7
+#: web/templates/competition/index.html.eex:37
+#: web/templates/competition/new.html.eex:4
+msgid "create_new_competition"
+msgstr "Neuen Wettbewerb anlegen"
+
+#: web/templates/competition/edit.html.eex:4
+msgid "edit_competition"
+msgstr "Wettbewerb bearbeiten"
+
+#: web/templates/match/form.html.eex:55
+msgid "opponent_team_goals_placeholder"
+msgstr "Tor(e)"
+
+#: web/templates/match/form_group_to_select_a_competition.html.eex:2
+#: web/templates/match/form_group_to_select_a_competition.html.eex:2
+msgid "select_competition_placeholder"
+msgstr "Wettbewerb wählen ..."
+
+#: web/templates/competition/show.html.eex:4
+msgid "show_competition"
+msgstr "Wettbewerb - Details"
+
+#: web/templates/match/form.html.eex:50
+msgid "team_goals_placeholder"
+msgstr "Tor(e)"
+
+#: web/templates/competition/index.html.eex:31
+msgid "competitions_missing"
+msgstr "Es sind keine Wettbewerbe gespeichert."
+
+#: web/templates/team/form_group_to_select_a_competition.html.eex:2
+#: web/templates/team/form_group_to_select_a_competition.html.eex:2
+msgid "select_default_competition_placeholder"
+msgstr "Standard Wettbewerb wählen ..."
+
+#: web/templates/competition/form.html.eex:4
+msgid "competition_form_notice"
+msgstr "Ein Wettbewerb wird benötigt um Spiele der Vereinsmannschaften anlegen zu können."
+
+#: web/templates/season/form.html.eex:4
+msgid "season_form_notice"
+msgstr "Eine Saison wird benötigt um Spiele der Vereinsmannschaften anlegen zu können."

@@ -3,8 +3,6 @@
     <div class="jumbotron content-box">
       <h2><%= gettext("create_new_season") %></h2>
 
-      <p><%= gettext("create_new_season_notice") %></p>
-
       <%= render "form.html", changeset: @changeset, action: season_path(@conn, :create), years: @years %>
 
       <%= link gettext("all") <> " " <> gettext("seasons"), to: season_path(@conn, :index) %>
