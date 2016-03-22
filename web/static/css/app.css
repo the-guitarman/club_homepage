@@ -3,6 +3,10 @@ body {
   padding-bottom:50px;
 }
 
+form.link {
+  display: inline-block;
+}
+
 .table > thead > tr > th {
   vertical-align: top;
 }

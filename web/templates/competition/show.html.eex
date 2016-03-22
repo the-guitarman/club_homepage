@@ -12,8 +12,8 @@
 
       </ul>
 
-      <%= link "Edit", to: competition_path(@conn, :edit, @competition) %>
-      <%= link "Back", to: competition_path(@conn, :index) %>
+      <%= link gettext("edit_competition"), to: competition_path(@conn, :edit, @competition), class: "btn btn-default" %>
+      <%= link gettext("all") <> " " <> gettext("competitions"), to: competition_path(@conn, :index), class: "btn btn-default" %>
     </div>
   </div>
 </div>

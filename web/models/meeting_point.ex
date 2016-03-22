@@ -5,7 +5,7 @@ defmodule ClubHomepage.MeetingPoint do
 
   schema "meeting_points" do
     belongs_to :address, ClubHomepage.Address
-    has_many :matches, ClubHomepage.Match, on_delete: :delete_all
+    has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
 
     field :name, :string
 

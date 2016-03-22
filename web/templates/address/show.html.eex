@@ -27,9 +27,9 @@
 
             </ul>
 
-            <%= link gettext("edit"), to: address_path(@conn, :edit, @address), class: "btn btn-default btn-xs" %>
-            <%= link gettext("delete"), to: address_path(@conn, :delete, @address), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-            <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default btn-xs" %>
+            <%= link gettext("edit"), to: address_path(@conn, :edit, @address), class: "btn btn-default" %>
+            <%= link gettext("delete"), to: address_path(@conn, :delete, @address), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+            <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default" %>
         </div>
     </div>
 </div>

@@ -40,6 +40,15 @@ unless Repo.get_by(Address, Map.to_list(address_1)) do
   Repo.insert(changeset)
 end
 
+# Competitions
+competition_names = ["League 1", "League 2", "Super Cup"]
+for competition_name -> competition_names do
+  unless Repo.get_by(Competition, name: competition_name) do
+    changeset = Competition.changeset(%Competition{}, %{name: competition_name})
+    Repo.insert(changeset)
+  end
+end
+
 # MeetingPoint
 unless Repo.get_by(MeetingPoint, id: 1) do
   address = Repo.one(Address)
@@ -90,10 +99,12 @@ end
 club_name = "My Club Name"
 club_permalink = "my-club-name"
 unless Repo.get_by(Team, rewrite: "#{club_permalink}-men") do
-  changeset = Team.changeset(%Team{}, %{name: "#{club_name} Men"})
+  competition = Repo.get_by!(Competition, name: "League 1")
+  changeset = Team.changeset(%Team{}, %{competition_id: competition.id, name: "#{club_name} Men"})
   Repo.insert(changeset)
 end
 unless Repo.get_by(Team, rewrite: "#{club_permalink}-men-2") do
-  changeset = Team.changeset(%Team{}, %{name: "#{club_name} Men 2"})
+  competition = Repo.get_by!(Competition, name: "League 2")
+  changeset = Team.changeset(%Team{}, %{competition_id: competition.id, name: "#{club_name} Men 2"})
   Repo.insert(changeset)
 end

@@ -30,9 +30,9 @@
 
       </ul>
 
-      <%#= link gettext("edit"), to: user_path(@conn, :edit, @user), class: "btn btn-default btn-xs" %>
-      <%#= link gettext("delete"), to: user_path(@conn, :delete, @user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      <%= link gettext("all") <> " " <> gettext("users"), to: managed_user_path(@conn, :index) %>
+      <%#= link gettext("edit"), to: user_path(@conn, :edit, @user), class: "btn btn-default" %>
+      <%#= link gettext("delete"), to: user_path(@conn, :delete, @user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+      <%= link gettext("all") <> " " <> gettext("users"), to: managed_user_path(@conn, :index), class: "btn btn-default" %>
     </div>
   </div>
 </div>

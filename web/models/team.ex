@@ -7,7 +7,7 @@ defmodule ClubHomepage.Team do
     field :name, :string
     field :slug, :string
 
-    has_many :matches, ClubHomepage.Match, on_delete: :delete_all
+    has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
     belongs_to :competition, ClubHomepage.Competition
 
     timestamps

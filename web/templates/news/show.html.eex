@@ -22,8 +22,8 @@
 
             </ul>
 
-            <%= link gettext("edit"), to: news_path(@conn, :edit, @news), class: "btn btn-default btn-xs" %>
-            <%= link gettext("all") <> " " <> gettext("news"), to: news_path(@conn, :index), class: "btn btn-default btn-xs" %>
+            <%= link gettext("edit"), to: news_path(@conn, :edit, @news), class: "btn btn-default" %>
+            <%= link gettext("all") <> " " <> gettext("news"), to: news_path(@conn, :index), class: "btn btn-default" %>
         </div>
     </div>
 </div>

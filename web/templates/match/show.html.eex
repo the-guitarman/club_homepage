@@ -2,42 +2,41 @@
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
       <h2>
-        <%= if @match.home_match do %>
-          <%= @match.team.name %> - <%= @match.opponent_team.name %>
-        <% else %>
-          <%= @match.opponent_team.name %> - <%= @match.team.name %>
-        <% end %>
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <%= Timex.DateFormat.format!(@match.start_at, "%d.%m.%Y %H:%M", :strftime) %> <%= gettext("o_clock") %>
+          </div>
+          <%= if @match.home_match do %>
+            <div class="col-xs-5 text-right">
+              <%= @match.team.name %>
+            </div>
+            <div class="col-xs-2 text-center">
+              <%= match_result(@match) %>
+            </div>
+            <div class="col-xs-5">
+              <%= @match.opponent_team.name %>
+            </div>
+          <% else %>
+            <div class="col-xs-5 text-right">
+              <%= @match.opponent_team.name %>
+            </div>
+            <div class="col-xs-2 text-center">
+              <%= match_result(@match) %>
+            </div>
+            <div class="col-xs-5">
+              <%= @match.team.name %>
+            </div>
+          <% end %>
+        </div>
       </h2>
 
-      <ul>
+      <%= if @match.meeting_point do %>
+        <strong>Meeting point:</strong>
+        <%= @match.meeting_point.name %>
+      <% end %>
 
-        <li>
-          <strong>Season:</strong>
-          <%= @match.season.name %>
-        </li>
-
-        <li>
-          <strong>Meeting point:</strong>
-          <%= if @match.meeting_point do %>
-            <%= @match.meeting_point.name %>
-          <% end %>
-        </li>
-
-        <li>
-          <strong>Start at:</strong>
-          <%#= @match.start_at %>
-          <%= Timex.DateFormat.format!(@match.start_at, "%d.%m.%Y %H:%M", :strftime) %>
-        </li>
-
-        <li>
-          <strong>Ergebnis:</strong>
-          <%= match_result(@match) %>
-        </li>
-
-      </ul>
-
-      <%= link "Edit Match", to: match_path(@conn, :edit, @match), class: "btn btn-default" %>
-      <%= link gettext("delete_match"), to: match_path(@conn, :delete, @match), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      <%= link gettext("edit_match"), to: match_path(@conn, :edit, @match), class: "btn btn-default" %>
+      <%= link gettext("delete_match"), to: match_path(@conn, :delete, @match), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
       <%= link gettext("all") <> " " <> gettext("matches"), to: match_path(@conn, :index), class: "btn btn-default" %>
     </div>
   </div>

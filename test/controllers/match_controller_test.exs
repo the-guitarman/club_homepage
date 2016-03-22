@@ -107,9 +107,9 @@ defmodule ClubHomepage.MatchControllerTest do
     conn = get conn, match_path(conn, :show, match)
     headline = 
       if match.home_match do
-        team.name <> " - " <> opponent_team.name
+        ~r|<h2>.+?#{team.name}.+? - .+?#{opponent_team.name}.+?</h2>|s
       else
-        opponent_team.name <> " - " <> team.name
+        ~r|<h2>.+?#{opponent_team.name}.+? - .+?#{team.name}.+?</h2>|s
       end
     assert html_response(conn, 200) =~ headline
   end

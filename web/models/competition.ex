@@ -6,8 +6,8 @@ defmodule ClubHomepage.Competition do
   schema "competitions" do
     field :name, :string
 
-    has_many :teams, ClubHomepage.Team, on_delete: :delete_all
-    has_many :matches, ClubHomepage.Match, on_delete: :delete_all
+    has_many :teams, ClubHomepage.Team#, on_delete: :delete_all
+    has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
 
     timestamps
   end

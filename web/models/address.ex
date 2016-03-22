@@ -5,12 +5,12 @@ defmodule ClubHomepage.Address do
     field :district, :string
     field :street, :string
     field :zip_code, :string
-    field :city, :string    
-    field :latitude, :float 
+    field :city, :string
+    field :latitude, :float
     field :longitude, :float
 
-    has_many :meeting_points, ClubHomepage.MeetingPoint, on_delete: :delete_all
-    has_one :opponent_team, ClubHomepage.OpponentTeam, on_delete: :delete_all
+    has_many :meeting_points, ClubHomepage.MeetingPoint#, on_delete: :delete_all
+    has_one :opponent_team, ClubHomepage.OpponentTeam#, on_delete: :delete_all
 
     timestamps
   end

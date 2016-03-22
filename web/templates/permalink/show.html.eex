@@ -14,5 +14,5 @@
 
 </ul>
 
-<%= link "Edit", to: permalink_path(@conn, :edit, @permalink) %>
-<%= link "Back", to: permalink_path(@conn, :index) %>
+<%= link gettext("edit_permalink"), to: permalink_path(@conn, :edit, @permalink), class: "btn btn-default" %>
+<%= link gettext("all") <> " " <> gettext("permalinks"), to: permalink_path(@conn, :index), class: "btn btn-default" %>
