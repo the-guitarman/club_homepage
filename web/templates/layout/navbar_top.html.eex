@@ -33,6 +33,9 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= gettext("master_data") %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
+              <li class="<%= current_link(@conn, ClubHomepage.PagesController, [:chronicle, :contact, :registration_information, :sponsors, :about_us]) %>">
+                <%= link gettext("text_pages"), to: text_page_path(@conn, :index) %>
+              </li>
               <li class="<%= current_link(@conn, ClubHomepage.NewsController, [:index, :new]) %>">
                 <%= link gettext("news"), to: news_path(@conn, :index) %>
               </li>

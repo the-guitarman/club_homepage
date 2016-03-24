@@ -10,8 +10,8 @@ defmodule ClubHomepage.TextPage do
     timestamps
   end
 
-  @required_fields ~w(key text)
-  @optional_fields ~w()
+  @required_fields ~w(key)
+  @optional_fields ~w(text)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
