@@ -1,0 +1,28 @@
+<h2>Listing text pages</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Text</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for text_page <- @text_pages do %>
+    <tr>
+      <td><%= text_page.key %></td>
+      <td><%= text_page.text %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: text_page_path(@conn, :show, text_page), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: text_page_path(@conn, :edit, text_page), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: text_page_path(@conn, :delete, text_page), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%#= link "New text page", to: text_page_path(@conn, :new) %>

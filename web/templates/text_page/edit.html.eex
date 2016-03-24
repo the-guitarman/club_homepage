@@ -1,0 +1,6 @@
+<h2>Edit text page</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: text_page_path(@conn, :update, @text_page) %>
+
+<%= link "Back", to: text_page_path(@conn, :index) %>

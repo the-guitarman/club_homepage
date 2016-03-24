@@ -89,6 +89,13 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def factory(:text_page) do
+    %ClubHomepage.TextPage{
+      key: sequence(:key, &"contact #{&1}"),
+      text: "How you can contact me: sajdlkasdiwdi"
+    }
+  end
+
   def factory(:unregistered_user) do
     %ClubHomepage.User{
       email: sequence(:email, &"mail-#{&1}@example.de"),
