@@ -2,6 +2,7 @@ defmodule ClubHomepage.PageControllerTest do
   use ClubHomepage.ConnCase
 
   import Ecto.Query, only: [from: 2]
+  import ClubHomepage.Factory
 
   setup do
     conn = conn()
@@ -10,12 +11,22 @@ defmodule ClubHomepage.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get conn(), page_path(conn, :index)
+    refute html_response(conn, 200) =~ "<h2>Latest News</h2>"
+    refute html_response(conn, 200) =~ "<h2>Next Matches</h2>"
+    refute html_response(conn, 200) =~ "<h2>Latest Match Results</h2>"
+
+    _news = create(:news)
+    _next_match = create(:match, start_at: add_days_to_date(Timex.Date.local, 7))
+    _last_match = create(:match, start_at: add_days_to_date(Timex.Date.local, -7))
+
+    conn = get conn(), page_path(conn, :index)
     assert html_response(conn, 200) =~ "<h2>Latest News</h2>"
+    assert html_response(conn, 200) =~ "<h2>Next Matches</h2>"
     assert html_response(conn, 200) =~ "<h2>Latest Match Results</h2>"
 
     query = from t in ClubHomepage.Team, select: count(t.id)
     [team_count] = ClubHomepage.Repo.all(query)
-    if team_count > 2 do
+    if team_count > 0 do
       assert html_response(conn, 200) =~ "<h2>Teams</h2>"
     else
       refute html_response(conn, 200) =~ "<h2>Teams</h2>"
@@ -45,5 +56,10 @@ defmodule ClubHomepage.PageControllerTest do
   test "GET /about-us.html", %{conn: conn} do
     conn = get conn(), page_path(conn, :about_us)
     assert html_response(conn, 200) =~ "<h1>About Us</h1>"
+  end
+
+  defp add_days_to_date(date, days \\ 7) do
+    date
+    |> Timex.Date.add(Timex.Time.to_timestamp(days, :days))
   end
 end

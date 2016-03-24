@@ -22,7 +22,7 @@
     <%= select(f, :meeting_point_id, @meeting_point_options, placeholder: gettext("select_meeting_point_placeholder"), prompt: gettext("select_meeting_point_placeholder")) %>
     <%= error_tag @changeset, f, :meeting_point_id %>
   </div>
-
+ 
   <div class="form-group <%= error_cls @changeset, f, :start_at %>">
     <%#= label f, :start_at, class: "control-label" %>
     <%#= datetime_select f, :start_at, class: "form-control" %>
@@ -30,30 +30,42 @@
     <%= error_tag @changeset, f, :start_at %>
   </div>
 
-  <div class="form-group js-home-match css-home-match <%= error_cls @changeset, f, :home_match %>">
-    <%= label f, :home_match, class: "control-label" do %>
+  <div class="form-group form-horizontal js-home-match css-home-match <%= error_cls @changeset, f, :home_match %>">
+    <%= label f, :home_match_true, class: "col-xs-4 col-sm-3 col-md-2 control-label" do %>
       <%= gettext("home_match") %>
     <% end %>
-    <%= radio_button f, :home_match, "true", class: "form-control" %>
-    <%= label f, :home_match_true, class: "control-label" do %>
-      Ja
+    <div class="col-xs-8 col-sm-9 col-md-10">
+      <%= radio_button f, :home_match, true, class: "form-control" %>
+    </div>
+    <%= label f, :home_match_false, class: "col-xs-4 col-sm-3 col-md-2 control-label" do %>
+      <%= gettext("away_match") %>
     <% end %>
-    <%= radio_button f, :home_match, "false", class: "form-control" %>
-    <%= label f, :home_match_false, class: "control-label" do %>
-      Nein
-    <% end %>
+    <div class="col-xs-8 col-sm-9 col-md-10">
+      <%= radio_button f, :home_match, false, class: "form-control" %>
+    </div>
     <%#= checkbox f, :home_match, class: "form-control" %>
     <%= error_tag @changeset, f, :home_match %>
   </div>
 
-  <div class="form-group <%= error_cls @changeset, f, :team_goals %>">
-    <%= text_input(f, :team_goals, placeholder: gettext("team_goals_placeholder")) %>
-    <%= error_tag @changeset, f, :team_goals %>
-  </div>
-
-  <div class="form-group <%= error_cls @changeset, f, :opponent_team_goals %>">
-    <%= text_input(f, :opponent_team_goals, placeholder: gettext("opponent_team_goals_placeholder")) %>
-    <%= error_tag @changeset, f, :opponent_team_goals %>
+  <div class="form-group <%= error_cls @changeset, f, :team_goals %> <%= error_cls @changeset, f, :opponent_team_goals %>">
+    <div>
+      <%= label f, :team_goals, class: "control-label" do %>
+        <%= gettext("goals") %>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 text-right">
+        <div class="js-team-name"><%= gettext("team_selected") %></div>
+        <%= error_tag @changeset, f, :team_goals %>
+      </div>
+      <div class="col-xs-4 text-center">
+        <%= text_input(f, :team_goals, class: "css-goals", placeholder: gettext("team_goals_placeholder")) %> : <%= text_input(f, :opponent_team_goals, class: "css-goals", placeholder: gettext("opponent_team_goals_placeholder")) %>
+      </div>
+      <div class="col-xs-4">
+        <div class="js-opponent-team-name"><%= gettext("opponent_team_selected") %></div>
+        <%= error_tag @changeset, f, :opponent_team_goals %>
+      </div>
+    </div>
   </div>
 
   <div class="form-group">

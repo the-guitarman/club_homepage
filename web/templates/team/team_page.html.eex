@@ -23,12 +23,16 @@
       <div class="row">
         <div class="col-xs-12">
           <h2 class="text-center"><%= @season.name %></h2>
-          <%= if Enum.count(@matches) > 0 || Enum.count(@latest_matches) do %>
-            <h3>Nächste Spiele</h3>
-            <%= render "team_page_match_table.html", matches: @matches %>
+          <%= if Enum.count(@matches) > 0 || Enum.count(@latest_matches) > 0 do %>
+            <%= if Enum.count(@matches) > 0 do  %>
+              <h3>Nächste Spiele</h3>
+              <%= render "team_page_match_table.html", matches: @matches %>
+            <% end %>
 
-            <h3>Letzte Spiele</h3>
-            <%= render "team_page_match_table.html", matches: @latest_matches %>
+            <%= if Enum.count(@latest_matches) > 0 do  %>
+              <h3>Letzte Spiele</h3>
+              <%= render "team_page_match_table.html", matches: @latest_matches %>
+            <% end %>
           <% else %>
             <ul class="list-group">
               <li class="list-group-item list-group-item-info text-center">

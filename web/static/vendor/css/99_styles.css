@@ -20,3 +20,7 @@ span.select2-container {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   height: 34px;
 }
+
+input[type=checkbox], input[type=radio] {
+  margin-top: 1px; 
+}
