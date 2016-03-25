@@ -31,7 +31,9 @@ msgstr ""
 #: web/templates/secret/index.html.eex:4 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:48
-#: web/templates/user/edit.html.eex:6 web/templates/user/index.html.eex:4
+#: web/templates/text_page/edit.html.eex:9
+#: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:6
+#: web/templates/user/index.html.eex:4
 #: web/templates/user/new_unregistered.html.eex:12
 #: web/templates/user/show.html.eex:35
 msgid "all"
@@ -54,7 +56,7 @@ msgstr "Datum und Zeit"
 msgid "home_match"
 msgstr "Heimspiel"
 
-#: web/templates/layout/navbar_top.html.eex:54
+#: web/templates/layout/navbar_top.html.eex:57
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:40
@@ -174,7 +176,7 @@ msgstr "Chronik"
 msgid "city"
 msgstr "Ort"
 
-#: web/templates/layout/navbar_bottom.html.eex:20
+#: web/templates/layout/navbar_bottom.html.eex:22
 #: web/templates/page/contact.html.eex:4
 msgid "contact"
 msgstr "Kontakt"
@@ -266,12 +268,12 @@ msgstr "Name"
 msgid "opponent_teams"
 msgstr "Gegnerische Mannschaft"
 
-#: web/templates/layout/navbar_bottom.html.eex:23
+#: web/templates/layout/navbar_bottom.html.eex:25
 #: web/templates/page/registration_information.html.eex:4
 msgid "registration_information"
 msgstr "Impressum"
 
-#: web/templates/layout/navbar_top.html.eex:41
+#: web/templates/layout/navbar_top.html.eex:44
 #: web/templates/secret/edit.html.eex:6 web/templates/secret/index.html.eex:4
 msgid "secrets"
 msgstr "Secrets"
@@ -346,7 +348,7 @@ msgstr "Neue Vereinsmannschaft anlegen"
 msgid "edit_team"
 msgstr "Vereinsmannschaft ändern/bearbeiten"
 
-#: web/templates/layout/navbar_top.html.eex:64
+#: web/templates/layout/navbar_top.html.eex:67
 #: web/templates/session/new.html.eex:13
 msgid "log_in"
 msgstr "Login"
@@ -361,8 +363,8 @@ msgstr "Login"
 msgid "password"
 msgstr "Passwort"
 
-#: web/templates/layout/navbar_top.html.eex:51
-#: web/templates/page/index.html.eex:59 web/templates/team/edit.html.eex:11
+#: web/templates/layout/navbar_top.html.eex:54
+#: web/templates/page/index.html.eex:57 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:48
 msgid "teams"
@@ -424,7 +426,7 @@ msgstr "Mannschaftsname"
 msgid "users"
 msgstr "Vereinsmitglieder"
 
-#: web/templates/page/index.html.eex:44
+#: web/templates/page/index.html.eex:41
 msgid "latest_match_results"
 msgstr "Letzte Spiele"
 
@@ -436,15 +438,15 @@ msgstr "News"
 msgid "edit_match"
 msgstr "Spiel ändern"
 
-#: web/templates/layout/navbar_top.html.eex:58
+#: web/templates/layout/navbar_top.html.eex:61
 msgid "logout"
 msgstr "Logout"
 
-#: web/templates/layout/navbar_top.html.eex:44
+#: web/templates/layout/navbar_top.html.eex:47
 msgid "members"
 msgstr "Vereinsmitglieder"
 
-#: web/templates/layout/navbar_top.html.eex:61
+#: web/templates/layout/navbar_top.html.eex:64
 msgid "sign_up"
 msgstr "Anmelden"
 
@@ -452,7 +454,7 @@ msgstr "Anmelden"
 msgid "master_data"
 msgstr "Stammdaten"
 
-#: web/templates/layout/navbar_top.html.eex:37
+#: web/templates/layout/navbar_top.html.eex:40
 #: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
 #: web/templates/news/show.html.eex:26
 msgid "news"
@@ -496,6 +498,7 @@ msgid "saison_matches_missing"
 msgstr "Es sind keine Spiele für diese Mannschaft gespeichert."
 
 #: lib/extension/match_view.ex:4 web/templates/match/show.html.eex:7
+#: web/templates/page/index.html.eex:14
 msgid "o_clock"
 msgstr "Uhr"
 
@@ -553,7 +556,7 @@ msgstr "Wettbewerb"
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
 #: web/templates/competition/show.html.eex:16
-#: web/templates/layout/navbar_top.html.eex:48
+#: web/templates/layout/navbar_top.html.eex:51
 #: web/templates/match/index.html.eex:13 web/templates/match/index.html.eex:65
 msgid "competitions"
 msgstr "Wettbewerbe"
@@ -615,7 +618,7 @@ msgstr "Permalink ändern"
 msgid "goals"
 msgstr "Tore"
 
-#: web/templates/page/index.html.eex:29
+#: web/templates/page/index.html.eex:30
 msgid "next_matches"
 msgstr "Nächste Spiele"
 
@@ -630,3 +633,17 @@ msgstr "Permalinks"
 #: web/templates/match/form.html.eex:58
 msgid "team_selected"
 msgstr "Vereinsmannschaft"
+
+#: web/templates/text_page/edit.html.eex:4
+msgid "edit_text_page"
+msgstr "Text Page bearbeiten"
+
+#: web/templates/text_page/index.html.eex:9
+msgid "page"
+msgstr "Seite"
+
+#: web/templates/layout/navbar_top.html.eex:37
+#: web/templates/text_page/edit.html.eex:9
+#: web/templates/text_page/index.html.eex:4
+msgid "text_pages"
+msgstr "Text Pages"

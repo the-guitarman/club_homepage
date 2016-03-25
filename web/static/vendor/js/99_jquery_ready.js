@@ -1,8 +1,12 @@
 $(document).ready(function(){
   $(".js-home-match input[type=radio]").prop('checked', false);
 
-  if (typeof(tinymce) != 'undefined') {
-    tinymce.init({selector: '.tinymce-editor'});
+  if (typeof(MediumEditor) != 'undefined') {
+    var editor = new MediumEditor('.js-medium-editor', {
+      toolbar: {
+        buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3']
+      }
+    });
   }
   /*
   $('.input-group.date').datepicker({

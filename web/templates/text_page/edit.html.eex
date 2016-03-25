@@ -1,6 +1,12 @@
-<h2>Edit text page</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("edit_text_page") %></h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: text_page_path(@conn, :update, @text_page) %>
+      <%= render "form.html", changeset: @changeset,
+                              action: text_page_path(@conn, :update, @text_page) %>
 
-<%= link "Back", to: text_page_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("text_pages"), to: text_page_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

@@ -24,15 +24,9 @@ defmodule ClubHomepage.TextPageControllerTest do
     text_page = create(:text_page)
     Enum.each([
       get(conn, text_page_path(conn, :index)),
- #     get(conn, text_page_path(conn, :new)),
- #     post(conn, text_page_path(conn, :create), text_page: @valid_attrs),
- #     post(conn, text_page_path(conn, :create), text_page: @invalid_attrs),
       get(conn, text_page_path(conn, :edit, text_page)),
       put(conn, text_page_path(conn, :update, text_page), text_page: @valid_attrs),
-      put(conn, text_page_path(conn, :update, text_page), text_page: @invalid_attrs),
-      get(conn, text_page_path(conn, :show, text_page)),
-      get(conn, text_page_path(conn, :show, -1)),
- #     delete(conn, text_page_path(conn, :delete, text_page))
+      put(conn, text_page_path(conn, :update, text_page), text_page: @invalid_attrs)#,
     ], fn conn ->
       assert html_response(conn, 302)
       assert conn.halted
@@ -43,54 +37,21 @@ defmodule ClubHomepage.TextPageControllerTest do
   @tag login: true
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, text_page_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing text pages"
-  end
-
-  # @tag login: true
-  # test "renders form for new resources", %{conn: conn} do
-  #   conn = get conn, text_page_path(conn, :new)
-  #   assert html_response(conn, 200) =~ "New text page"
-  # end
-
-  # @tag login: true
-  # test "creates resource and redirects when data is valid", %{conn: conn} do
-  #   conn = post conn, text_page_path(conn, :create), text_page: @valid_attrs
-  #   assert redirected_to(conn) == text_page_path(conn, :index)
-  #   assert Repo.get_by(TextPage, @valid_attrs)
-  # end
-
-  # @tag login: true
-  # test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-  #   conn = post conn, text_page_path(conn, :create), text_page: @invalid_attrs
-  #   assert html_response(conn, 200) =~ "New text page"
-  # end
-
-  @tag login: true
-  test "shows chosen resource", %{conn: conn} do
-    text_page = Repo.insert! %TextPage{}
-    conn = get conn, text_page_path(conn, :show, text_page)
-    assert html_response(conn, 200) =~ "Show text page"
-  end
-
-  @tag login: true
-  test "renders page not found when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, text_page_path(conn, :show, -1)
-    end
+    assert html_response(conn, 200) =~ "<h2>All Text Pages</h2>"
   end
 
   @tag login: true
   test "renders form for editing chosen resource", %{conn: conn} do
     text_page = Repo.insert! %TextPage{}
     conn = get conn, text_page_path(conn, :edit, text_page)
-    assert html_response(conn, 200) =~ "Edit text page"
+    assert html_response(conn, 200) =~ "Edit Text Page"
   end
 
   @tag login: true
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
     text_page = Repo.insert! %TextPage{}
     conn = put conn, text_page_path(conn, :update, text_page), text_page: @valid_attrs
-    assert redirected_to(conn) == text_page_path(conn, :show, text_page)
+    assert redirected_to(conn) == text_page_path(conn, :index)
     assert Repo.get_by(TextPage, @valid_attrs)
   end
 
@@ -98,14 +59,6 @@ defmodule ClubHomepage.TextPageControllerTest do
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     text_page = Repo.insert! %TextPage{}
     conn = put conn, text_page_path(conn, :update, text_page), text_page: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit text page"
+    assert html_response(conn, 200) =~ "Edit Text Page"
   end
-
-  # @tag login: true
-  # test "deletes chosen resource", %{conn: conn} do
-  #   text_page = Repo.insert! %TextPage{}
-  #   conn = delete conn, text_page_path(conn, :delete, text_page)
-  #   assert redirected_to(conn) == text_page_path(conn, :index)
-  #   refute Repo.get(TextPage, text_page.id)
-  # end
 end

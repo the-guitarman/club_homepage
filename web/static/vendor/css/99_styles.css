@@ -24,3 +24,8 @@ span.select2-container {
 input[type=checkbox], input[type=radio] {
   margin-top: 1px; 
 }
+
+.css-medium-editor {
+  height: 200px;
+  overflow-y: scroll;
+}

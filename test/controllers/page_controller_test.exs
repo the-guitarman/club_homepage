@@ -16,7 +16,7 @@ defmodule ClubHomepage.PageControllerTest do
     refute html_response(conn, 200) =~ "<h2>Latest Match Results</h2>"
 
     _news = create(:news)
-    _next_match = create(:match, start_at: add_days_to_date(Timex.Date.local, 7))
+    _next_match = create(:match, start_at: add_days_to_date(Timex.Date.local))
     _last_match = create(:match, start_at: add_days_to_date(Timex.Date.local, -7))
 
     conn = get conn(), page_path(conn, :index)

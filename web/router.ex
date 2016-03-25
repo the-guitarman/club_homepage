@@ -54,7 +54,7 @@ defmodule ClubHomepage.Router do
     resources "/meeting_points", MeetingPointController
     resources "/news", NewsController
     resources "/opponent_teams", OpponentTeamController
-    resources "/text_pages", TextPageController, except: [:new, :create, :delete]
+    resources "/text_pages", TextPageController, except: [:show, :new, :create, :delete]
     resources "/permalinks", PermalinkController
     resources "/teams", TeamController, only: [:index, :new, :show, :create, :edit, :update, :delete]
     resources "/seasons", SeasonController
