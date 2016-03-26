@@ -108,3 +108,18 @@ unless Repo.get_by(Team, rewrite: "#{club_permalink}-men-2") do
   changeset = Team.changeset(%Team{}, %{competition_id: competition.id, name: "#{club_name} Men 2"})
   Repo.insert(changeset)
 end
+
+# Text Pages (Static Sites)
+text_pages_keys = [
+  "/about-us.html",
+  "/chronicle.html",
+  "/contact.html",
+  "/registration-information.html",
+  "/sponsors.html"
+]
+for text_page_key <- text_pages_keys do
+  unless Repo.get_by(TextPage, key: text_page_key) do
+    changeset = TextPage.changeset(%TextPage{}, text_page_key)
+    Repo.insert(changeset)
+  end 
+end

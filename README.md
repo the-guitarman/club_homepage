@@ -8,8 +8,6 @@
 
 This is a website skeleton for your soccer or handball club. It's a phoenixframework projekt written in elixir. The intension is not only the inform about the club. There is a back office to register and edit club members, create and edit teams, match lists, team selections and club news and there will be live events from running matches via channels (socket connections) so that other club members are informed about a running match asap.
 
-
-
 ## Installation
 
 This is a phoenixframework app. So you need to install some requirements like Erlang, Elixir, Hex package manager, phoenix and node.js. See http://www.phoenixframework.org/docs/installation for more information.
@@ -62,10 +60,6 @@ For production environment:
 MIX_ENV=prod mix run priv/repo/seeds.exs
 ````
 
-### Logo & Background-Image
-
-
-
 ### Run
 
 For development environment:
@@ -85,6 +79,20 @@ At first open config/prod.exs and set your host name or ip address.
 MIX_ENV=prod mix phoenix.server 
 ````
 
+At this point you should have a running app. Please log in with the administrator user, you seeded in before.
+
+### Edit Text Pages
+
+Please click to open "master data -> text pages" in the top navbar. Text pages are all static sites like "about us", "contact", "chronicle", "registration information" and "sponsors". These sites have no content right now. You may edit the pages now to fill them.
+
+### Logo & Background-Image
+
+To change the logo at the homnepage you need to replace the image `web/static/assets/images/logo.png` with another one.
+
+To change the background image you need to replace the image `web/static/assets/images/background_01.jpg` with another one.
+
+To remove the background image open `web/templates/layout/app.html.eex` and remove the css class `background-image-01` from the content section.
+
 ## License
 
 This project has a dual license.
@@ -94,7 +102,7 @@ the **LGPL 3.0**. Do whatever you want with it, but please give improvements and
 
 For commercial usage please contact me at first.
 
-*Note:* Everything may break at every time.  
+*Note:* Everything may break at every time.
 
 ## ToDos
 
@@ -104,53 +112,27 @@ For commercial usage please contact me at first.
   - [ ] apple-touch-icon.png
 - [ ] Plug
   - [ ] Permalink detection
-- [ ] Models
+- [ ] Models + Tests
   - [x] Address, with lat/lng
-  - [ ] League
+  - [x] Competition
   - [x] Match
   - [ ] MatchEvent, e.g.: foul, red/yellow card
-  - [ ] MatchHistory
+  - [ ] MatchEventHistory
+  - [ ] MatchPlayerPlan
+  - [ ] MatchPlayer
   - [x] MeetingPoint
+  - [x] News
   - [x] OpponentTeam
   - [x] Permalink
   - [x] Season
   - [x] Secret
   - [x] Team
+  - [x] TextPage (about us, chronicle, ... + medium editor)
   - [x] User
-- [ ] Controller
+- [ ] Commands + Tests
+  - [ ] UserRole
+- [ ] Controllers + Tests
   - [x] create permalink redirection after slug change
-- [ ] Tests
-  - [ ] Models
-    - [x] Address
-    - [x] Match
-    - [ ] MatchEvent
-    - [ ] MatchHistory
-    - [x] MeetingPoint
-    - [x] OpponentTeam
-    - [x] Permalink
-    - [x] Season
-    - [x] Secret
-    - [x] Team
-    - [x] User
-  - [ ] Plugs
-    - [ ] Auth
-  - [ ] Commands
-    - [ ] ModelValidator
-    - [x] SlugGenerator
-    - [ ] SecretCheck
-    - [ ] UserRole
-  - [ ] Controller
-    - [x] AddressController
-    - [x] MatchController
-    - [ ] MatchEventController
-    - [ ] MatchHistoryController
-    - [x] MeetingPointController
-    - [x] OpponentTeamController
-    - [x] PermalinkController
-    - [x] SeasonController
-    - [x] SecretController
-    - [x] TeamController
-    - [x] UserController
 - [ ] Sites
   - [ ] Homepage
     - [ ] no user is logged in, so show public news only

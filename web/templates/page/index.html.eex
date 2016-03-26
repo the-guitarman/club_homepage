@@ -23,6 +23,27 @@
       </div>
     <% end %>
 
+    <div class="col-xs-12 col-md-4">
+      <div class="jumbotron content-box text-center">
+        <img src="/images/logo.png" />
+      </div>
+    </div>
+
+    <%= if Enum.count(@teams) > 0 do %>
+      <div class="col-xs-12 col-md-4">
+        <div class="jumbotron content-box">
+          <h2><%= gettext("teams") %></h2>
+          <div class="list-group">
+            <%= for team <- @teams do %>
+              <%= link team.name, to: team_with_season_path(@conn, team), class: "list-group-item" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
     <%= if Enum.count(@next_matches) > 0 || Enum.count(@last_matches) > 0 do %>
       <div class="col-xs-12 col-md-8">
         <div class="jumbotron content-box">
@@ -47,19 +68,6 @@
               <% end %>
             </div>
           <% end %>
-        </div>
-      </div>
-    <% end %>
-
-    <%= if Enum.count(@teams) > 0 do %>
-      <div class="col-xs-12 col-md-4">
-        <div class="jumbotron content-box">
-          <h2><%= gettext("teams") %></h2>
-          <div class="list-group">
-            <%= for team <- @teams do %>
-              <%= link team.name, to: team_with_season_path(@conn, team), class: "list-group-item" %>
-            <% end %>
-          </div>
         </div>
       </div>
     <% end %>
