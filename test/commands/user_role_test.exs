@@ -13,5 +13,7 @@ defmodule ClubHomepage.UserRoleTest do
     assert UserRole.has_role?(user, "member")
     assert UserRole.has_role?(user, "player")
     refute UserRole.has_role?(user, "editor")
+    assert UserRole.has_role?(user, ["editor", "player"])
+    refute UserRole.has_role?(user, ["editor", "trainer"])
   end
 end

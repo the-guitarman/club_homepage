@@ -110,7 +110,8 @@ defmodule ClubHomepage.Factory do
       login: sequence(:login, &"my_login-#{&1}"), 
       name: sequence(:login, &"my name #{&1}"), 
       password_hash: Comeonin.Bcrypt.hashpwsalt("my password"),
-      active: true
+      active: true,
+      roles: "member administrator"
     }
   end
 end

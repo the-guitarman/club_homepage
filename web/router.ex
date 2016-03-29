@@ -9,13 +9,14 @@ defmodule ClubHomepage.Router do
     plug :put_secure_browser_headers
     plug ClubHomepage.PermalinkRedirection, path_prefixes: [:teams]
     plug ClubHomepage.Auth, repo: ClubHomepage.Repo
+    plug ClubHomepage.AuthByRole
     plug ClubHomepage.Locale
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-    plug ClubHomepage.Auth, repo: ClubHomepage.Repo
-  end
+  # pipeline :api do
+  #   plug :accepts, ["json"]
+  #   plug ClubHomepage.Auth, repo: ClubHomepage.Repo
+  # end
 
   scope "/", ClubHomepage do
     pipe_through :browser # Use the default browser stack
@@ -32,10 +33,6 @@ defmodule ClubHomepage.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     get "/teams/:slug", TeamController, :team_page, as: :team_page
     get "/teams/:slug/season/:season", TeamController, :team_page, as: :team_page_with_season
-    ##resources "/teams", TeamController, only: [:show]
-    ##get "/seasons/:seasons/teams/:team"
-    ##get "/seasons/:seasons/teams/:team/matches"
-    ##get "/seasons/:seasons/teams/:team/matches/:match"
   end
 
   scope "/manage", ClubHomepage do

@@ -3,6 +3,7 @@ defmodule ClubHomepage.TextPageController do
 
   alias ClubHomepage.TextPage
 
+  plug :is_text_page_editor?
   plug :scrub_params, "text_page" when action in [:update]
 
   def index(conn, _params) do
@@ -21,7 +22,7 @@ defmodule ClubHomepage.TextPageController do
     changeset = TextPage.changeset(text_page, text_page_params)
 
     case Repo.update(changeset) do
-      {:ok, text_page} ->
+      {:ok, _text_page} ->
         conn
         |> put_flash(:info, "Text page updated successfully.")
         |> redirect(to: text_page_path(conn, :index))

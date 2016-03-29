@@ -5,20 +5,36 @@ defmodule ClubHomepage.UserRole do
 
   alias Ecto.Changeset
 
-  # member  - simple a member of the club, a rigistered user
-  # player  - an active sports men/woman
-  # trainer - responsible for a team
-  # editor  - reporter of game/match results, author of news
-  # administrator - has all rights
-  @roles ~w(administrator member player trainer editor)
+  # member            - simple a member of the club, a rigistered user
+  # player            - an active sports men/woman
+  # trainer           - responsible for a team
+  # match-editor      - reporter of game/match results
+  # news-editor       - author/editor of news
+  # text-page-editor  - author/editor of static page contents
+  # administrator     - has all rights
+  @roles ~w(administrator member player trainer news-editor text-page-editor match-editor)
 
   @doc """
   Checks wether a ClubHomepage.User has a user role. Return true or false.
   """
-  @spec has_role?( ClubHomepage.User, String ) :: Boolean
-  def has_role?(user, role) do
+  @spec has_role?( ClubHomepage.User, String | List ) :: Boolean
+  @spec has_role?( Plug.Conn, String | List ) :: Boolean
+  def has_role?(%ClubHomepage.User{} = user, roles) when is_list(roles) do
+    Enum.any?(roles, fn(role) -> has_role?(user, role) end)
+  end
+  def has_role?(%ClubHomepage.User{} = user, role) do
     roles = split(user.roles)
     include?(roles, role) && valid?(role)
+  end
+  def has_role?(%Plug.Conn{} = conn, roles) when is_list(roles) do
+    Enum.any?(roles, fn(role) -> has_role?(conn, role) end)
+  end
+  def has_role?(%Plug.Conn{} = conn, role) do
+    #user = get_session(conn, :current_user)
+    case conn.assigns[:current_user] do
+      nil -> false
+      user -> has_role?(user, role)
+    end
   end
 
   #@spec include?( List(String), String ) :: Boolean
