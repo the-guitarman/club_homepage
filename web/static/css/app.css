@@ -27,9 +27,12 @@ form.link {
 
 /*! styles */
 .background-image-01 {
-  background-image:url('/images/background_01.jpg');
-  background-size:cover;
-  padding:50px 20px 20px 20px;
+  background: url('/images/background_01.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 80px 0 50px 0;
 }
 
 
@@ -55,6 +58,10 @@ section.header h1 {
 }
 .css-home-match label {
   padding-left: 0px;
+  text-align: left !important;
+}
+
+.css-user-roles label {
   text-align: left !important;
 }
 

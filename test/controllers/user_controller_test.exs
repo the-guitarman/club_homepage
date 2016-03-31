@@ -26,8 +26,6 @@ defmodule ClubHomepage.UserControllerTest do
       get(conn, managed_user_path(conn, :index)),
       get(conn, unregistered_user_path(conn, :new_unregistered)),
       post(conn, unregistered_user_path(conn, :create_unregistered), user: @valid_attrs),
-      get(conn, managed_user_path(conn, :show, user)),
-      get(conn, managed_user_path(conn, :show, -1))
     ], fn conn ->
       assert html_response(conn, 302)
       assert conn.halted
@@ -109,20 +107,6 @@ defmodule ClubHomepage.UserControllerTest do
     assert html_response(conn, 200) =~ "Name can&#39;t be blank"
     assert html_response(conn, 200) =~ "Email can&#39;t be blank"
     assert html_response(conn, 200) =~ "Birthday can&#39;t be blank"
-  end
-
-  @tag login: true
-  test "show a user with current_user is logged in", %{conn: conn, current_user: _current_user} do
-    user = create(:user)
-    conn = get conn, managed_user_path(conn, :show, user)
-    assert html_response(conn, 200) =~ "Show Club Member"
-  end
-
-  @tag login: true
-  test "renders page not found when id is nonexistent with current_user is logged in", %{conn: conn, current_user: _current_user} do
-    assert_raise Ecto.NoResultsError, fn ->
-      get conn, managed_user_path(conn, :show, -1)
-    end
   end
 
   # test "renders form for editing chosen resource", %{conn: conn} do

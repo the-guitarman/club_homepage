@@ -16,7 +16,7 @@
       <td><%= opponent_team.address_id %></td>
 
       <td class="text-right">
-        <%= link gettext("delete"), to: opponent_team_path(@conn, :delete, opponent_team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link gettext("delete"), to: opponent_team_path(@conn, :delete, opponent_team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
       </td>
     </tr>
 <% end %>

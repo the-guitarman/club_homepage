@@ -19,7 +19,7 @@ $(document).ready(function(){
   */
 
   var dateFieldAttributes = {
-    // format: 'DD.MM.YYYY',
+    format: 'DD.MM.YYYY',
     inline: false,
     locale: 'de',
     showClose: true,
@@ -46,7 +46,9 @@ $(document).ready(function(){
   };
   $('.input-group.date').datetimepicker(dateFieldAttributes);
 
-  $('.input-group.datetime').datetimepicker(dateFieldAttributes);
+  var dateTimeFieldAttributes = dateFieldAttributes;
+  dateTimeFieldAttributes['format'] = "DD.MM.YYYY HH:MM";
+  $('.input-group.datetime').datetimepicker(dateTimeFieldAttributes);
 
   $('.input-group.date input, .input-group.datetime input').click(function(e){
     $(this).parent().find('.input-group-addon').trigger('click');
@@ -61,5 +63,5 @@ $(document).ready(function(){
   });
 
   $("input[type=radio][checked=checked]").prop('checked', true);
-  $("input[type=radio]").bootstrapSwitch();
+  $("input[type=radio], input[type=checkbox]").bootstrapSwitch();
 });

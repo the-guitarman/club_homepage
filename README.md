@@ -91,7 +91,7 @@ To change the logo at the homnepage you need to replace the image `web/static/as
 
 To change the background image you need to replace the image `web/static/assets/images/background_01.jpg` with another one.
 
-To remove the background image open `web/templates/layout/app.html.eex` and remove the css class `background-image-01` from the content section.
+To remove the background image open `web/templates/layout/app.html.eex` and remove the css class `background-image-01` from the body element.
 
 ## License
 

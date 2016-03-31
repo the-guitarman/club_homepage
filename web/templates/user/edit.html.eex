@@ -1,6 +1,16 @@
-<h2><%= gettext("edit_user") %></h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("edit_user") %></h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: user_path(@conn, :update, @user) %>
+      <%= render "form.html",
+                changeset: @changeset, conn: @conn,
+                action: managed_user_path(@conn, :update, @user),
+                user: @user, current_user: @current_user,
+                defined_user_roles: @defined_user_roles,
+                current_user_roles: @current_user_roles %>
 
-<%= link gettext("all") <> " " <> gettext("users"), to: user_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("users"), to: managed_user_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

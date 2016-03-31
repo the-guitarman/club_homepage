@@ -2,13 +2,17 @@
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
       <h2><%= gettext("create_new_user") %></h2>
-      <p><%= gettext("create_new_user_notice") %></p>
-      <%= render "form.html", changeset: @changeset,
-                        action: user_path(@conn, :create),
-                        conn: @conn,
-                        secret: @secret %>
 
-      <%#= link gettext("all") <> " " <> gettext("users"), to: user_path(@conn, :index) %>
+      <p><%= gettext("create_new_user_notice") %></p>
+      <%= render "form.html",
+                 changeset: @changeset, conn: @conn, 
+                 action: user_path(@conn, :create),
+                 secret: @secret,
+                 user: @user, current_user: @current_user,
+                 defined_user_roles: @defined_user_roles,
+                 current_user_roles: @current_user_roles %>
+
+      <%= link gettext("all") <> " " <> gettext("users"), to: managed_user_path(@conn, :index) %>
     </div>
   </div>
 </div>

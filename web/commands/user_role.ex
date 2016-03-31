@@ -14,11 +14,20 @@ defmodule ClubHomepage.UserRole do
   # administrator     - has all rights
   @roles ~w(administrator member player trainer news-editor text-page-editor match-editor)
 
+
+  @doc """
+  Returns all defined user roles.
+  """
+  @spec defined_roles() :: [String.t]
+  def defined_roles do
+    @roles
+  end
+
   @doc """
   Checks wether a ClubHomepage.User has a user role. Return true or false.
   """
-  @spec has_role?( ClubHomepage.User, String | List ) :: Boolean
-  @spec has_role?( Plug.Conn, String | List ) :: Boolean
+  @spec has_role?( ClubHomepage.User, String.t | [String.t] ) :: Boolean
+  @spec has_role?( Plug.Conn, String.t | [String.t] ) :: Boolean
   def has_role?(%ClubHomepage.User{} = user, roles) when is_list(roles) do
     Enum.any?(roles, fn(role) -> has_role?(user, role) end)
   end
@@ -37,12 +46,10 @@ defmodule ClubHomepage.UserRole do
     end
   end
 
-  #@spec include?( List(String), String ) :: Boolean
   defp include?(roles, role) do
     Enum.member?(roles, role)
   end
 
-  @spec valid?( String ) :: Boolean
   defp valid?(role) do
     Enum.member?(@roles, role)
   end
@@ -91,9 +98,11 @@ defmodule ClubHomepage.UserRole do
 
 
 
-
-  #@spec split ( String ) :: List(String)
-  defp split(roles) do
+  @doc """
+  Splits a string of user roles into a list of strings.
+  """
+  @spec split( String.t ) :: [String.t]
+  def split(roles) do
     roles
     |> String.split
     |> Enum.map(fn(s) -> String.strip(s) end)

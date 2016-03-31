@@ -3,6 +3,7 @@ defmodule ClubHomepage.SecretController do
 
   alias ClubHomepage.Secret
 
+  plug :is_administrator?
   plug :scrub_params, "secret" when action in [:update]
 
   def index(conn, _params) do
@@ -22,46 +23,21 @@ defmodule ClubHomepage.SecretController do
       {:ok, secret} ->
         conn
         |> put_flash(:info, "Das Secret wurde erfolgreich generiert.")
-        |> redirect(to: secret_path(conn, :show, secret))
+        |> redirect(to: secret_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => id}) do
     secret = Repo.get!(Secret, id)
-    render(conn, "show.html", secret: secret)
+
+    # Here we use delete! (with a bang) because we expect
+    # it to always work (and if it does not, it will raise).
+    Repo.delete!(secret)
+
+    conn
+    |> put_flash(:info, "Das Secret wurde erfolgreich gelöscht.")
+    |> redirect(to: secret_path(conn, :index))
   end
-
-  # def edit(conn, %{"id" => id}) do
-  #   secret = Repo.get!(Secret, id)
-  #   changeset = Secret.changeset(secret)
-  #   render(conn, "edit.html", secret: secret, changeset: changeset)
-  # end
-
-  # def update(conn, %{"id" => id, "secret" => secret_params}) do
-  #   secret = Repo.get!(Secret, id)
-  #   changeset = Secret.changeset(secret, secret_params)
-
-  #   case Repo.update(changeset) do
-  #     {:ok, secret} ->
-  #       conn
-  #       |> put_flash(:info, "Secret updated successfully.")
-  #       |> redirect(to: secret_path(conn, :show, secret))
-  #     {:error, changeset} ->
-  #       render(conn, "edit.html", secret: secret, changeset: changeset)
-  #   end
-  # end
-
-  # def delete(conn, %{"id" => id}) do
-  #   secret = Repo.get!(Secret, id)
-
-  #   # Here we use delete! (with a bang) because we expect
-  #   # it to always work (and if it does not, it will raise).
-  #   Repo.delete!(secret)
-
-  #   conn
-  #   |> put_flash(:info, "Das Secret wurde erfolgreich gelöscht.")
-  #   |> redirect(to: secret_path(conn, :new))
-  # end
 end

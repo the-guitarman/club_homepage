@@ -34,7 +34,7 @@
             </td>
 
             <td class="text-right">
-              <%= link gettext("show"), to: managed_user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
+              <%= link gettext("edit"), to: managed_user_path(@conn, :edit, user), class: "btn btn-default" %>
             </td>
           </tr>
         <% end %>

@@ -3,6 +3,7 @@ defmodule ClubHomepage.UserController do
 
   alias ClubHomepage.User
   alias ClubHomepage.Auth
+  alias ClubHomepage.UserRole
 
   plug :scrub_params, "user" when action in [:create, :update]
 
@@ -31,12 +32,16 @@ defmodule ClubHomepage.UserController do
 
   def new(conn, params) do
     changeset = User.changeset(%User{})
-    render(conn, "new.html", changeset: changeset, secret: params["secret"])
+    render(conn, "new.html", changeset: changeset, secret: params["secret"],
+           user: nil,
+           defined_user_roles: UserRole.defined_roles,
+           current_user_roles: [])
   end
 
   def create(conn, %{"user" => user_params}) do
     user_params = parse_date_field(user_params, :birthday)
-    secret_key = user_params["secret"]
+    secret_key  = user_params["secret"]
+    user_params = join_user_roles(user_params)
 
     user =
       case user_params["email"] do
@@ -53,34 +58,40 @@ defmodule ClubHomepage.UserController do
         |> put_flash(:info, "Dein Benutzer wurde erfolgreich angelegt und eingeloggt.")
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset, secret: secret_key)
+        render(conn, "new.html", changeset: changeset, secret: secret_key,
+               user: nil,
+               defined_user_roles: UserRole.defined_roles,
+               current_user_roles: [])
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def edit(conn, %{"id" => id}) do
     user = Repo.get!(User, id)
-    render(conn, "show.html", user: user)
+    changeset = User.changeset(user)
+    render(conn, "edit.html", changeset: changeset,
+           user: user,
+           defined_user_roles: UserRole.defined_roles,
+           current_user_roles: UserRole.split(user.roles))
   end
 
-  # def edit(conn, %{"id" => id}) do
-  #   user = Repo.get!(User, id)
-  #   changeset = User.changeset(user)
-  #   render(conn, "edit.html", user: user, changeset: changeset)
-  # end
+  def update(conn, %{"id" => id, "user" => user_params}) do
+    user_params = parse_date_field(user_params, :birthday)
+    user_params = join_user_roles(user_params)
 
-  # def update(conn, %{"id" => id, "user" => user_params}) do
-  #   user = Repo.get!(User, id)
-  #   changeset = User.changeset(user, user_params)
+    user = Repo.get!(User, id)
+    changeset = User.changeset(user, user_params)
 
-  #   case Repo.update(changeset) do
-  #     {:ok, user} ->
-  #       conn
-  #       |> put_flash(:info, "User updated successfully.")
-  #       |> redirect(to: user_path(conn, :show, user))
-  #     {:error, changeset} ->
-  #       render(conn, "edit.html", user: user, changeset: changeset)
-  #   end
-  # end
+    case Repo.update(changeset) do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "User updated successfully.")
+        |> redirect(to: managed_user_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "edit.html", user: user, changeset: changeset,
+               defined_user_roles: UserRole.defined_roles,
+               current_user_roles: UserRole.split(user.roles))
+    end
+  end
 
   # def delete(conn, %{"id" => id}) do
   #   user = Repo.get!(User, id)
@@ -106,4 +117,10 @@ defmodule ClubHomepage.UserController do
       |> ClubHomepage.SecretCheck.run(secret_key)
     Repo.update(changeset)
   end
+
+  defp join_user_roles(%{"roles" => roles} = user_params) when is_list(roles) do
+    user_params
+    |> Map.put("roles", Enum.join(roles, " "))
+  end
+  defp join_user_roles(user_params), do: user_params
 end

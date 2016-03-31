@@ -38,10 +38,9 @@ defmodule ClubHomepage.Router do
   scope "/manage", ClubHomepage do
     pipe_through [:browser, :authenticate_user]
     
-    resources "/secrets", SecretController, only: [:new, :create, :show, :delete]
     get "/users/new", UserController, :new_unregistered, as: :unregistered_user
     post "/users", UserController, :create_unregistered, as: :unregistered_user
-    resources "/users", UserController, only: [:index, :show, :edit, :update, :delete], as: :managed_user
+    resources "/users", UserController, only: [:index, :edit, :update, :delete], as: :managed_user
 
     resources "/addresses", AddressController
     resources "/competitions", CompetitionController
@@ -55,6 +54,7 @@ defmodule ClubHomepage.Router do
     resources "/permalinks", PermalinkController
     resources "/teams", TeamController, only: [:index, :new, :show, :create, :edit, :update, :delete]
     resources "/seasons", SeasonController
+    resources "/secrets", SecretController, only: [:index, :new, :create, :delete]
   end
 
   # scope "/api", ClubHomepage do

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body>
+  <body class="background-image-01">
     <div class="fluid-container <%= action_name(@conn) %>" role="main">
       <%= render "navbar_top.html", conn: @conn, current_user: @current_user %>
       <%= render "flash_messages.html", conn: @conn %>
@@ -22,7 +22,7 @@
         </section>
       <% end %>
 
-      <section id="boxcontent" class="background-image-01">
+      <section id="boxcontent">
         <%= render @view_module, @view_template, assigns %>
       </section>
       
