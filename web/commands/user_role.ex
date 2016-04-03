@@ -1,33 +1,94 @@
 defmodule ClubHomepage.UserRole do
   @moduledoc """
-
   """
 
   alias Ecto.Changeset
 
-  # member            - simple a member of the club, a rigistered user
+  # member            - simple a member of the club, a registered user
   # player            - an active sports men/woman
   # trainer           - responsible for a team
   # match-editor      - reporter of game/match results
   # news-editor       - author/editor of news
   # text-page-editor  - author/editor of static page contents
+  # user-editor       - user administrator
   # administrator     - has all rights
-  @roles ~w(administrator member player trainer news-editor text-page-editor match-editor)
-
+  @roles %{
+    "administrator": "user with all rights",
+    "member": "a registered user",
+    "match-editor": "",
+    "news-editor": "",
+    "player": "",
+    "text-page-editor": "",
+    "trainer": "",
+    "user-editor": ""
+  }
 
   @doc """
   Returns all defined user roles.
   """
-  @spec defined_roles() :: [String.t]
-  def defined_roles do
-    @roles
+  @spec defined_roles_keys() :: [String.t]
+  def defined_roles_keys do
+    Map.keys(@roles)
+    |> Enum.map(fn(role) -> Atom.to_string(role) end)
+  end
+
+  @doc """
+  Returns a list of editable roles.
+  """
+  @spec editable_roles( ClubHomepage.User | Nil ) :: [String.t]
+  def editable_roles(%ClubHomepage.User{} = user) do
+    cond do
+      has_role?(user, "administrator") ->
+        defined_roles_keys
+      has_role?(user, "user-editor")   ->
+        defined_roles_keys
+        |> List.delete("administrator")
+      true -> []
+    end
+    |> delete_member_role
+  end
+  def editable_roles(_), do: []
+
+  @doc """
+  """
+  @spec new_roles( ClubHomepage.User, [String.t], ClubHomepage.User) :: [String.t]
+  def new_roles(%ClubHomepage.User{} = edited_user, new_roles, %ClubHomepage.User{} = current_user) do
+    old_roles      = split(edited_user.roles)
+
+    editable_roles = editable_roles(current_user)
+
+    new_roles =
+      new_roles
+      |> Enum.drop_while(fn(new_role) -> include?(editable_roles, new_role) == false end)
+      |> Enum.join(" ")
+      |> clean_up_roles
+      |> split
+
+    old_roles_missing =
+      old_roles
+      |> Enum.filter(fn(old_role) -> not Enum.member?(new_roles, old_role) end)
+      |> Enum.filter(fn(old_role) -> not Enum.member?(editable_roles, old_role) end)
+
+    cond do
+      edited_user.id == current_user.id -> new_roles
+      true -> [old_roles_missing | new_roles]
+    end
+  end
+
+  defp add_member_role(roles) do
+    ["member" | roles] 
+  end
+
+  defp delete_member_role(roles) do
+    List.delete(roles, "member")
   end
 
   @doc """
   Checks wether a ClubHomepage.User has a user role. Return true or false.
   """
-  @spec has_role?( ClubHomepage.User, String.t | [String.t] ) :: Boolean
+  @spec has_role?( ClubHomepage.User | Nil, String.t | [String.t] ) :: Boolean
   @spec has_role?( Plug.Conn, String.t | [String.t] ) :: Boolean
+  def has_role?(nil, _role), do: false
   def has_role?(%ClubHomepage.User{} = user, roles) when is_list(roles) do
     Enum.any?(roles, fn(role) -> has_role?(user, role) end)
   end
@@ -51,7 +112,7 @@ defmodule ClubHomepage.UserRole do
   end
 
   defp valid?(role) do
-    Enum.member?(@roles, role)
+    Enum.member?(defined_roles_keys, role)
   end
 
 
@@ -83,7 +144,7 @@ defmodule ClubHomepage.UserRole do
   defp clean_up_roles(roles) do
     roles
     |> split
-    |> Enum.filter(fn(s) -> Enum.member?(@roles, s) end)
+    |> Enum.filter(fn(s) -> Enum.member?(defined_roles_keys, s) end)
     |> Enum.uniq
     |> ensure_member_role_exists
     |> Enum.join(" ")
@@ -91,7 +152,7 @@ defmodule ClubHomepage.UserRole do
 
   defp ensure_member_role_exists(roles) do
     case Enum.member?(roles, "member") do
-      false -> ["member" | roles]
+      false -> add_member_role(roles)
       _     -> roles
     end
   end

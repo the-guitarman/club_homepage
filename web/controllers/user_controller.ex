@@ -34,14 +34,13 @@ defmodule ClubHomepage.UserController do
     changeset = User.changeset(%User{})
     render(conn, "new.html", changeset: changeset, secret: params["secret"],
            user: nil,
-           defined_user_roles: UserRole.defined_roles,
+           editable_user_roles: UserRole.editable_roles(current_user(conn)),
            current_user_roles: [])
   end
 
   def create(conn, %{"user" => user_params}) do
     user_params = parse_date_field(user_params, :birthday)
     secret_key  = user_params["secret"]
-    user_params = join_user_roles(user_params)
 
     user =
       case user_params["email"] do
@@ -60,7 +59,7 @@ defmodule ClubHomepage.UserController do
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset, secret: secret_key,
                user: nil,
-               defined_user_roles: UserRole.defined_roles,
+               editable_user_roles: UserRole.editable_roles(current_user(conn)),
                current_user_roles: [])
     end
   end
@@ -70,25 +69,28 @@ defmodule ClubHomepage.UserController do
     changeset = User.changeset(user)
     render(conn, "edit.html", changeset: changeset,
            user: user,
-           defined_user_roles: UserRole.defined_roles,
+           editable_user_roles: UserRole.editable_roles(current_user(conn)),
            current_user_roles: UserRole.split(user.roles))
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
-    user_params = parse_date_field(user_params, :birthday)
-    user_params = join_user_roles(user_params)
-
     user = Repo.get!(User, id)
+
+    user_params =
+      user_params
+      |> parse_date_field(:birthday)
+      |> join_user_roles(user, conn)
+
     changeset = User.changeset(user, user_params)
 
     case Repo.update(changeset) do
-      {:ok, user} ->
+      {:ok, _user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
         |> redirect(to: managed_user_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset,
-               defined_user_roles: UserRole.defined_roles,
+               editable_user_roles: UserRole.editable_roles(current_user(conn)),
                current_user_roles: UserRole.split(user.roles))
     end
   end
@@ -118,9 +120,10 @@ defmodule ClubHomepage.UserController do
     Repo.update(changeset)
   end
 
-  defp join_user_roles(%{"roles" => roles} = user_params) when is_list(roles) do
+  defp join_user_roles(%{"roles" => roles} = user_params, edited_user, conn) when is_list(roles) do
+    new_roles = UserRole.new_roles(edited_user, roles, current_user(conn))
     user_params
-    |> Map.put("roles", Enum.join(roles, " "))
+    |> Map.put("roles", Enum.join(new_roles, " "))
   end
-  defp join_user_roles(user_params), do: user_params
+  defp join_user_roles(user_params, _edited_user, _conn), do: user_params
 end

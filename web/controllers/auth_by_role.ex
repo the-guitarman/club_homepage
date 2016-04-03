@@ -41,6 +41,10 @@ defmodule ClubHomepage.AuthByRole do
     has_role?(conn, "trainer")
   end
 
+  def is_user_editor?(conn, _options) do
+    has_role?(conn, "user-editor")
+  end
+
   defp has_role?(conn, role) do
     if UserRole.has_role?(conn, role) || UserRole.has_role?(conn, "administrator") do
       conn

@@ -46,9 +46,6 @@
                 <% end %>
                 <li role="separator" class="divider"></li>
               <% end %>
-              <li class="<%= current_link(@conn, ClubHomepage.SecretController, :new) %>">
-                <%= link gettext("secrets"), to: secret_path(@conn, :new) %>
-              </li>
               <li class="<%= current_link(@conn, ClubHomepage.UserController, :new_unregistered) %>">
                 <%= link gettext("members"), to: managed_user_path(@conn, :index) %>
               </li>

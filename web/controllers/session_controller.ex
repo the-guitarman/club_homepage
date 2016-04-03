@@ -23,7 +23,7 @@ defmodule ClubHomepage.SessionController do
 
       {:error, _reason, conn} ->
         conn
-        |> put_flash(:error, "Dein Login/E-Mail-Adresse oder Dein Passwort sind ungültig. Bitte achte auf Groß- und Kleinschreibung.")
+        |> put_flash(:error, "Dein Login/E-Mail-Adresse oder Passwort sind ungültig. Bitte achte auf Groß- und Kleinschreibung.")
         |> render("new.html", redirect: redirect_path(conn, redirect))
     end
   end

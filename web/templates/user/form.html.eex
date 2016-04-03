@@ -9,7 +9,7 @@
         <%= error_tag f, :login %>
       </div>
 
-      <% if @user == @current_user do %>
+      <%= if action_name(@conn) == :new || action_name(@conn) == :create do %>
         <div class="form-group <%= error_cls @changeset, f, :password %>">
           <%#= label f, :password, "Password", class: "control-label" %>
           <%= password_input f, :password, class: "form-control", placeholder: gettext("password") %>
@@ -36,7 +36,7 @@
         <%= error_tag f, :birthday %>
       </div>
 
-      <% if action_name(@conn) == :new || action_name(@conn) == :create do %>
+      <%= if action_name(@conn) == :new || action_name(@conn) == :create do %>
         <div class="form-group <%= error_cls @changeset, f, :secret %>">
           <%#= label f, :secret, "Birthday", class: "control-label" %>
           <%= text_input f, :secret, class: "form-control", placeholder: gettext("secret"), value: @secret %>
@@ -44,20 +44,20 @@
         </div>
       <% end %>
 
-      <%= if has_role?(@conn, "administrator") do %>
+      <%= if (has_role?(@conn, "user-editor") || has_role?(@conn, "administrator")) && Enum.count(@editable_user_roles) > 0 do %>
         <div class="form-group form-horizontal css-user-roles <%= error_cls @changeset, f, :roles %>">
           <div class="row">
             <%= label f, :roles, class: "col-xs-11 control-label text-left col-xs-12" do %>
               <%= gettext("user_roles") %>
             <% end %>
           </div>
-          <%= for defined_user_role <- @defined_user_roles do %>
+          <%= for editable_user_role <- @editable_user_roles do %>
             <div class="row">
               <div class="col-xs-4 col-sm-3 col-md-4">
-                <input type="checkbox" name="user[roles][]" value="<%= defined_user_role %>" class="form-control" <%= user_role_checked(@current_user, defined_user_role) %> />
+                <input type="checkbox" name="user[roles][]" value="<%= editable_user_role %>" class="form-control" <%= user_role_checked(@user, editable_user_role) %> />
               </div>
               <%= label f, :home_match_true, class: "col-xs-8 col-sm-9 col-md-8 control-label text-left" do %>
-                <%= user_role_humanized(defined_user_role) %>
+                <%= user_role_humanized(editable_user_role) %>
               <% end %>
             </div>
           <% end %>

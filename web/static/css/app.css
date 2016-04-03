@@ -19,6 +19,10 @@ form.link {
 .navbar {
   border-radius:0px;
 }
+ pf
+.flash-messages .alert {
+  border-radius: 0px;
+}
 
 .jumbotron {
   opacity:0.9;
@@ -32,15 +36,16 @@ form.link {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding: 80px 0 50px 0;
 }
-
+.content-container {
+  padding: 40px 0px 20px 0px;
+}
 
 section.header {
   padding:10px 5px;
 }
 section.header h1 {
-  margin-top: 20px;
+  margin-top: 0px;
   margin-bottom: 20px;
   text-align: center;
 }

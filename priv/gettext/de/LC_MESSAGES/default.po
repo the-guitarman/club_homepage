@@ -27,15 +27,14 @@ msgstr ""
 #: web/templates/opponent_team/new.html.eex:6
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
-#: web/templates/season/show.html.eex:14 web/templates/secret/edit.html.eex:6
-#: web/templates/secret/index.html.eex:4 web/templates/team/edit.html.eex:11
-#: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
-#: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:48
+#: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
+#: web/templates/team/edit.html.eex:11 web/templates/team/index.html.eex:4
+#: web/templates/team/new.html.eex:11 web/templates/team/show.html.eex:21
+#: web/templates/team/team_page.html.eex:48
 #: web/templates/text_page/edit.html.eex:9
-#: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:6
-#: web/templates/user/index.html.eex:4
+#: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
+#: web/templates/user/index.html.eex:4 web/templates/user/new.html.eex:15
 #: web/templates/user/new_unregistered.html.eex:12
-#: web/templates/user/show.html.eex:35
 msgid "all"
 msgstr "Alle"
 
@@ -56,7 +55,7 @@ msgstr "Datum und Zeit"
 msgid "home_match"
 msgstr "Heimspiel"
 
-#: web/templates/layout/navbar_top.html.eex:57
+#: web/templates/layout/navbar_top.html.eex:60
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:40
@@ -88,7 +87,7 @@ msgstr "Neue Saison anlegen"
 msgid "delete_match"
 msgstr "Spiel löschen"
 
-#: lib/extension/view.ex:88 web/templates/match/form_bulk.html.eex:4
+#: lib/extension/view.ex:99 web/templates/match/form_bulk.html.eex:4
 msgid "form_input_errors_notice"
 msgstr "Es sind folgende Fehler aufgetreten:"
 
@@ -101,7 +100,8 @@ msgstr "Es sind folgende Fehler aufgetreten:"
 #: web/templates/opponent_team/form.html.eex:11
 #: web/templates/permalink/form.html.eex:17
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:11
-#: web/templates/team/form.html.eex:15 web/templates/user/form.html.eex:44
+#: web/templates/team/form.html.eex:15 web/templates/text_page/form.html.eex:21
+#: web/templates/user/form.html.eex:69
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr "Speichern"
@@ -195,17 +195,20 @@ msgstr "Neuen Treffpunkt anlegen"
 msgid "create_new_opponent_team"
 msgstr "Neue Gegnerische Mannschaft anlegen"
 
-#: web/templates/secret/index.html.eex:7 web/templates/secret/new.html.eex:4
+#: web/templates/secret/index.html.eex:7 web/templates/secret/index.html.eex:33
+#: web/templates/secret/new.html.eex:4 web/templates/user/index.html.eex:9
+#: web/templates/user/index.html.eex:50
 msgid "create_new_secret"
 msgstr "Neues Secret anlegen"
 
 #: web/templates/secret/new.html.eex:6
 msgid "create_new_secret_notice"
-msgstr "Das Secret wird für die Registrierung von neuen Vereinsmitgliedern benötigt. Du kannst es per E-Mail an ein Vereinsmitglied versenden, es selbst für die Registrierung verwenden oder es über einen anderen Weg an ein Vereinsmitglied weitergeben."
+msgstr "Vereinsmitglieder, die sich registrieren/anmelden wollen, benötigen ein Secret (Zufalls-Code). Du kannst es per E-Mail an ein Vereinsmitglied versenden, es selbst für die Registrierung verwenden oder es über einen anderen Weg an ein Vereinsmitglied weitergeben."
 
 #: web/templates/address/show.html.eex:31
 #: web/templates/meeting_point/show.html.eex:13
 #: web/templates/opponent_team/index.html.eex:19
+#: web/templates/secret/index.html.eex:25
 msgid "delete"
 msgstr "Löschen"
 
@@ -218,6 +221,7 @@ msgstr "Ortsteil"
 #: web/templates/news/show.html.eex:25
 #: web/templates/opponent_team/show.html.eex:18
 #: web/templates/season/show.html.eex:12 web/templates/team/index.html.eex:16
+#: web/templates/user/index.html.eex:40
 msgid "edit"
 msgstr "Ändern"
 
@@ -237,10 +241,6 @@ msgstr "Gegnerische Mannschaft ändern/bearbeiten"
 msgid "edit_season"
 msgstr "Saison ändern/bearbeiten"
 
-#: web/templates/secret/edit.html.eex:1
-msgid "edit_secret"
-msgstr "Secret ändern/bearbeiten"
-
 #: web/templates/meeting_point/edit.html.eex:6
 #: web/templates/meeting_point/index.html.eex:1
 #: web/templates/meeting_point/index.html.eex:23
@@ -255,9 +255,9 @@ msgstr "Treffpunkte"
 #: web/templates/opponent_team/index.html.eex:6
 #: web/templates/opponent_team/show.html.eex:6
 #: web/templates/season/show.html.eex:6 web/templates/team/show.html.eex:8
-#: web/templates/user/form.html.eex:20
+#: web/templates/user/form.html.eex:22
 #: web/templates/user/form_unregistered.html.eex:8
-#: web/templates/user/index.html.eex:14 web/templates/user/show.html.eex:14
+#: web/templates/user/index.html.eex:17
 msgid "name"
 msgstr "Name"
 
@@ -273,8 +273,7 @@ msgstr "Gegnerische Mannschaft"
 msgid "registration_information"
 msgstr "Impressum"
 
-#: web/templates/layout/navbar_top.html.eex:44
-#: web/templates/secret/edit.html.eex:6 web/templates/secret/index.html.eex:4
+#: web/templates/secret/index.html.eex:4
 msgid "secrets"
 msgstr "Secrets"
 
@@ -285,7 +284,6 @@ msgstr "Saison wählen"
 #: web/templates/address/index.html.eex:45
 #: web/templates/meeting_point/index.html.eex:16
 #: web/templates/opponent_team/show.html.eex:17
-#: web/templates/user/index.html.eex:37
 msgid "show"
 msgstr "Ansehen"
 
@@ -322,22 +320,13 @@ msgstr "PLZ"
 msgid "address_city_place_holder"
 msgstr "Ort"
 
-#: web/templates/secret/show.html.eex:23
-msgid "create_new_memeber"
-msgstr "Neues Vereinsmitglied anlegen"
-
-#: web/templates/secret/show.html.eex:14
+#: web/templates/secret/index.html.eex:14
 msgid "expiry_date"
 msgstr "Ablaufdatum"
 
-#: web/templates/secret/show.html.eex:4 web/templates/secret/show.html.eex:9
-#: web/templates/user/form.html.eex:39
+#: web/templates/secret/index.html.eex:13 web/templates/user/form.html.eex:42
 msgid "secret"
 msgstr "Secret"
-
-#: web/templates/secret/show.html.eex:21
-msgid "send_secret_via_email"
-msgstr "Secret per E-Mail versenden"
 
 #: web/templates/team/index.html.eex:7 web/templates/team/index.html.eex:25
 #: web/templates/team/new.html.eex:4
@@ -348,35 +337,34 @@ msgstr "Neue Vereinsmannschaft anlegen"
 msgid "edit_team"
 msgstr "Vereinsmannschaft ändern/bearbeiten"
 
-#: web/templates/layout/navbar_top.html.eex:67
+#: web/templates/layout/navbar_top.html.eex:70
 #: web/templates/session/new.html.eex:13
 msgid "log_in"
 msgstr "Login"
 
 #: web/templates/session/new.html.eex:4 web/templates/session/new.html.eex:7
-#: web/templates/user/form.html.eex:8 web/templates/user/index.html.eex:13
-#: web/templates/user/show.html.eex:9
+#: web/templates/user/form.html.eex:8 web/templates/user/index.html.eex:16
 msgid "login"
 msgstr "Login"
 
-#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:14
+#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:15
 msgid "password"
 msgstr "Passwort"
 
-#: web/templates/layout/navbar_top.html.eex:54
-#: web/templates/page/index.html.eex:57 web/templates/team/edit.html.eex:11
+#: web/templates/layout/navbar_top.html.eex:57
+#: web/templates/page/index.html.eex:35 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:48
 msgid "teams"
 msgstr "Vereinsmannschaften"
 
-#: web/templates/user/index.html.eex:16
+#: web/templates/user/index.html.eex:19
 msgid "active"
 msgstr "aktiv"
 
-#: web/templates/user/form.html.eex:33
+#: web/templates/user/form.html.eex:35
 #: web/templates/user/form_unregistered.html.eex:21
-#: web/templates/user/index.html.eex:17 web/templates/user/show.html.eex:25
+#: web/templates/user/index.html.eex:20
 msgid "birthday"
 msgstr "Geburtstag"
 
@@ -388,23 +376,23 @@ msgstr "* Die E-Mail-Adresse sollte der anzulegenden Person gehören. Sie kann d
 msgid "create_new_unregistered_user_notice"
 msgstr "Hier kannst Du Vereinsmitglieder anlegen, die sich (noch) nicht registriert haben, um später z.B. die Mannschaftsaufstellung planen zu können."
 
-#: web/templates/user/index.html.eex:7 web/templates/user/index.html.eex:45
+#: web/templates/user/index.html.eex:7 web/templates/user/index.html.eex:48
 #: web/templates/user/new.html.eex:4
 #: web/templates/user/new_unregistered.html.eex:4
 msgid "create_new_user"
 msgstr "Neues Vereinsmitglied anlegen"
 
-#: web/templates/user/new.html.eex:5
+#: web/templates/user/new.html.eex:6
 msgid "create_new_user_notice"
 msgstr "Du bist ein Vereinsmitglied? Lass Dir von einem Administrator ein Secret geben. Damit kannst Du Dich als Vereinsmitglied ausweisen und Dich registrieren."
 
-#: web/templates/user/edit.html.eex:1
+#: web/templates/user/edit.html.eex:4
 msgid "edit_user"
 msgstr "Vereinsmitglied ändern/bearbeiten"
 
-#: web/templates/user/form.html.eex:26
+#: web/templates/user/form.html.eex:28
 #: web/templates/user/form_unregistered.html.eex:14
-#: web/templates/user/index.html.eex:15 web/templates/user/show.html.eex:19
+#: web/templates/user/index.html.eex:18
 msgid "email"
 msgstr "E-Mail"
 
@@ -412,21 +400,17 @@ msgstr "E-Mail"
 msgid "show_team"
 msgstr "Vereinsmannschaft"
 
-#: web/templates/user/show.html.eex:4
-msgid "show_user"
-msgstr "Vereinsmitglied"
-
 #: web/templates/team/form.html.eex:10
 msgid "team_name_placeholder"
 msgstr "Mannschaftsname"
 
-#: web/templates/user/edit.html.eex:6 web/templates/user/index.html.eex:4
+#: web/templates/user/edit.html.eex:13 web/templates/user/index.html.eex:4
+#: web/templates/user/new.html.eex:15
 #: web/templates/user/new_unregistered.html.eex:12
-#: web/templates/user/show.html.eex:35
 msgid "users"
 msgstr "Vereinsmitglieder"
 
-#: web/templates/page/index.html.eex:41
+#: web/templates/page/index.html.eex:62
 msgid "latest_match_results"
 msgstr "Letzte Spiele"
 
@@ -438,15 +422,15 @@ msgstr "News"
 msgid "edit_match"
 msgstr "Spiel ändern"
 
-#: web/templates/layout/navbar_top.html.eex:61
+#: web/templates/layout/navbar_top.html.eex:64
 msgid "logout"
 msgstr "Logout"
 
-#: web/templates/layout/navbar_top.html.eex:47
+#: web/templates/layout/navbar_top.html.eex:50
 msgid "members"
 msgstr "Vereinsmitglieder"
 
-#: web/templates/layout/navbar_top.html.eex:64
+#: web/templates/layout/navbar_top.html.eex:67
 msgid "sign_up"
 msgstr "Anmelden"
 
@@ -454,7 +438,7 @@ msgstr "Anmelden"
 msgid "master_data"
 msgstr "Stammdaten"
 
-#: web/templates/layout/navbar_top.html.eex:40
+#: web/templates/layout/navbar_top.html.eex:39
 #: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
 #: web/templates/news/show.html.eex:26
 msgid "news"
@@ -556,7 +540,7 @@ msgstr "Wettbewerb"
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
 #: web/templates/competition/show.html.eex:16
-#: web/templates/layout/navbar_top.html.eex:51
+#: web/templates/layout/navbar_top.html.eex:54
 #: web/templates/match/index.html.eex:13 web/templates/match/index.html.eex:65
 msgid "competitions"
 msgstr "Wettbewerbe"
@@ -618,7 +602,7 @@ msgstr "Permalink ändern"
 msgid "goals"
 msgstr "Tore"
 
-#: web/templates/page/index.html.eex:30
+#: web/templates/page/index.html.eex:51
 msgid "next_matches"
 msgstr "Nächste Spiele"
 
@@ -642,8 +626,12 @@ msgstr "Text Page bearbeiten"
 msgid "page"
 msgstr "Seite"
 
-#: web/templates/layout/navbar_top.html.eex:37
+#: web/templates/layout/navbar_top.html.eex:44
 #: web/templates/text_page/edit.html.eex:9
 #: web/templates/text_page/index.html.eex:4
 msgid "text_pages"
 msgstr "Text Pages"
+
+#: web/templates/user/form.html.eex:51
+msgid "user_roles"
+msgstr "Benutzerrollen/-rechte"

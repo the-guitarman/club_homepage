@@ -5,6 +5,9 @@
 
       <p>
         <%= link gettext("create_new_user"), to: unregistered_user_path(@conn, :new_unregistered), class: "btn btn-default" %>
+        <%= if has_role?(@conn, "administrator") do %>
+          <%= link gettext("create_new_secret"), to: secret_path(@conn, :new), class: "btn btn-default" %>
+        <% end %>
       </p>
 
       <table class="table">
@@ -43,6 +46,9 @@
 
       <p>
         <%= link gettext("create_new_user"), to: unregistered_user_path(@conn, :new_unregistered), class: "btn btn-default" %>
+        <%= if has_role?(@conn, "administrator") do %>
+          <%= link gettext("create_new_secret"), to: secret_path(@conn, :new), class: "btn btn-default" %>
+        <% end %>
       </p>
     </div>
   </div>

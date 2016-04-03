@@ -9,7 +9,7 @@
                  action: user_path(@conn, :create),
                  secret: @secret,
                  user: @user, current_user: @current_user,
-                 defined_user_roles: @defined_user_roles,
+                 editable_user_roles: @editable_user_roles,
                  current_user_roles: @current_user_roles %>
 
       <%= link gettext("all") <> " " <> gettext("users"), to: managed_user_path(@conn, :index) %>

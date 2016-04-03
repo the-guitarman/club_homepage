@@ -15,16 +15,18 @@
     <div class="fluid-container <%= action_name(@conn) %>" role="main">
       <%= render "navbar_top.html", conn: @conn, current_user: @current_user %>
       <%= render "flash_messages.html", conn: @conn %>
-      
-      <%= if controller_module(@conn) == ClubHomepage.PageController && action_name(@conn) == :index do %>
-        <section class="header">
-          <h1>TSV Einheit Claußnitz 1864 e.V.</h1>
-        </section>
-      <% end %>
 
-      <section id="boxcontent">
-        <%= render @view_module, @view_template, assigns %>
-      </section>
+      <div class="content-container">
+        <%= if controller_module(@conn) == ClubHomepage.PageController && action_name(@conn) == :index do %>
+          <section class="header">
+            <h1>TSV Einheit Claußnitz 1864 e.V.</h1>
+          </section>
+        <% end %>
+
+        <section id="boxcontent">
+          <%= render @view_module, @view_template, assigns %>
+        </section>
+      </div>
       
     </div> <!-- /container -->
 

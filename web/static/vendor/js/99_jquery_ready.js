@@ -64,4 +64,12 @@ $(document).ready(function(){
 
   $("input[type=radio][checked=checked]").prop('checked', true);
   $("input[type=radio], input[type=checkbox]").bootstrapSwitch();
+
+  $(document).on('click', '.alert .close', function(e){
+    e.preventDefault();
+    $(this).parents('.alert').slideUp('slow', function(){
+      $(this).remove();
+    });
+    return false;
+  });
 });

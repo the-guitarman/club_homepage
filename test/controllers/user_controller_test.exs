@@ -21,7 +21,6 @@ defmodule ClubHomepage.UserControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    user = create(:user)
     Enum.each([
       get(conn, managed_user_path(conn, :index)),
       get(conn, unregistered_user_path(conn, :new_unregistered)),

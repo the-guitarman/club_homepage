@@ -30,6 +30,17 @@ defmodule ClubHomepage.Extension.View do
 
 
 
+  def copyright do
+    start_year = 2016
+    %{year: current_year} = Timex.Date.local
+    year = 
+      cond do
+        start_year == current_year -> "#{start_year}"
+        true -> "#{start_year} - #{current_year}"
+      end
+    "© Copyright #{year}"
+  end
+
   def current_domain(conn) do
     case conn.port do
       80 -> conn.host
