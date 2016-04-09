@@ -64,16 +64,16 @@ defmodule ClubHomepage.AuthByRoleTest do
   test "is_member? halts when current_user has no member role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "player"})
-    |> AuthByRole.is_member?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "player"})
+      |> AuthByRole.is_member?([])
     assert conn.halted
   end
 
   test "is_member? continues when the current_user has the member role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
-    |> AuthByRole.is_member?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
+      |> AuthByRole.is_member?([])
     refute conn.halted
   end
 
@@ -110,16 +110,16 @@ defmodule ClubHomepage.AuthByRoleTest do
   test "is_player? halts when current_user has no player role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "member"})
-    |> AuthByRole.is_player?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "member"})
+      |> AuthByRole.is_player?([])
     assert conn.halted
   end
 
   test "is_player? continues when the current_user has the player role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
-    |> AuthByRole.is_player?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
+      |> AuthByRole.is_player?([])
     refute conn.halted
   end
 
@@ -133,16 +133,16 @@ defmodule ClubHomepage.AuthByRoleTest do
   test "is_text_page_editor? halts when current_user has no text-page-editor role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
-    |> AuthByRole.is_text_page_editor?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
+      |> AuthByRole.is_text_page_editor?([])
     assert conn.halted
   end
 
   test "is_text_page_editor? continues when the current_user has the text-page-editor role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "member text-page-editor player"})
-    |> AuthByRole.is_text_page_editor?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "member text-page-editor player"})
+      |> AuthByRole.is_text_page_editor?([])
     refute conn.halted
   end
 
@@ -156,8 +156,8 @@ defmodule ClubHomepage.AuthByRoleTest do
   test "is_trainer? halts when current_user has no trainer role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
-    |> AuthByRole.is_trainer?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
+      |> AuthByRole.is_trainer?([])
     assert conn.halted
   end
 
@@ -165,8 +165,8 @@ defmodule ClubHomepage.AuthByRoleTest do
   test "is_trainer? continues when the current_user has the trainer role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "member trainer player"})
-    |> AuthByRole.is_trainer?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "member trainer player"})
+      |> AuthByRole.is_trainer?([])
     refute conn.halted
   end
 
@@ -180,16 +180,39 @@ defmodule ClubHomepage.AuthByRoleTest do
   test "is_user_editor? halts when current_user has no user-editor role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
-    |> AuthByRole.is_user_editor?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
+      |> AuthByRole.is_user_editor?([])
     assert conn.halted
   end
 
   test "is_user_editor? continues when the current_user has the user-editor role", %{conn: conn} do
     conn =
       conn
-    |> assign(:current_user, %ClubHomepage.User{roles: "member user-editor player"})
-    |> AuthByRole.is_user_editor?([])
+      |> assign(:current_user, %ClubHomepage.User{roles: "member user-editor player"})
+      |> AuthByRole.is_user_editor?([])
+    refute conn.halted
+  end
+
+
+
+  test "has_role_from_list? halts when no current_user exists", %{conn: conn} do
+    conn = AuthByRole.is_user_editor?(conn, [])
+    assert conn.halted
+  end
+
+  test "has_role_from_list? halts when current_user has no user-editor role", %{conn: conn} do
+    conn =
+      conn
+      |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
+      |> AuthByRole.has_role_from_list?(roles: ["trainer", "user-editor"])
+    assert conn.halted
+  end
+
+  test "has_role_from_list? continues when the current_user has the user-editor role", %{conn: conn} do
+    conn =
+      conn
+      |> assign(:current_user, %ClubHomepage.User{roles: "member user-editor player"})
+      |> AuthByRole.has_role_from_list?(roles: ["trainer", "user-editor"])
     refute conn.halted
   end
 end

@@ -5,6 +5,7 @@ defmodule ClubHomepage.UserController do
   alias ClubHomepage.Auth
   alias ClubHomepage.UserRole
 
+  plug :has_role_from_list?, [roles: ["administrator", "user-editor"]] when action in  [:index, :new_unregistered, :create_unregistered, :edit, :update, :delete]
   plug :scrub_params, "user" when action in [:create, :update]
 
   def index(conn, _params) do

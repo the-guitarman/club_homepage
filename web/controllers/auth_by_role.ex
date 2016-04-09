@@ -5,7 +5,7 @@ defmodule ClubHomepage.AuthByRole do
   alias ClubHomepage.Router.Helpers
   alias ClubHomepage.UserRole
 
-  def init(_opts) do
+  def init(opts) do
     nil
   end
 
@@ -45,14 +45,26 @@ defmodule ClubHomepage.AuthByRole do
     has_role?(conn, "user-editor")
   end
 
+  def has_role_from_list?(conn, options) do
+    roles = Keyword.fetch!(options, :roles)
+    case Enum.any?(roles, fn(role) -> UserRole.has_role?(conn, role) end) do
+      true  -> conn
+      false -> halt_request(conn)
+    end
+  end
+
   defp has_role?(conn, role) do
     if UserRole.has_role?(conn, role) || UserRole.has_role?(conn, "administrator") do
       conn
     else
-      conn
-      |> put_flash(:error, "You are not authorized!")
-      |> redirect(to: Helpers.page_path(conn, :index))
-      |> halt()
+      halt_request(conn)
     end
+  end
+
+  defp halt_request(conn) do
+    conn
+    |> put_flash(:error, "You are not authorized!")
+    |> redirect(to: Helpers.page_path(conn, :index))
+    |> halt()
   end
 end
