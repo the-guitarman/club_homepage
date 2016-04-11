@@ -1,26 +1,19 @@
 defmodule ClubHomepage.UserRole do
   @moduledoc """
+  Defines, checks and validates user roles.
   """
 
   alias Ecto.Changeset
 
-  # member            - simple a member of the club, a registered user
-  # player            - an active sports men/woman
-  # trainer           - responsible for a team
-  # match-editor      - reporter of game/match results
-  # news-editor       - author/editor of news
-  # text-page-editor  - author/editor of static page contents
-  # user-editor       - user administrator
-  # administrator     - has all rights
   @roles %{
     "administrator": "user with all rights",
     "member": "a registered user",
-    "match-editor": "",
-    "news-editor": "",
-    "player": "",
-    "text-page-editor": "",
-    "trainer": "",
-    "user-editor": ""
+    "match-editor": "editor of matches and reporter of live match events",
+    "news-editor": "author/editor of news",
+    "player": "an active sports men/woman",
+    "text-page-editor": "author/editor of static page contents",
+    "trainer": "responsible person of a team",
+    "user-editor": "user administrator"
   }
 
   @doc """

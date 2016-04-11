@@ -5,31 +5,54 @@ defmodule ClubHomepage.UserControllerTest do
 
   import ClubHomepage.Factory
 
-  @valid_attrs %{birthday: "17.04.1988", email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
+  @valid_attrs %{birthday: "17.04.1988", email: "mail@example.de", login: "my_login", name: "some name", password: "my name"}
   @invalid_attrs %{}
+  @invalid_attrs2 %{email: "invalid"}
 
   setup context do
     conn = conn()
-    if context[:login] do
-      current_user = create(:user)
-      conn = assign(conn, :current_user, current_user)
-      {:ok, conn: conn, current_user: current_user}
-    else
-      {:ok, conn: conn}
+    role = context[:login]
+    cond do
+      role == true -> assign_current_user(create(:user, roles: "member administrator"))
+      is_binary(role) -> assign_current_user(create(:user, roles: "member #{role}"))
+      true -> {:ok, conn: conn}
     end
   end
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
+    user = create(:user)
     Enum.each([
       get(conn, managed_user_path(conn, :index)),
       get(conn, unregistered_user_path(conn, :new_unregistered)),
       post(conn, unregistered_user_path(conn, :create_unregistered), user: @valid_attrs),
+      get(conn, managed_user_path(conn, :edit, user)),
+      put(conn, managed_user_path(conn, :update, user), user: @valid_attrs)
     ], fn conn ->
       assert html_response(conn, 302)
       assert conn.halted
       assert redirected_to(conn) =~ "/"
     end)
+  end
+
+  @tag login: "administrator"
+  test "an administrator can access the index action", %{conn: conn, current_user: _current_user} do
+    conn = get conn, managed_user_path(conn, :index)
+    assert html_response(conn, 200) =~ "All Club Members"
+  end
+
+  @tag login: "user-editor"
+  test "an user-editor can access the index action", %{conn: conn, current_user: _current_user} do
+    conn = get conn, managed_user_path(conn, :index)
+    assert html_response(conn, 200) =~ "All Club Members"
+  end
+
+  @tag login: "match-editor news-editor player text-page-editor trainer"
+  test "all other roles can not access the index action", %{conn: conn, current_user: _current_user} do
+    conn = get conn, managed_user_path(conn, :index)
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
   end
 
   @tag login: true
@@ -108,24 +131,27 @@ defmodule ClubHomepage.UserControllerTest do
     assert html_response(conn, 200) =~ "Birthday can&#39;t be blank"
   end
 
-  # test "renders form for editing chosen resource", %{conn: conn} do
-  #   user = Repo.insert! %User{}
-  #   conn = get conn, user_path(conn, :edit, user)
-  #   assert html_response(conn, 200) =~ "Edit user"
-  # end
+  @tag login: true
+  test "renders form for editing chosen resource", %{conn: conn} do
+    user = create(:user)
+    conn = get conn, managed_user_path(conn, :edit, user)
+    assert html_response(conn, 200) =~ "<h2>Edit Club Member</h2>"
+  end
 
-  # test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-  #   user = Repo.insert! %User{}
-  #   conn = put conn, user_path(conn, :update, user), user: @valid_attrs
-  #   assert redirected_to(conn) == user_path(conn, :show, user)
-  #   assert Repo.get_by(User, @valid_attrs)
-  # end
+  @tag login: true
+  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
+    user = create(:user)
+    conn = put conn, managed_user_path(conn, :update, user), user: @valid_attrs
+    assert redirected_to(conn) == managed_user_path(conn, :index)
+    assert Repo.get_by(User, email: @valid_attrs[:email])
+  end
 
-  # test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-  #   user = Repo.insert! %User{}
-  #   conn = put conn, user_path(conn, :update, user), user: @invalid_attrs
-  #   assert html_response(conn, 200) =~ "Edit user"
-  # end
+  @tag login: true
+  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+    user = create(:user)
+    conn = put conn, managed_user_path(conn, :update, user), user: @invalid_attrs2
+    assert html_response(conn, 200) =~ "<h2>Edit Club Member</h2>"
+  end
 
   # test "deletes chosen resource", %{conn: conn} do
   #   user = Repo.insert! %User{}
@@ -133,4 +159,9 @@ defmodule ClubHomepage.UserControllerTest do
   #   assert redirected_to(conn) == user_path(conn, :index)
   #   refute Repo.get(User, user.id)
   # end
+
+  defp assign_current_user(current_user) do
+    conn = assign(conn, :current_user, current_user)
+    {:ok, conn: conn, current_user: current_user}
+  end
 end
