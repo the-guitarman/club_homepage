@@ -5,6 +5,7 @@ defmodule ClubHomepage.MatchController do
   alias ClubHomepage.JsonMatchesCreator
   alias ClubHomepage.JsonMatchesValidator
 
+  plug :is_match_editor?
   plug :scrub_params, "match" when action in [:create, :update]
   plug :get_competition_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
   plug :get_season_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]

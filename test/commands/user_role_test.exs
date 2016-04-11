@@ -41,7 +41,9 @@ defmodule ClubHomepage.UserRoleTest do
       UserRole.defined_roles_keys()
       |> Enum.filter(fn(role) -> not Enum.member?(["member"], role) end)
     assert Enum.count(editable_roles) == Enum.count(roles)
-    assert Enum.all?(roles, fn(role) -> Enum.filter(editable_roles, fn(role) -> not Enum.member?(editable_roles, role) end) end)
+    for role <- roles do
+      assert Enum.member?(editable_roles, role)
+    end
   end
 
   test "editable roles for an user-editor" do
@@ -51,7 +53,9 @@ defmodule ClubHomepage.UserRoleTest do
       UserRole.defined_roles_keys()
       |> Enum.filter(fn(role) -> not Enum.member?(["member", "administrator"], role) end)
     assert Enum.count(editable_roles) == Enum.count(roles)
-    assert Enum.all?(roles, fn(role) -> Enum.filter(editable_roles, fn(role) -> not Enum.member?(editable_roles, role) end) end)
+    for role <- roles do
+      assert Enum.member?(editable_roles, role)
+    end
   end
 
   test "editable roles for all other" do

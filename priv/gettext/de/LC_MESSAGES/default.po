@@ -266,7 +266,7 @@ msgstr "Name"
 #: web/templates/opponent_team/new.html.eex:6
 #: web/templates/opponent_team/show.html.eex:19
 msgid "opponent_teams"
-msgstr "Gegnerische Mannschaft"
+msgstr "Gegnerische Mannschaften"
 
 #: web/templates/layout/navbar_bottom.html.eex:25
 #: web/templates/page/registration_information.html.eex:4

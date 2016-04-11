@@ -3,6 +3,7 @@ defmodule ClubHomepage.MeetingPointController do
 
   alias ClubHomepage.MeetingPoint
 
+  plug :is_match_editor?
   plug :scrub_params, "meeting_point" when action in [:create, :update]
 
   def index(conn, _params) do

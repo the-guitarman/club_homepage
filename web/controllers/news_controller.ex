@@ -3,6 +3,7 @@ defmodule ClubHomepage.NewsController do
 
   alias ClubHomepage.News
 
+  plug :is_news_editor? when action in [:show, :new, :create, :edit, :update, :delete]
   plug :scrub_params, "news" when action in [:create, :update]
 
   def index(conn, _params) do

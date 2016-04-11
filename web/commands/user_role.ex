@@ -11,6 +11,7 @@ defmodule ClubHomepage.UserRole do
     "match-editor": "editor of matches and reporter of live match events",
     "news-editor": "author/editor of news",
     "player": "an active sports men/woman",
+    "team-editor": "right to edit teams",
     "text-page-editor": "author/editor of static page contents",
     "trainer": "responsible person of a team",
     "user-editor": "user administrator"
@@ -87,7 +88,7 @@ defmodule ClubHomepage.UserRole do
   end
   def has_role?(%ClubHomepage.User{} = user, role) do
     roles = split(user.roles)
-    include?(roles, role) && valid?(role)
+    (include?(roles, role) && valid?(role)) || include?(roles, "administrator")
   end
   def has_role?(%Plug.Conn{} = conn, roles) when is_list(roles) do
     Enum.any?(roles, fn(role) -> has_role?(conn, role) end)

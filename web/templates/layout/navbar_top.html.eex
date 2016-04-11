@@ -46,19 +46,22 @@
                 <% end %>
                 <li role="separator" class="divider"></li>
               <% end %>
-              <li class="<%= current_link(@conn, ClubHomepage.UserController, :new_unregistered) %>">
-                <%= link gettext("members"), to: managed_user_path(@conn, :index) %>
-              </li>
-              <li role="separator" class="divider"></li>
-              <li class="<%= current_link(@conn, ClubHomepage.CompetitionController, :index) %>">
-                <%= link gettext("competitions"), to: competition_path(@conn, :index) %>
-              </li>
-              <li class="<%= current_link(@conn, ClubHomepage.TeamController, :index) %>">
-                <%= link gettext("teams"), to: team_path(@conn, :index) %>
-              </li>
-              <li class="<%= current_link(@conn, ClubHomepage.MatchController, :index) %>">
-                <%= link gettext("matches"), to: match_path(@conn, :index) %>
-              </li>
+              <%= if has_role?(@conn, "user-editor") do %>
+                <li class="<%= current_link(@conn, ClubHomepage.UserController, :new_unregistered) %>">
+                  <%= link gettext("members"), to: managed_user_path(@conn, :index) %>
+                </li>
+                <li role="separator" class="divider"></li>
+              <% end %>
+              <%= if has_role?(@conn, "team-editor") do %>
+                <li class="<%= current_link(@conn, ClubHomepage.TeamController, :index) %>">
+                  <%= link gettext("teams"), to: team_path(@conn, :index) %>
+                </li>
+              <% end %>
+              <%= if has_role?(@conn, "match-editor") do %>
+                <li class="<%= current_link(@conn, ClubHomepage.MatchController, :index) %>">
+                  <%= link gettext("matches"), to: match_path(@conn, :index) %>
+                </li>
+              <% end %>
             </ul>
           </li>
           <li><%= link gettext("logout"), to: session_path(@conn, :delete, @current_user), method: "delete", class: "navbar-text" %></li>

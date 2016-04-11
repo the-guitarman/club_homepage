@@ -6,6 +6,7 @@ defmodule ClubHomepage.TeamController do
   alias ClubHomepage.Team
   alias ClubHomepage.Season
 
+  plug :is_team_editor? when action in [:index, :show, :new, :create, :edit, :update, :delete]
   plug :scrub_params, "team" when action in [:create, :update]
   plug :get_competition_select_options when action in [:new, :create, :edit, :update]
 

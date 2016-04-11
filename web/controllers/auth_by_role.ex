@@ -33,6 +33,10 @@ defmodule ClubHomepage.AuthByRole do
     has_role?(conn, "player")
   end
 
+  def is_team_editor?(conn, _options) do
+    has_role?(conn, "team-editor")
+  end
+
   def is_text_page_editor?(conn, _options) do
     has_role?(conn, "text-page-editor")
   end
@@ -53,7 +57,10 @@ defmodule ClubHomepage.AuthByRole do
     end
   end
 
-  defp has_role?(conn, role) do
+  def has_role?(conn, roles) when is_list(roles) do
+    Enum.any?(roles, fn(role) -> has_role?(conn, role) end)
+  end
+  def has_role?(conn, role) do
     if UserRole.has_role?(conn, role) || UserRole.has_role?(conn, "administrator") do
       conn
     else

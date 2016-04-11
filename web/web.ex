@@ -41,8 +41,7 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
       import ClubHomepage.Auth, only: [authenticate_user: 2, current_user: 1]
-      import ClubHomepage.AuthByRole, only: [is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_text_page_editor?: 2, is_trainer?: 2, has_role_from_list?: 2]
-      import ClubHomepage.UserRole, only: [has_role?: 2]
+      import ClubHomepage.AuthByRole, only: [has_role?: 2, is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_team_editor?: 2, is_text_page_editor?: 2, is_trainer?: 2, is_user_editor?: 2, has_role_from_list?: 2]
     end
   end
 
@@ -71,7 +70,7 @@ defmodule ClubHomepage.Web do
       use Phoenix.Router
 
       import ClubHomepage.Auth, only: [authenticate_user: 2, current_user: 1]
-      import ClubHomepage.AuthByRole, only: [is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_text_page_editor?: 2, is_trainer?: 2]
+      import ClubHomepage.AuthByRole, only: [is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_team_editor?: 2, is_text_page_editor?: 2, is_trainer?: 2, is_user_editor?: 2]
     end
   end
 
@@ -85,7 +84,7 @@ defmodule ClubHomepage.Web do
       import Ecto.Query, only: [from: 1, from: 2]
     end
   end
-
+  
   @doc """
   When used, dispatch to the appropriate controller/view/etc.
   """

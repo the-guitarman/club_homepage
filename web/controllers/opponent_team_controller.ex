@@ -3,10 +3,11 @@ defmodule ClubHomepage.OpponentTeamController do
 
   alias ClubHomepage.OpponentTeam
 
+  plug :has_role_from_list?, [roles: ["match-editor", "team-editor"]]
   plug :scrub_params, "opponent_team" when action in [:create, :update]
 
   def index(conn, _params) do
-    opponent_teams = Repo.all(OpponentTeam)
+    opponent_teams = Repo.all(from(ot in OpponentTeam, order_by: [asc: ot.name]))
     render(conn, "index.html", opponent_teams: opponent_teams)
   end
 
