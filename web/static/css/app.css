@@ -10,6 +10,9 @@ form.link {
 .table > thead > tr > th {
   vertical-align: top;
 }
+.table td.buttons {
+  vertical-align: middle;
+}
 
 /*! bootstrap overrides */
 .navbar-default {
@@ -19,14 +22,18 @@ form.link {
 .navbar {
   border-radius:0px;
 }
- pf
+
 .flash-messages .alert {
   border-radius: 0px;
 }
 
-.jumbotron {
+.jumbotron { 
   opacity:0.9;
   padding:20px;
+}
+.jumbotron h1 {
+  font-size: 40px;
+  text-align: center;
 }
 
 /*! styles */

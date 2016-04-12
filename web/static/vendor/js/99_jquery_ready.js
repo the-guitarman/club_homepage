@@ -44,11 +44,16 @@ $(document).ready(function(){
     widgetPositioning: {horizontal: 'left'},
     viewMode: 'years'
   };
-  $('.input-group.date').datetimepicker(dateFieldAttributes);
 
-  var dateTimeFieldAttributes = dateFieldAttributes;
-  dateTimeFieldAttributes['format'] = "DD.MM.YYYY HH:MM";
-  $('.input-group.datetime').datetimepicker(dateTimeFieldAttributes);
+  $('.input-group.date, .input-group.datetime').each(function() {
+    var self = $(this);
+    var format = self.find('input').data('format');
+    var attributes = $.extend({}, dateFieldAttributes);
+    if (format) {
+      attributes['format'] = format;
+    }
+    self.datetimepicker(attributes);
+  });
 
   $('.input-group.date input, .input-group.datetime input').click(function(e){
     $(this).parent().find('.input-group-addon').trigger('click');
@@ -59,7 +64,7 @@ $(document).ready(function(){
     placeholder: "",
     allowClear: true
   }).on("change", function(e) {
-    console.log(e);
+    //console.log(e);
   });
 
   $("input[type=radio][checked=checked]").prop('checked', true);

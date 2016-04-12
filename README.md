@@ -104,45 +104,6 @@ For commercial usage please contact me at first.
 
 *Note:* Everything may break at every time.
 
-## ToDos
-
-- [ ] README.md
-- [ ] Design
-  - [ ] apple-touch-icon-precomposed.png
-  - [ ] apple-touch-icon.png
-- [ ] Plug
-  - [ ] Permalink detection
-- [ ] Models + Tests
-  - [x] Address, with lat/lng
-  - [x] Competition
-  - [x] Match
-  - [ ] MatchEvent, e.g.: foul, red/yellow card
-  - [ ] MatchEventHistory
-  - [ ] MatchPlayerPlan
-  - [ ] MatchPlayer
-  - [x] MeetingPoint
-  - [x] News
-  - [x] OpponentTeam
-  - [x] Permalink
-  - [x] Season
-  - [x] Secret
-  - [x] Team
-  - [x] TextPage (about us, chronicle, ... + medium editor)
-  - [x] User
-- [ ] Commands + Tests
-  - [ ] UserRole
-- [ ] Controllers + Tests
-  - [x] create permalink redirection after slug change
-- [ ] Sites
-  - [ ] Homepage
-    - [ ] no user is logged in, so show public news only
-    - [ ] a user is logged in, show all news
-    - [ ] show a list of active teams from current season
-    - [ ] show a list of last matches, one for each active team
-    - [ ] show a list of next matches, one for each active team
-  - [ ] Back Office
-    - [x] Redirect after login
-
 # Help & Donation
 
 Better ideas and solutions are gladly accepted. If you want to donate this project please use this link: https://paypal.me/guitarman/5

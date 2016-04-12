@@ -1,6 +1,15 @@
 <table class="table table-striped table-bordered css-matches">
   <%= for match <- @matches do %>
-    <tr><td colspan="3" class="text-center"><%= match_datetime(match) %>, <%= match.competition.name %></td></tr>
+    <tr>
+      <td colspan="3" class="text-center">
+        <%= match_datetime(match) %>, <%= match.competition.name %>
+      </td>
+      <%= if has_role?(@conn, "match-editor") do %>
+        <td rowspan="2" class="buttons">
+          <%= link gettext("edit_match"), to: match_path(@conn, :edit, match), class: "btn btn-default" %>
+        </td>
+      <% end %>
+    </tr>
     <tr>
       <%= if match.home_match do %>
         <td class="text-right"><%= match.team.name %></td>

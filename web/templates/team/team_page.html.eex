@@ -26,12 +26,12 @@
           <%= if Enum.count(@matches) > 0 || Enum.count(@latest_matches) > 0 do %>
             <%= if Enum.count(@matches) > 0 do  %>
               <h3>Nächste Spiele</h3>
-              <%= render "team_page_match_table.html", matches: @matches %>
+              <%= render "team_page_match_table.html", conn: @conn, matches: @matches %>
             <% end %>
 
             <%= if Enum.count(@latest_matches) > 0 do  %>
               <h3>Letzte Spiele</h3>
-              <%= render "team_page_match_table.html", matches: @latest_matches %>
+              <%= render "team_page_match_table.html", conn: @conn, matches: @latest_matches %>
             <% end %>
           <% else %>
             <ul class="list-group">

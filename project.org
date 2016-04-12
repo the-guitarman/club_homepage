@@ -1,4 +1,68 @@
+* README.md
+* Design 
+** apple-touch-icon-precomposed.png
+** apple-touch-icon.png
+* Plug
+** DONE UserRole
+** DONE Permalink detection
 * Models
-** Match - translate field errors
-* DONE Gettext
-CLOSED: [2016-01-24 Sun 21:09]
+** DONE Address
+CLOSED: [2016-04-12 Tue 20:56]
+** TODO Address geolocation
+** DONE Competition
+CLOSED: [2016-04-12 Tue 20:56]
+** DONE Match
+CLOSED: [2016-04-12 Tue 20:56]
+** MatchEvent
+*** start
+*** end
+*** yellow card
+*** red card
+*** Goal
+*** penelty
+*** replacement
+*** exchange
+*** pause
+*** timeout
+** MatchEventHistory (serialized array)
+** MatchPlayerPlan
+** MatchPlayer
+** TODO MeetingPoint
+** DONE News
+CLOSED: [2016-04-12 Tue 20:56]
+** DONE OpponentTeam
+CLOSED: [2016-04-12 Tue 20:56]
+** DONE Permalink
+CLOSED: [2016-04-12 Tue 20:55]
+** DONE Season
+CLOSED: [2016-04-12 Tue 20:55]
+** Secret
+*** Mail
+** Team
+*** set active/inactive
+** DONE TextPage
+CLOSED: [2016-04-12 Tue 20:55]
+** User
+*** Mail to unregistered User
+*** set active/inactive
+* Commands + Tests
+** DONE UserRole
+CLOSED: [2016-04-12 Tue 20:58]
+** Permalink
+* Controllers + Tests
+* Sites
+** Homepage
+*** DONE no user logged, so show public news only
+CLOSED: [2016-04-12 Tue 21:02]
+*** DONE a user is logged in, so show all news
+CLOSED: [2016-04-12 Tue 21:03]
+*** show a list of active teams from current season
+*** show a list of last matches, one for each active team
+*** show a list of next matches, one for each active team
+* BackOffice
+** DONE Redirect after login
+CLOSED: [2016-04-12 Tue 21:06]
+* Gettext
+** DONE Match - translate field errors
+* Common
+** read date format from config file

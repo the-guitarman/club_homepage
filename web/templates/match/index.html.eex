@@ -51,7 +51,7 @@
             <td><%= match.home_match %></td>
 
             <td class="text-right">
-              <%= link gettext("show_match"), to: match_path(@conn, :show, match), class: "btn btn-default btn-xs" %>
+              <%= link gettext("edit_match"), to: match_path(@conn, :edit, match), class: "btn btn-default" %>
             </td>
           </tr>
       <% end %>

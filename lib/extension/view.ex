@@ -51,12 +51,49 @@ defmodule ClubHomepage.Extension.View do
 
 
 
+  def timex_date_input_format do
+    "%d.%m.%Y"
+  end
+
+  def js_date_input_format(divider \\ ".") do
+    timex_date_input_format
+    |> String.replace("%", "")
+    |> String.split(divider)
+    |> Enum.map(fn(el) -> if el == "Y", do: "#{el}#{el}#{el}#{el}", else: "#{el}#{el}" |> String.upcase() end)
+    |> Enum.join(divider)
+  end
+
   def timex_date_input(form, field, opts \\ []) do
-    timex_input(form, field, "%d.%m.%Y", opts)
+    opts = Keyword.put(opts, :"data-format", js_date_input_format)
+    timex_input(form, field, timex_date_input_format, opts)
+  end
+
+  def timex_time_input_format do
+    "%H:%M"
+  end
+
+  def js_time_input_format(divider \\ ":") do
+    parts = 
+      timex_time_input_format
+      |> String.replace("%", "")
+      |> String.split(divider)
+      |> Enum.map(fn(el) -> String.upcase("#{el}#{el}") end)
+
+    [String.upcase(List.first(parts)), String.downcase(List.last(parts))]
+    |> Enum.join(divider)
+  end
+
+  def timex_datetime_input_format do
+    "#{timex_date_input_format} #{timex_time_input_format}"
+  end
+
+  def js_datetime_input_format do
+    "#{js_date_input_format} #{js_time_input_format}"
   end
 
   def timex_datetime_input(form, field, opts \\ []) do
-    timex_input(form, field, "%d.%m.%Y %H:%M", opts)
+    opts = Keyword.put(opts, :"data-format", js_datetime_input_format)
+    timex_input(form, field, timex_datetime_input_format, opts)
   end
 
   defp timex_input(%{model: model, params: params} = form, field, format, opts) do
