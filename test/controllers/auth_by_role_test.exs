@@ -171,30 +171,6 @@ defmodule ClubHomepage.AuthByRoleTest do
 
 
 
-  test "is_trainer? halts when no current_user exists", %{conn: conn} do
-    conn = AuthByRole.is_trainer?(conn, [])
-    assert conn.halted
-  end
-
-  test "is_trainer? halts when current_user has no trainer role", %{conn: conn} do
-    conn =
-      conn
-      |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
-      |> AuthByRole.is_trainer?([])
-    assert conn.halted
-  end
-
-  @tag debug: true
-  test "is_trainer? continues when the current_user has the trainer role", %{conn: conn} do
-    conn =
-      conn
-      |> assign(:current_user, %ClubHomepage.User{roles: "member trainer player"})
-      |> AuthByRole.is_trainer?([])
-    refute conn.halted
-  end
-
-
-
   test "is_user_editor? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_user_editor?(conn, [])
     assert conn.halted

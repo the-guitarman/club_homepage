@@ -14,7 +14,7 @@ defmodule ClubHomepage.UserRoleTest do
     assert UserRole.has_role?(user, "player")
     refute UserRole.has_role?(user, "editor")
     assert UserRole.has_role?(user, ["editor", "player"])
-    refute UserRole.has_role?(user, ["editor", "trainer"])
+    refute UserRole.has_role?(user, ["editor", "match-editor"])
   end
 
   test "defined roles" do
@@ -25,7 +25,6 @@ defmodule ClubHomepage.UserRoleTest do
     assert Enum.member?(defined_roles, "news-editor")
     assert Enum.member?(defined_roles, "player")
     assert Enum.member?(defined_roles, "text-page-editor")
-    assert Enum.member?(defined_roles, "trainer")
     assert Enum.member?(defined_roles, "user-editor")
   end
 
@@ -59,7 +58,7 @@ defmodule ClubHomepage.UserRoleTest do
   end
 
   test "editable roles for all other" do
-    user = %User{roles: "member match-editor news-editor player text-page-editor trainer"}
+    user = %User{roles: "member match-editor news-editor player text-page-editor"}
     editable_roles = UserRole.editable_roles(user)
     assert Enum.empty?(editable_roles)
   end

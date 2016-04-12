@@ -13,7 +13,6 @@ defmodule ClubHomepage.UserRole do
     "player": "an active sports men/woman",
     "team-editor": "right to edit teams",
     "text-page-editor": "author/editor of static page contents",
-    "trainer": "responsible person of a team",
     "user-editor": "user administrator"
   }
 
