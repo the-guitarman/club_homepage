@@ -31,3 +31,6 @@ config :phoenix, :generators,
 
 config :phoenix, :filter_parameters, 
   ["password", "password_hash", "secret"]
+
+config :geocoder, Geocoder.Worker, [size: 4, max_overflow: 2]
+config :geocoder, Geocoder.Store, [precision: 4]

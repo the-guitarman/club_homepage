@@ -42,7 +42,7 @@ defmodule ClubHomepage.Router do
     post "/users", UserController, :create_unregistered, as: :unregistered_user
     resources "/users", UserController, only: [:index, :edit, :update, :delete], as: :managed_user
 
-    resources "/addresses", AddressController
+    resources "/addresses", AddressController, except: [:show]
     resources "/competitions", CompetitionController
     resources "/matches", MatchController
     get "/matches/bulk/new", MatchController, :new_bulk, as: :matches

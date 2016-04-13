@@ -7,15 +7,16 @@
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:40
-#: web/templates/meeting_point/edit.html.eex:6
-#: web/templates/meeting_point/index.html.eex:1
-#: web/templates/meeting_point/index.html.eex:23
-#: web/templates/meeting_point/new.html.eex:6
+#: web/templates/meeting_point/edit.html.eex:11
+#: web/templates/meeting_point/index.html.eex:4
+#: web/templates/meeting_point/index.html.eex:8
+#: web/templates/meeting_point/index.html.eex:35
+#: web/templates/meeting_point/new.html.eex:11
 #: web/templates/meeting_point/show.html.eex:14
 #: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
 #: web/templates/news/show.html.eex:26
 #: web/templates/opponent_team/edit.html.eex:6
-#: web/templates/opponent_team/index.html.eex:1
+#: web/templates/opponent_team/index.html.eex:4
 #: web/templates/opponent_team/new.html.eex:6
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
@@ -30,43 +31,44 @@
 msgid "all"
 msgstr ""
 
-#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:62
+#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:65
 #: web/templates/match/new.html.eex:4
 msgid "create_new_match"
 msgstr ""
 
-#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:60
+#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:63
 msgid "create_next_new_match"
 msgstr ""
 
-#: web/templates/match/index.html.eex:24
+#: web/templates/match/index.html.eex:27
 msgid "date_and_time"
 msgstr ""
 
-#: web/templates/match/form.html.eex:35 web/templates/match/index.html.eex:25
+#: web/templates/match/form.html.eex:35 web/templates/match/index.html.eex:28
 msgid "home_match"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:60
+#: web/templates/layout/navbar_top.html.eex:62
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:40
 msgid "matches"
 msgstr ""
 
-#: web/templates/match/index.html.eex:23
+#: web/templates/match/index.html.eex:26
+#: web/templates/meeting_point/index.html.eex:14
 msgid "meeting_point"
 msgstr ""
 
-#: web/templates/match/index.html.eex:22
+#: web/templates/match/index.html.eex:25
 msgid "opponent_team"
 msgstr ""
 
-#: web/templates/match/index.html.eex:20
+#: web/templates/match/index.html.eex:23
 msgid "season"
 msgstr ""
 
-#: web/templates/match/index.html.eex:21
+#: web/templates/match/index.html.eex:24
 msgid "team"
 msgstr ""
 
@@ -79,15 +81,15 @@ msgstr ""
 msgid "delete_match"
 msgstr ""
 
-#: lib/extension/view.ex:99 web/templates/match/form_bulk.html.eex:4
+#: lib/extension/view.ex:136 web/templates/match/form_bulk.html.eex:4
 msgid "form_input_errors_notice"
 msgstr ""
 
-#: web/templates/address/form.html.eex:29
+#: web/templates/address/form.html.eex:41
 #: web/templates/competition/form.html.eex:13
 #: web/templates/match/form.html.eex:72
 #: web/templates/match/form_bulk.html.eex:36
-#: web/templates/meeting_point/form.html.eex:5
+#: web/templates/meeting_point/form.html.eex:15
 #: web/templates/news/form.html.eex:26
 #: web/templates/opponent_team/form.html.eex:11
 #: web/templates/permalink/form.html.eex:17
@@ -98,7 +100,7 @@ msgstr ""
 msgid "save"
 msgstr ""
 
-#: web/templates/match/index.html.eex:14 web/templates/match/index.html.eex:66
+#: web/templates/match/index.html.eex:15 web/templates/match/index.html.eex:70
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
 #: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
 #: web/templates/team/team_page.html.eex:9
@@ -127,35 +129,33 @@ msgstr ""
 msgid "select_team_placeholder"
 msgstr ""
 
-#: web/templates/match/index.html.eex:51
-msgid "show_match"
-msgstr ""
-
 #: web/templates/layout/navbar_top.html.eex:19
 #: web/templates/page/about_us.html.eex:4
 msgid "about_us"
 msgstr ""
 
-#: web/templates/meeting_point/index.html.eex:6
-#: web/templates/opponent_team/index.html.eex:7
+#: web/templates/meeting_point/index.html.eex:14
+#: web/templates/opponent_team/index.html.eex:14
 #: web/templates/opponent_team/show.html.eex:11
 msgid "address"
 msgstr ""
 
-#: web/templates/address/form.html.eex:6
+#: web/templates/address/form.html.eex:24
 msgid "address_district_placeholder"
 msgstr ""
 
-#: web/templates/address/form.html.eex:12
+#: web/templates/address/form.html.eex:6
 msgid "address_street_placeholder"
 msgstr ""
 
-#: web/templates/address/form.html.eex:18
+#: web/templates/address/form.html.eex:12
 msgid "address_zip_code_placeholder"
 msgstr ""
 
 #: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
 #: web/templates/address/new.html.eex:9 web/templates/address/show.html.eex:32
+#: web/templates/meeting_point/index.html.eex:8
+#: web/templates/meeting_point/index.html.eex:35
 msgid "addresses"
 msgstr ""
 
@@ -178,11 +178,14 @@ msgstr ""
 msgid "create_new_address"
 msgstr ""
 
-#: web/templates/meeting_point/new.html.eex:1
+#: web/templates/meeting_point/index.html.eex:7
+#: web/templates/meeting_point/index.html.eex:34
+#: web/templates/meeting_point/new.html.eex:4
 msgid "create_new_meeting_point"
 msgstr ""
 
-#: web/templates/opponent_team/index.html.eex:26
+#: web/templates/opponent_team/index.html.eex:7
+#: web/templates/opponent_team/index.html.eex:34
 #: web/templates/opponent_team/new.html.eex:1
 msgid "create_new_opponent_team"
 msgstr ""
@@ -199,7 +202,6 @@ msgstr ""
 
 #: web/templates/address/show.html.eex:31
 #: web/templates/meeting_point/show.html.eex:13
-#: web/templates/opponent_team/index.html.eex:19
 #: web/templates/secret/index.html.eex:25
 msgid "delete"
 msgstr ""
@@ -209,10 +211,11 @@ msgid "district"
 msgstr ""
 
 #: web/templates/address/show.html.eex:30
+#: web/templates/meeting_point/index.html.eex:26
 #: web/templates/meeting_point/show.html.eex:12
 #: web/templates/news/show.html.eex:25
 #: web/templates/opponent_team/show.html.eex:18
-#: web/templates/season/show.html.eex:12 web/templates/team/index.html.eex:16
+#: web/templates/season/show.html.eex:12 web/templates/team/index.html.eex:17
 #: web/templates/user/index.html.eex:40
 msgid "edit"
 msgstr ""
@@ -221,7 +224,7 @@ msgstr ""
 msgid "edit_address"
 msgstr ""
 
-#: web/templates/meeting_point/edit.html.eex:1
+#: web/templates/meeting_point/edit.html.eex:4
 msgid "edit_meeting_point"
 msgstr ""
 
@@ -233,18 +236,19 @@ msgstr ""
 msgid "edit_season"
 msgstr ""
 
-#: web/templates/meeting_point/edit.html.eex:6
-#: web/templates/meeting_point/index.html.eex:1
-#: web/templates/meeting_point/index.html.eex:23
-#: web/templates/meeting_point/new.html.eex:6
+#: web/templates/match/index.html.eex:17 web/templates/match/index.html.eex:72
+#: web/templates/meeting_point/edit.html.eex:11
+#: web/templates/meeting_point/index.html.eex:4
+#: web/templates/meeting_point/new.html.eex:11
 #: web/templates/meeting_point/show.html.eex:14
 msgid "meeting_points"
 msgstr ""
 
 #: web/templates/competition/index.html.eex:12
 #: web/templates/competition/show.html.eex:9
+#: web/templates/meeting_point/form.html.eex:6
 #: web/templates/opponent_team/form.html.eex:6
-#: web/templates/opponent_team/index.html.eex:6
+#: web/templates/opponent_team/index.html.eex:13
 #: web/templates/opponent_team/show.html.eex:6
 #: web/templates/season/show.html.eex:6 web/templates/team/show.html.eex:8
 #: web/templates/user/form.html.eex:22
@@ -253,8 +257,9 @@ msgstr ""
 msgid "name"
 msgstr ""
 
+#: web/templates/match/index.html.eex:16 web/templates/match/index.html.eex:71
 #: web/templates/opponent_team/edit.html.eex:6
-#: web/templates/opponent_team/index.html.eex:1
+#: web/templates/opponent_team/index.html.eex:4
 #: web/templates/opponent_team/new.html.eex:6
 #: web/templates/opponent_team/show.html.eex:19
 msgid "opponent_teams"
@@ -274,7 +279,6 @@ msgid "select_season_years_placeholder"
 msgstr ""
 
 #: web/templates/address/index.html.eex:45
-#: web/templates/meeting_point/index.html.eex:16
 #: web/templates/opponent_team/show.html.eex:17
 msgid "show"
 msgstr ""
@@ -308,7 +312,7 @@ msgstr ""
 msgid "zip_code"
 msgstr ""
 
-#: web/templates/address/form.html.eex:24
+#: web/templates/address/form.html.eex:18
 msgid "address_city_place_holder"
 msgstr ""
 
@@ -320,7 +324,7 @@ msgstr ""
 msgid "secret"
 msgstr ""
 
-#: web/templates/team/index.html.eex:7 web/templates/team/index.html.eex:25
+#: web/templates/team/index.html.eex:7 web/templates/team/index.html.eex:26
 #: web/templates/team/new.html.eex:4
 msgid "create_new_team"
 msgstr ""
@@ -329,7 +333,7 @@ msgstr ""
 msgid "edit_team"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:70
+#: web/templates/layout/navbar_top.html.eex:73
 #: web/templates/session/new.html.eex:13
 msgid "log_in"
 msgstr ""
@@ -410,19 +414,21 @@ msgstr ""
 msgid "latest_news"
 msgstr ""
 
-#: web/templates/match/edit.html.eex:4 web/templates/match/show.html.eex:38
+#: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:54
+#: web/templates/match/show.html.eex:38
+#: web/templates/team/team_page_match_table.html.eex:9
 msgid "edit_match"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:64
+#: web/templates/layout/navbar_top.html.eex:67
 msgid "logout"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:50
+#: web/templates/layout/navbar_top.html.eex:51
 msgid "members"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:67
+#: web/templates/layout/navbar_top.html.eex:70
 msgid "sign_up"
 msgstr ""
 
@@ -478,7 +484,7 @@ msgstr ""
 msgid "o_clock"
 msgstr ""
 
-#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:64
+#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:67
 #: web/templates/match/new_bulk.html.eex:4
 msgid "create_new_matches"
 msgstr ""
@@ -532,8 +538,8 @@ msgstr ""
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
 #: web/templates/competition/show.html.eex:16
-#: web/templates/layout/navbar_top.html.eex:54
-#: web/templates/match/index.html.eex:13 web/templates/match/index.html.eex:65
+#: web/templates/match/index.html.eex:14 web/templates/match/index.html.eex:69
+#: web/templates/team/index.html.eex:8 web/templates/team/index.html.eex:27
 msgid "competitions"
 msgstr ""
 
@@ -626,4 +632,25 @@ msgstr ""
 
 #: web/templates/user/form.html.eex:51
 msgid "user_roles"
+msgstr ""
+
+#: web/templates/meeting_point/form_group_to_select_an_address.html.eex:2
+#: web/templates/meeting_point/form_group_to_select_an_address.html.eex:2
+msgid "select_address_placeholder"
+msgstr ""
+
+#: web/templates/meeting_point/form.html.eex:6
+msgid "short_description"
+msgstr ""
+
+#: web/templates/meeting_point/form.html.eex:6
+msgid "or"
+msgstr ""
+
+#: web/templates/address/form.html.eex:30
+msgid "address_latitude_place_holder"
+msgstr ""
+
+#: web/templates/address/form.html.eex:36
+msgid "address_longitude_place_holder"
 msgstr ""

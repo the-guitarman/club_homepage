@@ -1,6 +1,14 @@
-<h2><%= gettext("edit_meeting_point") %></h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("edit_meeting_point") %></h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: meeting_point_path(@conn, :update, @meeting_point) %>
+      <%= render "form.html",
+          changeset: @changeset, action: meeting_point_path(@conn, :update, @meeting_point),
+          address_options: @address_options
+      %>
 
-<%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

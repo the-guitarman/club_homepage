@@ -12,8 +12,11 @@
   "ex_json_schema": {:hex, :ex_json_schema, "0.3.1"},
   "ex_machina": {:hex, :ex_machina, "0.6.1"},
   "fs": {:hex, :fs, "0.9.2"},
+  "geocoder": {:hex, :geocoder, "0.4.0"},
+  "geohash": {:git, "https://github.com/treetopllc/geohash.git", "d662533ea50d80815acf36b8d101a2f579d43140", []},
   "gettext": {:hex, :gettext, "0.9.0"},
   "hackney": {:hex, :hackney, "1.4.8"},
+  "httpoison": {:hex, :httpoison, "0.8.1"},
   "idna": {:hex, :idna, "1.0.3"},
   "json": {:hex, :json, "0.3.3"},
   "mimerl": {:hex, :mimerl, "1.0.2"},
@@ -33,4 +36,5 @@
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"},
   "timex": {:hex, :timex, "0.19.5"},
   "timex_ecto": {:hex, :timex_ecto, "0.7.0"},
+  "towel": {:hex, :towel, "0.2.1"},
   "tzdata": {:hex, :tzdata, "0.5.6"}}

@@ -5,22 +5,25 @@
 
       <p>
         <%= link gettext("create_new_meeting_point"), to: meeting_point_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default" %>
       </p>
       
       <table class="table">
         <thead>
           <tr>
-            <th><%= gettext("address") %></th>
+            <th><%= gettext("meeting_point") %> - <%= gettext("address") %></th>
 
             <th></th>
           </tr>
         </thead>
       <%= for meeting_point <- @meeting_points do %>
           <tr>
-            <td><%= meeting_point.address_id %></td>
+            <td>
+              <strong><%= meeting_point.name %></strong> - <small><%= full_address(meeting_point) %></small>
+            </td>
 
             <td class="text-ht">
-              <%= link gettext("show"), to: meeting_point_path(@conn, :show, meeting_point), class: "btn btn-default btn-xs" %>
+              <%= link gettext("edit"), to: meeting_point_path(@conn, :edit, meeting_point), class: "btn btn-default" %>
             </td>
           </tr>
       <% end %>
@@ -29,6 +32,7 @@
 
       <p>
         <%= link gettext("create_new_meeting_point"), to: meeting_point_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default" %>
       </p>
     </div>
   </div>

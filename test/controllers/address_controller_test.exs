@@ -26,7 +26,6 @@ defmodule ClubHomepage.AddressControllerTest do
       get(conn, address_path(conn, :index)),
       get(conn, address_path(conn, :new)),
       post(conn, address_path(conn, :create), address: @valid_attrs),
-      get(conn, address_path(conn, :show, address)),
       get(conn, address_path(conn, :edit, address)),
       put(conn, address_path(conn, :update, address), address: @valid_attrs),
       delete(conn, address_path(conn, :delete, address))
@@ -52,7 +51,7 @@ defmodule ClubHomepage.AddressControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     conn = post conn, address_path(conn, :create), address: @valid_attrs
-    assert redirected_to(conn) == address_path(conn, :index)
+    assert redirected_to(conn) == address_path(conn, :index) <> "#address-1"
     assert Repo.get_by(Address, @valid_attrs)
   end
 
@@ -60,20 +59,6 @@ defmodule ClubHomepage.AddressControllerTest do
   test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user} do
     conn = post conn, address_path(conn, :create), address: @invalid_attrs
     assert html_response(conn, 200) =~ "Create Address"
-  end
-
-  @tag login: true
-  test "shows chosen resource", %{conn: conn, current_user: _current_user} do
-    address = Repo.insert! %Address{}
-    conn = get conn, address_path(conn, :show, address)
-    assert html_response(conn, 200) =~ "Show Address"
-  end
-
-  @tag login: true
-  test "renders page not found when id is nonexistent", %{conn: conn, current_user: _current_user} do
-    assert_raise Ecto.NoResultsError, fn ->
-      get conn, address_path(conn, :show, -1)
-    end
   end
 
   @tag login: true
@@ -87,7 +72,7 @@ defmodule ClubHomepage.AddressControllerTest do
   test "updates chosen resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     address = Repo.insert! %Address{}
     conn = put conn, address_path(conn, :update, address), address: @valid_attrs
-    assert redirected_to(conn) == address_path(conn, :show, address)
+    assert redirected_to(conn) == address_path(conn, :index) <> "#address-#{address.id}"
     assert Repo.get_by(Address, @valid_attrs)
   end
 

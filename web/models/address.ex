@@ -30,5 +30,41 @@ defmodule ClubHomepage.Address do
     |> validate_length(:zip_code, min: 5, message: "ist zu kurz (min. 5 Zeichen)")
     |> validate_length(:zip_code, max: 5, message: "ist zu lang (max. 5 Zeichen)")
     |> validate_format(:zip_code, ~r/\A[0-9]+\z/i, message: "enthält ungültige Zeichen (gültig: 0-9)")
+    |> geolocate
+  end
+
+  defp geolocate(changeset) do
+    case changeset.valid? do
+      false -> changeset
+      true  -> set_geolocation_coords(changeset)
+    end
+  end
+
+  defp set_geolocation_coords(changeset) do
+    address = get_value_from_changeset(changeset, :street) <> ", " <>
+      get_value_from_changeset(changeset, :zip_code) <> " " <>
+      get_value_from_changeset(changeset, :city)
+    address = 
+      case get_value_from_changeset(changeset, :district) do
+        nil -> address
+        ""  -> address
+        district -> address <> ", " <> district
+      end
+    case Geocoder.call(address) do
+      {:error, _}   -> changeset
+      {:ok, coords} ->
+        changeset
+        |> Ecto.Changeset.put_change(:latitude, coords.lat)
+        |> Ecto.Changeset.put_change(:longitude, coords.lon)
+    end
+  end
+
+  defp get_value_from_changeset(changeset, key) do
+    case changeset.changes[key] do
+      nil ->
+        {:ok, value} = Map.fetch(changeset.model, key)
+        value
+      value -> value
+    end
   end
 end

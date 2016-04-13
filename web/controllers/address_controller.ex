@@ -20,10 +20,10 @@ defmodule ClubHomepage.AddressController do
     changeset = Address.changeset(%Address{}, address_params)
 
     case Repo.insert(changeset) do
-      {:ok, _address} ->
+      {:ok, address} ->
         conn
         |> put_flash(:info, "Address created successfully.")
-        |> redirect(to: address_path(conn, :index))
+        |> redirect(to: address_path(conn, :index) <> "#address-#{address.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -48,7 +48,7 @@ defmodule ClubHomepage.AddressController do
       {:ok, address} ->
         conn
         |> put_flash(:info, "Address updated successfully.")
-        |> redirect(to: address_path(conn, :show, address))
+        |> redirect(to: address_path(conn, :index) <> "#address-#{address.id}")
       {:error, changeset} ->
         render(conn, "edit.html", address: address, changeset: changeset)
     end

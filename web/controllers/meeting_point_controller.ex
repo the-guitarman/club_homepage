@@ -5,9 +5,10 @@ defmodule ClubHomepage.MeetingPointController do
 
   plug :is_match_editor?
   plug :scrub_params, "meeting_point" when action in [:create, :update]
+  plug :get_address_select_options when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
-    meeting_points = Repo.all(MeetingPoint)
+    meeting_points = Repo.all(from(mp in MeetingPoint, preload: [:address]))
     render(conn, "index.html", meeting_points: meeting_points)
   end
 
@@ -64,5 +65,12 @@ defmodule ClubHomepage.MeetingPointController do
     conn
     |> put_flash(:info, "Meeting point deleted successfully.")
     |> redirect(to: meeting_point_path(conn, :index))
+  end
+
+  defp get_address_select_options(conn, _) do
+    query = from(s in ClubHomepage.Address,
+                 select: {[s.street, ", ", s.zip_code, " ", s.city], s.id},
+                 order_by: [desc: s.street])
+    assign(conn, :address_options, Repo.all(query))
   end
 end

@@ -19,7 +19,7 @@ defmodule ClubHomepage.Mixfile do
   def application do
     [mod: {ClubHomepage, []},
      applications: [:tzdata, :phoenix, :phoenix_html, :cowboy, :logger, :gettext, 
-      :phoenix_ecto, :sqlite_ecto, :comeonin]] 
+      :phoenix_ecto, :sqlite_ecto, :comeonin, :geocoder]] 
   end
 
   # Specifies which paths to compile per environment.
@@ -45,7 +45,9 @@ defmodule ClubHomepage.Mixfile do
      {:credo, "~> 0.2", only: [:dev, :test]},
      {:slugger, "~> 0.1.0"},
      {:json, "~> 0.3.0"},
-     {:ex_json_schema, "~> 0.3.1"}#,
+     {:ex_json_schema, "~> 0.3.1"},
+     {:geocoder, "~> 0.3"},
+     {:geohash, github: "treetopllc/geohash"}#,
      #{:mix_test_watch, "~> 0.2.4", only: :dev}]
     ]
   end
