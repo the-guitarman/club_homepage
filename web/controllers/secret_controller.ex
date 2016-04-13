@@ -20,7 +20,7 @@ defmodule ClubHomepage.SecretController do
     changeset = Secret.changeset(%Secret{}, %{})
 
     case Repo.insert(changeset) do
-      {:ok, secret} ->
+      {:ok, _secret} ->
         conn
         |> put_flash(:info, "Das Secret wurde erfolgreich generiert.")
         |> redirect(to: secret_path(conn, :index))

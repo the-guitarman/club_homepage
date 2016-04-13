@@ -128,7 +128,7 @@ defmodule ClubHomepage.Extension.View do
 
 
 
-
+ 
   def show_form_errors(changeset, f) do
     if changeset.action do
       Tag.content_tag(:div, class: "alert alert-danger") do
@@ -144,6 +144,13 @@ defmodule ClubHomepage.Extension.View do
         end
         HTML.raw(HTML.safe_to_string(p_tag) <> HTML.safe_to_string(ul_tag))
       end
+    end
+  end
+
+  def required_field(form, field) do
+    case form.model.__struct__.required_field?(field) do
+      true  -> " *"
+      false -> ""
     end
   end
 end

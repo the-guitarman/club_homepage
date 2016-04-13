@@ -18,6 +18,13 @@ defmodule ClubHomepage.Address do
   @required_fields ~w(street zip_code city)
   @optional_fields ~w(district latitude longitude)
 
+  def required_field?(field) when is_binary(field) do
+    Enum.member?(@required_fields, field)
+  end
+  def required_field?(field) when is_atom(field) do
+    required_field?(Atom.to_string(field))
+  end
+
   @doc """
   Creates a changeset based on the `model` and `params`.
 
