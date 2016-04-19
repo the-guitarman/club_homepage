@@ -13,7 +13,7 @@ defmodule ClubHomepage.OpponentTeam do
   end
 
   @required_fields ~w(name)
-  @optional_fields ~w()
+  @optional_fields ~w(address_id)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -24,6 +24,6 @@ defmodule ClubHomepage.OpponentTeam do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> ModelValidator.validate_uniqueness(:name, message: "ist bereits vergeben")
+    |> ModelValidator.validate_uniqueness(:name)
   end
 end

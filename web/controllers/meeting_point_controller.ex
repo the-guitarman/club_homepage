@@ -29,9 +29,9 @@ defmodule ClubHomepage.MeetingPointController do
         render(conn, "new.html", changeset: changeset)
     end
   end
-
+  
   def show(conn, %{"id" => id}) do
-    meeting_point = Repo.get!(MeetingPoint, id)
+    meeting_point = Repo.one!(from(mp in MeetingPoint, preload: [:address], where: mp.id == ^id))
     render(conn, "show.html", meeting_point: meeting_point)
   end
 

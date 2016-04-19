@@ -26,10 +26,12 @@ defmodule ClubHomepage.Auth do
     conn.assigns[:current_user]
   end
 
+  def logged_in?(conn), do: logged_in?(conn, %{})
   def logged_in?(conn, _options) do
     !!conn.assigns.current_user
   end
 
+  def logged_out?(conn), do: logged_out?(conn, %{})
   def logged_out?(conn, options) do
     !logged_in?(conn, options)
   end

@@ -5,6 +5,7 @@
 
       <p>
         <%= link gettext("create_new_opponent_team"), to: opponent_team_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default" %>
       </p>
 
       <table class="table">
@@ -19,10 +20,11 @@
         <tbody>
       <%= for opponent_team <- @opponent_teams do %>
           <tr>
-            <td><%= opponent_team.name %></td>
-            <td><%= opponent_team.address_id %></td>
+            <td><a class="anchor" name="opponent-team-<%= opponent_team.id %>"><%= opponent_team.name %></a></td>
+            <td><%= full_address(opponent_team) %></td>
 
             <td class="text-right">
+              <%= link gettext("edit"), to: opponent_team_path(@conn, :edit, opponent_team), class: "btn btn-default" %>
               <%#= link gettext("delete"), to: opponent_team_path(@conn, :delete, opponent_team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
             </td>
           </tr>
@@ -32,6 +34,7 @@
 
       <p>
         <%= link gettext("create_new_opponent_team"), to: opponent_team_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default" %>
       </p>
     </div>
   </div>

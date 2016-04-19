@@ -28,4 +28,14 @@ defmodule ClubHomepage.MatchTest do
     assert changeset.errors[:opponent_team_id] == "can't be blank"
     assert changeset.errors[:start_at] == "can't be blank"
   end
+
+  test "match is finished" do
+    start_at = Timex.Date.local
+    match = %Match{start_at: start_at}
+    assert not Match.finished?(match)
+
+    start_at = Timex.Date.add(start_at, Timex.Time.to_timestamp(-2, :hours))
+    match = %Match{start_at: start_at}
+    assert Match.finished?(match)
+  end
 end

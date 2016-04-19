@@ -7,6 +7,10 @@
     <%= error_tag f, :name %>
   </div>
 
+  <%= render "form_group_to_select_an_address.html", f: f, changeset: @changeset,
+      address_options: @address_options
+  %>
+
   <div class="form-group">
     <%= submit gettext("save"), class: "btn btn-primary" %>
   </div>

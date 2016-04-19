@@ -2,6 +2,8 @@ defmodule ClubHomepage.MatchController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.Match
+  alias ClubHomepage.MeetingPoint
+  alias ClubHomepage.OpponentTeam
   alias ClubHomepage.JsonMatchesCreator
   alias ClubHomepage.JsonMatchesValidator
 
@@ -67,7 +69,9 @@ defmodule ClubHomepage.MatchController do
   end
 
   def show(conn, %{"id" => id}) do
-    match = Repo.one!(from(m in Match, preload: [:season, :team, :opponent_team, :meeting_point], where: m.id == ^id))
+    meeting_point_address_preload_query = from(mp in MeetingPoint, preload: [:address])
+    opponent_team_address_preload_query = from(ot in OpponentTeam, preload: [:address])
+    match = Repo.one!(from(m in Match, preload: [:season, :team, opponent_team: ^opponent_team_address_preload_query, meeting_point: ^meeting_point_address_preload_query], where: m.id == ^id))
 #    match = Repo.get!(Match, id)
     render(conn, "show.html", match: match)
   end
@@ -136,7 +140,7 @@ defmodule ClubHomepage.MatchController do
   defp get_meeting_point_select_options(conn, _) do
     query = from mp in ClubHomepage.MeetingPoint,
       join: a in assoc(mp, :address),
-      select: {a.street, mp.id},
+      select: {[mp.name, " (", a.street, ", ", a.zip_code, " ", a.city, ")"], mp.id},
       order_by: [asc: mp.name]
     assign(conn, :meeting_point_options, Repo.all(query))
   end

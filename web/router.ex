@@ -49,7 +49,7 @@ defmodule ClubHomepage.Router do
     post "/matches/bulk", MatchController, :create_bulk, as: :matches
     resources "/meeting_points", MeetingPointController
     resources "/news", NewsController
-    resources "/opponent_teams", OpponentTeamController
+    resources "/opponent_teams", OpponentTeamController, except: [:show]
     resources "/text_pages", TextPageController, except: [:show, :new, :create, :delete]
     resources "/permalinks", PermalinkController
     resources "/teams", TeamController, only: [:index, :new, :show, :create, :edit, :update, :delete]

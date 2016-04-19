@@ -97,7 +97,7 @@ defmodule ClubHomepage.TeamController do
   defp get_competition_select_options(conn, _) do
     query = from(s in ClubHomepage.Competition,
                  select: {s.name, s.id},
-                 order_by: [desc: s.name])
+                 order_by: [asc: s.name])
     assign(conn, :competition_options, Repo.all(query))
   end
 end

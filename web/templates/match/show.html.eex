@@ -1,3 +1,17 @@
+<style>
+#map {
+  height: 86%;
+  width: 96%;
+  padding: 0; margin: 0;
+}
+
+#osm {
+  font-size: 0.7em;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+</style>
+
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
@@ -29,11 +43,22 @@
           <% end %>
         </div>
       </h2>
-
-      <%= if @match.meeting_point do %>
-        <strong>Meeting point:</strong>
-        <%= @match.meeting_point.name %>
-      <% end %>
+      
+      <%#= if meeting_point_showable?(@conn, @match) do %>
+        <div class="row">
+          <div class="col-xs-12">
+            <h3><strong><%= gettext("meeting_point") %></strong></h3>
+            <%#= @match.meeting_point.name %>
+            <%#= ClubHomepage.MeetingPointView.full_address(@match.meeting_point) %><br />
+            <%#= @match.meeting_point.address.latitude %><%#= @match.meeting_point.address.longitude %>
+          </div>
+          <div class="col-xs-12">
+            <%= if meeting_point_has_coords?(@match.meeting_point) do %>
+              <div id="osm-map"" style="height: 400px;" data-meeting-point="<%= meeting_point_map_options(@match) %>" data-match-location="<%= opponent_team_map_options(@match) %>"></div>
+            <% end %>
+          </div>
+        </div>
+      <%# end %>
 
       <%= link gettext("edit_match"), to: match_path(@conn, :edit, @match), class: "btn btn-default" %>
       <%= link gettext("delete_match"), to: match_path(@conn, :delete, @match), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>

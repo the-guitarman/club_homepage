@@ -7,7 +7,7 @@ defmodule ClubHomepage.CompetitionController do
   plug :scrub_params, "competition" when action in [:create, :update]
 
   def index(conn, _params) do
-    competitions = Repo.all(Competition)
+    competitions = Repo.all(from(c in Competition, order_by: [asc: c.name]))
     render(conn, "index.html", competitions: competitions)
   end
 

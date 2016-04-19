@@ -28,6 +28,7 @@ defmodule ClubHomepage.Match do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
+  @spec changeset( ClubHomepage.Match, Map ) :: Ecto.Changeset
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
@@ -36,5 +37,15 @@ defmodule ClubHomepage.Match do
     |> ModelValidator.foreign_key_constraint(:team_id)
     |> ModelValidator.foreign_key_constraint(:opponent_team_id)
     |> ModelValidator.validate_uniqueness([:season_id, :team_id, :opponent_team_id], name: "unique_match_index")
+  end
+
+
+  @doc """
+  Returns true after two hours from match start. Otherwise false.
+  """
+  @spec finished?( ClubHomepage.Match ) :: Boolean
+  def finished?(match) do
+    match_end_at = Timex.Date.add(match.start_at, Timex.Time.to_timestamp(2, :hours))
+    match_end_at < Timex.Date.local
   end
 end

@@ -29,9 +29,7 @@ defmodule ClubHomepage.OpponentTeamControllerTest do
       get(conn, opponent_team_path(conn, :edit, opponent_team)),
       put(conn, opponent_team_path(conn, :update, opponent_team), opponent_team: @valid_attrs),
       put(conn, opponent_team_path(conn, :update, opponent_team), opponent_team: @invalid_attrs),
-      get(conn, opponent_team_path(conn, :show, opponent_team)),
-      get(conn, opponent_team_path(conn, :show, -1)),
-      get(conn, opponent_team_path(conn, :delete, opponent_team))
+      delete(conn, opponent_team_path(conn, :delete, opponent_team))
     ], fn conn ->
       assert html_response(conn, 302)
       assert conn.halted
@@ -54,7 +52,7 @@ defmodule ClubHomepage.OpponentTeamControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn} do
     conn = post conn, opponent_team_path(conn, :create), opponent_team: @valid_attrs
-    assert redirected_to(conn) == opponent_team_path(conn, :index)
+    assert redirected_to(conn) == opponent_team_path(conn, :index) <> "#opponent-team-1"
     assert Repo.get_by(OpponentTeam, @valid_attrs)
   end
 
@@ -62,20 +60,6 @@ defmodule ClubHomepage.OpponentTeamControllerTest do
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, opponent_team_path(conn, :create), opponent_team: @invalid_attrs
     assert html_response(conn, 200) =~ "Create Opponent Team"
-  end
-
-  @tag login: true
-  test "shows chosen resource", %{conn: conn} do
-    opponent_team = Repo.insert! %OpponentTeam{}
-    conn = get conn, opponent_team_path(conn, :show, opponent_team)
-    assert html_response(conn, 200) =~ "Show Opponent Team"
-  end
-
-  @tag login: true
-  test "renders page not found when id is nonexistent", %{conn: conn} do
-    assert_raise Ecto.NoResultsError, fn ->
-      get conn, opponent_team_path(conn, :show, -1)
-    end
   end
 
   @tag login: true
@@ -89,7 +73,7 @@ defmodule ClubHomepage.OpponentTeamControllerTest do
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
     opponent_team = Repo.insert! %OpponentTeam{}
     conn = put conn, opponent_team_path(conn, :update, opponent_team), opponent_team: @valid_attrs
-    assert redirected_to(conn) == opponent_team_path(conn, :show, opponent_team)
+    assert redirected_to(conn) == opponent_team_path(conn, :index) <> "#opponent-team-1"
     assert Repo.get_by(OpponentTeam, @valid_attrs)
   end
 
