@@ -47,7 +47,7 @@ defmodule ClubHomepage.Router do
     resources "/matches", MatchController
     get "/matches/bulk/new", MatchController, :new_bulk, as: :matches
     post "/matches/bulk", MatchController, :create_bulk, as: :matches
-    resources "/meeting_points", MeetingPointController
+    resources "/meeting_points", MeetingPointController, except: [:show]
     resources "/news", NewsController
     resources "/opponent_teams", OpponentTeamController, except: [:show]
     resources "/text_pages", TextPageController, except: [:show, :new, :create, :delete]

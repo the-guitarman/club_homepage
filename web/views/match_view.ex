@@ -18,14 +18,14 @@ defmodule ClubHomepage.MatchView do
     case match.opponent_team.address do
       nil -> ""
       address ->
-        %{headline: "Match Ground", name: match.opponent_team.name, address: map_marker_address(address), lat: address.latitude, lng: address.longitude}
+        %{headline: gettext("match_address"), name: match.opponent_team.name, address: map_marker_address(address), lat: address.latitude, lng: address.longitude}
         |> to_json
     end
   end
 
   def meeting_point_map_options(match) do
     address = match.meeting_point.address
-    %{headline: "Meeting Point", name: match.meeting_point.name, address: map_marker_address(address), lat: address.latitude, lng: address.longitude}
+    %{headline: gettext("meeting_point"), name: match.meeting_point.name, address: map_marker_address(address), lat: address.latitude, lng: address.longitude}
     |> to_json
   end
 
@@ -44,7 +44,7 @@ defmodule ClubHomepage.MatchView do
     end
   end
 
-  defp address_has_coords?(address) do
+  def address_has_coords?(address) do
     !!(address.latitude && address.longitude)
   end
 end

@@ -21,18 +21,13 @@ defmodule ClubHomepage.MeetingPointController do
     changeset = MeetingPoint.changeset(%MeetingPoint{}, meeting_point_params)
 
     case Repo.insert(changeset) do
-      {:ok, _meeting_point} ->
+      {:ok, meeting_point} ->
         conn
         |> put_flash(:info, "Meeting point created successfully.")
-        |> redirect(to: meeting_point_path(conn, :index))
+        |> redirect(to: meeting_point_path(conn, :index) <> "#meeting-point-#{meeting_point.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-  
-  def show(conn, %{"id" => id}) do
-    meeting_point = Repo.one!(from(mp in MeetingPoint, preload: [:address], where: mp.id == ^id))
-    render(conn, "show.html", meeting_point: meeting_point)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -49,7 +44,7 @@ defmodule ClubHomepage.MeetingPointController do
       {:ok, meeting_point} ->
         conn
         |> put_flash(:info, "Meeting point updated successfully.")
-        |> redirect(to: meeting_point_path(conn, :show, meeting_point))
+        |> redirect(to: meeting_point_path(conn, :index) <> "#meeting-point-#{meeting_point.id}")
       {:error, changeset} ->
         render(conn, "edit.html", meeting_point: meeting_point, changeset: changeset)
     end

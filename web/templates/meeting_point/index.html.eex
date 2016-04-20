@@ -19,7 +19,7 @@
       <%= for meeting_point <- @meeting_points do %>
           <tr>
             <td>
-              <strong><%= meeting_point.name %></strong> - <small><%= full_address(meeting_point) %></small>
+              <a class="anchor" name="meeting-point-<%= meeting_point.id %>"><strong><%= meeting_point.name %></strong></a> - <small><%= full_address(meeting_point) %></small>
             </td>
 
             <td class="text-ht">

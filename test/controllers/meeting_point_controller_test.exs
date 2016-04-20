@@ -31,9 +31,7 @@ defmodule ClubHomepage.MeetingPointControllerTest do
       get(conn, meeting_point_path(conn, :edit, meeting_point)),
       put(conn, meeting_point_path(conn, :update, meeting_point), meeting_point: valid_attrs),
       put(conn, meeting_point_path(conn, :update, meeting_point), meeting_point: @invalid_attrs),
-      get(conn, meeting_point_path(conn, :show, meeting_point)),
-      get(conn, meeting_point_path(conn, :show, -1)),
-      get(conn, meeting_point_path(conn, :delete, meeting_point))
+      delete(conn, meeting_point_path(conn, :delete, meeting_point))
     ], fn conn ->
       assert html_response(conn, 302)
       assert conn.halted
@@ -57,7 +55,7 @@ defmodule ClubHomepage.MeetingPointControllerTest do
   test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user, valid_attrs: valid_attrs} do
 
     conn = post conn, meeting_point_path(conn, :create), meeting_point: valid_attrs
-    assert redirected_to(conn) == meeting_point_path(conn, :index)
+    assert redirected_to(conn) == meeting_point_path(conn, :index) <> "#meeting-point-1"
     assert Repo.get_by(MeetingPoint, valid_attrs)
   end
 
@@ -65,20 +63,6 @@ defmodule ClubHomepage.MeetingPointControllerTest do
   test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     conn = post conn, meeting_point_path(conn, :create), meeting_point: @invalid_attrs
     assert html_response(conn, 200) =~ "Create Meeting Point"
-  end
-
-  @tag login: true
-  test "shows chosen resource", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
-    meeting_point = Repo.insert! %MeetingPoint{}
-    conn = get conn, meeting_point_path(conn, :show, meeting_point)
-    assert html_response(conn, 200) =~ "Show Meeting Point"
-  end
-
-  @tag login: true
-  test "renders page not found when id is nonexistent", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
-    assert_raise Ecto.NoResultsError, fn ->
-      get conn, meeting_point_path(conn, :show, -1)
-    end
   end
 
   @tag login: true
@@ -92,7 +76,7 @@ defmodule ClubHomepage.MeetingPointControllerTest do
   test "updates chosen resource and redirects when data is valid", %{conn: conn, current_user: _current_user, valid_attrs: valid_attrs} do
     meeting_point = Repo.insert! %MeetingPoint{}
     conn = put conn, meeting_point_path(conn, :update, meeting_point), meeting_point: valid_attrs
-    assert redirected_to(conn) == meeting_point_path(conn, :show, meeting_point)
+    assert redirected_to(conn) == meeting_point_path(conn, :index) <> "#meeting-point-#{meeting_point.id}"
     assert Repo.get_by(MeetingPoint, valid_attrs)
   end
 
