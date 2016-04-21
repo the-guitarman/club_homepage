@@ -24,7 +24,7 @@ defmodule ClubHomepage.SeasonController do
     case Repo.insert(changeset) do
       {:ok, _season} ->
         conn
-        |> put_flash(:info, "Season created successfully.")
+        |> put_flash(:info, gettext("season_created_successfully."))
         |> redirect(to: season_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset, years: new_years)
@@ -49,7 +49,7 @@ defmodule ClubHomepage.SeasonController do
     case Repo.update(changeset) do
       {:ok, season} ->
         conn
-        |> put_flash(:info, "Season updated successfully.")
+        |> put_flash(:info, gettext("season_updated_successfully"))
         |> redirect(to: season_path(conn, :show, season))
       {:error, changeset} ->
         render(conn, "edit.html", season: season, changeset: changeset)
@@ -64,7 +64,7 @@ defmodule ClubHomepage.SeasonController do
     Repo.delete!(season)
 
     conn
-    |> put_flash(:info, "Season deleted successfully.")
+    |> put_flash(:info, gettext("season_deleted_successfully"))
     |> redirect(to: season_path(conn, :index))
   end
 end

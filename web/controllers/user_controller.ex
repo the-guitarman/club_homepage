@@ -24,7 +24,7 @@ defmodule ClubHomepage.UserController do
     case Repo.insert(changeset) do
       {:ok, _user} ->
         conn
-        |> put_flash(:info, "Der Benutzer wurde erfolgreich angelegt.")
+        |> put_flash(:info, gettext("user_created_successfully"))
         |> redirect(to: unregistered_user_path(conn, :new_unregistered))
       {:error, changeset} ->
         render(conn, "new_unregistered.html", changeset: changeset)
@@ -55,7 +55,7 @@ defmodule ClubHomepage.UserController do
         ClubHomepage.SecretCheck.delete(secret_key)
         conn
         |> Auth.login(user)
-        |> put_flash(:info, "Dein Benutzer wurde erfolgreich angelegt und eingeloggt.")
+        |> put_flash(:info, gettext("user_created_successfully_and_loged_in"))
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset, secret: secret_key,
@@ -87,7 +87,7 @@ defmodule ClubHomepage.UserController do
     case Repo.update(changeset) do
       {:ok, _user} ->
         conn
-        |> put_flash(:info, "User updated successfully.")
+        |> put_flash(:info, gettext("user_updated_successfully"))
         |> redirect(to: managed_user_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset,
@@ -104,7 +104,7 @@ defmodule ClubHomepage.UserController do
   #   Repo.delete!(user)
 
   #   conn
-  #   |> put_flash(:info, "User deleted successfully.")
+  #   |> put_flash(:info, gettext("user_deleted_successfully"))
   #   |> redirect(to: user_path(conn, :index))
   # end
 

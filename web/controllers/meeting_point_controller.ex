@@ -23,7 +23,7 @@ defmodule ClubHomepage.MeetingPointController do
     case Repo.insert(changeset) do
       {:ok, meeting_point} ->
         conn
-        |> put_flash(:info, "Meeting point created successfully.")
+        |> put_flash(:info, gettext("meeting_point_created_successfully"))
         |> redirect(to: meeting_point_path(conn, :index) <> "#meeting-point-#{meeting_point.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -43,7 +43,7 @@ defmodule ClubHomepage.MeetingPointController do
     case Repo.update(changeset) do
       {:ok, meeting_point} ->
         conn
-        |> put_flash(:info, "Meeting point updated successfully.")
+        |> put_flash(:info, gettext("meeting_point_updated_successfully"))
         |> redirect(to: meeting_point_path(conn, :index) <> "#meeting-point-#{meeting_point.id}")
       {:error, changeset} ->
         render(conn, "edit.html", meeting_point: meeting_point, changeset: changeset)
@@ -58,7 +58,7 @@ defmodule ClubHomepage.MeetingPointController do
     Repo.delete!(meeting_point)
 
     conn
-    |> put_flash(:info, "Meeting point deleted successfully.")
+    |> put_flash(:info, gettext("meeting_point_deleted_successfully"))
     |> redirect(to: meeting_point_path(conn, :index))
   end
 

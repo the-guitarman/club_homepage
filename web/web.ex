@@ -36,6 +36,8 @@ defmodule ClubHomepage.Web do
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 
+      import ClubHomepage.Gettext
+
       import ClubHomepage.Router.Helpers
       import ClubHomepage.Extension.Controller
       import ClubHomepage.Extension.CommonSeason

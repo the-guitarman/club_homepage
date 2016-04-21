@@ -28,7 +28,7 @@ defmodule ClubHomepage.NewsController do
     case Repo.insert(changeset) do
       {:ok, _news} ->
         conn
-        |> put_flash(:info, "News created successfully.")
+        |> put_flash(:info, gettext("news_created_successfully"))
         |> redirect(to: news_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -53,7 +53,7 @@ defmodule ClubHomepage.NewsController do
     case Repo.update(changeset) do
       {:ok, news} ->
         conn
-        |> put_flash(:info, "News updated successfully.")
+        |> put_flash(:info, gettext("news_updated_successfully"))
         |> redirect(to: news_path(conn, :index) <> "#news-#{news.id}")
       {:error, changeset} ->
         render(conn, "edit.html", news: news, changeset: changeset)
@@ -68,7 +68,7 @@ defmodule ClubHomepage.NewsController do
     Repo.delete!(news)
 
     conn
-    |> put_flash(:info, "News deleted successfully.")
+    |> put_flash(:info, gettext("news_deleted_successfully"))
     |> redirect(to: news_path(conn, :index))
   end
 end

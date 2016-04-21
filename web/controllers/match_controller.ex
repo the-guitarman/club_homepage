@@ -38,7 +38,7 @@ defmodule ClubHomepage.MatchController do
     case Repo.insert(changeset) do
       {:ok, _match} ->
         conn
-        |> put_flash(:info, "Match created successfully.")
+        |> put_flash(:info, gettext("match_created_successfully"))
         |> redirect(to: match_path(conn, :index, prepare_next_match_parameters(match_params)))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -90,7 +90,7 @@ defmodule ClubHomepage.MatchController do
     case Repo.update(changeset) do
       {:ok, match} ->
         conn
-        |> put_flash(:info, "Match updated successfully.")
+        |> put_flash(:info, gettext("match_updated_successfully"))
         |> redirect(to: match_path(conn, :show, match))
       {:error, changeset} ->
         render(conn, "edit.html", match: match, changeset: changeset)
@@ -105,7 +105,7 @@ defmodule ClubHomepage.MatchController do
     Repo.delete!(match)
 
     conn
-    |> put_flash(:info, "Match deleted successfully.")
+    |> put_flash(:info, gettext("match_deleted_successfully"))
     |> redirect(to: match_path(conn, :index))
   end
 

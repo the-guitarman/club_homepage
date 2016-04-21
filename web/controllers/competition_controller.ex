@@ -22,7 +22,7 @@ defmodule ClubHomepage.CompetitionController do
     case Repo.insert(changeset) do
       {:ok, _competition} ->
         conn
-        |> put_flash(:info, "Competition created successfully.")
+        |> put_flash(:info, gettext("competition_created_successfully"))
         |> redirect(to: competition_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -47,7 +47,7 @@ defmodule ClubHomepage.CompetitionController do
     case Repo.update(changeset) do
       {:ok, competition} ->
         conn
-        |> put_flash(:info, "Competition updated successfully.")
+        |> put_flash(:info, gettext("competition_updated_successfully"))
         |> redirect(to: competition_path(conn, :show, competition))
       {:error, changeset} ->
         render(conn, "edit.html", competition: competition, changeset: changeset)
@@ -62,7 +62,7 @@ defmodule ClubHomepage.CompetitionController do
     Repo.delete!(competition)
 
     conn
-    |> put_flash(:info, "Competition deleted successfully.")
+    |> put_flash(:info, gettext("competition_deleted_successfully"))
     |> redirect(to: competition_path(conn, :index))
   end
 end

@@ -22,16 +22,11 @@ defmodule ClubHomepage.AddressController do
     case Repo.insert(changeset) do
       {:ok, address} ->
         conn
-        |> put_flash(:info, "Address created successfully.")
+        |> put_flash(:info, gettext("address_created_successfully"))
         |> redirect(to: address_path(conn, :index) <> "#address-#{address.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    address = Repo.get!(Address, id)
-    render(conn, "show.html", address: address)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -47,7 +42,7 @@ defmodule ClubHomepage.AddressController do
     case Repo.update(changeset) do
       {:ok, address} ->
         conn
-        |> put_flash(:info, "Address updated successfully.")
+        |> put_flash(:info, gettext("address_updated_successfully"))
         |> redirect(to: address_path(conn, :index) <> "#address-#{address.id}")
       {:error, changeset} ->
         render(conn, "edit.html", address: address, changeset: changeset)
@@ -62,7 +57,7 @@ defmodule ClubHomepage.AddressController do
     Repo.delete!(address)
 
     conn
-    |> put_flash(:info, "Address deleted successfully.")
+    |> put_flash(:info, gettext("address_deleted_successfully"))
     |> redirect(to: address_path(conn, :index))
   end
 end

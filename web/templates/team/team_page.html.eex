@@ -8,7 +8,7 @@
           <div class="col-xs-12">
             <div class="btn-group" role="group" aria-label="<%= gettext("seasons") %>">
               <%= for season <- @seasons do %>
-                <% link_path = team_page_with_season_path(@conn, :team_page, @team.slug, season.name) %>
+                <% link_path = team_page_with_season_path(@conn, :show, @team.slug, season.name) %>
                 <%= if @conn.request_path == link_path do %>
                   <button type="button" class="btn btn-default" disabled="disabled"><%= season.name %></button>
                 <% else %>

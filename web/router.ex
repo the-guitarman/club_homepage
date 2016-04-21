@@ -31,8 +31,8 @@ defmodule ClubHomepage.Router do
     get "/news", NewsController, :index
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
-    get "/teams/:slug", TeamController, :team_page, as: :team_page
-    get "/teams/:slug/season/:season", TeamController, :team_page, as: :team_page_with_season
+    get "/teams/:slug", TeamController, :show, as: :team_page
+    get "/teams/:slug/season/:season", TeamController, :show, as: :team_page_with_season
   end
 
   scope "/manage", ClubHomepage do
@@ -52,7 +52,7 @@ defmodule ClubHomepage.Router do
     resources "/opponent_teams", OpponentTeamController, except: [:show]
     resources "/text_pages", TextPageController, except: [:show, :new, :create, :delete]
     resources "/permalinks", PermalinkController
-    resources "/teams", TeamController, only: [:index, :new, :show, :create, :edit, :update, :delete]
+    resources "/teams", TeamController, only: [:index, :new, :create, :edit, :update, :delete]
     resources "/seasons", SeasonController
     resources "/secrets", SecretController, only: [:index, :new, :create, :delete]
   end

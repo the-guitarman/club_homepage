@@ -99,7 +99,7 @@ msgstr ""
 #: web/templates/permalink/form.html.eex:17
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:11
 #: web/templates/team/form.html.eex:15 web/templates/text_page/form.html.eex:21
-#: web/templates/user/form.html.eex:69
+#: web/templates/user/form.html.eex:77
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr ""
@@ -351,7 +351,7 @@ msgstr ""
 msgid "teams"
 msgstr ""
 
-#: web/templates/user/index.html.eex:19
+#: web/templates/user/form.html.eex:50 web/templates/user/index.html.eex:19
 msgid "active"
 msgstr ""
 
@@ -627,7 +627,7 @@ msgstr ""
 msgid "text_pages"
 msgstr ""
 
-#: web/templates/user/form.html.eex:51
+#: web/templates/user/form.html.eex:59
 msgid "user_roles"
 msgstr ""
 
@@ -656,4 +656,148 @@ msgstr ""
 
 #: web/templates/match/show.html.eex:52 web/views/match_view.ex:21
 msgid "match_address"
+msgstr ""
+
+#: web/controllers/address_controller.ex:25
+msgid "address_created_successfully"
+msgstr ""
+
+#: web/controllers/address_controller.ex:60
+msgid "address_deleted_successfully"
+msgstr ""
+
+#: web/controllers/address_controller.ex:45
+msgid "address_updated_successfully"
+msgstr ""
+
+#: web/controllers/session_controller.ex:21
+msgid "account_inactive"
+msgstr ""
+
+#: web/controllers/competition_controller.ex:25
+msgid "competition_created_successfully"
+msgstr ""
+
+#: web/controllers/competition_controller.ex:65
+msgid "competition_deleted_successfully"
+msgstr ""
+
+#: web/controllers/competition_controller.ex:50
+msgid "competition_updated_successfully"
+msgstr ""
+
+#: web/controllers/session_controller.ex:26
+msgid "credentials_wrong"
+msgstr ""
+
+#: web/controllers/session_controller.ex:17
+msgid "logged_in_now"
+msgstr ""
+
+#: web/controllers/match_controller.ex:41
+msgid "match_created_successfully"
+msgstr ""
+
+#: web/controllers/match_controller.ex:108
+msgid "match_deleted_successfully"
+msgstr ""
+
+#: web/controllers/match_controller.ex:93
+msgid "match_updated_successfully"
+msgstr ""
+
+#: web/controllers/meeting_point_controller.ex:26
+msgid "meeting_point_created_successfully"
+msgstr ""
+
+#: web/controllers/meeting_point_controller.ex:61
+msgid "meeting_point_deleted_successfully"
+msgstr ""
+
+#: web/controllers/meeting_point_controller.ex:46
+msgid "meeting_point_updated_successfully"
+msgstr ""
+
+#: web/controllers/news_controller.ex:31
+msgid "news_created_successfully"
+msgstr ""
+
+#: web/controllers/news_controller.ex:71
+msgid "news_deleted_successfully"
+msgstr ""
+
+#: web/controllers/news_controller.ex:56
+msgid "news_updated_successfully"
+msgstr ""
+
+#: web/controllers/opponent_team_controller.ex:27
+msgid "opponent_team_created_successfully"
+msgstr ""
+
+#: web/controllers/opponent_team_controller.ex:62
+msgid "opponent_team_deleted_successfully"
+msgstr ""
+
+#: web/controllers/opponent_team_controller.ex:47
+msgid "opponent_team_updated_successfully"
+msgstr ""
+
+#: web/controllers/permalink_controller.ex:25
+msgid "permalink_created_successfully"
+msgstr ""
+
+#: web/controllers/permalink_controller.ex:65
+msgid "permalink_deleted_successfully"
+msgstr ""
+
+#: web/controllers/permalink_controller.ex:50
+msgid "permalink_updated_successfully"
+msgstr ""
+
+#: web/controllers/season_controller.ex:27
+msgid "season_created_successfully."
+msgstr ""
+
+#: web/controllers/season_controller.ex:67
+msgid "season_deleted_successfully"
+msgstr ""
+
+#: web/controllers/season_controller.ex:52
+msgid "season_updated_successfully"
+msgstr ""
+
+#: web/controllers/secret_controller.ex:25
+msgid "secret_created_successfully"
+msgstr ""
+
+#: web/controllers/secret_controller.ex:40
+msgid "secret_deleted_successfully"
+msgstr ""
+
+#: web/controllers/team_controller.ex:32
+msgid "team_created_successfully"
+msgstr ""
+
+#: web/controllers/team_controller.ex:88
+msgid "team_deleted_successfully"
+msgstr ""
+
+#: web/controllers/team_controller.ex:73
+msgid "team_updated_successfully"
+msgstr ""
+
+#: web/controllers/text_page_controller.ex:27
+msgid "text_page_updated_successfully"
+msgstr ""
+
+#: web/controllers/user_controller.ex:27
+msgid "user_created_successfully"
+msgstr ""
+
+#: web/controllers/user_controller.ex:58
+msgid "user_created_successfully_and_loged_in"
+msgstr ""
+
+#: web/controllers/user_controller.ex:90
+msgid "user_updated_successfully"
 msgstr ""

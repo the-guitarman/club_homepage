@@ -30,8 +30,8 @@ defmodule ClubHomepage.Extension.CommonSeason do
 
   def team_with_season_path(conn, team) do
     case current_team_season(team) do
-      nil    -> team_page_path(conn, :team_page, team.slug)
-      season -> team_page_with_season_path(conn, :team_page, team.slug, season.name)
+      nil    -> team_page_path(conn, :show, team.slug)
+      season -> team_page_with_season_path(conn, :show, team.slug, season.name)
     end
   end
 

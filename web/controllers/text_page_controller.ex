@@ -24,7 +24,7 @@ defmodule ClubHomepage.TextPageController do
     case Repo.update(changeset) do
       {:ok, _text_page} ->
         conn
-        |> put_flash(:info, "Text page updated successfully.")
+        |> put_flash(:info, gettext("text_page_updated_successfully"))
         |> redirect(to: text_page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", text_page: text_page, changeset: changeset)

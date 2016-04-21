@@ -22,7 +22,7 @@ defmodule ClubHomepage.SecretController do
     case Repo.insert(changeset) do
       {:ok, _secret} ->
         conn
-        |> put_flash(:info, "Das Secret wurde erfolgreich generiert.")
+        |> put_flash(:info, gettext("secret_created_successfully"))
         |> redirect(to: secret_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -37,7 +37,7 @@ defmodule ClubHomepage.SecretController do
     Repo.delete!(secret)
 
     conn
-    |> put_flash(:info, "Das Secret wurde erfolgreich gelöscht.")
+    |> put_flash(:info, gettext("secret_deleted_successfully"))
     |> redirect(to: secret_path(conn, :index))
   end
 end

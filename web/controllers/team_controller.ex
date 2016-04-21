@@ -6,7 +6,7 @@ defmodule ClubHomepage.TeamController do
   alias ClubHomepage.Team
   alias ClubHomepage.Season
 
-  plug :is_team_editor? when action in [:index, :show, :new, :create, :edit, :update, :delete]
+  plug :is_team_editor? when action in [:index, :new, :create, :edit, :update, :delete]
   plug :scrub_params, "team" when action in [:create, :update]
   plug :get_competition_select_options when action in [:new, :create, :edit, :update]
 
@@ -26,22 +26,17 @@ defmodule ClubHomepage.TeamController do
     changeset = Team.changeset(%Team{}, team_params)
 
     case Repo.insert(changeset) do
-      {:ok, _team} ->
+      {:ok, team} ->
         PermalinkGenerator.run(changeset, :teams)
         conn
-        |> put_flash(:info, "Team created successfully.")
-        |> redirect(to: team_path(conn, :index))
+        |> put_flash(:info, gettext("team_created_successfully"))
+        |> redirect(to: team_path(conn, :index) <> "#team-#{team.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    team = Repo.get!(Team, id)
-    render(conn, "show.html", team: team)
-  end
-
-  def team_page(conn, %{"slug" => slug, "season" => season_name}) do
+  def show(conn, %{"slug" => slug, "season" => season_name}) do
     team = Repo.get_by!(Team, slug: slug)
     season = Repo.get_by!(Season, name: season_name)
 
@@ -51,14 +46,14 @@ defmodule ClubHomepage.TeamController do
     latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at)
     render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches)
   end
-  def team_page(conn, %{"slug" => slug}) do
+  def show(conn, %{"slug" => slug}) do
     team = Repo.get_by!(Team, slug: slug)
     season =
       case team_seasons(team) do
         [] -> current_season
         [last_team_season | _] -> last_team_season
       end
-    redirect(conn, to: team_page_with_season_path(conn, :team_page, slug, season.name))
+    redirect(conn, to: team_page_with_season_path(conn, :show, slug, season.name))
   end
 
   def edit(conn, %{"id" => id}) do
@@ -75,8 +70,8 @@ defmodule ClubHomepage.TeamController do
       {:ok, team} ->
         PermalinkGenerator.run(changeset, :teams)
         conn
-        |> put_flash(:info, "Team updated successfully.")
-        |> redirect(to: team_path(conn, :show, team))
+        |> put_flash(:info, gettext("team_updated_successfully"))
+        |> redirect(to: team_path(conn, :index) <> "#team-#{team.id}")
       {:error, changeset} ->
         render(conn, "edit.html", team: team, changeset: changeset)
     end
@@ -90,7 +85,7 @@ defmodule ClubHomepage.TeamController do
     Repo.delete!(team)
 
     conn
-    |> put_flash(:info, "Team deleted successfully.")
+    |> put_flash(:info, gettext("team_deleted_successfully"))
     |> redirect(to: team_path(conn, :index))
   end
 

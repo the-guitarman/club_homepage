@@ -14,16 +14,16 @@ defmodule ClubHomepage.SessionController do
     case Auth.login_by_login_or_email_and_pass(conn, login_or_email, pass, repo: Repo) do
       {:ok, conn} ->
         conn
-        |> put_flash(:info, "Du bist nun eingeloggt.")
+        |> put_flash(:info, gettext("logged_in_now"))
         |> redirect(to: redirect_path(conn, redirect))
       {:error, :inactive, conn} ->
         conn
-        |> put_flash(:error, "Dein Login/E-Mail-Adresse ist deaktiviert. Bitte kontaktiere den Webmaster.")
+        |> put_flash(:error, gettext("account_inactive"))
         |> render("new.html", redirect: redirect_path(conn, redirect))
 
       {:error, _reason, conn} ->
         conn
-        |> put_flash(:error, "Dein Login/E-Mail-Adresse oder Passwort sind ungültig. Bitte achte auf Groß- und Kleinschreibung.")
+        |> put_flash(:error, gettext("credentials_wrong"))
         |> render("new.html", redirect: redirect_path(conn, redirect))
     end
   end
@@ -31,7 +31,7 @@ defmodule ClubHomepage.SessionController do
   def delete(conn, _) do
     conn
     |> Auth.logout()
-    |> put_flash(:info, "Du bist nun abgemeldet.")
+    |> put_flash(:info, "logged_out_now")
     |> redirect(to: page_path(conn, :index))
   end
 

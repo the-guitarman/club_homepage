@@ -34,8 +34,6 @@ defmodule ClubHomepage.TeamControllerTest do
       get(conn, team_path(conn, :edit, team)),
       put(conn, team_path(conn, :update, team), team: valid_attrs),
       put(conn, team_path(conn, :update, team), team: @invalid_attrs),
-      get(conn, team_path(conn, :show, team)),
-      get(conn, team_path(conn, :show, -1)),
       delete(conn, team_path(conn, :delete, team))
     ], fn conn ->
       assert html_response(conn, 302)
@@ -59,7 +57,7 @@ defmodule ClubHomepage.TeamControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     conn = post conn, team_path(conn, :create), team: @valid_attrs
-    assert redirected_to(conn) == team_path(conn, :index)
+    assert redirected_to(conn) == team_path(conn, :index) <> "#team-1"
     assert Repo.get_by(Team, @valid_attrs)
   end
 
@@ -69,33 +67,26 @@ defmodule ClubHomepage.TeamControllerTest do
     assert html_response(conn, 200) =~ "Create Team"
   end
 
-  @tag login: true
-  test "shows chosen resource", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
-    team = create(:team)
-    conn = get conn, team_path(conn, :show, team)
-    assert html_response(conn, 200) =~ "Show Team"
-  end
-
   @tag login: false 
   test "shows team page", %{conn: conn} do
     team = create(:team)
     season = create(:season, name: CommonSeason.current_season_name)
-    conn = get conn, team_page_path(conn, :team_page, team.slug)
-    assert redirected_to(conn) == team_page_with_season_path(conn, :team_page, team.slug, season.name)
+    conn = get conn, team_page_path(conn, :show, team.slug)
+    assert redirected_to(conn) == team_page_with_season_path(conn, :show, team.slug, season.name)
   end
 
   @tag login: false
   test "shows team with season page", %{conn: conn} do
     team = create(:team)
     season = create(:season)
-    conn = get conn, team_page_with_season_path(conn, :team_page, team.slug, season.name)
+    conn = get conn, team_page_with_season_path(conn, :show, team.slug, season.name)
     assert html_response(conn, 200) =~ "<h1>#{team.name}</h1>"
   end
 
-  @tag login: true
-  test "renders page not found when id is nonexistent", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
+  @tag login: false
+  test "renders page not found when id is nonexistent", %{conn: conn} do
     assert_raise Ecto.NoResultsError, fn ->
-      get conn, team_path(conn, :show, 99)
+      get conn, team_page_path(conn, :show, "unknown-team-slug")
     end
   end
 
@@ -110,7 +101,7 @@ defmodule ClubHomepage.TeamControllerTest do
   test "updates chosen resource and redirects when data is valid", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     team = create(:team)
     conn = put conn, team_path(conn, :update, team), team: @valid_attrs
-    assert redirected_to(conn) == team_path(conn, :show, team)
+    assert redirected_to(conn) == team_path(conn, :index) <> "#team-#{team.id}"
     assert Repo.get_by(Team, @valid_attrs)
   end
 

@@ -53,6 +53,7 @@ defmodule ClubHomepage.AddressControllerTest do
     conn = post conn, address_path(conn, :create), address: @valid_attrs
     assert redirected_to(conn) == address_path(conn, :index) <> "#address-1"
     assert Repo.get_by(Address, @valid_attrs)
+    assert get_flash(conn, :info) == "Address created successfully."
   end
 
   @tag login: true

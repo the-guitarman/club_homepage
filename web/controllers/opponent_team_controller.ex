@@ -24,7 +24,7 @@ defmodule ClubHomepage.OpponentTeamController do
     case Repo.insert(changeset) do
       {:ok, opponent_team} ->
         conn
-        |> put_flash(:info, "Opponent team created successfully.")
+        |> put_flash(:info, gettext("opponent_team_created_successfully"))
         |> redirect(to: opponent_team_path(conn, :index) <> "#opponent-team-#{opponent_team.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule ClubHomepage.OpponentTeamController do
     case Repo.update(changeset) do
       {:ok, opponent_team} ->
         conn
-        |> put_flash(:info, "Opponent team updated successfully.")
+        |> put_flash(:info, gettext("opponent_team_updated_successfully"))
         |> redirect(to: opponent_team_path(conn, :index) <> "#opponent-team-#{opponent_team.id}")
       {:error, changeset} ->
         render(conn, "edit.html", opponent_team: opponent_team, changeset: changeset)
@@ -59,7 +59,7 @@ defmodule ClubHomepage.OpponentTeamController do
     Repo.delete!(opponent_team)
 
     conn
-    |> put_flash(:info, "Opponent team deleted successfully.")
+    |> put_flash(:info, gettext("opponent_team_deleted_successfully"))
     |> redirect(to: opponent_team_path(conn, :index))
   end
 

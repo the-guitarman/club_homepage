@@ -22,7 +22,7 @@ defmodule ClubHomepage.PermalinkController do
     case Repo.insert(changeset) do
       {:ok, _permalink} ->
         conn
-        |> put_flash(:info, "Permalink created successfully.")
+        |> put_flash(:info, gettext("permalink_created_successfully"))
         |> redirect(to: permalink_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -47,7 +47,7 @@ defmodule ClubHomepage.PermalinkController do
     case Repo.update(changeset) do
       {:ok, permalink} ->
         conn
-        |> put_flash(:info, "Permalink updated successfully.")
+        |> put_flash(:info, gettext("permalink_updated_successfully"))
         |> redirect(to: permalink_path(conn, :show, permalink))
       {:error, changeset} ->
         render(conn, "edit.html", permalink: permalink, changeset: changeset)
@@ -62,7 +62,7 @@ defmodule ClubHomepage.PermalinkController do
     Repo.delete!(permalink)
 
     conn
-    |> put_flash(:info, "Permalink deleted successfully.")
+    |> put_flash(:info, gettext("permalink_deleted_successfully"))
     |> redirect(to: permalink_path(conn, :index))
   end
 end
