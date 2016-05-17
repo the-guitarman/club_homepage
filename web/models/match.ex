@@ -36,7 +36,7 @@ defmodule ClubHomepage.Match do
     |> ModelValidator.foreign_key_constraint(:season_id)
     |> ModelValidator.foreign_key_constraint(:team_id)
     |> ModelValidator.foreign_key_constraint(:opponent_team_id)
-    |> ModelValidator.validate_uniqueness([:season_id, :team_id, :opponent_team_id], name: "unique_match_index")
+    |> ModelValidator.validate_uniqueness([:season_id, :team_id, :opponent_team_id, :home_match], name: "unique_match_index")
   end
 
 

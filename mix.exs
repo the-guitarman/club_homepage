@@ -47,7 +47,8 @@ defmodule ClubHomepage.Mixfile do
      {:json, "~> 0.3.0"},
      {:ex_json_schema, "~> 0.3.1"},
      {:geocoder, "~> 0.3"},
-     {:geohash, github: "treetopllc/geohash"}#,
+     {:geohash, github: "treetopllc/geohash"},
+     {:dialyxir, "~> 0.3", only: [:dev]}#,
      #{:mix_test_watch, "~> 0.2.4", only: :dev}]
     ]
   end
