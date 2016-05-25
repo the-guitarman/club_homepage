@@ -34,3 +34,6 @@ config :phoenix, :filter_parameters,
 
 config :geocoder, Geocoder.Worker, [size: 4, max_overflow: 2]
 config :geocoder, Geocoder.Store, [precision: 4]
+
+config :club_homepage, :match, 
+  failure_reasons: ["failed", "canceled", "team_missed"]

@@ -47,4 +47,8 @@ defmodule ClubHomepage.MatchView do
   def address_has_coords?(address) do
     !!(address.latitude && address.longitude)
   end
+
+  def failure_reason_options do
+    Enum.map(failure_reasons, fn(key) -> {Gettext.gettext(ClubHomepage.Gettext, "failure_reason_" <> key), key} end)
+  end
 end

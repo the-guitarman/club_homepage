@@ -3,6 +3,8 @@ defmodule ClubHomepage.ModelValidator do
   This is a workaround, because Ecto.Changeset.unique_constraint/3 doesn't work with sqlite. This module checks the repo adapter. If it's Sqlite.Ecto, it will fire a query against the database to check the uniqueness of the given field or fields list. Otherwise it will simply use Ecto.Changeset.unique_constraint/3.
   """
 
+  #import ClubHomepage.Gettext
+
   alias ClubHomepage.Repo
   alias Ecto.Changeset
 

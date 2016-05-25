@@ -16,7 +16,7 @@ msgstr ""
 #: web/templates/competition/show.html.eex:16
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:75
+#: web/templates/match/show.html.eex:77
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/index.html.eex:8
@@ -56,18 +56,18 @@ msgstr "Create Next Match"
 msgid "date_and_time"
 msgstr "Date And Time"
 
-#: web/templates/match/form.html.eex:35 web/templates/match/index.html.eex:28
+#: web/templates/match/form.html.eex:30 web/templates/match/index.html.eex:28
 msgid "home_match"
 msgstr "Home Game"
 
 #: web/templates/layout/navbar_top.html.eex:62
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:75
+#: web/templates/match/show.html.eex:77
 msgid "matches"
 msgstr "Matches"
 
-#: web/templates/match/index.html.eex:26 web/templates/match/show.html.eex:41
+#: web/templates/match/index.html.eex:26 web/templates/match/show.html.eex:43
 #: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:28
 msgid "meeting_point"
 msgstr "Meeting Point"
@@ -89,7 +89,7 @@ msgstr "Team"
 msgid "create_new_season"
 msgstr "Create Season"
 
-#: web/templates/match/show.html.eex:74
+#: web/templates/match/show.html.eex:76
 msgid "delete_match"
 msgstr "Delete"
 
@@ -99,7 +99,7 @@ msgstr "Some errors occured:"
 
 #: web/templates/address/form.html.eex:41
 #: web/templates/competition/form.html.eex:13
-#: web/templates/match/form.html.eex:72
+#: web/templates/match/form.html.eex:79
 #: web/templates/match/form_bulk.html.eex:36
 #: web/templates/meeting_point/form.html.eex:15
 #: web/templates/news/form.html.eex:26
@@ -119,11 +119,11 @@ msgstr "Save"
 msgid "seasons"
 msgstr "Seasons"
 
-#: web/templates/match/form.html.eex:29
+#: web/templates/match/form.html.eex:24
 msgid "select_date_and_time_placeholder"
 msgstr "Select date and time ..."
 
-#: web/templates/match/form.html.eex:22 web/templates/match/form.html.eex:22
+#: web/templates/match/form.html.eex:74 web/templates/match/form.html.eex:74
 msgid "select_meeting_point_placeholder"
 msgstr "Select a meeting point ..."
 
@@ -420,7 +420,7 @@ msgid "latest_news"
 msgstr "Latest News"
 
 #: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:54
-#: web/templates/match/show.html.eex:73
+#: web/templates/match/show.html.eex:75
 #: web/templates/team/team_page_match_table.html.eex:9
 msgid "edit_match"
 msgstr "Edit Match"
@@ -559,7 +559,7 @@ msgstr "Create Competition"
 msgid "edit_competition"
 msgstr "Edit Competition"
 
-#: web/templates/match/form.html.eex:62
+#: web/templates/match/form.html.eex:64
 msgid "opponent_team_goals_placeholder"
 msgstr "Goal(s)"
 
@@ -572,7 +572,7 @@ msgstr "Select competition ..."
 msgid "show_competition"
 msgstr "Competition"
 
-#: web/templates/match/form.html.eex:62
+#: web/templates/match/form.html.eex:64
 msgid "team_goals_placeholder"
 msgstr "Goal(s)"
 
@@ -593,7 +593,7 @@ msgstr "A competition is needed to create matches."
 msgid "season_form_notice"
 msgstr "A season is needed to create matches."
 
-#: web/templates/match/form.html.eex:41
+#: web/templates/match/form.html.eex:36
 msgid "away_match"
 msgstr "Away Game"
 
@@ -601,7 +601,7 @@ msgstr "Away Game"
 msgid "edit_permalink"
 msgstr "Edit Permalink"
 
-#: web/templates/match/form.html.eex:53
+#: web/templates/match/form.html.eex:55
 msgid "goals"
 msgstr "Goals"
 
@@ -609,7 +609,7 @@ msgstr "Goals"
 msgid "next_matches"
 msgstr "Next Matches"
 
-#: web/templates/match/form.html.eex:65
+#: web/templates/match/form.html.eex:67
 msgid "opponent_team_selected"
 msgstr "Opponent Team"
 
@@ -617,7 +617,7 @@ msgstr "Opponent Team"
 msgid "permalinks"
 msgstr "Permalinks"
 
-#: web/templates/match/form.html.eex:58
+#: web/templates/match/form.html.eex:60
 msgid "team_selected"
 msgstr "Team"
 
@@ -662,7 +662,7 @@ msgstr "Latitude"
 msgid "address_longitude_place_holder"
 msgstr "Longitude"
 
-#: web/templates/match/show.html.eex:52 web/views/match_view.ex:21
+#: web/templates/match/show.html.eex:54 web/views/match_view.ex:21
 msgid "match_address"
 msgstr "Match Address"
 
@@ -702,15 +702,15 @@ msgstr "Your credentials are wrong."
 msgid "logged_in_now"
 msgstr "You are logged in now."
 
-#: web/controllers/match_controller.ex:41
+#: web/controllers/match_controller.ex:42
 msgid "match_created_successfully"
 msgstr "Match created successfully."
 
-#: web/controllers/match_controller.ex:108
+#: web/controllers/match_controller.ex:109
 msgid "match_deleted_successfully"
 msgstr "Match deleted successfully."
 
-#: web/controllers/match_controller.ex:93
+#: web/controllers/match_controller.ex:94
 msgid "match_updated_successfully"
 msgstr "Match updated successfully."
 
@@ -809,3 +809,7 @@ msgstr "User created successfully and logged in."
 #: web/controllers/user_controller.ex:90
 msgid "user_updated_successfully"
 msgstr "user updated successfully."
+
+#: web/templates/match/form.html.eex:47 web/templates/match/form.html.eex:47
+msgid "select_failure_reason_placeholder"
+msgstr ""

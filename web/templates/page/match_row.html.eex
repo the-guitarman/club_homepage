@@ -9,7 +9,7 @@
       <%= @match.opponent_team.name %>
     <% end %>
   </div>
-  <div class="col-xs-4 text-center">
+  <div class="col-xs-4 text-center <%= match_failure_class(@match) %>">
     <%= match_result(@match) %>
   </div>
   <div class="col-xs-4">

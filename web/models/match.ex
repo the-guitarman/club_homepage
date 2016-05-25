@@ -3,11 +3,14 @@ defmodule ClubHomepage.Match do
 
   alias ClubHomepage.ModelValidator
 
+  import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0]
+
   schema "matches" do
     field :start_at, Timex.Ecto.DateTime
     field :home_match, :boolean, default: false
     field :team_goals, :integer
     field :opponent_team_goals, :integer
+    field :failure_reason, :string
     field :json, :string, virtual: true
 
     belongs_to :competition, ClubHomepage.Competition
@@ -20,9 +23,9 @@ defmodule ClubHomepage.Match do
   end
 
   @required_fields ~w(competition_id season_id team_id opponent_team_id start_at home_match)
-  @optional_fields ~w(meeting_point_id team_goals opponent_team_goals)
+  @optional_fields ~w(meeting_point_id team_goals opponent_team_goals failure_reason)
 
-  @doc """
+  @doc """ 
   Creates a changeset based on the `model` and `params`.
 
   If no params are provided, an invalid changeset is returned

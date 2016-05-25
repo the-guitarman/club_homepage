@@ -16,7 +16,7 @@ msgstr ""
 #: web/templates/competition/show.html.eex:16
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:75
+#: web/templates/match/show.html.eex:77
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/index.html.eex:8
@@ -56,18 +56,18 @@ msgstr "Nächstes Spiel anlegen"
 msgid "date_and_time"
 msgstr "Datum und Zeit"
 
-#: web/templates/match/form.html.eex:35 web/templates/match/index.html.eex:28
+#: web/templates/match/form.html.eex:30 web/templates/match/index.html.eex:28
 msgid "home_match"
 msgstr "Heimspiel"
 
 #: web/templates/layout/navbar_top.html.eex:62
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:75
+#: web/templates/match/show.html.eex:77
 msgid "matches"
 msgstr "Spiele"
 
-#: web/templates/match/index.html.eex:26 web/templates/match/show.html.eex:41
+#: web/templates/match/index.html.eex:26 web/templates/match/show.html.eex:43
 #: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:28
 msgid "meeting_point"
 msgstr "Treffpunkt"
@@ -89,7 +89,7 @@ msgstr "Team"
 msgid "create_new_season"
 msgstr "Neue Saison anlegen"
 
-#: web/templates/match/show.html.eex:74
+#: web/templates/match/show.html.eex:76
 msgid "delete_match"
 msgstr "Spiel löschen"
 
@@ -99,7 +99,7 @@ msgstr "Es sind folgende Fehler aufgetreten:"
 
 #: web/templates/address/form.html.eex:41
 #: web/templates/competition/form.html.eex:13
-#: web/templates/match/form.html.eex:72
+#: web/templates/match/form.html.eex:79
 #: web/templates/match/form_bulk.html.eex:36
 #: web/templates/meeting_point/form.html.eex:15
 #: web/templates/news/form.html.eex:26
@@ -119,11 +119,11 @@ msgstr "Speichern"
 msgid "seasons"
 msgstr "Saisons"
 
-#: web/templates/match/form.html.eex:29
+#: web/templates/match/form.html.eex:24
 msgid "select_date_and_time_placeholder"
 msgstr "Datum und Zeit auswählen ..."
 
-#: web/templates/match/form.html.eex:22 web/templates/match/form.html.eex:22
+#: web/templates/match/form.html.eex:74 web/templates/match/form.html.eex:74
 msgid "select_meeting_point_placeholder"
 msgstr "Treffpunkt wählen ..."
 
@@ -420,7 +420,7 @@ msgid "latest_news"
 msgstr "News"
 
 #: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:54
-#: web/templates/match/show.html.eex:73
+#: web/templates/match/show.html.eex:75
 #: web/templates/team/team_page_match_table.html.eex:9
 msgid "edit_match"
 msgstr "Spiel ändern"
@@ -559,7 +559,7 @@ msgstr "Neuen Wettbewerb anlegen"
 msgid "edit_competition"
 msgstr "Wettbewerb bearbeiten"
 
-#: web/templates/match/form.html.eex:62
+#: web/templates/match/form.html.eex:64
 msgid "opponent_team_goals_placeholder"
 msgstr "Tor(e)"
 
@@ -572,7 +572,7 @@ msgstr "Wettbewerb wählen ..."
 msgid "show_competition"
 msgstr "Wettbewerb - Details"
 
-#: web/templates/match/form.html.eex:62
+#: web/templates/match/form.html.eex:64
 msgid "team_goals_placeholder"
 msgstr "Tor(e)"
 
@@ -593,7 +593,7 @@ msgstr "Ein Wettbewerb wird benötigt um Spiele der Vereinsmannschaften anlegen 
 msgid "season_form_notice"
 msgstr "Eine Saison wird benötigt um Spiele der Vereinsmannschaften anlegen zu können."
 
-#: web/templates/match/form.html.eex:41
+#: web/templates/match/form.html.eex:36
 msgid "away_match"
 msgstr "Auswärtsspiel"
 
@@ -601,7 +601,7 @@ msgstr "Auswärtsspiel"
 msgid "edit_permalink"
 msgstr "Permalink ändern"
 
-#: web/templates/match/form.html.eex:53
+#: web/templates/match/form.html.eex:55
 msgid "goals"
 msgstr "Tore"
 
@@ -609,7 +609,7 @@ msgstr "Tore"
 msgid "next_matches"
 msgstr "Nächste Spiele"
 
-#: web/templates/match/form.html.eex:65
+#: web/templates/match/form.html.eex:67
 msgid "opponent_team_selected"
 msgstr "Gegnerische Mannschaft"
 
@@ -617,7 +617,7 @@ msgstr "Gegnerische Mannschaft"
 msgid "permalinks"
 msgstr "Permalinks"
 
-#: web/templates/match/form.html.eex:58
+#: web/templates/match/form.html.eex:60
 msgid "team_selected"
 msgstr "Vereinsmannschaft"
 
@@ -662,7 +662,7 @@ msgstr "Breitengrad (Latitude)"
 msgid "address_longitude_place_holder"
 msgstr "Längengrad (Longitude)"
 
-#: web/templates/match/show.html.eex:52 web/views/match_view.ex:21
+#: web/templates/match/show.html.eex:54 web/views/match_view.ex:21
 msgid "match_address"
 msgstr "Spielort"
 
@@ -702,15 +702,15 @@ msgstr "Die Zugangsdaten sind falsch."
 msgid "logged_in_now"
 msgstr "Du bist jetzt eingeloggt."
 
-#: web/controllers/match_controller.ex:41
+#: web/controllers/match_controller.ex:42
 msgid "match_created_successfully"
 msgstr "Das Spiel wurde angelegt."
 
-#: web/controllers/match_controller.ex:108
+#: web/controllers/match_controller.ex:109
 msgid "match_deleted_successfully"
 msgstr "Das Spiel wurde gelöscht."
 
-#: web/controllers/match_controller.ex:93
+#: web/controllers/match_controller.ex:94
 msgid "match_updated_successfully"
 msgstr "Das Spiel wurde gespeichert."
 
@@ -809,3 +809,16 @@ msgstr "Der Benutzer wurde angelegt und ist nun eingeloggt."
 #: web/controllers/user_controller.ex:90
 msgid "user_updated_successfully"
 msgstr "Der Benutzer wurde gespeichert."
+
+#: web/templates/match/form.html.eex:47 web/templates/match/form.html.eex:47
+msgid "select_failure_reason_placeholder"
+msgstr "Ausfallgrund wählen ..."
+
+msgid "failure_reason_failed"
+msgstr "ausgefallen"
+
+msgid "failure_reason_canceled"
+msgstr "abgesagt"
+
+msgid "failure_reason_team_missed"
+msgstr "nicht angetreten"

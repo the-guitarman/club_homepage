@@ -17,11 +17,6 @@
     <%= select(f, :opponent_team_id, @opponent_team_options, placeholder: gettext("select_opponent_team_placeholder"), prompt: gettext("select_opponent_team_placeholder")) %>
     <%= error_tag @changeset, f, :opponent_team_id %>
   </div>
-
-  <div class="form-group <%= error_cls @changeset, f, :meeting_point_id %>">
-    <%= select(f, :meeting_point_id, @meeting_point_options, placeholder: gettext("select_meeting_point_placeholder"), prompt: gettext("select_meeting_point_placeholder")) %>
-    <%= error_tag @changeset, f, :meeting_point_id %>
-  </div>
  
   <div class="form-group <%= error_cls @changeset, f, :start_at %>">
     <%#= label f, :start_at, class: "control-label" %>
@@ -47,6 +42,13 @@
     <%= error_tag @changeset, f, :home_match %>
   </div>
 
+
+  <div class="form-group <%= error_cls @changeset, f, :failure_reason %>">
+    <%= select(f, :failure_reason, failure_reason_options, placeholder: gettext("select_failure_reason_placeholder"), prompt: gettext("select_failure_reason_placeholder")) %>
+    <%= error_tag @changeset, f, :failure_reason %>
+  </div>
+
+
   <div class="form-group <%= error_cls @changeset, f, :team_goals %> <%= error_cls @changeset, f, :opponent_team_goals %>">
     <div>
       <%= label f, :team_goals, class: "control-label" do %>
@@ -66,6 +68,11 @@
         <%= error_tag @changeset, f, :opponent_team_goals %>
       </div>
     </div>
+  </div>
+
+  <div class="form-group <%= error_cls @changeset, f, :meeting_point_id %>">
+    <%= select(f, :meeting_point_id, @meeting_point_options, placeholder: gettext("select_meeting_point_placeholder"), prompt: gettext("select_meeting_point_placeholder")) %>
+    <%= error_tag @changeset, f, :meeting_point_id %>
   </div>
 
   <div class="form-group">

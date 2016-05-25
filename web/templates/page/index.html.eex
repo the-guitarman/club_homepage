@@ -57,7 +57,9 @@
               <% end %>
             </div>
           <% end %>
+        </div>
 
+        <div class="jumbotron content-box">
           <%= if Enum.count(@last_matches) > 0 do %>
             <h2><%= gettext("latest_match_results") %></h2>
             <div class="list-group">
