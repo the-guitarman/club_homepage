@@ -31,7 +31,7 @@
               <%# else %>
               <%#= link gettext("create_new_match"), to: match_path(@conn, :new), class: "btn btn-default" %>
               <%# end %>
-              <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk), class: "btn btn-default" %>
+              <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk, @next_match_parameters), class: "btn btn-default" %>
             </div>
           <% end %>
           <%= if Enum.count(@matches) > 0 || Enum.count(@latest_matches) > 0 do %>

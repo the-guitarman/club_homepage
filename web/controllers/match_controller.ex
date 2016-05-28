@@ -45,8 +45,9 @@ defmodule ClubHomepage.MatchController do
     end
   end
 
-  def new_bulk(conn, _params) do
-    changeset = JsonMatchesValidator.changeset
+  def new_bulk(conn, params) do
+    match_params = params["match"] || %{}
+    changeset = JsonMatchesValidator.changeset(match_params)
     render(conn, "new_bulk.html", changeset: changeset,
            season_options: conn.assigns.season_options,
            team_options: conn.assigns.team_options)

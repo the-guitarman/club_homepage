@@ -14,6 +14,11 @@ defmodule ClubHomepage.JsonMatchesValidator do
   def changeset do
     new_changeset
   end
+  def changeset(params) when is_map(params) do
+    new_changeset
+    |> set_changeset_changes(params)
+    |> set_changeset_params(params)
+  end
   def changeset(required_fields, json_field, params) do
     new_changeset
     |> Changeset.cast(params, required_fields, ~w())
