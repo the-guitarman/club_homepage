@@ -61,10 +61,6 @@
         <% end %>
         <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk), class: "btn btn-default" %>
         <br />
-        <%= link gettext("competitions"), to: competition_path(@conn, :index), class: "btn btn-default" %>
-        <%= link gettext("seasons"), to: season_path(@conn, :index), class: "btn btn-default" %>
-        <%= link gettext("opponent_teams"), to: opponent_team_path(@conn, :index), class: "btn btn-default" %>
-        <%= link gettext("meeting_points"), to: meeting_point_path(@conn, :index), class: "btn btn-default" %>
       </p>
     </div>
   </div>
