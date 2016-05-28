@@ -29,8 +29,10 @@
           <% end %>
         </div>
       </h2>
-      
-      <%#= if meeting_point_showable?(@conn, @match) do %>
+
+      <%#= render "soccer_match_timeline.html", match: @match %>
+
+      <%= if meeting_point_showable?(@conn, @match) do %>
         <div class="row">
           <div class="col-xs-12">
 
@@ -68,7 +70,7 @@
             <% end %>
           </div>
         </div>
-      <%# end %>
+      <% end %>
 
       <%= link gettext("edit_match"), to: match_path(@conn, :edit, @match), class: "btn btn-default" %>
       <%= link gettext("delete_match"), to: match_path(@conn, :delete, @match), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>

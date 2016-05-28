@@ -1,0 +1,12 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "failure_reason_failed"
+msgstr "ausgefallen"
+
+msgid "failure_reason_canceled"
+msgstr "abgesagt"
+
+msgid "failure_reason_team_missed"
+msgstr "nicht angetreten"

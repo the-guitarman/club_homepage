@@ -5,7 +5,6 @@
 
       <p>
         <%= link gettext("create_new_team"), to: team_path(@conn, :new), class: "btn btn-default" %>
-        <%= link gettext("competitions"), to: competition_path(@conn, :index), class: "btn btn-default" %>
       </p>
 
       <table class="table">
@@ -24,7 +23,6 @@
 
       <p>
         <%= link gettext("create_new_team"), to: team_path(@conn, :new), class: "btn btn-default" %>
-        <%= link gettext("competitions"), to: competition_path(@conn, :index), class: "btn btn-default" %>
       </p>
     </div>
   </div>

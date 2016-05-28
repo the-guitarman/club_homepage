@@ -1,0 +1,86 @@
+<div class="row js-match-event-buttons css-match-event-buttons">
+
+  <div class="col-xs-12 text-center">
+    <div class="btn-group js-standard-match-event-buttons" role="group" aria-label="time line controls">
+      <button type="button" class="btn btn-default with-example" data-match-event="kick-off">Kick-Off</button>
+      <button type="button" class="btn btn-default with-example" data-match-event="half-time-break" data-match-event-position="top" disabled="disabled">Half-Time-Break</button>
+      <button type="button" class="btn btn-default with-example" data-match-event="break" data-match-event-position="top" disabled="disabled">Break<br /><small>(e.g. Wether)</small></button>
+      <button type="button" class="btn btn-default with-example" data-match-event="final-whistle" data-match-event-position="bottom" disabled="disabled">Final Whistle</button>
+    </div>
+    <div class="btn-group js-deciding-game-buttons hidden" role="group" aria-label="time line controls">
+      <!--<button type="button" class="btn btn-default" data-match-event="extra-time" data-match-event-position="bottom" disabled="disabled">Extra-Time</button>-->
+      <button type="button" class="btn btn-default" data-match-event="penalty-shoot-out" data-match-event-position="top" disabled="disabled">Penalty Shoot-Out</button>
+      <button type="button" class="btn btn-default" data-match-event="final-whistle" data-match-event-position="bottom" disabled="disabled">Final Whistle</button>
+    </div>
+  </div>
+
+  <div class="col-xs-6 text-center js-penalty-shoot-out-event-buttons hidden">
+    <div class="btn-group" role="group" aria-label="time line controls">
+      <button type="button" class="btn btn-default" data-match-event="penalty-goal" data-match-event-position="left" disabled="disabled">Goal</button>
+      <button type="button" class="btn btn-default" data-match-event="no-penalty-goal" data-match-event-position="left" disabled="disabled">No Goal</button>
+    </div>
+  </div>
+
+  <div class="col-xs-6 text-center js-penalty-shoot-out-event-buttons hidden">
+    <div class="btn-group" role="group" aria-label="time line controls">
+      <button type="button" class="btn btn-default" data-match-event="penalty-goal" data-match-event-position="right" disabled="disabled">Goal</button>
+      <button type="button" class="btn btn-default" data-match-event="no-penalty-goal" data-match-event-position="right" disabled="disabled">No Goal</button>
+    </div>
+  </div>
+
+  <div class="col-xs-6 text-center js-standard-match-event-buttons">
+    <div class="btn-group" role="group" aria-label="time line controls">
+      <button type="button" class="btn btn-default" data-match-event="goal" data-match-event-position="left" disabled="disabled">Goal</button>
+      <button type="button" class="btn btn-default" data-match-event="penalty" data-match-event-position="left" disabled="disabled">Penalty</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="time line controls">
+      <button type="button" class="btn btn-default" data-match-event="foul-yellow" data-match-event-position="left" disabled="disabled"><span class="foul-card yellow"></button>
+        <button type="button" class="btn btn-default" data-match-event="foul-yellow-red" data-match-event-position="left" disabled="disabled"><span class="foul-card yellow"><span class="foul-card red"></button>
+          <button type="button" class="btn btn-default" data-match-event="foul-red" data-match-event-position="left" disabled="disabled"><span class="foul-card red"></button>
+    </div>
+  </div>
+
+  <div class="col-xs-6 text-center js-standard-match-event-buttons">
+    <div class="btn-group" role="group" aria-label="time line controls">
+      <button type="button" class="btn btn-default" data-match-event="goal" data-match-event-position="right" disabled="disabled">Goal</button>
+      <button type="button" class="btn btn-default" data-match-event="penalty" data-match-event-position="right" disabled="disabled">Penalty</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="time line controls">
+      <button type="button" class="btn btn-default" data-match-event="foul-yellow" data-match-event-position="right" disabled="disabled"><span class="foul-card yellow"></button>
+        <button type="button" class="btn btn-default" data-match-event="foul-yellow-red" data-match-event-position="right" disabled="disabled"><span class="foul-card yellow"><span class="foul-card red"></button>
+          <button type="button" class="btn btn-default" data-match-event="foul-red" data-match-event-position="right" disabled="disabled"><span class="foul-card red"></button>
+    </div>
+  </div>
+  
+</div>
+<div class="row js-match-event-form hidden">
+  <div class="hidden-xs col-sm-3 col-md-4"></div>
+  <div class="col-xs-12 col-sm-6 col-md-4">
+    <input type="hidden" name="type" />
+    <input type="hidden" name="position" />
+    <input type="hidden" name="datetime" />
+    <div class="form-group hidden">
+      <label for="input-minute">Minute</label> 
+      <input type="tel" id="input-minute" class="form-control" name="minute" placeholder="e.g. 26" />
+    </div>
+    <div class="form-group hidden">
+      <label for="input-minute">Event</label> 
+      <input type="text" class="form-control" name="event" placeholder="e.g. Karl Heinz (4)" />
+    </div>
+    <div class="form-group hidden">
+      <label for="input-minute">Text</label> 
+      <input type="text" class="form-control" name="text" placeholder="e.g. Karl Heinz (4)" />
+    </div>
+    <div>
+      <input type="submit" class="btn btn-primary" value="Save" />
+      <input type="reset" class="btn btn-danger" value="Stop" />
+    </div>
+  </div>
+  <div class="hidden-xs col-sm-3 col-md-4"></div>
+</div>
+<div id="match-timeline" class="css-match-events js-match-events" data-match-id="<%= @match.id %>" data-match-score="0:0" data-match-events="[]" data-match-character="deciding-game" data-translations="{&quot;kick-off&quot;:&quot;Kick-Off&quot;,&quot;half-time-break&quot;:&quot;Half-Time-Break&quot;,&quot;final-whistle&quot;:&quot;Final-Whistle&quot;,&quot;break&quot;:&quot;Break&quot;,&quot;continuation&quot;:&quot;Continuation&quot;,&quot;goal&quot;:&quot;Goal&quot;,&quot;penalty&quot;:&quot;Penalty&quot;,&quot;penalty-shoot-out&quot;:&quot;Penalty-Shoot-Out&quot;,&quot;penalty-goal&quot;:&quot;Goal&quot;,&quot;no-penalty-goal&quot;:&quot;No Goal&quot;,&quot;foul-yellow&quot;:&quot;Yellow Card&quot;,&quot;foul-yellow-red&quot;:&quot;Yellow-Red Card&quot;,&quot;foul-red&quot;:&quot;Red Card&quot;,&quot;delete-latest-element&quot;:&quot;Delete Latest Element&quot;,&quot;wether&quot;:&quot;Wether&quot;,&quot;match-score&quot;:&quot;Match Score&quot;,&quot;final-score&quot;:&quot;Final Score&quot;}">
+  <span class="timeline-bar timeline-center"> 
+    <span class="timeline-bar-fill"></span>
+  </span>
+  <div class="timeline-states js-match-events-timeline"></div>
+</div>

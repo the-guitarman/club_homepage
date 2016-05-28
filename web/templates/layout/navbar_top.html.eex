@@ -53,13 +53,36 @@
                 <li role="separator" class="divider"></li>
               <% end %>
               <%= if has_role?(@conn, "team-editor") do %>
-                <li class="<%= current_link(@conn, ClubHomepage.TeamController, :index) %>">
+                <li class="<%= current_link(@conn, ClubHomepage.TeamController, [:index, :show, :new, :create, :edit, :update]) %>">
                   <%= link gettext("teams"), to: team_path(@conn, :index) %>
                 </li>
               <% end %>
               <%= if has_role?(@conn, "match-editor") do %>
-                <li class="<%= current_link(@conn, ClubHomepage.MatchController, :index) %>">
+                <li class="<%= current_link(@conn, ClubHomepage.MatchController, [:index, :show, :new, :create, :edit, :update]) %>">
                   <%= link gettext("matches"), to: match_path(@conn, :index) %>
+                </li>
+              <% end %>
+              <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
+                <li role="separator" class="divider"></li>
+              <% end %>
+              <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
+                <li class="<%= current_link(@conn, ClubHomepage.OpponentTeamController, [:index, :show, :new, :create, :edit, :update]) %>">
+                  <%= link gettext("all_opponent_teams"), to: opponent_team_path(@conn, :index) %>
+                </li>
+              <% end %>
+              <%= if has_role?(@conn, "match-editor") do %>
+                <li class="<%= current_link(@conn, ClubHomepage.SeasonController, [:index, :show, :new, :create, :edit, :update]) %>">
+                  <%= link gettext("all") <> " " <> gettext("seasons"), to: season_path(@conn, :index) %>
+                </li>
+              <% end %>
+              <%= if has_role?(@conn, "match-editor") do %>
+                <li class="<%= current_link(@conn, ClubHomepage.MeetingPointController, [:index, :show, :new, :create, :edit, :update]) %>">
+                  <%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index) %>
+                </li>
+              <% end %>
+              <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
+                <li class="<%= current_link(@conn, ClubHomepage.CompetitionController, [:index, :show, :new, :create, :edit, :update]) %>">
+                  <%= link gettext("all") <> " " <> gettext("competitions"), to: competition_path(@conn, :index) %>
                 </li>
               <% end %>
             </ul>

@@ -14,6 +14,9 @@ msgstr ""
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
 #: web/templates/competition/show.html.eex:16
+#: web/templates/layout/navbar_top.html.eex:75
+#: web/templates/layout/navbar_top.html.eex:80
+#: web/templates/layout/navbar_top.html.eex:85
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:77
@@ -43,20 +46,20 @@ msgstr ""
 msgid "all"
 msgstr "All"
 
-#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:65
+#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:62
 #: web/templates/match/new.html.eex:4
 msgid "create_new_match"
 msgstr "Create Match"
 
-#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:63
+#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:60
 msgid "create_next_new_match"
 msgstr "Create Next Match"
 
-#: web/templates/match/index.html.eex:27
+#: web/templates/match/index.html.eex:24
 msgid "date_and_time"
 msgstr "Date And Time"
 
-#: web/templates/match/form.html.eex:30 web/templates/match/index.html.eex:28
+#: web/templates/match/form.html.eex:30 web/templates/match/index.html.eex:25
 msgid "home_match"
 msgstr "Home Game"
 
@@ -67,20 +70,20 @@ msgstr "Home Game"
 msgid "matches"
 msgstr "Matches"
 
-#: web/templates/match/index.html.eex:26 web/templates/match/show.html.eex:43
+#: web/templates/match/index.html.eex:23 web/templates/match/show.html.eex:43
 #: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:28
 msgid "meeting_point"
 msgstr "Meeting Point"
 
-#: web/templates/match/index.html.eex:25
+#: web/templates/match/index.html.eex:22
 msgid "opponent_team"
 msgstr "Opponent Team"
 
-#: web/templates/match/index.html.eex:23
+#: web/templates/match/index.html.eex:20
 msgid "season"
 msgstr "Season"
 
-#: web/templates/match/index.html.eex:24
+#: web/templates/match/index.html.eex:21
 msgid "team"
 msgstr "Team"
 
@@ -112,10 +115,10 @@ msgstr "Some errors occured:"
 msgid "save"
 msgstr "Save"
 
-#: web/templates/match/index.html.eex:15 web/templates/match/index.html.eex:70
-#: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
-#: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
-#: web/templates/team/team_page.html.eex:9
+#: web/templates/layout/navbar_top.html.eex:75
+#: web/templates/match/index.html.eex:67 web/templates/season/edit.html.eex:6
+#: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
+#: web/templates/season/show.html.eex:14 web/templates/team/team_page.html.eex:9
 msgid "seasons"
 msgstr "Seasons"
 
@@ -229,7 +232,7 @@ msgstr "District"
 #: web/templates/meeting_point/show.html.eex:12
 #: web/templates/news/show.html.eex:25
 #: web/templates/opponent_team/index.html.eex:27
-#: web/templates/season/show.html.eex:12 web/templates/team/index.html.eex:17
+#: web/templates/season/show.html.eex:12 web/templates/team/index.html.eex:16
 #: web/templates/user/index.html.eex:40
 msgid "edit"
 msgstr "Edit"
@@ -251,8 +254,9 @@ msgid "edit_season"
 msgstr "Edit Season"
 
 #: web/templates/address/index.html.eex:8
-#: web/templates/address/index.html.eex:55 web/templates/match/index.html.eex:17
-#: web/templates/match/index.html.eex:72
+#: web/templates/address/index.html.eex:55
+#: web/templates/layout/navbar_top.html.eex:80
+#: web/templates/match/index.html.eex:69
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/new.html.eex:11
@@ -272,7 +276,7 @@ msgstr "Meeting Points"
 msgid "name"
 msgstr "Name"
 
-#: web/templates/match/index.html.eex:16 web/templates/match/index.html.eex:71
+#: web/templates/match/index.html.eex:14 web/templates/match/index.html.eex:68
 #: web/templates/opponent_team/edit.html.eex:11
 #: web/templates/opponent_team/index.html.eex:4
 #: web/templates/opponent_team/new.html.eex:11
@@ -329,7 +333,7 @@ msgstr "Expiry Date"
 msgid "secret"
 msgstr "Secret"
 
-#: web/templates/team/index.html.eex:7 web/templates/team/index.html.eex:26
+#: web/templates/team/index.html.eex:7 web/templates/team/index.html.eex:25
 #: web/templates/team/new.html.eex:4
 msgid "create_new_team"
 msgstr "Create Team"
@@ -338,7 +342,7 @@ msgstr "Create Team"
 msgid "edit_team"
 msgstr "Edit Team"
 
-#: web/templates/layout/navbar_top.html.eex:73
+#: web/templates/layout/navbar_top.html.eex:96
 #: web/templates/session/new.html.eex:13
 msgid "log_in"
 msgstr "Log in"
@@ -411,7 +415,7 @@ msgstr "Team Name"
 msgid "users"
 msgstr "Club Members"
 
-#: web/templates/page/index.html.eex:62
+#: web/templates/page/index.html.eex:64
 msgid "latest_match_results"
 msgstr "Latest Match Results"
 
@@ -419,13 +423,13 @@ msgstr "Latest Match Results"
 msgid "latest_news"
 msgstr "Latest News"
 
-#: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:54
+#: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:51
 #: web/templates/match/show.html.eex:75
 #: web/templates/team/team_page_match_table.html.eex:9
 msgid "edit_match"
 msgstr "Edit Match"
 
-#: web/templates/layout/navbar_top.html.eex:67
+#: web/templates/layout/navbar_top.html.eex:90
 msgid "logout"
 msgstr "Logout"
 
@@ -433,7 +437,7 @@ msgstr "Logout"
 msgid "members"
 msgstr "Club Members"
 
-#: web/templates/layout/navbar_top.html.eex:70
+#: web/templates/layout/navbar_top.html.eex:93
 msgid "sign_up"
 msgstr "Sign Up"
 
@@ -484,12 +488,12 @@ msgstr "Permalink"
 msgid "saison_matches_missing"
 msgstr "No matches found."
 
-#: lib/extension/match_view.ex:4 web/templates/match/show.html.eex:7
+#: lib/extension/match_view.ex:6 web/templates/match/show.html.eex:7
 #: web/templates/page/index.html.eex:14
 msgid "o_clock"
 msgstr " "
 
-#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:67
+#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:64
 #: web/templates/match/new_bulk.html.eex:4
 msgid "create_new_matches"
 msgstr "Create Several Matches From JSON-String"
@@ -543,8 +547,8 @@ msgstr "Competition"
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
 #: web/templates/competition/show.html.eex:16
-#: web/templates/match/index.html.eex:14 web/templates/match/index.html.eex:69
-#: web/templates/team/index.html.eex:8 web/templates/team/index.html.eex:27
+#: web/templates/layout/navbar_top.html.eex:85
+#: web/templates/match/index.html.eex:66
 msgid "competitions"
 msgstr "Competitions"
 
@@ -702,15 +706,15 @@ msgstr "Your credentials are wrong."
 msgid "logged_in_now"
 msgstr "You are logged in now."
 
-#: web/controllers/match_controller.ex:42
+#: web/controllers/match_controller.ex:41
 msgid "match_created_successfully"
 msgstr "Match created successfully."
 
-#: web/controllers/match_controller.ex:109
+#: web/controllers/match_controller.ex:108
 msgid "match_deleted_successfully"
 msgstr "Match deleted successfully."
 
-#: web/controllers/match_controller.ex:94
+#: web/controllers/match_controller.ex:93
 msgid "match_updated_successfully"
 msgstr "Match updated successfully."
 
@@ -812,4 +816,8 @@ msgstr "user updated successfully."
 
 #: web/templates/match/form.html.eex:47 web/templates/match/form.html.eex:47
 msgid "select_failure_reason_placeholder"
-msgstr ""
+msgstr "Select Failure Reasoon ..."
+
+#: web/templates/layout/navbar_top.html.eex:70
+msgid "all_opponent_teams"
+msgstr "All Opponent Teams"
