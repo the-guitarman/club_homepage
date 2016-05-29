@@ -49,6 +49,6 @@ defmodule ClubHomepage.MatchView do
   end
 
   def failure_reason_options do
-    Enum.map(failure_reasons, fn(key) -> {Gettext.gettext(ClubHomepage.Gettext, "failure_reason_" <> key), key} end)
+    Enum.map(failure_reasons, fn(key) -> {Gettext.dgettext(ClubHomepage.Gettext, "additionals", "failure_reason_" <> key), key} end)
   end
 end

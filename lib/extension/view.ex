@@ -126,9 +126,6 @@ defmodule ClubHomepage.Extension.View do
     end
   end
 
-
-
- 
   def show_form_errors(changeset, f) do
     if changeset.action do
       Tag.content_tag(:div, class: "alert alert-danger") do
@@ -138,7 +135,7 @@ defmodule ClubHomepage.Extension.View do
         ul_tag = Tag.content_tag(:ul) do
           for {attr, message} <- f.errors do
             Tag.content_tag(:li) do
-              Form.humanize(attr) <> " " <> translate_error(message)
+              Gettext.dgettext(ClubHomepage.Gettext, "models", attr_underscored(attr)) <> " " <> translate_error(message)
             end
           end
         end

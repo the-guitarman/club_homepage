@@ -27,13 +27,21 @@ defmodule ClubHomepage.ErrorHelpers do
   """
   def error_tag(form, field) do
     if error = form.errors[field] do
-      content_tag :span, (humanize(field) <> " " <> translate_error(error)), class: "help-block"
+      field_translated = Gettext.dgettext(ClubHomepage.Gettext, "models", attr_underscored(field))
+      content_tag :span, (field_translated <> " " <> translate_error(error)), class: "help-block"
     end
   end
   def error_tag(changeset, form, field) do
     if changeset.action do
       error_tag(form, field)
     end
+  end
+
+  def attr_underscored(attr) do
+    attr
+    |> humanize
+    |> String.downcase
+    |> String.replace(~r/\s/, "_")
   end
 
   @doc """

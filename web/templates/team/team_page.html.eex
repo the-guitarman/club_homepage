@@ -26,11 +26,11 @@
           <h2 class="text-center"><%= @season.name %></h2>
           <%= if has_role?(@conn, ["match-editor"]) do %>
             <div>
-              <%#= if @next_match_parameters do %>
-              <%#= link gettext("create_next_new_match"), to: match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
-              <%# else %>
-              <%#= link gettext("create_new_match"), to: match_path(@conn, :new), class: "btn btn-default" %>
-              <%# end %>
+              <%= if @next_match_parameters do %>
+                <%= link gettext("create_next_new_match"), to: match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
+              <% else %>
+                <%= link gettext("create_new_match"), to: match_path(@conn, :new), class: "btn btn-default" %>
+              <% end %>
               <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk, @next_match_parameters), class: "btn btn-default" %>
             </div>
           <% end %>

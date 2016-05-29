@@ -38,7 +38,7 @@ msgstr ""
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
 #: web/templates/team/edit.html.eex:11 web/templates/team/index.html.eex:4
 #: web/templates/team/new.html.eex:11 web/templates/team/show.html.eex:21
-#: web/templates/team/team_page.html.eex:48
+#: web/templates/team/team_page.html.eex:59
 #: web/templates/text_page/edit.html.eex:9
 #: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
 #: web/templates/user/index.html.eex:4 web/templates/user/new.html.eex:15
@@ -46,20 +46,21 @@ msgstr ""
 msgid "all"
 msgstr "Alle"
 
-#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:62
-#: web/templates/match/new.html.eex:4
+#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:60
+#: web/templates/match/new.html.eex:4 web/templates/team/team_page.html.eex:32
 msgid "create_new_match"
 msgstr "Neues Spiel anlegen"
 
-#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:60
+#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:58
+#: web/templates/team/team_page.html.eex:30
 msgid "create_next_new_match"
 msgstr "Nächstes Spiel anlegen"
 
-#: web/templates/match/index.html.eex:24
+#: web/templates/match/index.html.eex:22
 msgid "date_and_time"
 msgstr "Datum und Zeit"
 
-#: web/templates/match/form.html.eex:30 web/templates/match/index.html.eex:25
+#: web/templates/match/form.html.eex:30 web/templates/match/index.html.eex:23
 msgid "home_match"
 msgstr "Heimspiel"
 
@@ -70,20 +71,20 @@ msgstr "Heimspiel"
 msgid "matches"
 msgstr "Spiele"
 
-#: web/templates/match/index.html.eex:23 web/templates/match/show.html.eex:43
+#: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:43
 #: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:28
 msgid "meeting_point"
 msgstr "Treffpunkt"
 
-#: web/templates/match/index.html.eex:22
+#: web/templates/match/index.html.eex:20
 msgid "opponent_team"
 msgstr "Gegnerische Mannschaft"
 
-#: web/templates/match/index.html.eex:20
+#: web/templates/match/index.html.eex:18
 msgid "season"
 msgstr "Saison"
 
-#: web/templates/match/index.html.eex:21
+#: web/templates/match/index.html.eex:19
 msgid "team"
 msgstr "Mannschaft"
 
@@ -96,7 +97,7 @@ msgstr "Neue Saison anlegen"
 msgid "delete_match"
 msgstr "Spiel löschen"
 
-#: lib/extension/view.ex:136 web/templates/match/form_bulk.html.eex:4
+#: lib/extension/view.ex:133 web/templates/match/form_bulk.html.eex:4
 msgid "form_input_errors_notice"
 msgstr "Es sind folgende Fehler aufgetreten:"
 
@@ -116,9 +117,9 @@ msgid "save"
 msgstr "Speichern"
 
 #: web/templates/layout/navbar_top.html.eex:75
-#: web/templates/match/index.html.eex:67 web/templates/season/edit.html.eex:6
-#: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
-#: web/templates/season/show.html.eex:14 web/templates/team/team_page.html.eex:9
+#: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
+#: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
+#: web/templates/team/team_page.html.eex:9
 msgid "seasons"
 msgstr "Saisons"
 
@@ -256,7 +257,6 @@ msgstr "Saison ändern/bearbeiten"
 #: web/templates/address/index.html.eex:8
 #: web/templates/address/index.html.eex:55
 #: web/templates/layout/navbar_top.html.eex:80
-#: web/templates/match/index.html.eex:69
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/new.html.eex:11
@@ -276,7 +276,6 @@ msgstr "Treffpunkte"
 msgid "name"
 msgstr "Name"
 
-#: web/templates/match/index.html.eex:14 web/templates/match/index.html.eex:68
 #: web/templates/opponent_team/edit.html.eex:11
 #: web/templates/opponent_team/index.html.eex:4
 #: web/templates/opponent_team/new.html.eex:11
@@ -359,7 +358,7 @@ msgstr "Passwort"
 #: web/templates/layout/navbar_top.html.eex:57
 #: web/templates/page/index.html.eex:35 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
-#: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:48
+#: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:59
 msgid "teams"
 msgstr "Vereinsmannschaften"
 
@@ -423,7 +422,7 @@ msgstr "Letzte Spiele"
 msgid "latest_news"
 msgstr "News"
 
-#: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:51
+#: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:49
 #: web/templates/match/show.html.eex:75
 #: web/templates/team/team_page_match_table.html.eex:9
 msgid "edit_match"
@@ -484,7 +483,7 @@ msgstr "Veröffentlicht"
 msgid "slug"
 msgstr "Permalink"
 
-#: web/templates/team/team_page.html.eex:39
+#: web/templates/team/team_page.html.eex:50
 msgid "saison_matches_missing"
 msgstr "Es sind keine Spiele für diese Mannschaft gespeichert."
 
@@ -493,8 +492,9 @@ msgstr "Es sind keine Spiele für diese Mannschaft gespeichert."
 msgid "o_clock"
 msgstr "Uhr"
 
-#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:64
+#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:62
 #: web/templates/match/new_bulk.html.eex:4
+#: web/templates/team/team_page.html.eex:34
 msgid "create_new_matches"
 msgstr "Mehrere Spiele aus einem JSON-String anlegen"
 
@@ -548,7 +548,6 @@ msgstr "Wettbewerb"
 #: web/templates/competition/new.html.eex:10
 #: web/templates/competition/show.html.eex:16
 #: web/templates/layout/navbar_top.html.eex:85
-#: web/templates/match/index.html.eex:66
 msgid "competitions"
 msgstr "Wettbewerbe"
 
@@ -706,15 +705,15 @@ msgstr "Die Zugangsdaten sind falsch."
 msgid "logged_in_now"
 msgstr "Du bist jetzt eingeloggt."
 
-#: web/controllers/match_controller.ex:41
+#: web/controllers/match_controller.ex:45
 msgid "match_created_successfully"
 msgstr "Das Spiel wurde angelegt."
 
-#: web/controllers/match_controller.ex:108
+#: web/controllers/match_controller.ex:118
 msgid "match_deleted_successfully"
 msgstr "Das Spiel wurde gelöscht."
 
-#: web/controllers/match_controller.ex:93
+#: web/controllers/match_controller.ex:103
 msgid "match_updated_successfully"
 msgstr "Das Spiel wurde gespeichert."
 

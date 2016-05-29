@@ -4,6 +4,8 @@ defmodule ClubHomepage.MatchController do
   alias ClubHomepage.Match
   alias ClubHomepage.MeetingPoint
   alias ClubHomepage.OpponentTeam
+  alias ClubHomepage.Repo
+  alias ClubHomepage.Team
   alias ClubHomepage.JsonMatchesCreator
   alias ClubHomepage.JsonMatchesValidator
 
@@ -36,17 +38,24 @@ defmodule ClubHomepage.MatchController do
     changeset = Match.changeset(%Match{}, match_params)
 
     case Repo.insert(changeset) do
-      {:ok, _match} ->
+      {:ok, match} ->
+        team = Repo.get(Team, match.team_id)
+        season = Repo.get(Season, match.season_id)
         conn
         |> put_flash(:info, gettext("match_created_successfully"))
-        |> redirect(to: match_path(conn, :index, prepare_next_match_parameters(match_params)))
+        #|> redirect(to: match_path(conn, :index, prepare_next_match_parameters(match_params)))
+        |> redirect(to: team_page_with_season_path(@conn, team.slug, season.name, prepare_next_match_parameters(match)))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
   def new_bulk(conn, params) do
-    match_params = params["match"] || %{}
+    match_params = 
+      case params do
+        %{"season_id" => season_id, "team_id" => team_id} -> %{"season_id" => season_id, "team_id" => team_id}
+        _ -> %{}
+      end
     changeset = JsonMatchesValidator.changeset(match_params)
     render(conn, "new_bulk.html", changeset: changeset,
            season_options: conn.assigns.season_options,
@@ -146,12 +155,19 @@ defmodule ClubHomepage.MatchController do
     assign(conn, :meeting_point_options, Repo.all(query))
   end
 
+  defp prepare_next_match_parameters(%ClubHomepage.Match{} = match) do
+    %{"season_id" => match.season_id, "team_id" => match.team_id, "start_at" => next_start_at(match.start_at)}
+  end
   defp prepare_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}) do
+    %{"season_id" => season_id, "team_id" => team_id, "start_at" => next_start_at(start_at)}
+  end
+
+  defp next_start_at(start_at) do
     {:ok, start_at} =
       start_at
       |> Timex.Date.add(Timex.Time.to_timestamp(7, :days))
       |> Timex.DateFormat.format("%d.%m.%Y %H:%M", :strftime)
-    %{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}
+    start_at
   end
 
   defp next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}) do
@@ -162,6 +178,9 @@ defmodule ClubHomepage.MatchController do
   defp set_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => _start_at} = params) do
     %{"start_at" => start_at} = parse_datetime_field(params, :start_at)
     %{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}
+  end
+  defp set_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id} = params) do
+    %{"season_id" => season_id, "team_id" => team_id}
   end
   defp set_next_match_parameters(_), do: %{}
 end

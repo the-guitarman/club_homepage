@@ -28,7 +28,7 @@ defmodule ClubHomepage.Extension.MatchView do
 
   defp match_failure(match) do
     case match_failure?(match) do
-      true -> Gettext.gettext(ClubHomepage.Gettext, "failure_reason_" <> match.failure_reason)
+      true -> Gettext.dgettext(ClubHomepage.Gettext, "additionals", "failure_reason_" <> match.failure_reason)
       _ -> @no_match_result
     end
   end
