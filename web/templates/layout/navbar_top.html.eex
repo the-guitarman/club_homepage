@@ -57,11 +57,13 @@
                   <%= link gettext("teams"), to: team_path(@conn, :index) %>
                 </li>
               <% end %>
-              <%= if has_role?(@conn, "match-editor") do %>
-                <li class="<%= current_link(@conn, ClubHomepage.MatchController, [:index, :show, :new, :create, :edit, :update]) %>">
-                  <%= link gettext("matches"), to: match_path(@conn, :index) %>
+              <!--
+              <%#= if has_role?(@conn, "match-editor") do %>
+                <li class="<%#= current_link(@conn, ClubHomepage.MatchController, [:index, :show, :new, :create, :edit, :update]) %>">
+                  <%#= link gettext("matches"), to: match_path(@conn, :index) %>
                 </li>
-              <% end %>
+              <%# end %>
+              -->
               <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
                 <li role="separator" class="divider"></li>
               <% end %>

@@ -48,7 +48,8 @@ CLOSED: [2016-04-12 Tue 20:55]
 * Commands + Tests
 ** DONE UserRole
 CLOSED: [2016-04-12 Tue 20:58]
-** Permalink
+** DONE Permalink
+CLOSED: [2016-05-30 Mon 13:56]
 * Controllers + Tests
 * Sites
 ** Homepage
@@ -57,8 +58,13 @@ CLOSED: [2016-04-12 Tue 21:02]
 *** DONE a user is logged in, so show all news
 CLOSED: [2016-04-12 Tue 21:03]
 *** show a list of active teams from current season
-*** show a list of last matches, one for each active team
-*** show a list of next matches, one for each active team
+*** DONE show a list of last matches, one for each active team
+CLOSED: [2016-05-30 Mon 13:57]
+*** DONE show a list of next matches, one for each active team
+CLOSED: [2016-05-30 Mon 13:57]
+*** My Profil Page
+*** Reset Password
+*** Forgot Password
 * BackOffice
 ** DONE Redirect after login
 CLOSED: [2016-04-12 Tue 21:06]
