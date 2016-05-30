@@ -20,7 +20,7 @@ defmodule ClubHomepage.ModelValidator do
         model
         |> get_value_to_validate(key)
         |> check_uniqueness_of_value(key)
-      _ -> 
+      _ ->
         unique_constraint(model, key, params)
     end
   end
@@ -38,7 +38,7 @@ defmodule ClubHomepage.ModelValidator do
     end
   end
 
-  defp is_sqlite_adapter? do 
+  def is_sqlite_adapter? do 
     case Application.get_env(:club_homepage, Repo)[:adapter] do
       Sqlite.Ecto -> true
       _ -> false
@@ -56,9 +56,13 @@ defmodule ClubHomepage.ModelValidator do
   end
 
   defp unique_constraint(model, key, params) when is_atom(key) do
+    IO.puts "--- 1"
+    IO.inspect key
     Changeset.unique_constraint(model, key, params)
   end
   defp unique_constraint(model, [key | _tail] = keys, params) when is_list(keys) do
+    IO.puts "--- 2"
+    IO.inspect key
     Changeset.unique_constraint(model, key, params)
   end
 

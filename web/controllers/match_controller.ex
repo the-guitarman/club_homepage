@@ -5,6 +5,7 @@ defmodule ClubHomepage.MatchController do
   alias ClubHomepage.MeetingPoint
   alias ClubHomepage.OpponentTeam
   alias ClubHomepage.Repo
+  alias ClubHomepage.Season
   alias ClubHomepage.Team
   alias ClubHomepage.JsonMatchesCreator
   alias ClubHomepage.JsonMatchesValidator
@@ -44,7 +45,7 @@ defmodule ClubHomepage.MatchController do
         conn
         |> put_flash(:info, gettext("match_created_successfully"))
         #|> redirect(to: match_path(conn, :index, prepare_next_match_parameters(match_params)))
-        |> redirect(to: team_page_with_season_path(@conn, team.slug, season.name, prepare_next_match_parameters(match)))
+        |> redirect(to: team_page_with_season_path(conn, :show, team.slug, season.name, prepare_next_match_parameters(match)))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -156,10 +157,10 @@ defmodule ClubHomepage.MatchController do
   end
 
   defp prepare_next_match_parameters(%ClubHomepage.Match{} = match) do
-    %{"season_id" => match.season_id, "team_id" => match.team_id, "start_at" => next_start_at(match.start_at)}
+    %{"season_id" => match.season_id, "team_id" => match.team_id, "start_at" => next_start_at(match.start_at), "competition_id" => match.competition_id}
   end
-  defp prepare_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}) do
-    %{"season_id" => season_id, "team_id" => team_id, "start_at" => next_start_at(start_at)}
+  defp prepare_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at} = params) do
+    %{"season_id" => season_id, "team_id" => team_id, "start_at" => next_start_at(start_at), competition_id: params["competition_id"]}
   end
 
   defp next_start_at(start_at) do
@@ -179,7 +180,7 @@ defmodule ClubHomepage.MatchController do
     %{"start_at" => start_at} = parse_datetime_field(params, :start_at)
     %{"season_id" => season_id, "team_id" => team_id, "start_at" => start_at}
   end
-  defp set_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id} = params) do
+  defp set_next_match_parameters(%{"season_id" => season_id, "team_id" => team_id}) do
     %{"season_id" => season_id, "team_id" => team_id}
   end
   defp set_next_match_parameters(_), do: %{}
