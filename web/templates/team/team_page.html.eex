@@ -10,7 +10,9 @@
               <%= for season <- @seasons do %>
                 <% link_path = team_page_with_season_path(@conn, :show, @team.slug, season.name) %>
                 <%= if @conn.request_path == link_path do %>
-                  <button type="button" class="btn btn-default" disabled="disabled"><%= season.name %></button>
+                  <h2>
+                    <button type="button" class="btn btn-default btn-primary" disabled="disabled"><%= season.name %></button>
+                  </h2>
                 <% else %>
                   <%= link season.name, to: link_path, class: "btn btn-default" %>
                 <% end %>
@@ -23,7 +25,6 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <h2 class="text-center"><%= @season.name %></h2>
           <%= if has_role?(@conn, ["match-editor"]) do %>
             <div>
               <%= if @next_match_parameters do %>
@@ -31,9 +32,16 @@
               <% else %>
                 <%= link gettext("create_new_match"), to: match_path(@conn, :new), class: "btn btn-default" %>
               <% end %>
-              <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk, @next_match_parameters), class: "btn btn-default" %>
+              <%= if has_role?(@conn, ["administrator"]) do %>
+                <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk, @next_match_parameters), class: "btn btn-default" %>
+              <% end %>
             </div>
           <% end %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-xs-12">
           <%= if Enum.count(@matches) > 0 || Enum.count(@latest_matches) > 0 do %>
             <%= if Enum.count(@matches) > 0 do  %>
               <h3>Nächste Spiele</h3>

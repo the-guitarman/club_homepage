@@ -18,7 +18,7 @@ defmodule ClubHomepage.ErrorHelpers do
     if changeset.action do
       error_cls(form, field)
     else
-      ""
+      "" 
     end
   end
 

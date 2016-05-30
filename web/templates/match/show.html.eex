@@ -74,7 +74,8 @@
 
       <%= link gettext("edit_match"), to: match_path(@conn, :edit, @match), class: "btn btn-default" %>
       <%= link gettext("delete_match"), to: match_path(@conn, :delete, @match), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
-      <%= link gettext("all") <> " " <> gettext("matches"), to: match_path(@conn, :index), class: "btn btn-default" %>
+      <%#= link gettext("all") <> " " <> gettext("matches"), to: match_path(@conn, :index), class: "btn btn-default" %>
+      <%= link gettext("all") <> " " <> gettext("matches"), to: team_page_with_season_path(@conn, :show, @match.team.slug, @match.season.name), class: "btn btn-default" %>
     </div>
   </div>
 </div>
