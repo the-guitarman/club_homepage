@@ -1,0 +1,43 @@
+## `msgid`s in this file come from POT (.pot) files. Do not add, change, or
+## remove `msgid`s manually here as they're tied to the ones in the
+## corresponding POT file (with the same domain). Use `mix gettext.extract
+## --merge` or `mix gettext.merge` to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+
+msgid "address"
+msgstr "Adresse"
+
+msgid "competition"
+msgstr "Wettbewerb"
+
+msgid "match"
+msgstr "Spiel"
+
+msgid "meeting_point"
+msgstr "Treffpunkt"
+
+msgid "news"
+msgstr "News"
+
+msgid "opponent_team"
+msgstr "Gegnerische Mannschaft"
+
+msgid "permalink"
+msgstr "Permalink"
+
+msgid "season"
+msgstr "Saison"
+
+msgid "secret"
+msgstr "Secret"
+
+msgid "team"
+msgstr "Mannschaft"
+
+msgid "text_page"
+msgstr "Text Page"
+
+msgid "user"
+msgstr "Benutzer"

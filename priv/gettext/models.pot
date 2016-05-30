@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "address"
+msgstr ""
+
+msgid "competition"
+msgstr ""
+
+msgid "match"
+msgstr ""
+
+msgid "meeting_point"
+msgstr ""
+
+msgid "news"
+msgstr ""
+
+msgid "opponent_team"
+msgstr ""
+
+msgid "permalink"
+msgstr ""
+
+msgid "season"
+msgstr ""
+
+msgid "secret"
+msgstr ""
+
+msgid "team"
+msgstr ""
+
+msgid "text_page"
+msgstr ""
+
+msgid "user"
+msgstr ""
