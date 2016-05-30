@@ -63,8 +63,8 @@ CLOSED: [2016-05-30 Mon 13:57]
 *** DONE show a list of next matches, one for each active team
 CLOSED: [2016-05-30 Mon 13:57]
 *** My Profil Page
-*** Reset Password
-*** Forgot Password
+*** Reset Password Page
+*** Forgot Password Page
 * BackOffice
 ** DONE Redirect after login
 CLOSED: [2016-04-12 Tue 21:06]
