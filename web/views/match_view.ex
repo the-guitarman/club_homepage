@@ -51,4 +51,24 @@ defmodule ClubHomepage.MatchView do
   def failure_reason_options do
     Enum.map(failure_reasons, fn(key) -> {Gettext.dgettext(ClubHomepage.Gettext, "additionals", "failure_reason_" <> key), key} end)
   end
+
+  def match_in_progress?(match) do
+    Match.in_progress?(match)
+  end
+
+  def match_finished?(match) do
+    Match.finished?(match)
+  end
+
+  def within_hours_before_kick_off?(match, hours) do
+    match.start_at < Timex.Date.add(Timex.Date.local, Timex.Time.to_timestamp(hours, :hours))
+  end
+
+  def match_character(match) do
+    competition = ClubHomepage.Repo.get!(ClubHomepage.Competition, match.competition_id)
+    case competition.matches_need_decition do
+      true -> "deciding-game"
+      _ -> ""
+    end
+  end
 end

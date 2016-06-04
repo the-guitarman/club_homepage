@@ -43,7 +43,7 @@ defmodule ClubHomepage.Router do
     resources "/users", UserController, only: [:index, :edit, :update, :delete], as: :managed_user
 
     resources "/addresses", AddressController, except: [:show]
-    resources "/competitions", CompetitionController
+    resources "/competitions", CompetitionController, except: [:show]
     resources "/matches", MatchController
     get "/matches/bulk/new", MatchController, :new_bulk, as: :matches
     post "/matches/bulk", MatchController, :create_bulk, as: :matches

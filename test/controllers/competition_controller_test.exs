@@ -2,7 +2,7 @@ defmodule ClubHomepage.CompetitionControllerTest do
   use ClubHomepage.ConnCase
 
   alias ClubHomepage.Competition
-  @valid_attrs %{name: "some content"}
+  @valid_attrs %{name: "some content", matches_need_decition: false}
   @invalid_attrs %{}
 
   import ClubHomepage.Factory
@@ -25,7 +25,6 @@ defmodule ClubHomepage.CompetitionControllerTest do
       get(conn, competition_path(conn, :index)),
       get(conn, competition_path(conn, :new)),
       post(conn, competition_path(conn, :create), competition: @valid_attrs),
-      get(conn, competition_path(conn, :show, competition)),
       get(conn, competition_path(conn, :edit, competition)),
       put(conn, competition_path(conn, :update, competition), competition: @valid_attrs),
       delete(conn, competition_path(conn, :delete, competition))
@@ -51,7 +50,7 @@ defmodule ClubHomepage.CompetitionControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     conn = post conn, competition_path(conn, :create), competition: @valid_attrs
-    assert redirected_to(conn) == competition_path(conn, :index)
+    assert redirected_to(conn) == competition_path(conn, :index) <> "#competition-1"
     assert Repo.get_by(Competition, @valid_attrs)
   end
 
@@ -59,20 +58,6 @@ defmodule ClubHomepage.CompetitionControllerTest do
   test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user} do
     conn = post conn, competition_path(conn, :create), competition: @invalid_attrs
     assert html_response(conn, 200) =~ "Create Competition"
-  end
-
-  @tag login: true
-  test "shows chosen resource", %{conn: conn, current_user: _current_user} do
-    competition = Repo.insert! %Competition{}
-    conn = get conn, competition_path(conn, :show, competition)
-    assert html_response(conn, 200) =~ "Competition"
-  end
-
-  @tag login: true
-  test "renders page not found when id is nonexistent", %{conn: conn, current_user: _current_user} do
-    assert_error_sent 404, fn ->
-      get conn, competition_path(conn, :show, -1)
-    end
   end
 
   @tag login: true
@@ -86,7 +71,7 @@ defmodule ClubHomepage.CompetitionControllerTest do
   test "updates chosen resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     competition = Repo.insert! %Competition{}
     conn = put conn, competition_path(conn, :update, competition), competition: @valid_attrs
-    assert redirected_to(conn) == competition_path(conn, :show, competition)
+    assert redirected_to(conn) == competition_path(conn, :index) <> "#competition-#{competition.id}"
     assert Repo.get_by(Competition, @valid_attrs)
   end
 

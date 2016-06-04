@@ -5,7 +5,7 @@ defmodule ClubHomepage.CompetitionTest do
 
   import ClubHomepage.Factory
 
-  @valid_attrs %{name: "some content"}
+  @valid_attrs %{name: "some content", matches_need_decition: false}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

@@ -103,6 +103,9 @@ body .row {
 	text-align: right;
 	float: left;
 }
+.position-left img.replacement {
+	transform: rotate(180deg);
+}
 .position-right .timeline-content {
 	text-align: left;
 	float: right;
@@ -146,6 +149,18 @@ button[disabled] .foul-card.yellow {
 }
 button[disabled] .foul-card.red {
 	background-color: #C1C1C1;
+}
+button[data-match-event=replacement][disabled] img {
+	-webkit-filter: grayscale(100%); /* Webkit */
+    -webkit-filter: grayscale(1); /* Old Webkit */
+    -moz-filter: grayscale(1);
+    -o-filter: grayscale(1);
+    -ms-filter: grayscale(1);
+    filter: grayscale(1); /* Standard */
+    filter: gray;  /* IE6-9 */
+}
+button[data-match-event=replacement][data-match-event-position=left] img {
+    transform: rotate(180deg);
 }
 
 /*

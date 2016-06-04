@@ -2,6 +2,12 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
+msgid "yes"
+msgstr "ja"
+
+msgid "no"
+msgstr "nein"
+
 msgid "failure_reason_failed"
 msgstr "ausgefallen"
 

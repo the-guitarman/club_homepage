@@ -20,18 +20,13 @@ defmodule ClubHomepage.CompetitionController do
     changeset = Competition.changeset(%Competition{}, competition_params)
 
     case Repo.insert(changeset) do
-      {:ok, _competition} ->
+      {:ok, competition} ->
         conn
         |> put_flash(:info, gettext("competition_created_successfully"))
-        |> redirect(to: competition_path(conn, :index))
+        |> redirect(to: competition_path(conn, :index) <> "#competition-#{competition.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    competition = Repo.get!(Competition, id)
-    render(conn, "show.html", competition: competition)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -48,7 +43,7 @@ defmodule ClubHomepage.CompetitionController do
       {:ok, competition} ->
         conn
         |> put_flash(:info, gettext("competition_updated_successfully"))
-        |> redirect(to: competition_path(conn, :show, competition))
+        |> redirect(to: competition_path(conn, :index) <> "#competition-#{competition.id}")
       {:error, changeset} ->
         render(conn, "edit.html", competition: competition, changeset: changeset)
     end

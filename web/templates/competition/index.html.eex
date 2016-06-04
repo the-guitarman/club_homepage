@@ -10,7 +10,7 @@
         <thead>
           <tr>
             <th><%= gettext("name") %></th>
-
+            <th><%= gettext("matches_need_decition") %></th>
             <th></th>
           </tr>
         </thead>
@@ -18,7 +18,14 @@
           <%= if Enum.count(@competitions) > 0 do %>
             <%= for competition <- @competitions do %>
                 <tr>
-                  <td><%= competition.name %></td>
+                  <td><a name="competition-<%= competition.id %>"><%= competition.name %></a></td>
+                  <td>
+                    <%= case competition.matches_need_decition do
+                          true -> dgettext("additionals", "yes")
+                          _    -> dgettext("additionals", "no")
+                        end
+                    %>
+                  </td>
 
                   <td class="text-right">
                     <%= link "Show", to: competition_path(@conn, :show, competition), class: "btn btn-default btn-xs" %>

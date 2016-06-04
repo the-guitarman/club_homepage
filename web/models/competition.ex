@@ -5,6 +5,7 @@ defmodule ClubHomepage.Competition do
 
   schema "competitions" do
     field :name, :string
+    field :matches_need_decition, :boolean
 
     has_many :teams, ClubHomepage.Team#, on_delete: :delete_all
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
@@ -12,7 +13,7 @@ defmodule ClubHomepage.Competition do
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(name matches_need_decition)
   @optional_fields ~w()
 
   @doc """

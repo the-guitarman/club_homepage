@@ -43,13 +43,21 @@ defmodule ClubHomepage.Match do
     |> validate_inclusion(:failure_reason, [nil | failure_reasons])
   end
 
-
   @doc """
   Returns true after two hours from match start. Otherwise false.
   """
   @spec finished?( ClubHomepage.Match ) :: Boolean
   def finished?(match) do
-    match_end_at = Timex.Date.add(match.start_at, Timex.Time.to_timestamp(2, :hours))
+    #TODO: read the match end datetime from the timeline events 
+    match_end_at = Timex.Date.add(match.start_at, Timex.Time.to_timestamp(4, :hours))
     match_end_at < Timex.Date.local
+  end
+
+  @doc """
+  Returns true if the match has been started and it's not finished. Otherwise false.
+  """
+  @spec in_progress?( ClubHomepage.Match ) :: Boolean
+  def in_progress?(match) do
+    match.start_at < Timex.Date.local && not finished?(match)
   end
 end

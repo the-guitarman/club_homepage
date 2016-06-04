@@ -67,7 +67,7 @@ defmodule ClubHomepage.JsonMatchesCreator do
   end
 
   defp create_competition(name) do
-    changeset = Competition.changeset(%Competition{}, %{name: name})
+    changeset = Competition.changeset(%Competition{}, %{name: name, matches_need_decition: false})
     {:ok, competition} = Repo.insert(changeset)
     competition
   end
