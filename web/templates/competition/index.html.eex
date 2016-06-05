@@ -28,9 +28,12 @@
                   </td>
 
                   <td class="text-right">
-                    <%= link "Show", to: competition_path(@conn, :show, competition), class: "btn btn-default btn-xs" %>
-                    <%= link "Edit", to: competition_path(@conn, :edit, competition), class: "btn btn-default btn-xs" %>
-                    <%= link "Delete", to: competition_path(@conn, :delete, competition), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+                    <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
+                      <%= link "Edit", to: competition_path(@conn, :edit, competition), class: "btn btn-default" %>
+                      <%= if has_role?(@conn, ["administrator"]) do %>
+                        <%= link "Delete", to: competition_path(@conn, :delete, competition), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+                      <% end %>
+                    <% end %>
                   </td>
                 </tr>
             <% end %>
