@@ -8,13 +8,14 @@
 
 This is a website skeleton for your soccer or handball club. It's a phoenixframework projekt written in elixir. The intension is not only the inform about the club. There is a back office to register and edit club members, create and edit teams, match lists, team selections and club news and there will be live events from running matches via channels (socket connections) so that other club members are informed about a running match asap.
 
-## Features
+### Features
 
 - authentication and authorization system
 - editable standard pages (about us, registration information, history/chronicle, sponsors, contact)
 - homepage shows news, latest matches and next matches
 - news system with public and member news
 - team pages with next matches, played matches and saison selection
+- next match page shows meeting point and match location at an open street map
 
 ## Installation
 

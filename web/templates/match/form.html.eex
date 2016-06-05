@@ -40,6 +40,7 @@
     </div>
     <%#= checkbox f, :home_match, class: "form-control" %>
     <%= error_tag @changeset, f, :home_match %>
+    <div class="clearfix"></div>
   </div>
 
 
