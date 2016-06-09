@@ -41,8 +41,11 @@ body .row {
 	position: relative;
 	width:100%;
 }
+.timeline-state * {
+  font-size: 14px;
+}
 .timeline-state .css-close-button-wrap {
-	background-color: #FFFFFF;
+	background-color: #EEEEEE;
 }
 .timeline-state button.close {
 	background-color: #FF0000;
@@ -82,7 +85,7 @@ body .row {
 .timeline-icon.penalty-shoot-out {
     border-radius: 0px;
     height: 40px;
-    background-color: #FFFFFF;
+    background-color: #EEEEEE;
     box-shadow: none;
 }
 
@@ -93,6 +96,7 @@ body .row {
 	position:relative;
 }
 .timeline-content p {
+  font-size: 14px;
 	margin: 0px;
 	line-height: 40px;
 }
@@ -115,7 +119,7 @@ body .row {
 	text-align: center;
 	width: 100%;
 	float: none !important;
-	background-color: #FFFFFF;
+	background-color: #EEEEEE;
 }
 .position-bottom .timeline-content {
 	padding-bottom: 30px;

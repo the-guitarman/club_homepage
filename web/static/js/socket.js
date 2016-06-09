@@ -1,7 +1,7 @@
 import {Socket} from "phoenix"
 let socket = new Socket("/socket", {
-  params: {token: window.userToken},
-  logger: (kind, msg, data) => { console.log(`${kind}: ${msg}`, data) }
+  params: {token: window.userToken}//,
+  //logger: (kind, msg, data) => { console.log(`${kind}: ${msg}`, data) }
 })
 export default socket
 
@@ -16,7 +16,7 @@ import {Socket} from "phoenix"
 let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 // When you connect, you'll often need to authenticate the client.
-// For example, imagine you have an authentication plug, `MyAuth`,
+ // For example, imagine you have an authentication plug, `MyAuth`,
 // which authenticates the session and assigns a `:current_user`.
 // If the current user exists you can assign the user's token in
 // the connection for use in the layout.

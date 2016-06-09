@@ -11,6 +11,9 @@ defmodule ClubHomepage.Match do
     field :team_goals, :integer
     field :opponent_team_goals, :integer
     field :failure_reason, :string
+    field :description, :string
+    field :match_events, :string, default: "[]"
+
     field :json, :string, virtual: true
 
     belongs_to :competition, ClubHomepage.Competition
@@ -23,7 +26,7 @@ defmodule ClubHomepage.Match do
   end
 
   @required_fields ~w(competition_id season_id team_id opponent_team_id start_at home_match)
-  @optional_fields ~w(meeting_point_id team_goals opponent_team_goals failure_reason)
+  @optional_fields ~w(meeting_point_id team_goals opponent_team_goals failure_reason description match_events)
 
   @doc """ 
   Creates a changeset based on the `model` and `params`.

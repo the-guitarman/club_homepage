@@ -43,7 +43,7 @@ defmodule ClubHomepage.TeamController do
     query = from(m in Match, preload: [:competition, :team, :opponent_team], where: [team_id: ^team.id, season_id: ^season.id])
     start_at = to_timex_ecto_datetime(Timex.Date.local)
     matches = Repo.all(from m in query, where: m.start_at > ^start_at, order_by: [asc: m.start_at])
-    latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at, order_by: [asc: m.start_at])
+    latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at, order_by: [desc: m.start_at])
     render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches, next_match_parameters: %{"season_id" => season.id, "team_id" => team.id, "start_at" => params["start_at"], "competition_id" => params["competition_id"]})
   end
   def show(conn, %{"slug" => slug}) do

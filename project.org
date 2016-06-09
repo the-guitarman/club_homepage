@@ -12,7 +12,9 @@ CLOSED: [2016-04-12 Tue 20:56]
 ** DONE Competition
 CLOSED: [2016-04-12 Tue 20:56]
 ** DONE Match
-CLOSED: [2016-04-12 Tue 20:56]
+CLOSED: [2016-06-05 Sun 13:57]
+*** TODO Match Description
+*** TODO Match Timeline Channel
 ** MatchEvent
 *** start
 *** end
@@ -40,6 +42,7 @@ CLOSED: [2016-04-12 Tue 20:55]
 *** Mail
 ** Team
 *** set active/inactive
+*** TODO Team Chat Channel
 ** DONE TextPage
 CLOSED: [2016-04-12 Tue 20:55]
 ** User

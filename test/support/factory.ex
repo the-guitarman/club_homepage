@@ -33,7 +33,9 @@ defmodule ClubHomepage.Factory do
       opponent_team_id: opponent_team.id,
       #meeting_point_id: 1,
       start_at: Timex.Date.local,
-      home_match: false
+      home_match: false,
+      description: nil,
+      match_events: nil
     }
   end
 

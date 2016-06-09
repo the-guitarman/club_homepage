@@ -19,7 +19,8 @@ $(document).ready(function() {
 			"final-score" 			: "Final Score",
 			"delete-latest-element" : "Delete Latest Element",
 			"for-example-abbr"		: ["e.g.", "for example"],
-			"weather" 				: "Weather"
+			"weather" 				: "Weather",
+      "o_clock"         : ""
 		},
 
 		de: {
@@ -41,7 +42,8 @@ $(document).ready(function() {
 			"final-score" 			: "Endstand",
 			"delete-latest-element" : "Letztes Ereignis löschen",
 			"for-example-abbr"		: ["z. B.", "zum Beispiel"],
-			"weather" 				: "Wetter"
+			"weather" 				: "Wetter",
+      "o_clock"         : "Uhr"
 		}	
 	};
 
@@ -50,8 +52,11 @@ $(document).ready(function() {
 		var language = matchTimeline.data('language');
 		var data = translations[language];
 	    if (_.isEmpty(data)) {
+        moment.locale('en');
 	    	data = translations['en'];
-	    }
+	    } else {
+        moment.locale(language);
+      }
 	    matchTimeline.data('translations', data);
 	}
 });

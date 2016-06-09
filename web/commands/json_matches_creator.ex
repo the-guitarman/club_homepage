@@ -46,7 +46,7 @@ defmodule ClubHomepage.JsonMatchesCreator do
   defp parse_start_at(value) do
     case JsonMatchesValidator.to_timex_date_format(value) do
       {:ok, datetime} -> datetime
-      {:error, _error}  -> nil
+      {:error, _error} -> nil
     end
   end
 
