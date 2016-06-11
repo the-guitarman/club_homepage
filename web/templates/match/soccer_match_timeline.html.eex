@@ -1,6 +1,6 @@
-<%= if match_finished?(@match) || match_in_progress?(@match) || within_hours_before_kick_off?(@match, 1) do %>
+<%= if logged_in?(@conn) && (match_finished?(@match) || match_in_progress?(@match) || within_hours_before_kick_off?(@match, 1)) do %>
 
-  <%= if has_role?(@conn, ["match-editor"]) do %>
+  <%= if (match_in_progress?(@match) || within_hours_before_kick_off?(@match, 1)) && has_role?(@conn, ["match-editor"]) do %>
     <div class="row js-match-event-buttons css-match-event-buttons">
 
       <div class="col-xs-12 text-center">
@@ -94,7 +94,7 @@
     </div>
   <% end %>
 
-  <div id="match-timeline" class="css-match-events js-match-events" data-match-id="<%= @match.id %>" data-match-score="0:0" data-match-events="[]" data-match-character="<%= match_character(@match) %>" data-language="de" data-translations="{}">
+  <div id="match-timeline" class="css-match-events js-match-events" <%= channelize(@conn, @match) %> data-match-id="<%= @match.id %>" data-match-score="0:0" data-match-events="<%= @match.match_events || [] %>" data-match-character="<%= match_character(@match) %>" data-language="de" data-translations="{}">
     <span class="timeline-bar timeline-center"> 
       <span class="timeline-bar-fill"></span>
     </span>

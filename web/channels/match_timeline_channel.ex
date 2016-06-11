@@ -1,5 +1,3 @@
-require IEx
-
 defmodule ClubHomepage.MatchTimelineChannel do
   use ClubHomepage.Web, :channel
 

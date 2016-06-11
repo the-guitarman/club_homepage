@@ -61,13 +61,20 @@ defmodule ClubHomepage.MatchView do
   end
 
   def within_hours_before_kick_off?(match, hours) do
-    match.start_at < Timex.Date.add(Timex.Date.local, Timex.Time.to_timestamp(hours, :hours))
+    match.start_at > Timex.Date.local && match.start_at < Timex.Date.add(Timex.Date.local, Timex.Time.to_timestamp(hours, :hours))
   end
 
   def match_character(match) do
     competition = ClubHomepage.Repo.get!(ClubHomepage.Competition, match.competition_id)
     case competition.matches_need_decition do
       true -> "deciding-game"
+      _ -> ""
+    end
+  end
+
+  def channelize(conn, match) do
+    case logged_in?(conn) && (match_in_progress?(match) || within_hours_before_kick_off?(match, 1)) do
+      true -> "data-channelize=''"
       _ -> ""
     end
   end

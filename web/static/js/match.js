@@ -4,23 +4,39 @@ let MatchTimeline = {
       return
     }
 
-    let matchTimelineEl = $('#match-timeline')
+    socket.onOpen( ev => console.log("OPEN", ev) )
+    socket.onError( ev => console.log("ERROR", ev) )
+    socket.onClose( e => console.log("CLOSE", e))
+
+    let matchTimelineEl = $(element) //$('#match-timeline')
 
     let getMatchEvents = function(){
       return matchTimelineEl.data('match-events') || [];
     }
 
-    let renderMatchEvents = function(matchEvents){
-      matchTimelineEl.data('match-events', matchEvents)
-      matchEventsRenderer.init()
-      matchEventButtonHandler.switchButtons();
-      matchEventButtonHandler.hideEventForm();
+    let renderMatchEvents = function(matchEvents, removeCloseButton = false){
+      $(document).ready(function(){
+        matchTimelineEl.data('match-events', matchEvents)
+        matchEventsRenderer.init()
+        if (removeCloseButton === true) {
+          matchTimelineEl.find('button.close').parent().remove()
+        }
+        matchEventButtonHandler.switchButtons();
+        matchEventButtonHandler.hideEventForm();
+      });
+    }
+
+    if (_.isEmpty(matchTimelineEl.data('channelize')) === true) {
+      renderMatchEvents(matchTimelineEl.data('match-events'), true)
+      return
     }
 
     let matchId = element.getAttribute("data-match-id")
 
     socket.connect()
     let matchIdChannel = socket.channel("match-timelines:" + matchId)
+    matchIdChannel.onError(e => console.log("something went wrong", e))
+    matchIdChannel.onClose(e => console.log("channel closed", e))
 
     matchIdChannel
       .on("match-event:add", (matchEvent) => {
@@ -45,6 +61,14 @@ let MatchTimeline = {
       })
       .receive("error", (reason) => {
         console.log("join failed: " + matchId, reason)
+        renderMatchEvents([])
+      })
+      .receive("ignore", () => {
+        console.log("auth error")
+        renderMatchEvents([])
+      })
+      .receive("timeout", () => {
+        console.log("connection interruption")
         renderMatchEvents([])
       })
 
