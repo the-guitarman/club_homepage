@@ -5,7 +5,6 @@
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
-#: web/templates/competition/show.html.eex:16
 #: web/templates/layout/navbar_top.html.eex:77
 #: web/templates/layout/navbar_top.html.eex:82
 #: web/templates/layout/navbar_top.html.eex:87
@@ -94,7 +93,7 @@ msgstr ""
 
 #: web/templates/address/form.html.eex:41
 #: web/templates/competition/form.html.eex:20
-#: web/templates/match/form.html.eex:79
+#: web/templates/match/form.html.eex:80
 #: web/templates/match/form_bulk.html.eex:36
 #: web/templates/meeting_point/form.html.eex:15
 #: web/templates/news/form.html.eex:26
@@ -118,7 +117,7 @@ msgstr ""
 msgid "select_date_and_time_placeholder"
 msgstr ""
 
-#: web/templates/match/form.html.eex:74 web/templates/match/form.html.eex:74
+#: web/templates/match/form.html.eex:75 web/templates/match/form.html.eex:75
 msgid "select_meeting_point_placeholder"
 msgstr ""
 
@@ -256,7 +255,6 @@ msgid "meeting_points"
 msgstr ""
 
 #: web/templates/competition/index.html.eex:12
-#: web/templates/competition/show.html.eex:9
 #: web/templates/meeting_point/form.html.eex:6
 #: web/templates/opponent_team/form.html.eex:6
 #: web/templates/opponent_team/index.html.eex:14
@@ -537,23 +535,21 @@ msgstr ""
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
-#: web/templates/competition/show.html.eex:16
 #: web/templates/layout/navbar_top.html.eex:87
 msgid "competitions"
 msgstr ""
 
 #: web/templates/competition/index.html.eex:7
-#: web/templates/competition/index.html.eex:44
+#: web/templates/competition/index.html.eex:47
 #: web/templates/competition/new.html.eex:4
 msgid "create_new_competition"
 msgstr ""
 
 #: web/templates/competition/edit.html.eex:4
-#: web/templates/competition/show.html.eex:15
 msgid "edit_competition"
 msgstr ""
 
-#: web/templates/match/form.html.eex:64
+#: web/templates/match/form.html.eex:65
 msgid "opponent_team_goals_placeholder"
 msgstr ""
 
@@ -562,15 +558,11 @@ msgstr ""
 msgid "select_competition_placeholder"
 msgstr ""
 
-#: web/templates/competition/show.html.eex:4
-msgid "show_competition"
-msgstr ""
-
-#: web/templates/match/form.html.eex:64
+#: web/templates/match/form.html.eex:65
 msgid "team_goals_placeholder"
 msgstr ""
 
-#: web/templates/competition/index.html.eex:38
+#: web/templates/competition/index.html.eex:41
 msgid "competitions_missing"
 msgstr ""
 
@@ -595,7 +587,7 @@ msgstr ""
 msgid "edit_permalink"
 msgstr ""
 
-#: web/templates/match/form.html.eex:55
+#: web/templates/match/form.html.eex:56
 msgid "goals"
 msgstr ""
 
@@ -603,7 +595,7 @@ msgstr ""
 msgid "next_matches"
 msgstr ""
 
-#: web/templates/match/form.html.eex:67
+#: web/templates/match/form.html.eex:68
 msgid "opponent_team_selected"
 msgstr ""
 
@@ -611,7 +603,7 @@ msgstr ""
 msgid "permalinks"
 msgstr ""
 
-#: web/templates/match/form.html.eex:60
+#: web/templates/match/form.html.eex:61
 msgid "team_selected"
 msgstr ""
 
@@ -680,11 +672,11 @@ msgstr ""
 msgid "competition_created_successfully"
 msgstr ""
 
-#: web/controllers/competition_controller.ex:65
+#: web/controllers/competition_controller.ex:60
 msgid "competition_deleted_successfully"
 msgstr ""
 
-#: web/controllers/competition_controller.ex:50
+#: web/controllers/competition_controller.ex:45
 msgid "competition_updated_successfully"
 msgstr ""
 
@@ -804,7 +796,7 @@ msgstr ""
 msgid "user_updated_successfully"
 msgstr ""
 
-#: web/templates/match/form.html.eex:47 web/templates/match/form.html.eex:47
+#: web/templates/match/form.html.eex:48 web/templates/match/form.html.eex:48
 msgid "select_failure_reason_placeholder"
 msgstr ""
 
@@ -820,12 +812,4 @@ msgstr ""
 
 #: web/templates/competition/form.html.eex:15
 msgid "matches_need_decition_notice"
-msgstr ""
-
-#: web/templates/competition/index.html.eex:25
-msgid "no"
-msgstr ""
-
-#: web/templates/competition/index.html.eex:24
-msgid "yes"
 msgstr ""

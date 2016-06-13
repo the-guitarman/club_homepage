@@ -70,20 +70,24 @@
           <input type="tel" id="input-minute" class="form-control" name="minute" placeholder="e.g. 26" />
         </div>
         <div class="form-group hidden">
-          <label for="input-minute">Event</label> 
-          <input type="text" class="form-control" name="event" placeholder="e.g. Karl Heinz (4)" />
+          <label for="input-event">Event</label> 
+          <input type="text" id="input-event" class="form-control" name="event" placeholder="e.g. Bob (4)" />
         </div>
         <div class="form-group hidden">
-          <label for="input-minute">Text</label> 
-          <input type="text" class="form-control" name="text" placeholder="e.g. Karl Heinz (4)" />
+          <label for="input-text">Text</label> 
+          <input type="text" id="input-text" class="form-control" name="text" placeholder="e.g. Bob (4)" />
+        </div>
+        <div class="form-group hidden flat-checkbox">
+          <label for="input-own-goal">Own Goal</label> 
+          <input type="checkbox" id="input-own-goal" name="own-goal" />
         </div>
         <div class="form-group hidden">
-          <label for="input-minute">Out</label> 
-          <input type="text" class="form-control" name="text-out" placeholder="e.g. Bob (4)" />
+          <label for="input-out">Out</label> 
+          <input type="text" id="input-out" class="form-control" name="text-out" placeholder="e.g. Bob (4)" />
         </div>
         <div class="form-group hidden">
-          <label for="input-minute">In</label> 
-          <input type="text" class="form-control" name="text-in" placeholder="e.g. Richard (14)" />
+          <label for="input-in">In</label> 
+          <input type="text" id="input-in" class="form-control" name="text-in" placeholder="e.g. Richard (14)" />
         </div>
         <div>
           <input type="submit" class="btn btn-primary" value="Save" />

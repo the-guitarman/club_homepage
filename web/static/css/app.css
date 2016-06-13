@@ -41,6 +41,10 @@ a.anchor, a.anchor:hover, a.anchor:focus {
   text-align: center;
 }
 
+h2 .failure-reason {
+  font-size: 50%;
+}
+
 /*! styles */
 .background-image-01 {
   background: url('/images/background_01.jpg') no-repeat center center fixed; 

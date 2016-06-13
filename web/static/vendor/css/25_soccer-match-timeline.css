@@ -2,6 +2,38 @@ body .row {
 	margin-bottom: 20px;
 }
 
+.css-match-event-form label {
+	margin-right: 15px;
+}
+.css-match-event-form .flat-checkbox label {
+	cursor: pointer;
+	position: relative;
+}
+.css-match-event-form .flat-checkbox label::before {
+	border: 2px solid #EEEEEE;
+	border-radius: 4px;
+	content: "";
+	display: inline-block;
+	height: 22px;
+    margin-right: 15px;
+	transform: translate(0%, 25%);
+	width: 22px;
+}
+.css-match-event-form .flat-checkbox label::after {
+    height: 22px;
+    left: 2px;
+    width: 22px;
+    position: absolute;
+    top: 2px;
+    font-size: 20px;
+ }
+.css-match-event-form .flat-checkbox label.checked::after {
+    content: "\2713";
+}
+.css-match-event-form .flat-checkbox input {
+	opacity: 0;
+}
+
 .css-match-events {
 	position: relative;
 	width: 100%;
@@ -41,11 +73,8 @@ body .row {
 	position: relative;
 	width:100%;
 }
-.timeline-state * {
-  font-size: 14px;
-}
 .timeline-state .css-close-button-wrap {
-	background-color: #EEEEEE;
+	background-color: #FFFFFF;
 }
 .timeline-state button.close {
 	background-color: #FF0000;
@@ -85,7 +114,7 @@ body .row {
 .timeline-icon.penalty-shoot-out {
     border-radius: 0px;
     height: 40px;
-    background-color: #EEEEEE;
+    background-color: #FFFFFF;
     box-shadow: none;
 }
 
@@ -96,7 +125,6 @@ body .row {
 	position:relative;
 }
 .timeline-content p {
-  font-size: 14px;
 	margin: 0px;
 	line-height: 40px;
 }
@@ -119,7 +147,7 @@ body .row {
 	text-align: center;
 	width: 100%;
 	float: none !important;
-	background-color: #EEEEEE;
+	background-color: #FFFFFF;
 }
 .position-bottom .timeline-content {
 	padding-bottom: 30px;

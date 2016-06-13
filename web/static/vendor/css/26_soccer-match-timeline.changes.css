@@ -1,0 +1,16 @@
+.timeline-state .css-close-button-wrap {
+	background-color: #EEEEEE;
+}
+
+.timeline-icon.penalty-shoot-out {
+    background-color: #EEEEEE;
+}
+
+.position-top .timeline-content, 
+.position-bottom .timeline-content {
+	background-color: #EEEEEE;
+}
+
+.timeline-content * {
+    font-size: 14px !important;
+}

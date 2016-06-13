@@ -1,4 +1,7 @@
 defmodule ClubHomepage.Extension.MatchView do
+  alias Phoenix.HTML
+  alias Phoenix.HTML.Tag
+
   import ClubHomepage.Gettext
 
   @no_match_result "- : -"
@@ -26,21 +29,40 @@ defmodule ClubHomepage.Extension.MatchView do
     not is_nil(match.failure_reason)
   end
 
+  defp match_aborted?(match) do
+    match.failure_reason == "aborted"
+  end
+
   defp match_failure(match) do
     case match_failure?(match) do
-      true -> Gettext.dgettext(ClubHomepage.Gettext, "additionals", "failure_reason_" <> match.failure_reason)
+      true -> match_failure_translation(match)
       _ -> @no_match_result
     end
   end
 
   defp match_goals_string(match) do
     case match.home_match do
-      true -> goals_string(match.team_goals, match.opponent_team_goals)
-      _    -> goals_string(match.opponent_team_goals, match.team_goals)
+      true -> goals_string(match, match.team_goals, match.opponent_team_goals)
+      _    -> goals_string(match, match.opponent_team_goals, match.team_goals)
     end
   end
 
-  defp goals_string(goals_team_1, goals_team_2) do
-    Integer.to_string(goals_team_1) <> " : " <> Integer.to_string(goals_team_2)
+  defp goals_string(match, goals_team_1, goals_team_2) do
+    goals_div = Tag.content_tag(:div) do
+      Integer.to_string(goals_team_1) <> " : " <> Integer.to_string(goals_team_2)
+    end
+
+    case match_aborted?(match) do
+      true ->
+        failure_reason_div = Tag.content_tag(:div, class: "failure-reason") do
+          match_failure_translation(match)
+        end
+        HTML.raw(HTML.safe_to_string(goals_div) <> HTML.safe_to_string(failure_reason_div))
+      _ -> goals_div
+    end
+  end
+
+  defp match_failure_translation(match) do
+    Gettext.dgettext(ClubHomepage.Gettext, "additionals", "failure_reason_" <> match.failure_reason)
   end
 end

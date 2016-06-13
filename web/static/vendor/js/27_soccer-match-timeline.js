@@ -20,6 +20,14 @@ $(document).ready(function() {
         '<small>(<abbr title="' + abbreviation[1] + '">' + abbreviation[0] + '</abbr> ' + matchStateMethods.translate('weather') + ')</small>';
     },
 
+    typeTranslation: function(matchEvent) {
+       var ret = matchStateMethods.translate(matchEvent.type);
+       if (matchEvent.type === 'goal' && matchEvent['own-goal'] === 'true') {
+         ret = ret + ' (' + matchStateMethods.translate('own-goal-abbr') + ')';
+       }
+       return ret;
+    },
+
     finalEventIndexes: function(allMatchEvents) {
       var kickOffIndexes       = [];
       var halfTimeBreakIndexes = [];
@@ -147,8 +155,13 @@ $(document).ready(function() {
       var score = matchStateMethods.matchScore();
       if (['goal', 'penalty', 'penalty-goal'].indexOf(matchEvent.type) > -1) {
         score = score.split(':');
-        var scorePositionIndexes = {'left':0, 'right':1};
-        var scoreIndex = scorePositionIndexes[matchEvent.position];
+        var scorePositions = ['left', 'right'];
+        var scoreIndex = null;
+        if (matchEvent['own-goal'] === 'true') {
+          scoreIndex = _.findIndex(scorePositions, function(el) { return el !== matchEvent.position; });
+        } else {
+          scoreIndex = _.findIndex(scorePositions, function(el) { return el === matchEvent.position; });
+        }
         score[scoreIndex] = parseInt(score[scoreIndex]) + 1;
         score = score.join(':');
         matchEventsEl.data('match-score', score);
@@ -190,6 +203,25 @@ $(document).ready(function() {
     return {init: init};
   })();
   buttonTextTranslator.init();
+
+
+
+
+  var formTextTranslator = (function() {
+    var init = function() {
+      var labels = $('.js-match-event-form label');
+      $.each(labels, function(index, label) {
+        label = $(label);
+        var translation = matchStateMethods.translate(label.attr('for'));
+        if (!_.isEmpty(translation)) {
+          label.text(translation);
+        }
+      });
+    }
+
+    return {init: init};
+  })();
+  formTextTranslator.init();
 
 
 
@@ -402,7 +434,7 @@ $(document).ready(function() {
       matchEvent.lastEventIndex  = allMatchEvents.length - 1;
       matchEvent.eventHeight     = eventHeight(differenceMinutes(lastMinute, matchEvent.minute));
       matchEvent.halfTime        = halfTime(allMatchEvents, eventIndex, matchEvent);
-      matchEvent.typeTranslation = matchStateMethods.translate(matchEvent.type);
+      matchEvent.typeTranslation = matchStateMethods.typeTranslation(matchEvent);
       return matchEvent;
     };
 
@@ -450,7 +482,7 @@ $(document).ready(function() {
     var matchEventFormSelector      = '.js-match-event-form'
     var matchEventFormEl            = $(matchEventFormSelector);
     var requiredFields = {
-      'goal':              ['type', 'minute', 'datetime', 'position', 'text'],
+      'goal':              ['type', 'minute', 'datetime', 'position', 'text', 'own-goal'],
       'penalty':           ['type', 'minute', 'datetime', 'position', 'text'],
       'replacement':       ['type', 'minute', 'datetime', 'position', 'text-out', 'text-in'],
       'penalty-goal':      ['type', 'datetime', 'position', 'text'],
@@ -470,6 +502,9 @@ $(document).ready(function() {
       if (matchEventFormEl.is(':visible')) {
         matchEventFormEl.slideUp('fast', function() {
           $(this).removeClass('hidden').find('input[type=text]').val('');
+          var flatCheckbox = $(this).find('.flat-checkbox');
+          flatCheckbox.find('input').removeProp('checked').removeAttr('checked');
+          flatCheckbox.find('label').removeClass('checked')
         });
       }
     };
@@ -482,7 +517,7 @@ $(document).ready(function() {
       matchEventFormEl.find('input[name=datetime]').val(moment().toISOString());
       matchEventFormEl.find('.form-group').removeClass('has-error');
       $.each(requiredFields[type], function(index, field) {
-        matchEventFormEl.find('input[name=' + field + ']').parent().removeClass('hidden');
+        matchEventFormEl.find('input[name=' + field + ']').closest('.form-group').removeClass('hidden');
       });
       matchEventFormEl.hide().removeClass('hidden').slideDown('fast', function() {
         matchEventFormEl.find('input:visible').each(function() {
@@ -711,15 +746,19 @@ $(document).ready(function() {
       var type = matchEventFormEl.find('input[name=type]').val().trim();
 
       if (['kick-off', 'half-time-break', 'final-whistle'].indexOf(type) > -1) {
-        matchEventFormEl.find('input[name=event]').parent().removeClass('hidden');
+        matchEventFormEl.find('input[name=event]').closest('.form-group').removeClass('hidden');
       }
 
       var ret = {};
       $.each(requiredFields[type], function(index, field) {
         var fieldEl = matchEventFormEl.find('input[name=' + field + ']');
-        ret[field] = fieldEl.val();
+        if (fieldEl.attr('type') === 'checkbox') {
+          ret[field] = (fieldEl.prop('checked') || fieldEl.attr('checked') === 'checked').toString();
+        } else {
+          ret[field] = fieldEl.val();
+        }
         if (ret[field].trim() === '' && ['tel', 'text'].indexOf(fieldEl.prop('type')) > -1) {
-          fieldEl.parent().addClass('has-error');
+          fieldEl.closest('.form-group').addClass('has-error');
         }
       });
 
@@ -782,14 +821,4 @@ $(document).ready(function() {
   })(matchEventsRenderer.matchEventsEl);
 
   matchEventButtonHandler.init();
-
-  $(document)
-    .on('match-event:afterAdd', '#match-timeline', function(event, matchEvent, matchEvents) {
-      matchEventButtonHandler.switchButtons();
-      matchEventButtonHandler.hideEventForm();
-    })
-    .on('match-event:afterRemove', '#match-timeline', function(event, removedElementIndex, removedElement, matchEvents) {
-      matchEventButtonHandler.switchButtons();
-      matchEventButtonHandler.hideEventForm();
-    })
 });

@@ -6,11 +6,16 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
+#: web/templates/competition/index.html.eex:24
 msgid "yes"
 msgstr "yes"
 
+#: web/templates/competition/index.html.eex:25
 msgid "no"
 msgstr "no"
+
+msgid "failure_reason_aborted"
+msgstr "aborted"
 
 msgid "failure_reason_failed"
 msgstr "Failed"
