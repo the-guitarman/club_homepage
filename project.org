@@ -15,6 +15,7 @@ CLOSED: [2016-04-12 Tue 20:56]
 CLOSED: [2016-06-05 Sun 13:57]
 *** TODO Match Description
 *** TODO Match Timeline Channel
+*** TODO failure reason == aborted => validate goals
 ** MatchEvent
 *** start
 *** end
@@ -75,3 +76,6 @@ CLOSED: [2016-04-12 Tue 21:06]
 ** DONE Match - translate field errors
 * Common
 ** read date format from config file
+* Channels
+** Match Timeline
+*** TODO note match end => save match and cancel channels

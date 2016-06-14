@@ -495,7 +495,8 @@ $(document).ready(function() {
       'final-whistle':     ['type', 'minute', 'datetime', 'position', 'text', 'event'],
       'penalty-shoot-out': ['type', 'minute', 'datetime', 'position', 'text', 'event'],
       'break':             ['type', 'minute', 'datetime', 'position', 'text', 'event'],
-      'continuation':      ['type', 'minute', 'datetime', 'position', 'text', 'event']
+      'continuation':      ['type', 'minute', 'datetime', 'position', 'text', 'event'],
+      'quit':              ['type', 'minute', 'datetime', 'position', 'text', 'event']
     };
 
     var hideEventForm = function() {
@@ -558,12 +559,11 @@ $(document).ready(function() {
       } else if (
           (indexes.kickOffIndexes.length === 1 && indexes.halfTimeBreakIndexes.length === 0 && indexes.finalWhistleIndexes.length === 0)
          ) {
-        matchEventButtons.filter('[data-match-event=half-time-break]').removeProp('disabled').removeAttr('disabled');
-        matchEventButtons.filter('[data-match-event=break], [data-match-event=continuation]').removeProp('disabled').removeAttr('disabled');
+        matchEventButtons.filter('[data-match-event=half-time-break], [data-match-event=break], [data-match-event=continuation], [data-match-event=quit]').removeProp('disabled').removeAttr('disabled');
       } else if (
           (indexes.kickOffIndexes.length === 2 && indexes.halfTimeBreakIndexes.length === 1 && indexes.finalWhistleIndexes.length === 0)
          ) {
-        matchEventButtons.filter('[data-match-event=final-whistle]').removeProp('disabled').removeAttr('disabled');
+        matchEventButtons.filter('[data-match-event=final-whistle], [data-match-event=quit]').removeProp('disabled').removeAttr('disabled');
       }
     };
 
@@ -575,6 +575,7 @@ $(document).ready(function() {
           (indexes.kickOffIndexes.length === 4 && indexes.finalWhistleIndexes.length === 1)
          ) {
         matchEventButtons.filter('[data-match-event=break]').removeProp('disabled').removeAttr('disabled');
+        matchEventButtons.filter('[data-match-event=quit]').removeProp('disabled').removeAttr('disabled');
         matchEventButtons.filter('[data-match-event=goal]').removeProp('disabled').removeAttr('disabled');
         matchEventButtons.filter('[data-match-event=penalty]').removeProp('disabled').removeAttr('disabled');
         matchEventButtons.filter('[data-match-event=replacement]').removeProp('disabled').removeAttr('disabled');
@@ -591,11 +592,13 @@ $(document).ready(function() {
 
       matchEventButtons.prop('disabled', 'disabled').attr('disabled', 'disabled');
 
-      enableDecidingEventButtons(indexes, decidingGame, lastMatchEvent);
-      enableStartEndEventButtons(indexes, lastMatchEvent);
-      enableMatchEventButtons(indexes);
-      switchDecidingGameButtonsVisibility(decidingGame);
-      breakContinuationButtonSwitch(allMatchEvents);
+      if (lastMatchEvent && lastMatchEvent.type !== 'quit') {
+        enableDecidingEventButtons(indexes, decidingGame, lastMatchEvent);
+        enableStartEndEventButtons(indexes, lastMatchEvent);
+        enableMatchEventButtons(indexes);
+        switchDecidingGameButtonsVisibility(decidingGame);
+        breakContinuationButtonSwitch(allMatchEvents);
+      }
     };
 
     var breakContinuationButtonSwitch = function(allMatchEvents) {
@@ -725,7 +728,8 @@ $(document).ready(function() {
         'foul-red': showEventForm,
         'penalty-shoot-out': {"type":"penalty-shoot-out","event":matchStateMethods.translate('penalty-shoot-out'),"text":humanTime(),"minute":currentMinute,"datetime":moment().toISOString(),"position":"bottom"},
         'break': {"type":"break","event":matchStateMethods.translate('break'),"text":humanTime(),"minute":currentMinute,"datetime":moment().toISOString(),"position":"top"},
-        'continuation': {"type":"continuation","event":matchStateMethods.translate('continuation'),"text":humanTime(),"minute":currentMinute,"datetime":moment().toISOString(),"position":"bottom"}
+        'continuation': {"type":"continuation","event":matchStateMethods.translate('continuation'),"text":humanTime(),"minute":currentMinute,"datetime":moment().toISOString(),"position":"bottom"},
+        'quit': {"type":"quit","event":matchStateMethods.translate('quit'),"text":humanTime(),"minute":currentMinute,"datetime":moment().toISOString(),"position":"top"}
       };
       var ret = events[type];
       if (type === 'final-whistle') {
@@ -745,9 +749,11 @@ $(document).ready(function() {
     var submitMatchEvent = function() {
       var type = matchEventFormEl.find('input[name=type]').val().trim();
 
+      /*
       if (['kick-off', 'half-time-break', 'final-whistle'].indexOf(type) > -1) {
         matchEventFormEl.find('input[name=event]').closest('.form-group').removeClass('hidden');
       }
+      */
 
       var ret = {};
       $.each(requiredFields[type], function(index, field) {
