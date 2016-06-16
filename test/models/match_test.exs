@@ -56,4 +56,18 @@ defmodule ClubHomepage.MatchTest do
     match = %Match{start_at: start_at}
     assert not Match.in_progress?(match)
   end
+
+  test "validate goals with failure_reason is 'aborted'" do
+    attrs = Map.put(@valid_attrs, :failure_reason, "aborted")
+    changeset = Match.changeset(%Match{}, attrs)
+    assert changeset.errors[:team_goals] == "can't be blank"
+    assert changeset.errors[:opponent_team_goals] == "can't be blank"
+  end
+
+  test "validate goals with failure_reason other than 'aborted'" do
+    attrs = Map.put(@valid_attrs, :failure_reason, "canceled")
+    changeset = Match.changeset(%Match{}, attrs)
+    assert changeset.errors[:team_goals] == nil
+    assert changeset.errors[:opponent_team_goals] == nil
+  end
 end

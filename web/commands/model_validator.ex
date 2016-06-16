@@ -56,13 +56,9 @@ defmodule ClubHomepage.ModelValidator do
   end
 
   defp unique_constraint(model, key, params) when is_atom(key) do
-    IO.puts "--- 1"
-    IO.inspect key
     Changeset.unique_constraint(model, key, params)
   end
   defp unique_constraint(model, [key | _tail] = keys, params) when is_list(keys) do
-    IO.puts "--- 2"
-    IO.inspect key
     Changeset.unique_constraint(model, key, params)
   end
 

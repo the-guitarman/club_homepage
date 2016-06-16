@@ -44,6 +44,29 @@ defmodule ClubHomepage.Match do
     |> ModelValidator.foreign_key_constraint(:opponent_team_id)
     |> ModelValidator.validate_uniqueness([:season_id, :team_id, :opponent_team_id, :home_match], name: "unique_match_index")
     |> validate_inclusion(:failure_reason, [nil | failure_reasons])
+    |> validate_team_goals
+    |> validate_opponent_team_goals
+  end
+
+  def validate_team_goals(changeset) do
+    failure_reasons = get_field(changeset, :failure_reason)
+    goals           = get_field(changeset, :team_goals)
+    cond do
+      failure_reasons == "aborted" && goals == nil ->
+        add_error(changeset, :team_goals, "can't be blank")
+      true ->
+        changeset
+    end
+  end
+
+  def validate_opponent_team_goals(changeset) do
+    failure_reasons = get_field(changeset, :failure_reason)
+    goals           = get_field(changeset, :opponent_team_goals)
+    cond do
+      failure_reasons == "aborted" && goals == nil ->
+        add_error(changeset, :opponent_team_goals, "can't be blank")
+      true -> changeset
+    end
   end
 
   @doc """
