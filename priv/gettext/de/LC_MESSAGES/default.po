@@ -123,7 +123,7 @@ msgstr "Saisons"
 
 #: web/templates/match/form.html.eex:24
 msgid "select_date_and_time_placeholder"
-msgstr "Datum und Zeit auswählen ..."
+msgstr "Anstoßzeitpunkt auswählen ..."
 
 #: web/templates/match/form.html.eex:75 web/templates/match/form.html.eex:75
 msgid "select_meeting_point_placeholder"
@@ -484,7 +484,7 @@ msgstr "Permalink"
 msgid "saison_matches_missing"
 msgstr "Es sind keine Spiele für diese Mannschaft gespeichert."
 
-#: lib/extension/match_view.ex:6 web/templates/match/show.html.eex:7
+#: lib/extension/match_view.ex:9 web/templates/match/show.html.eex:7
 #: web/templates/page/index.html.eex:14
 msgid "o_clock"
 msgstr "Uhr"

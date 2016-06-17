@@ -27,9 +27,7 @@ defmodule ClubHomepage.ErrorHelpers do
   """
   def error_tag(form, field) do
     if error = form.errors[field] do
-      field_translated =
-        Gettext.dgettext(ClubHomepage.Gettext, "models", attr_underscored(field))
-        |> String.capitalize
+      field_translated = Gettext.dgettext(ClubHomepage.Gettext, "models", attr_underscored(field))
       content_tag :span, (field_translated <> " " <> translate_error(error)), class: "help-block"
       # content_tag :span, (humanize(field) <> " " <> translate_error(error)), class: "help-block"
     end

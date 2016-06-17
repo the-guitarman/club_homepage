@@ -37,3 +37,15 @@ msgstr ""
 
 msgid "user"
 msgstr ""
+
+
+
+
+msgid "start_at"
+msgstr ""
+
+msgid "team_goals"
+msgstr ""
+
+msgid "opponent_team_goals"
+msgstr ""

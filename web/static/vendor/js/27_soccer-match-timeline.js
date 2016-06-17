@@ -561,7 +561,8 @@ $(document).ready(function() {
          ) {
         matchEventButtons.filter('[data-match-event=half-time-break], [data-match-event=break], [data-match-event=continuation], [data-match-event=quit]').removeProp('disabled').removeAttr('disabled');
       } else if (
-          (indexes.kickOffIndexes.length === 2 && indexes.halfTimeBreakIndexes.length === 1 && indexes.finalWhistleIndexes.length === 0)
+          (indexes.kickOffIndexes.length === 2 && indexes.halfTimeBreakIndexes.length === 1 && indexes.finalWhistleIndexes.length === 0) ||
+          (indexes.kickOffIndexes.length === 4 && indexes.halfTimeBreakIndexes.length === 2 && indexes.finalWhistleIndexes.length === 1)
          ) {
         matchEventButtons.filter('[data-match-event=final-whistle], [data-match-event=quit]').removeProp('disabled').removeAttr('disabled');
       }
@@ -592,7 +593,7 @@ $(document).ready(function() {
 
       matchEventButtons.prop('disabled', 'disabled').attr('disabled', 'disabled');
 
-      if (lastMatchEvent && lastMatchEvent.type !== 'quit') {
+      if (allMatchEvents.length === 0 || (!_.isEmpty(lastMatchEvent) && lastMatchEvent.type !== 'quit')) {
         enableDecidingEventButtons(indexes, decidingGame, lastMatchEvent);
         enableStartEndEventButtons(indexes, lastMatchEvent);
         enableMatchEventButtons(indexes);
