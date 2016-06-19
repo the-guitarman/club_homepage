@@ -26,6 +26,15 @@ let MatchTimeline = {
       });
     }
 
+    let matchFinished = function() {
+      var matchEventButtonsDisabled = _.all($('.js-match-event-buttons button'), function(btn) {return $(btn).is('disabled');});
+      if (getMatchEvents().length > 0 && matchEventButtonsDisabled === true) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     if (_.isEmpty(matchTimelineEl.data('channelize')) === true) {
       renderMatchEvents(matchTimelineEl.data('match-events'), true)
       return
@@ -77,6 +86,11 @@ let MatchTimeline = {
         matchIdChannel
           .push('match-event:add', matchEvent)
           .receive("error", e => console.log(e));
+        if (matchFinished()) {
+          matchIdChannel
+            .push('match-event:final-whistle', matchStateMethods.matchScore())
+            .receive("error", e => console.log(e));
+        }
       })
       .on('match-event:remove', '#match-timeline', function(event, matchEventIndex) {
         matchIdChannel

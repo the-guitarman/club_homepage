@@ -32,7 +32,8 @@ defmodule ClubHomepage.MatchTimelineChannel do
     |> get_match_events
     |> add_match_event(match_event)
     |> save_match_events
-    |> send_broadcast_and_response("match-event:add")
+    |> send_broadcast("match-event:add")
+    |> send_response
   end
   def handle_in("match-event:remove", match_event_index, socket) do
     socket
@@ -41,7 +42,15 @@ defmodule ClubHomepage.MatchTimelineChannel do
     |> get_match_events
     |> remove_match_event(match_event_index)
     |> save_match_events
-    |> send_broadcast_and_response("match-event:remove")
+    |> send_broadcast("match-event:remove")
+    |> send_response
+  end
+  def handle_in("match-event:final-whistle", match_score, socket) do
+    socket
+    |> get_match_id
+    |> get_match
+    |> save_match_score(match_score)
+    |> send_response
   end
 
   def terminate(_reason, _socket) do
@@ -53,38 +62,51 @@ defmodule ClubHomepage.MatchTimelineChannel do
   end
 
   defp get_match({socket, match_id}) do
-    {socket, match_id, Repo.get!(Match, match_id)}
+    {socket, Repo.get!(Match, match_id)}
   end
 
-  defp get_match_events({socket, match_id, match}) do
+  defp get_match_events({socket, match}) do
     case match.match_events do
-      nil -> {socket, match_id, match, []}
-      match_events -> {socket, match_id, match, parse_match_events(match_events)}
+      nil -> {socket, match, []}
+      match_events -> {socket, match, parse_match_events(match_events)}
     end
   end
 
-  defp add_match_event({socket, match_id, match, match_events}, match_event) do
+  defp add_match_event({socket, match, match_events}, match_event) do
     new_match_events = Enum.reverse([match_event | Enum.reverse(match_events)])
-    {socket, match_id, match, new_match_events, match_event}
+    {socket, match, new_match_events, match_event}
   end
 
-  defp remove_match_event({socket, match_id, match, match_events}, match_event_index) do
+  defp remove_match_event({socket, match, match_events}, match_event_index) do
     [_last_match_event | new_match_events] = Enum.reverse(match_events)
-    {socket, match_id, match, Enum.reverse(new_match_events), match_event_index}
+    {socket, match, Enum.reverse(new_match_events), match_event_index}
   end
 
-  defp save_match_events({socket, match_id, match, match_events_list, broadcast_message}) do
-    result =
-      match
-      |> Match.changeset(%{match_events: stringify_match_events(match_events_list)})
-      |> Repo.update
-    {socket, match, result, broadcast_message}
+  defp save_match_events({socket, match, match_events_list, broadcast_message}) do
+    result = save_match(match, %{match_events: stringify_match_events(match_events_list)})
+    {socket, result, broadcast_message}
   end
 
-  defp send_broadcast_and_response({socket, _match, result, broadcast_message}, event_name) do
+  defp save_match_score({socket, match}, match_score) do
+    {socket, save_match(match, match_score_attributes(match, match_score))}
+  end
+
+  defp save_match(match, attributes) do
+    match
+    |> Match.changeset(attributes)
+    |> Repo.update
+  end
+
+  defp send_broadcast({socket, result, broadcast_message}, event_name) do
+    case result do
+      {:ok, _} -> broadcast!(socket, event_name, broadcast_message)
+    end
+    {socket, result}
+  end
+
+  defp send_response({socket, result}) do
     case result do
       {:ok, _} ->
-        broadcast!(socket, event_name, broadcast_message)
         {:reply, :ok, socket}
       {:error, changeset} ->
         {:reply, {:error, %{errors: changeset}}, socket}
@@ -100,5 +122,19 @@ defmodule ClubHomepage.MatchTimelineChannel do
   defp stringify_match_events(match_events_list) do
     {:ok, match_events_string} = JSON.encode(match_events_list)
     match_events_string
+  end
+
+  defp match_score_attributes(match, match_score) do
+    [home_goals | guest_goals] = parse_match_score(match_score)
+    case match.home_match do
+      true -> %{team_goals: home_goals, opponent_team_goals: guest_goals}
+      _    -> %{opponent_team_goals: home_goals, team_goals: guest_goals}
+    end
+  end
+
+  defp parse_match_score(match_score) do
+    match_score
+    |> String.split(":", trim: true)
+    |> Enum.map(fn(x) -> String.to_integer(x) end)
   end
 end
