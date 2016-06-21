@@ -7,7 +7,7 @@ defmodule ClubHomepage.MatchTimelineChannel do
   def join("match-timelines:" <> match_id, _params, socket) do
     #:timer.send_interval(5_000, :ping)
 
-    {_, _, _, match_events} = 
+    {_, _, match_events} = 
       {socket, match_id}
       |> get_match
       |> get_match_events
@@ -53,9 +53,21 @@ defmodule ClubHomepage.MatchTimelineChannel do
     |> send_response
   end
 
-  def terminate(_reason, _socket) do
-    :ok
-  end
+  # # This is invoked every time a notification is being broadcast
+  # # to the client. The default implementation is just to push it
+  # # downstream but one could filter or change the event.
+  # # def handle_out(event, payload, socket) do
+  # #   push socket, event, payload
+  # #   {:noreply, socket}
+  # # end
+
+  # def terminate(_reason, _socket) do
+  #   :ok
+  # end
+
+  # def leave(_reason, socket) do
+  #   {:ok, socket}
+  # end
 
   defp get_match_id(socket) do
     {socket, socket.assigns.match_id}
@@ -125,10 +137,12 @@ defmodule ClubHomepage.MatchTimelineChannel do
   end
 
   defp match_score_attributes(match, match_score) do
-    [home_goals | guest_goals] = parse_match_score(match_score)
+    [home_goals | [guest_goals]] = parse_match_score(match_score)
     case match.home_match do
-      true -> %{team_goals: home_goals, opponent_team_goals: guest_goals}
-      _    -> %{opponent_team_goals: home_goals, team_goals: guest_goals}
+      true ->
+        %{team_goals: home_goals, opponent_team_goals: guest_goals}
+      _    ->
+        %{opponent_team_goals: home_goals, team_goals: guest_goals}
     end
   end
 

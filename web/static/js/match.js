@@ -81,6 +81,14 @@ let MatchTimeline = {
         renderMatchEvents([])
       })
 
+    // let startDisconnectTimeout = function() {
+    //   var timerId = setTimeout(function(){
+    //     matchIdChannel
+    //       .push('leave', timerId)
+    //       .receive("error", e => console.log(e));
+    //   }, (5 * 60 * 1000);
+    // }
+
     $(document)
       .on('match-event:add', '#match-timeline', function(event, matchEvent) {
         matchIdChannel
@@ -96,7 +104,6 @@ let MatchTimeline = {
         matchIdChannel
           .push('match-event:remove', matchEventIndex)
           .receive("error", e => console.log(e));
-
       });
   }
 }
