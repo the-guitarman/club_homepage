@@ -18,7 +18,7 @@ defmodule ClubHomepage.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {ClubHomepage, []},
-     applications: [:tzdata, :phoenix, :phoenix_html, :cowboy, :logger, :gettext, 
+     applications: [:tzdata, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, 
       :phoenix_ecto, :sqlite_ecto, :comeonin, :geocoder]] 
   end
 
@@ -30,16 +30,20 @@ defmodule ClubHomepage.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.4"},
-     {:phoenix_ecto, "~> 2.0"},
+    [{:poison, "~> 2.2.0", override: true},
+     {:ecto, "~> 2.0", override: true},
+     {:hackney, "~> 1.6.0"},
+     {:phoenix, "~> 1.2.0"},
+     {:phoenix_pubsub, "~> 1.0"},
+     {:phoenix_ecto, "~> 3.0-rc"},
      {:phoenix_html, "~> 2.3"},
-     {:sqlite_ecto, "~> 1.0.1"},
+     {:sqlite_ecto, "~> 1.1.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:dogma, "~> 0.0", only: :dev},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.0"},
-     {:timex, "~> 0.19.0"},
-     {:timex_ecto, "~> 0.7"},
+     {:timex, "~> 2.2.1"},
+     {:timex_ecto, "~> 1.1.3"},
      {:ex_machina, "~> 0.6"},
      {:gettext, "~> 0.9"},
      {:credo, "~> 0.2", only: [:dev, :test]},
@@ -47,7 +51,7 @@ defmodule ClubHomepage.Mixfile do
      {:json, "~> 0.3.0"},
      {:ex_json_schema, "~> 0.3.1"},
      {:geocoder, "~> 0.3"},
-     {:geohash, github: "treetopllc/geohash"},
+     {:geohash, "~> 0.1.1"},
      {:dialyxir, "~> 0.3", only: [:dev]}#,
      #{:mix_test_watch, "~> 0.2.4", only: :dev}]
     ]
@@ -61,6 +65,7 @@ defmodule ClubHomepage.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

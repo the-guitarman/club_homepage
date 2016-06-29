@@ -35,7 +35,7 @@ defmodule ClubHomepage.Match do
   with no validation performed.
   """
   @spec changeset( ClubHomepage.Match, Map ) :: Ecto.Changeset
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> ModelValidator.foreign_key_constraint(:competition_id)
@@ -74,7 +74,10 @@ defmodule ClubHomepage.Match do
   """
   @spec finished?( ClubHomepage.Match ) :: Boolean
   def finished?(match) do
-    #TODO: read the match end datetime from the timeline events 
+    #TODO: read the match end datetime from the timeline events
+    # has goals?
+    # finished flag?
+    # no failure reason
     match_end_at = Timex.Date.add(match.start_at, Timex.Time.to_timestamp(4, :hours))
     match_end_at < Timex.Date.local
   end

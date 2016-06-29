@@ -17,7 +17,7 @@ defmodule ClubHomepage.User do
     timestamps
   end
 
-  def unregistered_changeset(model, params \\ :empty) do
+  def unregistered_changeset(model, params \\ %{}) do
     model
     |> cast(params, ~w(email name), ~w(login birthday active roles))
     |> validate_length(:name, max: 100)
@@ -32,7 +32,7 @@ defmodule ClubHomepage.User do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
     |> unregistered_changeset(params)
     |> cast(params, ~w(login birthday), [])

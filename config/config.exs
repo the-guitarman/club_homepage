@@ -5,6 +5,8 @@
 # is restricted to this project.
 use Mix.Config
 
+config :club_homepage, ecto_repos: [ClubHomepage.Repo]
+
 # Configures the endpoint
 config :club_homepage, ClubHomepage.Endpoint,
   url: [host: "localhost"],
