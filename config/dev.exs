@@ -10,15 +10,17 @@ config :club_homepage, ClubHomepage.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
-  cache_static_lookup: false,
+#  cache_static_lookup: false,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin", cd: Path.expand("../", __DIR__)]]
+  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
+                    cd: Path.expand("../", __DIR__)]]
 
 # Watch static and templates for browser reloading.
 config :club_homepage, ClubHomepage.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/gettext/.*(po)$},
       ~r{web/views/.*(ex)$},
       ~r{web/templates/.*(eex)$}
     ]
@@ -32,16 +34,16 @@ config :logger, :console, format: "[$level] $message\n"
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
 
-## Configure your database
-#config :club_homepage, ClubHomepage.Repo,
-#  adapter: Ecto.Adapters.Postgres,
-#  username: "postgres",
-#  password: "postgres",
-#  database: "club_homepage_dev",
-#  hostname: "localhost",
-#  pool_size: 10
 # Configure your database
 config :club_homepage, ClubHomepage.Repo,
-  adapter: Sqlite.Ecto,
-  database: "db/club_homepage_dev.sqlite",
-  pool_size: 10
+ adapter: Ecto.Adapters.Postgres,
+ username: "postgres",
+ password: "postgres",
+ database: "club_homepage_dev",
+ hostname: "localhost",
+ pool_size: 10
+# # Configure your database
+# config :club_homepage, ClubHomepage.Repo,
+#   adapter: Sqlite.Ecto,
+#   database: "db/club_homepage_dev.sqlite",
+#   pool_size: 10

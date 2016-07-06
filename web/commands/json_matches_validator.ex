@@ -32,7 +32,7 @@ defmodule ClubHomepage.JsonMatchesValidator do
   def to_timex_date_format(value) do
     [_, date_time] = String.split(value, ",")
     String.strip(date_time)
-    |> Timex.DateFormat.parse("%d.%m.%Y - %H:%M Uhr", :strftime)
+    |> Timex.parse("%d.%m.%Y - %H:%M Uhr", :strftime)
   end
 
   defp set_changeset_changes(change_set, params) do
@@ -165,6 +165,6 @@ defmodule ClubHomepage.JsonMatchesValidator do
   end
 
   defp new_changeset do
-    %Changeset{model: %Match{}, action: nil, valid?: true, changes: %{}, params: nil, errors: []}
+    %Changeset{data: %Match{}, action: nil, valid?: true, changes: %{}, params: nil, errors: []}
   end
 end

@@ -40,7 +40,8 @@ defmodule ClubHomepage.User do
     |> validate_length(:login, max: 20)
     |> validate_format(:login, ~r/\A[a-z0-9._-]+\z/i)
     |> update_change(:login, &String.downcase/1)
-    |> ModelValidator.validate_uniqueness(:login)
+    |> unique_constraint(:login)
+    #|> ModelValidator.validate_uniqueness(:login)
   end
 
   def registration_changeset(model, params) do
@@ -57,17 +58,18 @@ defmodule ClubHomepage.User do
   end
   defp put_pass_hash(changeset), do: changeset
 
-  defp set_active(%Ecto.Changeset{model: %ClubHomepage.User{active: nil}} = changeset, state) do
+  defp set_active(%Ecto.Changeset{data: %ClubHomepage.User{active: nil}} = changeset, state) do
     changeset
     |> put_change(:active, state)
   end
   defp set_active(changeset, _state), do: changeset
 
-  defp check_email(%Ecto.Changeset{model: %ClubHomepage.User{email: nil}} = changeset) do
+  defp check_email(%Ecto.Changeset{data: %ClubHomepage.User{email: nil}} = changeset) do
     changeset
     |> validate_format(:email, ~r/\A[A-Z0-9_\.&%\+\-\']+@(?:[A-Z0-9\-]+\.)+(?:[A-Z]{2,13})\z/i)
     |> update_change(:email, &String.downcase/1)
-    |> ModelValidator.validate_uniqueness(:email)
+    |> unique_constraint(:email)
+    #|> ModelValidator.validate_uniqueness(:email)
   end
   defp check_email(changeset) do
     changeset

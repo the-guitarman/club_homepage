@@ -16,7 +16,7 @@ defmodule ClubHomepage.Extension.Controller do
 
   defp parse_value({:empty, params, nil}, _field_name, _format), do: params
   defp parse_value({:ok, params, value}, field_name, format) do
-    case Timex.DateFormat.parse(value, format, :strftime) do
+    case Timex.parse(value, format, :strftime) do
       {:ok, timex_datetime} -> Map.put(params, field_name, timex_datetime)
       {:error, error} ->
         IO.inspect error

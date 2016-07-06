@@ -28,8 +28,8 @@ defmodule ClubHomepage.TextPageTest do
     assert text_page.key == "new text_page key"
 
     changeset = TextPage.changeset(text_page2, %{key: text_page1.key})
-    {:error, _errors} = Repo.update(changeset)
+    {:error, changeset} = Repo.update(changeset)
     refute changeset.valid?
-    assert changeset.errors[:key] == "already exists"
+    assert changeset.errors[:key] == {"has already been taken", []}
   end
 end

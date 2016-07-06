@@ -25,7 +25,6 @@ defmodule ClubHomepage.ConnCase do
       import Ecto.Query, only: [from: 2]
 
       import ClubHomepage.Router.Helpers
-      import ClubHomepage.TestHelpers
 
       # The default endpoint for testing
       @endpoint ClubHomepage.Endpoint

@@ -1,6 +1,6 @@
 defmodule ClubHomepage.JsonMatchesValidatorTest do
   use ClubHomepage.ModelCase
-  use ExUnit.Case, async: true
+  use ExUnit.Case
   doctest ClubHomepage.JsonMatchesValidator
 
   alias ClubHomepage.JsonMatchesValidator

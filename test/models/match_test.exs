@@ -30,29 +30,29 @@ defmodule ClubHomepage.MatchTest do
   end
 
   test "match is finished" do
-    start_at = Timex.Date.local
+    start_at = Timex.DateTime.local
     match = %Match{start_at: start_at}
     assert not Match.finished?(match)
 
     # match has been started two hours ago
-    start_at = Timex.Date.add(start_at, Timex.Time.to_timestamp(-4, :hours))
+    start_at = Timex.add(start_at, Timex.Time.to_timestamp(-4, :hours))
     match = %Match{start_at: start_at}
     assert Match.finished?(match)
   end
 
   test "match is in progress" do
     # match starts in an 1 hour
-    start_at = Timex.Date.add(Timex.Date.local, Timex.Time.to_timestamp(1, :hours))
+    start_at = Timex.add(Timex.DateTime.local, Timex.Time.to_timestamp(1, :hours))
     match = %Match{start_at: start_at}
     assert not Match.in_progress?(match)
 
     # match has been started one hour ago
-    start_at = Timex.Date.add(Timex.Date.local, Timex.Time.to_timestamp(-1, :hours))
+    start_at = Timex.add(Timex.DateTime.local, Timex.Time.to_timestamp(-1, :hours))
     match = %Match{start_at: start_at}
     assert Match.in_progress?(match)
 
     # match has been started two hours ago
-    start_at = Timex.Date.add(Timex.Date.local, Timex.Time.to_timestamp(-4, :hours))
+    start_at = Timex.add(Timex.DateTime.local , Timex.Time.to_timestamp(-4, :hours))
     match = %Match{start_at: start_at}
     assert not Match.in_progress?(match)
   end

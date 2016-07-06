@@ -1,6 +1,6 @@
 defmodule ClubHomepage.JsonMatchesCreatorTest do
   use ClubHomepage.ModelCase
-  use ExUnit.Case, async: true
+  use ExUnit.Case
   doctest ClubHomepage.JsonMatchesCreator
 
   alias ClubHomepage.JsonMatchesValidator
@@ -38,13 +38,13 @@ defmodule ClubHomepage.JsonMatchesCreatorTest do
     assert match1.team.name == team.name
     assert match1.opponent_team.name == "Opponent Team 1"
     assert match1.home_match == false
-    assert match1.start_at == Timex.Date.from({{2016, 3, 13}, {12, 0, 0}})
+    assert match1.start_at == Timex.DateTime.from({{2016, 3, 13}, {12, 0, 0}}, :local)
 
     match2 = Repo.one!(from(m in Match, where: [team_id: ^team.id, home_match: true], preload: [:team, :opponent_team]))
     assert match2.team.name == team.name
     assert match2.opponent_team.name == "Opponent Team 2"
     assert match2.home_match == true
-    assert match2.start_at == Timex.Date.from({{2016, 4, 3}, {14, 0, 0}})
+    assert match2.start_at == Timex.DateTime.from({{2016, 4, 3}, {14, 0, 0}}, :local)
   end
 
   defp count(model) do

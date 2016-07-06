@@ -32,7 +32,7 @@
             <td>
               <%= if user.birthday do %>
                 <%#= user.birthday %>
-                <%= Timex.DateFormat.format!(user.birthday, "%d.%m.%Y", :strftime) %>
+                <%= Timex.format!(user.birthday, "%d.%m.%Y", :strftime) %>
               <% end %>
             </td>
 

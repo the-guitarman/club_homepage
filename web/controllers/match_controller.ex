@@ -166,8 +166,8 @@ defmodule ClubHomepage.MatchController do
   defp next_start_at(start_at) do
     {:ok, start_at} =
       start_at
-      |> Timex.Date.add(Timex.Time.to_timestamp(7, :days))
-      |> Timex.DateFormat.format("%d.%m.%Y %H:%M", :strftime)
+      |> Timex.add(Timex.Time.to_timestamp(7, :days))
+      |> Timex.format("%d.%m.%Y %H:%M", :strftime)
     start_at
   end
 

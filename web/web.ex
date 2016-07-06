@@ -23,7 +23,7 @@ defmodule ClubHomepage.Web do
 
       import Ecto
       import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
     end
   end
 
@@ -32,13 +32,13 @@ defmodule ClubHomepage.Web do
       use Phoenix.Controller
 
       alias ClubHomepage.Repo
-      import Ecto.Schema
+#      import Ecto.Schema
       import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
-
-      import ClubHomepage.Gettext
+      import Ecto.Query
 
       import ClubHomepage.Router.Helpers
+      import ClubHomepage.Gettext
+
       import ClubHomepage.Extension.Controller
       import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0]
       import ClubHomepage.Extension.CommonSeason
@@ -61,6 +61,7 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Router.Helpers
       import ClubHomepage.ErrorHelpers
       import ClubHomepage.Gettext
+
       import ClubHomepage.Extension.View
       import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0]
       import ClubHomepage.Extension.CommonSeason
@@ -84,9 +85,10 @@ defmodule ClubHomepage.Web do
       use Phoenix.Channel
 
       alias ClubHomepage.Repo
-      import Ecto.Schema
+#      import Ecto.Schema
       import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
+      import ClubHomepage.Gettext
     end
   end
   

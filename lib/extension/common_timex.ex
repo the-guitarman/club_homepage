@@ -1,6 +1,6 @@
 defmodule ClubHomepage.Extension.CommonTimex do
   def timex_datetime_to_string(datetime, format) do
-    {:ok, date_string} = Timex.DateFormat.format(datetime, format, :strftime)
+    {:ok, date_string} = Timex.format(datetime, format, :strftime)
     date_string
   end
 

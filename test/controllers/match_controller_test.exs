@@ -74,7 +74,7 @@ defmodule ClubHomepage.MatchControllerTest do
     {:ok, start_at} =
       start_at
       |> Timex.Date.add(Timex.Time.to_timestamp(7, :days))
-      |> Timex.DateFormat.format("%d.%m.%Y %H:%M", :strftime)
+      |> Timex.format("%d.%m.%Y %H:%M", :strftime)
     #assert redirected_to(conn) == match_path(conn, :index, %{"season_id" => valid_attrs.season_id, "team_id" => valid_attrs.team_id, "start_at" => start_at})
     team = Repo.get(ClubHomepage.Team, valid_attrs.team_id)
     season = Repo.get(ClubHomepage.Season, valid_attrs.season_id)

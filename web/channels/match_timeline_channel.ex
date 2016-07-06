@@ -61,6 +61,7 @@ defmodule ClubHomepage.MatchTimelineChannel do
   # #   {:noreply, socket}
   # # end
 
+  # # This is invoked every time a client leaves.
   # def terminate(_reason, _socket) do
   #   :ok
   # end

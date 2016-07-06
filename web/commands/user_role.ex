@@ -114,7 +114,7 @@ defmodule ClubHomepage.UserRole do
   Validates a ClubHomepage.User changeset. It checks that defined user roles are in the roles attribute only and it checks, that the user roles include the member role.
   """
   @spec check_roles( Ecto.Changeset ) :: Ecto.Changeset
-  def check_roles(%{model: model, changes: changes} = changeset) do
+  def check_roles(%{data: model, changes: changes} = changeset) do
     changeset
     |> check_current_roles(model)
     |> check_changes(changes)

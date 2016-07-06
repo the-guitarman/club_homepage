@@ -1,5 +1,5 @@
 defmodule ClubHomepage.SlugGeneratorTest do
   use ClubHomepage.ModelCase
-  use ExUnit.Case, async: true
+  use ExUnit.Case
   doctest ClubHomepage.SlugGenerator
 end

@@ -4,7 +4,7 @@ defmodule ClubHomepage.Mixfile do
   def project do
     [app: :club_homepage,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers, 
      build_embedded: Mix.env == :prod,
@@ -19,7 +19,7 @@ defmodule ClubHomepage.Mixfile do
   def application do
     [mod: {ClubHomepage, []},
      applications: [:tzdata, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, 
-      :phoenix_ecto, :sqlite_ecto, :comeonin, :geocoder]] 
+      :phoenix_ecto, :comeonin, :geocoder, :postgrex]]#:sqlite_ecto 
   end
 
   # Specifies which paths to compile per environment.
@@ -30,14 +30,13 @@ defmodule ClubHomepage.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:poison, "~> 2.2.0", override: true},
-     {:ecto, "~> 2.0", override: true},
-     {:hackney, "~> 1.6.0"},
+    [
      {:phoenix, "~> 1.2.0"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0-rc"},
-     {:phoenix_html, "~> 2.3"},
-     {:sqlite_ecto, "~> 1.1.0"},
+     {:phoenix_ecto, "~> 3.0"},
+     #{:sqlite_ecto, "~> 1.1.0"},
+     {:postgrex, ">= 0.0.0"},
+     {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:dogma, "~> 0.0", only: :dev},
      {:cowboy, "~> 1.0"},
@@ -45,7 +44,7 @@ defmodule ClubHomepage.Mixfile do
      {:timex, "~> 2.2.1"},
      {:timex_ecto, "~> 1.1.3"},
      {:ex_machina, "~> 0.6"},
-     {:gettext, "~> 0.9"},
+     {:gettext, "~> 0.11"},
      {:credo, "~> 0.2", only: [:dev, :test]},
      {:slugger, "~> 0.1.0"},
      {:json, "~> 0.3.0"},

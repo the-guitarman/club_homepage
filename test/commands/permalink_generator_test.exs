@@ -1,6 +1,6 @@
 defmodule ClubHomepage.PermalinkGeneratorTest do
   use ClubHomepage.ModelCase
-  use ExUnit.Case, async: true
+  use ExUnit.Case
   doctest ClubHomepage.PermalinkGenerator
 
   alias ClubHomepage.Permalink

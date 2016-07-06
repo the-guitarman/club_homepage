@@ -35,7 +35,7 @@ defmodule ClubHomepage.SecretCheck do
 
   defp expired({:error, changeset, nil}), do: changeset
   defp expired({:ok, changeset, secret}) do 
-    case Timex.Date.compare(Timex.Date.local, secret.expires_at) do
+    case Timex.compare(Timex.DateTime.local, secret.expires_at) do
       1 -> 
         delete(secret.key)
         add_error(changeset, :secret, "has expired")

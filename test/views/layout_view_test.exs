@@ -1,3 +1,3 @@
 defmodule ClubHomepage.LayoutViewTest do
-  use ClubHomepage.ConnCase, async: true
+  use ClubHomepage.ConnCase
 end

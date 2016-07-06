@@ -5,7 +5,7 @@
         <%= raw(
           content_tag(:span) do
             datetime = content_tag(:small) do
-              {:ok, date_string} = Timex.DateFormat.format(@news.updated_at, "%d.%m.%Y %H:%M", :strftime)
+              {:ok, date_string} = Timex.format(@news.updated_at, "%d.%m.%Y %H:%M", :strftime)
               gettext("published") <> ": " <> date_string
             end
             subject = content_tag(:a, name: "news-#{@news.id}") do

@@ -7,7 +7,7 @@ defmodule ClubHomepage.Extension.MatchView do
   @no_match_result "- : -"
 
   def match_datetime(match, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
-    {:ok, date_string} = Timex.DateFormat.format(match.start_at, format, :strftime)
+    {:ok, date_string} = Timex.format(match.start_at, format, :strftime)
     date_string
   end
 

@@ -6,7 +6,7 @@ defmodule ClubHomepage.Extension.SeasonController do
     calculate_new_years(year)
   end
   def new_years do
-    %{year: year} = Timex.Date.local
+    %{year: year} = Timex.Date.now
     calculate_new_years(year)
   end
 

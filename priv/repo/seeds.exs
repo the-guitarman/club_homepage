@@ -23,7 +23,7 @@ alias ClubHomepage.User
 # First user is an administrator.
 unless Repo.get_by(User, login: "administrator") do
   #{:ok, date} = Ecto.Date.cast("1970-01-01")
-  date = Timex.Date.from({1970, 1, 1}, :local)
+  date = Timex.Date.from({1970, 1, 1})
   changeset = User.registration_changeset(%User{}, %{
     active: true, 
     login: "administrator", password: "admin_password",  

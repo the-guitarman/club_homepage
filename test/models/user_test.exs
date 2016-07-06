@@ -5,7 +5,7 @@ defmodule ClubHomepage.UserTest do
 
   #import ClubHomepage.Factory
 
-  @valid_attrs %{birthday: Timex.Date.from({1988, 4, 17}, :local), email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
+  @valid_attrs %{birthday: Timex.Date.from({1988, 4, 17}), email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -28,10 +28,10 @@ defmodule ClubHomepage.UserTest do
   test "changeset with invalid attributes" do
     changeset = User.changeset(%User{}, @invalid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:birthday] == "can't be blank"
-    assert changeset.errors[:login] == "can't be blank"
-    assert changeset.errors[:email] == "can't be blank"
-    assert changeset.errors[:name] == "can't be blank"
+    assert changeset.errors[:birthday] == {"can't be blank", []}
+    assert changeset.errors[:login] == {"can't be blank", []}
+    assert changeset.errors[:email] == {"can't be blank", []}
+    assert changeset.errors[:name] == {"can't be blank", []}
 
     changeset = User.changeset(%User{}, %{login: "abc"})
     refute changeset.valid?
@@ -43,11 +43,11 @@ defmodule ClubHomepage.UserTest do
 
     changeset = User.changeset(%User{}, %{login: "$%&§^#~@€()[]"})
     refute changeset.valid?
-    assert changeset.errors[:login] == "has invalid format"
+    assert changeset.errors[:login] == {"has invalid format", []}
 
     changeset = User.changeset(%User{}, %{email: "mail[at]example_de"})
     refute changeset.valid?
-    assert changeset.errors[:email] == "has invalid format"
+    assert changeset.errors[:email] == {"has invalid format", []}
 
     changeset = User.changeset(%User{}, %{name: String.duplicate("a", 101)})
     refute changeset.valid?
