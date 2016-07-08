@@ -5,7 +5,7 @@ defmodule ClubHomepage.UserTest do
 
   #import ClubHomepage.Factory
 
-  @valid_attrs %{birthday: Timex.Date.from({1988, 4, 17}), email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
+  @valid_attrs %{birthday: Timex.datetime({1988, 4, 17}), email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -19,10 +19,20 @@ defmodule ClubHomepage.UserTest do
     assert user.active == false
     assert user.roles == "member"
 
-    changeset = User.changeset(%User{}, @valid_attrs)
+    {:error, changeset} =
+      User.changeset(%User{}, @valid_attrs)
+      |> Repo.insert
     refute changeset.valid?
-    assert changeset.errors[:login] == "already exists"
-    assert changeset.errors[:email] == "already exists"
+    assert changeset.errors[:login] == {"has already been taken", []}
+    assert changeset.errors[:email] == nil
+
+    valid_attrs = %{ @valid_attrs | login: "sdkfjdskjf"}
+    {:error, changeset} =
+      User.changeset(%User{}, valid_attrs)
+      |> Repo.insert
+    refute changeset.valid?
+    assert changeset.errors[:login] == nil
+    assert changeset.errors[:email] == {"has already been taken", []}
   end
 
   test "changeset with invalid attributes" do

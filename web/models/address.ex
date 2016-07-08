@@ -69,7 +69,7 @@ defmodule ClubHomepage.Address do
   defp get_value_from_changeset(changeset, key) do
     case changeset.changes[key] do
       nil ->
-        {:ok, value} = Map.fetch(changeset.model, key)
+        {:ok, value} = Map.fetch(changeset.data, key)
         value
       value -> value
     end

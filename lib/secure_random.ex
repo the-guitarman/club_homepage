@@ -77,7 +77,7 @@ defmodule SecureRandom do
   Returns UUID v4. Not implemented yet.
   """
   def uuid do
-    raise NotImplemented
+    raise BadFunctionError #NotImplemented
   end
 
   @doc """
@@ -108,7 +108,7 @@ defmodule SecureRandom do
   end
 
   def random_number(range) do #when is_range(range) do
-    :crypto.rand_uniform(Range.first(range), Range.last(range))
+    :crypto.rand_uniform(range.first, range.last)
   end
 
   def random_number(x, y) when is_integer(x) and is_integer(y) do
