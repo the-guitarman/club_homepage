@@ -22,14 +22,17 @@ defmodule ClubHomepage.CompetitionTest do
     competition1 = create(:competition)
     competition2 = create(:competition)
 
-    changeset = Competition.changeset(competition2, %{name: "new competition name"})
-    {:ok, competition} = Repo.update(changeset)
+    {:ok, competition} =
+      Competition.changeset(competition2, %{name: "new competition name"})
+      |> Repo.update()
 
     assert competition.name == "new competition name"
 
-    changeset = Competition.changeset(competition2, %{name: competition1.name})
-    {:error, _errors} = Repo.update(changeset)
+    {:error, changeset} =
+      Competition.changeset(competition2, %{name: competition1.name})
+      |> Repo.update()
+
     refute changeset.valid?
-    assert changeset.errors[:name] == "already exists"
+    assert changeset.errors[:name] == {"has already been taken", []}
   end
 end

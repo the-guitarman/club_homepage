@@ -24,7 +24,9 @@ defmodule ClubHomepage.MeetingPoint do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> ModelValidator.foreign_key_constraint(:address_id)
-    |> ModelValidator.validate_uniqueness(:address_id)
+    |> foreign_key_constraint(:address_id)
+    |> unique_constraint(:address_id)
+    #|> ModelValidator.foreign_key_constraint(:address_id)
+    #|> ModelValidator.validate_uniqueness(:address_id)
   end
 end

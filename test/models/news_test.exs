@@ -14,10 +14,10 @@ defmodule ClubHomepage.NewsTest do
   test "changeset with invalid attributes" do
     changeset = News.changeset(%News{}, @invalid_attrs)
     refute changeset.valid?
-    assert changeset.model.public     == false
+    assert changeset.data.public     == false
     assert changeset.changes[:public] == nil
     assert changeset.errors[:public]  == nil
-    assert changeset.errors[:subject] == "can't be blank"
-    assert changeset.errors[:body]    == "can't be blank"
+    assert changeset.errors[:subject] == {"can't be blank", []}
+    assert changeset.errors[:body]    == {"can't be blank", []}
   end
 end

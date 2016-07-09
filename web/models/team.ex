@@ -25,10 +25,10 @@ defmodule ClubHomepage.Team do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> ModelValidator.foreign_key_constraint(:competition_id)
-    |> ModelValidator.validate_uniqueness(:name)
+    |> foreign_key_constraint(:competition_id)
+    |> unique_constraint(:name)
     |> ClubHomepage.SlugGenerator.run(:name, :slug)
-    |> ModelValidator.validate_uniqueness(:slug)
+    |> unique_constraint(:slug)
   end
 end
 

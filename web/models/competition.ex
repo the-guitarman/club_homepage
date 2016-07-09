@@ -25,6 +25,7 @@ defmodule ClubHomepage.Competition do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> ModelValidator.validate_uniqueness(:name)
+    |> unique_constraint(:name)
+    #|> ModelValidator.validate_uniqueness(:name)
   end
 end

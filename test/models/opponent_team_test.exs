@@ -3,6 +3,8 @@ defmodule ClubHomepage.OpponentTeamTest do
 
   alias ClubHomepage.OpponentTeam
 
+  import ClubHomepage.Factory
+
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 
@@ -14,5 +16,23 @@ defmodule ClubHomepage.OpponentTeamTest do
   test "changeset with invalid attributes" do
     changeset = OpponentTeam.changeset(%OpponentTeam{}, @invalid_attrs)
     refute changeset.valid?
+  end
+
+  test "edit an opponent team" do
+    opponent_team_1 = create(:opponent_team)
+    opponent_team_2 = create(:opponent_team)
+
+    {:ok, competition} =
+      OpponentTeam.changeset(opponent_team_2, %{name: "new competition name"})
+      |> Repo.update()
+
+    assert competition.name == "new competition name"
+
+    {:error, changeset} =
+      OpponentTeam.changeset(opponent_team_2, %{name: opponent_team_1.name})
+      |> Repo.update()
+
+    refute changeset.valid?
+    assert changeset.errors[:name] == {"has already been taken", []}
   end
 end

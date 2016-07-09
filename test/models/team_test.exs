@@ -19,9 +19,12 @@ defmodule ClubHomepage.TeamTest do
     {:ok, team} = Repo.insert(changeset)
     assert team.slug == "this-is-my-team-without-ss-in-the-name"
 
-    changeset = Team.changeset(%Team{}, valid_attrs)
+    {:error, changeset} =
+      Team.changeset(%Team{}, valid_attrs)
+      |> Repo.insert()
+
     refute changeset.valid?
-    assert changeset.errors[:slug] == "already exists"
+    assert changeset.errors[:name] == {"has already been taken", []}
   end
 
   test "edit a team" do
@@ -33,17 +36,18 @@ defmodule ClubHomepage.TeamTest do
 
     assert team.name == "new team name"
 
-    changeset = Team.changeset(team2, %{name: team1.name})
-    {:error, _errors} = Repo.update(changeset)
+    {:error, changeset} =
+      Team.changeset(team2, %{name: team1.name})
+      |> Repo.update()
     refute changeset.valid?
-    assert changeset.errors[:name] == "already exists"
+    assert changeset.errors[:name] == {"has already been taken", []}
     #assert changeset.errors[:slug] == nil #"already exists"
   end
 
   test "changeset with invalid attributes" do
     changeset = Team.changeset(%Team{}, @invalid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:competition_id] == "can't be blank"
-    assert changeset.errors[:name] == "can't be blank"
+    assert changeset.errors[:competition_id] == {"can't be blank", []}
+    assert changeset.errors[:name] == {"can't be blank", []}
   end
 end
