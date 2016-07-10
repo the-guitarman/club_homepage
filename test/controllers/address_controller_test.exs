@@ -51,7 +51,7 @@ defmodule ClubHomepage.AddressControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     conn = post conn, address_path(conn, :create), address: @valid_attrs
-    assert redirected_to(conn) == address_path(conn, :index) <> "#address-1"
+    assert redirected_to(conn) == address_path(conn, :index) <> "#address-#{get_highest_id(Address)}"
     assert Repo.get_by(Address, @valid_attrs)
     assert get_flash(conn, :info) == "Address created successfully."
   end

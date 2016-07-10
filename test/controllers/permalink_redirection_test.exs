@@ -21,7 +21,7 @@ defmodule ClubHomepage.PermalinkRedirectionTest do
     assert redirected_to(conn, 301) =~ permalink.destination_path
   end
 
-  test "no permalink found so don't redirect" do
+  test "no permalink found so don't redirect", %{conn: conn} do
     conn = 
       conn
       |> get("/about-us.html")

@@ -60,6 +60,6 @@ defmodule ClubHomepage.PageControllerTest do
 
   defp add_days_to_date(date, days \\ 7) do
     date
-    |> Timex.Date.add(Timex.Time.to_timestamp(days, :days))
+    |> Timex.add(Timex.Time.to_timestamp(days, :days))
   end
 end

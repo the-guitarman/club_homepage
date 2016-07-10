@@ -50,7 +50,7 @@ defmodule ClubHomepage.CompetitionControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
     conn = post conn, competition_path(conn, :create), competition: @valid_attrs
-    assert redirected_to(conn) == competition_path(conn, :index) <> "#competition-1"
+    assert redirected_to(conn) == competition_path(conn, :index) <> "#competition-#{get_highest_id(Competition)}"
     assert Repo.get_by(Competition, @valid_attrs)
   end
 

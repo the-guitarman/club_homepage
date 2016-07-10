@@ -57,7 +57,7 @@ defmodule ClubHomepage.TeamControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     conn = post conn, team_path(conn, :create), team: @valid_attrs
-    assert redirected_to(conn) == team_path(conn, :index) <> "#team-1"
+    assert redirected_to(conn) == team_path(conn, :index) <> "#team-#{get_highest_id(Team)}"
     assert Repo.get_by(Team, @valid_attrs)
   end
 

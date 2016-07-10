@@ -28,6 +28,13 @@ defmodule ClubHomepage.ConnCase do
 
       # The default endpoint for testing
       @endpoint ClubHomepage.Endpoint
+
+      defp get_highest_id(module) do
+        case Repo.all(from(m in module, select: m.id, order_by: [desc: m.id], limit: 1)) do
+          [] -> 0
+          [id | _] -> id
+        end
+      end
     end
   end
 

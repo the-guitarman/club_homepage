@@ -55,7 +55,7 @@ defmodule ClubHomepage.MeetingPointControllerTest do
   test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user, valid_attrs: valid_attrs} do
 
     conn = post conn, meeting_point_path(conn, :create), meeting_point: valid_attrs
-    assert redirected_to(conn) == meeting_point_path(conn, :index) <> "#meeting-point-1"
+    assert redirected_to(conn) == meeting_point_path(conn, :index) <> "#meeting-point-#{get_highest_id(MeetingPoint)}"
     assert Repo.get_by(MeetingPoint, valid_attrs)
   end
 

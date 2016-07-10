@@ -52,7 +52,7 @@ defmodule ClubHomepage.OpponentTeamControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn} do
     conn = post conn, opponent_team_path(conn, :create), opponent_team: @valid_attrs
-    assert redirected_to(conn) == opponent_team_path(conn, :index) <> "#opponent-team-1"
+    assert redirected_to(conn) == opponent_team_path(conn, :index) <> "#opponent-team-#{get_highest_id(OpponentTeam)}"
     assert Repo.get_by(OpponentTeam, @valid_attrs)
   end
 
@@ -73,7 +73,7 @@ defmodule ClubHomepage.OpponentTeamControllerTest do
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
     opponent_team = Repo.insert! %OpponentTeam{}
     conn = put conn, opponent_team_path(conn, :update, opponent_team), opponent_team: @valid_attrs
-    assert redirected_to(conn) == opponent_team_path(conn, :index) <> "#opponent-team-1"
+    assert redirected_to(conn) == opponent_team_path(conn, :index) <> "#opponent-team-#{opponent_team.id}"
     assert Repo.get_by(OpponentTeam, @valid_attrs)
   end
 
