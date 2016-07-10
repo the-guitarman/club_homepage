@@ -38,11 +38,12 @@ defmodule ClubHomepage.Match do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> ModelValidator.foreign_key_constraint(:competition_id)
-    |> ModelValidator.foreign_key_constraint(:season_id)
-    |> ModelValidator.foreign_key_constraint(:team_id)
-    |> ModelValidator.foreign_key_constraint(:opponent_team_id)
-    |> ModelValidator.validate_uniqueness([:season_id, :team_id, :opponent_team_id, :home_match], name: "unique_match_index")
+    |> foreign_key_constraint(:competition_id)
+    |> foreign_key_constraint(:season_id)
+    |> foreign_key_constraint(:team_id)
+    |> foreign_key_constraint(:opponent_team_id)
+    |> unique_constraint(:id, name: :unique_match_index)
+    #|> unique_constraint([:season_id, :team_id, :opponent_team_id, :home_match], name: :unique_match_index)
     |> validate_inclusion(:failure_reason, [nil | failure_reasons])
     |> validate_team_goals
     |> validate_opponent_team_goals

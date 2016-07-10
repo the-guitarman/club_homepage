@@ -4,7 +4,7 @@ defmodule ClubHomepage.AuthByRoleTest do
 
   setup do
     conn =
-      conn()
+      build_conn()
       |> bypass_through(ClubHomepage.Router, :browser)
       |> get("/")
     {:ok, %{conn: conn}}

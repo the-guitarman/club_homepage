@@ -11,7 +11,7 @@ defmodule ClubHomepage.MatchControllerTest do
   @invalid_attrs %{}
 
   setup context do
-    conn = conn()
+    conn = build_conn()
     competition   = create(:competition)
     season        = create(:season)
     team          = create(:team)

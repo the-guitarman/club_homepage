@@ -63,9 +63,9 @@ defmodule ClubHomepage.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(MyApp.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(ClubHomepage.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(MyApp.Gettext, "errors", msg, opts)
+      Gettext.dgettext(ClubHomepage.Gettext, "errors", msg, opts)
     end
   end
 end

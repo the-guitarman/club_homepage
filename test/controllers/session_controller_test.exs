@@ -6,7 +6,7 @@ defmodule ClubHomepage.SessionControllerTest do
   import ClubHomepage.Factory
 
   setup do
-    conn = conn()
+    conn = build_conn()
     {:ok, conn: conn}
   end
 

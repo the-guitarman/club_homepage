@@ -13,7 +13,7 @@ defmodule ClubHomepage.MatchTest do
     season        = create(:season)
     team          = create(:team)
     opponent_team = create(:opponent_team)
-    {:ok, start_at} = Timex.DateFormat.parse(@valid_attrs[:start_at], "%d.%m.%Y %H:%M", :strftime)
+    {:ok, start_at} = Timex.parse(@valid_attrs[:start_at], "%d.%m.%Y %H:%M", :strftime)
     valid_attrs = %{@valid_attrs | competition_id: competition.id, season_id: season.id, team_id: team.id, opponent_team_id: opponent_team.id, start_at: start_at}
     changeset = Match.changeset(%Match{}, valid_attrs)
     assert changeset.valid?
@@ -22,11 +22,11 @@ defmodule ClubHomepage.MatchTest do
   test "changeset with invalid attributes" do
     changeset = Match.changeset(%Match{}, @invalid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:competition_id] == "can't be blank"
-    assert changeset.errors[:season_id] == "can't be blank"
-    assert changeset.errors[:team_id] == "can't be blank"
-    assert changeset.errors[:opponent_team_id] == "can't be blank"
-    assert changeset.errors[:start_at] == "can't be blank"
+    assert changeset.errors[:competition_id] == {"can't be blank", []}
+    assert changeset.errors[:season_id] == {"can't be blank", []}
+    assert changeset.errors[:team_id] == {"can't be blank", []}
+    assert changeset.errors[:opponent_team_id] == {"can't be blank", []}
+    assert changeset.errors[:start_at] == {"can't be blank", []}
   end
 
   test "match is finished" do
@@ -60,8 +60,8 @@ defmodule ClubHomepage.MatchTest do
   test "validate goals with failure_reason is 'aborted'" do
     attrs = Map.put(@valid_attrs, :failure_reason, "aborted")
     changeset = Match.changeset(%Match{}, attrs)
-    assert changeset.errors[:team_goals] == "can't be blank"
-    assert changeset.errors[:opponent_team_goals] == "can't be blank"
+    assert changeset.errors[:team_goals] == {"can't be blank", []}
+    assert changeset.errors[:opponent_team_goals] == {"can't be blank", []}
   end
 
   test "validate goals with failure_reason other than 'aborted'" do

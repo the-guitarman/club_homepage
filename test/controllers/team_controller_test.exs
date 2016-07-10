@@ -11,7 +11,7 @@ defmodule ClubHomepage.TeamControllerTest do
   @invalid_attrs %{name: ""}
 
   setup context do
-    conn = conn()
+    conn = build_conn()
     competition   = create(:competition)
     valid_attrs = %{@valid_attrs | competition_id: competition.id}
     if context[:login] do

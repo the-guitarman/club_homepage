@@ -108,7 +108,7 @@ defmodule ClubHomepage.Factory do
 
   def factory(:user) do
     %ClubHomepage.User{
-      birthday: Timex.Date.from({1988, 4, 17}), 
+      birthday: Timex.datetime({1988, 4, 17}), 
       email: sequence(:email, &"mail-#{&1}@example.de"),
       login: sequence(:login, &"my_login-#{&1}"), 
       name: sequence(:login, &"my name #{&1}"), 

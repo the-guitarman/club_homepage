@@ -10,7 +10,7 @@ defmodule ClubHomepage.SeasonControllerTest do
   @invalid_attrs %{name: "some name"}
 
   setup context do
-    conn = conn()
+    conn = build_conn()
     if context[:login] do
       current_user = create(:user)
       conn = assign(conn, :current_user, current_user)

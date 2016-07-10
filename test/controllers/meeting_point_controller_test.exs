@@ -9,7 +9,7 @@ defmodule ClubHomepage.MeetingPointControllerTest do
   @invalid_attrs %{}
 
   setup context do
-    conn = conn()
+    conn = build_conn()
     address = create(:address)
     valid_attrs = %{@valid_attrs | address_id: address.id}
     if context[:login] do

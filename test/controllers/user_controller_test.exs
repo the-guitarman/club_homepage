@@ -10,11 +10,11 @@ defmodule ClubHomepage.UserControllerTest do
   @invalid_attrs2 %{email: "invalid"}
 
   setup context do
-    conn = conn()
+    conn = build_conn()
     role = context[:login]
     cond do
-      role == true -> assign_current_user(create(:user, roles: "member administrator"))
-      is_binary(role) -> assign_current_user(create(:user, roles: "member #{role}"))
+      role == true -> assign_current_user(conn, create(:user, roles: "member administrator"))
+      is_binary(role) -> assign_current_user(conn, create(:user, roles: "member #{role}"))
       true -> {:ok, conn: conn}
     end
   end
@@ -160,7 +160,7 @@ defmodule ClubHomepage.UserControllerTest do
   #   refute Repo.get(User, user.id)
   # end
 
-  defp assign_current_user(current_user) do
+  defp assign_current_user(conn, current_user) do
     conn = assign(conn, :current_user, current_user)
     {:ok, conn: conn, current_user: current_user}
   end

@@ -36,7 +36,7 @@ defmodule ClubHomepage.PermalinkGenerator  do
     |> create_permalink_from_changeset(path_prefix)
   end
 
-  defp slug_from_model(%{model: model} = changeset) do
+  defp slug_from_model(%{data: model} = changeset) do
     case model.slug do
       nil  -> {:error, changeset}
       slug -> {:ok, changeset, slug}

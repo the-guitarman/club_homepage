@@ -9,7 +9,7 @@ defmodule ClubHomepage.PermalinkControllerTest do
   @invalid_attrs %{}
 
   setup context do
-    conn = conn()
+    conn = build_conn()
     team = create(:team)
     valid_attrs = %{@valid_attrs | destination_path: team.slug}
     if context[:login] do
