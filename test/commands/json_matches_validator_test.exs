@@ -32,7 +32,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "#: Required property team_name was not present."]
+    assert changeset.errors == [json: {"#: Required property team_name was not present.", []}]
   end
 
   test "get a changeset for json with matches is missing" do
@@ -42,7 +42,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "#: Required property matches was not present."]
+    assert changeset.errors == [json: {"#: Required property matches was not present.", []}]
   end
 
   test "get a changeset for json with matches[0][start_at] is missing" do
@@ -52,7 +52,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "#/matches/0: Required property start_at was not present."]
+    assert changeset.errors == [json: {"#/matches/0: Required property start_at was not present.", []}]
   end
 
   test "get a changeset for json with matches[0][home] is missing" do
@@ -62,7 +62,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "#/matches/0: Required property home was not present."]
+    assert changeset.errors == [json: {"#/matches/0: Required property home was not present.", []}]
   end
 
   test "get a changeset for json with matches[0][guest] is missing" do
@@ -72,7 +72,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "#/matches/0: Required property guest was not present."]
+    assert changeset.errors == [json: {"#/matches/0: Required property guest was not present.", []}]
   end
 
   test "get a changeset for json with matches key has wrong value" do
@@ -82,7 +82,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "#/matches: Type mismatch. Expected Array but got Integer."]
+    assert changeset.errors == [json: {"#/matches: Type mismatch. Expected Array but got Integer.", []}]
   end
 
   test "get a changeset for json with team_name key has wrong value" do
@@ -92,7 +92,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "team_name: missing or wrong type", json: "#/team_name: Type mismatch. Expected String but got Integer."]
+    assert changeset.errors == [json: {"team_name: missing or wrong type", []}, json: {"#/team_name: Type mismatch. Expected String but got Integer.", []}]
   end
 
   test "get a changeset for json with matches[0][start_at] has wrong value" do
@@ -102,7 +102,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "#/matches/0/start_at: Type mismatch. Expected String but got Integer."]
+    assert changeset.errors == [json: {"#/matches/0/start_at: Type mismatch. Expected String but got Integer.", []}]
   end
 
   test "get a changeset for json with matches[0][home] has wrong value" do
@@ -112,7 +112,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "#/matches/0/home: Type mismatch. Expected String but got Integer."]
+    assert changeset.errors == [json: {"#/matches/0/home: Type mismatch. Expected String but got Integer.", []}]
   end
 
   test "get a changeset for json with matches[0][guest] has wrong value" do
@@ -122,7 +122,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.valid? == false
     assert changeset.changes == params
     assert changeset.params == params
-    assert changeset.errors == [json: "#/matches/0/guest: Type mismatch. Expected String but got Integer."]
+    assert changeset.errors == [json: {"#/matches/0/guest: Type mismatch. Expected String but got Integer.", []}]
   end
 
   defp delete_key_from_json(params, [key | [key2]]) do

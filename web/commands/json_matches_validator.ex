@@ -20,8 +20,7 @@ defmodule ClubHomepage.JsonMatchesValidator do
     |> set_changeset_params(params)
   end
   def changeset(required_fields, json_field, params) do
-    new_changeset
-    |> Changeset.cast(params, required_fields, ~w())
+    new_changeset(required_fields, params)
     |> validate_json(json_field, params)
     |> set_changeset_changes(params)
     |> set_changeset_params(params)
@@ -166,5 +165,9 @@ defmodule ClubHomepage.JsonMatchesValidator do
 
   defp new_changeset do
     %Changeset{data: %Match{}, action: nil, valid?: true, changes: %{}, params: nil, errors: []}
+  end
+  defp new_changeset(required_fields, params) do
+    types = %{season_id: :integer, team_id: :integer, json: :string}
+    Changeset.cast({params, types}, params, required_fields)
   end
 end
