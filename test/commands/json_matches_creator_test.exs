@@ -24,13 +24,13 @@ defmodule ClubHomepage.JsonMatchesCreatorTest do
     changeset = JsonMatchesValidator.changeset(["season_id", "team_id", "json"], "json", params)
     assert changeset.valid?
 
-    assert count(Competition) == 1
+    assert count(Competition) == 2
     assert count(Match) == 0
     assert count(OpponentTeam) == 0
 
     records_count = JsonMatchesCreator.run(changeset, "json")
     assert records_count == 0
-    assert count(Competition) == 3
+    assert count(Competition) == 4
     assert count(Match) == 2
     assert count(OpponentTeam) == 2
 
@@ -38,13 +38,13 @@ defmodule ClubHomepage.JsonMatchesCreatorTest do
     assert match1.team.name == team.name
     assert match1.opponent_team.name == "Opponent Team 1"
     assert match1.home_match == false
-    assert match1.start_at == Timex.DateTime.from({{2016, 3, 13}, {12, 0, 0}}, :local)
+    assert match1.start_at == Timex.datetime({{2016, 3, 13}, {12, 0, 0}})
 
     match2 = Repo.one!(from(m in Match, where: [team_id: ^team.id, home_match: true], preload: [:team, :opponent_team]))
     assert match2.team.name == team.name
     assert match2.opponent_team.name == "Opponent Team 2"
     assert match2.home_match == true
-    assert match2.start_at == Timex.DateTime.from({{2016, 4, 3}, {14, 0, 0}}, :local)
+    assert match2.start_at == Timex.datetime({{2016, 4, 3}, {14, 0, 0}})
   end
 
   defp count(model) do
