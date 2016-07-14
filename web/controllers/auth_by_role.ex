@@ -5,7 +5,7 @@ defmodule ClubHomepage.AuthByRole do
   alias ClubHomepage.Router.Helpers
   alias ClubHomepage.UserRole
 
-  def init(opts) do
+  def init(_opts) do
     nil
   end
 

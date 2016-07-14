@@ -1,5 +1,5 @@
 defmodule ClubHomepage.SecretCheck do
-  import Ecto.Query, only: [from: 1, from: 2]
+  import Ecto.Query, only: [from: 2]
   import Ecto.Changeset, only: [add_error: 3]
 
   alias ClubHomepage.Repo

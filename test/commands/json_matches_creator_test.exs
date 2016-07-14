@@ -10,7 +10,7 @@ defmodule ClubHomepage.JsonMatchesCreatorTest do
   alias ClubHomepage.OpponentTeam
 
   import ClubHomepage.Factory
-  import Ecto.Query, only: [from: 1, from: 2]
+  import Ecto.Query, only: [from: 2]
 
   @params %{"json" => "{\r\n  \"team_name\": \"Club Team\",\r\n  \"matches\": [\r\n    {\r\n      \"competition\": \"League A\",\r\n      \"start_at\": \"Sonntag, 13.03.2016 - 12:00 Uhr\",\r\n      \"home\": \"Opponent Team 1\",\r\n      \"guest\": \"Club Team\"\r\n    },\r\n    {\r\n      \"competition\": \"Super Cup\",\r\n      \"start_at\": \"Sonntag, 03.04.2016 - 14:00 Uhr\",\r\n      \"home\": \"Club Team\",\r\n      \"guest\": \"Opponent Team 2\"\r\n    }\r\n  ]\r\n}"}
 

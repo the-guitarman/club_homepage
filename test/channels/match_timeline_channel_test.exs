@@ -37,7 +37,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
 
     ref = push(socket, "match-event:remove", match_event)
     assert_reply ref, :ok
-    assert_broadcast("match-event:remove", match_event)
+    assert_broadcast("match-event:remove", _match_event)
     assert get_match_events(match) == json_encode([])
 
     ref = push(socket, "match-event:final-whistle", "3:2")

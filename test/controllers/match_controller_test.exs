@@ -5,7 +5,7 @@ defmodule ClubHomepage.MatchControllerTest do
 
   import ClubHomepage.Factory
 
-  import Ecto.Query, only: [from: 1, from: 2]
+  import Ecto.Query, only: [from: 2]
 
   @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "17.04.2010 14:00"}
   @invalid_attrs %{}

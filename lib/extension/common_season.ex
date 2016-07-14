@@ -1,5 +1,5 @@
 defmodule ClubHomepage.Extension.CommonSeason do
-  import Ecto.Query, only: [from: 1, from: 2]
+  import Ecto.Query, only: [from: 2]
   import ClubHomepage.Router.Helpers
   import ClubHomepage.Extension.CommonTimex
 

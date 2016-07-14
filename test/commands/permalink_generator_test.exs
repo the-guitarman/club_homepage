@@ -8,7 +8,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
   alias ClubHomepage.Team
 
   import ClubHomepage.Factory
-  import Ecto.Query, only: [from: 1, from: 2]
+  import Ecto.Query, only: [from: 2]
 
   test "delete if a new object with same slug is created" do
     assert 0 == Repo.one(query)

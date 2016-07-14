@@ -23,8 +23,8 @@ This is a phoenixframework app. So you need to install some requirements like Er
 
 Current Project Versions: 
 
-- Elixir: v1.2.1
-- Phoenix: v1.1.4
+- Elixir: v1.3.0
+- Phoenix: v1.2.0
 
 Now clone the project and install the project dependencies. Run these commands:
 
