@@ -41,3 +41,12 @@ msgstr "Text Page"
 
 msgid "user"
 msgstr "User"
+
+msgid "start_at"
+msgstr ""
+
+msgid "team_goals"
+msgstr ""
+
+msgid "opponent_team_goals"
+msgstr ""

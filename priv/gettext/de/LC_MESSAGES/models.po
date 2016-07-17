@@ -42,8 +42,6 @@ msgstr "Text Page"
 msgid "user"
 msgstr "Benutzer"
 
-
-
 msgid "start_at"
 msgstr "Anstoßzeitpunkt"
 

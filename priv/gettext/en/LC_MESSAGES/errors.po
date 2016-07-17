@@ -14,9 +14,7 @@ msgstr ""
 ## From Ecto.Changeset.cast/4
 #, fuzzy
 msgid "can't be blank"
-msgid_plural "can't be blank"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 ## From Ecto.Changeset.put_change/3
 msgid "is invalid"
