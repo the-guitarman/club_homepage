@@ -44,6 +44,12 @@ a.anchor, a.anchor:hover, a.anchor:focus {
 h2 .failure-reason {
   font-size: 50%;
 }
+button h2 {
+  display: inline-block;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
 
 /*! styles */
 .background-image-01 {

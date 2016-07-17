@@ -10,6 +10,7 @@ defmodule ClubHomepage.Extension.CommonSeason do
   def team_seasons(team) do
     season_ids = Repo.all(from(m in Match, join: s in assoc(m, :season), where: m.team_id == ^team.id, group_by: [m.season_id, s.name], select: m.season_id, order_by: [desc: s.name]))
     Repo.all(from(s in Season, where: s.id in ^season_ids))
+    |> Enum.reverse
   end
 
   def current_team_season(team) do

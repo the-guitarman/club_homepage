@@ -10,9 +10,7 @@
               <%= for season <- @seasons do %>
                 <% link_path = team_page_with_season_path(@conn, :show, @team.slug, season.name) %>
                 <%= if @conn.request_path == link_path do %>
-                  <h2>
-                    <button type="button" class="btn btn-default btn-primary" disabled="disabled"><%= season.name %></button>
-                  </h2>
+                  <button type="button" class="btn btn-default btn-primary" disabled="disabled"><h2><%= season.name %></h2></button>
                 <% else %>
                   <%= link season.name, to: link_path, class: "btn btn-default" %>
                 <% end %>
