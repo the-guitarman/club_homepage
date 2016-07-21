@@ -689,7 +689,7 @@ $(document).ready(function() {
         $('.js-standard-match-event-buttons').addClass('hidden');
         $('.js-penalty-shoot-out-event-buttons').removeClass('hidden');
         decidingGameButtonsParent.removeClass('hidden');
-        decidingGameButtons.removeProp('disabled').removeAttr('disabled');
+        decidingGameButtons.filter('[data-match-event=penalty-shoot-out]').removeProp('disabled').removeAttr('disabled');
         penaltyShootOutEventButtons.prop('disabled', 'disabled').attr('disabled', 'disabled');
       } else if (
           decidingGame === true && (
@@ -702,7 +702,19 @@ $(document).ready(function() {
         decidingGameButtonsParent.removeClass('hidden');
         decidingGameButtons.filter('[data-match-event=penalty-shoot-out]').prop('disabled', 'disabled').attr('disabled', 'disabled');
         decidingGameButtons.filter('[data-match-event=final-whistle]').removeProp('disabled').removeAttr('disabled');
-        penaltyShootOutEventButtons.removeProp('disabled').removeAttr('disabled');
+        
+
+        var lastMatchEvent = _.last(allMatchEvents);
+        if (['penalty-goal', 'no-penalty-goal'].indexOf(lastMatchEvent.type) > -1) {
+          var positions = ['left', 'right'];
+          var lastEventPositionIndex = _.findIndex(positions, function(position){ return position === lastMatchEvent.position; });
+          var nextPenaltyShootOutEventButtonsPosition = Math.abs(lastEventPositionIndex - 1);
+          penaltyShootOutEventButtons.filter('[data-match-event-position=' + positions[lastEventPositionIndex] + ']').prop('disabled', 'disabled').attr('disabled', 'disabled');
+          penaltyShootOutEventButtons.filter('[data-match-event-position=' + positions[nextPenaltyShootOutEventButtonsPosition] + ']').removeProp('disabled').removeAttr('disabled');
+        } else {
+          penaltyShootOutEventButtons.removeProp('disabled').removeAttr('disabled');
+        }
+
       } else if (!matchStateMethods.isPenaltyShootOutOver(allMatchEvents)) {
         $('.js-standard-match-event-buttons').removeClass('hidden');
         $('.js-penalty-shoot-out-event-buttons').addClass('hidden');

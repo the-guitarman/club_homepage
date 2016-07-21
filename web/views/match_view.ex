@@ -61,8 +61,8 @@ defmodule ClubHomepage.MatchView do
   end
 
   def within_hours_before_kick_off?(match, hours) do
-    #true
     match.start_at > Timex.DateTime.local && match.start_at < Timex.add(Timex.DateTime.local, Timex.Time.to_timestamp(hours, :hours))
+    true
   end
 
   def match_character(match) do

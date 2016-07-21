@@ -45,13 +45,6 @@ defmodule ClubHomepage.MatchTimelineChannel do
     |> send_broadcast("match-event:remove")
     |> send_response
   end
-  def handle_in("match-event:final-whistle", match_score, socket) do
-    socket
-    |> get_match_id
-    |> get_match
-    |> save_match_score(match_score)
-    |> send_response
-  end
 
   # # This is invoked every time a notification is being broadcast
   # # to the client. The default implementation is just to push it
@@ -87,27 +80,21 @@ defmodule ClubHomepage.MatchTimelineChannel do
 
   defp add_match_event({socket, match, match_events}, match_event) do
     new_match_events = Enum.reverse([match_event | Enum.reverse(match_events)])
-    {socket, match, new_match_events, match_event}
+    {socket, match, new_match_events, %{match_event: match_event}}
   end
 
   defp remove_match_event({socket, match, match_events}, match_event_index) do
     [_last_match_event | new_match_events] = Enum.reverse(match_events)
-    {socket, match, Enum.reverse(new_match_events), match_event_index}
+    {socket, match, Enum.reverse(new_match_events), %{match_event_index: match_event_index}}
   end
 
   defp save_match_events({socket, match, match_events_list, broadcast_message}) do
-    result = save_match(match, %{match_events: stringify_match_events(match_events_list)})
+    attributes =
+      %{match_events: stringify_match_events(match_events_list)}
+      |> add_match_score_if_finished(match, match_events_list)
+
+    result = save_match(match, attributes)
     {socket, result, broadcast_message}
-  end
-
-  defp save_match_score({socket, match}, match_score) do
-    {socket, save_match(match, match_score_attributes(match, match_score))}
-  end
-
-  defp save_match(match, attributes) do
-    match
-    |> Match.changeset(attributes)
-    |> Repo.update
   end
 
   defp send_broadcast({socket, result, broadcast_message}, event_name) do
@@ -127,6 +114,12 @@ defmodule ClubHomepage.MatchTimelineChannel do
     # {:noreply, socket}
   end
 
+  defp save_match(match, attributes) do
+    match
+    |> Match.changeset(attributes)
+    |> Repo.update
+  end
+
   defp parse_match_events(match_events_string) do
     {:ok, match_events_list} = JSON.decode(match_events_string)
     match_events_list
@@ -137,19 +130,63 @@ defmodule ClubHomepage.MatchTimelineChannel do
     match_events_string
   end
 
-  defp match_score_attributes(match, match_score) do
-    [home_goals | [guest_goals]] = parse_match_score(match_score)
+  defp add_match_score_if_finished(attributes, match, match_events) do
+    score = match_score(match_events)
+    case match_finished?(match, score, match_events) do
+      true -> Map.merge(attributes, match_score_attributes(match, score))
+      _    -> attributes
+    end
+  end
+
+  defp match_score(match_events) do
+    match_events
+    |> Enum.reduce(
+      [0, 0],
+      fn(match_event, acc) ->
+        case match_event do
+          %{"type" => "goal", "own-goal" => "true"} -> add_own_goal_to_score(acc, match_event)
+          %{"type" => "goal"} -> add_goal_to_score(acc, match_event)
+          %{"type" => "penalty"} -> add_goal_to_score(acc, match_event)
+          %{"type" => "penalty-goal"} -> add_goal_to_score(acc, match_event)
+          _ -> acc
+        end
+      end
+    )
+  end
+
+  defp match_finished?(match, [home_goals, guest_goals], match_events) do
+    final_whistles_count = Enum.count(match_events, fn(match_event) -> match_event["type"] == "final-whistle" end)
+    competition = ClubHomepage.Repo.get!(ClubHomepage.Competition, match.competition_id)
+    a_team_has_won = home_goals != guest_goals
+
+    cond do
+      final_whistles_count == 3 -> true
+      final_whistles_count == 2 && a_team_has_won -> true
+      final_whistles_count == 1 && (a_team_has_won || competition.matches_need_decition == false) -> true
+      true -> false
+    end
+  end
+
+  defp add_own_goal_to_score([left, right], %{"position" => "left"}) do
+    [left , right + 1]
+  end
+  defp add_own_goal_to_score([left, right], %{"position" => "right"}) do
+    [left + 1 , right]
+  end
+
+  defp add_goal_to_score([left, right], %{"position" => "left"}) do
+    [left + 1 , right]
+  end
+  defp add_goal_to_score([left, right], %{"position" => "right"}) do
+    [left , right + 1]
+  end
+
+  defp match_score_attributes(match, [home_goals, guest_goals]) do
     case match.home_match do
       true ->
         %{team_goals: home_goals, opponent_team_goals: guest_goals}
       _    ->
         %{opponent_team_goals: home_goals, team_goals: guest_goals}
     end
-  end
-
-  defp parse_match_score(match_score) do
-    match_score
-    |> String.split(":", trim: true)
-    |> Enum.map(fn(x) -> String.to_integer(x) end)
   end
 end

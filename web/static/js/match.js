@@ -26,15 +26,6 @@ let MatchTimeline = {
       });
     }
 
-    let matchFinished = function() {
-      var matchEventButtonsDisabled = _.all($('.js-match-event-buttons button'), function(btn) {return $(btn).is('disabled');});
-      if (getMatchEvents().length > 0 && matchEventButtonsDisabled === true) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
     if (_.isEmpty(matchTimelineEl.data('channelize')) === true) {
       renderMatchEvents(matchTimelineEl.data('match-events'), true)
       return
@@ -48,18 +39,18 @@ let MatchTimeline = {
     matchIdChannel.onClose(e => console.log("channel closed", e))
 
     matchIdChannel
-      .on("match-event:add", (matchEvent) => {
-        //console.log("matchEvent to add", matchEvent)
+      .on("match-event:add", (payload) => {
+        //console.log("matchEvent to add", payload)
         let matchEvents = getMatchEvents()
-        matchEvents.push(matchEvent)
+        matchEvents.push(payload['match_event'])
         renderMatchEvents(matchEvents)
       })
  
     matchIdChannel
-      .on("match-event:remove", (matchEventIndex) => {
-        //console.log("matchEvent to remove", matchEventIndex)
+      .on("match-event:remove", (payload) => {
+        //console.log("matchEvent to remove", payload)
         let matchEvents    = getMatchEvents()
-        let removedElement = matchEvents.splice(matchEventIndex, 1)[0]
+        let removedElement = matchEvents.splice(payload['match_event_index'], 1)[0]
         renderMatchEvents(matchEvents)
       })
 
@@ -94,11 +85,6 @@ let MatchTimeline = {
         matchIdChannel
           .push('match-event:add', matchEvent)
           .receive("error", e => console.log(e));
-        if (matchFinished()) {
-          matchIdChannel
-            .push('match-event:final-whistle', matchStateMethods.matchScore())
-            .receive("error", e => console.log(e));
-        }
       })
       .on('match-event:remove', '#match-timeline', function(event, matchEventIndex) {
         matchIdChannel
