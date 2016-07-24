@@ -28,6 +28,7 @@ defmodule ClubHomepage.Router do
     get "/contact.html", PageController, :contact
     get "/sponsors.html", PageController, :sponsors
 
+    resources "/matches", MatchController, only: [:show]
     get "/news", NewsController, :index
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
@@ -44,7 +45,7 @@ defmodule ClubHomepage.Router do
 
     resources "/addresses", AddressController, except: [:show]
     resources "/competitions", CompetitionController, except: [:show]
-    resources "/matches", MatchController
+    resources "/matches", MatchController, expect: [:show]
     get "/matches/bulk/new", MatchController, :new_bulk, as: :matches
     post "/matches/bulk", MatchController, :create_bulk, as: :matches
     resources "/meeting_points", MeetingPointController, except: [:show]

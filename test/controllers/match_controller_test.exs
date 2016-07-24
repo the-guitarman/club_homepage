@@ -33,7 +33,6 @@ defmodule ClubHomepage.MatchControllerTest do
       get(conn, match_path(conn, :index)),
       get(conn, match_path(conn, :new)),
       post(conn, match_path(conn, :create), match: valid_attrs),
-      get(conn, match_path(conn, :show, match)),
       get(conn, match_path(conn, :edit, match)),
       put(conn, match_path(conn, :update, match), match: valid_attrs),
       delete(conn, match_path(conn, :delete, match))
@@ -102,6 +101,11 @@ defmodule ClubHomepage.MatchControllerTest do
   #   assert html_response(conn, 200) =~ "Create Matches"
   # end
 
+  @tag login: false
+  test "shows a match without a user is logged in", %{conn: conn, valid_attrs: _valid_attrs} do
+
+  end
+
   @tag login: true
   test "shows a match with a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     match = create(:match)
@@ -125,6 +129,13 @@ defmodule ClubHomepage.MatchControllerTest do
   #   IO.inspect conn
   #   assert redirected_to(conn) =~ "/"
   # end
+
+  @tag login: false
+  test "renders page not found when id is nonexistent and no user is logged in", %{conn: conn, valid_attrs: _valid_attrs} do
+    assert_raise Ecto.NoResultsError, fn ->
+      get conn, match_path(conn, :show, -1)
+    end
+  end
 
   @tag login: true
   test "renders page not found when id is nonexistent and a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
