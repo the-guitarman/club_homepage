@@ -120,7 +120,7 @@ $(document).ready(function(){
       mapOptions['zoom']    = 17;
     }
 
-
+    // mapOptions['layers'] = MQ.mapLayer();
     var map = L.map('osm-map', mapOptions);
     /*
      map.doubleClickZoom.disable();
@@ -131,9 +131,8 @@ $(document).ready(function(){
      map.keyboard.disable();
      */
 
-    L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-      attribution: '',
-      subdomains: ['otile1','otile2','otile3','otile4']
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: ''
     }).addTo(map);
 
     if (markers.length > 1) {
