@@ -384,7 +384,7 @@ $(document).ready(function() {
 
     var point = function(matchEvent) {
       var html = '<div class="timeline-state position-' + matchEvent.position + '">';
-      if (matchEvent.eventIndex >= matchEvent.lastEventIndex) {
+      if (matchEvent.eventIndex >= matchEvent.lastEventIndex && $('.js-match-event-buttons button').length > 0) {
         html = html +
           '<div class="css-close-button-wrap text-right">' + 
             '<button type="button" class="close" aria-label="Close" data-event-index="' + matchEvent.eventIndex + '" title="' + matchStateMethods.translate('delete-latest-element') + '">' + 
