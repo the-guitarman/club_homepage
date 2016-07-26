@@ -6,6 +6,7 @@ defmodule ClubHomepage.MatchControllerTest do
   import ClubHomepage.Factory
 
   import Ecto.Query, only: [from: 2]
+  import ClubHomepage.UserRole, only: [has_role?: 2]
 
   @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "17.04.2010 14:00"}
   @invalid_attrs %{}
@@ -18,7 +19,12 @@ defmodule ClubHomepage.MatchControllerTest do
     opponent_team = create(:opponent_team)
     valid_attrs = %{@valid_attrs | competition_id: competition.id, season_id: season.id, team_id: team.id, opponent_team_id: opponent_team.id}
     if context[:login] do
-      current_user = create(:user)
+      current_user = 
+        if context[:user_roles] do
+          create(:user, roles: context[:user_roles])
+        else
+          create(:user)
+        end
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs}
     else
@@ -102,16 +108,52 @@ defmodule ClubHomepage.MatchControllerTest do
   # end
 
   @tag login: false
-  test "shows a match without a user is logged in", %{conn: conn, valid_attrs: _valid_attrs} do
+  test "shows a future match without a user is logged in", %{conn: conn, valid_attrs: _valid_attrs} do
+    start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
 
-  end
-
-  @tag login: true
-  test "shows a match with a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
-    match = create(:match)
+    match = create(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
     opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
     conn = get conn, match_path(conn, :show, match)
+    headline = 
+    if match.home_match do
+      ~r|<h2>.+?#{team.name}.+? - .+?#{opponent_team.name}.+?</h2>|s
+    else
+      ~r|<h2>.+?#{opponent_team.name}.+? - .+?#{team.name}.+?</h2>|s
+    end
+    assert html_response(conn, 200) =~ headline
+    assert not (html_response(conn, 200) =~ ~r|<div class="row js-match-event-buttons css-match-event-buttons">|)
+    assert not (html_response(conn, 200) =~ ~r|<div id="match-timeline"|)
+  end
+
+  @tag login: false
+  test "shows a running match without a user is logged in", %{conn: conn, valid_attrs: _valid_attrs} do
+    start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(-1, :hours))
+
+    match = create(:match, %{start_at: start_at})
+    team = Repo.get!(ClubHomepage.Team, match.team_id)
+    opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
+    conn = get conn, match_path(conn, :show, match)
+    headline = 
+    if match.home_match do
+      ~r|<h2>.+?#{team.name}.+? - .+?#{opponent_team.name}.+?</h2>|s
+    else
+      ~r|<h2>.+?#{opponent_team.name}.+? - .+?#{team.name}.+?</h2>|s
+    end
+    assert html_response(conn, 200) =~ headline
+    assert not (html_response(conn, 200) =~ ~r|<div class="row js-match-event-buttons css-match-event-buttons">|)
+    assert not (html_response(conn, 200) =~ ~r|<div id="match-timeline"|)
+  end
+
+  @tag login: true
+  test "shows a future match with a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
+    start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
+
+    match = create(:match, %{start_at: start_at})
+    team = Repo.get!(ClubHomepage.Team, match.team_id)
+    opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
+    conn = get conn, match_path(conn, :show, match)
+    assert has_role?(conn, "match-editor")
     headline = 
       if match.home_match do
         ~r|<h2>.+?#{team.name}.+? - .+?#{opponent_team.name}.+?</h2>|s
@@ -119,6 +161,50 @@ defmodule ClubHomepage.MatchControllerTest do
         ~r|<h2>.+?#{opponent_team.name}.+? - .+?#{team.name}.+?</h2>|s
       end
     assert html_response(conn, 200) =~ headline
+    assert not (html_response(conn, 200) =~ ~r|<div class="row js-match-event-buttons css-match-event-buttons">|)
+    assert not (html_response(conn, 200) =~ ~r|<div id="match-timeline"|)
+  end
+
+  @tag login: true
+  @tag user_roles: "member match-editor"
+  test "shows a running match with a match editor user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
+    start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(-1, :hours))
+
+    match = create(:match, %{start_at: start_at})
+    team = Repo.get!(ClubHomepage.Team, match.team_id)
+    opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
+    conn = get conn, match_path(conn, :show, match)
+    assert has_role?(conn, "match-editor")
+    headline = 
+      if match.home_match do
+        ~r|<h2>.+?#{team.name}.+? - .+?#{opponent_team.name}.+?</h2>|s
+      else
+        ~r|<h2>.+?#{opponent_team.name}.+? - .+?#{team.name}.+?</h2>|s
+      end
+    assert html_response(conn, 200) =~ headline
+    assert html_response(conn, 200) =~ ~r|<div class="row js-match-event-buttons css-match-event-buttons">|
+    assert html_response(conn, 200) =~ ~r|<div id="match-timeline"|
+  end
+
+  @tag login: true
+  @tag user_roles: "member"
+  test "shows a running match with a no match editor user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
+    start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(-1, :hours))
+
+    match = create(:match, %{start_at: start_at})
+    team = Repo.get!(ClubHomepage.Team, match.team_id)
+    opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
+    conn = get conn, match_path(conn, :show, match)
+    assert not has_role?(conn, "match-editor")
+    headline = 
+    if match.home_match do
+      ~r|<h2>.+?#{team.name}.+? - .+?#{opponent_team.name}.+?</h2>|s
+    else
+      ~r|<h2>.+?#{opponent_team.name}.+? - .+?#{team.name}.+?</h2>|s
+    end
+    assert html_response(conn, 200) =~ headline
+    assert not (html_response(conn, 200) =~ ~r|<div class="row js-match-event-buttons css-match-event-buttons">|)
+    assert html_response(conn, 200) =~ ~r|<div id="match-timeline"|
   end
 
   @tag login: true
