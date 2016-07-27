@@ -1,3 +1,14 @@
+.css-match-event-buttons,
+.css-match-event-form {
+  background-color: #E0E0E0;
+  padding: 20px;
+  margin-bottom: 0px !important;
+}
+
+#match-timeline {
+  margin-top: 20px;
+}
+
 .timeline-state .css-close-button-wrap {
 	background-color: #EEEEEE;
 }

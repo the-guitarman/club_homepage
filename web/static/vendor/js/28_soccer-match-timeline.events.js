@@ -18,5 +18,12 @@ $(document).ready(function() {
     .on('match-event:afterRemove', '#match-timeline', function(event, removedElementIndex, removedElement, matchEvents) {
       matchEventButtonHandler.switchButtons();
       matchEventButtonHandler.hideEventForm();
+    })
+    .on('match-event:show-event-form', '#match-timeline', function(event) {
+      var matchEventFormEl = $('.js-match-event-form');
+      var position = matchEventFormEl.find('input[name=position]').val();
+      var inputGroupButtons = matchEventFormEl.find('.input-group-btn');
+      inputGroupButtons.addClass('hidden');
+      inputGroupButtons.filter('.' + position).removeClass('hidden');
     });
 });

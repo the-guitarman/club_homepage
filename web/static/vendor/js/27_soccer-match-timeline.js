@@ -555,6 +555,7 @@ $(document).ready(function() {
           flatCheckbox.find('input').removeProp('checked').removeAttr('checked');
           flatCheckbox.find('label').removeClass('checked')
         });
+        matchEventsEl.trigger('match-event:hide-event-form');
       }
     };
 
@@ -577,6 +578,7 @@ $(document).ready(function() {
           }
         });
       });
+      matchEventsEl.trigger('match-event:show-event-form');
     };
 
     var enableDecidingEventButtons = function(indexes, decidingGame, lastMatchEvent) {

@@ -10,7 +10,7 @@
 #: web/templates/layout/navbar_top.html.eex:87
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:82
+#: web/templates/match/show.html.eex:85
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/index.html.eex:8
@@ -29,7 +29,7 @@
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
 #: web/templates/team/edit.html.eex:11 web/templates/team/index.html.eex:4
 #: web/templates/team/new.html.eex:11 web/templates/team/show.html.eex:21
-#: web/templates/team/team_page.html.eex:67
+#: web/templates/team/team_page.html.eex:65
 #: web/templates/text_page/edit.html.eex:9
 #: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
 #: web/templates/user/index.html.eex:4 web/templates/user/new.html.eex:15
@@ -38,12 +38,12 @@ msgid "all"
 msgstr ""
 
 #: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:60
-#: web/templates/match/new.html.eex:4 web/templates/team/team_page.html.eex:33
+#: web/templates/match/new.html.eex:4 web/templates/team/team_page.html.eex:31
 msgid "create_new_match"
 msgstr ""
 
 #: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:58
-#: web/templates/team/team_page.html.eex:31
+#: web/templates/team/team_page.html.eex:29
 msgid "create_next_new_match"
 msgstr ""
 
@@ -57,11 +57,11 @@ msgstr ""
 
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:82
+#: web/templates/match/show.html.eex:85
 msgid "matches"
 msgstr ""
 
-#: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:43
+#: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:46
 #: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:28
 msgid "meeting_point"
 msgstr ""
@@ -83,7 +83,7 @@ msgstr ""
 msgid "create_new_season"
 msgstr ""
 
-#: web/templates/match/show.html.eex:78
+#: web/templates/match/show.html.eex:81
 msgid "delete_match"
 msgstr ""
 
@@ -95,6 +95,7 @@ msgstr ""
 #: web/templates/competition/form.html.eex:20
 #: web/templates/match/form.html.eex:80
 #: web/templates/match/form_bulk.html.eex:36
+#: web/templates/match/soccer_match_timeline.html.eex:105
 #: web/templates/meeting_point/form.html.eex:15
 #: web/templates/news/form.html.eex:26
 #: web/templates/opponent_team/form.html.eex:15
@@ -347,7 +348,7 @@ msgstr ""
 #: web/templates/layout/navbar_top.html.eex:57
 #: web/templates/page/index.html.eex:35 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
-#: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:67
+#: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:65
 msgid "teams"
 msgstr ""
 
@@ -412,7 +413,7 @@ msgid "latest_news"
 msgstr ""
 
 #: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:49
-#: web/templates/match/show.html.eex:76
+#: web/templates/match/show.html.eex:79
 #: web/templates/team/team_page_match_table.html.eex:9
 msgid "edit_match"
 msgstr ""
@@ -472,7 +473,7 @@ msgstr ""
 msgid "slug"
 msgstr ""
 
-#: web/templates/team/team_page.html.eex:58
+#: web/templates/team/team_page.html.eex:56
 msgid "saison_matches_missing"
 msgstr ""
 
@@ -483,7 +484,7 @@ msgstr ""
 
 #: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:62
 #: web/templates/match/new_bulk.html.eex:4
-#: web/templates/team/team_page.html.eex:36
+#: web/templates/team/team_page.html.eex:34
 msgid "create_new_matches"
 msgstr ""
 
@@ -648,7 +649,7 @@ msgstr ""
 msgid "address_longitude_place_holder"
 msgstr ""
 
-#: web/templates/match/show.html.eex:54 web/views/match_view.ex:21
+#: web/templates/match/show.html.eex:57 web/views/match_view.ex:21
 msgid "match_address"
 msgstr ""
 
@@ -812,4 +813,14 @@ msgstr ""
 
 #: web/templates/competition/form.html.eex:15
 msgid "matches_need_decition_notice"
+msgstr ""
+
+#: web/templates/match/soccer_match_timeline.html.eex:106
+msgid "abort"
+msgstr ""
+
+#: web/templates/match/soccer_match_timeline.html.eex:80
+#: web/templates/match/soccer_match_timeline.html.eex:92
+#: web/templates/match/soccer_match_timeline.html.eex:100
+msgid "for_example_abbreviation"
 msgstr ""

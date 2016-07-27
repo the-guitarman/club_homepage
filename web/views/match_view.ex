@@ -1,3 +1,5 @@
+require Ecto.Query
+
 defmodule ClubHomepage.MatchView do
   use ClubHomepage.Web, :view
 
@@ -62,6 +64,7 @@ defmodule ClubHomepage.MatchView do
 
   def within_hours_before_kick_off?(match, hours) do
     Timex.DateTime.compare(match.start_at, Timex.DateTime.local) == 1 && Timex.DateTime.compare(match.start_at, Timex.add(Timex.DateTime.local, Timex.Time.to_timestamp(hours, :hours))) == -1
+    true
   end
 
   def match_character(match) do
@@ -76,6 +79,22 @@ defmodule ClubHomepage.MatchView do
     case logged_in?(conn) && (match_in_progress?(match) || within_hours_before_kick_off?(match, 1)) do
       true -> "data-channelize=''"
       _ -> ""
+    end
+  end
+
+  def match_players(match, position) do
+    club_players = 
+      Ecto.Query.from(u in ClubHomepage.User, select: [u.id, u.name], where: like(u.roles, "%player%"))
+      |> ClubHomepage.Repo.all()
+      |> Enum.map(fn([user_id, user_name]) -> user_name end)
+      |> Enum.sort()
+
+    guest_players = 1..21
+
+    cond do
+      position == "left" && match.home_match == true -> club_players
+      position == "right" && match.home_match == false -> club_players
+      true -> guest_players
     end
   end
 end

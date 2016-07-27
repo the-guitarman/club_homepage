@@ -59,42 +59,54 @@
 
     </div>
 
-    <div class="row js-match-event-form hidden">
-      <div class="hidden-xs col-sm-3 col-md-4"></div>
-      <div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="row js-match-event-form css-match-event-form hidden">
+      <div class="hidden-xs col-sm-3 col-md-3"></div>
+      <div class="col-xs-12 col-sm-6 col-md-6">
         <input type="hidden" name="type" />
         <input type="hidden" name="position" />
         <input type="hidden" name="datetime" />
-        <div class="form-group hidden">
+        <div class="form-group hidden text-center">
           <label for="input-minute">Minute</label> 
           <input type="tel" id="input-minute" class="form-control" name="minute" placeholder="e.g. 26" />
         </div>
-        <div class="form-group hidden">
+        <div class="form-group hidden text-center">
           <label for="input-event">Event</label> 
-          <input type="text" id="input-event" class="form-control" name="event" placeholder="e.g. Bob (4)" />
+          <input type="text" id="input-event" class="form-control" name="event" placeholder="" />
         </div>
-        <div class="form-group hidden">
-          <label for="input-text">Text</label> 
-          <input type="text" id="input-text" class="form-control" name="text" placeholder="e.g. Bob (4)" />
+        <div class="form-group hidden text-center">
+          <label for="input-text">Text</label>
+          <div class="input-group">
+            <%= render("soccer_match_timeline_player_input_button.html", conn: @conn, match: @match, position: "left") %>
+            <input type="text" id="input-text" class="form-control" name="text" placeholder="<%= gettext("for_example_abbreviation") %> Bob (4)" />
+            <%= render("soccer_match_timeline_player_input_button.html", conn: @conn, match: @match, position: "right") %>
+          </div>
         </div>
-        <div class="form-group hidden flat-checkbox">
+        <div class="form-group hidden flat-ch eckbox text-center">
           <label for="input-own-goal">Own Goal</label> 
           <input type="checkbox" id="input-own-goal" name="own-goal" />
         </div>
-        <div class="form-group hidden">
+        <div class="form-group hidden text-center">
           <label for="input-out">Out</label> 
-          <input type="text" id="input-out" class="form-control" name="text-out" placeholder="e.g. Bob (4)" />
+          <div class="input-group">
+            <%= render("soccer_match_timeline_player_input_button.html", conn: @conn, match: @match, position: "left") %>
+            <input type="text" id="input-out" class="form-control" name="text-out" placeholder="<%= gettext("for_example_abbreviation") %> Bob (4)" />
+            <%= render("soccer_match_timeline_player_input_button.html", conn: @conn, match: @match, position: "right") %>
+          </div>
         </div>
-        <div class="form-group hidden">
+        <div class="form-group hidden text-center">
           <label for="input-in">In</label> 
-          <input type="text" id="input-in" class="form-control" name="text-in" placeholder="e.g. Richard (14)" />
+          <div class="input-group">
+            <%= render("soccer_match_timeline_player_input_button.html", conn: @conn, match: @match, position: "left") %>
+            <input type="text" id="input-in" class="form-control" name="text-in" placeholder="<%= gettext("for_example_abbreviation") %> Richard (14)" />
+            <%= render("soccer_match_timeline_player_input_button.html", conn: @conn, match: @match, position: "right") %>
+          </div>
         </div>
-        <div>
-          <input type="submit" class="btn btn-primary" value="Save" />
-          <input type="reset" class="btn btn-danger" value="Stop" />
+        <div class="text-center">
+          <input type="submit" class="btn btn-primary" value="<%= gettext("save") %>" />
+          <input type="reset" class="btn btn-danger" value="<%= gettext("abort") %>" />
         </div>
       </div>
-      <div class="hidden-xs col-sm-3 col-md-4"></div>
+      <div class="hidden-xs col-sm-3 col-md-3"></div>
     </div>
   <% end %>
 

@@ -6,6 +6,9 @@
           <div class="col-xs-12 text-center">
             <%= Timex.format!(@match.start_at, "%d.%m.%Y %H:%M", :strftime) %> <%= gettext("o_clock") %>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 text-center">
           <%= if @match.home_match do %>
             <div class="col-xs-5 text-right">
               <%= @match.team.name %>
