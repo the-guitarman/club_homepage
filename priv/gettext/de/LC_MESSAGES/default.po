@@ -9,7 +9,6 @@ msgstr ""
 #: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
 #: web/templates/address/index.html.eex:8
 #: web/templates/address/index.html.eex:55 web/templates/address/new.html.eex:9
-#: web/templates/address/show.html.eex:32
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
@@ -35,9 +34,9 @@ msgstr ""
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
-#: web/templates/team/edit.html.eex:11 web/templates/team/index.html.eex:4
-#: web/templates/team/new.html.eex:11 web/templates/team/show.html.eex:21
-#: web/templates/team/team_page.html.eex:65
+#: web/templates/secret/show.html.eex:15 web/templates/team/edit.html.eex:11
+#: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
+#: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:65
 #: web/templates/text_page/edit.html.eex:9
 #: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
 #: web/templates/user/index.html.eex:4 web/templates/user/new.html.eex:15
@@ -70,7 +69,7 @@ msgid "matches"
 msgstr "Spiele"
 
 #: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:46
-#: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:28
+#: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:30
 msgid "meeting_point"
 msgstr "Treffpunkt"
 
@@ -167,7 +166,7 @@ msgid "address_zip_code_placeholder"
 msgstr "Postleitzahl (PLZ)"
 
 #: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
-#: web/templates/address/new.html.eex:9 web/templates/address/show.html.eex:32
+#: web/templates/address/new.html.eex:9
 #: web/templates/meeting_point/index.html.eex:8
 #: web/templates/meeting_point/index.html.eex:35
 #: web/templates/opponent_team/index.html.eex:8
@@ -216,7 +215,6 @@ msgstr "Neues Secret anlegen"
 msgid "create_new_secret_notice"
 msgstr "Vereinsmitglieder, die sich registrieren/anmelden wollen, benötigen ein Secret (Zufalls-Code). Du kannst es per E-Mail an ein Vereinsmitglied versenden, es selbst für die Registrierung verwenden oder es über einen anderen Weg an ein Vereinsmitglied weitergeben."
 
-#: web/templates/address/show.html.eex:31
 #: web/templates/meeting_point/show.html.eex:13
 #: web/templates/secret/index.html.eex:25
 msgid "delete"
@@ -227,7 +225,6 @@ msgid "district"
 msgstr "Ortsteil"
 
 #: web/templates/address/index.html.eex:46
-#: web/templates/address/show.html.eex:30
 #: web/templates/meeting_point/index.html.eex:26
 #: web/templates/meeting_point/show.html.eex:12
 #: web/templates/news/show.html.eex:25
@@ -285,17 +282,13 @@ msgstr "Gegnerische Mannschaften"
 msgid "registration_information"
 msgstr "Impressum"
 
-#: web/templates/secret/index.html.eex:4
+#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:15
 msgid "secrets"
 msgstr "Secrets"
 
 #: web/templates/season/form.html.eex:9 web/templates/season/form.html.eex:9
 msgid "select_season_years_placeholder"
 msgstr "Saison wählen"
-
-#: web/templates/address/show.html.eex:4
-msgid "show_address"
-msgstr "Adresse"
 
 #: web/templates/meeting_point/show.html.eex:1
 msgid "show_meeting_point"
@@ -657,7 +650,7 @@ msgstr "Breitengrad (Latitude)"
 msgid "address_longitude_place_holder"
 msgstr "Längengrad (Longitude)"
 
-#: web/templates/match/show.html.eex:57 web/views/match_view.ex:21
+#: web/templates/match/show.html.eex:57 web/views/match_view.ex:23
 msgid "match_address"
 msgstr "Spielort"
 
@@ -769,11 +762,11 @@ msgstr "Die Saison wurde gelöscht."
 msgid "season_updated_successfully"
 msgstr "Die Saison wurde gespeichert."
 
-#: web/controllers/secret_controller.ex:25
+#: web/controllers/secret_controller.ex:30
 msgid "secret_created_successfully"
 msgstr "Das Secret wurde angelegt."
 
-#: web/controllers/secret_controller.ex:40
+#: web/controllers/secret_controller.ex:45
 msgid "secret_deleted_successfully"
 msgstr "Das Secret wurde gelöscht."
 
@@ -832,3 +825,7 @@ msgstr "Abbruch"
 #: web/templates/match/soccer_match_timeline.html.eex:100
 msgid "for_example_abbreviation"
 msgstr "z. B."
+
+#: web/templates/secret/show.html.eex:4
+msgid "show_secret"
+msgstr "Secret"

@@ -11,6 +11,11 @@ defmodule ClubHomepage.SecretController do
     render(conn, "index.html", secrets: secrets)
   end
 
+  def show(conn, %{"id" => id}) do
+    secret = Repo.get!(Secret, id)
+    render(conn, "show.html", secret: secret)
+  end
+
   def new(conn, _params) do
     changeset = Secret.changeset(%Secret{})
     render(conn, "new.html", changeset: changeset)
@@ -20,10 +25,10 @@ defmodule ClubHomepage.SecretController do
     changeset = Secret.changeset(%Secret{}, %{})
 
     case Repo.insert(changeset) do
-      {:ok, _secret} ->
+      {:ok, secret} ->
         conn
         |> put_flash(:info, gettext("secret_created_successfully"))
-        |> redirect(to: secret_path(conn, :index))
+        |> redirect(to: secret_path(conn, :show, secret))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

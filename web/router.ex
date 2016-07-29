@@ -55,7 +55,7 @@ defmodule ClubHomepage.Router do
     resources "/permalinks", PermalinkController
     resources "/teams", TeamController, only: [:index, :new, :create, :edit, :update, :delete]
     resources "/seasons", SeasonController
-    resources "/secrets", SecretController, only: [:index, :new, :create, :delete]
+    resources "/secrets", SecretController, only: [:index, :show, :new, :create, :delete]
   end
 
   # scope "/api", ClubHomepage do

@@ -42,6 +42,13 @@ defmodule ClubHomepage.SecretControllerTest do
   end
 
   @tag login: true
+  test "show a secret", %{conn: conn, current_user: _current_user} do
+    secret = create(:secret)
+    conn = get conn, secret_path(conn, :show, secret)
+    assert html_response(conn, 200) =~ "<h2>Secret</h2>"
+  end
+
+  @tag login: true
   test "renders form for new secret with current_user is logged in", %{conn: conn, current_user: _current_user} do
     conn = get conn, secret_path(conn, :new)
     assert html_response(conn, 200) =~ "Save"
@@ -52,7 +59,7 @@ defmodule ClubHomepage.SecretControllerTest do
     conn = post conn, secret_path(conn, :create), secret: @valid_attrs
     secret = Repo.get_by(Secret, @valid_attrs)
     assert secret
-    assert redirected_to(conn) == secret_path(conn, :index)
+    assert redirected_to(conn) == secret_path(conn, :show, secret)
   end
 
   @tag login: true
@@ -60,7 +67,7 @@ defmodule ClubHomepage.SecretControllerTest do
     conn = post conn, secret_path(conn, :create), secret: @invalid_attrs
     secret = Repo.get_by(Secret, @valid_attrs)
     assert secret
-    assert redirected_to(conn) == secret_path(conn, :index)
+    assert redirected_to(conn) == secret_path(conn, :show, secret)
   end
 
   # @tag login: true
