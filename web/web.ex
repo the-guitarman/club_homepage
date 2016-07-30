@@ -40,7 +40,7 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Gettext
 
       import ClubHomepage.Extension.Controller
-      import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0]
+      import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0, internal_user_name: 1]
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
       import ClubHomepage.Auth, only: [authenticate_user: 2, current_user: 1, logged_in?: 1, logged_in?: 2]
@@ -63,7 +63,7 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Gettext
 
       import ClubHomepage.Extension.View
-      import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0]
+      import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0, internal_user_name: 1]
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
       import ClubHomepage.Auth, only: [logged_in?: 1]

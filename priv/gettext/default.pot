@@ -4,9 +4,9 @@
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
-#: web/templates/layout/navbar_top.html.eex:77
-#: web/templates/layout/navbar_top.html.eex:82
-#: web/templates/layout/navbar_top.html.eex:87
+#: web/templates/layout/navbar_top.html.eex:80
+#: web/templates/layout/navbar_top.html.eex:85
+#: web/templates/layout/navbar_top.html.eex:90
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:85
@@ -26,7 +26,7 @@
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
-#: web/templates/secret/show.html.eex:15 web/templates/team/edit.html.eex:11
+#: web/templates/secret/show.html.eex:9 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:65
 #: web/templates/text_page/edit.html.eex:9
@@ -101,12 +101,12 @@ msgstr ""
 #: web/templates/permalink/form.html.eex:17
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:11
 #: web/templates/team/form.html.eex:15 web/templates/text_page/form.html.eex:21
-#: web/templates/user/form.html.eex:77
+#: web/templates/user/form.html.eex:83
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:77
+#: web/templates/layout/navbar_top.html.eex:80
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
 #: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
 #: web/templates/team/team_page.html.eex:9
@@ -244,7 +244,7 @@ msgstr ""
 
 #: web/templates/address/index.html.eex:8
 #: web/templates/address/index.html.eex:55
-#: web/templates/layout/navbar_top.html.eex:82
+#: web/templates/layout/navbar_top.html.eex:85
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/new.html.eex:11
@@ -274,7 +274,7 @@ msgstr ""
 msgid "registration_information"
 msgstr ""
 
-#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:15
+#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:9
 msgid "secrets"
 msgstr ""
 
@@ -311,7 +311,7 @@ msgstr ""
 msgid "expiry_date"
 msgstr ""
 
-#: web/templates/secret/index.html.eex:13 web/templates/user/form.html.eex:42
+#: web/templates/secret/index.html.eex:13 web/templates/user/form.html.eex:48
 msgid "secret"
 msgstr ""
 
@@ -324,7 +324,7 @@ msgstr ""
 msgid "edit_team"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:98
+#: web/templates/layout/navbar_top.html.eex:101
 #: web/templates/session/new.html.eex:13
 msgid "log_in"
 msgstr ""
@@ -338,18 +338,18 @@ msgstr ""
 msgid "password"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:57
+#: web/templates/layout/navbar_top.html.eex:60
 #: web/templates/page/index.html.eex:35 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:65
 msgid "teams"
 msgstr ""
 
-#: web/templates/user/form.html.eex:50 web/templates/user/index.html.eex:19
+#: web/templates/user/form.html.eex:56 web/templates/user/index.html.eex:19
 msgid "active"
 msgstr ""
 
-#: web/templates/user/form.html.eex:35
+#: web/templates/user/form.html.eex:41
 #: web/templates/user/form_unregistered.html.eex:21
 #: web/templates/user/index.html.eex:20
 msgid "birthday"
@@ -377,7 +377,7 @@ msgstr ""
 msgid "edit_user"
 msgstr ""
 
-#: web/templates/user/form.html.eex:28
+#: web/templates/user/form.html.eex:34
 #: web/templates/user/form_unregistered.html.eex:14
 #: web/templates/user/index.html.eex:18
 msgid "email"
@@ -411,23 +411,23 @@ msgstr ""
 msgid "edit_match"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:92
+#: web/templates/layout/navbar_top.html.eex:95
 msgid "logout"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:51
+#: web/templates/layout/navbar_top.html.eex:54
 msgid "members"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:95
+#: web/templates/layout/navbar_top.html.eex:98
 msgid "sign_up"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:34
+#: web/templates/layout/navbar_top.html.eex:37
 msgid "master_data"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:39
+#: web/templates/layout/navbar_top.html.eex:42
 #: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
 #: web/templates/news/show.html.eex:26
 msgid "news"
@@ -529,7 +529,7 @@ msgstr ""
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
-#: web/templates/layout/navbar_top.html.eex:87
+#: web/templates/layout/navbar_top.html.eex:90
 msgid "competitions"
 msgstr ""
 
@@ -609,13 +609,13 @@ msgstr ""
 msgid "page"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:44
+#: web/templates/layout/navbar_top.html.eex:47
 #: web/templates/text_page/edit.html.eex:9
 #: web/templates/text_page/index.html.eex:4
 msgid "text_pages"
 msgstr ""
 
-#: web/templates/user/form.html.eex:59
+#: web/templates/user/form.html.eex:65
 msgid "user_roles"
 msgstr ""
 
@@ -794,7 +794,7 @@ msgstr ""
 msgid "select_failure_reason_placeholder"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:72
+#: web/templates/layout/navbar_top.html.eex:75
 msgid "all_opponent_teams"
 msgstr ""
 
@@ -820,4 +820,12 @@ msgstr ""
 
 #: web/templates/secret/show.html.eex:4
 msgid "show_secret"
+msgstr ""
+
+#: web/templates/user/form.html.eex:28
+msgid "nickname"
+msgstr ""
+
+#: web/templates/layout/navbar_top.html.eex:32
+msgid "signed_in"
 msgstr ""

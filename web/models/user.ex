@@ -12,6 +12,7 @@ defmodule ClubHomepage.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :name, :string
+    field :nickname, :string
     field :roles, :string
 
     timestamps
@@ -19,7 +20,7 @@ defmodule ClubHomepage.User do
 
   def unregistered_changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(email name), ~w(login birthday active roles))
+    |> cast(params, ~w(email name), ~w(nickname login birthday active roles))
     |> validate_length(:name, max: 100)
     |> check_email
     |> UserRole.check_roles

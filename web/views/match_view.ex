@@ -83,9 +83,9 @@ defmodule ClubHomepage.MatchView do
 
   def match_players(match, position) do
     club_players = 
-      Ecto.Query.from(u in ClubHomepage.User, select: [u.id, u.name], where: like(u.roles, "%player%"))
+      Ecto.Query.from(u in ClubHomepage.User, select: [u.id], where: like(u.roles, "%player%"))
       |> ClubHomepage.Repo.all()
-      |> Enum.map(fn([user_id, user_name]) -> user_name end)
+      |> Enum.map(fn([id]) -> internal_user_name(id) end)
       |> Enum.sort()
 
     guest_players = 1..21

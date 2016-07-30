@@ -29,7 +29,10 @@
 
       <ul class="nav navbar-nav navbar-right">
         <%= if @current_user do %>
-          <li><p class="navbar-text">Angemeldet: <%= @current_user.name %></p></li>
+          <li><p class="navbar-text"><%= gettext("signed_in_label") %>:</p></li>
+          <li class="<%= current_link(@conn, ClubHomepage.UserController, [:index, :show, :new, :create, :edit, :update]) %>">
+            <%= link internal_user_name(@current_user), to: managed_user_path(@conn, :edit, @current_user) %>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= gettext("master_data") %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
