@@ -49,7 +49,9 @@ defmodule ClubHomepage.Mixfile do
      {:json, "~> 0.3.0"},
      {:ex_json_schema, "~> 0.3.1"},
      {:geocoder, "~> 0.6"},
-     {:dialyxir, "~> 0.3", only: [:dev]}#,
+     {:dialyxir, "~> 0.3", only: [:dev]},
+     {:arc, "~> 0.5.3"},
+     {:arc_ecto, "~> 0.4.3"}#,
      #{:mix_test_watch, "~> 0.2.4", only: :dev}]
     ]
   end
