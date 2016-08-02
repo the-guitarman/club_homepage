@@ -1,0 +1,28 @@
+<h2>Listing sponsor images</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Attachment</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for sponsor_image <- @sponsor_images do %>
+    <tr>
+      <td><%= sponsor_image.name %></td>
+      <td><%= sponsor_image.attachment %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: sponsor_image_path(@conn, :show, sponsor_image), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: sponsor_image_path(@conn, :edit, sponsor_image), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: sponsor_image_path(@conn, :delete, sponsor_image), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New sponsor image", to: sponsor_image_path(@conn, :new) %>

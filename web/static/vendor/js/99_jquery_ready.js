@@ -4,7 +4,7 @@ $(document).ready(function(){
   if (typeof(MediumEditor) != 'undefined') {
     var editor = new MediumEditor('.js-medium-editor', {
       toolbar: {
-        buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'image']
+        buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3']
       }
     });
   }

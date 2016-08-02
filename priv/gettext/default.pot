@@ -100,7 +100,7 @@ msgstr ""
 #: web/templates/opponent_team/form.html.eex:15
 #: web/templates/permalink/form.html.eex:17
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:11
-#: web/templates/team/form.html.eex:15 web/templates/text_page/form.html.eex:21
+#: web/templates/team/form.html.eex:15 web/templates/text_page/form.html.eex:17
 #: web/templates/user/form.html.eex:83
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
@@ -827,5 +827,17 @@ msgid "nickname"
 msgstr ""
 
 #: web/templates/layout/navbar_top.html.eex:32
-msgid "signed_in"
+msgid "signed_in_label"
+msgstr ""
+
+#: web/controllers/sponsor_image_controller.ex:25
+msgid "sponsor_image_created_successfully"
+msgstr ""
+
+#: web/controllers/sponsor_image_controller.ex:65
+msgid "sponsor_image_deleted_successfully"
+msgstr ""
+
+#: web/controllers/sponsor_image_controller.ex:50
+msgid "sponsor_image_updated_successfully"
 msgstr ""

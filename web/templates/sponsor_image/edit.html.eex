@@ -1,0 +1,6 @@
+<h2>Edit sponsor image</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: sponsor_image_path(@conn, :update, @sponsor_image) %>
+
+<%= link "Back", to: sponsor_image_path(@conn, :index) %>

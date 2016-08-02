@@ -83,6 +83,16 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def factory(:sponsor_image) do
+    %ClubHomepage.SponsorImage{
+      attachment: %{
+        file_name: "test/support/images/test_image.jpg",
+        updated_at: Ecto.DateTime.utc
+      },
+      name: sequence(:name, &"test image #{&1}")
+    }
+  end
+
   def factory(:team) do
     competition = create(:competition)
     %ClubHomepage.Team{
