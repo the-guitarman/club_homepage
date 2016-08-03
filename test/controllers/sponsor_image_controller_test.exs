@@ -20,6 +20,15 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   }
   @invalid_attrs %{name: ""}
 
+  setup_all do
+    uploads_path = Application.get_env(:club_homepage, :uploads)[:path]
+    File.mkdir_p(uploads_path)
+
+    on_exit fn ->
+      File.rm_rf(uploads_path)
+    end
+  end
+
   setup context do
     conn = build_conn()
     if context[:login] do
@@ -31,7 +40,6 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     end
   end
 
-  @moduletag run: false
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
@@ -51,21 +59,18 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     end)
   end
 
-  @moduletag run: false
   @tag login: true
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, sponsor_image_path(conn, :index)
     assert html_response(conn, 200) =~ "Listing sponsor images"
   end
 
-  @moduletag run: false
   @tag login: true
   test "renders form for new resources", %{conn: conn} do
     conn = get conn, sponsor_image_path(conn, :new)
     assert html_response(conn, 200) =~ "New sponsor image"
   end
 
-  @moduletag run: true
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn} do
     conn = post conn, sponsor_image_path(conn, :create), sponsor_image: @valid_attrs
@@ -73,14 +78,12 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     assert Repo.get!(SponsorImage, maximum_id())
   end
 
-  @moduletag run: false
   @tag login: true
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, sponsor_image_path(conn, :create), sponsor_image: @invalid_attrs
     assert html_response(conn, 200) =~ "New sponsor image"
   end
 
-  @moduletag run: false
   @tag login: true
   test "shows chosen resource", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
@@ -88,7 +91,6 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     assert html_response(conn, 200) =~ "Show sponsor image"
   end
 
-  @moduletag run: false
   @tag login: true
   test "renders page not found when id is nonexistent", %{conn: conn} do
     assert_error_sent 404, fn ->
@@ -96,7 +98,6 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     end
   end
 
-  @moduletag run: false
   @tag login: true
   test "renders form for editing chosen resource", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
@@ -104,7 +105,6 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     assert html_response(conn, 200) =~ "Edit sponsor image"
   end
 
-  @moduletag run: false
   @tag login: true
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
@@ -113,7 +113,6 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     assert Repo.get!(SponsorImage, sponsor_image.id)
   end
 
-  @moduletag run: false
   @tag login: true
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
@@ -121,7 +120,6 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     assert html_response(conn, 200) =~ "Edit sponsor image"
   end
 
-  @moduletag run: false
   @tag login: true
   test "deletes chosen resource", %{conn: conn} do
     sponsor_image = create(:sponsor_image)

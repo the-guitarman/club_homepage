@@ -36,14 +36,17 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :club_homepage, ClubHomepage.Repo,
- adapter: Ecto.Adapters.Postgres,
- username: "postgres",
- password: "postgres",
- database: "club_homepage_dev",
- hostname: "localhost",
- pool_size: 10
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "club_homepage_dev",
+  hostname: "localhost",
+  pool_size: 10
 # # Configure your database
 # config :club_homepage, ClubHomepage.Repo,
 #   adapter: Sqlite.Ecto,
 #   database: "db/club_homepage_dev.sqlite",
 #   pool_size: 10
+
+config :club_homepage, :uploads, 
+  path: "uploads"

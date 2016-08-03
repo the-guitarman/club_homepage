@@ -27,3 +27,6 @@ config :club_homepage, ClubHomepage.Repo,
 # set low number of password hashing rounds to speed up our test suite
 config :comeonin, :bcrypt_log_rounds, 4
 config :comeonin, :pbkdf2_rounds, 1
+
+config :club_homepage, :uploads, 
+  path: "test/tmp/uploads"

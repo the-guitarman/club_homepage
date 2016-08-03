@@ -840,12 +840,12 @@ msgstr "Angemeldet"
 
 #: web/controllers/sponsor_image_controller.ex:25
 msgid "sponsor_image_created_successfully"
-msgstr ""
+msgstr "Das Bild wurde gespeichert."
 
 #: web/controllers/sponsor_image_controller.ex:65
 msgid "sponsor_image_deleted_successfully"
-msgstr ""
+msgstr "Das Bild wurde gelöscht."
 
 #: web/controllers/sponsor_image_controller.ex:50
 msgid "sponsor_image_updated_successfully"
-msgstr ""
+msgstr "Das Bild wurde aktualisiert."

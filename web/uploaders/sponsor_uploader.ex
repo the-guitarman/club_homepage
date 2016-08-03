@@ -22,7 +22,8 @@ defmodule ClubHomepage.SponsorUploader do
 
   # Override the storage directory:
   def storage_dir(version, {file, record}) do
-    "uploads/sponsors/#{record.id}"
+    uploads_path = Application.get_env(:club_homepage, :uploads)[:path]
+    "#{uploads_path}/sponsors/#{record.id}"
   end
 
   # Override the persisted filenames:

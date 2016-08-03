@@ -840,12 +840,12 @@ msgstr "Signed In"
 
 #: web/controllers/sponsor_image_controller.ex:25
 msgid "sponsor_image_created_successfully"
-msgstr ""
+msgstr "Image created successfully."
 
 #: web/controllers/sponsor_image_controller.ex:65
 msgid "sponsor_image_deleted_successfully"
-msgstr ""
+msgstr "Image deleted successfully."
 
 #: web/controllers/sponsor_image_controller.ex:50
 msgid "sponsor_image_updated_successfully"
-msgstr ""
+msgstr "Image updated successfully."
