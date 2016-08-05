@@ -62,13 +62,13 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   @tag login: true
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, sponsor_image_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing sponsor images"
+    assert html_response(conn, 200) =~ "<h2>All Sponsor Images</h2>"
   end
 
   @tag login: true
   test "renders form for new resources", %{conn: conn} do
     conn = get conn, sponsor_image_path(conn, :new)
-    assert html_response(conn, 200) =~ "New sponsor image"
+    assert html_response(conn, 200) =~ "Create Sponsor Image"
   end
 
   @tag login: true
@@ -81,14 +81,14 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   @tag login: true
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, sponsor_image_path(conn, :create), sponsor_image: @invalid_attrs
-    assert html_response(conn, 200) =~ "New sponsor image"
+    assert html_response(conn, 200) =~ "Create Sponsor Image"
   end
 
   @tag login: true
   test "shows chosen resource", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
     conn = get conn, sponsor_image_path(conn, :show, sponsor_image)
-    assert html_response(conn, 200) =~ "Show sponsor image"
+    assert html_response(conn, 200) =~ "Show Sponsor Image"
   end
 
   @tag login: true
@@ -102,7 +102,7 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   test "renders form for editing chosen resource", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
     conn = get conn, sponsor_image_path(conn, :edit, sponsor_image)
-    assert html_response(conn, 200) =~ "Edit sponsor image"
+    assert html_response(conn, 200) =~ "Edit Sponsor Image"
   end
 
   @tag login: true
@@ -117,7 +117,7 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
     conn = put conn, sponsor_image_path(conn, :update, sponsor_image), sponsor_image: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit sponsor image"
+    assert html_response(conn, 200) =~ "Edit Sponsor Image"
   end
 
   @tag login: true

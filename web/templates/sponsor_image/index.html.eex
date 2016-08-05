@@ -1,28 +1,35 @@
-<h2>Listing sponsor images</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("all") <> " " <> gettext("sponsor_images") %></h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Attachment</th>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= gettext("name") %></th>
+            <th><%= gettext("sponsor_image") %></th>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for sponsor_image <- @sponsor_images do %>
-    <tr>
-      <td><%= sponsor_image.name %></td>
-      <td><%= sponsor_image.attachment %></td>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+      <%= for sponsor_image <- @sponsor_images do %>
+          <tr>
+            <td><%= sponsor_image.name %></td>
+            <td><%= sponsor_image.attachment[:file_name] %></td>
+            <% IO.inspect sponsor_image.attachment %>
 
-      <td class="text-right">
-        <%= link "Show", to: sponsor_image_path(@conn, :show, sponsor_image), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: sponsor_image_path(@conn, :edit, sponsor_image), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: sponsor_image_path(@conn, :delete, sponsor_image), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+            <td class="text-right">
+              <%= link gettext("show"), to: sponsor_image_path(@conn, :show, sponsor_image), class: "btn btn-default" %>
+              <%= link gettext("edit"), to: sponsor_image_path(@conn, :edit, sponsor_image), class: "btn btn-default" %>
+              <%= link gettext("delete"), to: sponsor_image_path(@conn, :delete, sponsor_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
+            </td>
+          </tr>
+      <% end %>
+        </tbody>
+      </table>
 
-<%= link "New sponsor image", to: sponsor_image_path(@conn, :new) %>
+      <%= link gettext("create_new_sponsor_image"), to: sponsor_image_path(@conn, :new), class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

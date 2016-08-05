@@ -29,6 +29,9 @@ msgstr ""
 msgid "secret"
 msgstr ""
 
+msgid "sponsor_image"
+msgstr ""
+
 msgid "team"
 msgstr ""
 

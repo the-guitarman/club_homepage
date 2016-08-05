@@ -33,6 +33,9 @@ msgstr "Saison"
 msgid "secret"
 msgstr "Secret"
 
+msgid "sponsor_image"
+msgstr "Sponsorenbild"
+
 msgid "team"
 msgstr "Mannschaft"
 

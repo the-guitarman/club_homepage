@@ -17,12 +17,14 @@ defmodule ClubHomepage.SponsorImageController do
   end
 
   def create(conn, %{"sponsor_image" => sponsor_image_params}) do
-    changeset = SponsorImage.changeset(%SponsorImage{}, sponsor_image_params)
+    changeset1 = SponsorImage.changeset(%SponsorImage{}, sponsor_image_params)
+    changeset2 = SponsorImage.image_changeset(%SponsorImage{}, sponsor_image_params)
+
+    changeset = ClubHomepage.SponsorImageChangesetErrorsMerger.merge(changeset1, changeset2)
 
     case Repo.insert(changeset) do
       {:ok, sponsor_image} ->
-        SponsorImage.image_changeset(sponsor_image, sponsor_image_params)
-        |> Repo.update
+        update_image(sponsor_image, sponsor_image_params)
 
         conn
         |> put_flash(:info, gettext("sponsor_image_created_successfully"))
@@ -45,10 +47,15 @@ defmodule ClubHomepage.SponsorImageController do
 
   def update(conn, %{"id" => id, "sponsor_image" => sponsor_image_params}) do
     sponsor_image = Repo.get!(SponsorImage, id)
-    changeset = SponsorImage.changeset(sponsor_image, sponsor_image_params)
+    changeset1 = SponsorImage.changeset(sponsor_image, sponsor_image_params)
+    changeset2 = SponsorImage.image_changeset(sponsor_image, sponsor_image_params)
+
+    changeset = ClubHomepage.SponsorImageChangesetErrorsMerger.merge(changeset1, changeset2)
 
     case Repo.update(changeset) do
       {:ok, sponsor_image} ->
+        update_image(sponsor_image, sponsor_image_params)
+
         conn
         |> put_flash(:info, gettext("sponsor_image_updated_successfully"))
         |> redirect(to: sponsor_image_path(conn, :show, sponsor_image))
@@ -67,5 +74,10 @@ defmodule ClubHomepage.SponsorImageController do
     conn
     |> put_flash(:info, gettext("sponsor_image_deleted_successfully"))
     |> redirect(to: sponsor_image_path(conn, :index))
+  end
+
+  def update_image(sponsor_image, sponsor_image_params) do
+    SponsorImage.image_changeset(sponsor_image, sponsor_image_params)
+    |> Repo.update
   end
 end

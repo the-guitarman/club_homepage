@@ -18,8 +18,12 @@ defmodule ClubHomepage.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {ClubHomepage, []},
-     applications: [:tzdata, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, 
-      :phoenix_ecto, :comeonin, :geocoder, :postgrex]]#:sqlite_ecto 
+     applications: [
+       :tzdata,
+       :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
+       :phoenix_ecto, :postgrex, :comeonin, :geocoder
+     ]
+    ]#:sqlite_ecto
   end
 
   # Specifies which paths to compile per environment.

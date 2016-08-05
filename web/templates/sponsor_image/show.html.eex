@@ -1,18 +1,24 @@
-<h2>Show sponsor image</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("show_sponsor_image") %></h2>
 
-<ul>
+      <ul>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @sponsor_image.name %>
-  </li>
+        <li>
+          <strong><%= gettext("name") %></strong>
+          <%= @sponsor_image.name %>
+        </li>
 
-  <li>
-    <strong>Attachment:</strong>
-    <%= @sponsor_image.attachment[:file_name] %>
-  </li>
+        <li>
+          <strong><%= gettext("sponsor_image") %></strong>
+          <%= @sponsor_image.attachment[:file_name] %>
+        </li>
 
-</ul>
+      </ul>
 
-<%= link "Edit", to: sponsor_image_path(@conn, :edit, @sponsor_image) %>
-<%= link "Back", to: sponsor_image_path(@conn, :index) %>
+      <%= link gettext("edit"), to: sponsor_image_path(@conn, :edit, @sponsor_image) %>
+      <%= link gettext("all") <> " " <> gettext("sponsor_images"), to: sponsor_image_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

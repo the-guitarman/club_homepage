@@ -7,6 +7,7 @@
                               action: text_page_path(@conn, :update, @text_page) %>
 
       <%= link gettext("all") <> " " <> gettext("text_pages"), to: text_page_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("sponsor_images"), to: sponsor_image_path(@conn, :index), class: "btn btn-default" %>
     </div>
   </div>
 </div>
