@@ -1,7 +1,5 @@
-defmodule ClubHomepage.SponsorImageChangesetErrorsMerger do
-
+defmodule ClubHomepage.ChangesetErrorsMerger do
   alias Ecto.Changeset
-  alias ClubHomepage.SponsorImage
 
   def merge(changeset1, changeset2) do
     errors = Keyword.merge(changeset2.errors, changeset1.errors)
