@@ -12,8 +12,7 @@
 
         <li>
           <strong><%= gettext("sponsor_image") %></strong>
-          <%= @sponsor_image.attachment[:file_name] %>
-          <%= tag :img, src: "/" <> ClubHomepage.SponsorUploader.urls({@sponsor_image.attachment, @sponsor_image})[:logo], alt: "" %>
+          <%= uploader_image_tag ClubHomepage.SponsorUploader, @sponsor_image, :logo %>
         </li>
 
       </ul>
