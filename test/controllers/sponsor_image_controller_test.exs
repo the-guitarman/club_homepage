@@ -79,8 +79,12 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     assert Repo.get!(SponsorImage, sponsor_image_id)
 
     # TODO: check files
+    sponsor_image = Repo.get!(SponsorImage, sponsor_image_id)
 
-
+    for {_version, web_path} <- ClubHomepage.SponsorUploader.urls({sponsor_image.attachment, sponsor_image}) do
+      [file_path, _] = String.split(web_path, "?")
+      assert File.exists?(Path.expand(file_path))
+    end
   end
 
   @tag login: true

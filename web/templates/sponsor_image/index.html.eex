@@ -19,7 +19,6 @@
             <td><%= uploader_image_tag ClubHomepage.SponsorUploader, sponsor_image, :logo %></td>
 
             <td class="text-right">
-              <%= link gettext("show"), to: sponsor_image_path(@conn, :show, sponsor_image), class: "btn btn-default" %>
               <%= link gettext("edit"), to: sponsor_image_path(@conn, :edit, sponsor_image), class: "btn btn-default" %>
               <%= link gettext("delete"), to: sponsor_image_path(@conn, :delete, sponsor_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
             </td>
