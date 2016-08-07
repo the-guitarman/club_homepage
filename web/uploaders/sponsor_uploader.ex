@@ -15,7 +15,8 @@ defmodule ClubHomepage.SponsorUploader do
 
   # Define a thumbnail transformation:
   def transform(:logo, _) do
-    {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
+    # {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
+    {:convert, "-strip -resize 250x250> -format png", :png}
   end
 
   def __storage, do: Arc.Storage.Local
