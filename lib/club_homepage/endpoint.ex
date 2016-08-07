@@ -3,6 +3,9 @@ defmodule ClubHomepage.Endpoint do
 
   socket "/socket", ClubHomepage.UserSocket
 
+  plug Plug.Static,
+    at: "/uploads", from: Path.expand('./uploads'), gzip: false
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
@@ -39,7 +42,4 @@ defmodule ClubHomepage.Endpoint do
     signing_salt: "thJ9oU4r"
 
   plug ClubHomepage.Router
-
-  plug Plug.Static,
-    at: "/uploads", from: Path.expand('./uploads'), gzip: false
 end
