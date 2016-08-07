@@ -28,15 +28,10 @@ defmodule ClubHomepage.SponsorImageController do
 
         conn
         |> put_flash(:info, gettext("sponsor_image_created_successfully"))
-        |> redirect(to: sponsor_image_path(conn, :index))
+        |> redirect(to: sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    sponsor_image = Repo.get!(SponsorImage, id)
-    render(conn, "show.html", sponsor_image: sponsor_image)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -58,7 +53,7 @@ defmodule ClubHomepage.SponsorImageController do
 
         conn
         |> put_flash(:info, gettext("sponsor_image_updated_successfully"))
-        |> redirect(to: sponsor_image_path(conn, :show, sponsor_image))
+        |> redirect(to: sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image.id}")
       {:error, changeset} ->
         render(conn, "edit.html", sponsor_image: sponsor_image, changeset: changeset)
     end

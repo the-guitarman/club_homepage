@@ -74,28 +74,19 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn} do
     conn = post conn, sponsor_image_path(conn, :create), sponsor_image: @valid_attrs
-    assert redirected_to(conn) == sponsor_image_path(conn, :index)
-    assert Repo.get!(SponsorImage, maximum_id())
+    sponsor_image_id = maximum_id()
+    assert redirected_to(conn) == sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image_id}"
+    assert Repo.get!(SponsorImage, sponsor_image_id)
+
+    # TODO: check files
+
+
   end
 
   @tag login: true
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, sponsor_image_path(conn, :create), sponsor_image: @invalid_attrs
     assert html_response(conn, 200) =~ "Create Sponsor Image"
-  end
-
-  @tag login: true
-  test "shows chosen resource", %{conn: conn} do
-    sponsor_image = create(:sponsor_image)
-    conn = get conn, sponsor_image_path(conn, :show, sponsor_image)
-    assert html_response(conn, 200) =~ "Show Sponsor Image"
-  end
-
-  @tag login: true
-  test "renders page not found when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, sponsor_image_path(conn, :show, -1)
-    end
   end
 
   @tag login: true
@@ -109,7 +100,7 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
     conn = put conn, sponsor_image_path(conn, :update, sponsor_image), sponsor_image: @valid_attrs
-    assert redirected_to(conn) == sponsor_image_path(conn, :show, sponsor_image)
+    assert redirected_to(conn) == sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image.id}"
     assert Repo.get!(SponsorImage, sponsor_image.id)
   end
 
