@@ -1,0 +1,6 @@
+<h2>Edit team image</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: team_image_path(@conn, :update, @team_image) %>
+
+<%= link "Back", to: team_image_path(@conn, :index) %>

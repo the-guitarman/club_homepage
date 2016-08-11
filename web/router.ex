@@ -56,6 +56,7 @@ defmodule ClubHomepage.Router do
     resources "/secrets", SecretController, only: [:index, :show, :new, :create, :delete]
     resources "/sponsor_images", SponsorImageController, except: [:show]
     resources "/teams", TeamController, only: [:index, :new, :create, :edit, :update, :delete]
+    resources "/team_images", TeamImageController, except: [:show]
     resources "/text_pages", TextPageController, except: [:show, :new, :create, :delete]
   end
 

@@ -102,6 +102,19 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def factory(:team_image) do
+    team = create(:team)
+    %ClubHomepage.TeamImage{
+      team_id: team.id, 
+      year: 2016,
+      attachment: %{
+        file_name: "test/support/images/test_image.jpg",
+        updated_at: Ecto.DateTime.utc
+      },
+      description: sequence(:description, &"team image description #{&1}")
+    }
+  end
+
   def factory(:text_page) do
     %ClubHomepage.TextPage{
       key: sequence(:key, &"contact #{&1}"),

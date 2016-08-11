@@ -6,15 +6,6 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   import ClubHomepage.Factory
 
   @valid_attrs %{
-    # attachment: %Plug.Upload{
-    #   content_type: "image/jpg",
-    #   filename: "test_image.jpg",
-    #   path: "test/support/images/test_image.jpg"
-    # }, 
-    # attachment: %{
-    #   file_name: "test/support/images/test_image.jpg",
-    #   updated_at: Ecto.DateTime.utc
-    # },
     attachment: "test/support/images/test_image.jpg",
     name: "test image"
   }
@@ -74,11 +65,10 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn} do
     conn = post conn, sponsor_image_path(conn, :create), sponsor_image: @valid_attrs
-    sponsor_image_id = maximum_id()
+    sponsor_image_id = get_highest_id(SponsorImage)
     assert redirected_to(conn) == sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image_id}"
     assert Repo.get!(SponsorImage, sponsor_image_id)
 
-    # TODO: check files
     sponsor_image = Repo.get!(SponsorImage, sponsor_image_id)
 
     for {_version, web_path} <- ClubHomepage.SponsorUploader.urls({sponsor_image.attachment, sponsor_image}) do
@@ -121,13 +111,5 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     conn = delete conn, sponsor_image_path(conn, :delete, sponsor_image)
     assert redirected_to(conn) == sponsor_image_path(conn, :index)
     refute Repo.get(SponsorImage, sponsor_image.id)
-  end
-
-  defp maximum_id do
-    query = from t in SponsorImage, select: max(t.id)
-    case ClubHomepage.Repo.all(query) do
-      [nil] -> 0
-      [id]  -> id
-    end
   end
 end

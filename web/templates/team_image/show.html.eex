@@ -1,0 +1,28 @@
+<h2>Show team image</h2>
+
+<ul>
+
+  <li>
+    <strong>Team:</strong>
+    <%= @team_image.team_id %>
+  </li>
+
+  <li>
+    <strong>Year:</strong>
+    <%= @team_image.year %>
+  </li>
+
+  <li>
+    <strong>Attachment:</strong>
+    <%= @team_image.attachment %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @team_image.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: team_image_path(@conn, :edit, @team_image) %>
+<%= link "Back", to: team_image_path(@conn, :index) %>

@@ -30,9 +30,10 @@ defmodule ClubHomepage.ConnCase do
       @endpoint ClubHomepage.Endpoint
 
       defp get_highest_id(module) do
-        case Repo.all(from(m in module, select: m.id, order_by: [desc: m.id], limit: 1)) do
-          [] -> 0
-          [id | _] -> id
+        query = from t in module, select: max(t.id)
+        case Repo.all(query) do
+          [nil] -> 0
+          [id]  -> id
         end
       end
     end
