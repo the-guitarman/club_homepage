@@ -38,10 +38,12 @@ msgstr ""
 #: web/templates/sponsor_image/edit.html.eex:9
 #: web/templates/sponsor_image/index.html.eex:4
 #: web/templates/sponsor_image/new.html.eex:9
-#: web/templates/sponsor_image/show.html.eex:21
 #: web/templates/team/edit.html.eex:11 web/templates/team/index.html.eex:4
 #: web/templates/team/new.html.eex:11 web/templates/team/show.html.eex:21
 #: web/templates/team/team_page.html.eex:65
+#: web/templates/team_image/edit.html.eex:9
+#: web/templates/team_image/index.html.eex:4
+#: web/templates/team_image/new.html.eex:9
 #: web/templates/text_page/edit.html.eex:9
 #: web/templates/text_page/edit.html.eex:10
 #: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
@@ -88,6 +90,7 @@ msgid "season"
 msgstr "Season"
 
 #: web/templates/match/index.html.eex:19
+#: web/templates/team_image/index.html.eex:9
 msgid "team"
 msgstr "Team"
 
@@ -114,8 +117,9 @@ msgstr "Some errors occured:"
 #: web/templates/opponent_team/form.html.eex:15
 #: web/templates/permalink/form.html.eex:17
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:11
-#: web/templates/team/form.html.eex:15 web/templates/text_page/form.html.eex:17
-#: web/templates/user/form.html.eex:83
+#: web/templates/sponsor_image/form.html.eex:17
+#: web/templates/team/form.html.eex:15 web/templates/team_image/form.html.eex:23
+#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:83
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr "Save"
@@ -223,7 +227,8 @@ msgstr ""
 
 #: web/templates/meeting_point/show.html.eex:13
 #: web/templates/secret/index.html.eex:25
-#: web/templates/sponsor_image/index.html.eex:24
+#: web/templates/sponsor_image/index.html.eex:23
+#: web/templates/team_image/index.html.eex:27
 msgid "delete"
 msgstr "Delete"
 
@@ -237,9 +242,10 @@ msgstr "District"
 #: web/templates/news/show.html.eex:25
 #: web/templates/opponent_team/index.html.eex:27
 #: web/templates/season/show.html.eex:12
-#: web/templates/sponsor_image/index.html.eex:23
-#: web/templates/sponsor_image/show.html.eex:20
-#: web/templates/team/index.html.eex:16 web/templates/user/index.html.eex:40
+#: web/templates/sponsor_image/index.html.eex:22
+#: web/templates/team/index.html.eex:16
+#: web/templates/team_image/index.html.eex:26
+#: web/templates/user/index.html.eex:40
 msgid "edit"
 msgstr "Edit"
 
@@ -275,7 +281,6 @@ msgstr "Meeting Points"
 #: web/templates/opponent_team/index.html.eex:14
 #: web/templates/season/show.html.eex:6
 #: web/templates/sponsor_image/index.html.eex:9
-#: web/templates/sponsor_image/show.html.eex:9
 #: web/templates/team/show.html.eex:8 web/templates/user/form.html.eex:22
 #: web/templates/user/form_unregistered.html.eex:8
 #: web/templates/user/index.html.eex:17
@@ -849,19 +854,19 @@ msgstr "Nickname"
 msgid "signed_in_label"
 msgstr "Signed In"
 
-#: web/controllers/sponsor_image_controller.ex:28
+#: web/controllers/sponsor_image_controller.ex:30
 msgid "sponsor_image_created_successfully"
 msgstr "Image created successfully."
 
-#: web/controllers/sponsor_image_controller.ex:68
+#: web/controllers/sponsor_image_controller.ex:70
 msgid "sponsor_image_deleted_successfully"
 msgstr "Image deleted successfully."
 
-#: web/controllers/sponsor_image_controller.ex:53
+#: web/controllers/sponsor_image_controller.ex:55
 msgid "sponsor_image_updated_successfully"
 msgstr "Image updated successfully."
 
-#: web/templates/sponsor_image/index.html.eex:31
+#: web/templates/sponsor_image/index.html.eex:30
 #: web/templates/sponsor_image/new.html.eex:4
 msgid "create_new_sponsor_image"
 msgstr "Create Sponsor Image"
@@ -870,28 +875,45 @@ msgstr "Create Sponsor Image"
 msgid "edit_sponsor_image"
 msgstr "Edit Sponsor Image"
 
-#: web/templates/sponsor_image/index.html.eex:22
-msgid "show"
-msgstr "Show"
-
-#: web/templates/sponsor_image/show.html.eex:4
-msgid "show_sponsor_image"
-msgstr "Show Sponsor Image"
-
 #: web/templates/sponsor_image/index.html.eex:10
-#: web/templates/sponsor_image/show.html.eex:14
 msgid "sponsor_image"
 msgstr "Sponsor Image"
 
 #: web/templates/sponsor_image/edit.html.eex:9
 #: web/templates/sponsor_image/index.html.eex:4
 #: web/templates/sponsor_image/new.html.eex:9
-#: web/templates/sponsor_image/show.html.eex:21
 #: web/templates/text_page/edit.html.eex:10
 msgid "sponsor_images"
 msgstr "Sponsor Images"
 
-#, fuzzy
-#: web/templates/sponsor_image/index.html.eex:24
+#: web/templates/sponsor_image/index.html.eex:23
+#: web/templates/team_image/index.html.eex:27
 msgid "confirm_question_are_you_sure"
 msgstr "Are you sure?"
+
+#: web/templates/team_image/index.html.eex:11
+msgid "attachment"
+msgstr ""
+
+#: web/templates/team_image/index.html.eex:34
+#: web/templates/team_image/new.html.eex:4
+msgid "create_new_team_image"
+msgstr "New Team Image"
+
+#: web/templates/team_image/index.html.eex:12
+msgid "description"
+msgstr "Description"
+
+#: web/templates/team_image/edit.html.eex:4
+msgid "edit_team_image"
+msgstr "Edit Team Image"
+
+#: web/templates/team_image/edit.html.eex:9
+#: web/templates/team_image/index.html.eex:4
+#: web/templates/team_image/new.html.eex:9
+msgid "team_images"
+msgstr "Team Images"
+
+#: web/templates/team_image/index.html.eex:10
+msgid "year"
+msgstr "Year"

@@ -1,9 +1,5 @@
 <%= form_for @changeset, @action, [multipart: true], fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
+  <%= show_form_errors(@changeset, f) %>
 
   <div class="form-group">
     <%= label f, :year, class: "control-label" %>
@@ -24,6 +20,6 @@
   </div>
 
   <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= submit gettext("save"), class: "btn btn-primary" %>
   </div>
 <% end %>

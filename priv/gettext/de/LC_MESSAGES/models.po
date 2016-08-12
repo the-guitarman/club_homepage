@@ -39,6 +39,9 @@ msgstr "Sponsorenbild"
 msgid "team"
 msgstr "Mannschaft"
 
+msgid "team_image"
+msgstr "Mannschaftsbild"
+
 msgid "text_page"
 msgstr "Text Page"
 

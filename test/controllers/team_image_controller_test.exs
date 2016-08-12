@@ -57,13 +57,13 @@ defmodule ClubHomepage.TeamImageControllerTest do
   @tag login: true
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, team_image_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing team images"
+    assert html_response(conn, 200) =~ "<h2>All Team Images</h2>"
   end
 
   @tag login: true
   test "renders form for new resources", %{conn: conn} do
     conn = get conn, team_image_path(conn, :new)
-    assert html_response(conn, 200) =~ "New team image"
+    assert html_response(conn, 200) =~ "<h2>New Team Image</h2>"
   end
 
   @tag login: true
@@ -84,14 +84,14 @@ defmodule ClubHomepage.TeamImageControllerTest do
   @tag login: true
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, team_image_path(conn, :create), team_image: @invalid_attrs
-    assert html_response(conn, 200) =~ "New team image"
+    assert html_response(conn, 200) =~ "<h2>New Team Image</h2>"
   end
 
   @tag login: true
   test "renders form for editing chosen resource", %{conn: conn} do
     team_image = create(:team_image)
     conn = get conn, team_image_path(conn, :edit, team_image)
-    assert html_response(conn, 200) =~ "Edit team image"
+    assert html_response(conn, 200) =~ "<h2>Edit Team Image</h2>"
   end
 
   @tag login: true
@@ -106,7 +106,7 @@ defmodule ClubHomepage.TeamImageControllerTest do
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     team_image = create(:team_image)
     conn = put conn, team_image_path(conn, :update, team_image), team_image: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit team image"
+    assert html_response(conn, 200) =~ "<h2>Edit Team Image</h2>"
   end
 
   @tag login: true

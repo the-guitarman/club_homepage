@@ -22,7 +22,7 @@ defmodule ClubHomepage.SponsorUploader do
   def __storage, do: Arc.Storage.Local
 
   # Override the storage directory:
-  def storage_dir(version, {file, record}) do
+  def storage_dir(_version, {_file, record}) do
     uploads_path = Application.get_env(:club_homepage, :uploads)[:path]
     "#{uploads_path}/sponsors/#{record.id}"
   end

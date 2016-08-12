@@ -1,32 +1,37 @@
-<h2>Listing team images</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("all") <> " " <> gettext("team_images") %></h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Team</th>
-      <th>Year</th>
-      <th>Attachment</th>
-      <th>Description</th>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= gettext("team") %></th>
+            <th><%= gettext("year") %></th>
+            <th><%= gettext("team_image") %></th>
+            <th><%= gettext("description") %></th>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for team_image <- @team_images do %>
-    <tr>
-      <td><%= team_image.team_id %></td>
-      <td><%= team_image.year %></td>
-      <td><%= team_image.attachment %></td>
-      <td><%= team_image.description %></td>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+      <%= for team_image <- @team_images do %>
+          <tr>
+            <td><%= team_image.team_id %></td>
+            <td><%= team_image.year %></td>
+            <td><%= uploader_image_tag ClubHomepage.TeamUploader, team_image, :normal %></td>
+            <td><%= team_image.description %></td>
 
-      <td class="text-right">
-        <%= link "Show", to: team_image_path(@conn, :show, team_image), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: team_image_path(@conn, :edit, team_image), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: team_image_path(@conn, :delete, team_image), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+            <td class="text-right">
+              <%= link gettext("edit"), to: team_image_path(@conn, :edit, team_image), class: "btn btn-default" %>
+              <%= link gettext("delete"), to: team_image_path(@conn, :delete, team_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
+            </td>
+          </tr>
+      <% end %>
+        </tbody>
+      </table>
 
-<%= link "New team image", to: team_image_path(@conn, :new) %>
+      <%= link gettext("create_new_team_image"), to: team_image_path(@conn, :new), class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

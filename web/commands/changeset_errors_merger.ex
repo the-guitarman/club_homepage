@@ -10,8 +10,4 @@ defmodule ClubHomepage.ChangesetErrorsMerger do
       _ -> %Changeset{changeset | valid?: false}
     end
   end
-
-  defp add_error(changeset, field, value) do
-    Changeset.add_error(changeset, field, value)
-  end
 end

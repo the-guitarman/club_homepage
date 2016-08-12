@@ -34,11 +34,6 @@ defmodule ClubHomepage.TeamImageController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    team_image = Repo.get!(TeamImage, id)
-    render(conn, "show.html", team_image: team_image)
-  end
-
   def edit(conn, %{"id" => id}) do
     team_image = Repo.get!(TeamImage, id)
     changeset = TeamImage.changeset(team_image)

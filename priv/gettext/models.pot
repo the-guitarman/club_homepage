@@ -35,6 +35,9 @@ msgstr ""
 msgid "team"
 msgstr ""
 
+msgid "team_image"
+msgstr ""
+
 msgid "text_page"
 msgstr ""
 
