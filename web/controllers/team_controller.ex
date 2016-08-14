@@ -4,6 +4,7 @@ defmodule ClubHomepage.TeamController do
   alias ClubHomepage.Match
   alias ClubHomepage.PermalinkGenerator
   alias ClubHomepage.Team
+  alias ClubHomepage.TeamImage
   alias ClubHomepage.Season
 
   plug :is_team_editor? when action in [:index, :new, :create, :edit, :update, :delete]
@@ -44,7 +45,8 @@ defmodule ClubHomepage.TeamController do
     start_at = to_timex_ecto_datetime(Timex.DateTime.local)
     matches = Repo.all(from m in query, where: m.start_at > ^start_at, order_by: [asc: m.start_at])
     latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at, order_by: [desc: m.start_at])
-    render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches, next_match_parameters: %{"season_id" => season.id, "team_id" => team.id, "start_at" => params["start_at"], "competition_id" => params["competition_id"]})
+    team_images = Repo.get_by(TeamImage, team_id: team.id) || []
+    render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches, next_match_parameters: %{"season_id" => season.id, "team_id" => team.id, "start_at" => params["start_at"], "competition_id" => params["competition_id"]}, team_images: team_images)
   end
   def show(conn, %{"slug" => slug}) do
     team = Repo.get_by!(Team, slug: slug)

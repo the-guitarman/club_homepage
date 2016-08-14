@@ -40,10 +40,10 @@ msgstr ""
 #: web/templates/sponsor_image/new.html.eex:9
 #: web/templates/team/edit.html.eex:11 web/templates/team/index.html.eex:4
 #: web/templates/team/new.html.eex:11 web/templates/team/show.html.eex:21
-#: web/templates/team/team_page.html.eex:65
+#: web/templates/team/team_page.html.eex:91
 #: web/templates/team_image/edit.html.eex:9
 #: web/templates/team_image/index.html.eex:4
-#: web/templates/team_image/new.html.eex:9
+#: web/templates/team_image/new.html.eex:11
 #: web/templates/text_page/edit.html.eex:9
 #: web/templates/text_page/edit.html.eex:10
 #: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
@@ -118,7 +118,7 @@ msgstr "Es sind folgende Fehler aufgetreten:"
 #: web/templates/permalink/form.html.eex:17
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:11
 #: web/templates/sponsor_image/form.html.eex:17
-#: web/templates/team/form.html.eex:15 web/templates/team_image/form.html.eex:23
+#: web/templates/team/form.html.eex:15 web/templates/team_image/form.html.eex:33
 #: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:83
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
@@ -150,6 +150,8 @@ msgstr "Saison wählen ..."
 
 #: web/templates/match/form_group_to_select_a_team.html.eex:2
 #: web/templates/match/form_group_to_select_a_team.html.eex:2
+#: web/templates/team_image/form.html.eex:6
+#: web/templates/team_image/form.html.eex:6
 msgid "select_team_placeholder"
 msgstr "Vereinsmannschaft wählen ..."
 
@@ -228,6 +230,7 @@ msgstr "Vereinsmitglieder, die sich registrieren/anmelden wollen, benötigen ein
 #: web/templates/meeting_point/show.html.eex:13
 #: web/templates/secret/index.html.eex:25
 #: web/templates/sponsor_image/index.html.eex:23
+#: web/templates/team/team_page.html.eex:73
 #: web/templates/team_image/index.html.eex:27
 msgid "delete"
 msgstr "Löschen"
@@ -243,7 +246,7 @@ msgstr "Ortsteil"
 #: web/templates/opponent_team/index.html.eex:27
 #: web/templates/season/show.html.eex:12
 #: web/templates/sponsor_image/index.html.eex:22
-#: web/templates/team/index.html.eex:16
+#: web/templates/team/index.html.eex:16 web/templates/team/team_page.html.eex:72
 #: web/templates/team_image/index.html.eex:26
 #: web/templates/user/index.html.eex:40
 msgid "edit"
@@ -365,7 +368,7 @@ msgstr "Passwort"
 #: web/templates/layout/navbar_top.html.eex:60
 #: web/templates/page/index.html.eex:35 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
-#: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:65
+#: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:91
 msgid "teams"
 msgstr "Vereinsmannschaften"
 
@@ -891,15 +894,14 @@ msgstr "Sponsorenbilder"
 msgid "confirm_question_are_you_sure"
 msgstr "Bist Du sicher?"
 
-#: web/templates/team_image/index.html.eex:11
-msgid "attachment"
-msgstr ""
-
+#: web/templates/team/team_page.html.eex:81
 #: web/templates/team_image/index.html.eex:34
 #: web/templates/team_image/new.html.eex:4
 msgid "create_new_team_image"
 msgstr "Neues Mannschaftsbild anlegen"
 
+#: web/templates/team_image/form.html.eex:26
+#: web/templates/team_image/form.html.eex:28
 #: web/templates/team_image/index.html.eex:12
 msgid "description"
 msgstr "Beschreibung"
@@ -910,10 +912,17 @@ msgstr "Mannschaftsbild ändern"
 
 #: web/templates/team_image/edit.html.eex:9
 #: web/templates/team_image/index.html.eex:4
-#: web/templates/team_image/new.html.eex:9
+#: web/templates/team_image/new.html.eex:11
 msgid "team_images"
 msgstr "Mannschaftsbilder"
 
+#: web/templates/team_image/form.html.eex:12
 #: web/templates/team_image/index.html.eex:10
 msgid "year"
 msgstr "Jahr"
+
+#: web/templates/team_image/form.html.eex:18
+#: web/templates/team_image/form.html.eex:20
+#: web/templates/team_image/index.html.eex:11
+msgid "team_image"
+msgstr "Mannschaftsbild"

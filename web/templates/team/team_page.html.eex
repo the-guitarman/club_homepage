@@ -60,6 +60,36 @@
         </div>
       </div>
 
+      <%= if Enum.count(@team_images) > 0 || has_role?(@conn, ["team_editor"]) do %>
+        <div class="row">
+          <div class="col-xs-12">
+
+            <div class="row">
+              <%= for team_image <- @team_images do %>
+                <div class="<%= if has_role?(@conn, ["team-editor"]), do: "col-xs-9", else: "col-xs-12" %>">
+                  <%= uploader_image_tag ClubHomepage.TeamUploader, team_image, :normal %>
+                </div>
+                <%= if has_role?(@conn, ["team-editor"]) do %>
+                <div class="col-xs-3 text-right">
+                  <%= link gettext("edit"), to: team_image_path(@conn, :edit, team_image), class: "btn btn-default" %>
+                  <%= link gettext("delete"), to: team_image_path(@conn, :delete, team_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
+                </div>
+                <% end %>
+              <% end %>
+            </div>
+
+            <%= if has_role?(@conn, ["team-editor"]) do %>
+              <div class="row">
+                <div class="col-xs-12">
+                    <%= link gettext("create_new_team_image"), to: team_image_path(@conn, :new, team_id: @team.id), class: "btn btn-default" %>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      <% end %>
+
       <div class="row">
         <div class="col-xs-12">
           <%= link gettext("all") <> " " <> gettext("teams"), to: team_path(@conn, :index) %>

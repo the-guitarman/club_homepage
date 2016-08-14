@@ -39,5 +39,8 @@ config :phoenix, :filter_parameters,
 config :geocoder, Geocoder.Worker, [size: 4, max_overflow: 2]
 config :geocoder, Geocoder.Store, [precision: 4]
 
-config :club_homepage, :match, 
+config :club_homepage, :match,
   failure_reasons: ["aborted", "failed", "canceled", "team_missed"]
+
+# Import specific club homepage config.
+import_config "club_homepage.exs"
