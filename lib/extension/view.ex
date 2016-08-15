@@ -152,6 +152,15 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def uploader_image_tag(module, model, version) do
-    Tag.tag :img, src: "/" <> module.url({model.attachment, model}, version), alt: "#{version} #{model.name}"
+    Tag.tag :img, src: "/" <> module.url({model.attachment, model}, version), alt: uploader_image_tag_alt(model, version)
+  end
+
+  defp uploader_image_tag_alt(model, version) do
+    name = 
+      case Map.fetch(model, :name) do
+        :error -> ""
+        {:ok, name} -> name
+      end
+    "#{version} #{name}"
   end
 end
