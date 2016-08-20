@@ -73,6 +73,8 @@ defmodule ClubHomepage.TeamImageController do
     # it to always work (and if it does not, it will raise).
     Repo.delete!(team_image)
 
+    File.rm_rf!(ClubHomepage.TeamUploader.storage_dir(nil, {nil, team_image}))
+
     conn
     |> put_flash(:info, "Team image deleted successfully.")
     |> redirect(to: team_image_path(conn, :index))

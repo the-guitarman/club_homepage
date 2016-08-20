@@ -108,8 +108,28 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   @tag login: true
   test "deletes chosen resource", %{conn: conn} do
     sponsor_image = create(:sponsor_image)
+    original_file = sponsor_image.attachment[:file_name]
+
+    destination_path = ClubHomepage.SponsorUploader.storage_dir(nil, {nil, sponsor_image})
+    File.mkdir_p!(destination_path)
+
+    web_paths = ClubHomepage.SponsorUploader.urls({sponsor_image.attachment, sponsor_image})
+
+    for {_version, web_path} <- web_paths do
+      [path, _query_string] = String.split(web_path, "?")
+      File.cp(original_file, path)
+      assert File.exists?(path)
+    end
+
     conn = delete conn, sponsor_image_path(conn, :delete, sponsor_image)
+
     assert redirected_to(conn) == sponsor_image_path(conn, :index)
     refute Repo.get(SponsorImage, sponsor_image.id)
+    for {_version, web_path} <- web_paths do
+      [path, _query_string] = String.split(web_path, "?")
+      refute File.exists?(path)
+    end
+
+    File.rm_rf!(destination_path)
   end
 end
