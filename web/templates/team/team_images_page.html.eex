@@ -30,7 +30,7 @@
                     <%= if team_image.description && String.length(team_image.description) > 0 do %>
                     <div class="row">
                       <div class="col-xs-12">
-                        <%= team_image.description %>
+                        <%= raw(team_image.description) %>
                       </div>
                     </div>
                     <% end %>
