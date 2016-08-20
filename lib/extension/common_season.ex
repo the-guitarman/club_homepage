@@ -21,7 +21,7 @@ defmodule ClubHomepage.Extension.CommonSeason do
             where: m.team_id == ^team.id,
             where: m.start_at < ^date,
             select: m.season_id,
-            order_by: [asc: m.start_at],
+            order_by: [desc: m.start_at],
             limit: 1
     case Repo.one(query) do
       nil -> nil
@@ -41,13 +41,10 @@ defmodule ClubHomepage.Extension.CommonSeason do
 
   def current_season_name do
     %{year: year, month: month} = Timex.Date.now
-    ret = cond do
+    cond do
       month < 8 -> "#{year - 1}-#{year}"
       true      -> "#{year}-#{year + 1}"
     end
-    IO.inspect Timex.Date.now
-IO.inspect ret
-    ret
   end
 
   def current_season do
