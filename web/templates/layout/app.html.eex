@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Phoenix!</title>
+    <title><%= full_club_name %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -19,7 +19,7 @@
       <div class="content-container">
         <%= if controller_module(@conn) == ClubHomepage.PageController && action_name(@conn) == :index do %>
           <section class="header">
-            <h1>TSV Einheit Claußnitz 1864 e.V.</h1>
+            <h1><%= full_club_name %></h1>
           </section>
         <% end %>
 

@@ -7,6 +7,13 @@ defmodule ClubHomepage.Extension.View do
   import ClubHomepage.Gettext
   import ClubHomepage.Extension.CommonTimex
 
+  def full_club_name do
+    Application.get_env(:club_homepage, :common)[:full_club_name]
+  end
+
+
+
+
   def current_link(_conn, _module, [] = actions) when is_list(actions), do: ""
   def current_link(conn, module, [head | tail] = actions) when is_list(actions) do
     current_link_class(conn, module, head) <> " " <> current_link(conn, module, tail)
