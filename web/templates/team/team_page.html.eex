@@ -1,7 +1,14 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
-      <h1><%= @team.name %></h1>
+      <h1><%= @team.name %><br /><%= gettext("matches") %></h1>
+
+      <%= if @team_images_count > 0 || has_role?(@conn, ["match-editor"]) do %>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#"><%= gettext("matches") %></a></li>
+        <li role="presentation"><%= link gettext("team_images"), to: team_images_page_path(@conn, :show_images, @team.slug) %></li>
+      </ul>
+      <% end %>
 
       <%= if Enum.count(@seasons) > 0 do %>
         <div class="row">
@@ -59,36 +66,6 @@
           <% end %>
         </div>
       </div>
-
-      <%= if Enum.count(@team_images) > 0 || has_role?(@conn, ["team_editor"]) do %>
-        <div class="row">
-          <div class="col-xs-12">
-
-            <div class="row">
-              <%= for team_image <- @team_images do %>
-                <div class="<%= if has_role?(@conn, ["team-editor"]), do: "col-xs-9", else: "col-xs-12" %>">
-                  <%= uploader_image_tag ClubHomepage.TeamUploader, team_image, :normal %>
-                </div>
-                <%= if has_role?(@conn, ["team-editor"]) do %>
-                <div class="col-xs-3 text-right">
-                  <%= link gettext("edit"), to: team_image_path(@conn, :edit, team_image), class: "btn btn-default" %>
-                  <%= link gettext("delete"), to: team_image_path(@conn, :delete, team_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
-                </div>
-                <% end %>
-              <% end %>
-            </div>
-
-            <%= if has_role?(@conn, ["team-editor"]) do %>
-              <div class="row">
-                <div class="col-xs-12">
-                    <%= link gettext("create_new_team_image"), to: team_image_path(@conn, :new, team_id: @team.id), class: "btn btn-default" %>
-                </div>
-              </div>
-            <% end %>
-
-          </div>
-        </div>
-      <% end %>
 
       <div class="row">
         <div class="col-xs-12">

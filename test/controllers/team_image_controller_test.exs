@@ -1,6 +1,7 @@
 defmodule ClubHomepage.TeamImageControllerTest do
   use ClubHomepage.ConnCase
 
+  alias ClubHomepage.Team
   alias ClubHomepage.TeamImage
 
   import ClubHomepage.Factory
@@ -24,8 +25,8 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
   setup context do
     conn = build_conn()
-    team = create(:team)
-    valid_attrs = %{@valid_attrs | team_id: team.id}
+    team_image = create(:team_image)
+    valid_attrs = %{@valid_attrs | team_id: team_image.team_id}
     if context[:login] do
       current_user = create(:user)
       conn = assign(conn, :current_user, current_user)
@@ -70,10 +71,9 @@ defmodule ClubHomepage.TeamImageControllerTest do
   test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
     conn = post conn, team_image_path(conn, :create), team_image: valid_attrs
     team_image_id = get_highest_id(TeamImage)
-    assert redirected_to(conn) == team_image_path(conn, :index) <> "#team-image-#{team_image_id}"
-    assert Repo.get!(TeamImage, team_image_id)
-
     team_image = Repo.get!(TeamImage, team_image_id)
+    team = Repo.get!(Team, team_image.team_id)
+    assert redirected_to(conn) == team_images_page_path(conn, :show_images, team.slug)
 
     for {_version, web_path} <- ClubHomepage.TeamUploader.urls({team_image.attachment, team_image}) do
       [file_path, _] = String.split(web_path, "?")
@@ -97,8 +97,10 @@ defmodule ClubHomepage.TeamImageControllerTest do
   @tag login: true
   test "updates chosen resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
     team_image = create(:team_image)
+    team = Repo.get!(Team, team_image.team_id)
+    valid_attrs = %{valid_attrs | team_id: team_image.team_id}
     conn = put conn, team_image_path(conn, :update, team_image), team_image: valid_attrs
-    assert redirected_to(conn) == team_image_path(conn, :index) <> "#team-image-#{team_image.id}"
+    assert redirected_to(conn) == team_images_page_path(conn, :show_images, team.slug)
     assert Repo.get!(TeamImage, team_image.id)
   end
 

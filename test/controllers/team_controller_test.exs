@@ -10,6 +10,15 @@ defmodule ClubHomepage.TeamControllerTest do
   @valid_attrs %{competition_id: competition.id, name: "This is my    team without ß in the name."}
   @invalid_attrs %{name: ""}
 
+  setup_all do
+    uploads_path = Application.get_env(:club_homepage, :uploads)[:path]
+    File.mkdir_p(uploads_path)
+
+    on_exit fn ->
+      File.rm_rf(uploads_path)
+    end
+  end
+
   setup context do
     conn = build_conn()
     competition   = create(:competition)
@@ -80,7 +89,15 @@ defmodule ClubHomepage.TeamControllerTest do
     team = create(:team)
     season = create(:season)
     conn = get conn, team_page_with_season_path(conn, :show, team.slug, season.name)
-    assert html_response(conn, 200) =~ "<h1>#{team.name}</h1>"
+    assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Matches</h1>"
+  end
+
+  @tag login: false
+  test "shows team images page", %{conn: conn} do
+    team_image = create(:team_image)
+    team = Repo.get!(Team, team_image.team_id)
+    conn = get conn, team_images_page_path(conn, :show_images, team.slug)
+    assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Team Images</h1>"
   end
 
   @tag login: false

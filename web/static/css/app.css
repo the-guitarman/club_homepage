@@ -28,6 +28,10 @@ a.anchor, a.anchor:hover, a.anchor:focus {
   border-radius:0px;
 }
 
+.nav.nav-tabs {
+  margin-bottom: 20px;
+}
+
 .flash-messages .alert {
   border-radius: 0px;
 }

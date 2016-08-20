@@ -34,6 +34,7 @@ defmodule ClubHomepage.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     get "/teams/:slug", TeamController, :show, as: :team_page
     get "/teams/:slug/season/:season", TeamController, :show, as: :team_page_with_season
+    get "/teams/:slug/images", TeamController, :show_images, as: :team_images_page
   end
 
   scope "/manage", ClubHomepage do

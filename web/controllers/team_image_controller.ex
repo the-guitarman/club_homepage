@@ -1,6 +1,7 @@
 defmodule ClubHomepage.TeamImageController do
   use ClubHomepage.Web, :controller
 
+  alias ClubHomepage.Team
   alias ClubHomepage.TeamImage
 
   plug :is_team_editor?
@@ -28,10 +29,11 @@ defmodule ClubHomepage.TeamImageController do
     case Repo.insert(changeset) do
       {:ok, team_image} ->
         update_image(team_image, team_image_params)
+        team = Repo.get!(Team, team_image.team_id)
 
         conn
         |> put_flash(:info, "Team image created successfully.")
-        |> redirect(to: team_image_path(conn, :index) <> "#team-image-#{team_image.id}")
+        |> redirect(to: team_images_page_path(conn, :show_images, team.slug))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -54,10 +56,11 @@ defmodule ClubHomepage.TeamImageController do
     case Repo.update(changeset) do
       {:ok, team_image} ->
         update_image(team_image, team_image_params)
+        team = Repo.get!(Team, team_image.team_id)
 
         conn
         |> put_flash(:info, "Team image updated successfully.")
-        |> redirect(to: team_image_path(conn, :index) <> "#team-image-#{team_image.id}")
+        |> redirect(to: team_images_page_path(conn, :show_images, team.slug))
       {:error, changeset} ->
         render(conn, "edit.html", team_image: team_image, changeset: changeset)
     end
