@@ -41,10 +41,13 @@ defmodule ClubHomepage.Extension.CommonSeason do
 
   def current_season_name do
     %{year: year, month: month} = Timex.Date.now
-    cond do
+    ret = cond do
       month < 8 -> "#{year - 1}-#{year}"
       true      -> "#{year}-#{year + 1}"
     end
+    IO.inspect Timex.Date.now
+IO.inspect ret
+    ret
   end
 
   def current_season do
