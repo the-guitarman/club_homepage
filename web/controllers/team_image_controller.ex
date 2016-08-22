@@ -32,7 +32,7 @@ defmodule ClubHomepage.TeamImageController do
         team = Repo.get!(Team, team_image.team_id)
 
         conn
-        |> put_flash(:info, "Team image created successfully.")
+        |> put_flash(:info, gettext("team_image_created_successfully"))
         |> redirect(to: team_images_page_path(conn, :show_images, team.slug))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -59,7 +59,7 @@ defmodule ClubHomepage.TeamImageController do
         team = Repo.get!(Team, team_image.team_id)
 
         conn
-        |> put_flash(:info, "Team image updated successfully.")
+        |> put_flash(:info, gettext("team_image_updated_successfully"))
         |> redirect(to: team_images_page_path(conn, :show_images, team.slug))
       {:error, changeset} ->
         render(conn, "edit.html", team_image: team_image, changeset: changeset)
@@ -68,6 +68,7 @@ defmodule ClubHomepage.TeamImageController do
 
   def delete(conn, %{"id" => id}) do
     team_image = Repo.get!(TeamImage, id)
+    team = Repo.get!(Team, team_image.team_id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
@@ -76,8 +77,8 @@ defmodule ClubHomepage.TeamImageController do
     File.rm_rf!(ClubHomepage.TeamUploader.storage_dir(nil, {nil, team_image}))
 
     conn
-    |> put_flash(:info, "Team image deleted successfully.")
-    |> redirect(to: team_image_path(conn, :index))
+    |> put_flash(:info, gettext("team_image_deleted_successfully"))
+    |> redirect(to: team_images_page_path(conn, :show_images, team.slug))
   end
 
   defp get_team_select_options(conn, _) do

@@ -14,7 +14,7 @@ defmodule ClubHomepage.SponsorImage do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name])
+    |> cast(Map.drop(params, [:attachment, "attachment"]), [:name])
     |> validate_required([:name])
   end
 

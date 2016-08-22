@@ -22,6 +22,8 @@ defmodule ClubHomepage.TeamImage do
     start_year = Application.get_env(:club_homepage, :common)[:founding_year]
     %{year: current_year} = Timex.DateTime.local
 
+    params = Map.drop(params, [:attachment, "attachment"])
+
     struct
     |> cast(params, @required_fields, @optional_fields)
     |> validate_required(@required_fields)

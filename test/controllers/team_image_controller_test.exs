@@ -114,6 +114,8 @@ defmodule ClubHomepage.TeamImageControllerTest do
   @tag login: true
   test "creates and deletes chosen resource", %{conn: conn} do
     team_image = create(:team_image)
+    team = Repo.get!(Team, team_image.team_id)
+
     original_file = team_image.attachment[:file_name]
 
     destination_path = ClubHomepage.TeamUploader.storage_dir(nil, {nil, team_image})
@@ -129,7 +131,7 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
     conn = delete conn, team_image_path(conn, :delete, team_image)
 
-    assert redirected_to(conn) == team_image_path(conn, :index)
+    assert redirected_to(conn) == team_images_page_path(conn, :show_images, team.slug)
     refute Repo.get(TeamImage, team_image.id)
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")
