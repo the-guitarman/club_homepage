@@ -32,12 +32,13 @@
 #: web/templates/sponsor_image/new.html.eex:9
 #: web/templates/team/edit.html.eex:11 web/templates/team/index.html.eex:4
 #: web/templates/team/new.html.eex:11 web/templates/team/show.html.eex:21
-#: web/templates/team/team_page.html.eex:91
-#: web/templates/team_image/edit.html.eex:9
+#: web/templates/team/team_images_page.html.eex:66
+#: web/templates/team/team_page.html.eex:72
+#: web/templates/team_image/edit.html.eex:11
 #: web/templates/team_image/index.html.eex:4
 #: web/templates/team_image/new.html.eex:11
-#: web/templates/text_page/edit.html.eex:9
-#: web/templates/text_page/edit.html.eex:10
+#: web/templates/text_page/edit.html.eex:30
+#: web/templates/text_page/edit.html.eex:31
 #: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
 #: web/templates/user/index.html.eex:4 web/templates/user/new.html.eex:15
 #: web/templates/user/new_unregistered.html.eex:12
@@ -45,12 +46,12 @@ msgid "all"
 msgstr ""
 
 #: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:60
-#: web/templates/match/new.html.eex:4 web/templates/team/team_page.html.eex:31
+#: web/templates/match/new.html.eex:4 web/templates/team/team_page.html.eex:38
 msgid "create_new_match"
 msgstr ""
 
 #: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:58
-#: web/templates/team/team_page.html.eex:29
+#: web/templates/team/team_page.html.eex:36
 msgid "create_next_new_match"
 msgstr ""
 
@@ -65,6 +66,9 @@ msgstr ""
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:85
+#: web/templates/team/team_images_page.html.eex:8
+#: web/templates/team/team_page.html.eex:4
+#: web/templates/team/team_page.html.eex:8
 msgid "matches"
 msgstr ""
 
@@ -95,7 +99,7 @@ msgstr ""
 msgid "delete_match"
 msgstr ""
 
-#: lib/extension/view.ex:133 web/templates/match/form_bulk.html.eex:4
+#: lib/extension/view.ex:140 web/templates/match/form_bulk.html.eex:4
 msgid "form_input_errors_notice"
 msgstr ""
 
@@ -119,7 +123,7 @@ msgstr ""
 #: web/templates/layout/navbar_top.html.eex:80
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
 #: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
-#: web/templates/team/team_page.html.eex:9
+#: web/templates/team/team_page.html.eex:16
 msgid "seasons"
 msgstr ""
 
@@ -222,7 +226,7 @@ msgstr ""
 #: web/templates/meeting_point/show.html.eex:13
 #: web/templates/secret/index.html.eex:25
 #: web/templates/sponsor_image/index.html.eex:23
-#: web/templates/team/team_page.html.eex:73
+#: web/templates/team/team_images_page.html.eex:42
 #: web/templates/team_image/index.html.eex:27
 msgid "delete"
 msgstr ""
@@ -238,7 +242,8 @@ msgstr ""
 #: web/templates/opponent_team/index.html.eex:27
 #: web/templates/season/show.html.eex:12
 #: web/templates/sponsor_image/index.html.eex:22
-#: web/templates/team/index.html.eex:16 web/templates/team/team_page.html.eex:72
+#: web/templates/team/index.html.eex:16
+#: web/templates/team/team_images_page.html.eex:41
 #: web/templates/team_image/index.html.eex:26
 #: web/templates/user/index.html.eex:40
 msgid "edit"
@@ -360,7 +365,9 @@ msgstr ""
 #: web/templates/layout/navbar_top.html.eex:60
 #: web/templates/page/index.html.eex:35 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
-#: web/templates/team/show.html.eex:21 web/templates/team/team_page.html.eex:91
+#: web/templates/team/show.html.eex:21
+#: web/templates/team/team_images_page.html.eex:66
+#: web/templates/team/team_page.html.eex:72
 msgid "teams"
 msgstr ""
 
@@ -485,7 +492,7 @@ msgstr ""
 msgid "slug"
 msgstr ""
 
-#: web/templates/team/team_page.html.eex:56
+#: web/templates/team/team_page.html.eex:63
 msgid "saison_matches_missing"
 msgstr ""
 
@@ -496,7 +503,7 @@ msgstr ""
 
 #: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:62
 #: web/templates/match/new_bulk.html.eex:4
-#: web/templates/team/team_page.html.eex:34
+#: web/templates/team/team_page.html.eex:41
 msgid "create_new_matches"
 msgstr ""
 
@@ -629,7 +636,7 @@ msgid "page"
 msgstr ""
 
 #: web/templates/layout/navbar_top.html.eex:47
-#: web/templates/text_page/edit.html.eex:9
+#: web/templates/text_page/edit.html.eex:30
 #: web/templates/text_page/index.html.eex:4
 msgid "text_pages"
 msgstr ""
@@ -781,19 +788,19 @@ msgstr ""
 msgid "secret_deleted_successfully"
 msgstr ""
 
-#: web/controllers/team_controller.ex:32
+#: web/controllers/team_controller.ex:33
 msgid "team_created_successfully"
 msgstr ""
 
-#: web/controllers/team_controller.ex:88
+#: web/controllers/team_controller.ex:105
 msgid "team_deleted_successfully"
 msgstr ""
 
-#: web/controllers/team_controller.ex:73
+#: web/controllers/team_controller.ex:90
 msgid "team_updated_successfully"
 msgstr ""
 
-#: web/controllers/text_page_controller.ex:27
+#: web/controllers/text_page_controller.ex:32
 msgid "text_page_updated_successfully"
 msgstr ""
 
@@ -853,7 +860,7 @@ msgstr ""
 msgid "sponsor_image_created_successfully"
 msgstr ""
 
-#: web/controllers/sponsor_image_controller.ex:70
+#: web/controllers/sponsor_image_controller.ex:72
 msgid "sponsor_image_deleted_successfully"
 msgstr ""
 
@@ -877,16 +884,18 @@ msgstr ""
 #: web/templates/sponsor_image/edit.html.eex:9
 #: web/templates/sponsor_image/index.html.eex:4
 #: web/templates/sponsor_image/new.html.eex:9
-#: web/templates/text_page/edit.html.eex:10
+#: web/templates/text_page/edit.html.eex:11
+#: web/templates/text_page/edit.html.eex:31
 msgid "sponsor_images"
 msgstr ""
 
 #: web/templates/sponsor_image/index.html.eex:23
+#: web/templates/team/team_images_page.html.eex:42
 #: web/templates/team_image/index.html.eex:27
 msgid "confirm_question_are_you_sure"
 msgstr ""
 
-#: web/templates/team/team_page.html.eex:81
+#: web/templates/team/team_images_page.html.eex:55
 #: web/templates/team_image/index.html.eex:34
 #: web/templates/team_image/new.html.eex:4
 msgid "create_new_team_image"
@@ -902,7 +911,10 @@ msgstr ""
 msgid "edit_team_image"
 msgstr ""
 
-#: web/templates/team_image/edit.html.eex:9
+#: web/templates/team/team_images_page.html.eex:4
+#: web/templates/team/team_images_page.html.eex:9
+#: web/templates/team/team_page.html.eex:9
+#: web/templates/team_image/edit.html.eex:11
 #: web/templates/team_image/index.html.eex:4
 #: web/templates/team_image/new.html.eex:11
 msgid "team_images"
@@ -917,4 +929,20 @@ msgstr ""
 #: web/templates/team_image/form.html.eex:20
 #: web/templates/team_image/index.html.eex:11
 msgid "team_image"
+msgstr ""
+
+#: web/templates/text_page/edit.html.eex:12
+msgid "sponsor_images_inclusion_note"
+msgstr ""
+
+#: web/controllers/team_image_controller.ex:35
+msgid "team_image_created_successfully"
+msgstr ""
+
+#: web/controllers/team_image_controller.ex:80
+msgid "team_image_deleted_successfully"
+msgstr ""
+
+#: web/controllers/team_image_controller.ex:62
+msgid "team_image_updated_successfully"
 msgstr ""

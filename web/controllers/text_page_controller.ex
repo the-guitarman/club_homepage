@@ -14,7 +14,12 @@ defmodule ClubHomepage.TextPageController do
   def edit(conn, %{"id" => id}) do
     text_page = Repo.get!(TextPage, id)
     changeset = TextPage.changeset(text_page)
-    render(conn, "edit.html", text_page: text_page, changeset: changeset)
+    sponsor_images =
+      case text_page.key do
+        "/sponsors.html" -> Repo.all(ClubHomepage.SponsorImage)
+        _ -> []
+      end
+    render(conn, "edit.html", text_page: text_page, changeset: changeset, sponsor_images: sponsor_images)
   end
 
   def update(conn, %{"id" => id, "text_page" => text_page_params}) do

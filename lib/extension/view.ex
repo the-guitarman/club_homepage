@@ -159,7 +159,11 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def uploader_image_tag(module, model, version) do
-    Tag.tag :img, src: "/" <> module.url({model.attachment, model}, version), alt: uploader_image_tag_alt(model, version)
+    Tag.tag :img, src: uploader_image_source(module, model, version), alt: uploader_image_tag_alt(model, version)
+  end
+
+  def uploader_image_source(module, model, version) do
+    "/" <> module.url({model.attachment, model}, version)
   end
 
   defp uploader_image_tag_alt(model, version) do
