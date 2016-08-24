@@ -14,11 +14,7 @@ defmodule ClubHomepage.TextPageController do
   def edit(conn, %{"id" => id}) do
     text_page = Repo.get!(TextPage, id)
     changeset = TextPage.changeset(text_page)
-    sponsor_images =
-      case text_page.key do
-        "/sponsors.html" -> Repo.all(ClubHomepage.SponsorImage)
-        _ -> []
-      end
+    sponsor_images = get_sponsor_images(text_page)
     render(conn, "edit.html", text_page: text_page, changeset: changeset, sponsor_images: sponsor_images)
   end
 
@@ -32,7 +28,15 @@ defmodule ClubHomepage.TextPageController do
         |> put_flash(:info, gettext("text_page_updated_successfully"))
         |> redirect(to: text_page_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "edit.html", text_page: text_page, changeset: changeset)
+        sponsor_images = get_sponsor_images(text_page)
+        render(conn, "edit.html", text_page: text_page, changeset: changeset, sponsor_images: sponsor_images)
+    end
+  end
+
+  defp get_sponsor_images(text_page) do
+    case text_page.key do
+      "/sponsors.html" -> Repo.all(ClubHomepage.SponsorImage)
+      _ -> []
     end
   end
 end
