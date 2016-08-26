@@ -800,7 +800,7 @@ msgstr ""
 msgid "team_updated_successfully"
 msgstr ""
 
-#: web/controllers/text_page_controller.ex:32
+#: web/controllers/text_page_controller.ex:28
 msgid "text_page_updated_successfully"
 msgstr ""
 
@@ -945,4 +945,16 @@ msgstr ""
 
 #: web/controllers/team_image_controller.ex:62
 msgid "team_image_updated_successfully"
+msgstr ""
+
+#: web/templates/news/index_item.html.eex:17
+msgid "no"
+msgstr ""
+
+#: web/templates/news/index_item.html.eex:17
+msgid "publicly_visible"
+msgstr ""
+
+#: web/templates/news/index_item.html.eex:17
+msgid "yes"
 msgstr ""

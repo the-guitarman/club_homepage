@@ -808,7 +808,7 @@ msgstr "Die Vereinsmannschaft wurde gelöscht."
 msgid "team_updated_successfully"
 msgstr "Die Vereinsmannschaft wurde gespeichert."
 
-#: web/controllers/text_page_controller.ex:32
+#: web/controllers/text_page_controller.ex:28
 msgid "text_page_updated_successfully"
 msgstr "Die Seite wurde gespeichert."
 
@@ -954,3 +954,15 @@ msgstr "Das Mannschaftsbild wurde gelöscht."
 #: web/controllers/team_image_controller.ex:62
 msgid "team_image_updated_successfully"
 msgstr "Das Mannschaftsbild wurde aktualisiert."
+
+#: web/templates/news/index_item.html.eex:17
+msgid "no"
+msgstr "nein"
+
+#: web/templates/news/index_item.html.eex:17
+msgid "publicly_visible"
+msgstr "öffentlich sichtbar"
+
+#: web/templates/news/index_item.html.eex:17
+msgid "yes"
+msgstr "ja"

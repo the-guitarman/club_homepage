@@ -808,7 +808,7 @@ msgstr "Team deleted successfully."
 msgid "team_updated_successfully"
 msgstr "Team updated successfully."
 
-#: web/controllers/text_page_controller.ex:32
+#: web/controllers/text_page_controller.ex:28
 msgid "text_page_updated_successfully"
 msgstr "Page updated successfully."
 
@@ -954,3 +954,15 @@ msgstr "Team image deleted successfully."
 #: web/controllers/team_image_controller.ex:62
 msgid "team_image_updated_successfully"
 msgstr "Team image updated successfully."
+
+#: web/templates/news/index_item.html.eex:17
+msgid "no"
+msgstr "no"
+
+#: web/templates/news/index_item.html.eex:17
+msgid "publicly_visible"
+msgstr "publicly visible"
+
+#: web/templates/news/index_item.html.eex:17
+msgid "yes"
+msgstr "no"

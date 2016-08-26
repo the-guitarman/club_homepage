@@ -14,9 +14,12 @@
             raw(safe_to_string(subject) <> safe_to_string(tag(:br)) <> safe_to_string(datetime))
           end)
         %>
+        <%= if logged_in?(@conn) do %>
+          <div><small><%= gettext("publicly_visible") %>: <%= if @news.public === true, do: gettext("yes"), else: gettext("no") %></small></div>
+        <% end %>
       </h3>
     </div>
-    <%= if ClubHomepage.Auth.logged_in?(@conn, %{}) do %>
+    <%= if has_role?(@conn, "news-editor") do %>
       <div class="pull-right">
         <%#= link "Show", to: news_path(@conn, :show, @news), class: "btn btn-default" %>
         <%= link "Edit", to: news_path(@conn, :edit, @news), class: "btn btn-default" %>
