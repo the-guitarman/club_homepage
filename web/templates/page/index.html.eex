@@ -1,27 +1,29 @@
 <div class="container-fluid">
 
   <div class="row">
-    <%= if Enum.count(@news) > 0 do %>
       <div class="col-xs-12 col-md-4">
         <div class="jumbotron content-box">
           <h2><%= gettext("latest_news") %></h2>
-          <div class="list-group">
-            <%= for news <- @news do %>
-              <%
-                link_text = content_tag(:span) do
-                  datetime = content_tag(:small) do
-                    {:ok, date_string} = Timex.format(news.inserted_at, "%d.%m.%Y %H:%M", :strftime)
-                    date_string <> " " <> gettext("o_clock")
+          <%= if Enum.count(@news) > 0 do %>
+            <div class="list-group">
+              <%= for news <- @news do %>
+                <%
+                  link_text = content_tag(:span) do
+                    datetime = content_tag(:small) do
+                      {:ok, date_string} = Timex.format(news.inserted_at, "%d.%m.%Y %H:%M", :strftime)
+                      date_string <> " " <> gettext("o_clock")
+                    end
+                    raw(safe_to_string(datetime) <> safe_to_string(tag(:br)) <> news.subject) 
                   end
-                  raw(safe_to_string(datetime) <> safe_to_string(tag(:br)) <> news.subject) 
-                end
-              %>
-              <%= link link_text, to: news_path(@conn, :index) <> "#news-#{news.id}", class: "list-group-item" %>
-            <% end %>
-          </div>
+                %>
+                <%= link link_text, to: news_path(@conn, :index) <> "#news-#{news.id}", class: "list-group-item" %>
+              <% end %>
+            </div>
+          <% else %>
+            <p><%= gettext("no_news_notice") %></p>
+          <% end %>
         </div>
       </div>
-    <% end %>
 
     <div class="col-xs-12 col-md-4">
       <div class="jumbotron content-box text-center">

@@ -371,7 +371,7 @@ msgid "password"
 msgstr "Passwort"
 
 #: web/templates/layout/navbar_top.html.eex:60
-#: web/templates/page/index.html.eex:35 web/templates/team/edit.html.eex:11
+#: web/templates/page/index.html.eex:37 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21
 #: web/templates/team/team_images_page.html.eex:66
@@ -431,11 +431,11 @@ msgstr "Mannschaftsname"
 msgid "users"
 msgstr "Vereinsmitglieder"
 
-#: web/templates/page/index.html.eex:64
+#: web/templates/page/index.html.eex:66
 msgid "latest_match_results"
 msgstr "Letzte Spiele"
 
-#: web/templates/news/index.html.eex:4 web/templates/page/index.html.eex:7
+#: web/templates/news/index.html.eex:4 web/templates/page/index.html.eex:6
 msgid "latest_news"
 msgstr "News"
 
@@ -619,7 +619,7 @@ msgstr "Permalink ändern"
 msgid "goals"
 msgstr "Tore"
 
-#: web/templates/page/index.html.eex:51
+#: web/templates/page/index.html.eex:53
 msgid "next_matches"
 msgstr "Nächste Spiele"
 
@@ -955,14 +955,18 @@ msgstr "Das Mannschaftsbild wurde gelöscht."
 msgid "team_image_updated_successfully"
 msgstr "Das Mannschaftsbild wurde aktualisiert."
 
-#: web/templates/news/index_item.html.eex:17
+#: web/templates/news/index_item.html.eex:18
 msgid "no"
 msgstr "nein"
 
-#: web/templates/news/index_item.html.eex:17
+#: web/templates/news/index_item.html.eex:18
 msgid "publicly_visible"
 msgstr "öffentlich sichtbar"
 
-#: web/templates/news/index_item.html.eex:17
+#: web/templates/news/index_item.html.eex:18
 msgid "yes"
 msgstr "ja"
+
+#: web/templates/page/index.html.eex:23
+msgid "no_news_notice"
+msgstr "Momentan gibt es keine News."

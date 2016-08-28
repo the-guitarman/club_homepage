@@ -363,7 +363,7 @@ msgid "password"
 msgstr ""
 
 #: web/templates/layout/navbar_top.html.eex:60
-#: web/templates/page/index.html.eex:35 web/templates/team/edit.html.eex:11
+#: web/templates/page/index.html.eex:37 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21
 #: web/templates/team/team_images_page.html.eex:66
@@ -423,11 +423,11 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: web/templates/page/index.html.eex:64
+#: web/templates/page/index.html.eex:66
 msgid "latest_match_results"
 msgstr ""
 
-#: web/templates/news/index.html.eex:4 web/templates/page/index.html.eex:7
+#: web/templates/news/index.html.eex:4 web/templates/page/index.html.eex:6
 msgid "latest_news"
 msgstr ""
 
@@ -611,7 +611,7 @@ msgstr ""
 msgid "goals"
 msgstr ""
 
-#: web/templates/page/index.html.eex:51
+#: web/templates/page/index.html.eex:53
 msgid "next_matches"
 msgstr ""
 
@@ -947,14 +947,18 @@ msgstr ""
 msgid "team_image_updated_successfully"
 msgstr ""
 
-#: web/templates/news/index_item.html.eex:17
+#: web/templates/news/index_item.html.eex:18
 msgid "no"
 msgstr ""
 
-#: web/templates/news/index_item.html.eex:17
+#: web/templates/news/index_item.html.eex:18
 msgid "publicly_visible"
 msgstr ""
 
-#: web/templates/news/index_item.html.eex:17
+#: web/templates/news/index_item.html.eex:18
 msgid "yes"
+msgstr ""
+
+#: web/templates/page/index.html.eex:23
+msgid "no_news_notice"
 msgstr ""
