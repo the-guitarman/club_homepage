@@ -11,7 +11,8 @@ defmodule ClubHomepage.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get build_conn(), page_path(conn, :index)
-    refute html_response(conn, 200) =~ "<h2>Latest News</h2>"
+    assert html_response(conn, 200) =~ "<h2>Latest News</h2>"
+    assert html_response(conn, 200) =~ "There are no news at the moment."
     refute html_response(conn, 200) =~ "<h2>Next Matches</h2>"
     refute html_response(conn, 200) =~ "<h2>Latest Match Results</h2>"
 
