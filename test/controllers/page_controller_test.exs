@@ -29,8 +29,10 @@ defmodule ClubHomepage.PageControllerTest do
     [team_count] = ClubHomepage.Repo.all(query)
     if team_count > 0 do
       assert html_response(conn, 200) =~ "<h2>Teams</h2>"
+      refute html_response(conn, 200) =~ "<p>There are no teams at the moment.</p>"
     else
-      refute html_response(conn, 200) =~ "<h2>Teams</h2>"
+      assert html_response(conn, 200) =~ "<h2>Teams</h2>"
+      assert html_response(conn, 200) =~ "<p>There are no teams at the moment.</p>"
     end
   end
 

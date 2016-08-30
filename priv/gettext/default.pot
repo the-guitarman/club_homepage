@@ -363,7 +363,7 @@ msgid "password"
 msgstr ""
 
 #: web/templates/layout/navbar_top.html.eex:60
-#: web/templates/page/index.html.eex:37 web/templates/team/edit.html.eex:11
+#: web/templates/page/index.html.eex:36 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21
 #: web/templates/team/team_images_page.html.eex:66
@@ -423,7 +423,7 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: web/templates/page/index.html.eex:66
+#: web/templates/page/index.html.eex:68
 msgid "latest_match_results"
 msgstr ""
 
@@ -611,7 +611,7 @@ msgstr ""
 msgid "goals"
 msgstr ""
 
-#: web/templates/page/index.html.eex:53
+#: web/templates/page/index.html.eex:55
 msgid "next_matches"
 msgstr ""
 
@@ -961,4 +961,8 @@ msgstr ""
 
 #: web/templates/page/index.html.eex:23
 msgid "no_news_notice"
+msgstr ""
+
+#: web/templates/page/index.html.eex:44
+msgid "no_teams_notice"
 msgstr ""
