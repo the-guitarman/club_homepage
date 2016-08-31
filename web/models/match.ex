@@ -42,7 +42,7 @@ defmodule ClubHomepage.Match do
     |> foreign_key_constraint(:season_id)
     |> foreign_key_constraint(:team_id)
     |> foreign_key_constraint(:opponent_team_id)
-    |> unique_constraint(:unique_match_constraint, name: :unique_match_index)
+    #|> unique_constraint(:unique_match_constraint, name: :unique_match_index)
     |> validate_inclusion(:failure_reason, [nil | failure_reasons])
     |> validate_team_goals
     |> validate_opponent_team_goals
