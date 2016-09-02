@@ -36,6 +36,7 @@ defmodule ClubHomepage.MatchController do
 
   def create(conn, %{"match" => match_params}) do
     match_params = parse_datetime_field(match_params, :start_at)
+    match_params = parse_datetime_field(match_params, :meeting_point_at)
     changeset = Match.changeset(%Match{}, match_params)
 
     case Repo.insert(changeset) do
@@ -95,6 +96,7 @@ defmodule ClubHomepage.MatchController do
 
   def update(conn, %{"id" => id, "match" => match_params}) do
     match_params = parse_datetime_field(match_params, :start_at)
+    match_params = parse_datetime_field(match_params, :meeting_point_at)
     match = Repo.get!(Match, id)
     changeset = Match.changeset(match, match_params)
 
