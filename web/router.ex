@@ -22,7 +22,6 @@ defmodule ClubHomepage.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/admin.php", PageController, :index
     get "/chronicle.html", PageController, :chronicle
     get "/about-us.html", PageController, :about_us
     get "/registration-information.html", PageController, :registration_information
