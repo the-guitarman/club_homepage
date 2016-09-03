@@ -7,7 +7,11 @@ defmodule ClubHomepage.Extension.MatchView do
   @no_match_result "- : -"
 
   def match_datetime(match, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
-    {:ok, date_string} = Timex.format(match.start_at, format, :strftime)
+    point_of_time(match.start_at, format)
+  end
+
+  def point_of_time(time, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
+    {:ok, date_string} = Timex.format(time, format, :strftime)
     date_string
   end
 

@@ -11,6 +11,10 @@ defmodule ClubHomepage.MatchView do
     !!match.meeting_point && not Match.finished?(match) && logged_in?(conn)
   end
 
+  def meeting_point_at_showable?(conn, match) do
+    !!match.meeting_point_at && not Match.finished?(match) && logged_in?(conn)
+  end
+
   def meeting_point_has_coords?(nil), do: false
   def meeting_point_has_coords?(meeting_point) do
     address_has_coords?(meeting_point.address)

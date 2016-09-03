@@ -35,6 +35,15 @@
 
       <%= render "soccer_match_timeline.html", conn: @conn, match: @match %>
 
+      <%= if meeting_point_at_showable?(@conn, @match) do %>
+        <div class="row">
+          <div class="col-xs-12">
+            <h3><%= gettext("meeting_point_at") %></h3>
+            <%= point_of_time(@match.meeting_point_at) %>
+          </div>
+        </div>
+      <% end %>
+
       <%= if meeting_point_showable?(@conn, @match) do %>
         <div class="row">
           <div class="col-xs-12">

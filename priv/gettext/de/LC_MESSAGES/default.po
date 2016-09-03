@@ -17,7 +17,7 @@ msgstr ""
 #: web/templates/layout/navbar_top.html.eex:90
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:85
+#: web/templates/match/show.html.eex:94
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/index.html.eex:8
@@ -73,14 +73,14 @@ msgstr "Heimspiel"
 
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:85
+#: web/templates/match/show.html.eex:94
 #: web/templates/team/team_images_page.html.eex:8
 #: web/templates/team/team_page.html.eex:4
 #: web/templates/team/team_page.html.eex:8
 msgid "matches"
 msgstr "Spiele"
 
-#: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:46
+#: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:55
 #: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:30
 msgid "meeting_point"
 msgstr "Treffpunkt"
@@ -103,7 +103,7 @@ msgstr "Mannschaft"
 msgid "create_new_season"
 msgstr "Neue Saison anlegen"
 
-#: web/templates/match/show.html.eex:81
+#: web/templates/match/show.html.eex:90
 msgid "delete_match"
 msgstr "Spiel löschen"
 
@@ -113,7 +113,7 @@ msgstr "Es sind folgende Fehler aufgetreten:"
 
 #: web/templates/address/form.html.eex:41
 #: web/templates/competition/form.html.eex:20
-#: web/templates/match/form.html.eex:80
+#: web/templates/match/form.html.eex:87
 #: web/templates/match/form_bulk.html.eex:36
 #: web/templates/match/soccer_match_timeline.html.eex:105
 #: web/templates/meeting_point/form.html.eex:15
@@ -139,7 +139,7 @@ msgstr "Saisons"
 msgid "select_date_and_time_placeholder"
 msgstr "Anstoßzeitpunkt auswählen ..."
 
-#: web/templates/match/form.html.eex:75 web/templates/match/form.html.eex:75
+#: web/templates/match/form.html.eex:82 web/templates/match/form.html.eex:82
 msgid "select_meeting_point_placeholder"
 msgstr "Treffpunkt wählen ..."
 
@@ -440,7 +440,7 @@ msgid "latest_news"
 msgstr "News"
 
 #: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:49
-#: web/templates/match/show.html.eex:79
+#: web/templates/match/show.html.eex:88
 #: web/templates/team/team_page_match_table.html.eex:9
 msgid "edit_match"
 msgstr "Spiel ändern"
@@ -504,8 +504,8 @@ msgstr "Permalink"
 msgid "saison_matches_missing"
 msgstr "Es sind keine Spiele für diese Mannschaft gespeichert."
 
-#: lib/extension/match_view.ex:9 web/templates/match/show.html.eex:7
-#: web/templates/page/index.html.eex:14
+#: lib/extension/match_view.ex:9 lib/extension/match_view.ex:13
+#: web/templates/match/show.html.eex:7 web/templates/page/index.html.eex:14
 msgid "o_clock"
 msgstr "Uhr"
 
@@ -676,7 +676,7 @@ msgstr "Breitengrad (Latitude)"
 msgid "address_longitude_place_holder"
 msgstr "Längengrad (Longitude)"
 
-#: web/templates/match/show.html.eex:57 web/views/match_view.ex:23
+#: web/templates/match/show.html.eex:66 web/views/match_view.ex:23
 msgid "match_address"
 msgstr "Spielort"
 
@@ -716,15 +716,15 @@ msgstr "Die Zugangsdaten sind falsch."
 msgid "logged_in_now"
 msgstr "Du bist jetzt eingeloggt."
 
-#: web/controllers/match_controller.ex:46
+#: web/controllers/match_controller.ex:47
 msgid "match_created_successfully"
 msgstr "Das Spiel wurde angelegt."
 
-#: web/controllers/match_controller.ex:119
+#: web/controllers/match_controller.ex:121
 msgid "match_deleted_successfully"
 msgstr "Das Spiel wurde gelöscht."
 
-#: web/controllers/match_controller.ex:104
+#: web/controllers/match_controller.ex:106
 msgid "match_updated_successfully"
 msgstr "Das Spiel wurde gespeichert."
 
@@ -974,3 +974,11 @@ msgstr "Momentan gibt es keine News."
 #: web/templates/page/index.html.eex:44
 msgid "no_teams_notice"
 msgstr "Momentan sind keine Vereinsmannschaften eingetragen."
+
+#: web/templates/match/show.html.eex:41
+msgid "meeting_point_at"
+msgstr "Treff (Zeitpunkt)"
+
+#: web/templates/match/form.html.eex:77
+msgid "select_meeting_point_at_placeholder"
+msgstr "Treff (Zeitpunkt)"
