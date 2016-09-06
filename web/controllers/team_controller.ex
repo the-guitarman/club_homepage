@@ -45,8 +45,7 @@ defmodule ClubHomepage.TeamController do
     start_at = to_timex_ecto_datetime(Timex.DateTime.local)
     matches = Repo.all(from m in query, where: m.start_at > ^start_at, order_by: [asc: m.start_at])
     latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at, order_by: [desc: m.start_at])
-    [team_images_count] = Repo.all(from ti in TeamImage, select: count("id"), where: [team_id: ^team.id]) || 0
-    render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches, next_match_parameters: %{"season_id" => season.id, "team_id" => team.id, "start_at" => params["start_at"], "competition_id" => params["competition_id"]}, team_images_count: team_images_count)
+    render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches, next_match_parameters: %{"season_id" => season.id, "team_id" => team.id, "start_at" => params["start_at"], "competition_id" => params["competition_id"]}, team_images_count: team_images_count(team))
   end
   def show(conn, %{"slug" => slug}) do
     team = Repo.get_by!(Team, slug: slug)
@@ -61,16 +60,21 @@ defmodule ClubHomepage.TeamController do
   def show_images(conn, %{"slug" => slug}) do
     team = Repo.get_by!(Team, slug: slug)
     team_images = Repo.all(from ti in TeamImage, where: [team_id: ^team.id]) || []
-    matches_count = 
-      case current_team_season(team) do
-        nil -> 0
-        season -> 
-          start_at = to_timex_ecto_datetime(Timex.DateTime.local)
-          query = from(m in Match, where: [team_id: ^team.id, season_id: ^season.id])
-          [count] = Repo.all(from m in query, select: count("id"), where: m.start_at > ^start_at)
-          count
-      end
-    render(conn, "team_images_page.html", team: team, team_images: team_images, matches_count: matches_count)
+    # matches_count = 
+    #   case current_team_season(team) do
+    #     nil -> 0
+    #     season -> 
+    #       start_at = to_timex_ecto_datetime(Timex.DateTime.local)
+    #       query = from(m in Match, where: [team_id: ^team.id, season_id: ^season.id])
+    #       [count] = Repo.all(from m in query, select: count("id"), where: m.start_at > ^start_at)
+    #       count
+    #   end
+    render(conn, "team_images_page.html", team: team, team_images: team_images) #, matches_count: matches_count)
+  end
+
+  def show_chat(conn, %{"id" => id}) do
+    team = Repo.get!(Team, id)
+    render(conn, "team_chat_page.html", team: team, team_images_count: team_images_count(team))
   end
 
   def edit(conn, %{"id" => id}) do
@@ -111,5 +115,10 @@ defmodule ClubHomepage.TeamController do
                  select: {s.name, s.id},
                  order_by: [asc: s.name])
     assign(conn, :competition_options, Repo.all(query))
+  end
+
+  defp team_images_count(team) do
+    [team_images_count] = Repo.all(from ti in TeamImage, select: count("id"), where: [team_id: ^team.id]) || 0
+    team_images_count
   end
 end

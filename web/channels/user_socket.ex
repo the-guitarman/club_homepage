@@ -6,7 +6,7 @@ defmodule ClubHomepage.UserSocket do
   ## Channels
   # channel "rooms:*", ClubHomepage.RoomChannel
   channel "match-timelines:*", ClubHomepage.MatchTimelineChannel
-  channel "team-messages:*", ClubHomepage.TeamMessagesChannel
+  channel "team-chats:*", ClubHomepage.TeamChatChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

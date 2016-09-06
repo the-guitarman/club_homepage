@@ -100,6 +100,13 @@ defmodule ClubHomepage.TeamControllerTest do
     assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Team Images</h1>"
   end
 
+  @tag login: true
+  test "shows team chat page", %{conn: conn, current_user: _current_user} do
+    team = Repo.get!(Team, team_image.team_id)
+    conn = get conn, team_chat_page_path(conn, :show_chat, team)
+    assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Team Chat</h1>"
+  end
+
   @tag login: false
   test "renders page not found when id is nonexistent", %{conn: conn} do
     assert_raise Ecto.NoResultsError, fn ->

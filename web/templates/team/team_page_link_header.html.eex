@@ -1,0 +1,29 @@
+<%= if @team_images_count > 0 || has_role?(@conn, ["match-editor"]) || logged_in?(@conn) do %>
+<ul class="nav nav-tabs">
+  <li role="presentation" class="<%= if @active_tab === "matches", do: "active" %>">
+    <%= if @active_tab === "matches" do %>
+      <a href="#"><%= gettext("matches") %></a>
+    <% else %>
+      <%= link gettext("matches"), to: team_with_season_path(@conn, @team) %>
+    <% end %>
+  </li>
+  <%= if @team_images_count > 0 || has_role?(@conn, ["match-editor"]) do %>
+    <li role="presentation" class="<%= if @active_tab === "team_images", do: "active" %>">
+    <%= if @active_tab === "team_images" do %>
+      <a href="#"><%= gettext("team_images") %></a>
+    <% else %>
+      <%= link gettext("team_images"), to: team_images_page_path(@conn, :show_images, @team.slug) %>
+    <% end %>
+    </li>
+  <% end %>
+  <%= if logged_in?(@conn) do %>
+    <li role="presentation" class="<%= if @active_tab === "team_chat", do: "active" %>">
+    <%= if @active_tab === "team_chat" do %>
+      <a href="#"><%= gettext("team_chat") %></a>
+    <% else %>
+      <%= link gettext("team_chat"), to: team_chat_page_path(@conn, :show_chat, @team) %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+<% end %>

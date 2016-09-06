@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h1><%= @team.name %><br /><%= gettext("team_chat") %></h1>
+
+      <%= render "team_page_link_header.html", active_tab: "team_chat", conn: @conn, team: @team, team_images_count: @team_images_count %>
+
+    </div>
+  </div>
+</div>

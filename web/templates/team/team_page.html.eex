@@ -3,12 +3,7 @@
     <div class="jumbotron content-box">
       <h1><%= @team.name %><br /><%= gettext("matches") %></h1>
 
-      <%= if @team_images_count > 0 || has_role?(@conn, ["match-editor"]) do %>
-      <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#"><%= gettext("matches") %></a></li>
-        <li role="presentation"><%= link gettext("team_images"), to: team_images_page_path(@conn, :show_images, @team.slug) %></li>
-      </ul>
-      <% end %>
+      <%= render "team_page_link_header.html", active_tab: "matches", conn: @conn, team: @team, team_images_count: @team_images_count %>
 
       <%= if Enum.count(@seasons) > 0 do %>
         <div class="row">
