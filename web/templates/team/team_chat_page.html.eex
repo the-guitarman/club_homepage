@@ -5,6 +5,23 @@
 
       <%= render "team_page_link_header.html", active_tab: "team_chat", conn: @conn, team: @team, team_images_count: @team_images_count %>
 
+      <div class='row'>
+        <div class='col-xs-12'>
+          <div id='message-list' class='row'></div>
+        </div>
+      </div>
+
+      <div class='row form-group'>
+        <div class='col-xs-12'>
+          <div class="input-group">
+            <textarea type="text" id='message' class='form-control' placeholder='<%= gettext("chat_message") %>'></textarea>
+            <div class="input-group-addon">
+              <span class="glyphicon glyphicon-send"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
