@@ -102,6 +102,16 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def factory(:team_chat_message) do
+    team = create(:team)
+    user = create(:user)
+    %ClubHomepage.TeamChatMessage{
+      team_id: team.id,
+      user_id: user.id,
+      message: sequence(:name, &"Hi there (#{&1})!")
+    }
+  end
+
   def factory(:team_image) do
     team = create(:team)
     %ClubHomepage.TeamImage{

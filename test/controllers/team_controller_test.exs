@@ -102,7 +102,7 @@ defmodule ClubHomepage.TeamControllerTest do
   end
 
   @tag login: true
-  test "shows team chat page", %{conn: conn, current_user: current_user} do
+  test "shows team chat page", %{conn: conn, current_user: _current_user} do
     team = create(:team)
     conn = get conn, team_chat_page_path(conn, :show_chat, team)
     assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Team Chat</h1>"

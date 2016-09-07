@@ -58,6 +58,7 @@ defmodule ClubHomepage.Router do
     resources "/sponsor_images", SponsorImageController, except: [:show]
     resources "/teams", TeamController, only: [:index, :new, :create, :edit, :update, :delete]
     get "/teams/:id/chat", TeamController, :show_chat, as: :team_chat_page
+    resources "/team_chat_messages", TeamChatMessageController, only: [:index, :delete]
     resources "/team_images", TeamImageController, except: [:show]
     resources "/text_pages", TextPageController, except: [:show, :new, :create, :delete]
   end

@@ -1,0 +1,27 @@
+<h2>Listing team chat messages</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>User</th>
+      <th>Message</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for team_chat_message <- @team_chat_messages do %>
+    <tr>
+      <td><%= team_chat_message.team_id %></td>
+      <td><%= team_chat_message.user_id %></td>
+      <td><%= team_chat_message.message %></td>
+
+      <td class="text-right">
+        <%= link "Delete", to: team_chat_message_path(@conn, :delete, team_chat_message), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
