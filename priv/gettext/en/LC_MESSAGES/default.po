@@ -73,9 +73,7 @@ msgstr "Home Game"
 
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:94
-#: web/templates/team/team_chat_page.html.eex:8
-#: web/templates/team/team_page.html.eex:4
+#: web/templates/match/show.html.eex:94 web/templates/team/team_page.html.eex:4
 #: web/templates/team/team_page_link_header.html.eex:5
 #: web/templates/team/team_page_link_header.html.eex:7
 msgid "matches"
@@ -801,11 +799,11 @@ msgstr "secret_deleted_successfully."
 msgid "team_created_successfully"
 msgstr "Team created successfully."
 
-#: web/controllers/team_controller.ex:110
+#: web/controllers/team_controller.ex:109
 msgid "team_deleted_successfully"
 msgstr "Team deleted successfully."
 
-#: web/controllers/team_controller.ex:95
+#: web/controllers/team_controller.ex:94
 msgid "team_updated_successfully"
 msgstr "Team updated successfully."
 
@@ -920,7 +918,6 @@ msgstr "Description"
 msgid "edit_team_image"
 msgstr "Edit Team Image"
 
-#: web/templates/team/team_chat_page.html.eex:9
 #: web/templates/team/team_images_page.html.eex:4
 #: web/templates/team/team_page_link_header.html.eex:13
 #: web/templates/team/team_page_link_header.html.eex:15
@@ -990,3 +987,7 @@ msgstr "Meeting Time"
 #: web/templates/team/team_page_link_header.html.eex:24
 msgid "team_chat"
 msgstr "Team Chat"
+
+#: web/templates/team/team_chat_page.html.eex:17
+msgid "chat_message"
+msgstr "Message"

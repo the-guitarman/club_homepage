@@ -116,3 +116,9 @@ input.css-goals {
 .css-step {
   font-weight: bold;
 }
+
+#message-list {
+  border: 1px solid #c8c8c8;
+  height: 400px;
+  overflow-y: scroll;
+}

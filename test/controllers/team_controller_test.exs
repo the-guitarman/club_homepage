@@ -43,7 +43,8 @@ defmodule ClubHomepage.TeamControllerTest do
       get(conn, team_path(conn, :edit, team)),
       put(conn, team_path(conn, :update, team), team: valid_attrs),
       put(conn, team_path(conn, :update, team), team: @invalid_attrs),
-      delete(conn, team_path(conn, :delete, team))
+      delete(conn, team_path(conn, :delete, team)),
+      get(conn, team_chat_page_path(conn, :show_chat, team))
     ], fn conn ->
       assert html_response(conn, 302)
       assert conn.halted
@@ -101,10 +102,12 @@ defmodule ClubHomepage.TeamControllerTest do
   end
 
   @tag login: true
-  test "shows team chat page", %{conn: conn, current_user: _current_user} do
-    team = Repo.get!(Team, team_image.team_id)
+  test "shows team chat page", %{conn: conn, current_user: current_user} do
+    team = create(:team)
     conn = get conn, team_chat_page_path(conn, :show_chat, team)
     assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Team Chat</h1>"
+    assert html_response(conn, 200) =~ "<input type=\"hidden\" id=\"team-id\" value=\"#{team.id}\" />"
+    #assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Team Chat</h1>"
   end
 
   @tag login: false

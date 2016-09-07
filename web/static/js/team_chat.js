@@ -1,9 +1,9 @@
 let TeamChat = {
-  init(socket, element, teamId) {
+  init(socket, element, teamId, userName) {
     if (!element) {
       return
     }
-  
+
     socket.onOpen( ev => console.log("OPEN", ev) )
     socket.onError( ev => console.log("ERROR", ev) )
     socket.onClose( e => console.log("CLOSE", e))

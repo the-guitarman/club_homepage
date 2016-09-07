@@ -7,14 +7,16 @@
 
       <div class='row'>
         <div class='col-xs-12'>
-          <div id='message-list' class='row'></div>
+          <div id='message-list'></div>
         </div>
       </div>
 
       <div class='row form-group'>
         <div class='col-xs-12'>
           <div class="input-group">
-            <textarea type="text" id='message' class='form-control' placeholder='<%= gettext("chat_message") %>'></textarea>
+            <input type="hidden" id="team-id" value="<%= @team.id %>" />
+            <input type="hidden" id="user" value="<%= internal_user_name(@current_user) %>" />
+            <textarea type="text" id='team-chat-input' class='form-control' placeholder='<%= gettext("chat_message") %>'></textarea>
             <div class="input-group-addon">
               <span class="glyphicon glyphicon-send"></span>
             </div>
