@@ -34,6 +34,7 @@
 #: web/templates/team/new.html.eex:11 web/templates/team/show.html.eex:21
 #: web/templates/team/team_images_page.html.eex:61
 #: web/templates/team/team_page.html.eex:67
+#: web/templates/team_chat_message/index.html.eex:4
 #: web/templates/team_image/edit.html.eex:11
 #: web/templates/team_image/index.html.eex:4
 #: web/templates/team_image/new.html.eex:11
@@ -85,6 +86,7 @@ msgid "season"
 msgstr ""
 
 #: web/templates/match/index.html.eex:19
+#: web/templates/team_chat_message/index.html.eex:9
 #: web/templates/team_image/index.html.eex:9
 msgid "team"
 msgstr ""
@@ -890,6 +892,7 @@ msgstr ""
 
 #: web/templates/sponsor_image/index.html.eex:23
 #: web/templates/team/team_images_page.html.eex:37
+#: web/templates/team_chat_message/index.html.eex:24
 #: web/templates/team_image/index.html.eex:27
 msgid "confirm_question_are_you_sure"
 msgstr ""
@@ -980,6 +983,15 @@ msgstr ""
 msgid "team_chat"
 msgstr ""
 
-#: web/templates/team/team_chat_page.html.eex:17
+#: web/templates/team/team_chat_page.html.eex:19
+#: web/templates/team_chat_message/index.html.eex:11
 msgid "chat_message"
+msgstr ""
+
+#: web/templates/team_chat_message/index.html.eex:10
+msgid "user"
+msgstr ""
+
+#: web/templates/team_chat_message/index.html.eex:4
+msgid "chat_messages"
 msgstr ""

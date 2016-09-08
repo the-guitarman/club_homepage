@@ -43,7 +43,7 @@ defmodule ClubHomepage.TeamChatMessageControllerTest do
   @tag login: true
   test "lists all entries on index", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     conn = get conn, team_chat_message_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing team chat messages"
+    assert html_response(conn, 200) =~ "All Chat Messages"
   end
 
   @tag login: true
