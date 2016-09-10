@@ -15,6 +15,8 @@ defmodule ClubHomepage.User do
     field :nickname, :string
     field :roles, :string
 
+    has_many :team_chat_messages, ClubHomepage.TeamChatMessage
+
     timestamps
   end
 

@@ -9,12 +9,14 @@ defmodule ClubHomepage.TeamChatMessage do
     timestamps()
   end
 
+  @required_fields [:team_id, :user_id, :message]
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:message])
-    |> validate_required([:message])
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
   end
 end

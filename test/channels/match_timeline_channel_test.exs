@@ -20,7 +20,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
 
     {:ok, _, sock} = 
       socket("users_socket: #{user.id}", %{current_user: user})
-      |> subscribe_and_join(MatchTimelineChannel, "match-timelines:#{Integer.to_string(match.id)}")
+      |> subscribe_and_join(MatchTimelineChannel, "match-timelines:#{match.id}")
 
     {:ok, socket: sock, match: match}
   end

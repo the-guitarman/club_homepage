@@ -23,4 +23,4 @@ import MatchTimeline from "./match"
 import TeamChat from "./team_chat"
 
 MatchTimeline.init(socket, document.getElementById("match-timeline"))
-TeamChat.init(socket, document.getElementById("team-chat-input"), $('#team-id').val(), $('#user').val())
+TeamChat.init(socket, $("#team-chat-input"), $('#team-id').val(), $('#user').val())

@@ -60,7 +60,7 @@ let MatchTimeline = {
         renderMatchEvents(response.match_events)
       })
       .receive("error", (reason) => {
-        console.log("join failed: " + matchId, reason)
+        console.log("join failed", reason)
         renderMatchEvents([])
       })
       .receive("ignore", () => {

@@ -89,6 +89,8 @@ defmodule ClubHomepage.Web do
       import Ecto
       import Ecto.Query
       import ClubHomepage.Gettext
+
+      import ClubHomepage.Extension.CommonMatch, only: [internal_user_name: 1]
     end
   end
   
