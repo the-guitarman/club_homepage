@@ -122,3 +122,32 @@ input.css-goals {
   height: 400px;
   overflow-y: scroll;
 }
+
+#message-list .message {
+  background-color: #ffffff;
+  margin: 5px 20px 5px 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+#message-list .message.own-message {
+  background-color: #BFFFAE;
+  margin: 5px 5px 5px 20px;
+}
+
+#message-list .message .user-name {
+  font-weight: bold;
+}
+
+#message-list .date span {
+  background-color: #2e6da4;
+  border-radius: 5px;
+  color: #FFFFFF;
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+.css-show-more-chat-messages {
+  border-radius: 0px;
+  cursor: pointer;
+}

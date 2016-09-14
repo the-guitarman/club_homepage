@@ -21,7 +21,7 @@
             <td><%= team_chat_message.message %></td>
 
             <td class="text-right">
-              <%= link "Delete", to: team_chat_message_path(@conn, :delete, team_chat_message), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger btn-xs" %>
+              <%= link "Delete", to: team_chat_message_path(@conn, :delete, team_chat_message), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
             </td>
           </tr>
       <% end %>

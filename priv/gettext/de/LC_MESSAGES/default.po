@@ -998,8 +998,8 @@ msgstr "Nachricht"
 
 #: web/templates/team_chat_message/index.html.eex:10
 msgid "user"
-msgstr ""
+msgstr "Vereinsmitglied"
 
 #: web/templates/team_chat_message/index.html.eex:4
 msgid "chat_messages"
-msgstr ""
+msgstr "Chat-Nachrichten"

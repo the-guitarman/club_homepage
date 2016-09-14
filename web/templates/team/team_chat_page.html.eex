@@ -7,6 +7,7 @@
 
       <div class='row'>
         <div class='col-xs-12'>
+          <button class="js-show-more-chat-messages css-show-more-chat-messages btn btn-primary btn-block" disabled="disabled">Ältere Nachrichten anzeigen</button>
           <div id='message-list'></div>
         </div>
       </div>
@@ -15,7 +16,7 @@
         <div class='col-xs-12'>
           <div class="input-group">
             <input type="hidden" id="team-id" value="<%= @team.id %>" />
-            <input type="hidden" id="user" value="<%= internal_user_name(@current_user) %>" />
+            <input type="hidden" id="user-id" value="<%= @current_user.id %>" />
             <textarea type="text" id='team-chat-input' class='form-control' placeholder='<%= gettext("chat_message") %>'></textarea>
             <div class="input-group-addon">
               <span class="glyphicon glyphicon-send"></span>
