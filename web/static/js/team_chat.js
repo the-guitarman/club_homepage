@@ -19,7 +19,6 @@ let TeamChat = {
     }
 
     let createChatMessage = (payload) => {
-      console.log(payload);
       var ownMessage = payload.user_id === parseInt(userId) ? ' own-message' : '';
       return `<div class="message${ownMessage}" data-id="${payload.id}" data-date="${createDate(payload.at)}"><div class="user-name">${payload.user_name || 'Anonymous'}:</div><div>${payload.message}</div><div class="time text-right">${createTime(payload.at)}</div></div>`;
     }
@@ -76,6 +75,7 @@ let TeamChat = {
         });
         addDates();
         olderChatMessagesButtonHandler(response.older_chat_messages_available);
+        messageList.prop({scrollTop: 0});
       })
       .receive("error", (reason) => {
         console.log("join failed", reason)

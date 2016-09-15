@@ -15,6 +15,7 @@ msgstr ""
 #: web/templates/layout/navbar_top.html.eex:80
 #: web/templates/layout/navbar_top.html.eex:85
 #: web/templates/layout/navbar_top.html.eex:90
+#: web/templates/layout/navbar_top.html.eex:95
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:94
@@ -357,7 +358,7 @@ msgstr "Create Team"
 msgid "edit_team"
 msgstr "Edit Team"
 
-#: web/templates/layout/navbar_top.html.eex:101
+#: web/templates/layout/navbar_top.html.eex:106
 #: web/templates/session/new.html.eex:13
 msgid "log_in"
 msgstr "Log in"
@@ -446,7 +447,7 @@ msgstr "Latest News"
 msgid "edit_match"
 msgstr "Edit Match"
 
-#: web/templates/layout/navbar_top.html.eex:95
+#: web/templates/layout/navbar_top.html.eex:100
 msgid "logout"
 msgstr "Logout"
 
@@ -454,7 +455,7 @@ msgstr "Logout"
 msgid "members"
 msgstr "Club Members"
 
-#: web/templates/layout/navbar_top.html.eex:98
+#: web/templates/layout/navbar_top.html.eex:103
 msgid "sign_up"
 msgstr "Sign Up"
 
@@ -991,7 +992,7 @@ msgstr "Meeting Time"
 msgid "team_chat"
 msgstr "Team Chat"
 
-#: web/templates/team/team_chat_page.html.eex:19
+#: web/templates/team/team_chat_page.html.eex:20
 #: web/templates/team_chat_message/index.html.eex:11
 msgid "chat_message"
 msgstr "Message"
@@ -1003,3 +1004,11 @@ msgstr "Club Member"
 #: web/templates/team_chat_message/index.html.eex:4
 msgid "chat_messages"
 msgstr "Chat Messages"
+
+#: web/templates/layout/navbar_top.html.eex:95
+msgid "team_chat_messages"
+msgstr "Team Chat Messages"
+
+#: web/templates/team/team_chat_page.html.eex:10
+msgid "show_older_team_chat_messages_button_text"
+msgstr "Show Older Messages"
