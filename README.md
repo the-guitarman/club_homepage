@@ -37,7 +37,7 @@ mix deps.get
 
 ### Database Setup
 
-The project comes with sqlite support. You are free to use another database linke postgres or mysql. Don't forget to *change the username and password* to a role that has the correct database creation permissions. Therefore please see: 
+The project uses a PostgreSQL database. You are free to use another database linke mysql. Don't forget to *change the username and password* to a role that has the correct database creation permissions. Therefore please see: 
 
 - lib/club_homepage/repo.ex
 - config/(dev|test|prod).exs
@@ -50,6 +50,10 @@ mix ecto.migrate
 ````
 
 ## Configuration
+
+### File Configurations
+
+Please see config/club_homepage.exs and set the values suitable to your club.
 
 ### Translations
 
