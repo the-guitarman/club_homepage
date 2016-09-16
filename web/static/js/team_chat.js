@@ -15,7 +15,8 @@ let TeamChat = {
     }
 
     let createDateEl = (date) => {
-      return `<div class="date text-center"><span>${moment(date).format('DD.MM.YYYY')}</span></div>`;
+      var format = messageList.data('date-format');
+      return `<div class="date text-center"><span>${moment(date).format(format)}</span></div>`;
     }
 
     let createChatMessage = (payload) => {

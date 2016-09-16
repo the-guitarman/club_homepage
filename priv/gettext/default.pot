@@ -1004,3 +1004,7 @@ msgstr ""
 #: web/templates/team/team_chat_page.html.eex:10
 msgid "show_older_team_chat_messages_button_text"
 msgstr ""
+
+#: web/templates/team/team_chat_page.html.eex:11
+msgid "team_chat_messagesmoment_js_date_format"
+msgstr ""

@@ -12,7 +12,7 @@ This is a website skeleton for your soccer or handball club. It's a phoenixframe
 
 - authentication and authorization system for club members
 - editable standard pages (about us, registration information, history/chronicle, sponsors, contact)
-- homepage with club news, team overview, latest matches and next matches
+- homepage with club logo, club news, team overview, latest matches and next matches
 - news system with public and member news
 - team pages with next matches, played matches and saison selection and team images
 - next match page shows meeting point and match location at an open street map
