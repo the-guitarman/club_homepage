@@ -53,11 +53,11 @@ mix ecto.migrate
 
 ### File Configurations
 
-Rename *config/club_homepage.exs.template* to *config/club_homepage.exs* and set the values suitable to your club in the file.
+Set the values in *config/club_homepage.exs* suitable to your club in the file.
 
-For development environment rename *config/dev.database.exs.template* to *config/dev.database.exs* and configure your database settings (username/password). 
+For development environment configure your database settings (username/password) in *config/dev.exs*. 
 
-For production environment rename *config/prod.secret.exs.template* to *config/prod.secret.exs* and configure your database settings (username/password) and don't forget to set your own secret. 
+For production environment configure your database settings (username/password) in *config/prod.secret.exs* and don't forget to set your own secret. 
 
 ### Translations
 
