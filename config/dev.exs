@@ -35,7 +35,14 @@ config :logger, :console, format: "[$level] $message\n"
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
 
-import_config "dev.database.exs"
+# Configure your database
+config :club_homepage, ClubHomepage.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "club_homepage_dev",
+  hostname: "localhost",
+  pool_size: 10
 
 config :club_homepage, :uploads, 
   path: "uploads"

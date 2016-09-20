@@ -18,11 +18,6 @@ config :club_homepage, ClubHomepage.Repo,
  database: "club_homepage_test",
  hostname: "localhost",
  pool: Ecto.Adapters.SQL.Sandbox
-## Configure your database
-# config :club_homepage, ClubHomepage.Repo,
-#   adapter: Sqlite.Ecto,
-#   database: "db/club_homepage_test.sqlite",
-#   pool: Ecto.Adapters.SQL.Sandbox
 
 # set low number of password hashing rounds to speed up our test suite
 config :comeonin, :bcrypt_log_rounds, 4
