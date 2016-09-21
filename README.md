@@ -57,7 +57,7 @@ Set the values in *config/club_homepage.exs* suitable to your club in the file.
 
 For development environment configure your database settings (username/password) in *config/dev.exs*. 
 
-For production environment configure your database settings (username/password) in *config/prod.secret.exs* and don't forget to set your own secret. 
+For production environment configure your database settings (username/password) in *config/prod.secret.exs* and don't forget to set your own secret. Therefore execute `mix phoenix.gen.secret` at the command line.
 
 ### Translations
 
