@@ -93,7 +93,7 @@ For production environment:
 At first open config/prod.exs and set your host name or ip address.
 
 ````
-MIX_ENV=prod mix phoenix.server 
+MIX_ENV=prod PORT=80 mix phoenix.server 
 ````
 
 At this point you should have a running app. Please log in with the administrator user, you seeded in before.

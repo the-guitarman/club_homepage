@@ -21,7 +21,8 @@ defmodule ClubHomepage.Mixfile do
      applications: [
        :tzdata,
        :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-       :phoenix_ecto, :postgrex, :comeonin, :geocoder
+       :phoenix_ecto, :postgrex, :comeonin, :geocoder,
+       :elixir_weather_data
      ]
     ]#:sqlite_ecto
   end
@@ -55,8 +56,10 @@ defmodule ClubHomepage.Mixfile do
      {:geocoder, "~> 0.6"},
      {:dialyxir, "~> 0.3", only: [:dev]},
      {:arc, "~> 0.5.3"},
-     {:arc_ecto, "~> 0.4.3"}#,
-     #{:mix_test_watch, "~> 0.2.4", only: :dev}]
+     {:arc_ecto, "~> 0.4.3"},
+     #{:mix_test_watch, "~> 0.2.4", only: :dev},
+     #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"}
+     {:elixir_weather_data, "~> 0.1.0"}
     ]
   end
 

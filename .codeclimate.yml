@@ -14,11 +14,12 @@ engines:
     enabled: true
 ratings:
   paths:
+  - "**.ex"
+  - "**.exs"
   - "**.css"
   - "**.inc"
   - "**.js"
   - "**.module"
 exclude_paths:
 - config/**/*
-- test/**/*
 - web/static/vendor/**/*
