@@ -5,7 +5,7 @@ defmodule ClubHomepage.Factory do
   # without Ecto
   #use ExMachina
 
-  def factory(:address) do
+  def address_factory do
     %ClubHomepage.Address{
       district: sequence(:district, &"District #{&1}"),
       street: sequence(:street, &"Street #{&1}"),
@@ -14,18 +14,18 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def factory(:competition) do
+  def competition_factory do
     %ClubHomepage.Competition{
       name: sequence(:name, &"League #{&1}"),
       matches_need_decition: false
     }
   end
 
-  def factory(:match) do
-    competition   = create(:competition)
-    season        = create(:season)
-    team          = create(:team)
-    opponent_team = create(:opponent_team)
+  def match_factory do
+    competition   = insert(:competition)
+    season        = insert(:season)
+    team          = insert(:team)
+    opponent_team = insert(:opponent_team)
     %ClubHomepage.Match{
       competition_id: competition.id,
       season_id: season.id,
@@ -39,7 +39,7 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def factory(:news) do
+  def news_factory do
     %ClubHomepage.News{
       subject: sequence(:subject, &"News Subject #{&1}"),
       body: sequence(:body, &"This is the news message #{&1}."),
@@ -47,43 +47,43 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def factory(:meeting_point) do
-    address = create(:address)
+  def meeting_point_factory do
+    address = insert(:address)
     %ClubHomepage.MeetingPoint{
       address_id: address.id,
       name: sequence(:name, &"Meeting Point #{&1}")
     }
   end
 
-  def factory(:opponent_team) do
+  def opponent_team_factory do
     %ClubHomepage.OpponentTeam{
       name: sequence(:name, &"Opponent Team #{&1}")
     }
   end
 
-  def factory(:permalink) do
-    team = create(:team)
+  def permalink_factory do
+    team = insert(:team)
     %ClubHomepage.Permalink{
       source_path: sequence(:source_path, &"/teams/old-#{&1}"),
       destination_path: "/teams/#{team.slug}"
     }
   end
 
-  def factory(:season) do
+  def season_factory do
     %{year: year} = Timex.DateTime.local
     %ClubHomepage.Season{
       name: sequence(:name, &"#{year}-#{year + &1}")
     }
   end
 
-  def factory(:secret) do
+  def secret_factory do
     %ClubHomepage.Secret{
       key: SecureRandom.urlsafe_base64,
       expires_at: Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
     }
   end
 
-  def factory(:sponsor_image) do
+  def sponsor_image_factory do
     %ClubHomepage.SponsorImage{
       attachment: %{
         file_name: "test/support/images/test_image.jpg",
@@ -93,8 +93,8 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def factory(:team) do
-    competition = create(:competition)
+  def team_factory do
+    competition = insert(:competition)
     %ClubHomepage.Team{
       competition_id: competition.id, 
       name: sequence(:name, &"This is my    team #{&1} without ß in the name."),
@@ -102,9 +102,9 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def factory(:team_chat_message) do
-    team = create(:team)
-    user = create(:user)
+  def team_chat_message_factory do
+    team = insert(:team)
+    user = insert(:user)
     %ClubHomepage.TeamChatMessage{
       team_id: team.id,
       user_id: user.id,
@@ -112,10 +112,10 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def factory(:team_image) do
-    team = create(:team)
+  def team_image_factory do
+    team = insert(:team)
     %ClubHomepage.TeamImage{
-      team_id: team.id, 
+      team_id: team.id,
       year: 2016,
       attachment: %{
         file_name: "test/support/images/test_image.jpg",
@@ -125,21 +125,21 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def factory(:text_page) do
+  def text_page_factory do
     %ClubHomepage.TextPage{
       key: sequence(:key, &"contact #{&1}"),
       text: "How you can contact me: sajdlkasdiwdi"
     }
   end
 
-  def factory(:unregistered_user) do
+  def unregistered_user_factory do
     %ClubHomepage.User{
       email: sequence(:email, &"mail-#{&1}@example.de"),
       name: sequence(:login, &"my name #{&1}"),
     }
   end
 
-  def factory(:user) do
+  def user_factory do
     %ClubHomepage.User{
       birthday: Timex.datetime({1988, 4, 17}), 
       email: sequence(:email, &"mail-#{&1}@example.de"),

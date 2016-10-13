@@ -21,7 +21,7 @@ defmodule ClubHomepage.Mixfile do
      applications: [
        :tzdata,
        :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-       :phoenix_ecto, :postgrex, :comeonin, :geocoder,
+       :phoenix_ecto, :postgrex, :comeonin, :geocoder, 
        :elixir_weather_data
      ]
     ]#:sqlite_ecto
@@ -47,7 +47,7 @@ defmodule ClubHomepage.Mixfile do
      {:comeonin, "~> 2.0"},
      {:timex, "~> 2.2.1"},
      {:timex_ecto, "~> 1.1.3"},
-     {:ex_machina, "~> 0.6"},
+     {:ex_machina, "~> 1.0", only: :test},
      {:gettext, "~> 0.11"},
      {:credo, "~> 0.2", only: [:dev, :test]},
      {:slugger, "~> 0.1.0"},
