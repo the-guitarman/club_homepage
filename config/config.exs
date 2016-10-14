@@ -47,4 +47,9 @@ config :club_homepage, :match,
   failure_reasons: ["aborted", "failed", "canceled", "team_missed"]
 
 # Import specific club homepage config.
+if System.get_env("TRAVIS") do
+  import_config "club_homepage.exs.template"
+else
+  import_config "club_homepage.exs"
+end
 import_config "club_homepage.exs"
