@@ -5,6 +5,6 @@ config :club_homepage, :common,
   full_club_name: "Full Club Name"
 
 config :elixir_weather_data, :api,
-  key: "openweathermap api key",
+  key: "0my1openweathermap2org3api4key56",
   language: "de",
   coordinates: [lat: 50.939583, lon: 12.886244]
