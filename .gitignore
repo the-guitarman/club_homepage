@@ -28,6 +28,7 @@ erl_crash.dump
 /web/static/assets/images/backup
 /uploads
 
+/config/club_homepage.exs
 /config/dev.exs
 /config/prod.secret.exs
-/config/club_homepage.exs
+/config/test.exs
