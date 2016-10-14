@@ -27,3 +27,5 @@ erl_crash.dump
 /**/.DS_Store
 /web/static/assets/images/backup
 /uploads
+
+/config/dev.exs
