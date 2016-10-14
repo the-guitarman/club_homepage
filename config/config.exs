@@ -52,4 +52,3 @@ if System.get_env("TRAVIS") do
 else
   import_config "club_homepage.exs"
 end
-import_config "club_homepage.exs"
