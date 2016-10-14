@@ -29,3 +29,5 @@ erl_crash.dump
 /uploads
 
 /config/dev.exs
+/config/prod.secret.exs
+/config/club_homepage.exs
