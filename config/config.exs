@@ -26,7 +26,13 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+if System.get_env("TRAVIS") do
+  if File.exists?("config/#{Mix.env}.exs") do
+    import_config "#{Mix.env}.exs"
+  end
+else
+  import_config "#{Mix.env}.exs"
+end
 
 ## Configure phoenix generators
 #config :phoenix, :generators,
