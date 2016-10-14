@@ -9,7 +9,7 @@ defmodule ClubHomepage.TeamTest do
   @invalid_attrs %{}
 
   test "create a team" do
-    competition = create(:competition)
+    competition = insert(:competition)
     valid_attrs = %{@valid_attrs | competition_id: competition.id}
 
     changeset = Team.changeset(%Team{}, valid_attrs)
@@ -28,8 +28,8 @@ defmodule ClubHomepage.TeamTest do
   end
 
   test "edit a team" do
-    team1 = create(:team)
-    team2 = create(:team)
+    team1 = insert(:team)
+    team2 = insert(:team)
 
     changeset = Team.changeset(team2, %{name: "new team name"})
     {:ok, team} = Repo.update(changeset)

@@ -11,7 +11,7 @@ defmodule ClubHomepage.SessionControllerTest do
   end
 
   test "inactive user can not be logged in", %{conn: conn} do
-    user = create(:user)
+    user = insert(:user)
     user = Ecto.Changeset.change(user, active: false)
     {:ok, user} = Repo.update(user)
 
@@ -20,7 +20,7 @@ defmodule ClubHomepage.SessionControllerTest do
   end
 
   test "active user can be logged in", %{conn: conn} do
-    user = create(:user)
+    user = insert(:user)
     user = Ecto.Changeset.change(user, active: true)
     {:ok, user} = Repo.update(user)
 

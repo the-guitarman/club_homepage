@@ -12,7 +12,7 @@ defmodule ClubHomepage.SeasonControllerTest do
   setup context do
     conn = build_conn()
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user}
     else
@@ -22,7 +22,7 @@ defmodule ClubHomepage.SeasonControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    season = create(:season)
+    season = insert(:season)
     Enum.each([
       get(conn, season_path(conn, :index)),
       get(conn, season_path(conn, :new)),

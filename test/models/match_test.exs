@@ -9,10 +9,10 @@ defmodule ClubHomepage.MatchTest do
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    competition   = create(:competition)
-    season        = create(:season)
-    team          = create(:team)
-    opponent_team = create(:opponent_team)
+    competition   = insert(:competition)
+    season        = insert(:season)
+    team          = insert(:team)
+    opponent_team = insert(:opponent_team)
     {:ok, start_at} = Timex.parse(@valid_attrs[:start_at], "%d.%m.%Y %H:%M", :strftime)
     valid_attrs = %{@valid_attrs | competition_id: competition.id, season_id: season.id, team_id: team.id, opponent_team_id: opponent_team.id, start_at: start_at}
     changeset = Match.changeset(%Match{}, valid_attrs)

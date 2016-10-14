@@ -19,8 +19,8 @@ defmodule ClubHomepage.OpponentTeamTest do
   end
 
   test "edit an opponent team" do
-    opponent_team_1 = create(:opponent_team)
-    opponent_team_2 = create(:opponent_team)
+    opponent_team_1 = insert(:opponent_team)
+    opponent_team_2 = insert(:opponent_team)
 
     {:ok, competition} =
       OpponentTeam.changeset(opponent_team_2, %{name: "new competition name"})

@@ -22,8 +22,8 @@ defmodule ClubHomepage.TeamChatMessageTest do
   end
 
   defp valid_attrs do
-    team = create(:team)
-    user = create(:user)
+    team = insert(:team)
+    user = insert(:user)
     %{@valid_attrs | team_id: team.id, user_id: user.id}
   end
 end

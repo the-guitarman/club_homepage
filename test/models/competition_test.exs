@@ -19,8 +19,8 @@ defmodule ClubHomepage.CompetitionTest do
   end
 
   test "edit a competition" do
-    competition1 = create(:competition)
-    competition2 = create(:competition)
+    competition1 = insert(:competition)
+    competition2 = insert(:competition)
 
     {:ok, competition} =
       Competition.changeset(competition2, %{name: "new competition name"})

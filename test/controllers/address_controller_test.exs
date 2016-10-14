@@ -11,7 +11,7 @@ defmodule ClubHomepage.AddressControllerTest do
   setup context do
     conn = build_conn()
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user}
     else
@@ -21,7 +21,7 @@ defmodule ClubHomepage.AddressControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    address = create(:address)
+    address = insert(:address)
     Enum.each([
       get(conn, address_path(conn, :index)),
       get(conn, address_path(conn, :new)),

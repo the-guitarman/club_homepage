@@ -11,7 +11,7 @@ defmodule ClubHomepage.NewsControllerTest do
   setup context do
     conn = build_conn()
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user}
     else
@@ -21,7 +21,7 @@ defmodule ClubHomepage.NewsControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    news = create(:news)
+    news = insert(:news)
     Enum.each([
       get(conn, news_path(conn, :new)),
       post(conn, news_path(conn, :create), news: @valid_attrs),
@@ -38,8 +38,8 @@ defmodule ClubHomepage.NewsControllerTest do
 
   @tag login: true
   test "lists all entries on index", %{conn: conn, current_user: _current_user} do
-    _news1 = create(:news, public: true, body: "This is news message 1.")
-    _news2 = create(:news, public: false, body: "This is news message 2.")
+    _news1 = insert(:news, public: true, body: "This is news message 1.")
+    _news2 = insert(:news, public: false, body: "This is news message 2.")
     conn = get conn, news_path(conn, :index)
     assert html_response(conn, 200) =~ "<h2>Latest News</h2>"
     assert html_response(conn, 200) =~ "Create News</a>"
@@ -51,8 +51,8 @@ defmodule ClubHomepage.NewsControllerTest do
 
   @tag login: false
   test "lists all public entries on index", %{conn: conn} do
-    _news1 = create(:news, public: true, body: "This is news message 1.")
-    _news2 = create(:news, public: false, body: "This is news message 2.")
+    _news1 = insert(:news, public: true, body: "This is news message 1.")
+    _news2 = insert(:news, public: false, body: "This is news message 2.")
     conn = get conn, news_path(conn, :index)
     assert html_response(conn, 200) =~ "<h2>Latest News</h2>"
     refute html_response(conn, 200) =~ "Create News</a>"

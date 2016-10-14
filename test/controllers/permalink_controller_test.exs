@@ -10,10 +10,10 @@ defmodule ClubHomepage.PermalinkControllerTest do
 
   setup context do
     conn = build_conn()
-    team = create(:team)
+    team = insert(:team)
     valid_attrs = %{@valid_attrs | destination_path: team.slug}
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs}
     else
@@ -23,7 +23,7 @@ defmodule ClubHomepage.PermalinkControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn, valid_attrs: valid_attrs} do
-    permalink = create(:permalink)
+    permalink = insert(:permalink)
     Enum.each([
       get(conn, permalink_path(conn, :index)),
       get(conn, permalink_path(conn, :new)),

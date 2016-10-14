@@ -9,7 +9,7 @@ defmodule ClubHomepage.MeetingPointTest do
   @invalid_attrs %{address_id: -1}
 
   test "changeset with valid attributes" do
-    address = create(:address)
+    address = insert(:address)
     valid_attrs = %{@valid_attrs | address_id: address.id}
     changeset = MeetingPoint.changeset(%MeetingPoint{}, valid_attrs)
     assert changeset.valid?

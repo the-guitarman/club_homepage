@@ -9,7 +9,7 @@ defmodule ClubHomepage.TeamImageTest do
   @invalid_attrs %{}
 
   setup do
-    team = create(:team)
+    team = insert(:team)
     valid_attrs = %{@valid_attrs | team_id: team.id}
     {:ok, valid_attrs: valid_attrs}
   end

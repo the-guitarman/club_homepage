@@ -13,15 +13,15 @@ defmodule ClubHomepage.UserControllerTest do
     conn = build_conn()
     role = context[:login]
     cond do
-      role == true -> assign_current_user(conn, create(:user, roles: "member administrator"))
-      is_binary(role) -> assign_current_user(conn, create(:user, roles: "member #{role}"))
+      role == true -> assign_current_user(conn, insert(:user, roles: "member administrator"))
+      is_binary(role) -> assign_current_user(conn, insert(:user, roles: "member #{role}"))
       true -> {:ok, conn: conn}
     end
   end
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    user = create(:user)
+    user = insert(:user)
     Enum.each([
       get(conn, managed_user_path(conn, :index)),
       get(conn, unregistered_user_path(conn, :new_unregistered)),
@@ -57,8 +57,8 @@ defmodule ClubHomepage.UserControllerTest do
 
   @tag login: true
   test "try to lists all entries on index with login", %{conn: conn, current_user: _current_user} do
-    user = create(:user)
-    unregistered_user = create(:unregistered_user)
+    user = insert(:user)
+    unregistered_user = insert(:unregistered_user)
     conn = get conn, managed_user_path(conn, :index)
     assert html_response(conn, 200) =~ "All Club Members"
     assert html_response(conn, 200) =~ "<td>#{user.email}</td>"
@@ -110,7 +110,7 @@ defmodule ClubHomepage.UserControllerTest do
     assert html_response(conn, 200) =~ "Save"
     assert html_response(conn, 200) =~ "Secret can&#39;t be blank"
 
-    secret = create(:secret)
+    secret = insert(:secret)
     new_valid_attrs = Map.put(@valid_attrs, :secret, secret.key)
     conn = post conn, user_path(conn, :create), user: new_valid_attrs
 
@@ -133,14 +133,14 @@ defmodule ClubHomepage.UserControllerTest do
 
   @tag login: true
   test "renders form for editing chosen resource", %{conn: conn} do
-    user = create(:user)
+    user = insert(:user)
     conn = get conn, managed_user_path(conn, :edit, user)
     assert html_response(conn, 200) =~ "<h2>Edit Club Member</h2>"
   end
 
   @tag login: true
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    user = create(:user)
+    user = insert(:user)
     conn = put conn, managed_user_path(conn, :update, user), user: @valid_attrs
     assert redirected_to(conn) == managed_user_path(conn, :index)
     assert Repo.get_by(User, email: @valid_attrs[:email])
@@ -148,7 +148,7 @@ defmodule ClubHomepage.UserControllerTest do
 
   @tag login: true
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    user = create(:user)
+    user = insert(:user)
     conn = put conn, managed_user_path(conn, :update, user), user: @invalid_attrs2
     assert html_response(conn, 200) =~ "<h2>Edit Club Member</h2>"
   end

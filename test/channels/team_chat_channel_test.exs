@@ -8,8 +8,8 @@ defmodule ClubHomepage.TeamChatChannelTest do
   import Ecto.Query, only: [from: 2]
 
   setup do
-    user = create(:user)
-    team = create(:team)
+    user = insert(:user)
+    team = insert(:team)
     {:ok, _, socket} =
       socket("users_socket: #{user.id}", %{current_user: user})
       |> subscribe_and_join(TeamChatChannel, "team-chats:#{team.id}")

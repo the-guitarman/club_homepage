@@ -10,15 +10,15 @@ defmodule ClubHomepage.TeamChatMessageControllerTest do
 
   setup context do
     conn = build_conn()
-    team = create(:team)
-    user = create(:user)
+    team = insert(:team)
+    user = insert(:user)
     valid_attrs = %{@valid_attrs | team_id: team.id, user_id: user.id}
     if context[:login] do
       current_user = 
         if context[:user_roles] do
-          create(:user, roles: context[:user_roles])
+          insert(:user, roles: context[:user_roles])
         else
-          create(:user)
+          insert(:user)
         end
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs}
@@ -29,7 +29,7 @@ defmodule ClubHomepage.TeamChatMessageControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn, valid_attrs: _valid_attrs} do
-    team_chat_message = create(:team_chat_message)
+    team_chat_message = insert(:team_chat_message)
     Enum.each([
       get(conn, team_chat_message_path(conn, :index)),
       delete(conn, team_chat_message_path(conn, :delete, team_chat_message))
@@ -48,7 +48,7 @@ defmodule ClubHomepage.TeamChatMessageControllerTest do
 
   @tag login: true
   test "deletes chosen resource", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
-    team_chat_message = create(:team_chat_message)
+    team_chat_message = insert(:team_chat_message)
     conn = delete conn, team_chat_message_path(conn, :delete, team_chat_message)
     assert redirected_to(conn) == team_chat_message_path(conn, :index)
     refute Repo.get(TeamChatMessage, team_chat_message.id)

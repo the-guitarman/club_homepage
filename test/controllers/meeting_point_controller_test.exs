@@ -10,10 +10,10 @@ defmodule ClubHomepage.MeetingPointControllerTest do
 
   setup context do
     conn = build_conn()
-    address = create(:address)
+    address = insert(:address)
     valid_attrs = %{@valid_attrs | address_id: address.id}
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs}
     else
@@ -23,7 +23,7 @@ defmodule ClubHomepage.MeetingPointControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn, valid_attrs: valid_attrs} do
-    meeting_point = create(:meeting_point)
+    meeting_point = insert(:meeting_point)
     Enum.each([
       get(conn, meeting_point_path(conn, :index)),
       get(conn, meeting_point_path(conn, :new)),

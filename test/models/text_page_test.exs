@@ -19,8 +19,8 @@ defmodule ClubHomepage.TextPageTest do
   end
 
   test "edit a text_page" do
-    text_page1 = create(:text_page)
-    text_page2 = create(:text_page)
+    text_page1 = insert(:text_page)
+    text_page2 = insert(:text_page)
 
     changeset = TextPage.changeset(text_page2, %{key: "new text_page key"})
     {:ok, text_page} = Repo.update(changeset)

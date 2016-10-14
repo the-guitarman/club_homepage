@@ -7,7 +7,7 @@ defmodule ClubHomepage.UserRoleTest do
   import ClubHomepage.Factory
 
   test "changeset with valid attributes" do
-    user = create(:user)
+    user = insert(:user)
     changeset = User.changeset(user, %{roles: "member player"})
     {:ok, user} = Repo.update(changeset)
     assert UserRole.has_role?(user, "member")

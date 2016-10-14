@@ -23,7 +23,7 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   setup context do
     conn = build_conn()
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user}
     else
@@ -33,7 +33,7 @@ defmodule ClubHomepage.SponsorImageControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    sponsor_image = create(:sponsor_image)
+    sponsor_image = insert(:sponsor_image)
     Enum.each([
       get(conn, sponsor_image_path(conn, :index)),
       get(conn, sponsor_image_path(conn, :new)),
@@ -85,14 +85,14 @@ defmodule ClubHomepage.SponsorImageControllerTest do
 
   @tag login: true
   test "renders form for editing chosen resource", %{conn: conn} do
-    sponsor_image = create(:sponsor_image)
+    sponsor_image = insert(:sponsor_image)
     conn = get conn, sponsor_image_path(conn, :edit, sponsor_image)
     assert html_response(conn, 200) =~ "Edit Sponsor Image"
   end
 
   @tag login: true
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    sponsor_image = create(:sponsor_image)
+    sponsor_image = insert(:sponsor_image)
     conn = put conn, sponsor_image_path(conn, :update, sponsor_image), sponsor_image: @valid_attrs
     assert redirected_to(conn) == sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image.id}"
     assert Repo.get!(SponsorImage, sponsor_image.id)
@@ -100,14 +100,14 @@ defmodule ClubHomepage.SponsorImageControllerTest do
 
   @tag login: true
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    sponsor_image = create(:sponsor_image)
+    sponsor_image = insert(:sponsor_image)
     conn = put conn, sponsor_image_path(conn, :update, sponsor_image), sponsor_image: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit Sponsor Image"
   end
 
   @tag login: true
   test "deletes chosen resource", %{conn: conn} do
-    sponsor_image = create(:sponsor_image)
+    sponsor_image = insert(:sponsor_image)
     original_file = sponsor_image.attachment[:file_name]
 
     destination_path = ClubHomepage.SponsorUploader.storage_dir(nil, {nil, sponsor_image})

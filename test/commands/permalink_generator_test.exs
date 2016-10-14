@@ -37,7 +37,7 @@ defmodule ClubHomepage.PermalinkGeneratorTest do
   end
 
   defp create_team do
-    competition = create(:competition)
+    competition = insert(:competition)
     changeset = Team.changeset(%Team{}, %{competition_id: competition.id, name: "New Team"})
     Repo.insert(changeset)
     changeset

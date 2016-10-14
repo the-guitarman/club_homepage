@@ -25,10 +25,10 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
   setup context do
     conn = build_conn()
-    team_image = create(:team_image)
+    team_image = insert(:team_image)
     valid_attrs = %{@valid_attrs | team_id: team_image.team_id}
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs}
     else
@@ -38,7 +38,7 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn, valid_attrs: valid_attrs} do
-    team_image = create(:team_image)
+    team_image = insert(:team_image)
     Enum.each([
       get(conn, team_image_path(conn, :index)),
       get(conn, team_image_path(conn, :new)),
@@ -89,14 +89,14 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
   @tag login: true
   test "renders form for editing chosen resource", %{conn: conn} do
-    team_image = create(:team_image)
+    team_image = insert(:team_image)
     conn = get conn, team_image_path(conn, :edit, team_image)
     assert html_response(conn, 200) =~ "<h2>Edit Team Image</h2>"
   end
 
   @tag login: true
   test "updates chosen resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
-    team_image = create(:team_image)
+    team_image = insert(:team_image)
     team = Repo.get!(Team, team_image.team_id)
     valid_attrs = %{valid_attrs | team_id: team_image.team_id}
     conn = put conn, team_image_path(conn, :update, team_image), team_image: valid_attrs
@@ -106,14 +106,14 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
   @tag login: true
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    team_image = create(:team_image)
+    team_image = insert(:team_image)
     conn = put conn, team_image_path(conn, :update, team_image), team_image: @invalid_attrs
     assert html_response(conn, 200) =~ "<h2>Edit Team Image</h2>"
   end
 
   @tag login: true
   test "creates and deletes chosen resource", %{conn: conn} do
-    team_image = create(:team_image)
+    team_image = insert(:team_image)
     team = Repo.get!(Team, team_image.team_id)
 
     original_file = team_image.attachment[:file_name]

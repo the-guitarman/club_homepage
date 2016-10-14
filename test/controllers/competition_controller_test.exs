@@ -10,7 +10,7 @@ defmodule ClubHomepage.CompetitionControllerTest do
   setup context do
     conn = build_conn()
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user}
     else
@@ -20,7 +20,7 @@ defmodule ClubHomepage.CompetitionControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    competition = create(:competition)
+    competition = insert(:competition)
     Enum.each([
       get(conn, competition_path(conn, :index)),
       get(conn, competition_path(conn, :new)),

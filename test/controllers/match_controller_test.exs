@@ -13,17 +13,17 @@ defmodule ClubHomepage.MatchControllerTest do
 
   setup context do
     conn = build_conn()
-    competition   = create(:competition)
-    season        = create(:season)
-    team          = create(:team)
-    opponent_team = create(:opponent_team)
+    competition   = insert(:competition)
+    season        = insert(:season)
+    team          = insert(:team)
+    opponent_team = insert(:opponent_team)
     valid_attrs = %{@valid_attrs | competition_id: competition.id, season_id: season.id, team_id: team.id, opponent_team_id: opponent_team.id}
     if context[:login] do
       current_user = 
         if context[:user_roles] do
-          create(:user, roles: context[:user_roles])
+          insert(:user, roles: context[:user_roles])
         else
-          create(:user)
+          insert(:user)
         end
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs}
@@ -34,7 +34,7 @@ defmodule ClubHomepage.MatchControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn, valid_attrs: valid_attrs} do
-    match = create(:match)
+    match = insert(:match)
     Enum.each([
       get(conn, match_path(conn, :index)),
       get(conn, match_path(conn, :new)),
@@ -111,7 +111,7 @@ defmodule ClubHomepage.MatchControllerTest do
   test "shows a future match without a user is logged in", %{conn: conn, valid_attrs: _valid_attrs} do
     start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
 
-    match = create(:match, %{start_at: start_at})
+    match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
     opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
     conn = get conn, match_path(conn, :show, match)
@@ -130,7 +130,7 @@ defmodule ClubHomepage.MatchControllerTest do
   test "shows a running match without a user is logged in", %{conn: conn, valid_attrs: _valid_attrs} do
     start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(-1, :hours))
 
-    match = create(:match, %{start_at: start_at})
+    match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
     opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
     conn = get conn, match_path(conn, :show, match)
@@ -149,7 +149,7 @@ defmodule ClubHomepage.MatchControllerTest do
   test "shows a future match with a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
 
-    match = create(:match, %{start_at: start_at})
+    match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
     opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
     conn = get conn, match_path(conn, :show, match)
@@ -170,7 +170,7 @@ defmodule ClubHomepage.MatchControllerTest do
   test "shows a running match with a match editor user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(-1, :hours))
 
-    match = create(:match, %{start_at: start_at})
+    match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
     opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
     conn = get conn, match_path(conn, :show, match)
@@ -191,7 +191,7 @@ defmodule ClubHomepage.MatchControllerTest do
   test "shows a running match with a no match editor user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
     start_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(-1, :hours))
 
-    match = create(:match, %{start_at: start_at})
+    match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
     opponent_team = Repo.get!(ClubHomepage.OpponentTeam, match.opponent_team_id)
     conn = get conn, match_path(conn, :show, match)

@@ -46,7 +46,7 @@ defmodule ClubHomepage.AuthTest do
   end
 
   test "call places user from session into assigns", %{conn: conn} do
-    user = create(:user)
+    user = insert(:user)
     conn =
       conn
       |> put_session(:user_id, user.id)
@@ -60,7 +60,7 @@ defmodule ClubHomepage.AuthTest do
   end
 
   test "login with a valid email and pass", %{conn: conn} do
-    user = create(:user, login: "me")
+    user = insert(:user, login: "me")
     {:ok, conn} = Auth.login_by_login_or_email_and_pass(conn, "me", "my password", repo: Repo)
     assert conn.assigns.current_user.id == user.id
   end
@@ -70,7 +70,7 @@ defmodule ClubHomepage.AuthTest do
   end
 
   test "login with password mismatch", %{conn: conn} do
-    _user = create(:user, login: "me", password: "my password")
+    _user = insert(:user, login: "me", password: "my password")
     assert {:error, :unauthorized, _conn} = Auth.login_by_login_or_email_and_pass(conn, "me", "wrong", repo: Repo)
   end
 end

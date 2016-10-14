@@ -11,7 +11,7 @@ defmodule ClubHomepage.SecretControllerTest do
   setup context do
     conn = build_conn()
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user}
     else
@@ -21,7 +21,7 @@ defmodule ClubHomepage.SecretControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    secret = create(:secret)
+    secret = insert(:secret)
     Enum.each([
       #get(conn, secret_path(conn, :index)),
       get(conn, secret_path(conn, :new)),
@@ -43,7 +43,7 @@ defmodule ClubHomepage.SecretControllerTest do
 
   @tag login: true
   test "show a secret", %{conn: conn, current_user: _current_user} do
-    secret = create(:secret)
+    secret = insert(:secret)
     conn = get conn, secret_path(conn, :show, secret)
     assert html_response(conn, 200) =~ "<h2>Secret</h2>"
   end

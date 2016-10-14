@@ -9,7 +9,7 @@ defmodule ClubHomepage.PermalinkRedirectionTest do
   end
 
   test "permalink found so redirect", %{conn: conn} do
-    permalink = create(:permalink)
+    permalink = insert(:permalink)
 
     conn = 
       conn

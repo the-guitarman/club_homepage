@@ -15,8 +15,8 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
   @guest_goal_match_event %{"type" => "goal", "position" => "right"}
 
   setup do
-    match = create(:match)
-    user  = create(:user)
+    match = insert(:match)
+    user  = insert(:user)
 
     {:ok, _, sock} = 
       socket("users_socket: #{user.id}", %{current_user: user})
@@ -51,7 +51,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
   end
 
   test "match is finished after three final whistle match events", %{socket: socket, match: match} do
-    competition = create(:competition, %{matches_need_decition: true})
+    competition = insert(:competition, %{matches_need_decition: true})
     {:ok, match} =
       Match.changeset(match, %{competition_id: competition.id})
       |> Repo.update
@@ -80,7 +80,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
   end
 
   test "match is finished after two final whistle match events and a team has won", %{socket: socket, match: match} do
-    competition = create(:competition, %{matches_need_decition: true})
+    competition = insert(:competition, %{matches_need_decition: true})
     {:ok, match} =
       Match.changeset(match, %{competition_id: competition.id})
       |> Repo.update

@@ -11,7 +11,7 @@ defmodule ClubHomepage.TextPageControllerTest do
   setup context do
     conn = build_conn()
     if context[:login] do
-      current_user = create(:user)
+      current_user = insert(:user)
       conn = assign(conn, :current_user, current_user)
       {:ok, conn: conn, current_user: current_user}
     else
@@ -21,7 +21,7 @@ defmodule ClubHomepage.TextPageControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    text_page = create(:text_page)
+    text_page = insert(:text_page)
     Enum.each([
       get(conn, text_page_path(conn, :index)),
       get(conn, text_page_path(conn, :edit, text_page)),
