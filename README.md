@@ -35,6 +35,12 @@ npm install
 mix deps.get
 ````
 
+Rename config files:
+- config/club_homepage.exs.template -> config/club_homepage.exs
+- config/prod.exs.template -> config/prod.exs
+- config/dev.exs.template -> config/dev.exs
+- config/test.exs.template -> config/test.exs
+
 ### Database Setup
 
 The project uses a PostgreSQL database. You are free to use another database linke mysql. Don't forget to *change the username and password* to a role that has the correct database creation permissions. Therefore please see: 
