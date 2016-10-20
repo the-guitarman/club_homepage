@@ -20,8 +20,9 @@ defmodule ClubHomepage.PageController do
     last_matches_query = from(m in matches_query, where: m.start_at < ^start_at, order_by: [desc: m.start_at])
     last_matches =
       find_next_team_matches(last_matches_query, teams)
-    |> Enum.reject(fn(x) -> x == nil end)
-    render conn, "index.html", teams: teams, news: news, next_matches: next_matches, last_matches: last_matches
+      |> Enum.reject(fn(x) -> x == nil end)
+    weather_data = ClubHomepage.WeatherData.get
+    render conn, "index.html", teams: teams, news: news, next_matches: next_matches, last_matches: last_matches, weather_data: weather_data
   end
 
   def chronicle(conn, _params) do

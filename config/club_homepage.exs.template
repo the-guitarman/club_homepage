@@ -8,3 +8,6 @@ config :elixir_weather_data, :api,
   key: "0my1openweathermap2org3api4key56",
   language: "de",
   coordinates: [lat: 50.939583, lon: 12.886244]
+
+config :elixir_weather_data, :dev,
+  mode: :sandbox

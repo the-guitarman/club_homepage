@@ -1,7 +1,7 @@
 defmodule ClubHomepage.Match do
   use ClubHomepage.Web, :model
 
-  alias ClubHomepage.ModelValidator
+  #alias ClubHomepage.ModelValidator
 
   import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0]
 

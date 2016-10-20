@@ -1,7 +1,7 @@
 defmodule ClubHomepage.TextPage do
   use ClubHomepage.Web, :model
 
-  alias ClubHomepage.ModelValidator
+  #alias ClubHomepage.ModelValidator
 
   schema "text_pages" do
     field :key, :string

@@ -1,7 +1,7 @@
 defmodule ClubHomepage.Competition do
   use ClubHomepage.Web, :model
 
-  alias ClubHomepage.ModelValidator
+  #alias ClubHomepage.ModelValidator
 
   schema "competitions" do
     field :name, :string

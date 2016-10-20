@@ -3,7 +3,7 @@ defmodule ClubHomepage.Mixfile do
 
   def project do
     [app: :club_homepage,
-     version: "0.1.1",
+     version: "0.1.0",
      elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers, 
@@ -22,7 +22,7 @@ defmodule ClubHomepage.Mixfile do
        :tzdata,
        :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
        :phoenix_ecto, :postgrex, :comeonin, :geocoder, 
-       :elixir_weather_data
+       :elixir_weather_data, :number
      ]
     ]#:sqlite_ecto
   end
@@ -59,7 +59,8 @@ defmodule ClubHomepage.Mixfile do
      {:arc_ecto, "~> 0.4.3"},
      #{:mix_test_watch, "~> 0.2.4", only: :dev},
      #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"}
-     {:elixir_weather_data, "~> 0.1.0"}
+     {:elixir_weather_data, "~> 0.1.1"},
+     {:number, "~> 0.4.2"}
     ]
   end
 

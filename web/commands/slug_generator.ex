@@ -1,6 +1,6 @@
 defmodule ClubHomepage.SlugGenerator  do
   @moduledoc """
-    Generates an url slug from a given string or a changeset field. 
+  Generates an url slug from a given string or a changeset field. 
   """
 
   import Ecto.Changeset, only: [get_change: 2, put_change: 3]

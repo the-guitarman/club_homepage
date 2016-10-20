@@ -33,7 +33,7 @@ defmodule ClubHomepage.TeamChatChannel do
   end
   def handle_in("message:show-older", payload, socket) do
     team_id = get_team_id_from_socket_assigns(socket)
-    user = socket.assigns.current_user
+    #user = socket.assigns.current_user
 
     id_lower_than = payload["id_lower_than"]
 
@@ -56,9 +56,9 @@ defmodule ClubHomepage.TeamChatChannel do
     from(tcm in TeamChatMessage, preload: [:user], where: tcm.team_id == ^team_id, limit: @limit, order_by: [desc: tcm.id])
   end
 
-  defp older_chat_messages_query(team_id, chat_message_id) do
-    from(tcm in TeamChatMessage, preload: [:user], where: tcm.team_id == ^team_id, where: tcm.id < ^chat_message_id, limit: @limit, order_by: [desc: tcm.id])
-  end
+  # defp older_chat_messages_query(team_id, chat_message_id) do
+  #   from(tcm in TeamChatMessage, preload: [:user], where: tcm.team_id == ^team_id, where: tcm.id < ^chat_message_id, limit: @limit, order_by: [desc: tcm.id])
+  # end
 
   defp older_chat_messages_available?(_team_id, nil), do: false
   defp older_chat_messages_available?(team_id, chat_message_id) do

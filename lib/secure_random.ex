@@ -99,8 +99,9 @@ defmodule SecureRandom do
 
   """
   def random_number do
-    :random.seed({:crypto.rand_uniform(1, 99999), :crypto.rand_uniform(1, 99999), :crypto.rand_uniform(1, 99999)})
-    :random.uniform
+    #:random.seed({:crypto.rand_uniform(1, 99999), :crypto.rand_uniform(1, 99999), :crypto.rand_uniform(1, 99999)})
+    #:random.uniform
+    :rand.uniform
   end
 
   def random_number(x) when is_integer x do

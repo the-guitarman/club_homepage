@@ -1,7 +1,7 @@
 defmodule ClubHomepage.MeetingPoint do
   use ClubHomepage.Web, :model
 
-  alias ClubHomepage.ModelValidator
+  #alias ClubHomepage.ModelValidator
 
   schema "meeting_points" do
     belongs_to :address, ClubHomepage.Address

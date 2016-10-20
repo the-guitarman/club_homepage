@@ -46,3 +46,9 @@ config :club_homepage, ClubHomepage.Repo,
 
 config :club_homepage, :uploads, 
   path: "uploads"
+
+config :number, delimiter: [
+    precision: 2,
+    delimiter: ",",
+    separator: "."
+  ]
