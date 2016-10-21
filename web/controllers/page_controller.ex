@@ -21,7 +21,8 @@ defmodule ClubHomepage.PageController do
     last_matches =
       find_next_team_matches(last_matches_query, teams)
       |> Enum.reject(fn(x) -> x == nil end)
-    weather_data = ClubHomepage.WeatherData.get
+    {_, weather_data} = ClubHomepage.WeatherData.get
+    IO.inspect weather_data
     render conn, "index.html", teams: teams, news: news, next_matches: next_matches, last_matches: last_matches, weather_data: weather_data
   end
 

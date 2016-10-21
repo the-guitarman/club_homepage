@@ -26,8 +26,36 @@
       </div>
 
     <div class="col-xs-12 col-md-4">
-      <div class="jumbotron content-box text-center">
-        <img src="/images/logo.png" />
+      <div class="jumbotron content-box">
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <img src="/images/logo.png" />
+          </div>
+        </div>
+        <%= if not Enum.empty?(@weather_data) do %>
+        <div class="row css-no-bottom">
+          <div class="col-xs-4">
+            <small>Wetter:</small><br />
+            <%= @weather_data[:weather] %><br />
+          </div>
+          <div class="col-xs-4">
+            <small>Temeratur:</small><br />
+            <%= @weather_data[:temperature] %><br />
+          </div>
+          <div class="col-xs-4">
+            <small>Wind:</small><br />
+            <%= @weather_data[:wind_speed] %>
+          </div>
+        </div>
+        <div>
+          <small>
+            <%
+            {:ok, date_string} = Timex.format(@weather_data[:created_at], "%d.%m.%Y %H:%M", :strftime)
+            %>
+            <%= date_string <> " " <> gettext("o_clock") %>
+          </small>
+        </div>
+        <% end %>
       </div>
     </div>
 
