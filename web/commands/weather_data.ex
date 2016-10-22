@@ -44,7 +44,8 @@ defmodule ClubHomepage.WeatherData do
     timex_datetime =
       data[:created_at]
       |> DateTime.Convert.from_timestamp()
-      |> Timex.DateTime.from(:local)
+      |> Timex.DateTime.from(:utc)
+      |> Timex.DateTime.local
     {:ok, Map.put(data, :created_at, timex_datetime)}
   end
 end
