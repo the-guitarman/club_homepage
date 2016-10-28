@@ -17,19 +17,29 @@ defmodule ClubHomepage.WeatherData do
 
   defp format_temperature({:error, _}), do: {:error, %{}}
   defp format_temperature({:ok, data}) do
-    key = :centigrade
+    key =
+      case Application.get_env(:club_homepage, :weather_data_units)[:temperature] do
+        :centigrade -> :centigrade
+        :fahrenheit -> :fahrenheit
+        _ -> :centigrade
+      end
     {number, _key} = Map.pop(data, key)
 
     result =
       data
       |> Map.drop([:centigrade, :fahrenheit])
-      |> Map.put_new(:temperature, Number.Delimit.number_to_delimited(number, precision: 1) <> " °C")
+      |> Map.put_new(:temperature, Number.Delimit.number_to_delimited(number, precision: 1) <> "°C")
     {:ok, result}
   end
 
   defp format_wind({:error, _}), do: {:error, %{}}
   defp format_wind({:ok, data}) do
-    key = :wind_in_kilometers_per_hour
+    key =
+      case Application.get_env(:club_homepage, :weather_data_units)[:wind_speed] do
+        :meters_per_second -> :wind_in_meters_per_second
+        :kilometers_per_hour -> :wind_in_kilometers_per_hour
+        _ -> :wind_in_kilometers_per_hour
+      end
     {number, _key} = Map.pop(data, key)
 
     result =

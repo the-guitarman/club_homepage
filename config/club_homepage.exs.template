@@ -11,3 +11,7 @@ config :elixir_weather_data, :api,
 
 config :elixir_weather_data, :dev,
   mode: :sandbox
+
+config :club_homepage, :weather_data_units,
+  temperature: :centigrade,
+  wind_speed: :kilometers_per_hour

@@ -12,9 +12,9 @@ defmodule ClubHomepage.WeatherDataTest do
         assert year === current_year
         assert month === current_month
         assert day === current_day
-        assert weather_data[:temperature] === "14.5 °C"
+        assert weather_data[:temperature] === "14°C"
         assert weather_data[:weather] === "cloudy"
-        assert weather_data[:wind_speed] === "10 km/h"
+        assert weather_data[:wind_speed] === "11 km/h"
       {:error, empty_map} ->
         assert Enum.empty?(empty_map)
     end

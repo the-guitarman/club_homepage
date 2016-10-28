@@ -33,28 +33,32 @@
           </div>
         </div>
         <%= if not Enum.empty?(@weather_data) do %>
-        <div class="row css-no-bottom">
-          <div class="col-xs-4">
-            <small>Wetter:</small><br />
-            <%= @weather_data[:weather] %><br />
+          <div class="row css-no-bottom weather-data">
+            <div class="col-xs-12">
+              <%
+              {:ok, date_string} = Timex.format(@weather_data[:created_at], "%d.%m.%Y %H:%M", :strftime)
+              %>
+              Platzwetter <small>(<%= date_string <> " " <> gettext("o_clock") %>)</small>
+            </div>
+            <div class="col-xs-6 text-right">
+              <div class="weather text-center">
+                <div class="temperature text-center">
+                  <%= @weather_data[:temperature] %>
+                </div>
+                <%= if @weather_data[:icon_url] do %>
+                  <div class="weather-icon">
+                    <img src="<%= @weather_data[:icon_url] %>" alt="" title="<%= @weather_data[:weather] %>" />
+                  </div>
+                <% end %>
+                <div class="text-center"><small><%= @weather_data[:weather] %></small></div>
+              </div>
+            </div>
+            <div class="col-xs-6 wind">
+              <small>Wind:</small> <%= @weather_data[:wind_speed] %> <%= @weather_data[:wind_direction_abbreviation] %><br />
+              <small>Feuchtigkeit:</small> <%= @weather_data[:humidity_in_percent] %> %<br />
+              <small>Luftdruck:</small> <%= @weather_data[:pressure_in_hectopascal] %> hPa<br />
+            </div>
           </div>
-          <div class="col-xs-4">
-            <small>Temeratur:</small><br />
-            <%= @weather_data[:temperature] %><br />
-          </div>
-          <div class="col-xs-4">
-            <small>Wind:</small><br />
-            <%= @weather_data[:wind_speed] %>
-          </div>
-        </div>
-        <div>
-          <small>
-            <%
-            {:ok, date_string} = Timex.format(@weather_data[:created_at], "%d.%m.%Y %H:%M", :strftime)
-            %>
-            <%= date_string <> " " <> gettext("o_clock") %>
-          </small>
-        </div>
         <% end %>
       </div>
     </div>
