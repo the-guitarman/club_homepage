@@ -33,7 +33,7 @@
           </div>
         </div>
         <%= if not Enum.empty?(@weather_data) do %>
-          <div class="row css-no-bottom weather-data">
+          <div class="row css-no-bottom css-weather-data">
             <div class="col-xs-12">
               <%
               {:ok, date_string} = Timex.format(@weather_data[:created_at], "%d.%m.%Y %H:%M", :strftime)
@@ -41,16 +41,18 @@
               Platzwetter <small>(<%= date_string <> " " <> gettext("o_clock") %>)</small>
             </div>
             <div class="col-xs-6 text-right">
-              <div class="weather text-center">
-                <div class="temperature text-center">
+              <div class="css-weather text-center">
+                <div class="css-temperature text-center">
                   <%= @weather_data[:temperature] %>
                 </div>
                 <%= if @weather_data[:icon_url] do %>
-                  <div class="weather-icon">
+                  <div class="css-weather-icon">
                     <img src="<%= @weather_data[:icon_url] %>" alt="" title="<%= @weather_data[:weather] %>" />
                   </div>
                 <% end %>
-                <div class="text-center"><small><%= @weather_data[:weather] %></small></div>
+                <div class="css-weather-description text-center">
+                  <small><%= @weather_data[:weather] %></small>
+                </div>
               </div>
             </div>
             <div class="col-xs-6 wind">

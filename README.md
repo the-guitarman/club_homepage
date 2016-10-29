@@ -59,15 +59,42 @@ mix ecto.migrate
 
 ### File Configurations
 
-Set the values in *config/club_homepage.exs* suitable to your club in the file.
+#### config/club_homepage.exs
 
-For development environment configure your database settings (username/password) in *config/dev.exs*. 
+- :club_homepage, :common
+
+Provide some information about your club.
+
+- :elixir_weather_data, :api
+
+If you want to show the current weather at your club match ground, please provide an api key, a language key (abbreviation) and the geo coordinates of the match ground for the openweathermap.org api. 
+
+API Key: http://openweathermap.org/appid (You need to register a free account.)
+Supported Languages: http://openweathermap.org/current#multi
+Geo Coordinates: You may use one of the free map services like maps.bing.com or maps.google.com to find the coordinates of your match ground.
+
+- :elixir_weather_data, :dev
+
+There are two modes (development environment only).
+`:sandbox` - shows preconfigured weather data
+`:http_client` - downloads the weather data from the openweathermap.org api like in the production environment
+
+- :club_homepage, :weather_data_units
+
+Temperature: `:centigrade` or `:fahrenheit`
+Wind Speed: `:kilometers_per_hour` or `:meters_per_second`
+
+#### config/dev.exs
+
+For development environment configure your database settings (username/password) in *config/dev.exs*.
+
+#### config/prod.secret.exs
 
 For production environment configure your database settings (username/password) in *config/prod.secret.exs* and don't forget to set your own secret. Therefore execute `mix phoenix.gen.secret` at the command line.
 
 ### Translations
 
-At the moment there are two languages which you can choose to run your side: english (en) and german (de, default). To change the default to en please edit the locale option within config/config.exs. 
+At the moment there are two languages which you can choose to run your side: english (en) and german (de, default). To change the default to en please edit the locale option within config/config.exs.
 
 ### Seed Data
 

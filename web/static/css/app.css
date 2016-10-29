@@ -163,13 +163,16 @@ input.css-goals {
   margin-bottom: 0px !important;
 }
 
-.weather-data .weather {
+.css-weather-data .css-weather {
   display: inline-block;
 }
-.weather-data .temperature,
-.weather-data .weather-icon {
+.css-weather-data .css-temperature,
+.css-weather-data .css-weather-icon {
   display: inline-block;
   font-size: 20px;
   line-height: 60px;
   width: 50px;
+}
+.css-weather-data .css-weather-description {
+  margin-top: -19px;
 }
