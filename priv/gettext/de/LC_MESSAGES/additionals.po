@@ -23,49 +23,49 @@ msgid "failure_reason_team_missed"
 msgstr "nicht angetreten"
 
 msgid "wind_direction_abbreviation_N"
-msgstr ""
+msgstr "N"
 
 msgid "wind_direction_abbreviation_NNE"
-msgstr ""
+msgstr "NNO"
 
 msgid "wind_direction_abbreviation_NE"
-msgstr ""
+msgstr "NO"
 
 msgid "wind_direction_abbreviation_ENE"
-msgstr ""
+msgstr "ONO"
 
 msgid "wind_direction_abbreviation_E"
-msgstr ""
+msgstr "O"
 
 msgid "wind_direction_abbreviation_ESE"
-msgstr ""
+msgstr "OSO"
 
 msgid "wind_direction_abbreviation_SE"
-msgstr ""
+msgstr "SO"
 
 msgid "wind_direction_abbreviation_SSE"
-msgstr ""
+msgstr "SSO"
 
 msgid "wind_direction_abbreviation_S"
-msgstr ""
+msgstr "S"
 
 msgid "wind_direction_abbreviation_SSW"
-msgstr ""
+msgstr "SSW"
 
 msgid "wind_direction_abbreviation_SW"
-msgstr ""
+msgstr "SW"
 
 msgid "wind_direction_abbreviation_WSW"
-msgstr ""
+msgstr "WSW"
 
 msgid "wind_direction_abbreviation_W"
-msgstr ""
+msgstr "W"
 
 msgid "wind_direction_abbreviation_WNW"
-msgstr ""
+msgstr "WNW"
 
 msgid "wind_direction_abbreviation_NW"
-msgstr ""
+msgstr "NW"
 
 msgid "wind_direction_abbreviation_NNW"
-msgstr ""
+msgstr "NNW"
