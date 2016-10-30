@@ -21,3 +21,51 @@ msgstr "abgesagt"
 
 msgid "failure_reason_team_missed"
 msgstr "nicht angetreten"
+
+msgid "wind_direction_abbreviation_N"
+msgstr ""
+
+msgid "wind_direction_abbreviation_NNE"
+msgstr ""
+
+msgid "wind_direction_abbreviation_NE"
+msgstr ""
+
+msgid "wind_direction_abbreviation_ENE"
+msgstr ""
+
+msgid "wind_direction_abbreviation_E"
+msgstr ""
+
+msgid "wind_direction_abbreviation_ESE"
+msgstr ""
+
+msgid "wind_direction_abbreviation_SE"
+msgstr ""
+
+msgid "wind_direction_abbreviation_SSE"
+msgstr ""
+
+msgid "wind_direction_abbreviation_S"
+msgstr ""
+
+msgid "wind_direction_abbreviation_SSW"
+msgstr ""
+
+msgid "wind_direction_abbreviation_SW"
+msgstr ""
+
+msgid "wind_direction_abbreviation_WSW"
+msgstr ""
+
+msgid "wind_direction_abbreviation_W"
+msgstr ""
+
+msgid "wind_direction_abbreviation_WNW"
+msgstr ""
+
+msgid "wind_direction_abbreviation_NW"
+msgstr ""
+
+msgid "wind_direction_abbreviation_NNW"
+msgstr ""

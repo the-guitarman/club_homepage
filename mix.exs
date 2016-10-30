@@ -58,8 +58,8 @@ defmodule ClubHomepage.Mixfile do
      {:arc, "~> 0.5.3"},
      {:arc_ecto, "~> 0.4.3"},
      #{:mix_test_watch, "~> 0.2.4", only: :dev},
-     {:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
-     #{:elixir_weather_data, "~> 0.1.1"},
+     #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
+     {:elixir_weather_data, "~> 0.1.2"},
      {:number, "~> 0.4.2"}
     ]
   end
