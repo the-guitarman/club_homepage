@@ -29,7 +29,7 @@
       <div class="jumbotron content-box">
         <div class="row">
           <div class="col-xs-12 text-center">
-            <img src="/images/logo.png" />
+            <img src="<%= templateable_asset_path("/images/logo.png") %>" />
           </div>
         </div>
         <%= if not Enum.empty?(@weather_data) do %>

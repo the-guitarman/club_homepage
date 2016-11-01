@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="<%= page_path(@conn, :index) %>">
-        <img alt="" src="/images/logo_navbar.png">
+        <img alt="" src="<%= templateable_asset_path("/images/logo_navbar.png") %>" />
       </a>
     </div>
 

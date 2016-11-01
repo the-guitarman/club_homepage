@@ -26,7 +26,8 @@ erl_crash.dump
 
 /**/.DS_Store
 /web/static/assets/images/backup
-/web/static/assets/images/logo.png
+/web/static/assets/images/logo.*
+/web/static/assets/images/logo_navbar.*
 /uploads
 
 /config/club_homepage.exs

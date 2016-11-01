@@ -11,6 +11,23 @@ defmodule ClubHomepage.Extension.View do
     Application.get_env(:club_homepage, :common)[:full_club_name]
   end
 
+  def templateable_asset_path(file_path) do
+    case File.exists?(absolute_asset_path(file_path)) do
+      true -> file_path
+      _ ->
+        extension_name = Path.extname(file_path)
+        Path.dirname(file_path) <> "/" <> Path.basename(file_path, extension_name) <> ".template" <> extension_name
+    end
+  end
+
+  defp absolute_asset_path(file_path) do
+    Path.join([
+      Application.app_dir(:club_homepage, "priv"),
+      "static",
+      file_path
+    ])
+  end
+
 
 
 
