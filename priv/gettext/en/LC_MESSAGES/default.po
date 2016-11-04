@@ -109,7 +109,7 @@ msgstr "Create Season"
 msgid "delete_match"
 msgstr "Delete"
 
-#: lib/extension/view.ex:140 web/templates/match/form_bulk.html.eex:4
+#: lib/extension/view.ex:157 web/templates/match/form_bulk.html.eex:4
 msgid "form_input_errors_notice"
 msgstr "Some errors occured:"
 
@@ -125,7 +125,7 @@ msgstr "Some errors occured:"
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:11
 #: web/templates/sponsor_image/form.html.eex:17
 #: web/templates/team/form.html.eex:15 web/templates/team_image/form.html.eex:33
-#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:83
+#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:88
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr "Save"
@@ -381,7 +381,7 @@ msgstr "Password"
 msgid "teams"
 msgstr "Teams"
 
-#: web/templates/user/form.html.eex:56 web/templates/user/index.html.eex:19
+#: web/templates/user/form.html.eex:61 web/templates/user/index.html.eex:19
 msgid "active"
 msgstr "Active"
 
@@ -652,7 +652,7 @@ msgstr "Page"
 msgid "text_pages"
 msgstr "Text Pages"
 
-#: web/templates/user/form.html.eex:65
+#: web/templates/user/form.html.eex:70
 msgid "user_roles"
 msgstr "User Roles/Rights"
 
@@ -1017,3 +1017,7 @@ msgstr "Show Older Messages"
 #: web/templates/team/team_chat_page.html.eex:11
 msgid "team_chat_messagesmoment_js_date_format"
 msgstr "MM/DD/YYYY"
+
+#: web/templates/user/form.html.eex:57
+msgid "user_is_active"
+msgstr "Account Is Active"
