@@ -8,7 +8,7 @@ defmodule ClubHomepage.PageController do
   alias ClubHomepage.TextPage
 
   def index(conn, _params) do
-    news  = Repo.all(from(n in News, order_by: [desc: n.inserted_at], where: n.public == true, limit: 5))
+    news  = Repo.all(news_query(conn))
     teams = Repo.all(Team)
     start_at = to_timex_ecto_datetime(Timex.DateTime.local)
 
@@ -66,5 +66,13 @@ defmodule ClubHomepage.PageController do
     changeset = TextPage.changeset(%TextPage{}, %{key: key, text: ""})
     {:ok, text_page} = Repo.insert(changeset)
     text_page
+  end
+
+  defp news_query(conn) do
+    query = from(n in News, order_by: [desc: n.inserted_at], limit: 5)
+    case logged_in?(conn) do
+      true -> query
+      false -> from(n in query, where: n.public == true)
+    end
   end
 end
