@@ -33,6 +33,14 @@
         </div>
       </h2>
 
+      <%= if @match.description do %>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= @match.description %>
+          </div>
+        </div>
+      <% end %>
+
       <%= render "soccer_match_timeline.html", conn: @conn, match: @match %>
 
       <%= if meeting_point_at_showable?(@conn, @match) do %>
@@ -83,6 +91,8 @@
           </div>
         </div>
       <% end %>
+
+      <%= render "player_planning.html", conn: @conn, match: @match %>
 
       <%= if has_role?(@conn, ["match-editor"]) do %>
         <%= link gettext("edit_match"), to: match_path(@conn, :edit, @match), class: "btn btn-default" %>

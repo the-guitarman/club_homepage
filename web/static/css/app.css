@@ -92,6 +92,10 @@ section.header h1 {
   margin-bottom:0px;
 }
 
+.form-group textarea {
+  min-height: 100px;
+}
+
 .css-home-match input[type=radio] {
 }
 .css-home-match label {
@@ -175,4 +179,10 @@ input.css-goals {
 }
 .css-weather-data .css-weather-description {
   margin-top: -19px;
+}
+
+.css-match-ground {
+  background: url('/images/match_ground.svg') no-repeat center center scroll;
+  width: 100%;
+  min-height: 100px;
 }
