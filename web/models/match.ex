@@ -74,6 +74,8 @@ defmodule ClubHomepage.Match do
   Returns true after two hours from match start. Otherwise false.
   """
   @spec finished?( ClubHomepage.Match ) :: Boolean
+  def finished?(%{inserted_at: inserted_at, start_at: start_at}) when is_nil(inserted_at) or is_nil(start_at), do: false
+  def finished?(%{team_goals: team_goals, opponent_team_goals: opponent_team_goals}) when is_integer(team_goals) and is_integer(opponent_team_goals), do: true
   def finished?(match) do
     #TODO: read the match end datetime from the timeline events
     # has goals?
