@@ -36,6 +36,7 @@
       <%= if @match.description do %>
         <div class="row">
           <div class="col-xs-12">
+            <h3><%= gettext("match_review") %></h3>
             <%= @match.description %>
           </div>
         </div>
