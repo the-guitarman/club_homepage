@@ -182,7 +182,30 @@ input.css-goals {
 }
 
 .css-match-ground {
-  background: url('/images/match_ground.svg') no-repeat center center scroll;
+  background-image: url(/images/match_ground.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  border: thin dotted darkgrey;
+  height: 0;
+  padding: 0; /* reset */
+  padding-bottom: 78%;
+  position: relative;
   width: 100%;
-  min-height: 100px;
+}
+.css-match-ground .css-player-position {
+  color: #ffffff;
+  font-weight: bold;
+}
+.css-match-ground .keeper {
+  margin-top: 5%;
+}
+.css-match-ground .defense {
+  margin-top: 18%;
+}
+.css-match-ground .midfield {
+  margin-top: 18%;
+}
+.css-match-ground .forward-line {
+  margin-top: 18%;
 }

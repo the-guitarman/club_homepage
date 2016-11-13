@@ -1,7 +1,32 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div class="css-match-ground">
-      
+<%= if has_role?(@conn, ["team-editor"]) && not(match_finished?(@match)) && not(match_in_progress?(@match)) do %>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="css-match-ground">
+
+        <div class="row keeper">
+          <div class="col-xs-12 text-center css-player-position">Keeper</div>
+        </div>
+
+        <div class="row defense">
+          <div class="col-xs-3 text-center css-player-position">Defense 1</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 2</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 3</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 4</div>
+        </div>
+
+        <div class="row midfield">
+          <div class="col-xs-3 text-center css-player-position">Defense 1</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 2</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 3</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 4</div>
+        </div>
+
+        <div class="row forward-line">
+          <div class="col-xs-6 text-center css-player-position">Defense 1</div>
+          <div class="col-xs-6 text-center css-player-position">Defense 4</div>
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
+<% end %>
