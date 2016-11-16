@@ -1,50 +1,60 @@
+@import "variables.less";
+
 body {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top:50px;
+  padding-bottom:50px;
 }
+
 form.link {
   display: inline-block;
 }
-a.anchor,
-a.anchor:hover,
-a.anchor:focus {
+
+a.anchor, a.anchor:hover, a.anchor:focus {
   color: inherit;
   text-decoration: none;
 }
+
 .table > thead > tr > th {
   vertical-align: top;
 }
 .table td.buttons {
   vertical-align: middle;
 }
+
 /*! bootstrap overrides */
 .navbar-default {
-  border-color: transparent;
+  border-color:transparent; 
 }
+
 .navbar {
-  border-radius: 0px;
+  border-radius:0px;
 }
+
 .nav.nav-tabs {
   margin-bottom: 20px;
 }
+
 .flash-messages .alert {
   border-radius: 0px;
 }
-.jumbotron {
-  opacity: 0.9;
-  padding: 20px;
+
+.jumbotron { 
+  opacity:0.9;
+  padding:20px;
 }
 .jumbotron h1 {
   font-size: 40px;
   text-align: center;
 }
-@media screen and (min-width: 768px) {
-  .container .jumbotron,
-  .container-fluid .jumbotron {
+
+// @media screen and (min-width: 768px) {
+@media screen and (min-width: @screen-sm-min) {
+  .container .jumbotron, .container-fluid .jumbotron {
     padding-right: 20px;
     padding-left: 20px;
   }
 }
+
 h2 .failure-reason {
   font-size: 50%;
 }
@@ -54,9 +64,10 @@ button h2 {
   margin: 0;
   padding: 0;
 }
+
 /*! styles */
 .background-image-01 {
-  background: url('/images/background_01.jpg') no-repeat center center fixed;
+  background: url('/images/background_01.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -65,8 +76,9 @@ button h2 {
 .content-container {
   padding: 40px 0px 20px 0px;
 }
+
 section.header {
-  padding: 10px 5px;
+  padding:10px 5px;
 }
 section.header h1 {
   margin-top: 0px;
@@ -74,30 +86,37 @@ section.header h1 {
   text-align: center;
 }
 .jumbotron.content-box {
-  border-radius: 4px;
+  border-radius:4px;
 }
 .jumbotron.content-box h2 {
-  margin-top: 0px;
+  margin-top:0px;
 }
 .jumbotron.content-box .list-group {
-  margin-bottom: 0px;
+  margin-bottom:0px;
 }
+
 .form-group textarea {
   min-height: 100px;
 }
+
 .css-nowrap {
   white-space: nowrap;
+}
+.css-home-match input[type=radio] {
 }
 .css-home-match label {
   padding-left: 0px;
   text-align: left !important;
 }
+
 .css-user-roles label {
   text-align: left !important;
 }
+
 .css-news-item form {
   display: inline-block;
 }
+
 .css-matches td.text-right,
 .css-matches td.text-left {
   width: 45%;
@@ -105,18 +124,22 @@ section.header h1 {
 .css-matches td.text-center {
   width: 10%;
 }
+
 input.css-goals {
   width: 40px;
   text-align: center;
 }
+
 .css-step {
   font-weight: bold;
 }
+
 #message-list {
   border: 1px solid #c8c8c8;
   height: 400px;
   overflow-y: scroll;
 }
+
 #message-list .message {
   background-color: #ffffff;
   margin: 5px 20px 5px 5px;
@@ -127,9 +150,11 @@ input.css-goals {
   background-color: #BFFFAE;
   margin: 5px 5px 5px 20px;
 }
+
 #message-list .message .user-name {
   font-weight: bold;
 }
+
 #message-list .date span {
   background-color: #2e6da4;
   border-radius: 5px;
@@ -138,13 +163,16 @@ input.css-goals {
   margin: 5px;
   padding: 5px 10px;
 }
+
 .css-show-more-chat-messages {
   border-radius: 0px;
   cursor: pointer;
 }
+
 .css-no-bottom {
   margin-bottom: 0px !important;
 }
+
 .css-weather-data .css-weather {
   display: inline-block;
 }
@@ -157,31 +185,4 @@ input.css-goals {
 }
 .css-weather-data .css-weather-description {
   margin-top: -19px;
-}
-.css-match-ground {
-  background-image: url(/images/match_ground.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  border: thin dotted darkgrey;
-  padding: 0;
-  /* reset */
-  position: relative;
-  width: 100%;
-}
-.css-match-ground .css-player-position {
-  color: #ffffff;
-  font-weight: bold;
-}
-.css-match-ground .keeper {
-  margin-top: 5%;
-}
-.css-match-ground .defense {
-  margin-top: 18%;
-}
-.css-match-ground .midfield {
-  margin-top: 18%;
-}
-.css-match-ground .forward-line {
-  margin-top: 18%;
 }

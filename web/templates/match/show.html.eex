@@ -13,7 +13,7 @@
             <div class="col-xs-5 text-right">
               <%= @match.team.name %>
             </div>
-            <div class="col-xs-2 text-center">
+            <div class="col-xs-2 text-center css-nowrap">
               <%= match_result(@match) %>
             </div>
             <div class="col-xs-5">
@@ -23,7 +23,7 @@
             <div class="col-xs-5 text-right">
               <%= @match.opponent_team.name %>
             </div>
-            <div class="col-xs-2 text-center">
+            <div class="col-xs-2 text-center css-nowrap">
               <%= match_result(@match) %>
             </div>
             <div class="col-xs-5">
