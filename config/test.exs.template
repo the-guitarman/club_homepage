@@ -25,3 +25,7 @@ config :comeonin, :pbkdf2_rounds, 1
 
 config :club_homepage, :uploads, 
   path: "test/tmp/uploads"
+
+# Configure your mail server
+config :club_homepage, ClubHomepage.Mailer,
+  adapter: Bamboo.TestAdapter

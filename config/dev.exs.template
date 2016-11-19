@@ -52,3 +52,7 @@ config :number, delimiter: [
     delimiter: ",",
     separator: "."
   ]
+
+# Configure your mail server
+config :club_homepage, ClubHomepage.Mailer,
+  adapter: Bamboo.LocalAdapter

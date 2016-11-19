@@ -22,7 +22,7 @@ defmodule ClubHomepage.Mixfile do
        :tzdata,
        :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
        :phoenix_ecto, :postgrex, :comeonin, :geocoder, 
-       :elixir_weather_data, :number
+       :elixir_weather_data, :number, :bamboo
      ]
     ]#:sqlite_ecto
   end
