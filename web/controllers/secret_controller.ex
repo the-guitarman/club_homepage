@@ -21,13 +21,22 @@ defmodule ClubHomepage.SecretController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, _) do
-    changeset = Secret.changeset(%Secret{}, %{})
+  def create(conn, %{"secret" => secret_params}) do
+    changeset = Secret.changeset(%Secret{}, secret_params)
 
     case Repo.insert(changeset) do
       {:ok, secret} ->
+        flash_info = 
+          if secret.email do
+            ClubHomepage.Email.secret_text_email(secret.email, secret.key)
+            |> ClubHomepage.Mailer.deliver_later
+            gettext("secret_created_and_send_via_email_successfully")
+          else
+            gettext("secret_created_successfully")
+          end
+
         conn
-        |> put_flash(:info, gettext("secret_created_successfully"))
+        |> put_flash(:info, flash_info)
         |> redirect(to: secret_path(conn, :show, secret))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)

@@ -1,12 +1,13 @@
 defmodule ClubHomepage.SecretControllerTest do
   use ClubHomepage.ConnCase
+  use Bamboo.Test
 
   alias ClubHomepage.Secret
 
   import ClubHomepage.Factory
 
   @valid_attrs %{}
-  @invalid_attrs %{}
+  @invalid_attrs %{email: "test[at]example_com"}
 
   setup context do
     conn = build_conn()
@@ -60,14 +61,25 @@ defmodule ClubHomepage.SecretControllerTest do
     secret = Repo.get_by(Secret, @valid_attrs)
     assert secret
     assert redirected_to(conn) == secret_path(conn, :show, secret)
+    assert_no_emails_delivered
+  end
+
+  @tag login: true
+  test "creates resource with valid email and redirects when data is valid and current_user is logged in", %{conn: conn, current_user: _current_user} do
+    valid_attrs = Map.put(@valid_attrs, :email, "test@example.com")
+    conn = post conn, secret_path(conn, :create), secret: valid_attrs
+    secret = Repo.get_by(Secret, valid_attrs)
+    assert secret
+    assert redirected_to(conn) == secret_path(conn, :show, secret)
+    assert_delivered_email ClubHomepage.Email.secret_text_email(secret.email, secret.key)
   end
 
   @tag login: true
   test "does not create resource and renders errors when data is invalid and current_user is logged in", %{conn: conn, current_user: _current_user} do
     conn = post conn, secret_path(conn, :create), secret: @invalid_attrs
-    secret = Repo.get_by(Secret, @valid_attrs)
-    assert secret
-    assert redirected_to(conn) == secret_path(conn, :show, secret)
+    secret = Repo.get_by(Secret, @invalid_attrs)
+    assert secret == nil
+    assert html_response(conn, 200) =~ "email has invalid format"
   end
 
   # @tag login: true

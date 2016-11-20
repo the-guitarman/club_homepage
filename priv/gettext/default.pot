@@ -10,7 +10,7 @@
 #: web/templates/layout/navbar_top.html.eex:95
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:104
+#: web/templates/match/show.html.eex:105
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/index.html.eex:8
@@ -67,13 +67,13 @@ msgstr ""
 
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:104 web/templates/team/team_page.html.eex:4
+#: web/templates/match/show.html.eex:105 web/templates/team/team_page.html.eex:4
 #: web/templates/team/team_page_link_header.html.eex:5
 #: web/templates/team/team_page_link_header.html.eex:7
 msgid "matches"
 msgstr ""
 
-#: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:63
+#: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:64
 #: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:34
 msgid "meeting_point"
 msgstr ""
@@ -97,7 +97,7 @@ msgstr ""
 msgid "create_new_season"
 msgstr ""
 
-#: web/templates/match/show.html.eex:100
+#: web/templates/match/show.html.eex:101
 msgid "delete_match"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 #: web/templates/news/form.html.eex:26
 #: web/templates/opponent_team/form.html.eex:15
 #: web/templates/permalink/form.html.eex:17
-#: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:11
+#: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:9
 #: web/templates/sponsor_image/form.html.eex:17
 #: web/templates/team/form.html.eex:15 web/templates/team_image/form.html.eex:33
 #: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:88
@@ -434,7 +434,7 @@ msgid "latest_news"
 msgstr ""
 
 #: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:49
-#: web/templates/match/show.html.eex:98
+#: web/templates/match/show.html.eex:99
 #: web/templates/team/team_page_match_table.html.eex:9
 msgid "edit_match"
 msgstr ""
@@ -671,7 +671,7 @@ msgstr ""
 msgid "address_longitude_place_holder"
 msgstr ""
 
-#: web/templates/match/show.html.eex:74 web/views/match_view.ex:27
+#: web/templates/match/show.html.eex:75 web/views/match_view.ex:27
 msgid "match_address"
 msgstr ""
 
@@ -783,11 +783,11 @@ msgstr ""
 msgid "season_updated_successfully"
 msgstr ""
 
-#: web/controllers/secret_controller.ex:30
+#: web/controllers/secret_controller.ex:35
 msgid "secret_created_successfully"
 msgstr ""
 
-#: web/controllers/secret_controller.ex:45
+#: web/controllers/secret_controller.ex:54
 msgid "secret_deleted_successfully"
 msgstr ""
 
@@ -971,7 +971,7 @@ msgstr ""
 msgid "no_teams_notice"
 msgstr ""
 
-#: web/templates/match/show.html.eex:49
+#: web/templates/match/show.html.eex:50
 msgid "meeting_point_at"
 msgstr ""
 
@@ -1014,6 +1014,10 @@ msgstr ""
 msgid "user_is_active"
 msgstr ""
 
-#: web/templates/match/form.html.eex:78
+#: web/templates/match/form.html.eex:78 web/templates/match/show.html.eex:39
 msgid "match_review"
+msgstr ""
+
+#: web/controllers/secret_controller.ex:33
+msgid "secret_created_and_send_via_email_successfully"
 msgstr ""
