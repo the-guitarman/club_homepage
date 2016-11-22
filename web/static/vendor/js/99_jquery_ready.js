@@ -1,4 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function() {
+  $(document).on('deviceready', function() {
+    $('.js-show-on-mobile-device').removeClass('hidden');
+  });
+
   $(".js-home-match input[type=radio]").prop('checked', false);
 
   if (typeof(MediumEditor) != 'undefined') {

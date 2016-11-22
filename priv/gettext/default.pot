@@ -27,7 +27,7 @@
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
-#: web/templates/secret/show.html.eex:9
+#: web/templates/secret/show.html.eex:17
 #: web/templates/sponsor_image/edit.html.eex:9
 #: web/templates/sponsor_image/index.html.eex:4
 #: web/templates/sponsor_image/new.html.eex:9
@@ -300,7 +300,7 @@ msgstr ""
 msgid "registration_information"
 msgstr ""
 
-#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:9
+#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:17
 msgid "secrets"
 msgstr ""
 
@@ -1020,4 +1020,21 @@ msgstr ""
 
 #: web/controllers/secret_controller.ex:33
 msgid "secret_created_and_send_via_email_successfully"
+msgstr ""
+
+#: web/templates/secret/form.html.eex:5
+msgid "optional"
+msgstr ""
+
+#: lib/email.ex:30 web/templates/secret/show.html.eex:11
+msgid "secret_email_subject"
+msgstr ""
+
+#: lib/email.ex:11 web/templates/secret/show.html.eex:11
+#: web/templates/secret/show.html.eex:13
+msgid "secret_email_text"
+msgstr ""
+
+#: web/templates/secret/show.html.eex:8
+msgid "send_secret"
 msgstr ""

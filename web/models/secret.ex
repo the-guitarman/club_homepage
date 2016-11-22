@@ -37,6 +37,7 @@ defmodule ClubHomepage.Secret do
 
   defp check_email(changeset) do
     case get_field(changeset, :email) do
+      "" -> changeset
       nil -> changeset
       _ -> 
         changeset

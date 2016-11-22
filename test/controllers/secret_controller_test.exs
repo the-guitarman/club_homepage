@@ -71,7 +71,7 @@ defmodule ClubHomepage.SecretControllerTest do
     secret = Repo.get_by(Secret, valid_attrs)
     assert secret
     assert redirected_to(conn) == secret_path(conn, :show, secret)
-    assert_delivered_email ClubHomepage.Email.secret_text_email(secret.email, secret.key)
+    assert_delivered_email ClubHomepage.Email.secret_text_email(conn, secret)
   end
 
   @tag login: true

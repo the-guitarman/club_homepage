@@ -26,9 +26,9 @@ defmodule ClubHomepage.SecretController do
 
     case Repo.insert(changeset) do
       {:ok, secret} ->
-        flash_info = 
+        flash_info =
           if secret.email do
-            ClubHomepage.Email.secret_text_email(secret.email, secret.key)
+            ClubHomepage.Email.secret_text_email(conn, secret)
             |> ClubHomepage.Mailer.deliver_later
             gettext("secret_created_and_send_via_email_successfully")
           else
