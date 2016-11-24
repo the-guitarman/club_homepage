@@ -7,6 +7,7 @@ defmodule ClubHomepage.UserController do
 
   plug :is_user_editor? when action in [:index, :new_unregistered, :create_unregistered, :edit, :update, :delete]
   plug :scrub_params, "user" when action in [:create, :update]
+  plug :require_no_user when action in [:new, :create]
 
   def index(conn, _params) do
     users = Repo.all(User)
