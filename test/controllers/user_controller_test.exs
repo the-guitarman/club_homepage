@@ -92,20 +92,36 @@ defmodule ClubHomepage.UserControllerTest do
     assert unregistered_user.active == false
   end
 
-  @tag login: true
-  test "renders form for new users without secret parameter", %{conn: conn, current_user: _current_user} do
+  @tag login: false
+  test "renders form for new users without secret parameter", %{conn: conn} do
     conn = get conn, user_path(conn, :new)
     assert html_response(conn, 200) =~ "Save"
   end
 
   @tag login: true
-  test "renders form for new users with secret parameter", %{conn: conn, current_user: _current_user} do
+  test "does not render form for new users without secret parameter", %{conn: conn, current_user: _current_user} do
+    conn = get conn, user_path(conn, :new)
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
+  end
+
+  @tag login: false
+  test "renders form for new users with secret parameter", %{conn: conn} do
     conn = get conn, user_path(conn, :new, secret: "sdkljsdflksdjfisd")
     assert html_response(conn, 200) =~ "Save"
   end
 
   @tag login: true
-  test "creates resource and redirects when data is valid", %{conn: conn, current_user: _current_user} do
+  test "does not render form for new users with secret parameter", %{conn: conn, current_user: _current_user} do
+    conn = get conn, user_path(conn, :new, secret: "sdkljsdflksdjfisd")
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
+  end
+
+  @tag login: false
+  test "creates resource and redirects when data is valid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @valid_attrs
     assert html_response(conn, 200) =~ "Save"
     assert html_response(conn, 200) =~ "Secret can&#39;t be blank"
@@ -121,7 +137,15 @@ defmodule ClubHomepage.UserControllerTest do
   end
 
   @tag login: true
-  test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: _current_user} do
+  test "does not create resource and redirect when data is valid", %{conn: conn, current_user: _current_user} do
+    conn = post conn, user_path(conn, :create), user: @valid_attrs
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
+  end
+
+  @tag login: false
+  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @invalid_attrs
     assert html_response(conn, 200) =~ "Save"
     assert html_response(conn, 200) =~ "Secret can&#39;t be blank"
@@ -129,6 +153,14 @@ defmodule ClubHomepage.UserControllerTest do
     assert html_response(conn, 200) =~ "name can&#39;t be blank"
     assert html_response(conn, 200) =~ "email can&#39;t be blank"
     assert html_response(conn, 200) =~ "birthday can&#39;t be blank"
+  end
+
+  @tag login: true
+  test "does not create resource and redirect when data is invalid", %{conn: conn, current_user: _current_user} do
+    conn = post conn, user_path(conn, :create), user: @invalid_attrs
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
   end
 
   @tag login: true
