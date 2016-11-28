@@ -14,6 +14,7 @@ defmodule ClubHomepage.User do
     field :name, :string
     field :nickname, :string
     field :roles, :string
+    field :meta_data, :map
 
     has_many :team_chat_messages, ClubHomepage.TeamChatMessage
 
@@ -22,7 +23,7 @@ defmodule ClubHomepage.User do
 
   def unregistered_changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(email name), ~w(nickname login birthday active roles))
+    |> cast(params, ~w(email name), ~w(nickname login birthday active roles meta_data))
     |> validate_length(:name, max: 100)
     |> check_email
     |> UserRole.check_roles

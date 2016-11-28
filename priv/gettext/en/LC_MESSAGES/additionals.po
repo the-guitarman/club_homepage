@@ -26,6 +26,9 @@ msgstr "Canceled"
 msgid "failure_reason_team_missed"
 msgstr "Team missed"
 
+msgid "wind_direction_abbreviation_"
+msgstr ""
+
 msgid "wind_direction_abbreviation_N"
 msgstr "N"
 

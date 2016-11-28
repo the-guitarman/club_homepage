@@ -51,11 +51,6 @@ defmodule ClubHomepage.WeatherData do
 
   defp format_created_at({:error, _}), do: {:error, %{}}
   defp format_created_at({:ok, data}) do
-    timex_datetime =
-      data[:created_at]
-      |> DateTime.Convert.from_timestamp()
-      |> Timex.DateTime.from(:utc)
-      |> Timex.DateTime.local
-    {:ok, Map.put(data, :created_at, timex_datetime)}
+    {:ok, Map.put(data, :created_at, ClubHomepage.DateTime.Convert.to_timex_datetime(data[:created_at]))}
   end
 end

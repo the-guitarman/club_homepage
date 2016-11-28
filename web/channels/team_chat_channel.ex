@@ -7,9 +7,13 @@ defmodule ClubHomepage.TeamChatChannel do
   @limit 10
 
   def join("team-chats:" <> team_id, _payload, socket) do
+    user = socket.assigns.current_user
+
     response =
       get_latest_chat_messages_query(team_id)
       |> create_response(team_id)
+      |> add_last_read_messages_dates(user.meta_data)
+
     {:ok, response, assign(socket, :team_id, team_id)}
   end
 
@@ -46,6 +50,14 @@ defmodule ClubHomepage.TeamChatChannel do
     {:noreply, socket}
     # {:reply, {:ok, response}, socket}
     # {:reply, :ok, socket}
+  end
+
+  def add_last_read_messages_dates(response_map, _meta_data) do
+    Map.put(response_map, :last_read_message_dates, %{})
+  end
+  def add_last_read_messages_dates(response_map, meta_data) do
+    data = meta_data[:last_read_message_dates] || %{}
+    Map.put(response_map, :last_read_message_dates, data)
   end
 
   defp get_team_id_from_socket_assigns(socket) do

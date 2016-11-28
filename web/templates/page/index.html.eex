@@ -56,7 +56,12 @@
               </div>
             </div>
             <div class="col-xs-6 wind">
-              <small>Wind:</small> <%= @weather_data[:wind_speed] %> <%= Gettext.dgettext(ClubHomepage.Gettext, "additionals", "wind_direction_abbreviation_#{@weather_data[:wind_direction_abbreviation]}") %><br />
+              <small>Wind:</small> <%= @weather_data[:wind_speed] %>
+
+              <%= if @weather_data[:wind_direction_abbreviation] do %>
+                <%= Gettext.dgettext(ClubHomepage.Gettext, "additionals", "wind_direction_abbreviation_#{@weather_data[:wind_direction_abbreviation]}") %>
+              <% end %>
+              <br />
               <small>Feuchtigkeit:</small> <%= @weather_data[:humidity_in_percent] %> %<br />
               <small>Luftdruck:</small> <%= @weather_data[:pressure_in_hectopascal] %> hPa<br />
             </div>

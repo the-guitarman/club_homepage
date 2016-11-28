@@ -22,6 +22,9 @@ msgstr "abgesagt"
 msgid "failure_reason_team_missed"
 msgstr "nicht angetreten"
 
+msgid "wind_direction_abbreviation_"
+msgstr ""
+
 msgid "wind_direction_abbreviation_N"
 msgstr "N"
 
