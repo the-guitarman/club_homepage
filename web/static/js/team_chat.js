@@ -14,6 +14,10 @@ let TeamChat = {
       return moment(at.year + '-' + at.month + '-' + at.day).format('YYYY-MM-DD');
     }
 
+    let createNewMessagesEl = () => {
+      return `<div class="">Neue Nachrichten</div>`;
+    }
+
     let createDateEl = (date) => {
       var format = messageList.data('date-format');
       return `<div class="date text-center"><span>${moment(date).format(format)}</span></div>`;
@@ -30,6 +34,19 @@ let TeamChat = {
         button.removeProp('disabled').removeAttr('disabled');
       } else {
         button.prop('disabled', 'disabled').attr('disabled', 'disabled');
+      }
+    }
+
+    let addNewMessagesHint = (last_read_team_chat_message_id) => {
+      if (!_.isEmpty(last_read_team_chat_message_id)) {
+        $.each(messageList.find('.message'), function(index, messageEl){
+          messageEl = $(messageEl);
+          var id = messageEl.data('id');
+          if (id == last_read_team_chat_message_id) {
+            messageEl.before(createNewMessagesEl());
+
+          }
+        });
       }
     }
 
