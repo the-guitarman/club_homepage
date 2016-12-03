@@ -9,6 +9,7 @@ defmodule ClubHomepage.TeamChatChannel do
 
   def join("team-chats:" <> team_id, _payload, socket) do
     user = socket.assigns.current_user
+    team_id = String.to_integer(team_id)
 
     response =
       team_id
@@ -16,6 +17,7 @@ defmodule ClubHomepage.TeamChatChannel do
       |> get_unread_team_chat_messages_number(user)
       |> get_latest_chat_messages_query
       |> create_response
+      |> save_last_read_team_chat_message_id(team_id, user)
 
     {:ok, response, assign(socket, :team_id, team_id)}
   end
@@ -32,6 +34,7 @@ defmodule ClubHomepage.TeamChatChannel do
       {:ok, team_chat_message} ->
         #older_chat_messages_available?(team_id)
         team_chat_message = Repo.preload(team_chat_message, :user)
+        save_last_read_team_chat_message_id(team_chat_message.id, team_id, user)
         broadcast socket, "message:added", broadcast_message(team_chat_message)
         {:reply, :ok, socket}
       {:error, changeset} ->
@@ -72,8 +75,28 @@ defmodule ClubHomepage.TeamChatChannel do
     {query, team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}
   end
 
+  defp save_last_read_team_chat_message_id(chat_message_id, team_id, user) when is_integer(chat_message_id) do
+    UserMetaData.save_last_read_team_chat_message_id(team_id, chat_message_id, user)
+  end
+  defp save_last_read_team_chat_message_id(response, team_id, user) when is_map(response) do
+    case response.chat_messages do
+      [] -> nil
+      _ -> 
+        chat_message_map = Enum.max_by(response.chat_messages, fn(cm) -> cm["id"] end)
+        UserMetaData.save_last_read_team_chat_message_id(team_id, chat_message_map["id"], user)
+    end
+    response
+  end
+
   defp get_team_id_from_socket_assigns(socket) do
-    String.to_integer(socket.assigns.team_id)
+    value_to_integer(socket.assigns.team_id)
+  end
+
+  defp value_to_integer(value) when is_integer(value) do
+    value
+  end
+  defp value_to_integer(value) when is_bitstring(value) do
+    String.to_integer(value)
   end
 
   defp older_chat_messages_available?(_team_id, nil), do: false

@@ -87,6 +87,7 @@ let TeamChat = {
 
     teamIdChannel.join()
       .receive("ok", (response) => {
+        console.log(response);
         messageList.html();
         $.each(response.chat_messages, function(index, chatMessage){
           messageList.append(createChatMessage(chatMessage));
@@ -94,6 +95,7 @@ let TeamChat = {
         addDates();
         olderChatMessagesButtonHandler(response.older_chat_messages_available);
         messageList.prop({scrollTop: 0});
+        $('.js-new-team-chat-messages-badge').addClass('hidden').html('0');
       })
       .receive("error", (reason) => {
         console.log("join failed", reason)
