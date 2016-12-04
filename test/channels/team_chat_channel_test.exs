@@ -26,7 +26,7 @@ defmodule ClubHomepage.TeamChatChannelTest do
 
   test "new chat message broadcasts to team-chats:<team_id>", %{socket: socket} do
     push socket, "message:add", %{"message" => "Hi"}
-    assert_broadcast "message:added", %{"message" => "Hi"}
+    assert_broadcast "message:added", %{chat_message: %{"message" => "Hi"}}
   end
 
   test "broadcasts are pushed to the client", %{socket: socket} do

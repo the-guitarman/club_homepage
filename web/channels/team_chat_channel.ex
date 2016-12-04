@@ -16,6 +16,7 @@ defmodule ClubHomepage.TeamChatChannel do
       |> get_last_read_team_chat_message_id(user)
       |> get_unread_team_chat_messages_number(user)
       |> get_latest_chat_messages_query
+      |> get_team_chat_messages_response
       |> create_response
       |> save_last_read_team_chat_message_id(team_id, user)
 
@@ -34,8 +35,17 @@ defmodule ClubHomepage.TeamChatChannel do
       {:ok, team_chat_message} ->
         #older_chat_messages_available?(team_id)
         team_chat_message = Repo.preload(team_chat_message, :user)
+
+        response =
+          team_id
+          |> get_last_read_team_chat_message_id(user)
+          |> get_unread_team_chat_messages_number(user)
+          |> get_team_chat_message_response(team_chat_message)
+          |> create_response
+
         save_last_read_team_chat_message_id(team_chat_message.id, team_id, user)
-        broadcast socket, "message:added", broadcast_message(team_chat_message)
+
+        broadcast socket, "message:added", response
         {:reply, :ok, socket}
       {:error, changeset} ->
         {:reply, {:error, %{errors: changeset}}, socket}
@@ -49,7 +59,10 @@ defmodule ClubHomepage.TeamChatChannel do
 
     {query, _, _, _} = get_latest_chat_messages_query({team_id, nil, nil})
     query = from(tcm in query, where: tcm.id < ^id_lower_than)
-    response = create_response({query, team_id, nil, nil})
+    response =
+      {query, team_id, nil, nil}
+      |> get_team_chat_messages_response
+      |> create_response
 
     push socket, "message:show-older", response
 
@@ -73,6 +86,21 @@ defmodule ClubHomepage.TeamChatChannel do
   defp get_latest_chat_messages_query({team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}) do
     query = from(tcm in TeamChatMessage, preload: [:user], where: tcm.team_id == ^team_id, where: tcm.id > ^last_read_team_chat_message_id, order_by: [desc: tcm.id])
     {query, team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}
+  end
+
+  defp get_team_chat_message_response({team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}, team_chat_message) do
+    response = %{chat_message: broadcast_message(team_chat_message)}
+    {response, team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}
+  end
+
+  defp get_team_chat_messages_response({query, team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}) do
+    chat_messages = create_response_objects(query)
+    chat_message_with_minimum_id = chat_message_with_minimum_id(chat_messages)
+    response = %{
+      chat_messages: chat_messages,
+      older_chat_messages_available: older_chat_messages_available?(team_id, chat_message_with_minimum_id["id"])
+    }
+    {response, team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}
   end
 
   defp save_last_read_team_chat_message_id(chat_message_id, team_id, user) when is_integer(chat_message_id) do
@@ -104,20 +132,10 @@ defmodule ClubHomepage.TeamChatChannel do
     Repo.one(from(tcm in TeamChatMessage, select: count(tcm.id), where: tcm.team_id == ^team_id, where: tcm.id < ^chat_message_id)) > 0
   end
 
-  defp create_response({query, team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}) do
-    chat_messages = create_response_objects(query)
-    chat_message_with_minimum_id = 
-      case chat_messages do
-        [] -> %{"id" => nil}
-        _ -> Enum.min_by(chat_messages, fn(chat_message) -> chat_message["id"] end)
-      end
-
-    %{
-      chat_messages: chat_messages,
-      last_read_team_chat_message_id: last_read_team_chat_message_id,
-      unread_team_chat_messages_number: unread_team_chat_messages_number,
-      older_chat_messages_available: older_chat_messages_available?(team_id, chat_message_with_minimum_id["id"])
-    }
+  defp create_response({response, _team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}) do
+    response
+    |> Map.put(:last_read_team_chat_message_id, last_read_team_chat_message_id)
+    |> Map.put(:unread_team_chat_messages_number, unread_team_chat_messages_number)
   end
 
   defp create_response_objects(query) do
@@ -125,6 +143,11 @@ defmodule ClubHomepage.TeamChatChannel do
     |> Repo.all
     |> Enum.reverse
     |> Enum.map(fn(team_chat_message) -> broadcast_message(team_chat_message) end)
+  end
+
+  defp chat_message_with_minimum_id([]), do: %{"id" => nil}
+  defp chat_message_with_minimum_id(chat_messages) do
+    Enum.min_by(chat_messages, fn(chat_message) -> chat_message["id"] end)
   end
 
   defp broadcast_message(team_chat_message) do
