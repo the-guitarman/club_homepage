@@ -73,7 +73,7 @@ let TeamChat = {
     teamIdChannel.onClose(e => console.log("channel closed", e))
 
     teamIdChannel.on("message:added", (payload) => {
-      messageList.append(createChatMessage(payload));
+      messageList.append(createChatMessage(payload.chat_message));
       addDates();
       messageList.prop({scrollTop: messageList.prop("scrollHeight")});
     })
