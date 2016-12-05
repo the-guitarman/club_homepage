@@ -266,9 +266,11 @@ defmodule ClubHomepage.MatchControllerTest do
 
   @tag login: true
   test "deletes chosen resource with a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
-    match = Repo.insert! %Match{}
+    match = insert(:match)
+    team = Repo.get!(ClubHomepage.Team, match.team_id)
     conn = delete conn, match_path(conn, :delete, match)
-    assert redirected_to(conn) == match_path(conn, :index)
+    #assert redirected_to(conn) == match_path(conn, :index)
+    assert redirected_to(conn) == ClubHomepage.Extension.CommonSeason.team_with_season_path(conn, team)
     refute Repo.get(Match, match.id)
   end
 

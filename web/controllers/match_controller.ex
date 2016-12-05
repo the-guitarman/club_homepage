@@ -69,8 +69,11 @@ defmodule ClubHomepage.MatchController do
     changeset = JsonMatchesValidator.changeset([:season_id, :team_id, json_field_name], json_field_name, match_params)
     if changeset.valid? do
       JsonMatchesCreator.run(changeset, "json")
-      #redirect(to: match_path(conn, :index))
-      render(conn, "new_bulk.html", changeset: changeset,
+      changeset = JsonMatchesValidator.changeset(Map.delete(match_params, "json"))
+      conn
+      |> put_flash(:info, gettext("matches_created_successfully"))
+      #|> redirect(to: match_path(conn, :index))
+      |> render("new_bulk.html", changeset: changeset,
              season_options: conn.assigns.season_options,
              team_options: conn.assigns.team_options)
     else
@@ -112,6 +115,7 @@ defmodule ClubHomepage.MatchController do
 
   def delete(conn, %{"id" => id}) do
     match = Repo.get!(Match, id)
+    team = Repo.get!(Team, match.team_id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
@@ -119,7 +123,8 @@ defmodule ClubHomepage.MatchController do
 
     conn
     |> put_flash(:info, gettext("match_deleted_successfully"))
-    |> redirect(to: match_path(conn, :index))
+    #|> redirect(to: match_path(conn, :index))
+    |> redirect(to: team_with_season_path(conn, team))
   end
 
   defp get_competition_select_options(conn, _) do
