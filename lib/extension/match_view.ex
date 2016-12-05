@@ -4,7 +4,21 @@ defmodule ClubHomepage.Extension.MatchView do
 
   import ClubHomepage.Gettext
 
+  alias ClubHomepage.Match
+
   @no_match_result "- : -"
+
+  def match_in_progress?(match) do
+    Match.in_progress?(match)
+  end
+
+  def match_finished?(match) do
+    Match.finished?(match)
+  end
+
+  def within_hours_before_kick_off?(match, hours) do
+    Timex.DateTime.compare(match.start_at, Timex.DateTime.local) == 1 && Timex.DateTime.compare(match.start_at, Timex.add(Timex.DateTime.local, Timex.Time.to_timestamp(hours, :hours))) == -1
+  end
 
   def match_datetime(match, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
     point_of_time(match.start_at, format)

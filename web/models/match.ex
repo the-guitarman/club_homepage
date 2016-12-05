@@ -49,7 +49,11 @@ defmodule ClubHomepage.Match do
     |> validate_opponent_team_goals
   end
 
-  def validate_team_goals(changeset) do
+  defp validate_uniqueness do
+    
+  end
+
+  defp validate_team_goals(changeset) do
     failure_reasons = get_field(changeset, :failure_reason)
     goals           = get_field(changeset, :team_goals)
     cond do
@@ -60,7 +64,7 @@ defmodule ClubHomepage.Match do
     end
   end
 
-  def validate_opponent_team_goals(changeset) do
+  defp validate_opponent_team_goals(changeset) do
     failure_reasons = get_field(changeset, :failure_reason)
     goals           = get_field(changeset, :opponent_team_goals)
     cond do
@@ -91,5 +95,14 @@ defmodule ClubHomepage.Match do
   @spec in_progress?( ClubHomepage.Match ) :: Boolean
   def in_progress?(match) do
     Timex.DateTime.compare(match.start_at, Timex.DateTime.local) == -1 && not finished?(match)
+  end
+
+  @doc """
+  Returns true if the match needs a decision (extra time, penalty shoot-out). Otherwise false.
+  """
+  @spec needs_decision?( ClubHomepage.Match ) :: Boolean
+  def needs_decision?(match) do
+    competition = ClubHomepage.Repo.get!(ClubHomepage.Competition, match.competition_id)
+    competition.matches_need_decition
   end
 end

@@ -73,6 +73,16 @@ defmodule ClubHomepage.MatchTest do
     assert not Match.in_progress?(match)
   end
 
+  test "match needs a decision" do
+    competition1 = insert(:competition, matches_need_decition: false)
+    match1 = insert(:match, competition_id: competition1.id)
+    assert Match.needs_decision?(match1) == false
+
+    competition2 = insert(:competition, matches_need_decition: true)
+    match2 = insert(:match, competition_id: competition2.id)
+    assert Match.needs_decision?(match2) == true
+  end
+
   test "validate goals with failure_reason is 'aborted'" do
     attrs = Map.put(@valid_attrs, :failure_reason, "aborted")
     changeset = Match.changeset(%Match{}, attrs)
