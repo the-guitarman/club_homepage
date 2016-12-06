@@ -2,23 +2,30 @@ defmodule ClubHomepage.MeetingPointView do
   use ClubHomepage.Web, :view
 
   def full_address(meeting_point) do
-    base_address(meeting_point) <> " " <>
-      get_district(meeting_point)# <> " " <>
-      #get_geo_coordinates(meeting_point)
+    case address_loaded?(meeting_point) do
+      false -> ""
+      _ -> base_address(meeting_point) <> " " <>
+           get_district(meeting_point)# <> " " <>
+           #get_geo_coordinates(meeting_point)
+    end
   end
 
   defp base_address(meeting_point) do
-    meeting_point.address.street <> ", " <>
-      meeting_point.address.zip_code <> " " <>
-      meeting_point.address.city
+    address = meeting_point.address
+    address.street <> ", " <> address.zip_code <> " " <> address.city
   end
 
   defp get_district(meeting_point) do
-    case meeting_point.address.district do
+    address = meeting_point.address
+    case address.district do
       nil -> ""
       ""  -> ""
-      _   -> (meeting_point.address.district)
+      _   -> (address.district)
     end
+  end
+
+  defp address_loaded?(meeting_point) do
+    Ecto.assoc_loaded?(meeting_point.address)
   end
 
   # defp get_geo_coordinates(meeting_point) do
