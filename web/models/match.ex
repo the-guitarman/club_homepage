@@ -49,8 +49,8 @@ defmodule ClubHomepage.Match do
     |> validate_opponent_team_goals
   end
 
-  defp validate_uniqueness do
-    
+  defp validate_uniqueness(changeset) do
+    changeset
   end
 
   defp validate_team_goals(changeset) do
