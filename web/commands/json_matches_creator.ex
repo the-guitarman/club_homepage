@@ -22,12 +22,10 @@ defmodule ClubHomepage.JsonMatchesCreator do
     create_matches(season_id, team_id, map["matches"], team_name)
   end
 
-  defp create_matches(season_id, team_id, matches_maps, team_name) do
-    records_count = 0
-    for match_map <- matches_maps do
-      records_count = records_count + create_match(season_id, team_id, match_map, team_name)
-    end
-    records_count
+  defp create_matches(season_id, team_id, matches_maps, team_name, records_count \\ 0)
+  defp create_matches(_season_id, _team_id, [], _team_name, _records_count), do: 0
+  defp create_matches(season_id, team_id, [match_map | matches_maps], team_name, records_count) do
+    records_count + create_match(season_id, team_id, match_map, team_name) + create_matches(season_id, team_id, matches_maps, team_name)
   end 
 
   defp create_match(season_id, team_id, match_map, team_name) do

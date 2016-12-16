@@ -28,12 +28,6 @@ defmodule ClubHomepage.JsonMatchesValidator do
     |> set_changeset_action
   end
 
-  def to_timex_date_format(value) do
-    [_, date_time] = String.split(value, ",")
-    String.strip(date_time)
-    |> Timex.parse("%d.%m.%Y - %H:%M Uhr", :strftime)
-  end
-
   defp set_changeset_changes(change_set, params) do
     %Changeset{change_set | changes: params}
   end
@@ -112,22 +106,32 @@ defmodule ClubHomepage.JsonMatchesValidator do
     ) |> Enum.join(", ")
   end
 
-  defp validate_json_content(change_set, field, %{"team_name" => team_name, "matches" => matches} = _map) when is_list(matches) do
-    for match <- matches do
-      change_set = 
-        case match do
-          %{"competition" => competition, "start_at" => start_at, "guest" => guest, "home" => home} ->
-            change_set
-            |> validate_string_value(field, "competition", competition)
-            |> validate_start_at(field, "start_at", start_at)
-            |> validate_string_value(field, "home", home)
-            |> validate_string_value(field, "guest", guest)
-          _ -> add_error(change_set, field, "A match requires start_at, home and guest fields.")
-        end
-    end
-    validate_string_value(change_set, field, "team_name", team_name)
+  defp validate_json_content(changeset, field, %{"team_name" => team_name, "matches" => matches} = _map) when is_list(matches) do
+    ret = 
+    changeset
+    |> validate_json_matches(field, matches)
+    |> validate_string_value(field, "team_name", team_name)
+    ret
   end
   defp validate_json_content(change_set, _field, _map), do: change_set
+
+  defp validate_json_matches(changeset, field, []), do: changeset
+  defp validate_json_matches(changeset, field, [match | rest_matches] = matches) when is_list(matches) do
+    changeset
+    |> validate_json_match(field, match)
+    |> validate_json_matches(field, rest_matches)
+  end
+
+  defp validate_json_match(changeset, field, %{"competition" => competition, "start_at" => start_at, "guest" => guest, "home" => home}) do
+    changeset
+    |> validate_string_value(field, "competition", competition)
+    |> validate_start_at(field, "start_at", start_at)
+    |> validate_string_value(field, "home", home)
+    |> validate_string_value(field, "guest", guest)
+  end
+  defp validate_json_match(changeset, field, _) do
+    add_error(changeset, field, "A match requires start_at, home and guest fields.")
+  end
 
   defp validate_start_at(change_set, field, key, value) when is_binary(value) do
     case to_timex_date_format(value) do
@@ -137,6 +141,13 @@ defmodule ClubHomepage.JsonMatchesValidator do
   end
   defp validate_start_at(change_set, field, key, _map) do
     add_error(change_set, field, "#{key}: missing or wrong type")
+  end
+
+  def to_timex_date_format(date_time_string) do
+    case Timex.parse(String.strip(date_time_string), "{ISO:Extended}") do
+      {:ok, datetime} -> {:ok, Timex.DateTime.local(datetime)}
+      {:error, error} -> {:error, error}
+    end
   end
 
   defp validate_string_value(change_set, field, key, value) when is_binary(value) do
