@@ -24,7 +24,7 @@
 
   <p>
     <% help = gettext("help") %>
-    <span class="css-step"><%= gettext("step %{step}", step: 2) %>:</span> <%= gettext("create_new_matches_step_2", help_link: "<a name='json-matches-help'>#{help}</a>") %>
+    <span class="css-step"><%= gettext("step %{step}", step: 2) %>:</span> <%= raw(gettext("create_new_matches_step_2", help_link: "<a href='#json-matches-help'>#{help}</a>")) %>
   </p>
 
   <div class="form-group <%= error_cls @changeset, f, :json %>">
@@ -47,12 +47,12 @@
   "team_name": "Name meiner Vereinsmannschaft",
   "matches": [
     {
-      "start_at": "Sonntag, 13.03.2016 - 12:00 Uhr",
+      "start_at": "2016-03-13T12:00:00+01:00",
       "home": "Name der gegnerischen Mannschaft 1",
       "guest": "Name meiner Vereinsmannschaft"
     },
     {
-      "start_at": "Sonntag, 03.04.2016 - 14:00 Uhr",
+      "start_at": "2016-04-03T14:00:00+02:00",
       "home": "Name meiner Vereinsmannschaft",
       "guest": "Name def gegnerischen Mannschaft 2"
     }
