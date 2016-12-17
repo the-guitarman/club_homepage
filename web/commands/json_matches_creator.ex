@@ -17,9 +17,12 @@ defmodule ClubHomepage.JsonMatchesCreator do
     params     = changeset.params
     season_id  = params["season_id"]
     team_id    = params["team_id"]
-    {:ok, map} = JSON.decode(params[json_field])
-    team_name = map["team_name"]
-    create_matches(season_id, team_id, map["matches"], team_name)
+    map = 
+      case JSON.decode(params[json_field]) do
+        {:ok, map} -> map
+        {:error, _} -> %{"team_name" => "", "matches" => []}
+      end
+    create_matches(season_id, team_id, map["matches"], map["team_name"])
   end
 
   defp create_matches(season_id, team_id, matches_maps, team_name, records_count \\ 0)

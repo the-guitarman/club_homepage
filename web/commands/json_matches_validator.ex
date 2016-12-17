@@ -13,11 +13,13 @@ defmodule ClubHomepage.JsonMatchesValidator do
   @spec changeset(List, Atom, Map) :: Ecto.Changeset
   def changeset do
     new_changeset
+    |> set_changeset_data
   end
   def changeset(params) when is_map(params) do
     new_changeset
     |> set_changeset_changes(params)
     |> set_changeset_params(params)
+    |> set_changeset_data
   end
   def changeset(required_fields, json_field, params) do
     new_changeset(required_fields, params)
@@ -26,6 +28,7 @@ defmodule ClubHomepage.JsonMatchesValidator do
     |> set_changeset_params(params)
     |> set_changeset_valid
     |> set_changeset_action
+    |> set_changeset_data
   end
 
   defp set_changeset_changes(change_set, params) do
@@ -49,10 +52,16 @@ defmodule ClubHomepage.JsonMatchesValidator do
     %Changeset{change_set | action: action}
   end
 
+  defp set_changeset_data(changeset) do
+    %Changeset{changeset | data: %Match{}}
+  end
+
   defp validate_json(change_set, json_field, params) do
-    case params[string(json_field)] do
-      nil  -> change_set
-      json -> parse(change_set, atom(json_field), json)
+    value = params[string(json_field)]
+    cond do
+      value == nil  -> add_error(change_set, json_field, "is empty")
+      String.trim(value) == ""  -> add_error(change_set, json_field, "is empty")
+      true -> parse(change_set, atom(json_field), value)
     end
   end
 
@@ -115,7 +124,7 @@ defmodule ClubHomepage.JsonMatchesValidator do
   end
   defp validate_json_content(change_set, _field, _map), do: change_set
 
-  defp validate_json_matches(changeset, field, []), do: changeset
+  defp validate_json_matches(changeset, _field, []), do: changeset
   defp validate_json_matches(changeset, field, [match | rest_matches] = matches) when is_list(matches) do
     changeset
     |> validate_json_match(field, match)
@@ -175,7 +184,7 @@ defmodule ClubHomepage.JsonMatchesValidator do
   end
 
   defp new_changeset do
-    %Changeset{data: %Match{}, action: nil, valid?: true, changes: %{}, params: nil, errors: []}
+    %Changeset{action: nil, valid?: true, changes: %{}, params: nil, errors: []}
   end
   defp new_changeset(required_fields, params) do
     types = %{season_id: :integer, team_id: :integer, json: :string}
