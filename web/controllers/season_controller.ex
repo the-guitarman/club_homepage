@@ -9,7 +9,7 @@ defmodule ClubHomepage.SeasonController do
   plug :scrub_params, "season" when action in [:create, :update]
 
   def index(conn, _params) do
-    seasons = Repo.all(Season)
+    seasons = Repo.all(from(s in Season, order_by: [desc: s.name]))
     render(conn, "index.html", seasons: seasons)
   end
 
