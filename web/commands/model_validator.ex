@@ -14,6 +14,15 @@ defmodule ClubHomepage.ModelValidator do
   """
   @spec validate_uniqueness( Ecto.Changeset, Atom | List, Keyword ) :: Ecto.Changeset
   def validate_uniqueness(model, key), do: validate_uniqueness(model, key, %{})
+  def validate_uniqueness(changeset, :json, keys) do
+    case Changeset.get_change(changeset, :json_creation) do
+      true ->
+        changeset
+        |> get_value_to_validate(keys)
+        |> check_uniqueness_of_value(keys)
+      _ -> changeset
+    end
+  end
   def validate_uniqueness(model, key, params) do
     case is_sqlite_adapter? do
       true ->
@@ -90,7 +99,7 @@ defmodule ClubHomepage.ModelValidator do
 
   defp check_uniqueness_of_value({:error, model, nil}, _key), do: model
   defp check_uniqueness_of_value({:ok, model, value}, key) when is_atom(key) do
-    case Repo.get_by(model.model.__struct__, Keyword.new([{key, value}])) do
+    case Repo.get_by(model.data.__struct__, Keyword.new([{key, value}])) do
       nil -> model
       _   -> Changeset.add_error(model, key, "already exists")
     end
@@ -105,7 +114,7 @@ defmodule ClubHomepage.ModelValidator do
 
   defp check_uniqueness_of_values(model, keys, values) do
     conditions = Enum.zip(keys, values) |> Enum.into(%{})
-    case Repo.get_by(model.model.__struct__, conditions) do
+    case Repo.get_by(model.data.__struct__, conditions) do
       nil -> model
       _   -> Changeset.add_error(model, get_model_name(model), "already exists")
     end
@@ -113,14 +122,14 @@ defmodule ClubHomepage.ModelValidator do
 
   defp check_for_existence_of_value({:error, _foreign_changeset, _value}, model, _key), do: model
   defp check_for_existence_of_value({:ok, foreign_changeset, value}, model, key) when is_atom(key) do
-    case Repo.get_by(foreign_changeset.model.__struct__, Keyword.new([{:id, value}])) do
+    case Repo.get_by(foreign_changeset.data.__struct__, Keyword.new([{:id, value}])) do
       nil -> Changeset.add_error(model, key, "does not exist")
       _   -> model
     end
   end
 
   defp get_model_name(model) do
-    Atom.to_string(model.model.__struct__)
+    Atom.to_string(model.data.__struct__)
     |> String.split(".", trim: true)
     |> Enum.reverse
     |> Enum.at(0)

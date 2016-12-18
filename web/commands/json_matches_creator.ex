@@ -40,6 +40,7 @@ defmodule ClubHomepage.JsonMatchesCreator do
       |> Map.put("opponent_team_id", opponent_team_id(opponent_team_name(team_name, match_map)))
       |> Map.put("start_at", parse_start_at(match_map["start_at"]))
       |> Map.put("home_match", home_match(team_name, match_map))
+      |> Map.put("json_creation", true)
     changeset = Match.changeset(%Match{}, map)
     insert_valid_match(changeset)
   end

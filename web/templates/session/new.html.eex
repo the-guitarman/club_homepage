@@ -10,7 +10,14 @@
           <%= password_input f, :password, placeholder: gettext("password"), class: "form-control" %>
         </div>
         <%= hidden_input f, :redirect, value: @redirect %>
-        <%= submit gettext("log_in"), class: "btn btn-primary" %>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= submit gettext("log_in"), class: "btn btn-primary" %>
+          </div>
+          <div class="col-xs-6 text-right">
+            Passwort vergessen?
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

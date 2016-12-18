@@ -27,7 +27,7 @@
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
-#: web/templates/secret/show.html.eex:17
+#: web/templates/secret/show.html.eex:16
 #: web/templates/sponsor_image/edit.html.eex:9
 #: web/templates/sponsor_image/index.html.eex:4
 #: web/templates/sponsor_image/new.html.eex:9
@@ -98,6 +98,7 @@ msgid "create_new_season"
 msgstr ""
 
 #: web/templates/match/show.html.eex:101
+#: web/templates/team/team_page_match_table.html.eex:11
 msgid "delete_match"
 msgstr ""
 
@@ -300,7 +301,7 @@ msgstr ""
 msgid "registration_information"
 msgstr ""
 
-#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:17
+#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:16
 msgid "secrets"
 msgstr ""
 
@@ -365,7 +366,7 @@ msgid "password"
 msgstr ""
 
 #: web/templates/layout/navbar_top.html.eex:60
-#: web/templates/page/index.html.eex:70 web/templates/team/edit.html.eex:11
+#: web/templates/page/index.html.eex:75 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21
 #: web/templates/team/team_images_page.html.eex:61
@@ -425,7 +426,7 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: web/templates/page/index.html.eex:104
+#: web/templates/page/index.html.eex:109
 msgid "latest_match_results"
 msgstr ""
 
@@ -498,7 +499,7 @@ msgstr ""
 msgid "saison_matches_missing"
 msgstr ""
 
-#: lib/extension/match_view.ex:9 lib/extension/match_view.ex:13
+#: lib/extension/match_view.ex:23 lib/extension/match_view.ex:27
 #: web/templates/match/show.html.eex:7 web/templates/page/index.html.eex:14
 #: web/templates/page/index.html.eex:41
 msgid "o_clock"
@@ -614,7 +615,7 @@ msgstr ""
 msgid "goals"
 msgstr ""
 
-#: web/templates/page/index.html.eex:89
+#: web/templates/page/index.html.eex:94
 msgid "next_matches"
 msgstr ""
 
@@ -715,11 +716,11 @@ msgstr ""
 msgid "match_created_successfully"
 msgstr ""
 
-#: web/controllers/match_controller.ex:121
+#: web/controllers/match_controller.ex:125
 msgid "match_deleted_successfully"
 msgstr ""
 
-#: web/controllers/match_controller.ex:106
+#: web/controllers/match_controller.ex:109
 msgid "match_updated_successfully"
 msgstr ""
 
@@ -807,15 +808,15 @@ msgstr ""
 msgid "text_page_updated_successfully"
 msgstr ""
 
-#: web/controllers/user_controller.ex:27
+#: web/controllers/user_controller.ex:28
 msgid "user_created_successfully"
 msgstr ""
 
-#: web/controllers/user_controller.ex:58
+#: web/controllers/user_controller.ex:59
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:90
+#: web/controllers/user_controller.ex:91
 msgid "user_updated_successfully"
 msgstr ""
 
@@ -967,7 +968,7 @@ msgstr ""
 msgid "no_news_notice"
 msgstr ""
 
-#: web/templates/page/index.html.eex:78
+#: web/templates/page/index.html.eex:83
 msgid "no_teams_notice"
 msgstr ""
 
@@ -1026,15 +1027,18 @@ msgstr ""
 msgid "optional"
 msgstr ""
 
-#: lib/email.ex:30 web/templates/secret/show.html.eex:11
+#: lib/email.ex:15
 msgid "secret_email_subject"
 msgstr ""
 
-#: lib/email.ex:11 web/templates/secret/show.html.eex:11
-#: web/templates/secret/show.html.eex:13
+#: lib/email.ex:10 web/templates/secret/show.html.eex:11
 msgid "secret_email_text"
 msgstr ""
 
-#: web/templates/secret/show.html.eex:8
+#: web/templates/secret/show.html.eex:9
 msgid "send_secret"
+msgstr ""
+
+#: web/controllers/match_controller.ex:74
+msgid "matches_created_successfully"
 msgstr ""

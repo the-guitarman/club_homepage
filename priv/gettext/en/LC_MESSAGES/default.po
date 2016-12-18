@@ -35,7 +35,7 @@ msgstr ""
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
-#: web/templates/secret/show.html.eex:17
+#: web/templates/secret/show.html.eex:16
 #: web/templates/sponsor_image/edit.html.eex:9
 #: web/templates/sponsor_image/index.html.eex:4
 #: web/templates/sponsor_image/new.html.eex:9
@@ -106,6 +106,7 @@ msgid "create_new_season"
 msgstr "Create Season"
 
 #: web/templates/match/show.html.eex:101
+#: web/templates/team/team_page_match_table.html.eex:11
 msgid "delete_match"
 msgstr "Delete"
 
@@ -308,7 +309,7 @@ msgstr "Opponent Teams"
 msgid "registration_information"
 msgstr "Registration Information"
 
-#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:17
+#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:16
 msgid "secrets"
 msgstr "Secrets"
 
@@ -373,7 +374,7 @@ msgid "password"
 msgstr "Password"
 
 #: web/templates/layout/navbar_top.html.eex:60
-#: web/templates/page/index.html.eex:70 web/templates/team/edit.html.eex:11
+#: web/templates/page/index.html.eex:75 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21
 #: web/templates/team/team_images_page.html.eex:61
@@ -433,7 +434,7 @@ msgstr "Team Name"
 msgid "users"
 msgstr "Club Members"
 
-#: web/templates/page/index.html.eex:104
+#: web/templates/page/index.html.eex:109
 msgid "latest_match_results"
 msgstr "Latest Match Results"
 
@@ -506,7 +507,7 @@ msgstr "Permalink"
 msgid "saison_matches_missing"
 msgstr "No matches found."
 
-#: lib/extension/match_view.ex:9 lib/extension/match_view.ex:13
+#: lib/extension/match_view.ex:23 lib/extension/match_view.ex:27
 #: web/templates/match/show.html.eex:7 web/templates/page/index.html.eex:14
 #: web/templates/page/index.html.eex:41
 msgid "o_clock"
@@ -622,7 +623,7 @@ msgstr "Edit Permalink"
 msgid "goals"
 msgstr "Goals"
 
-#: web/templates/page/index.html.eex:89
+#: web/templates/page/index.html.eex:94
 msgid "next_matches"
 msgstr "Next Matches"
 
@@ -723,11 +724,11 @@ msgstr "You are logged in now."
 msgid "match_created_successfully"
 msgstr "Match created successfully."
 
-#: web/controllers/match_controller.ex:121
+#: web/controllers/match_controller.ex:125
 msgid "match_deleted_successfully"
 msgstr "Match deleted successfully."
 
-#: web/controllers/match_controller.ex:106
+#: web/controllers/match_controller.ex:109
 msgid "match_updated_successfully"
 msgstr "Match updated successfully."
 
@@ -815,15 +816,15 @@ msgstr "Team updated successfully."
 msgid "text_page_updated_successfully"
 msgstr "Page updated successfully."
 
-#: web/controllers/user_controller.ex:27
+#: web/controllers/user_controller.ex:28
 msgid "user_created_successfully"
 msgstr "User created successfully."
 
-#: web/controllers/user_controller.ex:58
+#: web/controllers/user_controller.ex:59
 msgid "user_created_successfully_and_loged_in"
 msgstr "User created successfully and logged in."
 
-#: web/controllers/user_controller.ex:90
+#: web/controllers/user_controller.ex:91
 msgid "user_updated_successfully"
 msgstr "user updated successfully."
 
@@ -975,7 +976,7 @@ msgstr "no"
 msgid "no_news_notice"
 msgstr "There are no news at the moment."
 
-#: web/templates/page/index.html.eex:78
+#: web/templates/page/index.html.eex:83
 msgid "no_teams_notice"
 msgstr "There are no teams at the moment."
 
@@ -1034,15 +1035,18 @@ msgstr "Secret created and sent successfully."
 msgid "optional"
 msgstr "optional"
 
-#: lib/email.ex:30 web/templates/secret/show.html.eex:11
+#: lib/email.ex:15
 msgid "secret_email_subject"
 msgstr "Your Registration Secret"
 
-#: lib/email.ex:11 web/templates/secret/show.html.eex:11
-#: web/templates/secret/show.html.eex:13
+#: lib/email.ex:10 web/templates/secret/show.html.eex:11
 msgid "secret_email_text"
 msgstr "Hi, \n\nhere is your secret to register at #{domain}. \n\nSecret: #{secret} \n\nRegister now: #{scheme}://#{domain}#{user_registration_path} \n\nRegards \n\nThe Web-Team of #{domain}"
 
-#: web/templates/secret/show.html.eex:8
+#: web/templates/secret/show.html.eex:9
 msgid "send_secret"
 msgstr "Send it"
+
+#: web/controllers/match_controller.ex:74
+msgid "matches_created_successfully"
+msgstr "Matches created successfully."

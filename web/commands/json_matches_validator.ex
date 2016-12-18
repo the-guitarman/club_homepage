@@ -14,12 +14,14 @@ defmodule ClubHomepage.JsonMatchesValidator do
   def changeset do
     new_changeset
     |> set_changeset_data
+    |> set_changeset_model
   end
   def changeset(params) when is_map(params) do
     new_changeset
     |> set_changeset_changes(params)
     |> set_changeset_params(params)
     |> set_changeset_data
+    |> set_changeset_model
   end
   def changeset(required_fields, json_field, params) do
     new_changeset(required_fields, params)
@@ -29,6 +31,7 @@ defmodule ClubHomepage.JsonMatchesValidator do
     |> set_changeset_valid
     |> set_changeset_action
     |> set_changeset_data
+    |> set_changeset_model
   end
 
   defp set_changeset_changes(change_set, params) do
@@ -54,6 +57,11 @@ defmodule ClubHomepage.JsonMatchesValidator do
 
   defp set_changeset_data(changeset) do
     %Changeset{changeset | data: %Match{}}
+  end
+
+  defp set_changeset_model(changeset) do
+    # %Changeset{changeset | model: Match}
+    changeset
   end
 
   defp validate_json(change_set, json_field, params) do
