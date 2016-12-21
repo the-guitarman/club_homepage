@@ -25,7 +25,11 @@
         <tbody>
         <%= for user <- @users do %>
           <tr>
-            <td><%= user.login %></td>
+            <td>
+              <%= if user.login do %>
+                <%= link user.login, to: managed_user_path(@conn, :show, user) %>
+              <% end %>
+            </td>
             <td><%= user.name %></td>
             <td><%= user.email %></td>
             <td><%= user.active %></td>

@@ -151,6 +151,11 @@ defmodule ClubHomepage.TeamChatChannel do
   end
 
   defp broadcast_message(team_chat_message) do
-    %{"id" => team_chat_message.id, "user_id" => team_chat_message.user.id, "user_name" => internal_user_name(team_chat_message.user), "at" => team_chat_message.inserted_at, "message" => team_chat_message.message}
+    %{"id" => team_chat_message.id, "user_id" => team_chat_message.user.id, "user_name" => internal_user_name(team_chat_message.user), "at" => to_iso8601(team_chat_message.inserted_at), "message" => team_chat_message.message}
+  end
+
+  defp to_iso8601(datetime) do
+    {:ok, iso8601} = datetime |> Timex.format("{ISO:Extended}")
+    iso8601
   end
 end

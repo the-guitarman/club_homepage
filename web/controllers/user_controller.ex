@@ -5,13 +5,18 @@ defmodule ClubHomepage.UserController do
   alias ClubHomepage.Auth
   alias ClubHomepage.UserRole
 
-  plug :is_user_editor? when action in [:index, :new_unregistered, :create_unregistered, :edit, :update, :delete]
+  plug :is_user_editor? when action in [:index, :show, :new_unregistered, :create_unregistered, :edit, :update, :delete]
   plug :scrub_params, "user" when action in [:create, :update]
   plug :require_no_user when action in [:new, :create]
 
   def index(conn, _params) do
     users = Repo.all(User)
     render(conn, "index.html", users: users)
+  end
+
+  def show(conn, %{"id" => id}) do
+    user = Repo.get!(User, id)
+    render(conn, "show.html", user: user)
   end
 
   def new_unregistered(conn, _params) do

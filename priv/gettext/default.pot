@@ -44,6 +44,7 @@
 #: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
 #: web/templates/user/index.html.eex:4 web/templates/user/new.html.eex:15
 #: web/templates/user/new_unregistered.html.eex:12
+#: web/templates/user/show.html.eex:7 web/templates/user/show.html.eex:27
 msgid "all"
 msgstr ""
 
@@ -218,7 +219,7 @@ msgstr ""
 
 #: web/templates/secret/index.html.eex:7 web/templates/secret/index.html.eex:33
 #: web/templates/secret/new.html.eex:4 web/templates/user/index.html.eex:9
-#: web/templates/user/index.html.eex:50
+#: web/templates/user/index.html.eex:54
 msgid "create_new_secret"
 msgstr ""
 
@@ -248,7 +249,7 @@ msgstr ""
 #: web/templates/team/index.html.eex:16
 #: web/templates/team/team_images_page.html.eex:36
 #: web/templates/team_image/index.html.eex:26
-#: web/templates/user/index.html.eex:40
+#: web/templates/user/index.html.eex:44
 msgid "edit"
 msgstr ""
 
@@ -286,7 +287,7 @@ msgstr ""
 #: web/templates/sponsor_image/index.html.eex:9
 #: web/templates/team/show.html.eex:8 web/templates/user/form.html.eex:22
 #: web/templates/user/form_unregistered.html.eex:8
-#: web/templates/user/index.html.eex:17
+#: web/templates/user/index.html.eex:17 web/templates/user/show.html.eex:11
 msgid "name"
 msgstr ""
 
@@ -352,12 +353,13 @@ msgid "edit_team"
 msgstr ""
 
 #: web/templates/layout/navbar_top.html.eex:106
-#: web/templates/session/new.html.eex:13
+#: web/templates/session/new.html.eex:15
 msgid "log_in"
 msgstr ""
 
 #: web/templates/session/new.html.eex:4 web/templates/session/new.html.eex:7
 #: web/templates/user/form.html.eex:8 web/templates/user/index.html.eex:16
+#: web/templates/user/show.html.eex:10
 msgid "login"
 msgstr ""
 
@@ -375,12 +377,13 @@ msgid "teams"
 msgstr ""
 
 #: web/templates/user/form.html.eex:61 web/templates/user/index.html.eex:19
+#: web/templates/user/show.html.eex:13
 msgid "active"
 msgstr ""
 
 #: web/templates/user/form.html.eex:41
 #: web/templates/user/form_unregistered.html.eex:21
-#: web/templates/user/index.html.eex:20
+#: web/templates/user/index.html.eex:20 web/templates/user/show.html.eex:14
 msgid "birthday"
 msgstr ""
 
@@ -392,7 +395,7 @@ msgstr ""
 msgid "create_new_unregistered_user_notice"
 msgstr ""
 
-#: web/templates/user/index.html.eex:7 web/templates/user/index.html.eex:48
+#: web/templates/user/index.html.eex:7 web/templates/user/index.html.eex:52
 #: web/templates/user/new.html.eex:4
 #: web/templates/user/new_unregistered.html.eex:4
 msgid "create_new_user"
@@ -408,7 +411,7 @@ msgstr ""
 
 #: web/templates/user/form.html.eex:34
 #: web/templates/user/form_unregistered.html.eex:14
-#: web/templates/user/index.html.eex:18
+#: web/templates/user/index.html.eex:18 web/templates/user/show.html.eex:12
 msgid "email"
 msgstr ""
 
@@ -423,6 +426,7 @@ msgstr ""
 #: web/templates/user/edit.html.eex:13 web/templates/user/index.html.eex:4
 #: web/templates/user/new.html.eex:15
 #: web/templates/user/new_unregistered.html.eex:12
+#: web/templates/user/show.html.eex:7 web/templates/user/show.html.eex:27
 msgid "users"
 msgstr ""
 
@@ -808,15 +812,15 @@ msgstr ""
 msgid "text_page_updated_successfully"
 msgstr ""
 
-#: web/controllers/user_controller.ex:28
+#: web/controllers/user_controller.ex:33
 msgid "user_created_successfully"
 msgstr ""
 
-#: web/controllers/user_controller.ex:59
+#: web/controllers/user_controller.ex:64
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:91
+#: web/controllers/user_controller.ex:96
 msgid "user_updated_successfully"
 msgstr ""
 

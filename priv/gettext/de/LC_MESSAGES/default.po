@@ -52,6 +52,7 @@ msgstr ""
 #: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
 #: web/templates/user/index.html.eex:4 web/templates/user/new.html.eex:15
 #: web/templates/user/new_unregistered.html.eex:12
+#: web/templates/user/show.html.eex:7 web/templates/user/show.html.eex:27
 msgid "all"
 msgstr "Alle"
 
@@ -226,7 +227,7 @@ msgstr "Neue Gegnerische Mannschaft anlegen"
 
 #: web/templates/secret/index.html.eex:7 web/templates/secret/index.html.eex:33
 #: web/templates/secret/new.html.eex:4 web/templates/user/index.html.eex:9
-#: web/templates/user/index.html.eex:50
+#: web/templates/user/index.html.eex:54
 msgid "create_new_secret"
 msgstr "Neues Secret anlegen"
 
@@ -256,7 +257,7 @@ msgstr "Ortsteil"
 #: web/templates/team/index.html.eex:16
 #: web/templates/team/team_images_page.html.eex:36
 #: web/templates/team_image/index.html.eex:26
-#: web/templates/user/index.html.eex:40
+#: web/templates/user/index.html.eex:44
 msgid "edit"
 msgstr "Ändern"
 
@@ -294,7 +295,7 @@ msgstr "Treffpunkte"
 #: web/templates/sponsor_image/index.html.eex:9
 #: web/templates/team/show.html.eex:8 web/templates/user/form.html.eex:22
 #: web/templates/user/form_unregistered.html.eex:8
-#: web/templates/user/index.html.eex:17
+#: web/templates/user/index.html.eex:17 web/templates/user/show.html.eex:11
 msgid "name"
 msgstr "Name"
 
@@ -360,12 +361,13 @@ msgid "edit_team"
 msgstr "Vereinsmannschaft ändern/bearbeiten"
 
 #: web/templates/layout/navbar_top.html.eex:106
-#: web/templates/session/new.html.eex:13
+#: web/templates/session/new.html.eex:15
 msgid "log_in"
 msgstr "Login"
 
 #: web/templates/session/new.html.eex:4 web/templates/session/new.html.eex:7
 #: web/templates/user/form.html.eex:8 web/templates/user/index.html.eex:16
+#: web/templates/user/show.html.eex:10
 msgid "login"
 msgstr "Login"
 
@@ -383,12 +385,13 @@ msgid "teams"
 msgstr "Vereinsmannschaften"
 
 #: web/templates/user/form.html.eex:61 web/templates/user/index.html.eex:19
+#: web/templates/user/show.html.eex:13
 msgid "active"
 msgstr "aktiv"
 
 #: web/templates/user/form.html.eex:41
 #: web/templates/user/form_unregistered.html.eex:21
-#: web/templates/user/index.html.eex:20
+#: web/templates/user/index.html.eex:20 web/templates/user/show.html.eex:14
 msgid "birthday"
 msgstr "Geburtstag"
 
@@ -400,7 +403,7 @@ msgstr "* Die E-Mail-Adresse sollte der anzulegenden Person gehören. Sie kann d
 msgid "create_new_unregistered_user_notice"
 msgstr "Hier kannst Du Vereinsmitglieder anlegen, die sich (noch) nicht registriert haben, um später z.B. die Mannschaftsaufstellung planen zu können."
 
-#: web/templates/user/index.html.eex:7 web/templates/user/index.html.eex:48
+#: web/templates/user/index.html.eex:7 web/templates/user/index.html.eex:52
 #: web/templates/user/new.html.eex:4
 #: web/templates/user/new_unregistered.html.eex:4
 msgid "create_new_user"
@@ -416,7 +419,7 @@ msgstr "Vereinsmitglied ändern/bearbeiten"
 
 #: web/templates/user/form.html.eex:34
 #: web/templates/user/form_unregistered.html.eex:14
-#: web/templates/user/index.html.eex:18
+#: web/templates/user/index.html.eex:18 web/templates/user/show.html.eex:12
 msgid "email"
 msgstr "E-Mail"
 
@@ -431,6 +434,7 @@ msgstr "Mannschaftsname"
 #: web/templates/user/edit.html.eex:13 web/templates/user/index.html.eex:4
 #: web/templates/user/new.html.eex:15
 #: web/templates/user/new_unregistered.html.eex:12
+#: web/templates/user/show.html.eex:7 web/templates/user/show.html.eex:27
 msgid "users"
 msgstr "Vereinsmitglieder"
 
@@ -816,15 +820,15 @@ msgstr "Die Vereinsmannschaft wurde gespeichert."
 msgid "text_page_updated_successfully"
 msgstr "Die Seite wurde gespeichert."
 
-#: web/controllers/user_controller.ex:28
+#: web/controllers/user_controller.ex:33
 msgid "user_created_successfully"
 msgstr "Der Benutzer wurde angelegt."
 
-#: web/controllers/user_controller.ex:59
+#: web/controllers/user_controller.ex:64
 msgid "user_created_successfully_and_loged_in"
 msgstr "Der Benutzer wurde angelegt und ist nun eingeloggt."
 
-#: web/controllers/user_controller.ex:91
+#: web/controllers/user_controller.ex:96
 msgid "user_updated_successfully"
 msgstr "Der Benutzer wurde gespeichert."
 

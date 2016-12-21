@@ -24,6 +24,7 @@ defmodule ClubHomepage.UserControllerTest do
     user = insert(:user)
     Enum.each([
       get(conn, managed_user_path(conn, :index)),
+      get(conn, managed_user_path(conn, :show, user)),
       get(conn, unregistered_user_path(conn, :new_unregistered)),
       post(conn, unregistered_user_path(conn, :create_unregistered), user: @valid_attrs),
       get(conn, managed_user_path(conn, :edit, user)),
@@ -63,6 +64,13 @@ defmodule ClubHomepage.UserControllerTest do
     assert html_response(conn, 200) =~ "All Club Members"
     assert html_response(conn, 200) =~ "<td>#{user.email}</td>"
     assert html_response(conn, 200) =~ "<td>#{unregistered_user.email}</td>"
+  end
+
+  @tag login: "user-editor"
+  test "an user-editor can access the show action", %{conn: conn, current_user: _current_user} do
+    user = insert(:user)
+    conn = get conn, managed_user_path(conn, :show, user)
+    assert html_response(conn, 200) =~ "<h2>#{user.login}</h2>"
   end
 
   @tag login: true
