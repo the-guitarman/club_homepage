@@ -14,12 +14,12 @@ defmodule ClubHomepage.UserMetaData do
     meta_data = user_meta_data(user)
 
     last_read_team_chat_message_ids =
-      case meta_data[:last_read_team_chat_message_ids] do
+      case meta_data["last_read_team_chat_message_ids"] do
         nil -> %{Integer.to_string(team_id) => chat_message_id}
         last_read_team_chat_message_ids -> Map.put(last_read_team_chat_message_ids, Integer.to_string(team_id), chat_message_id)
       end
 
-    meta_data = Map.put(meta_data, :last_read_team_chat_message_ids, last_read_team_chat_message_ids)
+    meta_data = Map.put(meta_data, "last_read_team_chat_message_ids", last_read_team_chat_message_ids)
     changeset = User.changeset(user, %{"meta_data" => meta_data})
     Repo.update(changeset)
   end
@@ -43,7 +43,7 @@ defmodule ClubHomepage.UserMetaData do
   @doc """
   """
   def last_read_team_chat_message_id(team_id, user) do
-    case user_meta_data(user)[:last_read_team_chat_message_ids] do
+    case user_meta_data(user)["last_read_team_chat_message_ids"] do
       nil -> nil
       timestamps -> timestamps[Integer.to_string(team_id)]
     end

@@ -24,7 +24,7 @@ defmodule ClubHomepage.UserMetaDataTest do
 
     {:ok, updated_user} = UserMetaData.save_last_read_team_chat_message_id(team.id, message_2.id, user)
 
-    assert updated_user.meta_data[:last_read_team_chat_message_ids][Integer.to_string(team.id)] == message_2.id
+    assert updated_user.meta_data["last_read_team_chat_message_ids"][Integer.to_string(team.id)] == message_2.id
     assert UserMetaData.last_read_team_chat_message_id(team.id, updated_user) == message_2.id
     assert UserMetaData.unread_team_chat_messages_number(team.id, updated_user) == 1
     assert Enum.count(UserMetaData.unread_team_chat_messages(team.id, updated_user)) == 1

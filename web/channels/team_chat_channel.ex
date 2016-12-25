@@ -8,42 +8,41 @@ defmodule ClubHomepage.TeamChatChannel do
   @limit 10
 
   def join("team-chats:" <> team_id, _payload, socket) do
-    user = socket.assigns.current_user
+    current_user = socket.assigns.current_user
     team_id = String.to_integer(team_id)
 
     response =
       team_id
-      |> get_last_read_team_chat_message_id(user)
-      |> get_unread_team_chat_messages_number(user)
+      |> get_last_read_team_chat_message_id(current_user)
+      |> get_unread_team_chat_messages_number(current_user)
       |> get_latest_chat_messages_query
       |> get_team_chat_messages_response
-      |> create_response
-      |> save_last_read_team_chat_message_id(team_id, user)
+      |> create_response(current_user)
+      |> save_last_read_team_chat_message_id(team_id, current_user)
 
     {:ok, response, assign(socket, :team_id, team_id)}
   end
 
   def handle_in("message:add", payload, socket) do
     team_id = get_team_id_from_socket_assigns(socket)
-    user = socket.assigns.current_user
+    current_user = socket.assigns.current_user
 
     payload = Map.put(payload, "team_id", team_id)
-    payload = Map.put(payload, "user_id", user.id)
+    payload = Map.put(payload, "user_id", current_user.id)
     changeset = TeamChatMessage.changeset(%TeamChatMessage{}, payload)
 
     case Repo.insert(changeset) do
       {:ok, team_chat_message} ->
-        #older_chat_messages_available?(team_id)
         team_chat_message = Repo.preload(team_chat_message, :user)
 
         response =
           team_id
-          |> get_last_read_team_chat_message_id(user)
-          |> get_unread_team_chat_messages_number(user)
+          |> get_last_read_team_chat_message_id(current_user)
+          |> get_unread_team_chat_messages_number(current_user)
           |> get_team_chat_message_response(team_chat_message)
-          |> create_response
+          |> create_response(current_user)
 
-        save_last_read_team_chat_message_id(team_chat_message.id, team_id, user)
+        save_last_read_team_chat_message_id(team_chat_message.id, team_id, current_user)
 
         broadcast socket, "message:added", response
         {:reply, :ok, socket}
@@ -53,7 +52,7 @@ defmodule ClubHomepage.TeamChatChannel do
   end
   def handle_in("message:show-older", payload, socket) do
     team_id = get_team_id_from_socket_assigns(socket)
-    #user = socket.assigns.current_user
+    current_user = socket.assigns.current_user
 
     id_lower_than = payload["id_lower_than"]
 
@@ -62,7 +61,7 @@ defmodule ClubHomepage.TeamChatChannel do
     response =
       {query, team_id, nil, nil}
       |> get_team_chat_messages_response
-      |> create_response
+      |> create_response(current_user)
 
     push socket, "message:show-older", response
 
@@ -84,8 +83,15 @@ defmodule ClubHomepage.TeamChatChannel do
     {query, team_id, nil, nil}
   end
   defp get_latest_chat_messages_query({team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}) do
-    query = from(tcm in TeamChatMessage, preload: [:user], where: tcm.team_id == ^team_id, where: tcm.id > ^last_read_team_chat_message_id, order_by: [desc: tcm.id])
-    {query, team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}
+    maximum_id = Repo.one(from(tcm in TeamChatMessage, select: max(tcm.id)))
+
+    cond do
+      maximum_id == nil -> get_latest_chat_messages_query({team_id, nil, nil})
+      maximum_id > last_read_team_chat_message_id ->
+        query = from(tcm in TeamChatMessage, preload: [:user], where: tcm.team_id == ^team_id, where: tcm.id > ^last_read_team_chat_message_id, order_by: [desc: tcm.id])
+        {query, team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}
+      true -> get_latest_chat_messages_query({team_id, nil, nil})
+    end
   end
 
   defp get_team_chat_message_response({team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}, team_chat_message) do
@@ -132,10 +138,11 @@ defmodule ClubHomepage.TeamChatChannel do
     Repo.one(from(tcm in TeamChatMessage, select: count(tcm.id), where: tcm.team_id == ^team_id, where: tcm.id < ^chat_message_id)) > 0
   end
 
-  defp create_response({response, _team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}) do
+  defp create_response({response, _team_id, last_read_team_chat_message_id, unread_team_chat_messages_number}, current_user) do
     response
     |> Map.put(:last_read_team_chat_message_id, last_read_team_chat_message_id)
     |> Map.put(:unread_team_chat_messages_number, unread_team_chat_messages_number)
+    |> Map.put(:current_user_id, current_user.id)
   end
 
   defp create_response_objects(query) do

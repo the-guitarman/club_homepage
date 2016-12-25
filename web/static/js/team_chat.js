@@ -7,15 +7,15 @@ let TeamChat = {
     let messageList = $('#message-list');
 
     let createTime = (at) => {
-      return at.hour + ':' + at.minute + ':' + at.second;
+      return moment(at).format('HH:mm:ss');
     }
 
     let createDate = (at) => {
-      return moment(at.year + '-' + at.month + '-' + at.day).format('YYYY-MM-DD');
+      return moment(at).format('YYYY-MM-DD');
     }
 
     let createNewMessagesEl = () => {
-      return `<div class="">Neue Nachrichten</div>`;
+      return `<div class="row js-new-messages-hint css-new-messages-hint"><div class="col-xs-offset-3 col-xs-6 text-center">Neue Nachrichten</div></div>`;
     }
 
     let createDateEl = (date) => {
@@ -37,19 +37,6 @@ let TeamChat = {
       }
     }
 
-    let addNewMessagesHint = (last_read_team_chat_message_id) => {
-      if (!_.isEmpty(last_read_team_chat_message_id)) {
-        $.each(messageList.find('.message'), function(index, messageEl){
-          messageEl = $(messageEl);
-          var id = messageEl.data('id');
-          if (id == last_read_team_chat_message_id) {
-            messageEl.before(createNewMessagesEl());
-
-          }
-        });
-      }
-    }
-
     let addDates = () => {
       messageList.find('.date').remove();
       var currentDate = null;
@@ -61,6 +48,46 @@ let TeamChat = {
           messageEl.before(createDateEl(date));
         }
       });
+    }
+
+    let addNewMessagesHint = (response) => {
+      $('.js-new-messages-hint').remove();
+      var last_read_team_chat_message_id = response.last_read_team_chat_message_id;
+      if (_.isNumber(last_read_team_chat_message_id)) {
+        $.each(messageList.find('.message'), function(index, messageEl){
+          messageEl = $(messageEl);
+          var id = messageEl.data('id');
+          if (id == last_read_team_chat_message_id) {
+            messageEl.after(createNewMessagesEl());
+          }
+        });
+      }
+    }
+
+    let scrollMessagesList = (response) => {
+      var divScrollTop = 0;
+      var messagesList = $("#message-list");
+      var lastReadTeamChatMessageId = response.last_read_team_chat_message_id;
+      var element = [];
+      var newMessagesHint = messagesList.find('.js-new-messages-hint:last');
+      if (newMessagesHint.length > 0) {
+        element = newMessagesHint.last();
+        var lastMessage = messagesList.find('.message:last');
+        if (lastMessage.offset().top - element.offset().top < messagesList.outerHeight()) {
+          element = lastMessage;
+        }
+
+      } else if (_.isNumber(lastReadTeamChatMessageId)) {
+        element = messagesList.find('.message[data-id=' + lastReadTeamChatMessageId + ']');
+      } else {
+        element = messagesList.find('.message:last');
+      }
+      if (element.length > 0) {
+        divScrollTop = element.offset().top - messagesList.offset().top;
+      } else {
+        divScrollTop = messagesList.outerHeight();
+      }
+      messagesList.animate({scrollTop: divScrollTop});
     }
 
     socket.onOpen( ev => console.log("OPEN", ev) )
@@ -75,6 +102,10 @@ let TeamChat = {
     teamIdChannel.on("message:added", (payload) => {
       messageList.append(createChatMessage(payload.chat_message));
       addDates();
+      if (userId != payload.current_user_id) {
+        addNewMessagesHint(payload);
+      }
+      //scrollMessagesList(payload);
       messageList.prop({scrollTop: messageList.prop("scrollHeight")});
     })
     teamIdChannel.on("message:show-older", (payload) => {
@@ -87,14 +118,14 @@ let TeamChat = {
 
     teamIdChannel.join()
       .receive("ok", (response) => {
-        console.log(response);
         messageList.html();
         $.each(response.chat_messages, function(index, chatMessage){
           messageList.append(createChatMessage(chatMessage));
         });
         addDates();
+        addNewMessagesHint(response);
         olderChatMessagesButtonHandler(response.older_chat_messages_available);
-        messageList.prop({scrollTop: 0});
+        scrollMessagesList(response);
         $('.js-new-team-chat-messages-badge').addClass('hidden').html('0');
       })
       .receive("error", (reason) => {
