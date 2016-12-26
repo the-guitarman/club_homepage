@@ -15,7 +15,7 @@ let TeamChat = {
     }
 
     let createNewMessagesEl = () => {
-      return `<div class="row js-new-messages-hint css-new-messages-hint"><div class="col-xs-offset-3 col-xs-6 text-center">Neue Nachrichten</div></div>`;
+      return `<div class="js-new-messages-hint css-new-messages-hint text-center"><div>Neue Nachrichten</div></div>`;
     }
 
     let createDateEl = (date) => {
@@ -64,6 +64,19 @@ let TeamChat = {
       }
     }
 
+    let showNewMessagesBadge = (response) => {
+      var unreadTeamChatMessagesNumber = response.unread_team_chat_messages_number;
+      if (_.isNumber(unreadTeamChatMessagesNumber)) {
+        $('.js-new-team-chat-messages-badge').removeClass('hidden').html(unreadTeamChatMessagesNumber);
+      } else {
+        hiddenNewMessagesBadge();
+      }
+    }
+
+    let hiddenNewMessagesBadge = () => {
+      $('.js-new-team-chat-messages-badge').addClass('hidden').html('0');
+    }
+
     let scrollMessagesList = (response) => {
       var divScrollTop = 0;
       var messagesList = $("#message-list");
@@ -104,6 +117,7 @@ let TeamChat = {
       addDates();
       if (userId != payload.current_user_id) {
         addNewMessagesHint(payload);
+        showNewMessagesBadge(payload);
       }
       //scrollMessagesList(payload);
       messageList.prop({scrollTop: messageList.prop("scrollHeight")});
@@ -124,6 +138,7 @@ let TeamChat = {
         });
         addDates();
         addNewMessagesHint(response);
+        showNewMessagesBadge(payload);
         olderChatMessagesButtonHandler(response.older_chat_messages_available);
         scrollMessagesList(response);
         $('.js-new-team-chat-messages-badge').addClass('hidden').html('0');
@@ -150,6 +165,10 @@ let TeamChat = {
     $('.js-show-more-chat-messages').on('click', event => {
       var oldestDisplayedChatMessageId = messageList.find('.message').first().data('id');
       teamIdChannel.push('message:show-older', {id_lower_than: oldestDisplayedChatMessageId});
+    });
+
+    $(document).on( 'scroll', messageList, function(){
+      hiddenNewMessagesBadge();
     });
   }
 }
