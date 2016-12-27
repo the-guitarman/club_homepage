@@ -69,11 +69,11 @@ let TeamChat = {
       if (_.isNumber(unreadTeamChatMessagesNumber)) {
         $('.js-new-team-chat-messages-badge').removeClass('hidden').html(unreadTeamChatMessagesNumber);
       } else {
-        hiddenNewMessagesBadge();
+        hideNewMessagesBadge();
       }
     }
 
-    let hiddenNewMessagesBadge = () => {
+    let hideNewMessagesBadge = () => {
       $('.js-new-team-chat-messages-badge').addClass('hidden').html('0');
     }
 
@@ -132,7 +132,6 @@ let TeamChat = {
 
     teamIdChannel.join()
       .receive("ok", (response) => {
-        messageList.html();
         $.each(response.chat_messages, function(index, chatMessage){
           messageList.append(createChatMessage(chatMessage));
         });
@@ -141,7 +140,6 @@ let TeamChat = {
         showNewMessagesBadge(payload);
         olderChatMessagesButtonHandler(response.older_chat_messages_available);
         scrollMessagesList(response);
-        $('.js-new-team-chat-messages-badge').addClass('hidden').html('0');
       })
       .receive("error", (reason) => {
         console.log("join failed", reason)
@@ -168,7 +166,7 @@ let TeamChat = {
     });
 
     $(document).on( 'scroll', messageList, function(){
-      hiddenNewMessagesBadge();
+      hideNewMessagesBadge();
     });
   }
 }

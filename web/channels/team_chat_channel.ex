@@ -19,7 +19,7 @@ defmodule ClubHomepage.TeamChatChannel do
       |> get_team_chat_messages_response
       |> create_response(current_user)
       |> save_last_read_team_chat_message_id(team_id, current_user)
-
+ 
     {:ok, response, assign(socket, :team_id, team_id)}
   end
 
