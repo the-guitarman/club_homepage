@@ -11,11 +11,11 @@ let TeamChatBadge = {
       if (_.isNumber(unreadTeamChatMessagesNumber)) {
         $('.js-new-team-chat-messages-badge').removeClass('hidden').html(unreadTeamChatMessagesNumber);
       } else {
-        hiddenNewMessagesBadge();
+        hideNewMessagesBadge();
       }
     }
 
-    let hiddenNewMessagesBadge = () => {
+    let hideNewMessagesBadge = () => {
       $('.js-new-team-chat-messages-badge').addClass('hidden').html('0');
     }
 
@@ -24,7 +24,7 @@ let TeamChatBadge = {
     socket.onClose( e => console.log("CLOSE", e))
 
     socket.connect()
-    let teamIdChannel = socket.channel("team-chats:" + teamId)
+    let teamIdChannel = socket.channel("team-chat-badges:" + teamId)
     teamIdChannel.onError(e => console.log("something went wrong", e))
     teamIdChannel.onClose(e => console.log("channel closed", e))
 

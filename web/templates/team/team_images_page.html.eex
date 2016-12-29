@@ -3,7 +3,7 @@
     <div class="jumbotron content-box">
       <h1><%= @team.name %><br /><%= gettext("team_images") %></h1>
 
-      <%= render "team_page_link_header.html", active_tab: "team_images", conn: @conn, team: @team, team_images_count: Enum.count(@team_images) %>
+      <%= render "team_page_link_header.html", active_tab: "team_images", conn: @conn, team: @team, team_images_count: Enum.count(@team_images), current_user: @current_user %>
 
       <%= if Enum.count(@team_images) > 0 || has_role?(@conn, ["team_editor"]) do %>
         <div class="row">

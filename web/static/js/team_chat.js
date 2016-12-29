@@ -137,7 +137,7 @@ let TeamChat = {
         });
         addDates();
         addNewMessagesHint(response);
-        showNewMessagesBadge(payload);
+        showNewMessagesBadge(response);
         olderChatMessagesButtonHandler(response.older_chat_messages_available);
         scrollMessagesList(response);
       })
