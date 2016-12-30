@@ -23,53 +23,6 @@ defmodule ClubHomepage.TeamChatBadgeChannel do
     {:ok, response, assign(socket, :team_id, team_id)}
   end
 
-  def handle_in("message:add", payload, socket) do
-    team_id = get_team_id_from_socket_assigns(socket)
-    current_user = socket.assigns.current_user
-
-    payload = Map.put(payload, "team_id", team_id)
-    payload = Map.put(payload, "user_id", current_user.id)
-    changeset = TeamChatMessage.changeset(%TeamChatMessage{}, payload)
-
-    case Repo.insert(changeset) do
-      {:ok, team_chat_message} ->
-        team_chat_message = Repo.preload(team_chat_message, :user)
-
-        response =
-          team_id
-          |> get_last_read_team_chat_message_id(current_user)
-          |> get_unread_team_chat_messages_number(current_user)
-          |> get_team_chat_message_response(team_chat_message)
-          |> create_response(current_user)
-
-        save_last_read_team_chat_message_id(team_chat_message.id, team_id, current_user)
-
-        broadcast socket, "message:added", response
-        {:reply, :ok, socket}
-      {:error, changeset} ->
-        {:reply, {:error, %{errors: changeset}}, socket}
-    end
-  end
-  def handle_in("message:show-older", payload, socket) do
-    team_id = get_team_id_from_socket_assigns(socket)
-    current_user = socket.assigns.current_user
-
-    id_lower_than = payload["id_lower_than"]
-
-    {query, _, _, _} = get_latest_chat_messages_query({team_id, nil, nil})
-    query = from(tcm in query, where: tcm.id < ^id_lower_than)
-    response =
-      {query, team_id, nil, nil}
-      |> get_team_chat_messages_response
-      |> create_response(current_user)
-
-    push socket, "message:show-older", response
-
-    {:noreply, socket}
-    # {:reply, {:ok, response}, socket}
-    # {:reply, :ok, socket}
-  end
-
   defp get_last_read_team_chat_message_id(team_id, user) do
     {team_id, UserMetaData.last_read_team_chat_message_id(team_id, user)}
   end
