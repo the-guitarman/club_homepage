@@ -8,8 +8,8 @@ defmodule ClubHomepage.TeamChatChannel do
   @limit 10
 
   def join("team-chats:" <> team_id, _payload, socket) do
-    current_user = socket.assigns.current_user
     team_id = String.to_integer(team_id)
+    current_user = socket.assigns.current_user
 
     response =
       team_id
@@ -19,7 +19,7 @@ defmodule ClubHomepage.TeamChatChannel do
       |> get_team_chat_messages_response
       |> create_response(current_user)
       |> save_last_read_team_chat_message_id(team_id, current_user)
- 
+
     {:ok, response, assign(socket, :team_id, team_id)}
   end
 
@@ -45,6 +45,8 @@ defmodule ClubHomepage.TeamChatChannel do
         save_last_read_team_chat_message_id(team_chat_message.id, team_id, current_user)
 
         broadcast socket, "message:added", response
+        # broadcast(topic_name, event_name, payload_map)
+        ClubHomepage.Endpoint.broadcast("team-chat-badges:#{team_id}", "message:added", response)
         {:reply, :ok, socket}
       {:error, changeset} ->
         {:reply, {:error, %{errors: changeset}}, socket}

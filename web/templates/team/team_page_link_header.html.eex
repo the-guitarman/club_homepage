@@ -17,10 +17,10 @@
     </li>
   <% end %>
   <%= if logged_in?(@conn) do %>
+    <input type="hidden" id="team-id" value="<%= @team.id %>" />
+    <input type="hidden" id="user-id" value="<%= @current_user.id %>" />
     <li role="presentation" class="<%= if @active_tab === "team_chat", do: "active" %>">
     <%= if @active_tab === "team_chat" do %>
-      <input type="hidden" id="team-id" value="<%= @team.id %>" />
-      <input type="hidden" id="user-id" value="<%= @current_user.id %>" />
       <a href="#"><%= gettext("team_chat") %> <%= render "new_team_chat_messages_badge.html" %></a>
     <% else %>
       <%= link raw(gettext("team_chat") <> " " <> render_to_string(ClubHomepage.TeamView, "new_team_chat_messages_badge.html", conn: @conn)), to: team_chat_page_path(@conn, :show_chat, @team) %>

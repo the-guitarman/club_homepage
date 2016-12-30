@@ -1,12 +1,14 @@
 let TeamChatBadge = {
   init(socket, teamId, userId) {
-    if (_.isEmpty(teamId)) {
+    console.log("-1-");
+    if (_.isEmpty(teamId) || _.isEmpty(userId)) {
       return
     }
+    console.log("-2-");
 
     let showNewMessagesBadge = (response) => {
       var unreadTeamChatMessagesNumber = response.unread_team_chat_messages_number;
-      if (_.isNumber(unreadTeamChatMessagesNumber)) {
+      if (_.isNumber(unreadTeamChatMessagesNumber) && unreadTeamChatMessagesNumber > 0) {
         $('.js-new-team-chat-messages-badge').removeClass('hidden').html(unreadTeamChatMessagesNumber);
       } else {
         hideNewMessagesBadge();
@@ -34,10 +36,7 @@ let TeamChatBadge = {
 
     teamIdChannel.join()
       .receive("ok", (response) => {
-        $.each(response.chat_messages, function(index, chatMessage){
-
-        });
-        showNewMessagesBadge(payload);
+        showNewMessagesBadge(response);
       })
       .receive("error", (reason) => {
         console.log("join failed", reason)

@@ -21,6 +21,8 @@ import "phoenix_html"
 import socket from "./socket"
 import MatchTimeline from "./match"
 import TeamChat from "./team_chat"
+import TeamChatBadge from "./team_chat_badge"
 
 MatchTimeline.init(socket, document.getElementById("match-timeline"))
 TeamChat.init(socket, $("#team-chat-input"), $('#team-id').val(), $('#user-id').val())
+TeamChatBadge.init(socket, $('#team-id').val(), $('#user-id').val())
