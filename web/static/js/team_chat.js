@@ -122,6 +122,7 @@ let TeamChat = {
       //scrollMessagesList(payload);
       messageList.prop({scrollTop: messageList.prop("scrollHeight")});
     })
+
     teamIdChannel.on("message:show-older", (payload) => {
       $.each(payload.chat_messages, function(index, chatMessage){
         messageList.prepend(createChatMessage(chatMessage));
@@ -165,7 +166,11 @@ let TeamChat = {
       teamIdChannel.push('message:show-older', {id_lower_than: oldestDisplayedChatMessageId});
     });
 
-    $(document).on( 'scroll', messageList, function(){
+    $(document).on( 'scroll', messageList, function() {
+      var messages = messageList.find('.message');
+      if (messages.length > 0 && $('.js-new-team-chat-messages-badge').hasClass('hidden') === false) {
+        teamIdChannel.push('message:seen', {message_id: messages.last().data('id')});
+      }
       hideNewMessagesBadge();
     });
   }

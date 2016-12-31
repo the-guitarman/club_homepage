@@ -4,7 +4,6 @@ defmodule ClubHomepage.TeamChatBadgeChannel do
   alias ClubHomepage.UserMetaData
 
   def join("team-chat-badges:" <> team_id, _payload, socket) do
-    IO.inspect("team-chat-badges:" <> team_id)
     team_id = String.to_integer(team_id)
     current_user = socket.assigns.current_user
 

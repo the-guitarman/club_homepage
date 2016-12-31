@@ -52,6 +52,16 @@ defmodule ClubHomepage.TeamChatChannel do
         {:reply, {:error, %{errors: changeset}}, socket}
     end
   end
+
+  def handle_in("message:seen", payload, socket) do
+    team_id = get_team_id_from_socket_assigns(socket)
+    current_user = socket.assigns.current_user
+    UserMetaData.save_last_read_team_chat_message_id(team_id, payload["message_id"], current_user)
+IO.puts("seen")
+IO.inspect(payload["message_id"])
+    {:noreply, socket}
+  end
+
   def handle_in("message:show-older", payload, socket) do
     team_id = get_team_id_from_socket_assigns(socket)
     current_user = socket.assigns.current_user
