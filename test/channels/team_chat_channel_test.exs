@@ -1,8 +1,10 @@
 defmodule ClubHomepage.TeamChatChannelTest do
   use ClubHomepage.ChannelCase
 
+  alias ClubHomepage.Repo
   alias ClubHomepage.TeamChatChannel
   alias ClubHomepage.TeamChatMessage
+  alias ClubHomepage.User
 
   import ClubHomepage.Factory
   import Ecto.Query, only: [from: 2]
@@ -27,6 +29,18 @@ defmodule ClubHomepage.TeamChatChannelTest do
   test "new chat message broadcasts to team-chats:<team_id>", %{socket: socket} do
     push socket, "message:add", %{"message" => "Hi"}
     assert_broadcast "message:added", %{chat_message: %{"message" => "Hi"}}
+  end
+
+  test "new chat messages has been seen for team-chats:<team_id>", %{socket: socket} do
+    team_id = socket.assigns.team_id
+    current_user_id = socket.assigns.current_user.id
+    user = Repo.get!(User, current_user_id)
+    assert user.meta_data == nil
+    ref = push socket, "message:seen", %{"message_id" => 72}
+    #:timer.sleep(:timer.seconds(1))
+    assert_reply ref, :ok
+    user = Repo.get!(User, current_user_id)
+    assert user.meta_data["last_read_team_chat_message_ids"][Integer.to_string(team_id)] == 72
   end
 
   test "broadcasts are pushed to the client", %{socket: socket} do
