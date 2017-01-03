@@ -27,7 +27,7 @@ defmodule ClubHomepage.Secret do
 
   defp set_attributes(changeset) do
     expires_at = 
-      Timex.DateTime.local
+      Timex.local
       |> Timex.add(Timex.Time.to_timestamp(7, :days))
 
     changeset

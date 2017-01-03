@@ -10,7 +10,7 @@ defmodule ClubHomepage.PageController do
   def index(conn, _params) do
     news  = Repo.all(news_query(conn))
     teams = Repo.all(Team)
-    start_at = to_timex_ecto_datetime(Timex.DateTime.local)
+    start_at = to_timex_ecto_datetime(Timex.local)
 
     matches_query = from(m in Match, preload: [:competition, :team, :opponent_team], limit: 1)
     next_matches_query = from(m in matches_query, where: m.start_at > ^start_at, order_by: [asc: m.start_at])

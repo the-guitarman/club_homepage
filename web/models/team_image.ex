@@ -20,7 +20,7 @@ defmodule ClubHomepage.TeamImage do
   """
   def changeset(struct, params \\ %{}) do
     start_year = Application.get_env(:club_homepage, :common)[:founding_year]
-    %{year: current_year} = Timex.DateTime.local
+    %{year: current_year} = Timex.local
 
     params = Map.drop(params, [:attachment, "attachment"])
 

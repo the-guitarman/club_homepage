@@ -42,7 +42,7 @@ defmodule ClubHomepage.TeamController do
     season = Repo.get_by!(Season, name: season_name)
 
     query = from(m in Match, preload: [:competition, :team, :opponent_team], where: [team_id: ^team.id, season_id: ^season.id])
-    start_at = to_timex_ecto_datetime(Timex.DateTime.local)
+    start_at = to_timex_ecto_datetime(Timex.local)
     matches = Repo.all(from m in query, where: m.start_at > ^start_at, order_by: [asc: m.start_at])
     latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at, order_by: [desc: m.start_at])
     render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches, next_match_parameters: %{"season_id" => season.id, "team_id" => team.id, "start_at" => params["start_at"], "competition_id" => params["competition_id"]}, team_images_count: team_images_count(team))
@@ -64,7 +64,7 @@ defmodule ClubHomepage.TeamController do
     #   case current_team_season(team) do
     #     nil -> 0
     #     season -> 
-    #       start_at = to_timex_ecto_datetime(Timex.DateTime.local)
+    #       start_at = to_timex_ecto_datetime(Timex.local)
     #       query = from(m in Match, where: [team_id: ^team.id, season_id: ^season.id])
     #       [count] = Repo.all(from m in query, select: count("id"), where: m.start_at > ^start_at)
     #       count

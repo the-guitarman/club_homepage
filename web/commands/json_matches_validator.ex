@@ -162,7 +162,7 @@ defmodule ClubHomepage.JsonMatchesValidator do
 
   def to_timex_date_format(date_time_string) do
     case Timex.parse(String.strip(date_time_string), "{ISO:Extended}") do
-      {:ok, datetime} -> {:ok, Timex.DateTime.local(datetime)}
+      {:ok, datetime} -> {:ok, Timex.local(datetime)}
       {:error, error} -> {:error, error}
     end
   end

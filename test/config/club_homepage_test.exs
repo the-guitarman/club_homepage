@@ -2,7 +2,7 @@ defmodule ClubHomepage.ClubHomepageTest do
   use ClubHomepage.ModelCase
 
   test "founding year is an integer" do
-    %{year: current_year} = Timex.DateTime.local
+    %{year: current_year} = Timex.local
     start_year = Application.get_env(:club_homepage, :common)[:founding_year]
     assert is_integer(start_year)
     assert String.length(Integer.to_string(start_year)) === 4

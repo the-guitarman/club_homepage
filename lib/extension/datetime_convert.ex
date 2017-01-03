@@ -20,7 +20,7 @@ defmodule ClubHomepage.DateTime.Convert do
     timestamp
     |> to_datetime
     |> Timex.DateTime.from(:utc)
-    |> Timex.DateTime.local
+    |> Timex.local
   end
 
   @doc """

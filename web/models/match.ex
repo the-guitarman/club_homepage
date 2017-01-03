@@ -83,7 +83,7 @@ defmodule ClubHomepage.Match do
     # finished flag?
     # no failure reason
     match_end_at = Timex.add(match.start_at, Timex.Time.to_timestamp(4, :hours))
-    Timex.DateTime.compare(match_end_at, Timex.DateTime.now) == -1
+    Timex.DateTime.compare(match_end_at, Timex.now) == -1
   end
 
   @doc """
@@ -91,7 +91,7 @@ defmodule ClubHomepage.Match do
   """
   @spec in_progress?( ClubHomepage.Match ) :: Boolean
   def in_progress?(match) do
-    Timex.DateTime.compare(match.start_at, Timex.DateTime.local) == -1 && not finished?(match)
+    Timex.DateTime.compare(match.start_at, Timex.local) == -1 && not finished?(match)
   end
 
   @doc """

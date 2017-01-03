@@ -5,7 +5,7 @@ defmodule ClubHomepage.UserTest do
 
   #import ClubHomepage.Factory
 
-  @valid_attrs %{birthday: Timex.datetime({1988, 4, 17}), email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
+  @valid_attrs %{birthday: Timex.datetime({1988, 4, 17}, "UTC"), email: "mail@example.de", login: "my_login", name: "some content", password: "my name"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

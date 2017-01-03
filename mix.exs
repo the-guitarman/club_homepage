@@ -45,8 +45,8 @@ defmodule ClubHomepage.Mixfile do
      {:dogma, "~> 0.0", only: :dev},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.0"},
-     {:timex, "~> 2.2.1"},
-     {:timex_ecto, "~> 1.1.3"},
+     {:timex, "~> 3.0"},
+     {:timex_ecto, "~> 3.0"},
      {:ex_machina, "~> 1.0", only: :test},
      {:gettext, "~> 0.11"},
      {:credo, "~> 0.2", only: [:dev, :test]},
@@ -58,11 +58,13 @@ defmodule ClubHomepage.Mixfile do
      {:arc, "~> 0.5.3"},
      {:arc_ecto, "~> 0.4.3"},
      #{:mix_test_watch, "~> 0.2.4", only: :dev},
-     #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
-     {:elixir_weather_data, "~> 0.1"},
+     {:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
+     #{:elixir_weather_data, "~> 0.1"},
      {:number, "~> 0.4.2"},
      {:bamboo, "~> 0.7"},
-     {:bamboo_smtp, "~> 1.2.1"}
+     {:bamboo_smtp, "~> 1.2.1"},
+
+     {:icalendar, "~> 0.2.1"}
     ]
   end
 

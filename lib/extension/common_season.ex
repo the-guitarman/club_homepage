@@ -15,7 +15,7 @@ defmodule ClubHomepage.Extension.CommonSeason do
 
   def current_team_season(team) do
     date =
-      to_timex_ecto_datetime(Timex.DateTime.now)
+      to_timex_ecto_datetime(Timex.now)
       |> Timex.add(Timex.Time.to_timestamp(30, :days)) 
     query = from m in Match,
             where: m.team_id == ^team.id,
@@ -40,7 +40,7 @@ defmodule ClubHomepage.Extension.CommonSeason do
 
 
   def current_season_name do
-    %{year: year, month: month} = Timex.Date.now
+    %{year: year, month: month} = Timex.now
     cond do
       month < 8 -> "#{year - 1}-#{year}"
       true      -> "#{year}-#{year + 1}"

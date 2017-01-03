@@ -7,7 +7,7 @@ defmodule ClubHomepage.WeatherDataTest do
   test "test_sd" do
     case ClubHomepage.WeatherData.get do
       {:ok, weather_data} ->
-        %{year: current_year, month: current_month, day: current_day} = Timex.DateTime.local
+        %{year: current_year, month: current_month, day: current_day} = Timex.local
         %{year: year, month: month, day: day} = weather_data[:created_at]
         assert year === current_year
         assert month === current_month

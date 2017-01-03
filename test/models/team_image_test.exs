@@ -26,7 +26,7 @@ defmodule ClubHomepage.TeamImageTest do
 
   test "year is within founding year and the current year" do
     start_year = Application.get_env(:club_homepage, :common)[:founding_year]
-    %{year: current_year} = Timex.DateTime.local
+    %{year: current_year} = Timex.local
 
     valid_attrs = %{@valid_attrs | year: start_year - 1}
     changeset = TeamImage.changeset(%TeamImage{}, valid_attrs)

@@ -11,7 +11,7 @@ defmodule ClubHomepage.SecretTest do
     assert changeset.valid?
 
     {:ok, secret} = Repo.insert(changeset)
-    expires_at = Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
+    expires_at = Timex.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
 
     assert String.length(secret.key) == 22
     assert secret.expires_at.day == expires_at.day

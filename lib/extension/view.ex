@@ -56,7 +56,7 @@ defmodule ClubHomepage.Extension.View do
 
   def copyright do
     start_year = 2016
-    %{year: current_year} = Timex.Date.now
+    %{year: current_year} = Timex.now
     year = 
       cond do
         start_year == current_year -> "#{start_year}"

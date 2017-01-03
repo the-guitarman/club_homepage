@@ -32,7 +32,7 @@ defmodule ClubHomepage.Factory do
       team_id: team.id,
       opponent_team_id: opponent_team.id,
       #meeting_point_id: 1,
-      start_at: Timex.DateTime.local,
+      start_at: Timex.local,
       home_match: false,
       description: nil,
       match_events: nil
@@ -70,7 +70,7 @@ defmodule ClubHomepage.Factory do
   end
 
   def season_factory do
-    %{year: year} = Timex.DateTime.local
+    %{year: year} = Timex.local
     %ClubHomepage.Season{
       name: sequence(:name, &"#{year}-#{year + &1}")
     }
@@ -79,7 +79,7 @@ defmodule ClubHomepage.Factory do
   def secret_factory do
     %ClubHomepage.Secret{
       key: SecureRandom.urlsafe_base64,
-      expires_at: Timex.DateTime.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
+      expires_at: Timex.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
     }
   end
 
@@ -141,7 +141,7 @@ defmodule ClubHomepage.Factory do
 
   def user_factory do
     %ClubHomepage.User{
-      birthday: Timex.datetime({1988, 4, 17}), 
+      birthday: Timex.datetime({1988, 4, 17}, "UTC"), 
       email: sequence(:email, &"mail-#{&1}@example.de"),
       login: sequence(:login, &"my_login-#{&1}"), 
       name: sequence(:login, &"my name #{&1}"), 
