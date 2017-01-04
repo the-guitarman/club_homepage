@@ -39,13 +39,13 @@ defmodule ClubHomepage.JsonMatchesCreatorTest do
     assert match1.team.name == team.name
     assert match1.opponent_team.name == "Opponent Team 1"
     assert match1.home_match == false
-    assert match1.start_at == Timex.datetime({{2016, 3, 13}, {11, 0, 0}})
+    assert match1.start_at == Timex.to_datetime({{2016, 3, 13}, {11, 0, 0}})
 
     match2 = Repo.one!(from(m in Match, where: [team_id: ^team.id, home_match: true], preload: [:team, :opponent_team]))
     assert match2.team.name == team.name
     assert match2.opponent_team.name == "Opponent Team 2"
     assert match2.home_match == true
-    assert match2.start_at == Timex.datetime({{2016, 4, 3}, {12, 0, 0}})
+    assert match2.start_at == Timex.to_datetime({{2016, 4, 3}, {12, 0, 0}})
   end
 
   defp count(model) do

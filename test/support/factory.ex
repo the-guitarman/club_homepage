@@ -141,7 +141,7 @@ defmodule ClubHomepage.Factory do
 
   def user_factory do
     %ClubHomepage.User{
-      birthday: Timex.datetime({1988, 4, 17}, "UTC"), 
+      birthday: Timex.to_datetime({1988, 4, 17}, "UTC"), 
       email: sequence(:email, &"mail-#{&1}@example.de"),
       login: sequence(:login, &"my_login-#{&1}"), 
       name: sequence(:login, &"my name #{&1}"), 
