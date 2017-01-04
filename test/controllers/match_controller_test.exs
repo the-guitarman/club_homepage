@@ -78,7 +78,7 @@ defmodule ClubHomepage.MatchControllerTest do
       |> Timex.parse("%d.%m.%Y %H:%M", :strftime) 
     {:ok, start_at} =
       start_at
-      |> Timex.add(Timex.Time.to_timestamp(7, :days))
+      |> Timex.add(Timex.Duration.from_days(7))
       |> Timex.format("%d.%m.%Y %H:%M", :strftime)
     #assert redirected_to(conn) == match_path(conn, :index, %{"season_id" => valid_attrs.season_id, "team_id" => valid_attrs.team_id, "start_at" => start_at})
     team = Repo.get(ClubHomepage.Team, valid_attrs.team_id)
@@ -109,7 +109,7 @@ defmodule ClubHomepage.MatchControllerTest do
 
   @tag login: false
   test "shows a future match without a user is logged in", %{conn: conn, valid_attrs: _valid_attrs} do
-    start_at = Timex.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
+    start_at = Timex.local |> Timex.add(Timex.Duration.from_days(7))
 
     match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
@@ -128,7 +128,7 @@ defmodule ClubHomepage.MatchControllerTest do
 
   @tag login: false
   test "shows a running match without a user is logged in", %{conn: conn, valid_attrs: _valid_attrs} do
-    start_at = Timex.local |> Timex.add(Timex.Time.to_timestamp(-1, :hours))
+    start_at = Timex.local |> Timex.add(Timex.Duration.from_hours(-1))
 
     match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
@@ -147,7 +147,7 @@ defmodule ClubHomepage.MatchControllerTest do
 
   @tag login: true
   test "shows a future match with a user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
-    start_at = Timex.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
+    start_at = Timex.local |> Timex.add(Timex.Duration.from_days(7))
 
     match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
@@ -168,7 +168,7 @@ defmodule ClubHomepage.MatchControllerTest do
   @tag login: true
   @tag user_roles: "member match-editor"
   test "shows a running match with a match editor user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
-    start_at = Timex.local |> Timex.add(Timex.Time.to_timestamp(-1, :hours))
+    start_at = Timex.local |> Timex.add(Timex.Duration.from_hours(-1))
 
     match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)
@@ -189,7 +189,7 @@ defmodule ClubHomepage.MatchControllerTest do
   @tag login: true
   @tag user_roles: "member"
   test "shows a running match with a no match editor user is logged in", %{conn: conn, current_user: _current_user, valid_attrs: _valid_attrs} do
-    start_at = Timex.local |> Timex.add(Timex.Time.to_timestamp(-1, :hours))
+    start_at = Timex.local |> Timex.add(Timex.Duration.from_hours(-1))
 
     match = insert(:match, %{start_at: start_at})
     team = Repo.get!(ClubHomepage.Team, match.team_id)

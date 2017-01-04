@@ -79,7 +79,7 @@ defmodule ClubHomepage.Factory do
   def secret_factory do
     %ClubHomepage.Secret{
       key: SecureRandom.urlsafe_base64,
-      expires_at: Timex.local |> Timex.add(Timex.Time.to_timestamp(7, :days))
+      expires_at: Timex.local |> Timex.add(Timex.Duration.from_days(7))
     }
   end
 

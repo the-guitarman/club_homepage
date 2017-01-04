@@ -82,7 +82,7 @@ defmodule ClubHomepage.Match do
     # has goals?
     # finished flag?
     # no failure reason
-    match_end_at = Timex.add(match.start_at, Timex.Time.to_timestamp(4, :hours))
+    match_end_at = Timex.add(match.start_at, Timex.Duration.from_hours(4))
     Timex.DateTime.compare(match_end_at, Timex.now) == -1
   end
 

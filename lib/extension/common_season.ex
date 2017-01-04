@@ -16,7 +16,7 @@ defmodule ClubHomepage.Extension.CommonSeason do
   def current_team_season(team) do
     date =
       to_timex_ecto_datetime(Timex.now)
-      |> Timex.add(Timex.Time.to_timestamp(30, :days)) 
+      |> Timex.add(Timex.Duration.from_days(30)) 
     query = from m in Match,
             where: m.team_id == ^team.id,
             where: m.start_at < ^date,
