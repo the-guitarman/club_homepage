@@ -17,8 +17,8 @@ defmodule ClubHomepage.PageControllerTest do
     refute html_response(conn, 200) =~ "<h2>Latest Match Results</h2>"
 
     _news = insert(:news)
-    _next_match = insert(:match, start_at: add_days_to_date(Timex.DateTime.local))
-    _last_match = insert(:match, start_at: add_days_to_date(Timex.DateTime.local, -7))
+    _next_match = insert(:match, start_at: add_days_to_date(Timex.local))
+    _last_match = insert(:match, start_at: add_days_to_date(Timex.local, -7))
 
     conn = get build_conn(), page_path(conn, :index)
     assert html_response(conn, 200) =~ "<h2>Latest News</h2>"
@@ -63,6 +63,6 @@ defmodule ClubHomepage.PageControllerTest do
 
   defp add_days_to_date(date, days \\ 7) do
     date
-    |> Timex.add(Timex.Time.to_timestamp(days, :days))
+    |> Timex.add(Timex.Duration.from_days(days))
   end
 end

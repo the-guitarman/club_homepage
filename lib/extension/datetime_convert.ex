@@ -19,7 +19,7 @@ defmodule ClubHomepage.DateTime.Convert do
   def to_timex_datetime(timestamp) do
     timestamp
     |> to_datetime
-    |> Timex.DateTime.from(:utc)
+    |> Timex.to_datetime(:utc)
     |> Timex.local
   end
 
