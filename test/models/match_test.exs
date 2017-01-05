@@ -45,8 +45,8 @@ defmodule ClubHomepage.MatchTest do
     assert not Match.finished?(match)
 
     # match has been started two hours ago
-    seconds = Timex.Duration.to_seconds(Timex.Duration.from_hours(-4)) - 1
-    start_at = Timex.add(inserted_at, {0, seconds, 0})
+    seconds = -1*4*60*60 - 1
+    start_at = Timex.add(inserted_at, Timex.Duration.from_seconds(seconds))
     match = %Match{inserted_at: inserted_at, start_at: start_at}
     assert Match.finished?(match)
   end
@@ -65,8 +65,8 @@ defmodule ClubHomepage.MatchTest do
     assert Match.in_progress?(match)
 
     # match has been started two hours ago
-    seconds = Timex.Duration.to_seconds(Timex.Duration.from_hours(-4)) - 1
-    start_at = Timex.add(Timex.local,  {0, seconds, 0})
+    seconds = -1*4*60*60 - 1
+    start_at = Timex.add(Timex.local, Timex.Duration.from_seconds(seconds))
     match = %Match{inserted_at: inserted_at, start_at: start_at}
     assert not Match.in_progress?(match)
   end

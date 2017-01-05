@@ -4,7 +4,6 @@ defmodule ClubHomepage.TeamChatBadgeChannelTest do
   alias ClubHomepage.TeamChatBadgeChannel
 
   import ClubHomepage.Factory
-  import Ecto.Query, only: [from: 2]
 
   setup do
     user = insert(:user)

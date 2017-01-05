@@ -17,7 +17,7 @@ defmodule ClubHomepage.Extension.MatchView do
   end
 
   def within_hours_before_kick_off?(match, hours) do
-    Timex.DateTime.compare(match.start_at, Timex.local) == 1 && Timex.DateTime.compare(match.start_at, Timex.add(Timex.local, Timex.Duration.from_hours(hours))) == -1
+    Timex.compare(match.start_at, Timex.local) == 1 && Timex.compare(match.start_at, Timex.add(Timex.local, Timex.Duration.from_hours(hours))) == -1
   end
 
   def match_datetime(match, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
