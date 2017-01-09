@@ -12,6 +12,7 @@
         <tbody>
           <%= for season <- @seasons do %>
             <tr>
+              <td class="hidden"><%= season.id %></td>
               <td><%= season.name %></td>
 
               <td class="text-right">

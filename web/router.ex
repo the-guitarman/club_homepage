@@ -33,6 +33,7 @@ defmodule ClubHomepage.Router do
     resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     get "/teams/:slug", TeamController, :show, as: :team_page
+    get "/teams/:slug/season/:season/download-ical", TeamController, :download_ical, as: :team_matches_download
     get "/teams/:slug/season/:season", TeamController, :show, as: :team_page_with_season
     get "/teams/:slug/images", TeamController, :show_images, as: :team_images_page
   end

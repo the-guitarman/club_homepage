@@ -77,6 +77,16 @@ defmodule ClubHomepage.TeamController do
     render(conn, "team_chat_page.html", team: team, team_images_count: team_images_count(team))
   end
 
+  def download_ical(conn, %{"slug" => slug, "season" => season_name} = _params) do
+    team = Repo.get_by!(Team, slug: slug)
+    season = Repo.get_by!(Season, name: season_name)
+
+    conn
+    |> put_resp_content_type("text/calendar")
+    |> put_resp_header("content-disposition", "attachment; filename=\"#{team.name}.ics\"")
+    |> send_resp(200, ClubHomepage.MatchCalendarCreator.run(team.id, season.id))
+  end
+
   def edit(conn, %{"id" => id}) do
     team = Repo.get!(Team, id)
     changeset = Team.changeset(team)
