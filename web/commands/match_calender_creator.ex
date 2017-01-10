@@ -54,14 +54,10 @@ defmodule ClubHomepage.MatchCalendarCreator do
   end
 
   defp create_event(match) do
-    IO.inspect match
-    {:ok, start_at} = Timex.format(timex_datetime_to_utc(match.start_at), "{ISO:Extended:Z}")
-    {:ok, end_at} = Timex.format(timex_datetime_to_utc(Timex.shift(match.start_at, hours: 3)), "{ISO:Extended:Z}")
-
     struct = %ICalendar.Event{
       summary: summary(match),
-      dtstart: start_at,
-      dtend: end_at,
+      dtstart: timex_datetime_to_utc(match.start_at),
+      dtend: timex_datetime_to_utc(Timex.shift(match.start_at, hours: 3)),
       description: match.competition.name,
       location: location(match)
     }

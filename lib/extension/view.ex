@@ -125,19 +125,25 @@ defmodule ClubHomepage.Extension.View do
     case Map.fetch(params, field_name) do
       {:ok, nil} ->
         nil
-      {:ok, timex_datetime} -> 
-        date_string = timex_datetime_to_string(timex_datetime, format)
+      {:ok, timex_datetime} ->
+        date_string =
+          timex_datetime
+          |> Timex.local
+          |> timex_datetime_to_string(format)
         params = Map.put(params, field_name, date_string)
         form = Map.put(form, :params, params)
       :error ->
         timex_datetime = Map.get(model, field)
         if timex_datetime do
-          date_string = timex_datetime_to_string(timex_datetime, format)
+          date_string =
+            timex_datetime
+            |> Timex.local
+            |> timex_datetime_to_string(format)
           params = Map.put(params, field_name, date_string)
           form = Map.put(form, :params, params)
         end
     end
-    field_css_class = 
+    field_css_class =
       case String.contains?(format, ["%H", "%M"]) do
         true -> "datetime"
         false -> "date"
