@@ -4,7 +4,7 @@
       <h2>
         <div class="row">
           <div class="col-xs-12 text-center">
-            <%= Timex.format!(@match.start_at, "%d.%m.%Y %H:%M", :strftime) %> <%= gettext("o_clock") %>
+            <%= match_datetime(@match) %>
           </div>
         </div>
         <div class="row">

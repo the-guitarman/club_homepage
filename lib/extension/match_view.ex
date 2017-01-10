@@ -17,17 +17,19 @@ defmodule ClubHomepage.Extension.MatchView do
   end
 
   def within_hours_before_kick_off?(match, hours) do
-    Timex.compare(match.start_at, Timex.local) == 1 && Timex.compare(match.start_at, Timex.add(Timex.local, Timex.Duration.from_hours(hours))) == -1
+    Timex.compare(match.start_at, Timex.local) == 1 && Timex.compare(match.start_at, Timex.add(Timex.now, Timex.Duration.from_hours(hours))) == -1
   end
 
   def match_datetime(match, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
     match.start_at
-    |> Timex.local
     |> point_of_time(format)
   end
 
-  def point_of_time(time, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
-    {:ok, date_string} = Timex.format(time, format, :strftime)
+  def point_of_time(datetime, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
+    {:ok, date_string} =
+      datetime
+      |> Timex.local
+      |> Timex.format(format, :strftime)
     date_string
   end
 
