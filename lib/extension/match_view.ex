@@ -21,7 +21,9 @@ defmodule ClubHomepage.Extension.MatchView do
   end
 
   def match_datetime(match, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
-    point_of_time(match.start_at, format)
+    match.start_at
+    |> Timex.local
+    |> point_of_time(format)
   end
 
   def point_of_time(time, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
