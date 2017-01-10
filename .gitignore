@@ -3,6 +3,7 @@
 /db
 /deps
 /env
+/priv/repo/match_updates.exs
 /priv/repo/my_seeds.exs
 /*.ez
 
