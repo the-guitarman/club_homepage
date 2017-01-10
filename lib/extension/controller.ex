@@ -17,7 +17,10 @@ defmodule ClubHomepage.Extension.Controller do
   defp parse_value({:empty, params, nil}, _field_name, _format), do: params
   defp parse_value({:ok, params, value}, field_name, format) do
     case Timex.parse(value, format, :strftime) do
-      {:ok, timex_datetime} -> Map.put(params, field_name, timex_datetime)
+      {:ok, timex_naive_datetime} ->
+        timezone = Timex.Timezone.get(Timex.Timezone.Local.lookup, Timex.local)
+        timex_datetime = Timex.to_datetime(timex_naive_datetime, timezone)
+        Map.put(params, field_name, timex_datetime)
       {:error, error} ->
         IO.inspect error
         Map.put(params, field_name, nil)
