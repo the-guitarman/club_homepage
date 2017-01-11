@@ -1,4 +1,18 @@
 defmodule ClubHomepage.Extension.Controller do
+  @moduledoc """
+  This module provides functions for recurring tasks within a controller.
+  """
+
+  @doc """
+  Parses a date string in the given parameters and replaces it with a timex object.
+
+  ## Example usage
+  iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "02.04.2017"}, :date)
+  %{"date" => Timex.to_datetime({{2017, 4, 2}, {0, 0, 0}}, :local)}
+
+  iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "02.04.2017 12:30"}, :date)
+  %{"date" => nil}
+  """
   # https://github.com/bitwalker/timex#formatting-a-datetime-via-strftime
   def parse_date_field(params, field, format \\ "%d.%m.%Y") do
     field_name = Atom.to_string(field)
@@ -22,11 +36,20 @@ defmodule ClubHomepage.Extension.Controller do
         timex_datetime = Timex.to_datetime(timex_naive_datetime, timezone)
         Map.put(params, field_name, timex_datetime)
       {:error, error} ->
-        IO.inspect error
         Map.put(params, field_name, nil)
     end
   end
 
+  @doc """
+  Parses a datetime string in the given parameters and replaces it with a timex object.
+
+  ## Example usage
+  iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "02.04.2017 12:30"}, :datetime)
+  %{"datetime" => Timex.to_datetime({{2017, 4, 2}, {12, 30, 0}}, :local)}
+
+  iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "02.04.2017"}, :datetime)
+  %{"datetime" => nil}
+  """
   def parse_datetime_field(params, field, format \\ "%d.%m.%Y %H:%M") do
     parse_date_field(params, field, format)
   end
