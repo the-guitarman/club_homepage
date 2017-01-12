@@ -7,11 +7,11 @@ defmodule ClubHomepage.MatchCalendarCreator do
   alias ClubHomepage.Match
   alias ClubHomepage.Repo
 
-  import Ecto.Query, only: [from: 1, from: 2]
+  import Ecto.Query, only: [from: 2]
   import ClubHomepage.Extension.CommonTimex
 
   @doc """
-  Returns an ical file content for a given team_id and a season_id.
+  Returns an ical file content with matches in the future from now for a given team_id and a season_id.
   """
   #@spec run(Integer, Integer) :: ICalendar
   def run(team_id, season_id \\ nil) do
@@ -21,6 +21,9 @@ defmodule ClubHomepage.MatchCalendarCreator do
     %ICalendar{events: events} |> ICalendar.to_ics
   end
 
+  @doc """
+  Returns true if there are matches in the future from now for a given team_id and a season_id. Otherwise false.
+  """
   @spec available?(Integer, Integer) :: Boolean
   def available?(team_id, season_id \\ nil) do
     not Enum.empty?(get_matches(team_id, season_id))
@@ -59,7 +62,7 @@ defmodule ClubHomepage.MatchCalendarCreator do
     end
   end
 
-  defp location(match) do
+  defp location(_match) do
     ""
   end
 
