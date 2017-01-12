@@ -11,7 +11,6 @@ defmodule ClubHomepage.MatchCalendarTest do
   alias ClubHomepage.Team
 
   import ClubHomepage.Factory
-  #import Ecto.Query, only: [from: 2]
 
   setup do
     season = insert(:season)
