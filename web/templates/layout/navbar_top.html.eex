@@ -28,6 +28,41 @@
 
 
       <ul class="nav navbar-nav navbar-right">
+        <%= if not Enum.empty?(@weather_data) do %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle weather-icon" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <%= if @weather_data[:icon_url] do %>
+                <img src="<%= @weather_data[:icon_url] %>" alt="" title="<%= @weather_data[:weather] %>" />
+              <% else %>
+                <%= gettext("weather") %>
+              <% end %>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <div class="navbar-text weather-data">
+              <%
+              {:ok, date_string} = Timex.format(@weather_data[:created_at], "%d.%m.%Y %H:%M", :strftime)
+              %>
+              Platzwetter<br /><small>(<%= date_string <> " " <> gettext("o_clock") %>)</small>
+                  <div><small><%= @weather_data[:weather] %></small></div>
+                  <div></div>
+                  <div>
+                    <small><%= gettext("temperature") %>:</small> <%= @weather_data[:temperature] %><br />
+                    <small>Wind:</small> <%= @weather_data[:wind_speed] %>
+                    <%= if @weather_data[:wind_direction_abbreviation] do %>
+                      <%= Gettext.dgettext(ClubHomepage.Gettext, "additionals", "wind_direction_abbreviation_#{@weather_data[:wind_direction_abbreviation]}") %>
+                    <% end %>
+                    <br />
+                    <small><%= gettext("humidity") %>:</small> <%= @weather_data[:humidity_in_percent] %> %<br />
+                    <small><%= gettext("air_pressure") %>:</small> <%= @weather_data[:pressure_in_hectopascal] %> hPa
+                  </div>
+                </div>
+              </li>
+              <li role="separator" class="divider"></li>
+            </ul>
+          </li>
+        <% end %>
         <%= if @current_user do %>
           <li><p class="navbar-text"><%= gettext("signed_in_label") %>:</p></li>
           <li class="<%= current_link(@conn, ClubHomepage.UserController, [:index, :show, :new, :create, :edit, :update]) %>">

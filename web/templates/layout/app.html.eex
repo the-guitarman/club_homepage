@@ -13,7 +13,7 @@
 
   <body class="background-image-01">
     <div class="fluid-container <%= action_name(@conn) %>" role="main">
-      <%= render "navbar_top.html", conn: @conn, current_user: @current_user %>
+      <%= render "navbar_top.html", conn: @conn, current_user: @current_user, weather_data: @weather_data %>
       <%= render "flash_messages.html", conn: @conn %>
 
       <div class="content-container">

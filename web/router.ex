@@ -11,6 +11,7 @@ defmodule ClubHomepage.Router do
     plug ClubHomepage.Auth, repo: ClubHomepage.Repo
     plug ClubHomepage.AuthByRole
     plug ClubHomepage.Locale
+    plug ClubHomepage.WeatherData
   end
 
   # pipeline :api do
@@ -19,7 +20,7 @@ defmodule ClubHomepage.Router do
   # end
 
   scope "/", ClubHomepage do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser] # Use the default browser stack
 
     get "/", PageController, :index
     get "/chronicle.html", PageController, :chronicle

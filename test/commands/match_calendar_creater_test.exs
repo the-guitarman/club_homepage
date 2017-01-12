@@ -1,4 +1,4 @@
-defmodule ClubHomepage.MatchCalendarTest do
+defmodule ClubHomepage.MatchCalendarCreatorTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
   doctest ClubHomepage.MatchCalendarCreator
