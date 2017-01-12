@@ -14,6 +14,7 @@ defmodule ClubHomepage.Extension.Controller do
   %{"date" => nil}
   """
   # https://github.com/bitwalker/timex#formatting-a-datetime-via-strftime
+  @spec parse_date_field(Map, Atom, String) :: Map
   def parse_date_field(params, field, format \\ "%d.%m.%Y") do
     field_name = Atom.to_string(field)
 
@@ -50,6 +51,7 @@ defmodule ClubHomepage.Extension.Controller do
   iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "02.04.2017"}, :datetime)
   %{"datetime" => nil}
   """
+  @spec parse_date_field(Map, Atom, String) :: Map
   def parse_datetime_field(params, field, format \\ "%d.%m.%Y %H:%M") do
     parse_date_field(params, field, format)
   end
