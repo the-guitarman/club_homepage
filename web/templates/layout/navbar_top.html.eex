@@ -28,6 +28,20 @@
 
 
       <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle glyphicon glyphicon-gift" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          </a>
+          <div class="dropdown-menu panel panel-default">
+            <div class="panel-heading">Geburtstage</div>
+            <ul class="list-group">
+              <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+          </div>
+        </li>
         <%= if not Enum.empty?(@weather_data) do %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle weather-icon" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -36,31 +50,37 @@
               <% else %>
                 <%= gettext("weather") %>
               <% end %>
-              <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu">
-              <li>
-                <div class="navbar-text weather-data">
-              <%
-              {:ok, date_string} = Timex.format(@weather_data[:created_at], "%d.%m.%Y %H:%M", :strftime)
-              %>
-              Platzwetter<br /><small>(<%= date_string <> " " <> gettext("o_clock") %>)</small>
-                  <div><small><%= @weather_data[:weather] %></small></div>
-                  <div></div>
-                  <div>
-                    <small><%= gettext("temperature") %>:</small> <%= @weather_data[:temperature] %><br />
-                    <small>Wind:</small> <%= @weather_data[:wind_speed] %>
-                    <%= if @weather_data[:wind_direction_abbreviation] do %>
-                      <%= Gettext.dgettext(ClubHomepage.Gettext, "additionals", "wind_direction_abbreviation_#{@weather_data[:wind_direction_abbreviation]}") %>
-                    <% end %>
-                    <br />
-                    <small><%= gettext("humidity") %>:</small> <%= @weather_data[:humidity_in_percent] %> %<br />
-                    <small><%= gettext("air_pressure") %>:</small> <%= @weather_data[:pressure_in_hectopascal] %> hPa
-                  </div>
-                </div>
-              </li>
-              <li role="separator" class="divider"></li>
-            </ul>
+            <div class="dropdown-menu panel panel-default">
+              <div class="panel-heading">
+                <%
+                {:ok, date_string} = Timex.format(@weather_data[:created_at], "%d.%m.%Y %H:%M", :strftime)
+                %>
+                Platzwetter<br /><small>(<%= date_string <> " " <> gettext("o_clock") %>)</small>
+              </div>
+              <ul class="list-group">
+                <li class="list-group-item"><%= @weather_data[:weather] %></li>
+                <li class="list-group-item">
+                  <small><%= gettext("temperature") %>:</small><br />
+                  <%= @weather_data[:temperature] %>
+                </li>
+                <li class="list-group-item">
+                  <small>Wind:</small><br />
+                  <%= @weather_data[:wind_speed] %>
+                  <%= if @weather_data[:wind_direction_abbreviation] do %>
+                    <%= Gettext.dgettext(ClubHomepage.Gettext, "additionals", "wind_direction_abbreviation_#{@weather_data[:wind_direction_abbreviation]}") %>
+                  <% end %>
+                </li>
+                <li class="list-group-item">
+                  <small><%= gettext("humidity") %>:</small><br />
+                  <%= @weather_data[:humidity_in_percent] %> %
+                </li>
+                <li class="list-group-item">
+                  <small><%= gettext("air_pressure") %>:</small><br />
+                  <%= @weather_data[:pressure_in_hectopascal] %> hPa
+                </li>
+              </ul>
+            </div>
           </li>
         <% end %>
         <%= if @current_user do %>
