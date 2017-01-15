@@ -12,6 +12,7 @@ defmodule ClubHomepage.Router do
     plug ClubHomepage.AuthByRole
     plug ClubHomepage.Locale
     plug ClubHomepage.WeatherData
+    plug ClubHomepage.MemberBirthday
   end
 
   # pipeline :api do

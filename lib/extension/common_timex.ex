@@ -4,6 +4,11 @@ defmodule ClubHomepage.Extension.CommonTimex do
     date_string
   end
 
+  def to_timex_ecto_date(timex_datetime) do
+    {:ok, timex_ecto_date} = Timex.Ecto.Date.cast(timex_datetime)
+    timex_ecto_date
+  end
+
   def to_timex_ecto_datetime(timex_datetime) do
     {:ok, timex_ecto_datetime} = Timex.Ecto.DateTime.cast(timex_datetime)
     timex_ecto_datetime

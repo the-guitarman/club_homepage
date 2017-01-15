@@ -5,6 +5,8 @@ defmodule ClubHomepage.MatchCalendarCreator do
   """
 
   alias ClubHomepage.Match
+  alias ClubHomepage.MeetingPoint
+  alias ClubHomepage.OpponentTeam
   alias ClubHomepage.Repo
 
   import Ecto.Query, only: [from: 2]
@@ -41,7 +43,7 @@ defmodule ClubHomepage.MatchCalendarCreator do
   defp create_event(match) do
     struct = %ICalendar.Event{
       summary: summary(match),
-      dtstart: timex_datetime_to_utc(match.start_at),
+      dtstart: timex_datetime_to_utc(match.start_at), #meeting_point_at
       dtend: timex_datetime_to_utc(Timex.shift(match.start_at, hours: 3)),
       description: match.competition.name,
       location: location(match)
@@ -62,7 +64,15 @@ defmodule ClubHomepage.MatchCalendarCreator do
     end
   end
 
-  defp location(_match) do
+  defp location(match) do
+    #address = 
+      # if match.home_match do
+      #   #meeting_point.address
+      #   Repo.one(from(mp in MeetingPoint, where: ot.meeting_point_id == ^match.meeting_point_id, preload: [:address]))
+      # else
+      #   #opponent_team.address
+      #   Repo.one(from(ot in OpponentTeam, where: ot.opponent_team_id == ^match.opponent_team_id, preload: [:address]))
+      # end
     ""
   end
 

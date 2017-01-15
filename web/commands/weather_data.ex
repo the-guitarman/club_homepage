@@ -1,9 +1,9 @@
 defmodule ClubHomepage.WeatherData do
-  import Plug.Conn
-
   @moduledoc """
-  
+  Receives weather data from an external api.
   """
+
+  import Plug.Conn
 
   use Number
 
@@ -17,7 +17,9 @@ defmodule ClubHomepage.WeatherData do
   end
 
   @doc """
+  Receives weather data from an external api.
   """
+  @spec get() :: {Atom, Map}
   def get do
     # {:ok, %{centigrade: 7.8, created_at: 1476902712, fahrenheit: 46.04, weather: "leichter Regen", wind_in_kilometers_per_hour: 18.0, wind_in_meters_per_second: 5.1}}
     ElixirWeatherData.get
