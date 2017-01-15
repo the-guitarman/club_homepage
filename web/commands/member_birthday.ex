@@ -30,7 +30,7 @@ defmodule ClubHomepage.MemberBirthday do
   end
 
   defp get_users_query(days) do
-    from(u in User, where: fragment("? + date_trunc('year', age(?)) + interval '1 year' <= current_date + interval '1 day' * ?", u.birthday, u.birthday, ^days))
+    from(u in User, where: fragment("? + date_trunc('year', age(?)) + interval '1 year' <= current_date + interval '1 day' * ?", u.birthday, u.birthday, ^days), order_by: [asc: u.birthday])
   end
 
   defp get_users(query) do

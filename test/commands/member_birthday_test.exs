@@ -61,5 +61,7 @@ defmodule ClubHomepage.MemberBirthdayTest do
     assert Enum.any?(birthdays, fn(el) -> el.id == user3.id end)
     assert Enum.any?(birthdays, fn(el) -> el.id == user4.id end)
     refute Enum.any?(birthdays, fn(el) -> el.id == user5.id end)
+
+    assert Enum.map(birthdays, fn(birthday) -> birthday.id end) == [user4.id, user3.id, user2.id]
   end
 end
