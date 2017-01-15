@@ -31,7 +31,7 @@ defmodule ClubHomepage.MemberBirthdayTest do
 
     birthday =
       Timex.local
-      |> Timex.shift(days: 1)
+      |> Timex.shift(days: 0)
       |> Timex.shift(years: -20)
     user3 = insert(:user, birthday: birthday)
     birthdays = MemberBirthday.next_birthdays()
@@ -41,7 +41,7 @@ defmodule ClubHomepage.MemberBirthdayTest do
 
     birthday =
       Timex.local
-      |> Timex.shift(days: 0)
+      |> Timex.shift(days: 1)
       |> Timex.shift(years: -20)
     user4 = insert(:user, birthday: birthday)
     birthdays = MemberBirthday.next_birthdays()
@@ -62,6 +62,6 @@ defmodule ClubHomepage.MemberBirthdayTest do
     assert Enum.any?(birthdays, fn(el) -> el.id == user4.id end)
     refute Enum.any?(birthdays, fn(el) -> el.id == user5.id end)
 
-    assert Enum.map(birthdays, fn(birthday) -> birthday.id end) == [user4.id, user3.id, user2.id]
+    assert Enum.map(birthdays, fn(birthday) -> birthday.id end) == [user3.id, user4.id, user2.id]
   end
 end
