@@ -7,12 +7,19 @@ defmodule ClubHomepage.Extension.CommonMatch do
   end
 
   def internal_user_name(%User{} = user) do
-    case user.nickname do
-      nil -> user.name
-      nickname -> nickname
-    end
+    user_name(user)
+  end
+  def internal_user_name(%{name: name, nickname: nickname}) do
+    user_name(%{name: name, nickname: nickname})
   end
   def internal_user_name(id) when is_integer(id) do
     internal_user_name(Repo.get!(User, id))
+  end
+
+  defp user_name(%{name: name, nickname: nickname}) do
+    case nickname do
+      nil -> name
+      nick_name -> nick_name
+    end
   end
 end

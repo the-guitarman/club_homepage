@@ -27,41 +27,47 @@ defmodule ClubHomepage.MemberBirthdayTest do
     user2 = insert(:user, birthday: birthday)
     birthdays = MemberBirthday.next_birthdays()
     assert Enum.count(birthdays) == 1
-    assert Enum.any?(birthdays, fn(el) -> el.id == user2.id end)
+    assert in_birthdays?(birthdays, user2, 20)
 
     birthday =
       Timex.local
       |> Timex.shift(days: 0)
-      |> Timex.shift(years: -20)
+      |> Timex.shift(years: -21)
     user3 = insert(:user, birthday: birthday)
     birthdays = MemberBirthday.next_birthdays()
     assert Enum.count(birthdays) == 2
-    assert Enum.any?(birthdays, fn(el) -> el.id == user2.id end)
-    assert Enum.any?(birthdays, fn(el) -> el.id == user3.id end)
+    assert in_birthdays?(birthdays, user2, 20)
+    assert in_birthdays?(birthdays, user3, 21)
 
     birthday =
       Timex.local
       |> Timex.shift(days: 1)
-      |> Timex.shift(years: -20)
+      |> Timex.shift(years: -22)
     user4 = insert(:user, birthday: birthday)
     birthdays = MemberBirthday.next_birthdays()
     assert Enum.count(birthdays) == 3
-    assert Enum.any?(birthdays, fn(el) -> el.id == user2.id end)
-    assert Enum.any?(birthdays, fn(el) -> el.id == user3.id end)
-    assert Enum.any?(birthdays, fn(el) -> el.id == user4.id end)
+    assert in_birthdays?(birthdays, user2, 20)
+    assert in_birthdays?(birthdays, user3, 21)
+    assert in_birthdays?(birthdays, user4, 22)
 
     birthday =
       Timex.local
       |> Timex.shift(days: -1)
-      |> Timex.shift(years: -20)
+      |> Timex.shift(years: -23)
     user5 = insert(:user, birthday: birthday)
     birthdays = MemberBirthday.next_birthdays()
     assert Enum.count(birthdays) == 3
-    assert Enum.any?(birthdays, fn(el) -> el.id == user2.id end)
-    assert Enum.any?(birthdays, fn(el) -> el.id == user3.id end)
-    assert Enum.any?(birthdays, fn(el) -> el.id == user4.id end)
-    refute Enum.any?(birthdays, fn(el) -> el.id == user5.id end)
+    assert in_birthdays?(birthdays, user2, 20)
+    assert in_birthdays?(birthdays, user3, 21)
+    assert in_birthdays?(birthdays, user4, 22)
+    refute in_birthdays?(birthdays, user5, 23)
+  end
 
-    assert Enum.map(birthdays, fn(birthday) -> birthday.id end) == [user3.id, user4.id, user2.id]
+  defp in_birthdays?(birthdays, user, age) do
+    Keyword.keys(birthdays)
+    |> Enum.any?(
+      fn(key) ->
+        Enum.any?(birthdays[key], fn(user_string) -> "#{user.name} (#{age})" == user_string end)
+      end)
   end
 end
