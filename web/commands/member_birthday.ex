@@ -23,7 +23,7 @@ defmodule ClubHomepage.MemberBirthday do
   """
   @spec next_birthdays() :: List
   @spec next_birthdays(Integer) :: List
-  def next_birthdays(days_from_now \\ 7) do
+  def next_birthdays(days_from_now \\ 300) do
     days_from_now
     |> get_users_query
     |> get_users
@@ -57,6 +57,18 @@ defmodule ClubHomepage.MemberBirthday do
   end
 
   defp date_key(%{day: day, month: month, year: year}) do
+    day = 
+      if day < 10 do
+        "0#{day}"
+      else
+        day
+      end
+    month = 
+      if month < 10 do
+        "0#{month}"
+      else
+        month
+      end
     String.to_atom("#{year}-#{month}-#{day}")
   end
 end

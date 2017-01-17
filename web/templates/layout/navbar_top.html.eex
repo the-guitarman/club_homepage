@@ -35,9 +35,17 @@
             <div class="dropdown-menu panel panel-default">
               <div class="panel-heading"><%= gettext("birthdays") %></div>
               <ul class="list-group">
-                <%= for birthday <- @birthdays do %>
+                <% date_keys = Keyword.keys(@birthdays) %>
+                <%= for date_key <- date_keys do %>
                   <li class="list-group-item">
-                    <%#= birthday[:date] %>
+                    <%
+                    {:ok, date} = Timex.parse(Atom.to_string(date_key), "%Y-%m-%d", :strftime)
+                    {:ok, date} = Timex.format(date, "%d.%m.%Y", :strftime)
+                    %>
+                    <%= date %><br />
+                    <%= for birthday <- @birthdays[date_key] do %>
+                      <%= birthday %><br />
+                    <% end %>
                   </li>
                 <% end %>
               </ul>
