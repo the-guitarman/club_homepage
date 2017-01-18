@@ -61,6 +61,20 @@ defmodule ClubHomepage.MemberBirthdayTest do
     assert in_birthdays?(birthdays, user3, 21)
     assert in_birthdays?(birthdays, user4, 22)
     refute in_birthdays?(birthdays, user5, 23)
+
+    date_keys = Keyword.keys(birthdays)
+    dates = Enum.map(date_keys,
+      fn(date_key) ->
+        {:ok, date} = Timex.parse(Atom.to_string(date_key), "%Y-%m-%d", :strftime)
+        date
+      end
+    )
+    dates_sorted = Enum.sort(dates,
+      fn(date1, date2) ->
+        Timex.compare(date1, date2) == -1
+      end
+    )
+    assert dates == dates_sorted
   end
 
   defp in_birthdays?(birthdays, user, age) do

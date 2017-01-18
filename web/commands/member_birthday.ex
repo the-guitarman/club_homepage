@@ -23,11 +23,12 @@ defmodule ClubHomepage.MemberBirthday do
   """
   @spec next_birthdays() :: List
   @spec next_birthdays(Integer) :: List
-  def next_birthdays(days_from_now \\ 300) do
+  def next_birthdays(days_from_now \\ 7) do
     days_from_now
     |> get_users_query
     |> get_users
     |> collect_birthdays
+    |> sort_birthdays
   end
 
   defp get_users_query(days) do
@@ -70,5 +71,44 @@ defmodule ClubHomepage.MemberBirthday do
         month
       end
     String.to_atom("#{year}-#{month}-#{day}")
+  end
+
+  defp sort_birthdays(birthdays) do
+    birthdays
+    |> get_dates_from_date_keys
+    |> sort_dates
+    |> get_date_keys_from_dates
+    |> Enum.map(
+      fn(date_key) ->
+        {date_key, birthdays[date_key]}
+      end
+    )
+  end
+
+  defp get_dates_from_date_keys(birthdays) do
+    date_keys = Keyword.keys(birthdays)
+    Enum.map(date_keys,
+      fn(date_key) ->
+        {:ok, date} = Timex.parse(Atom.to_string(date_key), "%Y-%m-%d", :strftime)
+        date
+      end
+    )
+  end
+
+  defp sort_dates(dates) do
+    Enum.sort(dates,
+      fn(date1, date2) ->
+        Timex.compare(date1, date2) == -1
+      end
+    )
+  end
+
+  defp get_date_keys_from_dates(dates) do
+    Enum.map(dates,
+      fn(date) ->
+        {:ok, date_key} = Timex.format(date, "%Y-%m-%d", :strftime)
+        String.to_atom(date_key)
+      end
+    )
   end
 end
