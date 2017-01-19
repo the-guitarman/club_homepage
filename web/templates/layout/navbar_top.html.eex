@@ -42,9 +42,9 @@
                     {:ok, date} = Timex.parse(Atom.to_string(date_key), "%Y-%m-%d", :strftime)
                     {:ok, date} = Timex.format(date, "%d.%m.%Y", :strftime)
                     %>
-                    <%= date %><br />
+                    <div class="birthday-date"><%= date %></div>
                     <%= for birthday <- @birthdays[date_key] do %>
-                      <%= birthday %><br />
+                      <div class="birthday-user"><%= birthday %></div>
                     <% end %>
                   </li>
                 <% end %>
