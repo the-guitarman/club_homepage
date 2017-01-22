@@ -1092,10 +1092,14 @@ msgstr "Temperature"
 msgid "weather"
 msgstr "Weather"
 
-#: web/templates/user/forgot_password.html.eex:11
+#: web/templates/user/forgot_password.html.eex:10
 msgid "login_or_email"
 msgstr "Login Or Email"
 
-#: web/templates/user/forgot_password.html.eex:15
+#: web/templates/user/forgot_password.html.eex:14
 msgid "send"
 msgstr "Send"
+
+#: web/templates/user/forgot_password.html.eex:6
+msgid "forgot_password_email_sent"
+msgstr "We sent you an email with a link in it. Click this link or copy and past it to the address line of your browser to change your password. It can take up to four hours to receive the email. Don't forget to check your spam/junk folder."

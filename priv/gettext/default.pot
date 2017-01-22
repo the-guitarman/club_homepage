@@ -1084,10 +1084,14 @@ msgstr ""
 msgid "weather"
 msgstr ""
 
-#: web/templates/user/forgot_password.html.eex:11
+#: web/templates/user/forgot_password.html.eex:10
 msgid "login_or_email"
 msgstr ""
 
-#: web/templates/user/forgot_password.html.eex:15
+#: web/templates/user/forgot_password.html.eex:14
 msgid "send"
+msgstr ""
+
+#: web/templates/user/forgot_password.html.eex:6
+msgid "forgot_password_email_sent"
 msgstr ""
