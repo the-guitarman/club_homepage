@@ -23,7 +23,7 @@ defmodule ClubHomepage.MemberBirthday do
   """
   @spec next_birthdays() :: List
   @spec next_birthdays(Integer) :: List
-  def next_birthdays(days_from_now \\ 300) do
+  def next_birthdays(days_from_now \\ 7) do
     days_from_now
     |> get_users_query
     |> get_users
