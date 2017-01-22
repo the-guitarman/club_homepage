@@ -15,7 +15,7 @@
             <%= submit gettext("log_in"), class: "btn btn-primary" %>
           </div>
           <div class="col-xs-6 text-right">
-            Passwort vergessen?
+            <%= link gettext("password_forgotten_question"), to: forgot_password_path(@conn, :forgot_password) %>
           </div>
         </div>
       <% end %>
