@@ -33,6 +33,9 @@ defmodule ClubHomepage.Router do
     resources "/matches", MatchController, only: [:show]
     get "/news", NewsController, :index
     resources "/users", UserController, only: [:new, :create]
+    get "/users/forgot-password", UserController, :forgot_password, as: :forgot_password
+    get "/users/change-password", UserController, :change_password, as: :change_password
+    get "/users/reset-password", UserController, :reset_password, as: :reset_password
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     get "/teams/:slug", TeamController, :show, as: :team_page
     get "/teams/:slug/season/:season/download-ical", TeamController, :download_ical, as: :team_matches_download

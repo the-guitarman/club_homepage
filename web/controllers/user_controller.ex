@@ -114,6 +114,37 @@ defmodule ClubHomepage.UserController do
   #   |> redirect(to: user_path(conn, :index))
   # end
 
+  def forgot_password(conn, %{"email" => email}) do
+    user = Repo.get_by(User, %{"email" => email})
+    # ClubHomepage.Email.forgot_password_email(conn, user)
+    # |> ClubHomepage.Mailer.deliver_now
+    render(conn, "forgot_password.html", user: user)
+  end
+  def forgot_password(conn, %{"login" => login}) do
+    user = Repo.get_by(User, %{"login" => login})
+    # ClubHomepage.Email.forgot_password_email(conn, user)
+    # |> ClubHomepage.Mailer.deliver_now
+    render(conn, "forgot_password.html", user: user)
+  end
+
+  def change_password(conn, %{"id" => id, "token" => token}) do
+    user = Repo.get_by!(User, %{"id" => id, "token" => token})
+    render(conn, "change_password.html", user: user)
+  end
+
+  def reset_password(conn, %{"id" => id, "token" => token, "password" => password, "password_confirmation" => password_confirmation}) do
+    user = Repo.get_by!(User, %{"id" => id, "token" => token})
+    changeset = User.changeset(user, %{"password" => password, "password_confirmation" => password_confirmation, "token" => nil})
+    case Repo.update(changeset) do
+      {:ok, _user} ->
+        conn
+        |> put_flash(:info, gettext("user_updated_successfully"))
+        |> redirect(to: managed_user_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "reset_password_failure.html", user: user)
+    end
+  end
+
   defp get_registration_changeset(nil, user_params, secret_key) do
     changeset =
       User.registration_changeset(%User{}, user_params)
