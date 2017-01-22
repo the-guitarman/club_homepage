@@ -117,12 +117,8 @@ defmodule ClubHomepage.UserController do
   def forgot_password_step_1(conn, _) do
     render(conn, "forgot_password.html", user: nil)
   end
-  def forgot_password_step_2(conn, %{"email" => email}) do
-    user = Repo.get_by(User, %{"email" => email})
-    render(conn, "forgot_password.html", user: user)
-  end
-  def forgot_password_step_2(conn, %{"login" => login}) do
-    user = Repo.get_by(User, %{"login" => login})
+  def forgot_password_step_2(conn, %{"forgot_password" => %{"login_or_email" => login_or_email}}) do
+    user = Repo.get_by(User, [login: login_or_email])
     # ClubHomepage.Email.forgot_password_email(conn, user)
     # |> ClubHomepage.Mailer.deliver_now
     render(conn, "forgot_password.html", user: user)
