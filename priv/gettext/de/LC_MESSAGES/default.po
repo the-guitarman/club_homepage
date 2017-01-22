@@ -828,7 +828,7 @@ msgstr "Der Benutzer wurde angelegt."
 msgid "user_created_successfully_and_loged_in"
 msgstr "Der Benutzer wurde angelegt und ist nun eingeloggt."
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:141
+#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:142
 msgid "user_updated_successfully"
 msgstr "Der Benutzer wurde gespeichert."
 
@@ -1080,6 +1080,7 @@ msgid "humidity"
 msgstr "Feuchtigkeit"
 
 #: web/templates/session/new.html.eex:18
+#: web/templates/user/forgot_password.html.eex:4
 msgid "password_forgotten_question"
 msgstr "Passwort vergessen?"
 
@@ -1090,3 +1091,11 @@ msgstr "Termeratur"
 #: web/templates/layout/navbar_top.html.eex:61
 msgid "weather"
 msgstr "Wetter"
+
+#: web/templates/user/forgot_password.html.eex:11
+msgid "login_or_email"
+msgstr "Login oder E-Mail"
+
+#: web/templates/user/forgot_password.html.eex:15
+msgid "send"
+msgstr "Senden"

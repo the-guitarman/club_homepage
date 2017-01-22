@@ -36,7 +36,7 @@ defmodule ClubHomepage.Extension.Controller do
         timezone = Timex.Timezone.get(Timex.Timezone.Local.lookup, Timex.local)
         timex_datetime = Timex.to_datetime(timex_naive_datetime, timezone)
         Map.put(params, field_name, timex_datetime)
-      {:error, error} ->
+      {:error, _error} ->
         Map.put(params, field_name, nil)
     end
   end

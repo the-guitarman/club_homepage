@@ -7,7 +7,7 @@ defmodule ClubHomepage.UserController do
 
   plug :is_user_editor? when action in [:index, :show, :new_unregistered, :create_unregistered, :edit, :update, :delete]
   plug :scrub_params, "user" when action in [:create, :update]
-  plug :require_no_user when action in [:new, :create]
+  plug :require_no_user when action in [:new, :create, :forgot_password_step_1, :forgot_password_step_2, :change_password, :reset_password]
 
   def index(conn, _params) do
     users = Repo.all(User)
@@ -114,11 +114,14 @@ defmodule ClubHomepage.UserController do
   #   |> redirect(to: user_path(conn, :index))
   # end
 
-  def forgot_password(conn, %{"email" => email}) do
+  def forgot_password_step_1(conn, _) do
+    render(conn, "forgot_password.html", user: nil)
+  end
+  def forgot_password_step_2(conn, %{"email" => email}) do
     user = Repo.get_by(User, %{"email" => email})
     render(conn, "forgot_password.html", user: user)
   end
-  def forgot_password(conn, %{"login" => login}) do
+  def forgot_password_step_2(conn, %{"login" => login}) do
     user = Repo.get_by(User, %{"login" => login})
     # ClubHomepage.Email.forgot_password_email(conn, user)
     # |> ClubHomepage.Mailer.deliver_now

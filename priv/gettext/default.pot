@@ -820,7 +820,7 @@ msgstr ""
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:141
+#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:142
 msgid "user_updated_successfully"
 msgstr ""
 
@@ -1072,6 +1072,7 @@ msgid "humidity"
 msgstr ""
 
 #: web/templates/session/new.html.eex:18
+#: web/templates/user/forgot_password.html.eex:4
 msgid "password_forgotten_question"
 msgstr ""
 
@@ -1081,4 +1082,12 @@ msgstr ""
 
 #: web/templates/layout/navbar_top.html.eex:61
 msgid "weather"
+msgstr ""
+
+#: web/templates/user/forgot_password.html.eex:11
+msgid "login_or_email"
+msgstr ""
+
+#: web/templates/user/forgot_password.html.eex:15
+msgid "send"
 msgstr ""

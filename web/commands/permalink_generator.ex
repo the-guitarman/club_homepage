@@ -3,7 +3,7 @@ defmodule ClubHomepage.PermalinkGenerator  do
   Generates permalinks to redirect paths with old slugs to new ones. 
   """
 
-  import Ecto.Query, only: [from: 1, from: 2]
+  import Ecto.Query, only: [from: 2]
 
   alias ClubHomepage.Permalink
   alias ClubHomepage.Repo
