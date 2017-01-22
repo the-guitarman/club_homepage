@@ -116,8 +116,6 @@ defmodule ClubHomepage.UserController do
 
   def forgot_password(conn, %{"email" => email}) do
     user = Repo.get_by(User, %{"email" => email})
-    # ClubHomepage.Email.forgot_password_email(conn, user)
-    # |> ClubHomepage.Mailer.deliver_now
     render(conn, "forgot_password.html", user: user)
   end
   def forgot_password(conn, %{"login" => login}) do
