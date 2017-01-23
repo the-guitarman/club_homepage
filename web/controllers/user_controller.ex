@@ -115,13 +115,17 @@ defmodule ClubHomepage.UserController do
   # end
 
   def forgot_password_step_1(conn, _) do
-    render(conn, "forgot_password.html", user: nil)
+    render(conn, "forgot_password_step_1.html")
   end
   def forgot_password_step_2(conn, %{"forgot_password" => %{"login_or_email" => login_or_email}}) do
-    user = Repo.get_by(User, [login: login_or_email])
-    # ClubHomepage.Email.forgot_password_email(conn, user)
-    # |> ClubHomepage.Mailer.deliver_now
-    render(conn, "forgot_password.html", user: user)
+    user = Repo.one(from(u in User, where: (u.login == ^login_or_email) or (u.email == ^login_or_email)))
+    case user do
+      nil -> render(conn, "forgot_password_step_2.html", user: nil)
+      user ->
+        ClubHomepage.Email.forgot_password_email(conn, user)
+        |> ClubHomepage.Mailer.deliver_now
+        render(conn, "forgot_password_step_2.html", user: user)
+    end
   end
 
   def change_password(conn, %{"id" => id, "token" => token}) do
@@ -137,7 +141,7 @@ defmodule ClubHomepage.UserController do
         conn
         |> put_flash(:info, gettext("user_updated_successfully"))
         |> redirect(to: managed_user_path(conn, :index))
-      {:error, changeset} ->
+      {:error, _changeset} ->
         render(conn, "reset_password_failure.html", user: user)
     end
   end
