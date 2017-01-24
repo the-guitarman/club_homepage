@@ -125,7 +125,9 @@ defmodule ClubHomepage.UserController do
         |> put_flash(:error, gettext("account_not_found"))
         |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
       user ->
-        ClubHomepage.Email.forgot_password_email(conn, user)
+        user = change_user_token(user)
+        conn
+        |> ClubHomepage.Email.forgot_password_email(user)
         |> ClubHomepage.Mailer.deliver_now
         render(conn, "forgot_password_step_2.html", user: user)
     end
@@ -168,4 +170,8 @@ defmodule ClubHomepage.UserController do
     |> Map.put("roles", Enum.join(new_roles, " "))
   end
   defp join_user_roles(user_params, _edited_user, _conn), do: user_params
+
+  defp change_user_token(user) do
+    
+  end
 end

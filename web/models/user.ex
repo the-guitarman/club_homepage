@@ -15,6 +15,8 @@ defmodule ClubHomepage.User do
     field :nickname, :string
     field :roles, :string
     field :meta_data, :map
+    field :token, :string
+    field :token_set_at, Timex.Ecto.DateTime
 
     has_many :team_chat_messages, ClubHomepage.TeamChatMessage
 
@@ -23,7 +25,7 @@ defmodule ClubHomepage.User do
 
   def unregistered_changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(email name), ~w(nickname login birthday active roles meta_data))
+    |> cast(params, ~w(email name), ~w(nickname login birthday active roles meta_data token token_set_at))
     |> validate_length(:name, max: 100)
     |> check_email
     |> UserRole.check_roles

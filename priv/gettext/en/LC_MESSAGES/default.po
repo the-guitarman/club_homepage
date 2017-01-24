@@ -828,7 +828,7 @@ msgstr "User created successfully."
 msgid "user_created_successfully_and_loged_in"
 msgstr "User created successfully and logged in."
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:142
+#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:145
 msgid "user_updated_successfully"
 msgstr "user updated successfully."
 
@@ -1101,18 +1101,22 @@ msgstr "Login Or Email"
 msgid "send"
 msgstr "Send"
 
-#: web/templates/user/forgot_password_step_2.html.eex:6
+#: web/templates/user/forgot_password_step_2.html.eex:5
 msgid "forgot_password_email_sent"
 msgstr "We sent you an email with a link in it. Click this link or copy and past it to the address line of your browser to change your password. It can take up to four hours to receive the email. Don't forget to check your spam/junk folder."
 
 #: lib/email.ex:28
 msgid "forgot_password_email_subject"
-msgstr ""
+msgstr "Change Password - %{domain}"
 
 #: lib/email.ex:23
 msgid "forgot_password_email_text"
-msgstr ""
+msgstr "Hi, \n\nsomebody requested a password change of your account at %{domain}. If you did it, then you could click this link to change your password: \n\n%{scheme}://%{domain}}%{change_password_path} \n\nIf you don't want to change your password or you didn't request the change, you can safely ignore this email. \n\nTo protect your account don't forward this email. \n\nRegards \n\nThe Web-Team of %{domain}."
 
-#: web/templates/user/forgot_password_step_2.html.eex:8
-msgid "no_user_found_to_reset_password_for"
-msgstr ""
+#: web/controllers/user_controller.ex:125
+msgid "account_not_found"
+msgstr "The Account for this login/email does not exist."
+
+#: web/templates/user/forgot_password_step_1.html.eex:5
+msgid "forgot_password_step_1_notice"
+msgstr "Type in your login or email to reset your password. Sometimes you need to check your spam folder or to whitelist the sender email noreply@%{domain}."

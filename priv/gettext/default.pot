@@ -820,7 +820,7 @@ msgstr ""
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:142
+#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:145
 msgid "user_updated_successfully"
 msgstr ""
 
@@ -1093,7 +1093,7 @@ msgstr ""
 msgid "send"
 msgstr ""
 
-#: web/templates/user/forgot_password_step_2.html.eex:6
+#: web/templates/user/forgot_password_step_2.html.eex:5
 msgid "forgot_password_email_sent"
 msgstr ""
 
@@ -1105,6 +1105,10 @@ msgstr ""
 msgid "forgot_password_email_text"
 msgstr ""
 
-#: web/templates/user/forgot_password_step_2.html.eex:8
-msgid "no_user_found_to_reset_password_for"
+#: web/controllers/user_controller.ex:125
+msgid "account_not_found"
+msgstr ""
+
+#: web/templates/user/forgot_password_step_1.html.eex:5
+msgid "forgot_password_step_1_notice"
 msgstr ""
