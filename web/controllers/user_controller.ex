@@ -120,7 +120,10 @@ defmodule ClubHomepage.UserController do
   def forgot_password_step_2(conn, %{"forgot_password" => %{"login_or_email" => login_or_email}}) do
     user = Repo.one(from(u in User, where: (u.login == ^login_or_email) or (u.email == ^login_or_email)))
     case user do
-      nil -> render(conn, "forgot_password_step_2.html", user: nil)
+      nil ->
+        conn
+        |> put_flash(:error, gettext("account_not_found"))
+        |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
       user ->
         ClubHomepage.Email.forgot_password_email(conn, user)
         |> ClubHomepage.Mailer.deliver_now

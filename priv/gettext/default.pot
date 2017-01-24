@@ -1072,7 +1072,8 @@ msgid "humidity"
 msgstr ""
 
 #: web/templates/session/new.html.eex:18
-#: web/templates/user/forgot_password.html.eex:4
+#: web/templates/user/forgot_password_step_1.html.eex:4
+#: web/templates/user/forgot_password_step_2.html.eex:4
 msgid "password_forgotten_question"
 msgstr ""
 
@@ -1084,14 +1085,26 @@ msgstr ""
 msgid "weather"
 msgstr ""
 
-#: web/templates/user/forgot_password.html.eex:10
+#: web/templates/user/forgot_password_form.html.eex:3
 msgid "login_or_email"
 msgstr ""
 
-#: web/templates/user/forgot_password.html.eex:14
+#: web/templates/user/forgot_password_form.html.eex:7
 msgid "send"
 msgstr ""
 
-#: web/templates/user/forgot_password.html.eex:6
+#: web/templates/user/forgot_password_step_2.html.eex:6
 msgid "forgot_password_email_sent"
+msgstr ""
+
+#: lib/email.ex:28
+msgid "forgot_password_email_subject"
+msgstr ""
+
+#: lib/email.ex:23
+msgid "forgot_password_email_text"
+msgstr ""
+
+#: web/templates/user/forgot_password_step_2.html.eex:8
+msgid "no_user_found_to_reset_password_for"
 msgstr ""
