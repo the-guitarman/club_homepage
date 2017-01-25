@@ -135,7 +135,15 @@ defmodule ClubHomepage.UserController do
 
   def change_password(conn, %{"id" => id, "token" => token}) do
     user = Repo.get_by!(User, %{"id" => id, "token" => token})
-    render(conn, "change_password.html", user: user)
+
+    datetime = Timex.add(user.token_set_at, Timex.Duration.from_days(2))
+    case Timex.compare(datetime, Timex.now) do
+      -1 ->
+        conn
+        |> put_flash(:error, gettext("change_password_timed_out"))
+        |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
+      _ -> render(conn, "change_password.html", user: user)
+    end
   end
 
   def reset_password(conn, %{"id" => id, "token" => token, "password" => password, "password_confirmation" => password_confirmation}) do
