@@ -371,7 +371,9 @@ msgstr "Log in"
 msgid "login"
 msgstr "Login"
 
-#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:15
+#: web/templates/session/new.html.eex:10
+#: web/templates/user/change_password.html.eex:9
+#: web/templates/user/form.html.eex:15
 msgid "password"
 msgstr "Password"
 
@@ -1097,6 +1099,7 @@ msgstr "Weather"
 msgid "login_or_email"
 msgstr "Login Or Email"
 
+#: web/templates/user/change_password.html.eex:16
 #: web/templates/user/forgot_password_form.html.eex:7
 msgid "send"
 msgstr "Send"
@@ -1128,3 +1131,11 @@ msgstr "Your password change request timed out."
 #: web/controllers/user_controller.ex:145
 msgid "account_token_not_found"
 msgstr "The account does not exist or the reset link is not valid anymore."
+
+#: web/templates/user/change_password.html.eex:12
+msgid "password_confirmation"
+msgstr ""
+
+#: web/templates/user/change_password.html.eex:4
+msgid "reset_password_headline"
+msgstr "Reset Password"

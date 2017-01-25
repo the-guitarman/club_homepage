@@ -371,7 +371,9 @@ msgstr "Login"
 msgid "login"
 msgstr "Login"
 
-#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:15
+#: web/templates/session/new.html.eex:10
+#: web/templates/user/change_password.html.eex:9
+#: web/templates/user/form.html.eex:15
 msgid "password"
 msgstr "Passwort"
 
@@ -1097,6 +1099,7 @@ msgstr "Wetter"
 msgid "login_or_email"
 msgstr "Login oder E-Mail"
 
+#: web/templates/user/change_password.html.eex:16
 #: web/templates/user/forgot_password_form.html.eex:7
 msgid "send"
 msgstr "Senden"
@@ -1128,3 +1131,11 @@ msgstr "Die Zeit zum zurücksetzen Deines Passwortes ist abgelaufen."
 #: web/controllers/user_controller.ex:145
 msgid "account_token_not_found"
 msgstr "Der Account existiert nicht oder Reset-Link ist nicht mehr gültig."
+
+#: web/templates/user/change_password.html.eex:12
+msgid "password_confirmation"
+msgstr ""
+
+#: web/templates/user/change_password.html.eex:4
+msgid "reset_password_headline"
+msgstr "Passwort zurücksetzen"
