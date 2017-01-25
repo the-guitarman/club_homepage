@@ -820,7 +820,7 @@ msgstr ""
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:145
+#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:148
 msgid "user_updated_successfully"
 msgstr ""
 
