@@ -820,7 +820,7 @@ msgstr ""
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:148
+#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:154
 msgid "user_updated_successfully"
 msgstr ""
 
@@ -1111,4 +1111,8 @@ msgstr ""
 
 #: web/templates/user/forgot_password_step_1.html.eex:5
 msgid "forgot_password_step_1_notice"
+msgstr ""
+
+#: web/controllers/user_controller.ex:142
+msgid "change_password_timed_out"
 msgstr ""

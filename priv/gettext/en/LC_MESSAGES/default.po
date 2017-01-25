@@ -828,7 +828,7 @@ msgstr "User created successfully."
 msgid "user_created_successfully_and_loged_in"
 msgstr "User created successfully and logged in."
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:148
+#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:154
 msgid "user_updated_successfully"
 msgstr "user updated successfully."
 
@@ -1120,3 +1120,7 @@ msgstr "The Account for this login/email does not exist."
 #: web/templates/user/forgot_password_step_1.html.eex:5
 msgid "forgot_password_step_1_notice"
 msgstr "Type in your login or email to reset your password. Sometimes you need to check your spam folder or to whitelist the sender email noreply@%{domain}."
+
+#: web/controllers/user_controller.ex:142
+msgid "change_password_timed_out"
+msgstr "Your password change request timed out."

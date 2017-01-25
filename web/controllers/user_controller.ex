@@ -135,7 +135,6 @@ defmodule ClubHomepage.UserController do
 
   def change_password(conn, %{"id" => id, "token" => token}) do
     user = Repo.get_by!(User, %{"id" => id, "token" => token})
-
     datetime = Timex.add(user.token_set_at, Timex.Duration.from_days(2))
     case Timex.compare(datetime, Timex.now) do
       -1 ->
