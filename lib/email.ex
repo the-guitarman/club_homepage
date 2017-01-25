@@ -18,7 +18,7 @@ defmodule ClubHomepage.Email do
 
   def forgot_password_email(conn, user) do
     domain = project_host(conn)
-    change_password_path = ClubHomepage.Router.Helpers.change_password_path(%Plug.Conn{}, :change_password, id: user.id, token: user.token)
+    change_password_path = ClubHomepage.Router.Helpers.change_password_path(%Plug.Conn{}, :change_password, user.id, token: user.token)
 
     body = gettext("forgot_password_email_text", domain: domain, scheme: conn.scheme, change_password_path: change_password_path)
 

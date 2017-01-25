@@ -126,6 +126,7 @@ defmodule ClubHomepage.UserController do
         |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
       user ->
         user = change_user_token(user)
+        IO.inspect user
         conn
         |> ClubHomepage.Email.forgot_password_email(user)
         |> ClubHomepage.Mailer.deliver_now
@@ -172,6 +173,16 @@ defmodule ClubHomepage.UserController do
   defp join_user_roles(user_params, _edited_user, _conn), do: user_params
 
   defp change_user_token(user) do
-    
+    token = :crypto.hash(:sha256, "#{Timex.to_unix(Timex.now)}") |> Base.encode16
+    IO.inspect token
+    user_params = 
+      %{"token" => token, "token_set_at" => Timex.now}
+      |> parse_date_field(:token_set_at)
+    IO.inspect user_params
+    changeset = User.changeset(user, user_params)
+    case Repo.update(changeset) do
+      {:ok, user} -> user
+      {:error, _changeset} -> user
+    end
   end
 end
