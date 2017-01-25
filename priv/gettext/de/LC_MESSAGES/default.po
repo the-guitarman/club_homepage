@@ -1127,4 +1127,4 @@ msgstr "Die Zeit zum zurücksetzen Deines Passwortes ist abgelaufen."
 
 #: web/controllers/user_controller.ex:145
 msgid "account_token_not_found"
-msgstr ""
+msgstr "Der Account existiert nicht oder Reset-Link ist nicht mehr gültig."
