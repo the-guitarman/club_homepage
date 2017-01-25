@@ -1123,4 +1123,4 @@ msgstr "Gib Dein Login oder Deine E-Mail-Adresse ein, um Dein Kennwort zurückzu
 
 #: web/controllers/user_controller.ex:142
 msgid "change_password_timed_out"
-msgstr "Die Zeit zum zurücksetzen des Passwortes ist abgelaufen."
+msgstr "Die Zeit zum zurücksetzen Deines Passwortes ist abgelaufen."
