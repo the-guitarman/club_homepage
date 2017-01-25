@@ -828,7 +828,7 @@ msgstr "User created successfully."
 msgid "user_created_successfully_and_loged_in"
 msgstr "User created successfully and logged in."
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:154
+#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:165
 msgid "user_updated_successfully"
 msgstr "user updated successfully."
 
@@ -1113,7 +1113,7 @@ msgstr "Change Password - %{domain}"
 msgid "forgot_password_email_text"
 msgstr "Hi, \n\nsomebody requested a password change of your account at %{domain}. If you did it, then you could click this link to change your password: \n\n%{scheme}://%{domain}}%{change_password_path} \n\nIf you don't want to change your password or you didn't request the change, you can safely ignore this email. \n\nTo protect your account don't forward this email. \n\nRegards \n\nThe Web-Team of %{domain}."
 
-#: web/controllers/user_controller.ex:125
+#: web/controllers/user_controller.ex:125 web/controllers/user_controller.ex:141
 msgid "account_not_found"
 msgstr "The Account for this login/email does not exist."
 
@@ -1121,6 +1121,10 @@ msgstr "The Account for this login/email does not exist."
 msgid "forgot_password_step_1_notice"
 msgstr "Type in your login or email to reset your password. Sometimes you need to check your spam folder or to whitelist the sender email noreply@%{domain}."
 
-#: web/controllers/user_controller.ex:142
+#: web/controllers/user_controller.ex:152
 msgid "change_password_timed_out"
 msgstr "Your password change request timed out."
+
+#: web/controllers/user_controller.ex:145
+msgid "account_token_not_found"
+msgstr ""

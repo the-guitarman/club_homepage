@@ -134,20 +134,31 @@ defmodule ClubHomepage.UserController do
   end
 
   def change_password(conn, %{"id" => id, "token" => token}) do
-    user = Repo.get_by!(User, [id: id, token: token])
-    datetime = Timex.add(user.token_set_at, Timex.Duration.from_days(-2))
-    case Timex.compare(datetime, Timex.now) do
-      -1 ->
+    user = Repo.get(User, id)
+    cond do
+      user == nil -> 
         conn
-        |> put_flash(:error, gettext("change_password_timed_out"))
+        |> put_flash(:error, gettext("account_not_found"))
         |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
-      _ -> render(conn, "change_password.html", user: user)
+      user && user.token != token ->
+        conn
+        |> put_flash(:error, gettext("account_token_not_found"))
+        |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
+      user && user.token == token ->
+        datetime = Timex.add(user.token_set_at, Timex.Duration.from_days(2))
+        case Timex.compare(datetime, Timex.now) do
+          -1 ->
+            conn
+            |> put_flash(:error, gettext("change_password_timed_out"))
+            |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
+          _ -> render(conn, "change_password.html", user: user)
+        end
     end
   end
 
-  def reset_password(conn, %{"id" => id, "token" => token, "password" => password, "password_confirmation" => password_confirmation}) do
-    user = Repo.get_by!(User, %{"id" => id, "token" => token})
-    changeset = User.changeset(user, %{"password" => password, "password_confirmation" => password_confirmation, "token" => nil})
+  def reset_password(conn, %{"reset_password" => %{"id" => id, "token" => token, "password" => password, "password_confirmation" => password_confirmation}}) do
+    user = Repo.get_by!(User, [id: id, token: token])
+    changeset = User.changeset(user, Map.merge(%{"password" => password, "password_confirmation" => password_confirmation}, user_token_attributes))
     case Repo.update(changeset) do
       {:ok, _user} ->
         conn
@@ -179,11 +190,17 @@ defmodule ClubHomepage.UserController do
   defp join_user_roles(user_params, _edited_user, _conn), do: user_params
 
   defp change_user_token(user) do
-    token = :crypto.hash(:sha256, "#{Timex.to_unix(Timex.now)}") |> Base.encode16
-    changeset = User.changeset(user, %{"token" => token, "token_set_at" => Timex.now})
+    changeset = User.changeset(user, user_token_attributes)
     case Repo.update(changeset) do
       {:ok, user} -> user
       {:error, _changeset} -> user
     end
+  end
+
+  defp user_token_attributes do
+    token =
+      :crypto.hash(:sha256, "#{Timex.to_unix(Timex.now)}")
+      |> Base.encode16
+    %{"token" => token, "token_set_at" => Timex.now}
   end
 end

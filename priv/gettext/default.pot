@@ -820,7 +820,7 @@ msgstr ""
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:154
+#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:165
 msgid "user_updated_successfully"
 msgstr ""
 
@@ -1105,7 +1105,7 @@ msgstr ""
 msgid "forgot_password_email_text"
 msgstr ""
 
-#: web/controllers/user_controller.ex:125
+#: web/controllers/user_controller.ex:125 web/controllers/user_controller.ex:141
 msgid "account_not_found"
 msgstr ""
 
@@ -1113,6 +1113,10 @@ msgstr ""
 msgid "forgot_password_step_1_notice"
 msgstr ""
 
-#: web/controllers/user_controller.ex:142
+#: web/controllers/user_controller.ex:152
 msgid "change_password_timed_out"
+msgstr ""
+
+#: web/controllers/user_controller.ex:145
+msgid "account_token_not_found"
 msgstr ""
