@@ -10,6 +10,7 @@ defmodule ClubHomepage.User do
     field :login, :string
     field :email, :string
     field :password, :string, virtual: true
+    field :password_confirmation, :string, virtual: true
     field :password_hash, :string
     field :name, :string
     field :nickname, :string
@@ -53,8 +54,10 @@ defmodule ClubHomepage.User do
   def registration_changeset(model, params) do
     model
     |> changeset(params)
-    |> cast(params, ~w(password), [])
+    |> cast(params, ~w(password password_confirmation), [])
     |> validate_length(:password, min: 6, max: 100)
+    |> validate_length(:password_confirmation, min: 6, max: 100)
+    |> validate_confirmation(:password)
     |> put_pass_hash()
     |> set_active(true)
   end

@@ -151,21 +151,23 @@ defmodule ClubHomepage.UserController do
             conn
             |> put_flash(:error, gettext("change_password_timed_out"))
             |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
-          _ -> render(conn, "change_password.html", user: user)
+          _ ->
+            changeset = User.changeset(user)
+            render(conn, "change_password.html", changeset: changeset, user: user)
         end
     end
   end
 
-  def reset_password(conn, %{"reset_password" => %{"id" => id, "token" => token, "password" => password, "password_confirmation" => password_confirmation}}) do
+  def reset_password(conn, %{"user" => %{"id" => id, "token" => token, "password" => password, "password_confirmation" => password_confirmation}}) do
     user = Repo.get_by!(User, [id: id, token: token])
-    changeset = User.changeset(user, Map.merge(%{"password" => password, "password_confirmation" => password_confirmation}, user_token_attributes))
+    changeset = User.registration_changeset(user, Map.merge(%{"password" => password, "password_confirmation" => password_confirmation}, user_token_attributes))
     case Repo.update(changeset) do
       {:ok, _user} ->
         conn
         |> put_flash(:info, gettext("user_updated_successfully"))
         |> redirect(to: managed_user_path(conn, :index))
-      {:error, _changeset} ->
-        render(conn, "reset_password_failure.html", user: user)
+      {:error, changeset} ->
+        render(conn, "change_password.html", changeset: changeset, user: user)
     end
   end
 
