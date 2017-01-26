@@ -136,7 +136,7 @@ defmodule ClubHomepage.UserController do
   def change_password(conn, %{"id" => id, "token" => token}) do
     user = Repo.get(User, id)
     cond do
-      user == nil -> 
+      user == nil ->
         conn
         |> put_flash(:error, gettext("account_not_found"))
         |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
@@ -164,7 +164,7 @@ defmodule ClubHomepage.UserController do
     case Repo.update(changeset) do
       {:ok, _user} ->
         conn
-        |> put_flash(:info, gettext("password_reset_successfully"))
+        |> put_flash(:info, gettext("password_reset_successful"))
         |> redirect(to: session_path(conn, :new))
       {:error, changeset} ->
         render(conn, "change_password.html", changeset: changeset, user: user)

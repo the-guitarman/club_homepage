@@ -1146,6 +1146,7 @@ msgstr "Passwort"
 msgid "password_confirmation"
 msgstr "Passwortbestätigung"
 
+#, fuzzy
 #: web/controllers/user_controller.ex:167
-msgid "password_reset_successfully"
+msgid "password_reset_successful"
 msgstr ""
