@@ -1144,4 +1144,4 @@ msgstr "Passwort"
 
 #: web/templates/user/form.html.eex:23
 msgid "password_confirmation"
-msgstr ""
+msgstr "Passwortbestätigung"

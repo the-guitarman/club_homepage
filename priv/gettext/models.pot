@@ -52,3 +52,9 @@ msgstr ""
 
 msgid "opponent_team_goals"
 msgstr ""
+
+msgid "password"
+msgstr ""
+
+msgid "password_confirmation"
+msgstr ""

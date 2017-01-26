@@ -56,3 +56,9 @@ msgstr "Tor(e)"
 
 msgid "opponent_team_goals"
 msgstr "Tor(e)"
+
+msgid "password"
+msgstr "Passwort"
+
+msgid "password_confirmation"
+msgstr "Passwortbestätigung"
