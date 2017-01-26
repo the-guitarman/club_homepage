@@ -49,10 +49,16 @@ msgid "user"
 msgstr "User"
 
 msgid "start_at"
-msgstr ""
+msgstr "Start At"
 
 msgid "team_goals"
-msgstr ""
+msgstr "Team Goals"
 
 msgid "opponent_team_goals"
-msgstr ""
+msgstr "Opponent Team Goals"
+
+msgid "password"
+msgstr "Password"
+
+msgid "password_confirmation"
+msgstr "Password Confirmation"
