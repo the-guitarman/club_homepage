@@ -820,7 +820,7 @@ msgstr ""
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:96 web/controllers/user_controller.ex:167
+#: web/controllers/user_controller.ex:96
 msgid "user_updated_successfully"
 msgstr ""
 
@@ -1136,4 +1136,8 @@ msgstr ""
 
 #: web/templates/user/form.html.eex:23
 msgid "password_confirmation"
+msgstr ""
+
+#: web/controllers/user_controller.ex:167
+msgid "password_reset_successfully"
 msgstr ""
