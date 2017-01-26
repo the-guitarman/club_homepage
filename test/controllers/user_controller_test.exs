@@ -5,7 +5,7 @@ defmodule ClubHomepage.UserControllerTest do
 
   import ClubHomepage.Factory
 
-  @valid_attrs %{birthday: "17.04.1988", email: "mail@example.de", login: "my_login", name: "some name", password: "my name"}
+  @valid_attrs %{birthday: "17.04.1988", email: "mail@example.de", login: "my_login", name: "some name", password: "my name", password_confirmation: "my name"}
   @invalid_attrs %{}
   @invalid_attrs2 %{email: "invalid"}
 
