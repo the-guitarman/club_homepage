@@ -164,8 +164,8 @@ defmodule ClubHomepage.UserController do
     case Repo.update(changeset) do
       {:ok, _user} ->
         conn
-        |> put_flash(:info, gettext("user_updated_successfully"))
-        |> redirect(to: managed_user_path(conn, :index))
+        |> put_flash(:info, gettext("password_reset_successfully"))
+        |> redirect(to: session_path(conn, :new))
       {:error, changeset} ->
         render(conn, "change_password.html", changeset: changeset, user: user)
     end
