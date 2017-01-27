@@ -292,6 +292,15 @@ defmodule ClubHomepage.UserControllerTest do
     assert flash_messages_contain?(conn, "The Account for this login/email does not exist.")
   end
 
+  @tag login: false
+  test "change password without an user is logged in: user id with wrong token given", %{conn: conn} do
+    user = insert(:user)
+    conn = get conn, change_password_path(conn, :change_password, user.id, "wrong")
+    assert html_response(conn, 302)
+    assert redirected_to(conn) =~ forgot_password_path(conn, :forgot_password_step_1)
+    assert flash_messages_contain?(conn, "The account does not exist or the reset link is not valid anymore.")
+  end
+
 
 
   # @tag login: true
