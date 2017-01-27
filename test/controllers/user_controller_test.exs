@@ -316,18 +316,18 @@ defmodule ClubHomepage.UserControllerTest do
     conn = get conn, change_password_path(conn, :change_password, user.id, user.token)
     assert html_response(conn, 200)
     assert html_response(conn, 200) =~ "<h2>Reset Password</h2>"
-    
   end
 
 
 
-  # @tag login: true
-  # test "forgot password step 1", %{conn: conn} do
-  #   conn = get conn, forgot_password_path(conn, :forgot_password_step_1)
-  #   assert html_response(conn, 302)
-  #   assert conn.halted
-  #   assert redirected_to(conn) =~ "/"
-  # end
+  @tag login: true
+  test "reset password with an user is logged in", %{conn: conn} do
+    user = insert(:user, token: "abc", token_set_at: Timex.now)
+    conn = put conn, reset_password_path(conn, :reset_password, id: user.id, token: user.token, password: "new-password", password_confirmation: "new-password")
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
+  end
 
   defp assign_current_user(conn, current_user) do
     conn = assign(conn, :current_user, current_user)
