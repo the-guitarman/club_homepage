@@ -329,6 +329,14 @@ defmodule ClubHomepage.UserControllerTest do
     assert redirected_to(conn) =~ "/"
   end
 
+  @tag login: false
+  test "reset password without an user is logged in", %{conn: conn} do
+    user = insert(:user, token: "abc", token_set_at: Timex.now)
+    conn = put conn, reset_password_path(conn, :reset_password, id: user.id, token: user.token, password: "new-password", password_confirmation: "different-password")
+    assert html_response(conn, 200)
+    assert html_response(conn, 200) =~ "<h2>Reset Password</h2>"
+  end
+
   defp assign_current_user(conn, current_user) do
     conn = assign(conn, :current_user, current_user)
     {:ok, conn: conn, current_user: current_user}
