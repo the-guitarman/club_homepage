@@ -310,6 +310,15 @@ defmodule ClubHomepage.UserControllerTest do
     assert flash_messages_contain?(conn, "Your password change request timed out.")
   end
 
+  @tag login: false
+  test "change password without an user is logged in: user id and token given", %{conn: conn} do
+    user = insert(:user, token: "abc", token_set_at: Timex.now)
+    conn = get conn, change_password_path(conn, :change_password, user.id, user.token)
+    assert html_response(conn, 200)
+    assert html_response(conn, 200) =~ "<h2>Reset Password</h2>"
+    
+  end
+
 
 
   # @tag login: true
