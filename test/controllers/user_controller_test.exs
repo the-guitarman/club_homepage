@@ -1,5 +1,6 @@
 defmodule ClubHomepage.UserControllerTest do
   use ClubHomepage.ConnCase
+  use Bamboo.Test
 
   alias ClubHomepage.User
 
@@ -21,7 +22,7 @@ defmodule ClubHomepage.UserControllerTest do
 
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn} do
-    user = insert(:user)
+    user = insert(:user, token: "abc")
     Enum.each([
       get(conn, managed_user_path(conn, :index)),
       get(conn, managed_user_path(conn, :show, user)),
@@ -198,6 +199,107 @@ defmodule ClubHomepage.UserControllerTest do
   #   conn = delete conn, user_path(conn, :delete, user)
   #   assert redirected_to(conn) == user_path(conn, :index)
   #   refute Repo.get(User, user.id)
+  # end
+
+
+
+  @tag login: true
+  test "forgot password step 1 with an user is logged in", %{conn: conn} do
+    conn = get conn, forgot_password_path(conn, :forgot_password_step_1)
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
+  end
+
+  @tag login: false
+  test "forgot password step 1 without an user is logged in", %{conn: conn} do
+    conn = get conn, forgot_password_path(conn, :forgot_password_step_1)
+    assert html_response(conn, 200)
+    assert html_response(conn, 200) =~ "<h2>Password forgotten?</h2>"
+    assert html_response(conn, 200) =~ "<p>Type in your login or email to reset your password. Sometimes you"
+  end
+
+
+
+  @tag login: true
+  test "forgot password step 2 with an user is logged in: type in an user login", %{conn: conn} do
+    user = insert(:user)
+    forgot_password_step_2_with_an_user_is_logged_in(conn, user.login)
+  end
+
+  @tag login: true
+  test "forgot password step 2 with an user is logged in: type in an user email", %{conn: conn} do
+    user = insert(:user)
+    forgot_password_step_2_with_an_user_is_logged_in(conn, user.email)
+  end
+
+  defp forgot_password_step_2_with_an_user_is_logged_in(conn, login_or_email) do
+    conn = post conn, forgot_password_path(conn, :forgot_password_step_2, %{"forgot_password" => %{"login_or_email" => login_or_email}})
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
+  end
+
+  @tag login: false
+  test "forgot password step 2 without an user is logged in: type in a user login", %{conn: conn} do
+    user = insert(:user)
+    forgot_password_step_2_without_an_user_is_logged_in(conn, user.login)
+  end
+
+  @tag login: false
+  test "forgot password step 2 without an user is logged in: type in a wrong user login", %{conn: conn} do
+    forgot_password_step_2_without_an_user_is_logged_in(conn, "aaa")
+  end
+
+  @tag login: false
+  test "forgot password step 2 without an user is logged in: type in a user email", %{conn: conn} do
+    user = insert(:user)
+    forgot_password_step_2_without_an_user_is_logged_in(conn, user.email)
+  end
+
+  @tag login: false
+  test "forgot password step 2 without an user is logged in: type in a wrong user email", %{conn: conn} do
+    forgot_password_step_2_without_an_user_is_logged_in(conn, "bbb")
+  end
+
+  defp forgot_password_step_2_without_an_user_is_logged_in(conn, login_or_email) do
+    conn = post conn, forgot_password_path(conn, :forgot_password_step_2, %{"forgot_password" => %{"login_or_email" => login_or_email}})
+    assert html_response(conn, 200)
+    assert html_response(conn, 200) =~ "<h2>Password forgotten?</h2>"
+    assert html_response(conn, 200) =~ "<p>We sent you an email with a link in it. Click this"
+    user = Repo.get_by(User, login: login_or_email) || Repo.get_by(User, email: login_or_email)
+    if user do
+      assert_delivered_email ClubHomepage.Email.forgot_password_email(conn, user)
+    end
+  end
+
+
+
+  @tag login: true
+  test "change password with an user is logged in", %{conn: conn} do
+    user = insert(:user, token: "abc")
+    conn = get conn, change_password_path(conn, :change_password, user.id, user.token)
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
+  end
+
+  @tag login: false
+  test "change password without an user is logged in: unknown user id given", %{conn: conn} do
+    conn = get conn, change_password_path(conn, :change_password, 0, "unknown")
+    assert html_response(conn, 302)
+    assert redirected_to(conn) =~ forgot_password_path(conn, :forgot_password_step_1)
+    assert flash_messages_contain?(conn, "The Account for this login/email does not exist.")
+  end
+
+
+
+  # @tag login: true
+  # test "forgot password step 1", %{conn: conn} do
+  #   conn = get conn, forgot_password_path(conn, :forgot_password_step_1)
+  #   assert html_response(conn, 302)
+  #   assert conn.halted
+  #   assert redirected_to(conn) =~ "/"
   # end
 
   defp assign_current_user(conn, current_user) do
