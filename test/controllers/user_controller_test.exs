@@ -330,13 +330,22 @@ defmodule ClubHomepage.UserControllerTest do
   end
 
   @tag login: false
-  test "reset password without an user is logged in", %{conn: conn} do
+  test "reset password without an user is logged in: password confirmation does not match", %{conn: conn} do
     user = insert(:user, token: "abc", token_set_at: Timex.now)
     conn = put conn, reset_password_path(conn, :reset_password, user: [id: user.id, token: user.token, password: "new-password", password_confirmation: "different-password"])
     assert html_response(conn, 200)
     assert html_response(conn, 200) =~ "<h2>Reset Password</h2>"
     assert html_response(conn, 200) =~ "<input id=\"user_id\" name=\"user[id]\" type=\"hidden\" value=\"#{user.id}\">"
-    assert html_response(conn, 200) =~ "<span class="help-block">Password Confirmation does not match confirmation</span>"
+    assert html_response(conn, 200) =~ "<span class=\"help-block\">Password Confirmation does not match confirmation</span>"
+  end
+
+  @tag login: false
+  test "reset password without an user is logged in", %{conn: conn} do
+    user = insert(:user, token: "abc", token_set_at: Timex.now)
+    conn = put conn, reset_password_path(conn, :reset_password, user: [id: user.id, token: user.token, password: "new-password", password_confirmation: "new-password"])
+    assert html_response(conn, 302)
+    assert redirected_to(conn) =~ session_path(conn, :new)
+    assert flash_messages_contain?(conn, "The password was changed successfully.")
   end
 
   defp assign_current_user(conn, current_user) do
