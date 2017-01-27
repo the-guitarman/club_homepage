@@ -303,8 +303,8 @@ defmodule ClubHomepage.UserControllerTest do
 
   @tag login: false
   test "change password without an user is logged in: user id and timed out token given", %{conn: conn} do
-    user = insert(:user, token: "abc", token_set_at: Timex.add(Timex.now), Timex.Duration.from_days(-3))
-    conn = get conn, change_password_path(conn, :change_password, user.id, "wrong")
+    user = insert(:user, token: "abc", token_set_at: Timex.add(Timex.now, Timex.Duration.from_days(-3)))
+    conn = get conn, change_password_path(conn, :change_password, user.id, user.token)
     assert html_response(conn, 302)
     assert redirected_to(conn) =~ forgot_password_path(conn, :forgot_password_step_1)
     assert flash_messages_contain?(conn, "Your password change request timed out.")
