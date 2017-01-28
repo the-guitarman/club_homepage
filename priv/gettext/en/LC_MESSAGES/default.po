@@ -12,10 +12,10 @@ msgstr ""
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
-#: web/templates/layout/navbar_top.html.eex:145
-#: web/templates/layout/navbar_top.html.eex:150
-#: web/templates/layout/navbar_top.html.eex:155
-#: web/templates/layout/navbar_top.html.eex:160
+#: web/templates/layout/navbar_top.html.eex:156
+#: web/templates/layout/navbar_top.html.eex:161
+#: web/templates/layout/navbar_top.html.eex:166
+#: web/templates/layout/navbar_top.html.eex:171
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:105
@@ -127,12 +127,12 @@ msgstr "Some errors occured:"
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:9
 #: web/templates/sponsor_image/form.html.eex:17
 #: web/templates/team/form.html.eex:15 web/templates/team_image/form.html.eex:33
-#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:96
+#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:111
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr "Save"
 
-#: web/templates/layout/navbar_top.html.eex:145
+#: web/templates/layout/navbar_top.html.eex:156
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
 #: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
 #: web/templates/team/team_page.html.eex:11
@@ -279,7 +279,7 @@ msgstr "Edit Season"
 
 #: web/templates/address/index.html.eex:8
 #: web/templates/address/index.html.eex:55
-#: web/templates/layout/navbar_top.html.eex:150
+#: web/templates/layout/navbar_top.html.eex:161
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/new.html.eex:11
@@ -347,7 +347,7 @@ msgstr "City"
 msgid "expiry_date"
 msgstr "Expiry Date"
 
-#: web/templates/secret/index.html.eex:13 web/templates/user/form.html.eex:56
+#: web/templates/secret/index.html.eex:13 web/templates/user/form.html.eex:71
 msgid "secret"
 msgstr "Secret"
 
@@ -360,22 +360,23 @@ msgstr "Create Team"
 msgid "edit_team"
 msgstr "Edit Team"
 
-#: web/templates/layout/navbar_top.html.eex:171
+#: web/templates/layout/navbar_top.html.eex:182
 #: web/templates/session/new.html.eex:15
 msgid "log_in"
 msgstr "Log in"
 
 #: web/templates/session/new.html.eex:4 web/templates/session/new.html.eex:7
-#: web/templates/user/form.html.eex:8 web/templates/user/index.html.eex:16
+#: web/templates/user/form.html.eex:13 web/templates/user/index.html.eex:16
 #: web/templates/user/show.html.eex:12
 msgid "login"
 msgstr "Login"
 
-#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:15
+#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:51
+#: web/templates/user/form.html.eex:55
 msgid "password"
 msgstr "Password"
 
-#: web/templates/layout/navbar_top.html.eex:125
+#: web/templates/layout/navbar_top.html.eex:136
 #: web/templates/page/index.html.eex:40 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21
@@ -384,12 +385,12 @@ msgstr "Password"
 msgid "teams"
 msgstr "Teams"
 
-#: web/templates/user/form.html.eex:69 web/templates/user/index.html.eex:19
+#: web/templates/user/form.html.eex:84 web/templates/user/index.html.eex:19
 #: web/templates/user/show.html.eex:28
 msgid "active"
 msgstr "Active"
 
-#: web/templates/user/form.html.eex:49
+#: web/templates/user/form.html.eex:43
 #: web/templates/user/form_unregistered.html.eex:21
 #: web/templates/user/index.html.eex:20 web/templates/user/show.html.eex:32
 msgid "birthday"
@@ -417,7 +418,7 @@ msgstr ""
 msgid "edit_user"
 msgstr "Edit Club Member"
 
-#: web/templates/user/form.html.eex:42
+#: web/templates/user/form.html.eex:19
 #: web/templates/user/form_unregistered.html.eex:14
 #: web/templates/user/index.html.eex:18 web/templates/user/show.html.eex:24
 msgid "email"
@@ -452,23 +453,24 @@ msgstr "Latest News"
 msgid "edit_match"
 msgstr "Edit Match"
 
-#: web/templates/layout/navbar_top.html.eex:165
+#: web/templates/layout/navbar_top.html.eex:176
 msgid "logout"
 msgstr "Logout"
 
-#: web/templates/layout/navbar_top.html.eex:119
+#: web/templates/layout/navbar_top.html.eex:130
 msgid "members"
 msgstr "Club Members"
 
-#: web/templates/layout/navbar_top.html.eex:168
+#: web/templates/layout/navbar_top.html.eex:179
 msgid "sign_up"
 msgstr "Sign Up"
 
-#: web/templates/layout/navbar_top.html.eex:102
+#: web/templates/layout/navbar_top.html.eex:113
+#: web/templates/user/form.html.eex:27
 msgid "master_data"
 msgstr "Master Data"
 
-#: web/templates/layout/navbar_top.html.eex:107
+#: web/templates/layout/navbar_top.html.eex:118
 #: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
 #: web/templates/news/show.html.eex:26
 msgid "news"
@@ -571,7 +573,7 @@ msgstr "Competition"
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
-#: web/templates/layout/navbar_top.html.eex:155
+#: web/templates/layout/navbar_top.html.eex:166
 msgid "competitions"
 msgstr "Competitions"
 
@@ -651,13 +653,13 @@ msgstr "Edit Text Page"
 msgid "page"
 msgstr "Page"
 
-#: web/templates/layout/navbar_top.html.eex:112
+#: web/templates/layout/navbar_top.html.eex:123
 #: web/templates/text_page/edit.html.eex:30
 #: web/templates/text_page/index.html.eex:4
 msgid "text_pages"
 msgstr "Text Pages"
 
-#: web/templates/user/form.html.eex:78
+#: web/templates/user/form.html.eex:93
 msgid "user_roles"
 msgstr "User Roles/Rights"
 
@@ -836,7 +838,7 @@ msgstr "user updated successfully."
 msgid "select_failure_reason_placeholder"
 msgstr "Select Failure Reasoon ..."
 
-#: web/templates/layout/navbar_top.html.eex:140
+#: web/templates/layout/navbar_top.html.eex:151
 msgid "all_opponent_teams"
 msgstr "All Opponent Teams"
 
@@ -868,7 +870,7 @@ msgstr "Secret"
 msgid "nickname"
 msgstr "Nickname"
 
-#: web/templates/layout/navbar_top.html.eex:97
+#: web/templates/layout/navbar_top.html.eex:98
 msgid "signed_in_label"
 msgstr "Signed In"
 
@@ -1011,7 +1013,7 @@ msgstr "Club Member"
 msgid "chat_messages"
 msgstr "Chat Messages"
 
-#: web/templates/layout/navbar_top.html.eex:160
+#: web/templates/layout/navbar_top.html.eex:171
 msgid "team_chat_messages"
 msgstr "Team Chat Messages"
 
@@ -1023,7 +1025,7 @@ msgstr "Show Older Messages"
 msgid "team_chat_messagesmoment_js_date_format"
 msgstr "MM/DD/YYYY"
 
-#: web/templates/user/form.html.eex:65
+#: web/templates/user/form.html.eex:80
 msgid "user_is_active"
 msgstr "Account Is Active"
 
@@ -1114,7 +1116,7 @@ msgstr "Change Password - %{domain}"
 msgid "forgot_password_email_text"
 msgstr "Hi, \n\nsomebody requested a password change of your account at %{domain}. If you did it, then you could click this link to change your password: \n\n%{scheme}://%{domain}}%{change_password_path} \n\nIf you don't want to change your password or you didn't request the change, you can safely ignore this email. \n\nTo protect your account don't forward this email. \n\nRegards \n\nThe Web-Team of %{domain}."
 
-#: web/controllers/user_controller.ex:125 web/controllers/user_controller.ex:141
+#: web/controllers/user_controller.ex:136
 msgid "account_not_found"
 msgstr "The Account for this login/email does not exist."
 
@@ -1122,11 +1124,11 @@ msgstr "The Account for this login/email does not exist."
 msgid "forgot_password_step_1_notice"
 msgstr "Type in your login or email to reset your password. Sometimes you need to check your spam folder or to whitelist the sender email noreply@%{domain}."
 
-#: web/controllers/user_controller.ex:152
+#: web/controllers/user_controller.ex:147
 msgid "change_password_timed_out"
 msgstr "Your password change request timed out."
 
-#: web/controllers/user_controller.ex:145
+#: web/controllers/user_controller.ex:140
 msgid "account_token_not_found"
 msgstr "The account does not exist or the reset link is not valid anymore."
 
@@ -1142,11 +1144,19 @@ msgstr "Password Confirmation"
 msgid "password_placeholder"
 msgstr "Password"
 
-#: web/templates/user/form.html.eex:23
+#: web/templates/user/form.html.eex:63
 msgid "password_confirmation"
 msgstr "Password Confirmation"
 
-#, fuzzy
-#: web/controllers/user_controller.ex:167
+#: web/controllers/user_controller.ex:162
 msgid "password_reset_successful"
 msgstr "The password was changed successfully."
+
+#: web/templates/user/form.html.eex:10
+msgid "login_data"
+msgstr "Login Data"
+
+#: web/templates/layout/navbar_top.html.eex:105
+#: web/templates/layout/navbar_top.html.eex:107
+msgid "settings"
+msgstr "Settings"
