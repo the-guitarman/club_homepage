@@ -71,16 +71,33 @@ defmodule ClubHomepage.UserController do
     end
   end
 
+  def edit_restricted(conn, %{"user_id" => id}) do
+    edit_user_date(conn, %{"id" => id}, "edit_restricted.html")
+  end
+
   def edit(conn, %{"id" => id}) do
+    edit_user_date(conn, %{"id" => id}, "edit.html")
+  end
+
+  defp edit_user_date(conn, %{"id" => id}, template) do
     user = Repo.get!(User, id)
     changeset = User.changeset(user)
-    render(conn, "edit.html", changeset: changeset,
+    render(conn, template, changeset: changeset,
            user: user,
            editable_user_roles: UserRole.editable_roles(current_user(conn)),
            current_user_roles: UserRole.split(user.roles))
   end
 
+  def update_restricted(conn, %{"user_id" => id, "user" => user_params}) do
+    user_params = Map.drop(user_params, Map.keys(user_params) -- ["login", "email", "name", "nickname", "birthday", "password", "password_confirmation"])
+    update_user_data(conn, %{"id" => id, "user" => user_params}, "edit_restricted.html")
+  end
+
   def update(conn, %{"id" => id, "user" => user_params}) do
+    update_user_data(conn, %{"id" => id, "user" => user_params}, "edit.html")
+  end
+
+  defp update_user_data(conn, %{"id" => id, "user" => user_params}, template) do
     user = Repo.get!(User, id)
 
     user_params =
@@ -96,7 +113,7 @@ defmodule ClubHomepage.UserController do
         |> put_flash(:info, gettext("user_updated_successfully"))
         |> redirect(to: managed_user_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "edit.html", user: user, changeset: changeset,
+        render(conn, template, user: user, changeset: changeset,
                editable_user_roles: UserRole.editable_roles(current_user(conn)),
                current_user_roles: UserRole.split(user.roles))
     end

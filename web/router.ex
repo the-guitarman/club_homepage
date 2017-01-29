@@ -49,7 +49,10 @@ defmodule ClubHomepage.Router do
     
     get "/users/new", UserController, :new_unregistered, as: :unregistered_user
     post "/users", UserController, :create_unregistered, as: :unregistered_user
-    resources "/users", UserController, only: [:index, :show, :edit, :update, :delete], as: :managed_user
+    resources "/users", UserController, only: [:index, :show, :edit, :update, :delete], as: :managed_user do
+      get "/edit-restricted", UserController, :edit_restricted, as: :edit_restricted
+      put "/edit-restricted", UserController, :update_restricted, as: :edit_restricted
+    end
 
     resources "/addresses", AddressController, except: [:show]
     resources "/competitions", CompetitionController, except: [:show]

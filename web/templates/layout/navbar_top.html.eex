@@ -101,8 +101,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= internal_user_name(@current_user) %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li class="<%= current_link(@conn, ClubHomepage.NewsController, [:index, :new]) %>">
-                <%= unless has_role?(@conn, ["text-page-editor", "user-editor"]) do %>
-                  <%= gettext("settings") %>
+                <%= unless has_role?(@conn, ["user-editor"]) do %>
+                <%= link gettext("settings"), to: managed_user_edit_restricted_path(@conn, :edit_restricted, @current_user.id) %>
                 <% else %>
                   <%= link gettext("settings"), to: managed_user_path(@conn, :edit, @current_user) %>
                 <% end %>
