@@ -119,6 +119,24 @@ defmodule ClubHomepage.UserController do
     end
   end
 
+  def deactivate_account(conn, %{"user_id" => _id}) do
+    user = current_user(conn)
+
+    changeset = User.changeset(user, [active: false])
+
+    case Repo.update(changeset) do
+      {:ok, _user} ->
+        conn
+        |> Auth.logout()
+        |> put_flash(:info, "logged_out_now")
+        |> redirect(to: page_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "edit_restricted.html", user: user, changeset: changeset,
+               editable_user_roles: UserRole.editable_roles(current_user(conn)),
+               current_user_roles: UserRole.split(user.roles))
+    end
+  end
+
   # def delete(conn, %{"id" => id}) do
   #   user = Repo.get!(User, id)
 

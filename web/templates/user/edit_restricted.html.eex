@@ -1,8 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
-      <h2><%= gettext("edit_user") %></h2>
-
       <%= render "form_restricted.html",
                 changeset: @changeset, conn: @conn,
                 action: managed_user_edit_restricted_path(@conn, :update_restricted, @user.id),

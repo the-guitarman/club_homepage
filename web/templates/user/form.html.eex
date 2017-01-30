@@ -3,75 +3,11 @@
     <%= form_for @changeset, @action, fn f -> %>
       <%= show_form_errors(@changeset, f) %>
 
-      <%= if action_name(@conn) == :new || action_name(@conn) == :create do %>
-        <div class="form-group <%= error_cls @changeset, f, :secret %>">
-          <%#= label f, :secret, "Birthday", class: "control-label" %>
-          <%= text_input f, :secret, class: "form-control", placeholder: gettext("secret"), value: @secret %>
-          <%= error_tag f, :secret %>
-        </div>
-      <% end %>
+      <%= render "login_data_fields.html", changeset: @changeset, f: f %>
 
-      <div class="form-group <%= error_cls @changeset, f, :login %>">
-        <%#= label f, :login, "Login", class: "control-label" %>
-        <div class="row">
-          <label class="col-xs-11 control-label text-left col-xs-12">
-            <%= gettext("login_data") %>
-          </label>
-        </div>
-        <%= text_input f, :login, class: "form-control", placeholder: gettext("login") %>
-        <%= error_tag f, :login %>
-      </div>
+      <%= render "master_data_fields.html", changeset: @changeset, f: f %>
 
-      <div class="form-group <%= error_cls @changeset, f, :email %>">
-        <%#= label f, :email, "E-Mail", class: "control-label" %>
-        <%= email_input f, :email, class: "form-control", placeholder: gettext("email") %>
-        <%= error_tag f, :email %>
-      </div>
-
-      <div class="form-group <%= error_cls @changeset, f, :name %>">
-        <%#= label f, :name, "Name", class: "control-label" %>
-        <div class="row">
-          <label class="col-xs-11 control-label text-left col-xs-12">
-            <%= gettext("master_data") %>
-          </label>
-        </div>
-        <%= text_input f, :name, class: "form-control", placeholder: gettext("name") %>
-        <%= error_tag f, :name %>
-      </div>
-
-      <div class="form-group <%= error_cls @changeset, f, :nickname %>">
-        <%#= label f, :name, "Nickname", class: "control-label" %>
-        <%= text_input f, :nickname, class: "form-control", placeholder: gettext("nickname") %>
-        <%= error_tag f, :nickname %>
-      </div>
-
-      <div class="form-group <%= error_cls @changeset, f, :birthday %>">
-        <%#= label f, :birthday, "Geburtstag", class: "control-label" %>
-        <%#= date_select f, :birthday, class: "form-control" %>
-        <%= timex_date_input f, :birthday, class: "form-control", placeholder: gettext("birthday") %>
-        <%= error_tag f, :birthday %>
-      </div>
-
-      <%= if action_name(@conn) == :new || action_name(@conn) == :create || @user == @current_user do %>
-        <div class="form-group <%= error_cls @changeset, f, :password %>">
-          <div class="row">
-            <label class="col-xs-11 control-label text-left col-xs-12">
-              <%= gettext("password") %>
-            </label>
-          </div>
-          <%#= label f, :password, "Password", class: "control-label" %>
-          <%= password_input f, :password, class: "form-control", placeholder: gettext("password") %>
-          <%= error_tag f, :password %>
-        </div>
-      <% end %>
-
-      <%= if action_name(@conn) == :new || action_name(@conn) == :create || @user == @current_user do %>
-        <div class="form-group <%= error_cls @changeset, f, :password_confirmation %>">
-          <%#= label f, :password, "Password Confirmation", class: "control-label" %>
-          <%= password_input f, :password_confirmation, class: "form-control", placeholder: gettext("password_confirmation") %>
-          <%= error_tag f, :password_confirmation %>
-        </div>
-      <% end %>
+      <%= render "password_fields.html", conn: @conn, changeset: @changeset, f: f, user: @user, current_user: @current_user %>
 
       <%= if (has_role?(@conn, "user-editor") || has_role?(@conn, "administrator")) && Enum.count(@editable_user_roles) > 0 do %>
       <div class="form-group <%= error_cls @changeset, f, :active %>">
