@@ -173,10 +173,16 @@ defmodule ClubHomepage.UserControllerTest do
   end
 
   @tag login: true
-  test "renders form for editing chosen resource", %{conn: conn} do
+  test "renders form for editing chosen resource 1", %{conn: conn} do
     user = insert(:user)
     conn = get conn, managed_user_path(conn, :edit, user)
-    assert html_response(conn, 200) =~ "<h2>Edit Club Member</h2>"
+    assert html_response(conn, 200) =~ "Edit Club Member"
+  end
+
+  @tag login: true
+  test "renders form for editing chosen resource 2", %{conn: conn, current_user: current_user} do
+    conn = get conn, managed_user_path(conn, :edit, current_user)
+    assert html_response(conn, 200) =~ "Settings"
   end
 
   @tag login: true
@@ -198,7 +204,7 @@ defmodule ClubHomepage.UserControllerTest do
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     user = insert(:user)
     conn = put conn, managed_user_path(conn, :update, user), user: @invalid_attrs2
-    assert html_response(conn, 200) =~ "<h2>Edit Club Member</h2>"
+    assert html_response(conn, 200) =~ "Edit Club Member"
   end
 
   # test "deletes chosen resource", %{conn: conn} do
