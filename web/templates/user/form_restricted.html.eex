@@ -2,11 +2,12 @@
   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
       <div class="panel panel-default">
+        <div class="panel-heading"><%= gettext("login_data") %></div>
         <div class="panel-body">
           <%= form_for @changeset, @action, fn f -> %>
             <%= show_form_errors(@changeset, f) %>
 
-            <%= render "login_data_fields.html", changeset: @changeset, f: f %>
+            <%= render "login_data_fields.html", changeset: @changeset, f: f, headline: nil %>
 
             <div class="form-group text-right">
               <%= submit gettext("save"), class: "btn btn-primary" %>
@@ -16,11 +17,12 @@
       </div>
 
       <div class="panel panel-default">
+        <div class="panel-heading"><%= gettext("master_data") %></div>
         <div class="panel-body">
           <%= form_for @changeset, @action, fn f -> %>
             <%= show_form_errors(@changeset, f) %>
 
-            <%= render "master_data_fields.html", changeset: @changeset, f: f %>
+            <%= render "master_data_fields.html", changeset: @changeset, f: f, headline: nil %>
 
             <div class="form-group text-right">
               <%= submit gettext("save"), class: "btn btn-primary" %>
@@ -30,11 +32,12 @@
       </div>
 
       <div class="panel panel-default">
+        <div class="panel-heading"><%= gettext("password") %></div>
         <div class="panel-body">
           <%= form_for @changeset, @action, fn f -> %>
             <%= show_form_errors(@changeset, f) %>
 
-            <%= render "password_fields.html", conn: @conn, changeset: @changeset, f: f, user: @user, current_user: @current_user %>
+            <%= render "password_fields.html", conn: @conn, changeset: @changeset, f: f, headline: nil, user: @user, current_user: @current_user %>
 
             <div class="form-group text-right">
               <%= submit gettext("save"), class: "btn btn-primary" %>

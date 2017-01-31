@@ -3,11 +3,11 @@
     <%= form_for @changeset, @action, fn f -> %>
       <%= show_form_errors(@changeset, f) %>
 
-      <%= render "login_data_fields.html", changeset: @changeset, f: f %>
+      <%= render "login_data_fields.html", changeset: @changeset, f: f, headline: gettext("login_data") %>
 
-      <%= render "master_data_fields.html", changeset: @changeset, f: f %>
+      <%= render "master_data_fields.html", changeset: @changeset, f: f, headline: gettext("master_data") %>
 
-      <%= render "password_fields.html", conn: @conn, changeset: @changeset, f: f, user: @user, current_user: @current_user %>
+      <%= render "password_fields.html", conn: @conn, changeset: @changeset, f: f, headline: gettext("password"), user: @user, current_user: @current_user %>
 
       <%= if (has_role?(@conn, "user-editor") || has_role?(@conn, "administrator")) && Enum.count(@editable_user_roles) > 0 do %>
       <div class="form-group <%= error_cls @changeset, f, :active %>">
