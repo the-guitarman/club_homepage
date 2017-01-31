@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
-      <h2><%= gettext("create_new_user") %></h2>
+      <h2><%= gettext("sign_up") %></h2>
 
       <p><%= gettext("create_new_user_notice") %></p>
       <%= render "form.html",

@@ -72,16 +72,16 @@ defmodule ClubHomepage.UserController do
     end
   end
 
-  def edit_restricted(conn, %{"user_id" => id}) do
-    edit_user_date(conn, %{"id" => id}, "edit_restricted.html")
-  end
-
   def edit(conn, %{"id" => id}) do
     edit_user_date(conn, %{"id" => id}, "edit.html")
   end
 
-  defp edit_user_date(conn, %{"id" => _id}, template) do
-    user = Repo.get!(User, current_user(conn).id)
+  def edit_restricted(conn, %{"user_id" => _id}) do
+    edit_user_date(conn, %{"id" => current_user(conn).id}, "edit_restricted.html")
+  end
+
+  defp edit_user_date(conn, %{"id" => id}, template) do
+    user = Repo.get!(User, id)
     changeset = User.changeset(user)
     render(conn, template, changeset: changeset,
            user: user,
