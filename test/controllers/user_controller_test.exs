@@ -180,10 +180,17 @@ defmodule ClubHomepage.UserControllerTest do
   end
 
   @tag login: true
-  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    user = insert(:user)
+  test "updates chosen resource 1 and redirects when data is valid", %{conn: conn} do
+    user = insert(:user, roles: "member user-editor")
     conn = put conn, managed_user_path(conn, :update, user), user: @valid_attrs
-    assert redirected_to(conn) == managed_user_path(conn, :index)
+    assert redirected_to(conn) == managed_user_path(conn, :edit, user)
+    assert Repo.get_by(User, email: @valid_attrs[:email])
+  end
+
+  @tag login: true
+  test "updates chosen resource 2 and redirects when data is valid", %{conn: conn, current_user: current_user} do
+    conn = put conn, managed_user_edit_restricted_path(conn, :update_restricted, current_user), user: @valid_attrs
+    assert redirected_to(conn) == managed_user_edit_restricted_path(conn, :edit_restricted, current_user.id)
     assert Repo.get_by(User, email: @valid_attrs[:email])
   end
 

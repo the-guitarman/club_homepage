@@ -52,7 +52,7 @@ defmodule ClubHomepage.Router do
     resources "/users", UserController, only: [:index, :show, :edit, :update, :delete], as: :managed_user do
       get "/edit-restricted", UserController, :edit_restricted, as: :edit_restricted
       put "/edit-restricted", UserController, :update_restricted, as: :edit_restricted
-      delete "/deactivate-acount", UserController, :deactivate, as: :deactivate_account
+      delete "/deactivate-account", UserController, :deactivate_account, as: :deactivate_account
     end
 
     resources "/addresses", AddressController, except: [:show]

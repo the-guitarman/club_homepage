@@ -6,6 +6,7 @@ defmodule ClubHomepage.UserController do
   alias ClubHomepage.UserRole
 
   plug :is_user_editor? when action in [:index, :show, :new_unregistered, :create_unregistered, :edit, :update, :delete]
+  plug :authenticate_user when action in [:edit_restricted, :update_restricted]
   plug :scrub_params, "user" when action in [:create, :update]
   plug :require_no_user when action in [:new, :create, :forgot_password_step_1, :forgot_password_step_2, :change_password, :reset_password]
 
@@ -79,8 +80,8 @@ defmodule ClubHomepage.UserController do
     edit_user_date(conn, %{"id" => id}, "edit.html")
   end
 
-  defp edit_user_date(conn, %{"id" => id}, template) do
-    user = Repo.get!(User, id)
+  defp edit_user_date(conn, %{"id" => _id}, template) do
+    user = Repo.get!(User, current_user(conn).id)
     changeset = User.changeset(user)
     render(conn, template, changeset: changeset,
            user: user,
@@ -88,13 +89,13 @@ defmodule ClubHomepage.UserController do
            current_user_roles: UserRole.split(user.roles))
   end
 
-  def update_restricted(conn, %{"user_id" => id, "user" => user_params}) do
-    user_params = Map.drop(user_params, Map.keys(user_params) -- ["login", "email", "name", "nickname", "birthday", "password", "password_confirmation"])
-    update_user_data(conn, %{"id" => id, "user" => user_params}, "edit_restricted.html")
-  end
-
   def update(conn, %{"id" => id, "user" => user_params}) do
     update_user_data(conn, %{"id" => id, "user" => user_params}, "edit.html")
+  end
+
+  def update_restricted(conn, %{"user_id" => _id, "user" => user_params}) do
+    user_params = Map.drop(user_params, Map.keys(user_params) -- ["login", "email", "name", "nickname", "birthday", "password", "password_confirmation"])
+    update_user_data(conn, %{"id" => current_user(conn).id, "user" => user_params}, "edit_restricted.html")
   end
 
   defp update_user_data(conn, %{"id" => id, "user" => user_params}, template) do
@@ -108,10 +109,16 @@ defmodule ClubHomepage.UserController do
     changeset = User.changeset(user, user_params)
 
     case Repo.update(changeset) do
-      {:ok, _user} ->
+      {:ok, user} ->
+        redirection_url =
+          case String.contains?(template, "restricted") do
+            true -> managed_user_edit_restricted_path(conn, :edit_restricted, user.id)
+            _ -> managed_user_path(conn, :edit, user.id)
+          end
+
         conn
         |> put_flash(:info, gettext("user_updated_successfully"))
-        |> redirect(to: managed_user_path(conn, :index))
+        |> redirect(to: redirection_url)
       {:error, changeset} ->
         render(conn, template, user: user, changeset: changeset,
                editable_user_roles: UserRole.editable_roles(current_user(conn)),
@@ -122,7 +129,7 @@ defmodule ClubHomepage.UserController do
   def deactivate_account(conn, %{"user_id" => _id}) do
     user = current_user(conn)
 
-    changeset = User.changeset(user, [active: false])
+    changeset = User.changeset(user, %{"active" => false})
 
     case Repo.update(changeset) do
       {:ok, _user} ->
@@ -154,12 +161,14 @@ defmodule ClubHomepage.UserController do
   end
   def forgot_password_step_2(conn, %{"forgot_password" => %{"login_or_email" => login_or_email}}) do
     user = Repo.one(from(u in User, where: (u.login == ^login_or_email) or (u.email == ^login_or_email)))
-    if user do
-      user = change_user_token(user)
-      conn
-      |> ClubHomepage.Email.forgot_password_email(user)
-      |> ClubHomepage.Mailer.deliver_now
-    end
+    user = 
+      if user do
+        user = change_user_token(user)
+        conn
+        |> ClubHomepage.Email.forgot_password_email(user)
+        |> ClubHomepage.Mailer.deliver_now
+        user
+      end
     render(conn, "forgot_password_step_2.html", user: user)
   end
 
