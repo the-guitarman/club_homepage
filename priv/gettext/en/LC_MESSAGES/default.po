@@ -127,7 +127,10 @@ msgstr "Some errors occured:"
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:9
 #: web/templates/sponsor_image/form.html.eex:17
 #: web/templates/team/form.html.eex:15 web/templates/team_image/form.html.eex:33
-#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:111
+#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:47
+#: web/templates/user/form_restricted.html.eex:13
+#: web/templates/user/form_restricted.html.eex:28
+#: web/templates/user/form_restricted.html.eex:43
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr "Save"
@@ -293,9 +296,11 @@ msgstr "Meeting Points"
 #: web/templates/opponent_team/index.html.eex:14
 #: web/templates/season/show.html.eex:6
 #: web/templates/sponsor_image/index.html.eex:9
-#: web/templates/team/show.html.eex:8 web/templates/user/form.html.eex:30
-#: web/templates/user/form_unregistered.html.eex:8
-#: web/templates/user/index.html.eex:17 web/templates/user/show.html.eex:16
+#: web/templates/team/show.html.eex:8
+#: web/templates/user/form_unregistered.html.eex:14
+#: web/templates/user/index.html.eex:17
+#: web/templates/user/master_data_fields.html.eex:10
+#: web/templates/user/show.html.eex:16
 msgid "name"
 msgstr "Name"
 
@@ -347,7 +352,7 @@ msgstr "City"
 msgid "expiry_date"
 msgstr "Expiry Date"
 
-#: web/templates/secret/index.html.eex:13 web/templates/user/form.html.eex:71
+#: web/templates/secret/index.html.eex:13
 msgid "secret"
 msgstr "Secret"
 
@@ -366,13 +371,15 @@ msgid "log_in"
 msgstr "Log in"
 
 #: web/templates/session/new.html.eex:4 web/templates/session/new.html.eex:7
-#: web/templates/user/form.html.eex:13 web/templates/user/index.html.eex:16
+#: web/templates/user/index.html.eex:16
+#: web/templates/user/login_data_fields.html.eex:10
 #: web/templates/user/show.html.eex:12
 msgid "login"
 msgstr "Login"
 
-#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:51
-#: web/templates/user/form.html.eex:55
+#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:10
+#: web/templates/user/form_restricted.html.eex:35
+#: web/templates/user/password_fields.html.eex:11
 msgid "password"
 msgstr "Password"
 
@@ -385,14 +392,15 @@ msgstr "Password"
 msgid "teams"
 msgstr "Teams"
 
-#: web/templates/user/form.html.eex:84 web/templates/user/index.html.eex:19
+#: web/templates/user/form.html.eex:20 web/templates/user/index.html.eex:19
 #: web/templates/user/show.html.eex:28
 msgid "active"
 msgstr "Active"
 
-#: web/templates/user/form.html.eex:43
 #: web/templates/user/form_unregistered.html.eex:21
-#: web/templates/user/index.html.eex:20 web/templates/user/show.html.eex:32
+#: web/templates/user/index.html.eex:20
+#: web/templates/user/master_data_fields.html.eex:23
+#: web/templates/user/show.html.eex:32
 msgid "birthday"
 msgstr "Birthday"
 
@@ -418,9 +426,10 @@ msgstr ""
 msgid "edit_user"
 msgstr "Edit Club Member"
 
-#: web/templates/user/form.html.eex:19
-#: web/templates/user/form_unregistered.html.eex:14
-#: web/templates/user/index.html.eex:18 web/templates/user/show.html.eex:24
+#: web/templates/user/form_unregistered.html.eex:8
+#: web/templates/user/index.html.eex:18
+#: web/templates/user/login_data_fields.html.eex:16
+#: web/templates/user/show.html.eex:24
 msgid "email"
 msgstr "E-Mail"
 
@@ -466,7 +475,8 @@ msgid "sign_up"
 msgstr "Sign Up"
 
 #: web/templates/layout/navbar_top.html.eex:113
-#: web/templates/user/form.html.eex:27
+#: web/templates/user/form.html.eex:8
+#: web/templates/user/form_restricted.html.eex:20
 msgid "master_data"
 msgstr "Master Data"
 
@@ -659,7 +669,7 @@ msgstr "Page"
 msgid "text_pages"
 msgstr "Text Pages"
 
-#: web/templates/user/form.html.eex:93
+#: web/templates/user/form.html.eex:29
 msgid "user_roles"
 msgstr "User Roles/Rights"
 
@@ -830,7 +840,7 @@ msgstr "User created successfully."
 msgid "user_created_successfully_and_loged_in"
 msgstr "User created successfully and logged in."
 
-#: web/controllers/user_controller.ex:96
+#: web/controllers/user_controller.ex:113
 msgid "user_updated_successfully"
 msgstr "user updated successfully."
 
@@ -866,7 +876,8 @@ msgstr "e.g."
 msgid "show_secret"
 msgstr "Secret"
 
-#: web/templates/user/form.html.eex:36 web/templates/user/show.html.eex:20
+#: web/templates/user/master_data_fields.html.eex:16
+#: web/templates/user/show.html.eex:20
 msgid "nickname"
 msgstr "Nickname"
 
@@ -1025,7 +1036,7 @@ msgstr "Show Older Messages"
 msgid "team_chat_messagesmoment_js_date_format"
 msgstr "MM/DD/YYYY"
 
-#: web/templates/user/form.html.eex:80
+#: web/templates/user/form.html.eex:16
 msgid "user_is_active"
 msgstr "Account Is Active"
 
@@ -1116,7 +1127,7 @@ msgstr "Change Password - %{domain}"
 msgid "forgot_password_email_text"
 msgstr "Hi, \n\nsomebody requested a password change of your account at %{domain}. If you did it, then you could click this link to change your password: \n\n%{scheme}://%{domain}}%{change_password_path} \n\nIf you don't want to change your password or you didn't request the change, you can safely ignore this email. \n\nTo protect your account don't forward this email. \n\nRegards \n\nThe Web-Team of %{domain}."
 
-#: web/controllers/user_controller.ex:136
+#: web/controllers/user_controller.ex:171
 msgid "account_not_found"
 msgstr "The Account for this login/email does not exist."
 
@@ -1124,11 +1135,11 @@ msgstr "The Account for this login/email does not exist."
 msgid "forgot_password_step_1_notice"
 msgstr "Type in your login or email to reset your password. Sometimes you need to check your spam folder or to whitelist the sender email noreply@%{domain}."
 
-#: web/controllers/user_controller.ex:147
+#: web/controllers/user_controller.ex:182
 msgid "change_password_timed_out"
 msgstr "Your password change request timed out."
 
-#: web/controllers/user_controller.ex:140
+#: web/controllers/user_controller.ex:175
 msgid "account_token_not_found"
 msgstr "The account does not exist or the reset link is not valid anymore."
 
@@ -1144,15 +1155,16 @@ msgstr "Password Confirmation"
 msgid "password_placeholder"
 msgstr "Password"
 
-#: web/templates/user/form.html.eex:63
+#: web/templates/user/password_fields.html.eex:19
 msgid "password_confirmation"
 msgstr "Password Confirmation"
 
-#: web/controllers/user_controller.ex:162
+#: web/controllers/user_controller.ex:197
 msgid "password_reset_successful"
 msgstr "The password was changed successfully."
 
-#: web/templates/user/form.html.eex:10
+#: web/templates/user/form.html.eex:6
+#: web/templates/user/form_restricted.html.eex:5
 msgid "login_data"
 msgstr "Login Data"
 
@@ -1160,3 +1172,11 @@ msgstr "Login Data"
 #: web/templates/layout/navbar_top.html.eex:107
 msgid "settings"
 msgstr "Settings"
+
+#: web/templates/user/form_restricted.html.eex:52
+msgid "confirm_question_deactivate_account"
+msgstr "Do you want to deactivate your account now?"
+
+#: web/templates/user/form_restricted.html.eex:52
+msgid "deactivate"
+msgstr "Deactivate"
