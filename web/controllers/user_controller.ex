@@ -106,7 +106,12 @@ defmodule ClubHomepage.UserController do
       |> parse_date_field(:birthday)
       |> join_user_roles(user, conn)
 
-    changeset = User.changeset(user, user_params)
+    changeset = 
+      if user_params["password"] || user_params["password_confirmation"] do
+        User.registration_changeset(user, user_params)
+      else
+        User.changeset(user, user_params)
+      end
 
     case Repo.update(changeset) do
       {:ok, user} ->
