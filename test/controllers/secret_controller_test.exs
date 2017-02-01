@@ -79,7 +79,7 @@ defmodule ClubHomepage.SecretControllerTest do
     conn = post conn, secret_path(conn, :create), secret: @invalid_attrs
     secret = Repo.get_by(Secret, @invalid_attrs)
     assert secret == nil
-    assert html_response(conn, 200) =~ "email has invalid format"
+    assert html_response(conn, 200) =~ "Email has invalid format"
   end
 
   # @tag login: true

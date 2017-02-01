@@ -85,9 +85,9 @@ defmodule ClubHomepage.UserControllerTest do
     conn = post conn, unregistered_user_path(conn, :create_unregistered), user: %{}
     refute html_response(conn, 200) =~ "Secret wird benötigt"
     refute html_response(conn, 200) =~ "Login can&#39;t be blank"
-    assert html_response(conn, 200) =~ "name can&#39;t be blank"
-    assert html_response(conn, 200) =~ "email can&#39;t be blank"
-    refute html_response(conn, 200) =~ "birthday can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Name can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Email can&#39;t be blank"
+    refute html_response(conn, 200) =~ "Birthday can&#39;t be blank"
   end
 
   @tag login: true
@@ -158,10 +158,10 @@ defmodule ClubHomepage.UserControllerTest do
     conn = post conn, user_path(conn, :create), user: @invalid_attrs
     assert html_response(conn, 200) =~ "Save"
     assert html_response(conn, 200) =~ "Secret can&#39;t be blank"
-    assert html_response(conn, 200) =~ "login can&#39;t be blank"
-    assert html_response(conn, 200) =~ "name can&#39;t be blank"
-    assert html_response(conn, 200) =~ "email can&#39;t be blank"
-    assert html_response(conn, 200) =~ "birthday can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Login can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Name can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Email can&#39;t be blank"
+    assert html_response(conn, 200) =~ "Birthday can&#39;t be blank"
   end
 
   @tag login: true
