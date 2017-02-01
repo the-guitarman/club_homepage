@@ -27,6 +27,9 @@ msgstr "Spiel"
 msgid "meeting_point"
 msgstr "Treffpunkt"
 
+msgid "mobile_phone"
+msgstr "Handy-Nr."
+
 msgid "name"
 msgstr "Name"
 

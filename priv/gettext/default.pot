@@ -832,7 +832,7 @@ msgstr ""
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:120
+#: web/controllers/user_controller.ex:125
 msgid "user_updated_successfully"
 msgstr ""
 
@@ -1119,7 +1119,7 @@ msgstr ""
 msgid "forgot_password_email_text"
 msgstr ""
 
-#: web/controllers/user_controller.ex:180
+#: web/controllers/user_controller.ex:185
 msgid "account_not_found"
 msgstr ""
 
@@ -1127,11 +1127,11 @@ msgstr ""
 msgid "forgot_password_step_1_notice"
 msgstr ""
 
-#: web/controllers/user_controller.ex:191
+#: web/controllers/user_controller.ex:196
 msgid "change_password_timed_out"
 msgstr ""
 
-#: web/controllers/user_controller.ex:184
+#: web/controllers/user_controller.ex:189
 msgid "account_token_not_found"
 msgstr ""
 
@@ -1151,7 +1151,7 @@ msgstr ""
 msgid "password_confirmation"
 msgstr ""
 
-#: web/controllers/user_controller.ex:206
+#: web/controllers/user_controller.ex:211
 msgid "password_reset_successful"
 msgstr ""
 
@@ -1173,4 +1173,8 @@ msgstr ""
 
 #: web/templates/user/form_restricted.html.eex:49
 msgid "deactivate"
+msgstr ""
+
+#: web/templates/user/master_data_fields.html.eex:29
+msgid "mobile_phone"
 msgstr ""

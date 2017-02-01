@@ -18,6 +18,7 @@ defmodule ClubHomepage.User do
     field :meta_data, :map
     field :token, :string
     field :token_set_at, Timex.Ecto.DateTime
+    field :mobile_phone, :string
 
     has_many :team_chat_messages, ClubHomepage.TeamChatMessage
 
@@ -26,7 +27,7 @@ defmodule ClubHomepage.User do
 
   def unregistered_changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(email name), ~w(nickname login birthday active roles meta_data token token_set_at))
+    |> cast(params, ~w(email name), ~w(nickname login birthday active roles meta_data token token_set_at mobile_phone))
     |> validate_length(:name, max: 100)
     |> check_email
     |> UserRole.check_roles
@@ -42,12 +43,13 @@ defmodule ClubHomepage.User do
   def changeset(model, params \\ %{}) do
     model
     |> unregistered_changeset(params)
-    |> cast(params, ~w(login birthday), [])
+    |> cast(params, ~w(login birthday mobile_phone), [])
     |> validate_length(:login, min: 6)
     |> validate_length(:login, max: 20)
     |> validate_format(:login, ~r/\A[a-z0-9._-]+\z/i)
     |> update_change(:login, &String.downcase/1)
     |> unique_constraint(:login)
+    |> validate_format(:mobile_phone, ~r/\A([\+][0-9]{1,3}[ \.\-])?([\(]{1}[0-9]{1,6}[\)])?([0-9 \.\-\/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?\z/i)
     #|> ModelValidator.validate_uniqueness(:login)
   end
 

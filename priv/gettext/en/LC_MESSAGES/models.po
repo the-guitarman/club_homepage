@@ -27,6 +27,9 @@ msgstr "Match"
 msgid "meeting_point"
 msgstr "Meeting Point"
 
+msgid "mobile_phone"
+msgstr "Mobile Phone"
+
 msgid "name"
 msgstr "Name"
 
