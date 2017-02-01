@@ -5,13 +5,25 @@ msgstr ""
 msgid "address"
 msgstr ""
 
+msgid "birthday"
+msgstr ""
+
 msgid "competition"
+msgstr ""
+
+msgid "email"
+msgstr ""
+
+msgid "login"
 msgstr ""
 
 msgid "match"
 msgstr ""
 
 msgid "meeting_point"
+msgstr ""
+
+msgid "name"
 msgstr ""
 
 msgid "news"

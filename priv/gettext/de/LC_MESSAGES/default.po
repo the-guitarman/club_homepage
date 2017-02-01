@@ -49,7 +49,7 @@ msgstr ""
 #: web/templates/team_image/new.html.eex:11
 #: web/templates/text_page/edit.html.eex:30
 #: web/templates/text_page/edit.html.eex:31
-#: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:13
+#: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:19
 #: web/templates/user/index.html.eex:4 web/templates/user/new.html.eex:15
 #: web/templates/user/new_unregistered.html.eex:12
 #: web/templates/user/show.html.eex:7 web/templates/user/show.html.eex:51
@@ -127,10 +127,10 @@ msgstr "Es sind folgende Fehler aufgetreten:"
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:9
 #: web/templates/sponsor_image/form.html.eex:17
 #: web/templates/team/form.html.eex:15 web/templates/team_image/form.html.eex:33
-#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:47
-#: web/templates/user/form_restricted.html.eex:13
-#: web/templates/user/form_restricted.html.eex:28
-#: web/templates/user/form_restricted.html.eex:43
+#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:55
+#: web/templates/user/form_restricted.html.eex:14
+#: web/templates/user/form_restricted.html.eex:27
+#: web/templates/user/form_restricted.html.eex:40
 #: web/templates/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr "Speichern"
@@ -352,7 +352,7 @@ msgstr "Ort"
 msgid "expiry_date"
 msgstr "Ablaufdatum"
 
-#: web/templates/secret/index.html.eex:13
+#: web/templates/secret/index.html.eex:13 web/templates/user/form.html.eex:9
 msgid "secret"
 msgstr "Secret"
 
@@ -377,8 +377,8 @@ msgstr "Login"
 msgid "login"
 msgstr "Login"
 
-#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:10
-#: web/templates/user/form_restricted.html.eex:35
+#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:18
+#: web/templates/user/form_restricted.html.eex:34
 #: web/templates/user/password_fields.html.eex:11
 msgid "password"
 msgstr "Passwort"
@@ -392,7 +392,7 @@ msgstr "Passwort"
 msgid "teams"
 msgstr "Vereinsmannschaften"
 
-#: web/templates/user/form.html.eex:20 web/templates/user/index.html.eex:19
+#: web/templates/user/form.html.eex:28 web/templates/user/index.html.eex:19
 #: web/templates/user/show.html.eex:28
 msgid "active"
 msgstr "aktiv"
@@ -413,7 +413,6 @@ msgid "create_new_unregistered_user_notice"
 msgstr "Hier kannst Du Vereinsmitglieder anlegen, die sich (noch) nicht registriert haben, um später z.B. die Mannschaftsaufstellung planen zu können."
 
 #: web/templates/user/index.html.eex:7 web/templates/user/index.html.eex:52
-#: web/templates/user/new.html.eex:4
 #: web/templates/user/new_unregistered.html.eex:4
 msgid "create_new_user"
 msgstr "Neues Vereinsmitglied anlegen"
@@ -422,7 +421,7 @@ msgstr "Neues Vereinsmitglied anlegen"
 msgid "create_new_user_notice"
 msgstr "Du bist ein Vereinsmitglied? Lass Dir von einem Administrator ein Secret geben. Damit kannst Du Dich als Vereinsmitglied ausweisen und Dich registrieren."
 
-#: web/templates/user/edit.html.eex:4
+#: web/templates/user/edit.html.eex:8
 msgid "edit_user"
 msgstr "Vereinsmitglied ändern/bearbeiten"
 
@@ -441,7 +440,7 @@ msgstr "Vereinsmannschaft"
 msgid "team_name_placeholder"
 msgstr "Mannschaftsname"
 
-#: web/templates/user/edit.html.eex:13 web/templates/user/index.html.eex:4
+#: web/templates/user/edit.html.eex:19 web/templates/user/index.html.eex:4
 #: web/templates/user/new.html.eex:15
 #: web/templates/user/new_unregistered.html.eex:12
 #: web/templates/user/show.html.eex:7 web/templates/user/show.html.eex:51
@@ -471,12 +470,13 @@ msgid "members"
 msgstr "Vereinsmitglieder"
 
 #: web/templates/layout/navbar_top.html.eex:179
+#: web/templates/user/new.html.eex:4
 msgid "sign_up"
 msgstr "Anmelden"
 
 #: web/templates/layout/navbar_top.html.eex:113
-#: web/templates/user/form.html.eex:8
-#: web/templates/user/form_restricted.html.eex:20
+#: web/templates/user/form.html.eex:16
+#: web/templates/user/form_restricted.html.eex:21
 msgid "master_data"
 msgstr "Stammdaten"
 
@@ -669,7 +669,7 @@ msgstr "Seite"
 msgid "text_pages"
 msgstr "Text Pages"
 
-#: web/templates/user/form.html.eex:29
+#: web/templates/user/form.html.eex:37
 msgid "user_roles"
 msgstr "Benutzerrollen/-rechte"
 
@@ -832,15 +832,15 @@ msgstr "Die Vereinsmannschaft wurde gespeichert."
 msgid "text_page_updated_successfully"
 msgstr "Die Seite wurde gespeichert."
 
-#: web/controllers/user_controller.ex:33
+#: web/controllers/user_controller.ex:34
 msgid "user_created_successfully"
 msgstr "Der Benutzer wurde angelegt."
 
-#: web/controllers/user_controller.ex:64
+#: web/controllers/user_controller.ex:65
 msgid "user_created_successfully_and_loged_in"
 msgstr "Der Benutzer wurde angelegt und ist nun eingeloggt."
 
-#: web/controllers/user_controller.ex:113
+#: web/controllers/user_controller.ex:120
 msgid "user_updated_successfully"
 msgstr "Der Benutzer wurde gespeichert."
 
@@ -1036,7 +1036,7 @@ msgstr "Ältere Nachrichten anzeigen"
 msgid "team_chat_messagesmoment_js_date_format"
 msgstr "DD.MM.YYYY"
 
-#: web/templates/user/form.html.eex:16
+#: web/templates/user/form.html.eex:24
 msgid "user_is_active"
 msgstr "Account ist aktiv"
 
@@ -1127,7 +1127,7 @@ msgstr "Passwort zurücksetzen - %{domain}"
 msgid "forgot_password_email_text"
 msgstr "Hallo, \n\njemand hat vor kurzem die Änderung des Kennworts Deines Accounts auf %{domain} angefordert. Wenn Du das warst, dann kannst Du mit folgendem Link ein neues Passwort festlegen: \n\n%{scheme}://%{domain}%{change_password_path} \n\nWenn Du Dein Passwort nicht ändern möchtest oder nicht um die Änderung gebeten hast, ignoriere diese Nachricht. \n\nZum schutz Deines Kontos sollte diese E-Mail an niemanden weitergeleitet werden. \n\nViele Grüße \n\nDas Web-Team von %{domain}"
 
-#: web/controllers/user_controller.ex:171
+#: web/controllers/user_controller.ex:180
 msgid "account_not_found"
 msgstr "Der Account mit diesem Login bzw. dieser E-Mail-Adresse existiert nicht."
 
@@ -1135,11 +1135,11 @@ msgstr "Der Account mit diesem Login bzw. dieser E-Mail-Adresse existiert nicht.
 msgid "forgot_password_step_1_notice"
 msgstr "Gib Dein Login oder Deine E-Mail-Adresse ein, um Dein Kennwort zurückzusetzen. Eventuell musst Du den Spamordner prüfen oder die Adresse noreply@%{domain} als Absender zulassen."
 
-#: web/controllers/user_controller.ex:182
+#: web/controllers/user_controller.ex:191
 msgid "change_password_timed_out"
 msgstr "Die Zeit zum zurücksetzen Deines Passwortes ist abgelaufen."
 
-#: web/controllers/user_controller.ex:175
+#: web/controllers/user_controller.ex:184
 msgid "account_token_not_found"
 msgstr "Der Account existiert nicht oder Reset-Link ist nicht mehr gültig."
 
@@ -1159,24 +1159,26 @@ msgstr "Passwort"
 msgid "password_confirmation"
 msgstr "Passwortbestätigung"
 
-#: web/controllers/user_controller.ex:197
+#: web/controllers/user_controller.ex:206
 msgid "password_reset_successful"
 msgstr "Das neue Passwort wurde gespeichert."
 
-#: web/templates/user/form.html.eex:6
-#: web/templates/user/form_restricted.html.eex:5
+#: web/templates/user/form.html.eex:14
+#: web/templates/user/form_restricted.html.eex:8
 msgid "login_data"
 msgstr "Logindaten"
 
 #: web/templates/layout/navbar_top.html.eex:105
 #: web/templates/layout/navbar_top.html.eex:107
+#: web/templates/user/edit.html.eex:6
+#: web/templates/user/edit_restricted.html.eex:4
 msgid "settings"
 msgstr "Einstellungen"
 
-#: web/templates/user/form_restricted.html.eex:52
+#: web/templates/user/form_restricted.html.eex:49
 msgid "confirm_question_deactivate_account"
 msgstr "Möchtest Du Deinen Account nun wirklich deaktivieren?"
 
-#: web/templates/user/form_restricted.html.eex:52
+#: web/templates/user/form_restricted.html.eex:49
 msgid "deactivate"
 msgstr "Deaktivieren"

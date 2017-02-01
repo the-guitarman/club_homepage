@@ -9,14 +9,26 @@ msgstr ""
 msgid "address"
 msgstr "Address"
 
+msgid "birthday"
+msgstr "Birthday"
+
 msgid "competition"
 msgstr "Competition"
+
+msgid "email"
+msgstr "Email"
+
+msgid "login"
+msgstr "Login"
 
 msgid "match"
 msgstr "Match"
 
 msgid "meeting_point"
 msgstr "Meeting Point"
+
+msgid "name"
+msgstr "Name"
 
 msgid "news"
 msgstr "News"
