@@ -3,6 +3,10 @@ defmodule ClubHomepage.Extension.Controller do
   This module provides functions for recurring tasks within a controller.
   """
 
+  def full_club_name do
+    Application.get_env(:club_homepage, :common)[:full_club_name]
+  end
+
   @doc """
   Parses a date string in the given parameters and replaces it with a timex object.
 

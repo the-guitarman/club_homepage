@@ -45,6 +45,8 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Extension.CommonTimex
       import ClubHomepage.Auth, only: [authenticate_user: 2, require_no_user: 2, current_user: 1, logged_in?: 1, logged_in?: 2]
       import ClubHomepage.AuthByRole, only: [has_role?: 2, is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_team_editor?: 2, is_text_page_editor?: 2, is_user_editor?: 2, has_role_from_list?: 2]
+
+      import ClubHomepage.SEO.Plug
     end
   end
 

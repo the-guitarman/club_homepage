@@ -7,6 +7,23 @@ defmodule ClubHomepage.PageController do
   alias ClubHomepage.Team
   alias ClubHomepage.TextPage
 
+  @meta %{
+    index: %{
+      title: full_club_name <> " - Homepage",
+      meta: """
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam feugiat 
+      nibh ligula. Maecenas egestas nibh cursus erat sodales, vitae congue nisi
+      tempus. Nam mattis et velit eu lacinia.
+      """
+           },
+    contact: %{
+      title: "Contact Us",
+      meta: "..."
+    }
+  }
+  
+  plug :put_seo, @meta
+
   def index(conn, _params) do
     news  = Repo.all(news_query(conn))
     teams = Repo.all(Team)

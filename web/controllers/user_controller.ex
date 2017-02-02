@@ -5,8 +5,8 @@ defmodule ClubHomepage.UserController do
   alias ClubHomepage.Auth
   alias ClubHomepage.UserRole
 
-  plug :is_user_editor? when action in [:index, :show, :new_unregistered, :create_unregistered, :edit, :update, :delete]
-  plug :authenticate_user when action in [:edit_restricted, :update_restricted]
+  plug :is_user_editor? when action in [:show, :new_unregistered, :create_unregistered, :edit, :update, :delete]
+  plug :authenticate_user when action in [:index, :edit_restricted, :update_restricted]
   plug :scrub_params, "user" when action in [:create, :update]
   plug :require_no_user when action in [:new, :create, :forgot_password_step_1, :forgot_password_step_2, :change_password, :reset_password]
 

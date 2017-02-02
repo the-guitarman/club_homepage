@@ -122,27 +122,28 @@ defmodule ClubHomepage.Extension.View do
 
   defp timex_input(%{model: model, params: params} = form, field, format, opts) do
     field_name = Atom.to_string(field)
-    case Map.fetch(params, field_name) do
-      {:ok, nil} ->
-        nil
-      {:ok, timex_datetime} ->
-        date_string =
-          timex_datetime
-          |> Timex.local
-          |> timex_datetime_to_string(format)
-        params = Map.put(params, field_name, date_string)
-        form = Map.put(form, :params, params)
-      :error ->
-        timex_datetime = Map.get(model, field)
-        if timex_datetime do
+    form = 
+      case Map.fetch(params, field_name) do
+        {:ok, nil} ->
+          form
+        {:ok, timex_datetime} ->
           date_string =
             timex_datetime
             |> Timex.local
             |> timex_datetime_to_string(format)
           params = Map.put(params, field_name, date_string)
-          form = Map.put(form, :params, params)
-        end
-    end
+          Map.put(form, :params, params)
+        :error ->
+          timex_datetime = Map.get(model, field)
+          if timex_datetime do
+            date_string =
+              timex_datetime
+              |> Timex.local
+              |> timex_datetime_to_string(format)
+            params = Map.put(params, field_name, date_string)
+            Map.put(form, :params, params)
+          end
+      end
     field_css_class =
       case String.contains?(format, ["%H", "%M"]) do
         true -> "datetime"
