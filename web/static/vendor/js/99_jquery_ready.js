@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  $('[data-toggle="popover"]').popover();
+  $('[data-toggle="tooltip"]').tooltip();
+
   $(document).on('deviceready', function() {
     $('.js-show-on-mobile-device').removeClass('hidden');
   });

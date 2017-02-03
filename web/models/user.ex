@@ -43,13 +43,13 @@ defmodule ClubHomepage.User do
   def changeset(model, params \\ %{}) do
     model
     |> unregistered_changeset(params)
-    |> cast(params, ~w(login birthday mobile_phone), [])
+    |> cast(params, ~w(login birthday), [])
     |> validate_length(:login, min: 6)
     |> validate_length(:login, max: 20)
     |> validate_format(:login, ~r/\A[a-z0-9._-]+\z/i)
     |> update_change(:login, &String.downcase/1)
     |> unique_constraint(:login)
-    |> validate_format(:mobile_phone, ~r/\A([\+][0-9]{1,3}[ \.\-])?([\(]{1}[0-9]{1,6}[\)])?([0-9 \.\-\/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?\z/i)
+    |> validate_format(:login, ~r/\A[a-z0-9._-]+\z/i)
     #|> ModelValidator.validate_uniqueness(:login)
   end
 

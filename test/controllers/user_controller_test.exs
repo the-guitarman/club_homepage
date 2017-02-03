@@ -50,11 +50,9 @@ defmodule ClubHomepage.UserControllerTest do
   end
 
   @tag login: "match-editor news-editor player text-page-editor trainer"
-  test "all other roles can not access the index action", %{conn: conn, current_user: _current_user} do
+  test "all other roles can access the index action page too", %{conn: conn, current_user: _current_user} do
     conn = get conn, managed_user_path(conn, :index)
-    assert html_response(conn, 302)
-    assert conn.halted
-    assert redirected_to(conn) =~ "/"
+    assert html_response(conn, 200) =~ "<h2>All Club Members</h2>"
   end
 
   @tag login: true
@@ -138,7 +136,6 @@ defmodule ClubHomepage.UserControllerTest do
     secret = insert(:secret)
     new_valid_attrs = Map.put(@valid_attrs, :secret, secret.key)
     conn = post conn, user_path(conn, :create), user: new_valid_attrs
-
     assert redirected_to(conn) == page_path(conn, :index)
     user = Repo.get_by(User, login: @valid_attrs.login)
     assert user.active
