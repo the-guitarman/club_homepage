@@ -13,8 +13,6 @@ defmodule ClubHomepage.SEO.Plug do
 
   def page_controller(controller, action_name) do
     controller_name = extract_controller_name(controller)
-    IO.inspect controller_name
-    IO.inspect action_name
     %{
         title: gettext("title_#{controller_name}_#{action_name}", full_club_name: full_club_name),
         meta: gettext("meta_#{controller_name}_#{action_name}", full_club_name: full_club_name)
