@@ -27,6 +27,10 @@ defmodule ClubHomepage.PageController do
     render conn, "index.html", teams: teams, news: news, next_matches: next_matches, last_matches: last_matches, weather_data: weather_data
   end
 
+  def about_us(conn, _params) do
+    render conn, "about_us.html", page_content: find_or_create_text_page(conn.request_path)
+  end
+
   def chronicle(conn, _params) do
     render conn, "chronicle.html", page_content: find_or_create_text_page(conn.request_path)
   end
@@ -41,10 +45,6 @@ defmodule ClubHomepage.PageController do
 
   def sponsors(conn, _params) do
     render conn, "sponsors.html", page_content: find_or_create_text_page(conn.request_path)
-  end
-
-  def about_us(conn, _params) do
-    render conn, "about_us.html", page_content: find_or_create_text_page(conn.request_path)
   end
 
   defp find_next_team_matches(_query, []), do: []

@@ -1,0 +1,47 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+
+msgid "title_page_controller_index"
+msgstr "Homepage - %{full_club_name}"
+
+msgid "meta_page_controller_index"
+msgstr "Herzlich Willkommen auf den Seiten der Abteilung Fußball des %{full_club_name}."
+
+msgid "title_page_controller_about_us"
+msgstr "Über uns - %{full_club_name}"
+
+msgid "meta_page_controller_about_us"
+msgstr "Hier kannst Du ein paar Informationen zu unserem Verein lesen."
+
+msgid "title_page_controller_chronicle"
+msgstr "History - %{full_club_name}"
+
+msgid "meta_page_controller_chronicle"
+msgstr "Eine Auflistung aller Ereignisse von der Gründung bis heute."
+
+msgid "title_page_controller_contact"
+msgstr "Kontakt - %{full_club_name}"
+
+msgid "meta_page_controller_contact"
+msgstr "Hier findest Du alle Informationen um mit der Abteilung Fußball des %{full_clubb_name} in Verbindung treten zu können."
+
+msgid "title_page_controller_registration_information"
+msgstr "Impressum - %{full_club_name}"
+
+msgid "meta_page_controller_registration_information"
+msgstr "Impressum des %{full_club_name}"
+
+msgid "title_page_controller_sponsors"
+msgstr "Sponsoren - %{full_club_name}"
+
+msgid "meta_page_controller_sponsors"
+msgstr "Eine Auflistung aller Sponsoren, die den %{full_club_name} unterstützen. Vielen Dank! Sie wollen auch für sich werben und dem Verein helfen? Dann nehmen Sie einfach Kontakt mit uns auf."

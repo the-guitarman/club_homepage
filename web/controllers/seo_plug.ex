@@ -7,25 +7,18 @@ defmodule ClubHomepage.SEO.Plug do
     settings = apply(__MODULE__, controller_name, [controller, action_name]) || []
 
     conn
-    |> assign(:title, settings[:title])
-    |> assign(:meta, settings[:meta])
+    |> assign(:title, (settings[:title] || full_club_name))
+    |> assign(:meta, (settings[:meta] || ""))
   end
 
   def page_controller(controller, action_name) do
+    controller_name = extract_controller_name(controller)
+    IO.inspect controller_name
+    IO.inspect action_name
     %{
-      index: %{
-        title: "#{full_club_name} - Homepage",
-        meta: """
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam feugiat 
-        nibh ligula. Maecenas egestas nibh cursus erat sodales, vitae congue nisi
-        tempus. Nam mattis et velit eu lacinia.
-        """
-             },
-      contact: %{
-        title: "Contact Us",
-        meta: "..."
+        title: gettext("title_#{controller_name}_#{action_name}", full_club_name: full_club_name),
+        meta: gettext("meta_#{controller_name}_#{action_name}", full_club_name: full_club_name)
       }
-    }[action_name]
   end
 
   defp extract_controller_name(controller) do
@@ -35,5 +28,9 @@ defmodule ClubHomepage.SEO.Plug do
     |> List.last
     |> Macro.underscore
     |> String.to_atom
+  end
+
+  defp gettext(text, options) do
+    Gettext.dgettext(ClubHomepage.Gettext, "meta", text, options)
   end
 end

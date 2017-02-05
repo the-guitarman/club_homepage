@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "title_page_controller_index"
+msgstr ""
+
+msgid "meta_page_controller_index"
+msgstr ""
+
+msgid "title_page_controller_about_us"
+msgstr ""
+
+msgid "meta_page_controller_about_us"
+msgstr ""
+
+msgid "title_page_controller_chronicle"
+msgstr ""
+
+msgid "meta_page_controller_chronicle"
+msgstr ""
+
+msgid "title_page_controller_contact"
+msgstr ""
+
+msgid "meta_page_controller_contact"
+msgstr ""
+
+msgid "title_page_controller_registration_information"
+msgstr ""
+
+msgid "meta_page_controller_registration_information"
+msgstr ""
+
+msgid "title_page_controller_sponsors"
+msgstr ""
+
+msgid "meta_page_controller_sponsors"
+msgstr ""

@@ -1,0 +1,47 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "title_page_controller_index"
+msgstr "Homepage - %{full_club_name}"
+
+msgid "meta_page_controller_index"
+msgstr "Welcome to the sides of %{full_club_name}."
+
+msgid "title_page_controller_about_us"
+msgstr "About us - %{full_club_name}"
+
+msgid "meta_page_controller_about_us"
+msgstr "Read some informationen zu unserem Verein lesenabout this club."
+
+msgid "title_page_controller_chronicle"
+msgstr "History - %{full_club_name}"
+
+msgid "meta_page_controller_chronicle"
+msgstr "Read a list of events from the first days of the club til now."
+
+msgid "title_page_controller_contact"
+msgstr "Contact - %{full_club_name}"
+
+msgid "meta_page_controller_contact"
+msgstr "Get information to contact us."
+
+msgid "title_page_controller_registration_information"
+msgstr "Impressum - %{full_club_name}"
+
+msgid "meta_page_controller_registration_information"
+msgstr "Impressum of %{full_club_name}"
+
+msgid "title_page_controller_sponsors"
+msgstr "Sponsors - %{full_club_name}"
+
+msgid "meta_page_controller_sponsors"
+msgstr "See a list of our sonsors, they support us. Do you want to advertise for yourself? Let's go. Contact us."
