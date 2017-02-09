@@ -4,9 +4,8 @@ defmodule ClubHomepage.MatchCalendarCreator do
   Generates an ical file content with matches in the future. 
   """
 
+  alias ClubHomepage.Address
   alias ClubHomepage.Match
-  alias ClubHomepage.MeetingPoint
-  alias ClubHomepage.OpponentTeam
   alias ClubHomepage.Repo
 
   import Ecto.Query, only: [from: 2]
@@ -33,7 +32,7 @@ defmodule ClubHomepage.MatchCalendarCreator do
 
   defp get_matches(team_id, season_id) do
     start_at = to_timex_ecto_datetime(Timex.local)
-    Repo.all(from(m in Match, preload: [:competition, :team, :opponent_team], where: m.team_id == ^team_id, where: m.season_id == ^season_id, where: m.start_at > ^start_at))
+    Repo.all(from(m in Match, preload: [:competition, :team, :opponent_team, :meeting_point], where: m.team_id == ^team_id, where: m.season_id == ^season_id, where: m.start_at > ^start_at))
   end
 
   defp create_events(matches) do
@@ -64,20 +63,43 @@ defmodule ClubHomepage.MatchCalendarCreator do
     end
   end
 
-  defp location(match) do
-    #address = 
-      # if match.home_match do
-      #   #meeting_point.address
-      #   Repo.one(from(mp in MeetingPoint, where: ot.meeting_point_id == ^match.meeting_point_id, preload: [:address]))
-      # else
-      #   #opponent_team.address
-      #   Repo.one(from(ot in OpponentTeam, where: ot.opponent_team_id == ^match.opponent_team_id, preload: [:address]))
-      # end
-    ""
-  end
-
   defp timex_datetime_to_utc(datetime) do
     timezone = Timex.Timezone.get("UTC", Timex.now)
     Timex.Timezone.convert(datetime, timezone)
+  end
+
+  defp location(match) do
+    ret = meeting_point(match.meeting_point)
+    case match.home_match do
+      true -> ret
+      _ -> ret <> "\n\n" <> address(match.opponent_team.address_id)
+    end
+  end
+
+  defp meeting_point(nil), do: ""
+  defp meeting_point(meeting_point) do
+    address(meeting_point.address_id)
+  end
+
+  def address(nil), do: ""
+  def address(address_id) do
+    case Repo.get(Address, address_id) do
+      nil -> ""
+      address -> "#{address.street}, #{address.zip_code} #{address.city}#{district(address)}#{coordinates(address)}"
+    end
+  end
+
+  defp district(address) do
+    case address.district do
+      nil -> ""
+      district -> " (#{district})"
+    end
+  end
+
+  defp coordinates(address) do
+    case address.latitude do
+      nil -> ""
+      district -> ", lat: #{address.latitude}, lng: #{address.longitude}"
+    end
   end
 end
