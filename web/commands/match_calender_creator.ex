@@ -69,10 +69,22 @@ defmodule ClubHomepage.MatchCalendarCreator do
   end
 
   defp location(match) do
-    ret = meeting_point(match.meeting_point)
+    ret = time_of_meeting(match.meeting_point_at) <> meeting_point(match.meeting_point)
     case match.home_match do
-      true -> ret
-      _ -> ret <> "\n\n" <> address(match.opponent_team.address_id)
+      true -> meeting_point_label(ret)
+      _ -> meeting_point_label(ret) <> "\n\n" <> match_location_label(address(match.opponent_team.address_id))
+    end
+  end
+
+  defp time_of_meeting(nil), do: ""
+  defp time_of_meeting(meeting_point_at) do
+    ret = 
+      meeting_point_at
+      |> Timex.local
+      |> Timex.format("%d.%m.%Y %H:%M", :strftime)
+    case ret do
+      {:ok, datetime} -> gettext("time_of_meeting") <> ":\n" <> datetime <> " " <> gettext("o_clock")
+      _ -> ""
     end
   end
 
@@ -81,11 +93,21 @@ defmodule ClubHomepage.MatchCalendarCreator do
     address(meeting_point.address_id)
   end
 
+  defp meeting_point_label(""), do: ""
+  defp meeting_point_label(address) do
+    gettext("meeting_point") <> ":\n" <> address
+  end
+
+  defp match_location_label(""), do: ""
+  defp match_location_label(address) do
+    gettext("match_location") <> ":\n" <> address
+  end
+
   def address(nil), do: ""
   def address(address_id) do
     case Repo.get(Address, address_id) do
       nil -> ""
-      address -> "#{address.street}, #{address.zip_code} #{address.city}#{district(address)}#{coordinates(address)}"
+      address -> "#{address.street}, \n#{address.zip_code} #{address.city}#{district(address)}#{coordinates(address)}"
     end
   end
 
@@ -99,7 +121,11 @@ defmodule ClubHomepage.MatchCalendarCreator do
   defp coordinates(address) do
     case address.latitude do
       nil -> ""
-      district -> ", lat: #{address.latitude}, lng: #{address.longitude}"
+      latitude -> ", \nlat: #{latitude}, lng: #{address.longitude}"
     end
+  end
+
+  defp gettext(key) do
+    Gettext.gettext(ClubHomepage.Gettext, key)
   end
 end
