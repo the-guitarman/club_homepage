@@ -111,7 +111,7 @@ msgstr "Neue Saison anlegen"
 msgid "delete_match"
 msgstr "Spiel löschen"
 
-#: lib/extension/view.ex:164 web/templates/match/form_bulk.html.eex:4
+#: lib/extension/view.ex:165 web/templates/match/form_bulk.html.eex:4
 msgid "form_input_errors_notice"
 msgstr "Es sind folgende Fehler aufgetreten:"
 
