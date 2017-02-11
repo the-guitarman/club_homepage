@@ -134,14 +134,15 @@ defmodule ClubHomepage.Extension.View do
           params = Map.put(params, field_name, date_string)
           Map.put(form, :params, params)
         :error ->
-          timex_datetime = Map.get(model, field)
-          if timex_datetime do
-            date_string =
-              timex_datetime
-              |> Timex.local
-              |> timex_datetime_to_string(format)
-            params = Map.put(params, field_name, date_string)
-            Map.put(form, :params, params)
+          case Map.get(model, field) do
+            nil -> form
+            timex_datetime -> 
+              date_string =
+                timex_datetime
+                |> Timex.local
+                |> timex_datetime_to_string(format)
+              params = Map.put(params, field_name, date_string)
+              Map.put(form, :params, params)
           end
       end
     field_css_class =

@@ -93,7 +93,7 @@
         </div>
       <% end %>
 
-      <%= render "player_planning.html", conn: @conn, match: @match %>
+      <%#= render "player_planning.html", conn: @conn, match: @match %>
 
       <%= if has_role?(@conn, ["match-editor"]) do %>
         <%= link gettext("edit_match"), to: match_path(@conn, :edit, @match), class: "btn btn-default" %>
