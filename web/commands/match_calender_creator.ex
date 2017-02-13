@@ -70,11 +70,13 @@ defmodule ClubHomepage.MatchCalendarCreator do
   end
 
   defp location(match) do
-    ret = time_of_meeting(match.meeting_point_at) <> meeting_point(match.meeting_point)
-    case match.home_match do
-      true -> meeting_point_label(ret)
-      _ -> meeting_point_label(ret) <> "\n\n" <> match_location_label(address(match.opponent_team.address_id))
-    end
+    ret = meeting_point(match.meeting_point)
+    ret = 
+      case match.home_match do
+        true -> meeting_point_label(ret)
+        _ -> meeting_point_label(ret) <> "\n\n" <> match_location_label(address(match.opponent_team.address_id))
+      end
+    time_of_meeting(match.meeting_point_at) <> ret
   end
 
   defp time_of_meeting(nil), do: ""
