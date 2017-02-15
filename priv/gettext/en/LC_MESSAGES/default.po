@@ -82,7 +82,7 @@ msgstr "Home Game"
 msgid "matches"
 msgstr "Matches"
 
-#: web/commands/match_calender_creator.ex:99
+#: web/commands/match_calender_creator.ex:104
 #: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:64
 #: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:34
 msgid "meeting_point"
@@ -525,7 +525,7 @@ msgid "saison_matches_missing"
 msgstr "No matches found."
 
 #: lib/extension/match_view.ex:23 lib/extension/match_view.ex:28
-#: web/commands/match_calender_creator.ex:87
+#: web/commands/match_calender_creator.ex:92
 #: web/templates/page/index.html.eex:14 web/views/layout_view.ex:7
 msgid "o_clock"
 msgstr " "
@@ -1192,10 +1192,11 @@ msgstr "Mobile Phone"
 msgid "match_ground_weather"
 msgstr "Match Ground Weather"
 
-#: web/commands/match_calender_creator.ex:104
+#: web/commands/match_calender_creator.ex:109
 msgid "match_location"
-msgstr "Spielort"
+msgstr "Match Location"
 
-#: web/commands/match_calender_creator.ex:87
+#: web/commands/match_calender_creator.ex:89
+#: web/commands/match_calender_creator.ex:92
 msgid "time_of_meeting"
-msgstr "Treff (Zeitpunkt)"
+msgstr "Time Of Meeting"
