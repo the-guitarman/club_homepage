@@ -86,7 +86,7 @@ defmodule ClubHomepage.MatchCalendarCreator do
       |> Timex.local
       |> Timex.format("%d.%m.%Y %H:%M", :strftime)
     case ret do
-      {:ok, datetime} -> gettext("time_of_meeting") <> ":\n" <> datetime <> " " <> gettext("o_clock") <> "\n"
+      {:ok, datetime} -> gettext("time_of_meeting") <> ":\n" <> datetime <> " " <> gettext("o_clock") <> "\n\n"
       _ -> ""
     end
   end
