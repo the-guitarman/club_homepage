@@ -5,6 +5,7 @@ defmodule ClubHomepage.Extension.View do
 
   import ClubHomepage.ErrorHelpers 
   import ClubHomepage.Gettext
+  import ClubHomepage.Localization
   import ClubHomepage.Extension.CommonTimex
 
   def full_club_name do
@@ -75,12 +76,8 @@ defmodule ClubHomepage.Extension.View do
 
 
 
-  def timex_date_input_format do
-    "%d.%m.%Y"
-  end
-
   def js_date_input_format(divider \\ ".") do
-    timex_date_input_format
+    date_format
     |> String.replace("%", "")
     |> String.split(divider)
     |> Enum.map(fn(el) -> if el == "Y", do: "#{el}#{el}#{el}#{el}", else: "#{el}#{el}" |> String.upcase() end)
@@ -89,16 +86,12 @@ defmodule ClubHomepage.Extension.View do
 
   def timex_date_input(form, field, opts \\ []) do
     opts = Keyword.put(opts, :"data-format", js_date_input_format)
-    timex_input(form, field, timex_date_input_format, opts)
-  end
-
-  def timex_time_input_format do
-    "%H:%M"
+    timex_input(form, field, date_format, opts)
   end
 
   def js_time_input_format(divider \\ ":") do
     parts = 
-      timex_time_input_format
+      time_format
       |> String.replace("%", "")
       |> String.split(divider)
       |> Enum.map(fn(el) -> String.upcase("#{el}#{el}") end)
@@ -108,7 +101,7 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def timex_datetime_input_format do
-    "#{timex_date_input_format} #{timex_time_input_format}"
+    "#{date_format} #{time_format}"
   end
 
   def js_datetime_input_format do

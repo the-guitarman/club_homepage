@@ -38,6 +38,7 @@ defmodule ClubHomepage.Web do
 
       import ClubHomepage.Router.Helpers
       import ClubHomepage.Gettext
+      import ClubHomepage.Localization
 
       import ClubHomepage.Extension.Controller
       import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0, internal_user_name: 1]

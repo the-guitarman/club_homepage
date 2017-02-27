@@ -82,7 +82,7 @@ msgstr "Home Game"
 msgid "matches"
 msgstr "Matches"
 
-#: web/commands/match_calender_creator.ex:104
+#: web/commands/match_calender_creator.ex:100
 #: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:64
 #: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:34
 msgid "meeting_point"
@@ -112,7 +112,7 @@ msgstr "Create Season"
 msgid "delete_match"
 msgstr "Delete"
 
-#: lib/extension/view.ex:165 web/templates/match/form_bulk.html.eex:4
+#: lib/extension/view.ex:162 web/templates/match/form_bulk.html.eex:4
 msgid "form_input_errors_notice"
 msgstr "Some errors occured:"
 
@@ -525,7 +525,7 @@ msgid "saison_matches_missing"
 msgstr "No matches found."
 
 #: lib/extension/match_view.ex:23 lib/extension/match_view.ex:28
-#: web/commands/match_calender_creator.ex:92
+#: web/commands/match_calender_creator.ex:88
 #: web/templates/page/index.html.eex:14 web/views/layout_view.ex:7
 msgid "o_clock"
 msgstr " "
@@ -1192,11 +1192,22 @@ msgstr "Mobile Phone"
 msgid "match_ground_weather"
 msgstr "Match Ground Weather"
 
-#: web/commands/match_calender_creator.ex:109
+#: web/commands/match_calender_creator.ex:105
 msgid "match_location"
 msgstr "Match Location"
 
-#: web/commands/match_calender_creator.ex:89
-#: web/commands/match_calender_creator.ex:92
+#: web/commands/match_calender_creator.ex:88
 msgid "time_of_meeting"
 msgstr "Time Of Meeting"
+
+#: web/localization.ex:12
+msgid "date_and_time_format"
+msgstr "%Y-%m-%d %H:%M"
+
+#: web/localization.ex:6
+msgid "date_format"
+msgstr "%Y-%m-%d"
+
+#: web/localization.ex:18
+msgid "time_format"
+msgstr "%H:%M"

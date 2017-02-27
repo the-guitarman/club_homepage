@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "short"
+msgstr ""
+
+  date: 
+    abbr_day_names: 
+      - So
+      - Mo
+      - Di
+      - Mi
+      - Do
+      - Fr
+      - Sa
+    abbr_month_names: 
+      - ~
+      - Jan
+      - Feb
+      - Mär
+      - Apr
+      - Mai
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Okt
+      - Nov
+      - Dez
+    day_names: 
+      - Sonntag
+      - Montag
+      - Dienstag
+      - Mittwoch
+      - Donnerstag
+      - Freitag
+      - Samstag
+    first_day_of_week: 1
+    formats: 
+      default: "%d.%m.%Y"
+      default_with_day: "%d.%m.%Y, %a"
+      long: "%e. %B %Y"
+      long_ordinal: ~
+      month_name_with_year: "%B %Y"
+      only_day: "%e"
+      price_chart: "%d.%m.%y" #"%d.%m.%y"
+      short: "%e. %b"
+    month_names: 
+      - ~
+      - Januar
+      - Februar
+      - März
+      - April
+      - Mai
+      - Juni
+      - Juli
+      - August
+      - September
+      - Oktober
+      - November
+      - Dezember
+    order: 
+      - !ruby/symbol day
+      - !ruby/symbol month
+      - !ruby/symbol year
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "etwa 1 Stunde"
+        other: "etwa %{count} Stunden"
+      about_x_months: 
+        one: "etwa 1 Monat"
+        other: "etwa %{count} Monate"
+      about_x_years: 
+        one: "etwa 1 Jahr"
+        other: "etwa %{count} Jahre"
+      almost_x_years: 
+        one: "fast 1 Jahr"
+        other: "fast %{count} Jahre"
+      half_a_minute: "eine halbe Minute"
+      less_than_x_minutes: 
+        one: "weniger als 1 Minute"
+        other: "weniger als %{count} Minuten"
+        zero: "weniger als 1 Minute"
+      less_than_x_seconds: 
+        one: "weniger als 1 Sekunde"
+        other: "weniger als %{count} Sekunden"
+        zero: "weniger als 1 Sekunde"
+      over_x_years: 
+        one: "mehr als 1 Jahr"
+        other: "mehr als %{count} Jahre"
+      x_days: 
+        one: "1 Tag"
+        other: "%{count} Tage"
+      x_minutes: 
+        one: "1 Minute"
+        other: "%{count} Minuten"
+      x_months: 
+        one: "1 Monat"
+        other: "%{count} Monate"
+      x_seconds: 
+        one: "1 Sekunde"
+        other: "%{count} Sekunden"
+    distance_in_words_custom: 
+      date: "am %{date}"
+      x_hours_ago: 
+        one: "vor %{count} Stunde"
+        other: "vor %{count} Stunden"
+      x_minutes_ago: 
+        one: "vor %{count} Minute"
+        other: "vor %{count} Minuten"
+      x_seconds_ago: 
+        one: "vor %{count} Sekunde"
+        other: "vor %{count} Sekunden"
+      yesterday_time: "gestern %{time} Uhr"
+    prompts: 
+      day: Tag
+      hour: Stunden
+      minute: Minuten
+      month: Monat
+      second: Sekunden
+      year: Jahr

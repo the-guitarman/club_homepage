@@ -3,6 +3,8 @@ defmodule ClubHomepage.Extension.Controller do
   This module provides functions for recurring tasks within a controller.
   """
 
+  import ClubHomepage.Localization
+
   def full_club_name do
     Application.get_env(:club_homepage, :common)[:full_club_name]
   end
@@ -11,18 +13,19 @@ defmodule ClubHomepage.Extension.Controller do
   Parses a date string in the given parameters and replaces it with a timex object.
 
   ## Example usage
-  iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "02.04.2017"}, :date)
+  iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "2017-04-02"}, :date)
   %{"date" => Timex.to_datetime({{2017, 4, 2}, {0, 0, 0}}, :local)}
 
-  iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "02.04.2017 12:30"}, :date)
+  iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "2017-04-02 12:30"}, :date)
   %{"date" => nil}
   """
   # https://github.com/bitwalker/timex#formatting-a-datetime-via-strftime
   @spec parse_date_field(Map, Atom, String) :: Map
-  def parse_date_field(params, field, format \\ "%d.%m.%Y") do
+  def parse_date_field(params, field, format \\ nil) do
+    format = date_format(format)
     field_name = Atom.to_string(field)
 
-    params  
+    params
     |> extract_value(field_name)
     |> check_value
     |> parse_value(field_name, format)
@@ -49,14 +52,15 @@ defmodule ClubHomepage.Extension.Controller do
   Parses a datetime string in the given parameters and replaces it with a timex object.
 
   ## Example usage
-  iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "02.04.2017 12:30"}, :datetime)
+  iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "2017-04-02 12:30"}, :datetime)
   %{"datetime" => Timex.to_datetime({{2017, 4, 2}, {12, 30, 0}}, :local)}
 
-  iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "02.04.2017"}, :datetime)
+  iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "2017-04-02"}, :datetime)
   %{"datetime" => nil}
   """
-  @spec parse_date_field(Map, Atom, String) :: Map
-  def parse_datetime_field(params, field, format \\ "%d.%m.%Y %H:%M") do
+  @spec parse_datetime_field(Map, Atom, String | nil) :: Map
+  def parse_datetime_field(params, field, format \\ nil) do
+    format = datetime_format(format)
     parse_date_field(params, field, format)
   end
 end

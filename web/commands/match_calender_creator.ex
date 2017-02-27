@@ -1,4 +1,3 @@
-# Die UID weist das Format "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" auf, wobei X einem hexadezimalen Zeichen (0-9, A-F) entspricht.
 defmodule ClubHomepage.MatchCalendarCreator do
   @moduledoc """
   Generates an ical file content with matches in the future. 
