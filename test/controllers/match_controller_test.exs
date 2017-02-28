@@ -8,7 +8,7 @@ defmodule ClubHomepage.MatchControllerTest do
   import Ecto.Query, only: [from: 2]
   import ClubHomepage.UserRole, only: [has_role?: 2]
 
-  @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "17.04.2010 14:00"}
+  @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "2010-04-17 14:00"}
   @invalid_attrs %{}
 
   setup context do
@@ -75,11 +75,11 @@ defmodule ClubHomepage.MatchControllerTest do
 
     {:ok, start_at} =
       valid_attrs.start_at
-      |> Timex.parse("%d.%m.%Y %H:%M", :strftime) 
+      |> Timex.parse("%Y-%m-%d %H:%M", :strftime) 
     {:ok, start_at} =
       start_at
       |> Timex.add(Timex.Duration.from_days(7))
-      |> Timex.format("%d.%m.%Y %H:%M", :strftime)
+      |> Timex.format("%Y-%m-%d %H:%M", :strftime)
     #assert redirected_to(conn) == match_path(conn, :index, %{"season_id" => valid_attrs.season_id, "team_id" => valid_attrs.team_id, "start_at" => start_at})
     team = Repo.get(ClubHomepage.Team, valid_attrs.team_id)
     season = Repo.get(ClubHomepage.Season, valid_attrs.season_id)

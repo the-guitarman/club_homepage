@@ -13,6 +13,7 @@ defmodule ClubHomepage.Router do
     plug ClubHomepage.Locale
     plug ClubHomepage.WeatherData
     plug ClubHomepage.MemberBirthday
+#    plug ClubHomepage.JavascriptLocalization
   end
 
   # pipeline :api do

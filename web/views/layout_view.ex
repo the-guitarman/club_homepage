@@ -20,10 +20,25 @@ defmodule ClubHomepage.LayoutView do
       <div class=\"col-xs-6\">#{weather_data[:pressure_in_hectopascal]} hPa</div>
     </div>"
   end
-
+  
   defp wind_direction_abbrevation(weather_data) do
     if weather_data[:wind_direction_abbreviation] != "" do
       Gettext.dgettext(ClubHomepage.Gettext, "additionals", "wind_direction_abbreviation_#{weather_data[:wind_direction_abbreviation]}")
+    end
+  end
+
+
+
+
+  def javascript_localization_options do
+    ClubHomepage.JavascriptLocalization.run
+    |> to_json
+  end
+
+  def to_json(object) do
+    case JSON.encode(object) do
+      {:ok, json} -> json
+      _           -> ""
     end
   end
 end

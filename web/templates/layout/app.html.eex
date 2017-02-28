@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body class="background-image-01">
+  <body class="background-image-01" data-localization="">
     <div class="fluid-container <%= action_name(@conn) %>" role="main">
       <%= render "navbar_top.html", conn: @conn, current_user: @current_user, weather_data: @weather_data, birthdays: @birthdays %>
       <%= render "flash_messages.html", conn: @conn %>
