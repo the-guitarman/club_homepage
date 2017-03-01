@@ -10,6 +10,8 @@ defmodule ClubHomepage.MatchController do
   alias ClubHomepage.JsonMatchesCreator
   alias ClubHomepage.JsonMatchesValidator
 
+  import ClubHomepage.Localization
+
   plug :is_match_editor? when not action in [:show]
   plug :scrub_params, "match" when action in [:create, :update]
   plug :get_competition_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
@@ -174,7 +176,7 @@ defmodule ClubHomepage.MatchController do
     {:ok, start_at} =
       start_at
       |> Timex.add(Timex.Duration.from_days(7))
-      |> Timex.format("%d.%m.%Y %H:%M", :strftime)
+      |> Timex.format(datetime_format, :strftime)
     start_at
   end
 
