@@ -5,6 +5,7 @@ defmodule ClubHomepage.JavascriptLocalization do
 
   # import Plug.Conn
   import ClubHomepage.Gettext
+  import ClubHomepage.Localization
 
   # def init(_opts) do
   #   nil
@@ -19,7 +20,7 @@ defmodule ClubHomepage.JavascriptLocalization do
   """
   @spec run() :: Map
   def run() do
-    %{}
+    %{locale: locale(), date_format: date_format()}
   end
 
   defp locale do

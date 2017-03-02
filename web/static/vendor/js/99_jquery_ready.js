@@ -25,10 +25,11 @@ $(document).ready(function() {
   });
   */
 
+  var i18n = $('body').data('localization');
   var dateFieldAttributes = {
-    format: 'DD.MM.YYYY',
+    format: (i18n['date_format'] || 'YYYY-MM-DD'),
     inline: false,
-    locale: 'de',
+    locale: (i18n['locale'] || 'en'),
     showClose: true,
     sideBySide: false,
     tooltips: {
