@@ -40,7 +40,7 @@
                   <li class="list-group-item">
                     <%
                     {:ok, date} = Timex.parse(Atom.to_string(date_key), "%Y-%m-%d", :strftime)
-                    {:ok, date} = Timex.format(date, "%d.%m.%Y", :strftime)
+                    {:ok, date} = Timex.format(date, date_format(), :strftime)
                     %>
                     <div class="birthday-date"><%= date %></div>
                     <%= for birthday <- @birthdays[date_key] do %>

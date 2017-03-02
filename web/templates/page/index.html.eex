@@ -10,7 +10,7 @@
                 <%
                   link_text = content_tag(:span) do
                     datetime = content_tag(:small) do
-                      {:ok, date_string} = Timex.format(news.inserted_at, "%d.%m.%Y %H:%M", :strftime)
+                {:ok, date_string} = Timex.format(news.inserted_at, datetime_format(), :strftime)
                       date_string <> " " <> gettext("o_clock")
                     end
                     raw(safe_to_string(datetime) <> safe_to_string(tag(:br)) <> news.subject) 

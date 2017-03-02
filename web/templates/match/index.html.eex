@@ -41,7 +41,7 @@
             <% end %>
             <td>
               <%#= match.start_at %>
-              <%= Timex.format!(match.start_at, "%d.%m.%Y %H:%M", :strftime) %>
+              <%= Timex.format!(match.start_at, datetime_format(), :strftime) %>
             </td>
             <td><%= match.home_match %></td>
 

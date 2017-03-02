@@ -9,6 +9,7 @@ defmodule ClubHomepage.MatchCalendarCreator do
 
   import Ecto.Query, only: [from: 2]
   import ClubHomepage.Gettext
+  import ClubHomepage.Localization
   import ClubHomepage.Extension.CommonTimex
 
   @doc """
@@ -83,7 +84,7 @@ defmodule ClubHomepage.MatchCalendarCreator do
     ret = 
       meeting_point_at
       |> Timex.local
-      |> Timex.format("%d.%m.%Y %H:%M", :strftime)
+      |> Timex.format(datetime_format(), :strftime)
     case ret do
       {:ok, datetime} -> gettext("time_of_meeting") <> ":\n" <> datetime <> " " <> gettext("o_clock") <> "\n\n"
       _ -> ""

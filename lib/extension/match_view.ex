@@ -3,6 +3,7 @@ defmodule ClubHomepage.Extension.MatchView do
   alias Phoenix.HTML.Tag
 
   import ClubHomepage.Gettext
+  import ClubHomepage.Localization
 
   alias ClubHomepage.Match
 
@@ -20,12 +21,12 @@ defmodule ClubHomepage.Extension.MatchView do
     Timex.compare(match.start_at, Timex.local) == 1 && Timex.compare(match.start_at, Timex.add(Timex.now, Timex.Duration.from_hours(hours))) == -1
   end
 
-  def match_datetime(match, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
+  def match_datetime(match, format \\ "#{datetime_format()} #{gettext("o_clock")}") do
     match.start_at
     |> point_of_time(format)
   end
 
-  def point_of_time(datetime, format \\ "%d.%m.%Y %H:%M #{gettext("o_clock")}") do
+  def point_of_time(datetime, format \\ "#{datetime_format()} #{gettext("o_clock")}") do
     {:ok, date_string} =
       datetime
       |> Timex.local

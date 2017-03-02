@@ -4,8 +4,9 @@ defmodule ClubHomepage.MatchTest do
   alias ClubHomepage.Match
 
   import ClubHomepage.Factory
+  import ClubHomepage.Localization
 
-  @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "17.04.2010 14:00"}
+  @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "2010-04-17 14:00"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -13,7 +14,7 @@ defmodule ClubHomepage.MatchTest do
     season        = insert(:season)
     team          = insert(:team)
     opponent_team = insert(:opponent_team)
-    {:ok, start_at} = Timex.parse(@valid_attrs[:start_at], "%d.%m.%Y %H:%M", :strftime)
+    {:ok, start_at} = Timex.parse(@valid_attrs[:start_at], datetime_format(), :strftime)
     valid_attrs = %{@valid_attrs | competition_id: competition.id, season_id: season.id, team_id: team.id, opponent_team_id: opponent_team.id, start_at: start_at}
     changeset = Match.changeset(%Match{}, valid_attrs)
     assert changeset.valid?

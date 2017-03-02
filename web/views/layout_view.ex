@@ -2,7 +2,7 @@ defmodule ClubHomepage.LayoutView do
   use ClubHomepage.Web, :view
 
   def weather_data_popover_content(weather_data) do
-    {:ok, date_string} = Timex.format(weather_data[:created_at], "%d.%m.%Y %H:%M", :strftime)
+    {:ok, date_string} = Timex.format(weather_data[:created_at], datetime_format(), :strftime)
     "<div class=\"row\">
       <div class=\"col-xs-12 text-center\">#{date_string} #{gettext("o_clock")}</div>
       <div class=\"col-xs-12 text-center\">#{weather_data[:weather]}<br /><br /></div>
