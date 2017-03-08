@@ -31,11 +31,8 @@ defmodule ClubHomepage.LayoutView do
 
 
   def javascript_localization_options do
-    ret =
     ClubHomepage.JavascriptLocalization.run
     |> to_json
-    IO.inspect ret
-    ret
   end
 
   def to_json(object) do

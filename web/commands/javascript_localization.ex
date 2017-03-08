@@ -23,6 +23,7 @@ defmodule ClubHomepage.JavascriptLocalization do
     %{
       locale: locale(),
       date_format: date_format(),
+      datetime_format: datetime_format(),
       today: gettext("today"),
       clear_selection: gettext("clear_selection"),
       close: gettext("close"),
