@@ -85,4 +85,12 @@ $(document).ready(function() {
     });
     return false;
   });
+
+  $(document).on('click', '.new-record-element .input-group-addon', function(e) {
+    var form = $(this).closest('form');
+    var fields = _.filter(form.serializeArray(), function(field){ return !(field.name[0] === '_'); });
+    window.location.href = $(this).data('href') + '?data=' + encodeURI(JSON.stringify(fields)) + 'backURL=' + encodeURI(window.location.href);
+    e.preventDefault();
+    return false;
+  });
 });

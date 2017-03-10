@@ -1,7 +1,7 @@
 <%= form_for @changeset, @action, fn f -> %>
   <%= show_form_errors(@changeset, f) %>
 
-  <%= render "form_group_to_select_a_competition.html", f: f, changeset: @changeset,
+  <%= render "form_group_to_select_a_competition.html", f: f, conn: @conn, changeset: @changeset,
       competition_options: @competition_options
   %>
 

@@ -1,4 +1,7 @@
-<div class="form-group <%= error_cls @changeset, @f, :competition_id %>">
+<div class="form-group new-record-element <%= error_cls @changeset, @f, :competition_id %>">
+  <div class="input-group">
     <%= select(@f, :competition_id, @competition_options, placeholder: gettext("select_competition_placeholder"), prompt: gettext("select_competition_placeholder")) %>
+    <span class="input-group-addon" data-href="<%= competition_path(@conn, :new) %>"><i class="glyphicon glyphicon-plus"></i></span>
     <%= error_tag @changeset, @f, :competition_id %>
+  </div>
 </div>
