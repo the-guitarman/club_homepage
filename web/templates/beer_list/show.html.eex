@@ -1,0 +1,18 @@
+<h2>Show beer list</h2>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @beer_list.user_id %>
+  </li>
+
+  <li>
+    <strong>Deputy:</strong>
+    <%= @beer_list.deputy %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: beer_list_path(@conn, :edit, @beer_list) %>
+<%= link "Back", to: beer_list_path(@conn, :index) %>
