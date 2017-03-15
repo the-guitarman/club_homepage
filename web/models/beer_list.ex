@@ -17,6 +17,6 @@ defmodule ClubHomepage.BeerList do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, ~w(title price_per_beer))
-    |> validate_required([])
+    |> validate_required([:title, :price_per_beer])
   end
 end

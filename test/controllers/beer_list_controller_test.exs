@@ -2,8 +2,8 @@ defmodule ClubHomepage.BeerListControllerTest do
   use ClubHomepage.ConnCase
 
   alias ClubHomepage.BeerList
-  @valid_attrs %{}
-  @invalid_attrs %{}
+  @valid_attrs %{title: "Team 1", price_per_beer: 1.5}
+  @invalid_attrs %{title: "", price_per_beer: nil}
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, beer_list_path(conn, :index)
