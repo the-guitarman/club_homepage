@@ -5,6 +5,9 @@ defmodule ClubHomepage.BeerList do
     belongs_to :user, ClubHomepage.User
     belongs_to :deputy, ClubHomepage.Deputy
 
+    field :title, :string
+    field :price_per_beer, :float
+
     timestamps()
   end
 
@@ -13,7 +16,7 @@ defmodule ClubHomepage.BeerList do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [])
+    |> cast(params, ~w(title price_per_beer))
     |> validate_required([])
   end
 end
