@@ -140,6 +140,9 @@
                 <li class="<%= current_link(@conn, ClubHomepage.TeamChatMessagesController, [:index]) %>">
                   <%= link gettext("all") <> " " <> gettext("team_chat_messages"), to: team_chat_message_path(@conn, :index) %>
                 </li>
+                <li class="<%= current_link(@conn, ClubHomepage.BeerListController, [:index]) %>">
+                  <%= link gettext("all") <> " " <> gettext("beer_lists"), to: beer_list_path(@conn, :index) %>
+                </li>
               <% end %>
             </ul>
           </li>

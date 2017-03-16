@@ -1,11 +1,33 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <%= form_for @changeset, @action, fn f -> %>
+      <%= show_form_errors(@changeset, f) %>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+      <div class="form-group <%= error_cls @changeset, f, :title %>">
+        <%#= label @f, :title, "Title", class: "control-label" %>
+        <%= text_input f, :title, class: "form-control", placeholder: gettext("title") %>
+        <%= error_tag f, :title %>
+      </div>
+
+      <div class="form-group new-record-element <%= error_cls @changeset, f, :user_id %>">
+          <%= select(f, :user_id, @user_options, placeholder: gettext("select_user_placeholder"), prompt: gettext("select_user_placeholder")) %>
+          <%= error_tag @changeset, f, :user_id %>
+      </div>
+
+      <div class="form-group new-record-element <%= error_cls @changeset, f, :deputy_id %>">
+          <%= select(f, :deputy_id, @user_options, placeholder: gettext("select_user_placeholder"), prompt: gettext("select_user_placeholder")) %>
+          <%= error_tag @changeset, f, :deputy_id %>
+      </div>
+
+      <div class="form-group <%= error_cls @changeset, f, :price_per_beer %>">
+        <%#= label @f, :price_per_beer, "Price Per Beer", class: "control-label" %>
+        <%= number_input f, :price_per_beer, class: "form-control", placeholder: gettext("price_per_beer"), min: 0, step: 0.05 %>
+        <%= error_tag f, :price_per_beer %>
+      </div>
+
+      <div class="form-group">
+        <%= submit gettext("save"), class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

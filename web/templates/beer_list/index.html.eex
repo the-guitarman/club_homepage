@@ -1,28 +1,48 @@
-<h2>Listing beer lists</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("all") <> " " <> gettext("beer_lists") %></h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Deputy</th>
+      <p>
+        <%= link gettext("create_beer_list"), to: beer_list_path(@conn, :new), class: "btn btn-default" %>
+      </p>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for beer_list <- @beer_lists do %>
-    <tr>
-      <td><%= beer_list.user_id %></td>
-      <td><%= beer_list.deputy %></td>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= gettext("beer_list_creator") %></th>
+            <th><%= gettext("beer_list_deputy") %></th>
+            <th><%= gettext("title") %></th>
+            <th><%= gettext("number_of_drinkers") %></th>
 
-      <td class="text-right">
-        <%= link "Show", to: beer_list_path(@conn, :show, beer_list), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: beer_list_path(@conn, :edit, beer_list), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: beer_list_path(@conn, :delete, beer_list), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+      <%= for beer_list <- @beer_lists do %>
+          <tr>
+            <td><%= internal_user_name(beer_list.user) %></td>
+            <td>
+              <%= if (beer_list.deputy_id) do %>
+                <%= internal_user_name(beer_list.deputy) %>
+              <% end %>
+            </td>
+            <td><%= beer_list.title %></td>
+            <td></td>
 
-<%= link "New beer list", to: beer_list_path(@conn, :new) %>
+            <td class="text-right">
+              <%= link "Show", to: beer_list_path(@conn, :show, beer_list), class: "btn btn-default" %>
+              <%= link "Edit", to: beer_list_path(@conn, :edit, beer_list), class: "btn btn-default" %>
+              <%= link "Delete", to: beer_list_path(@conn, :delete, beer_list), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+            </td>
+          </tr>
+      <% end %>
+        </tbody>
+      </table>
+
+      <p>
+        <%= link gettext("create_beer_list"), to: beer_list_path(@conn, :new), class: "btn btn-default" %>
+      </p>
+    </div>
+  </div>
+</div>

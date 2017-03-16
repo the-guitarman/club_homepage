@@ -3,14 +3,19 @@ defmodule ClubHomepage.BeerListController do
 
   alias ClubHomepage.BeerList
 
+  plug :is_administrator?
+  plug :scrub_params, "beer_list" when action in [:create, :update]
+  plug :get_user_select_options when action in [:new, :create, :edit, :update]
+
   def index(conn, _params) do
-    beer_lists = Repo.all(BeerList)
+    beer_lists = Repo.all(from(bl in BeerList, preload: [:user, :deputy]))
     render(conn, "index.html", beer_lists: beer_lists)
   end
 
   def new(conn, _params) do
     changeset = BeerList.changeset(%BeerList{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset,
+           user_options: conn.assigns.user_options)
   end
 
   def create(conn, %{"beer_list" => beer_list_params}) do
@@ -22,7 +27,8 @@ defmodule ClubHomepage.BeerListController do
         |> put_flash(:info, "Beer list created successfully.")
         |> redirect(to: beer_list_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset,
+               user_options: conn.assigns.user_options)
     end
   end
 
@@ -61,5 +67,12 @@ defmodule ClubHomepage.BeerListController do
     conn
     |> put_flash(:info, "Beer list deleted successfully.")
     |> redirect(to: beer_list_path(conn, :index))
+  end
+
+  defp get_user_select_options(conn, _) do
+    query = from(s in ClubHomepage.User,
+                 select: {s.name, s.id},
+                 order_by: [desc: s.name])
+    assign(conn, :user_options, Repo.all(query))
   end
 end

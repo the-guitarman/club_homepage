@@ -1,18 +1,26 @@
-<h2>Show beer list</h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+    <h2><%= gettext("beer_list") %> - <%= @beer_list.title %></h2>
 
-<ul>
+    <ul>
 
-  <li>
-    <strong>User:</strong>
-    <%= @beer_list.user_id %>
-  </li>
+      <li>
+        <strong><%= gettext("beer_list_creator") %>:</strong>
+        <%= internal_user_name(@beer_list.user) %>
+      </li>
 
-  <li>
-    <strong>Deputy:</strong>
-    <%= @beer_list.deputy %>
-  </li>
+      <li>
+        <strong>Deputy:</strong>
+        <%= if @beer_list.deputy_id do %>
+          <%= internal_user_name(@beer_list.deputy) %>
+        <% end %>
+      </li>
 
-</ul>
+    </ul>
 
-<%= link "Edit", to: beer_list_path(@conn, :edit, @beer_list) %>
-<%= link "Back", to: beer_list_path(@conn, :index) %>
+    <%= link "Edit", to: beer_list_path(@conn, :edit, @beer_list) %>
+    <%= link "Back", to: beer_list_path(@conn, :index) %>
+    </div>
+  </div>
+</div>
