@@ -1,6 +1,9 @@
 #: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
 #: web/templates/address/index.html.eex:8
 #: web/templates/address/index.html.eex:55 web/templates/address/new.html.eex:9
+#: web/templates/beer_list/edit.html.eex:9
+#: web/templates/beer_list/index.html.eex:4
+#: web/templates/beer_list/new.html.eex:10
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
@@ -8,6 +11,7 @@
 #: web/templates/layout/navbar_top.html.eex:131
 #: web/templates/layout/navbar_top.html.eex:136
 #: web/templates/layout/navbar_top.html.eex:141
+#: web/templates/layout/navbar_top.html.eex:144
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:105
@@ -109,6 +113,7 @@ msgid "form_input_errors_notice"
 msgstr ""
 
 #: web/templates/address/form.html.eex:41
+#: web/templates/beer_list/form.html.eex:29
 #: web/templates/competition/form.html.eex:20
 #: web/templates/match/form.html.eex:99
 #: web/templates/match/form_bulk.html.eex:36
@@ -358,7 +363,7 @@ msgstr ""
 msgid "edit_team"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:152
+#: web/templates/layout/navbar_top.html.eex:155
 #: web/templates/session/new.html.eex:15
 msgid "log_in"
 msgstr ""
@@ -454,7 +459,7 @@ msgstr ""
 msgid "edit_match"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:146
+#: web/templates/layout/navbar_top.html.eex:149
 msgid "logout"
 msgstr ""
 
@@ -462,7 +467,7 @@ msgstr ""
 msgid "members"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:149
+#: web/templates/layout/navbar_top.html.eex:152
 #: web/templates/user/new.html.eex:4
 msgid "sign_up"
 msgstr ""
@@ -1204,62 +1209,112 @@ msgstr ""
 msgid "time_format"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:27
+#: web/commands/javascript_localization.ex:28
 msgid "clear_selection"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:28
+#: web/commands/javascript_localization.ex:29
 msgid "close"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:39
+#: web/commands/javascript_localization.ex:40
 msgid "next_century"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:37
+#: web/commands/javascript_localization.ex:38
 msgid "next_decade"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:31
+#: web/commands/javascript_localization.ex:32
 msgid "next_month"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:34
+#: web/commands/javascript_localization.ex:35
 msgid "next_year"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:38
+#: web/commands/javascript_localization.ex:39
 msgid "previous_century"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:36
+#: web/commands/javascript_localization.ex:37
 msgid "previous_decade"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:30
+#: web/commands/javascript_localization.ex:31
 msgid "previous_month"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:33
+#: web/commands/javascript_localization.ex:34
 msgid "previous_year"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:35
+#: web/commands/javascript_localization.ex:36
 msgid "select_decade"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:29
+#: web/commands/javascript_localization.ex:30
 msgid "select_month"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:40
+#: web/commands/javascript_localization.ex:41
 msgid "select_time"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:32
+#: web/commands/javascript_localization.ex:33
 msgid "select_year"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:26
+#: web/commands/javascript_localization.ex:27
 msgid "today"
+msgstr ""
+
+#: web/templates/beer_list/show.html.eex:4
+msgid "beer_list"
+msgstr ""
+
+#: web/templates/beer_list/index.html.eex:13
+#: web/templates/beer_list/show.html.eex:9
+msgid "beer_list_creator"
+msgstr ""
+
+#: web/templates/beer_list/index.html.eex:14
+msgid "beer_list_deputy"
+msgstr ""
+
+#: web/templates/beer_list/edit.html.eex:9
+#: web/templates/beer_list/index.html.eex:4
+#: web/templates/beer_list/new.html.eex:10
+#: web/templates/layout/navbar_top.html.eex:144
+msgid "beer_lists"
+msgstr ""
+
+#: web/templates/beer_list/index.html.eex:7
+#: web/templates/beer_list/index.html.eex:44
+#: web/templates/beer_list/new.html.eex:4
+msgid "create_beer_list"
+msgstr ""
+
+#: web/templates/beer_list/edit.html.eex:4
+msgid "edit_beer_list"
+msgstr ""
+
+#: web/templates/beer_list/index.html.eex:16
+msgid "number_of_drinkers"
+msgstr ""
+
+#: web/templates/beer_list/form.html.eex:24
+msgid "price_per_beer"
+msgstr ""
+
+#: web/templates/beer_list/form.html.eex:13
+#: web/templates/beer_list/form.html.eex:13
+#: web/templates/beer_list/form.html.eex:18
+#: web/templates/beer_list/form.html.eex:18
+msgid "select_user_placeholder"
+msgstr ""
+
+#: web/templates/beer_list/form.html.eex:8
+#: web/templates/beer_list/index.html.eex:15
+msgid "title"
 msgstr ""
