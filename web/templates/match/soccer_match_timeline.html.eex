@@ -1,4 +1,4 @@
-<%= if logged_in?(@conn) && (match_finished?(@match) || match_in_progress?(@match) || within_hours_before_kick_off?(@match, 1)) do %>
+<%= if @match.failure_reason == nil && logged_in?(@conn) && (match_finished?(@match) || match_in_progress?(@match) || within_hours_before_kick_off?(@match, 1)) do %>
 
   <%= if (match_in_progress?(@match) || within_hours_before_kick_off?(@match, 1)) && has_role?(@conn, ["match-editor"]) do %>
     <div class="row js-match-event-buttons css-match-event-buttons">
