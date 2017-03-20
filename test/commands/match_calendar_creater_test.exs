@@ -24,7 +24,7 @@ defmodule ClubHomepage.MatchCalendarCreatorTest do
 
     match = insert(:match, season_id: season_id, team_id: team_id, start_at:  Timex.add(Timex.local, Timex.Duration.from_days(1)))
     result = MatchCalendarCreator.run(team_id, season_id)
-    assert String.contains?(result, "UID:" <> uid(match))
+    assert String.contains?(result, "UID:" <> match.uid)
     assert String.contains?(result, "SUMMARY:" <> summary(match))
   end
 

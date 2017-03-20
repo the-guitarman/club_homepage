@@ -35,7 +35,8 @@ defmodule ClubHomepage.Factory do
       start_at: Timex.local,
       home_match: false,
       description: nil,
-      match_events: nil
+      match_events: nil,
+      uid: sequence(:uid, &"uid-#{&1}."),
     }
   end
 

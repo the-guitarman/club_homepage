@@ -48,12 +48,7 @@ defmodule ClubHomepage.MatchCalendarCreator do
       description: match.competition.name,
       location: location(match)
     }
-    Map.put(struct, :uid, uid(match))
-  end
-
-  defp uid(match) do
-    :crypto.hash(:sha, "#{match.id}#{summary(match)}#{match.competition.name}")
-    |> Base.encode16(case: :lower)
+    Map.put(struct, :uid, match.uid)
   end
 
   defp summary(match) do

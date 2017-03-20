@@ -1,7 +1,9 @@
 defmodule ClubHomepage.MatchTest do
   use ClubHomepage.ModelCase
 
+  alias Ecto.Changeset
   alias ClubHomepage.Match
+  alias ClubHomepage.Repo
 
   import ClubHomepage.Factory
   import ClubHomepage.Localization
@@ -18,6 +20,27 @@ defmodule ClubHomepage.MatchTest do
     valid_attrs = %{@valid_attrs | competition_id: competition.id, season_id: season.id, team_id: team.id, opponent_team_id: opponent_team.id, start_at: start_at}
     changeset = Match.changeset(%Match{}, valid_attrs)
     assert changeset.valid?
+  end
+
+  test "uid" do
+    competition   = insert(:competition)
+    season        = insert(:season)
+    team          = insert(:team)
+    opponent_team = insert(:opponent_team)
+    {:ok, start_at} = Timex.parse(@valid_attrs[:start_at], datetime_format(), :strftime)
+    valid_attrs = %{@valid_attrs | competition_id: competition.id, season_id: season.id, team_id: team.id, opponent_team_id: opponent_team.id, start_at: start_at}
+
+    changeset = Match.changeset(%Match{}, valid_attrs)
+    uid = Changeset.get_change(changeset, :uid)
+    assert uid != nil
+
+    {:ok, match} = Repo.insert(changeset)
+    assert match.uid == uid
+
+    competition2   = insert(:competition)
+    changeset = Match.changeset(match, %{competition_id: competition2.id})
+    {:ok, match} = Repo.update(changeset)
+    assert match.uid == uid
   end
 
   test "changeset with invalid attributes" do
