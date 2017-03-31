@@ -31,22 +31,35 @@ defmodule ClubHomepage.LayoutView do
 
 
   def birthdays_popover_content(birthdays) do
-    html = 
-      "<div class=\"row\">"
-    IO.inspect birthdays
-      date_keys = Keyword.keys(birthdays)
-      IO.inspect date_keys
-      for date_key <- date_keys do
-        IO.inspect birthdays[date_key]
-        {:ok, date} = Timex.parse(Atom.to_string(date_key), "%Y-%m-%d", :strftime)
-        {:ok, date} = Timex.format(date, date_format(), :strftime)
-      html = html <> "<div class=\"birthday-date\">#{date}</div>"
-        for birthday <- birthdays[date_key] do
-          IO.inspect birthday
-          html = html <> "<div class=\"birthday-user\">#{birthday}</div>"
-        end
-      end
-    html <> "</div>"
+    date_keys = Keyword.keys(birthdays)
+    Enum.map_join(birthday_dates(date_keys, birthdays), &(&1))
+    |> birthday_list_group
+  end
+
+  defp birthday_list_group([]), do: ""
+  defp birthday_list_group(elements) do
+    "<div class=\"list-group\">#{elements}</div>"
+  end
+
+  defp birthday_dates([], _), do: []
+  defp birthday_dates([date_key | date_keys], birthdays) do
+    {:ok, date} = Timex.parse(Atom.to_string(date_key), "%Y-%m-%d", :strftime)
+    {:ok, date} = Timex.format(date, date_format(), :strftime)
+    [[date_row(date) | birthdays(birthdays[date_key])] | birthday_dates(date_keys, birthdays)]
+    |> Enum.flat_map(fn(el) -> el end)
+  end
+
+  defp date_row(date) do
+    "<div class=\"list-group-item disabled text-center\">#{date}</div>"
+  end
+
+  defp birthdays([]), do: []
+  defp birthdays([birthday | birthdays]) do
+    [birthday_row(birthday) | birthdays(birthdays)]
+  end
+
+  defp birthday_row(birthday) do
+    "<div class=\"list-group-item text-center\">#{birthday}</div>"
   end
 
 
