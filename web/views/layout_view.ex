@@ -3,21 +3,23 @@ defmodule ClubHomepage.LayoutView do
 
   def weather_data_popover_content(weather_data) do
     {:ok, date_string} = Timex.format(weather_data[:created_at], datetime_format(), :strftime)
-    "<div class=\"row\">
-      <div class=\"col-xs-12 text-center\">#{date_string} #{gettext("o_clock")}</div>
-      <div class=\"col-xs-12 text-center\">#{weather_data[:weather]}<br /><br /></div>
+    "<div class=\"popover-content-box\">
+      <div class=\"row\">
+        <div class=\"col-xs-12 text-center\">#{date_string} #{gettext("o_clock")}</div>
+        <div class=\"col-xs-12 text-center\">#{weather_data[:weather]}<br /><br /></div>
 
-      <div class=\"col-xs-6\"><small>#{gettext("temperature")}:</small></div>
-      <div class=\"col-xs-6\">#{weather_data[:temperature]}</div>
+        <div class=\"col-xs-6\"><small>#{gettext("temperature")}:</small></div>
+        <div class=\"col-xs-6\">#{weather_data[:temperature]}</div>
 
-      <div class=\"col-xs-6\"><small>Wind:</small></div>
-      <div class=\"col-xs-6\">#{weather_data[:wind_speed]} #{wind_direction_abbrevation(weather_data)}</div>
+        <div class=\"col-xs-6\"><small>Wind:</small></div>
+        <div class=\"col-xs-6\">#{weather_data[:wind_speed]} #{wind_direction_abbrevation(weather_data)}</div>
 
-      <div class=\"col-xs-6\"><small>#{gettext("humidity")}:</small></div>
-      <div class=\"col-xs-6\">#{weather_data[:humidity_in_percent]} %</div>
+        <div class=\"col-xs-6\"><small>#{gettext("humidity")}:</small></div>
+        <div class=\"col-xs-6\">#{weather_data[:humidity_in_percent]} %</div>
 
-      <div class=\"col-xs-6\"><small>#{gettext("air_pressure")}:</small></div>
-      <div class=\"col-xs-6\">#{weather_data[:pressure_in_hectopascal]} hPa</div>
+        <div class=\"col-xs-6\"><small>#{gettext("air_pressure")}:</small></div>
+        <div class=\"col-xs-6\">#{weather_data[:pressure_in_hectopascal]} hPa</div>
+      </div>
     </div>"
   end
 
@@ -38,7 +40,7 @@ defmodule ClubHomepage.LayoutView do
 
   defp birthday_list_group([]), do: ""
   defp birthday_list_group(elements) do
-    "<div class=\"list-group\">#{elements}</div>"
+    "<div class=\"list-group css-birthdays\">#{elements}</div>"
   end
 
   defp birthday_dates([], _), do: []
