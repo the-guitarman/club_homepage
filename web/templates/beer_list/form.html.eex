@@ -10,12 +10,12 @@
       </div>
 
       <div class="form-group new-record-element <%= error_cls @changeset, f, :user_id %>">
-          <%= select(f, :user_id, @user_options, placeholder: gettext("select_user_placeholder"), prompt: gettext("select_user_placeholder")) %>
+        <%= select(f, :user_id, @user_options, placeholder: gettext("select_beer_list_creator_placeholder"), prompt: gettext("select_beer_list_creator_placeholder")) %>
           <%= error_tag @changeset, f, :user_id %>
       </div>
 
       <div class="form-group new-record-element <%= error_cls @changeset, f, :deputy_id %>">
-          <%= select(f, :deputy_id, @user_options, placeholder: gettext("select_user_placeholder"), prompt: gettext("select_user_placeholder")) %>
+        <%= select(f, :deputy_id, @user_options, placeholder: gettext("select_beer_list_deputy_placeholder"), prompt: gettext("select_beer_list_deputy_placeholder")) %>
           <%= error_tag @changeset, f, :deputy_id %>
       </div>
 

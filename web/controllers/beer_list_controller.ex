@@ -24,7 +24,7 @@ defmodule ClubHomepage.BeerListController do
     case Repo.insert(changeset) do
       {:ok, _beer_list} ->
         conn
-        |> put_flash(:info, "Beer list created successfully.")
+        |> put_flash(:info, gettext("beer_list_created_successfully"))
         |> redirect(to: beer_list_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset,
@@ -51,7 +51,7 @@ defmodule ClubHomepage.BeerListController do
     case Repo.update(changeset) do
       {:ok, beer_list} ->
         conn
-        |> put_flash(:info, "Beer list updated successfully.")
+        |> put_flash(:info, gettext("beer_list_updated_successfully"))
         |> redirect(to: beer_list_path(conn, :show, beer_list))
       {:error, changeset} ->
         render(conn, "edit.html", beer_list: beer_list, changeset: changeset,
@@ -67,7 +67,7 @@ defmodule ClubHomepage.BeerListController do
     Repo.delete!(beer_list)
 
     conn
-    |> put_flash(:info, "Beer list deleted successfully.")
+    |> put_flash(:info, gettext("beer_list_deleted_successfully"))
     |> redirect(to: beer_list_path(conn, :index))
   end
 

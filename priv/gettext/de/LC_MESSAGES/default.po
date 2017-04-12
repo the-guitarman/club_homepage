@@ -9,7 +9,7 @@ msgstr ""
 #: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
 #: web/templates/address/index.html.eex:8
 #: web/templates/address/index.html.eex:55 web/templates/address/new.html.eex:9
-#: web/templates/beer_list/edit.html.eex:9
+#: web/templates/beer_list/edit.html.eex:10
 #: web/templates/beer_list/index.html.eex:4
 #: web/templates/beer_list/new.html.eex:10
 #: web/templates/competition/edit.html.eex:10
@@ -121,7 +121,7 @@ msgid "form_input_errors_notice"
 msgstr "Es sind folgende Fehler aufgetreten:"
 
 #: web/templates/address/form.html.eex:41
-#: web/templates/beer_list/form.html.eex:29
+#: web/templates/beer_list/form.html.eex:32
 #: web/templates/competition/form.html.eex:20
 #: web/templates/match/form.html.eex:99
 #: web/templates/match/form_bulk.html.eex:36
@@ -1279,50 +1279,72 @@ msgstr "Heute"
 
 #: web/templates/beer_list/show.html.eex:4
 msgid "beer_list"
-msgstr ""
+msgstr "Bierliste"
 
 #: web/templates/beer_list/index.html.eex:13
 #: web/templates/beer_list/show.html.eex:9
 msgid "beer_list_creator"
-msgstr ""
+msgstr "Bierlisten-Ersteller"
 
 #: web/templates/beer_list/index.html.eex:14
 msgid "beer_list_deputy"
-msgstr ""
+msgstr "Bierlisten-Vertreter"
 
-#: web/templates/beer_list/edit.html.eex:9
+#: web/templates/beer_list/edit.html.eex:10
 #: web/templates/beer_list/index.html.eex:4
 #: web/templates/beer_list/new.html.eex:10
 #: web/templates/layout/navbar_top.html.eex:144
 msgid "beer_lists"
-msgstr ""
+msgstr "Bierlisten"
 
 #: web/templates/beer_list/index.html.eex:7
 #: web/templates/beer_list/index.html.eex:44
 #: web/templates/beer_list/new.html.eex:4
 msgid "create_beer_list"
-msgstr ""
+msgstr "Bierliste anlegen"
 
 #: web/templates/beer_list/edit.html.eex:4
 msgid "edit_beer_list"
-msgstr ""
+msgstr "Bierliste ändern"
 
 #: web/templates/beer_list/index.html.eex:16
 msgid "number_of_drinkers"
-msgstr ""
+msgstr "Anzahl der Biertrinker"
 
-#: web/templates/beer_list/form.html.eex:24
+#: web/templates/beer_list/form.html.eex:25
 msgid "price_per_beer"
-msgstr ""
+msgstr "Preis pro Bier"
 
 #: web/templates/beer_list/form.html.eex:13
-#: web/templates/beer_list/form.html.eex:13
-#: web/templates/beer_list/form.html.eex:18
 #: web/templates/beer_list/form.html.eex:18
 msgid "select_user_placeholder"
-msgstr ""
+msgstr "Benutzer auswählen ..."
 
 #: web/templates/beer_list/form.html.eex:8
 #: web/templates/beer_list/index.html.eex:15
 msgid "title"
-msgstr ""
+msgstr "Titel"
+
+#: web/templates/beer_list/form.html.eex:26
+msgid "currency_unit"
+msgstr "EUR"
+
+#: web/templates/beer_list/form.html.eex:13
+msgid "select_beer_list_creator_placeholder"
+msgstr "Bierlisten-Ersteller auswählen ..."
+
+#: web/templates/beer_list/form.html.eex:18
+msgid "select_beer_list_deputy_placeholder"
+msgstr "Bierlisten-Vertreter auswählen ..."
+
+#: web/controllers/beer_list_controller.ex:27
+msgid "beer_list_created_successfully"
+msgstr "Die Bierliste wurde angelegt."
+
+#: web/controllers/beer_list_controller.ex:70
+msgid "beer_list_deleted_successfully"
+msgstr "Die Bierliste wurde gelöscht."
+
+#: web/controllers/beer_list_controller.ex:54
+msgid "beer_list_updated_successfully"
+msgstr "Die Bierliste wurde aktualisiert."
