@@ -40,7 +40,8 @@ defmodule ClubHomepage.BeerListController do
   def edit(conn, %{"id" => id}) do
     beer_list = Repo.get!(BeerList, id)
     changeset = BeerList.changeset(beer_list)
-    render(conn, "edit.html", beer_list: beer_list, changeset: changeset)
+    render(conn, "edit.html", beer_list: beer_list, changeset: changeset,
+           user_options: conn.assigns.user_options)
   end
 
   def update(conn, %{"id" => id, "beer_list" => beer_list_params}) do
@@ -53,7 +54,8 @@ defmodule ClubHomepage.BeerListController do
         |> put_flash(:info, "Beer list updated successfully.")
         |> redirect(to: beer_list_path(conn, :show, beer_list))
       {:error, changeset} ->
-        render(conn, "edit.html", beer_list: beer_list, changeset: changeset)
+        render(conn, "edit.html", beer_list: beer_list, changeset: changeset,
+               user_options: conn.assigns.user_options)
     end
   end
 
