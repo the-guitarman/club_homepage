@@ -14,6 +14,17 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def beer_list_factory do
+    user = insert(:user)
+    deputy = insert(:user)
+    %ClubHomepage.BeerList{
+      user_id: user.id,
+      deputy_id: user.id,
+      title: sequence(:title, &"Team #{&1}"),
+      price_per_beer: 1
+    }
+  end
+
   def competition_factory do
     %ClubHomepage.Competition{
       name: sequence(:name, &"League #{&1}"),
