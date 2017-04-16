@@ -59,10 +59,10 @@ defmodule ClubHomepage.BeerListControllerTest do
   end
 
   @tag login: true
-  test "creates resource and redirects when data is valid", %{conn: conn} do
-    conn = post conn, beer_list_path(conn, :create), beer_list: @valid_attrs
-    assert redirected_to(conn) == beer_list_path(conn, :index)
-    assert Repo.get_by(BeerList, @valid_attrs)
+  test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
+    conn = post conn, beer_list_path(conn, :create), beer_list: valid_attrs
+    assert redirected_to(conn) == page_path(conn, :index)
+    assert Repo.get_by(BeerList, valid_attrs)
   end
 
   @tag login: true
@@ -73,9 +73,9 @@ defmodule ClubHomepage.BeerListControllerTest do
 
   @tag login: true
   test "shows chosen resource", %{conn: conn} do
-    beer_list = Repo.insert! %BeerList{}
+    beer_list = insert(:beer_list)
     conn = get conn, beer_list_path(conn, :show, beer_list)
-    assert html_response(conn, 200) =~ "Show Beer List"
+    assert html_response(conn, 200) =~ "Beer List - #{beer_list.title}"
   end
 
   @tag login: true
@@ -93,11 +93,11 @@ defmodule ClubHomepage.BeerListControllerTest do
   end
 
   @tag login: true
-  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
+  test "updates chosen resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
     beer_list = Repo.insert! %BeerList{}
-    conn = put conn, beer_list_path(conn, :update, beer_list), beer_list: @valid_attrs
-    assert redirected_to(conn) == beer_list_path(conn, :show, beer_list)
-    assert Repo.get_by(BeerList, @valid_attrs)
+    conn = put conn, beer_list_path(conn, :update, beer_list), beer_list: valid_attrs
+    assert redirected_to(conn) == page_path(conn, :index)
+    assert Repo.get_by(BeerList, valid_attrs)
   end
 
   @tag login: true

@@ -25,7 +25,7 @@ defmodule ClubHomepage.BeerListController do
       {:ok, _beer_list} ->
         conn
         |> put_flash(:info, gettext("beer_list_created_successfully"))
-        |> redirect(to: beer_list_path(conn, :index))
+        |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset,
                user_options: conn.assigns.user_options)
@@ -33,7 +33,7 @@ defmodule ClubHomepage.BeerListController do
   end
 
   def show(conn, %{"id" => id}) do
-    beer_list = Repo.get!(BeerList, id)
+    beer_list = Repo.one!(from(bl in BeerList, preload: [:user, :deputy], where: bl.id == ^id))
     render(conn, "show.html", beer_list: beer_list)
   end
 
@@ -49,10 +49,10 @@ defmodule ClubHomepage.BeerListController do
     changeset = BeerList.changeset(beer_list, beer_list_params)
 
     case Repo.update(changeset) do
-      {:ok, beer_list} ->
+      {:ok, _beer_list} ->
         conn
         |> put_flash(:info, gettext("beer_list_updated_successfully"))
-        |> redirect(to: beer_list_path(conn, :show, beer_list))
+        |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", beer_list: beer_list, changeset: changeset,
                user_options: conn.assigns.user_options)

@@ -3,7 +3,7 @@ defmodule ClubHomepage.BeerList do
 
   schema "beer_lists" do
     belongs_to :user, ClubHomepage.User
-    belongs_to :deputy, ClubHomepage.Deputy
+    belongs_to :deputy, ClubHomepage.User
 
     field :title, :string
     field :price_per_beer, :float
