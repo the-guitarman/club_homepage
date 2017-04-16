@@ -21,7 +21,7 @@ defmodule ClubHomepage.Factory do
       user_id: user.id,
       deputy_id: user.id,
       title: sequence(:title, &"Team #{&1}"),
-      price_per_beer: 1
+      price_per_beer: 1.0
     }
   end
 

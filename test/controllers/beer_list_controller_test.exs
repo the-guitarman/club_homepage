@@ -49,13 +49,13 @@ defmodule ClubHomepage.BeerListControllerTest do
   @tag login: true
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, beer_list_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing beer lists"
+    assert html_response(conn, 200) =~ "All Beer Lists"
   end
 
   @tag login: true
   test "renders form for new resources", %{conn: conn} do
     conn = get conn, beer_list_path(conn, :new)
-    assert html_response(conn, 200) =~ "New beer list"
+    assert html_response(conn, 200) =~ "Create Beer List"
   end
 
   @tag login: true
@@ -68,14 +68,14 @@ defmodule ClubHomepage.BeerListControllerTest do
   @tag login: true
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, beer_list_path(conn, :create), beer_list: @invalid_attrs
-    assert html_response(conn, 200) =~ "New beer list"
+    assert html_response(conn, 200) =~ "Create Beer List"
   end
 
   @tag login: true
   test "shows chosen resource", %{conn: conn} do
     beer_list = Repo.insert! %BeerList{}
     conn = get conn, beer_list_path(conn, :show, beer_list)
-    assert html_response(conn, 200) =~ "Show beer list"
+    assert html_response(conn, 200) =~ "Show Beer List"
   end
 
   @tag login: true
@@ -89,7 +89,7 @@ defmodule ClubHomepage.BeerListControllerTest do
   test "renders form for editing chosen resource", %{conn: conn} do
     beer_list = Repo.insert! %BeerList{}
     conn = get conn, beer_list_path(conn, :edit, beer_list)
-    assert html_response(conn, 200) =~ "Edit beer list"
+    assert html_response(conn, 200) =~ "Edit Beer List"
   end
 
   @tag login: true
@@ -104,7 +104,7 @@ defmodule ClubHomepage.BeerListControllerTest do
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     beer_list = Repo.insert! %BeerList{}
     conn = put conn, beer_list_path(conn, :update, beer_list), beer_list: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit beer list"
+    assert html_response(conn, 200) =~ "Edit Beer List"
   end
 
   @tag login: true
