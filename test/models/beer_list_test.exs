@@ -19,6 +19,7 @@ defmodule ClubHomepage.BeerListTest do
     valid_attrs = %{@valid_attrs | deputy_id: user.id}
 
     changeset = BeerList.changeset(%BeerList{}, valid_attrs)
+    IO.inspect changeset.errors
     refute changeset.valid?
     refute Enum.empty?(changeset.errors)
     assert changeset.errors[:deputy_id] == {"owner and deputy can't be the same person", []}
@@ -36,6 +37,7 @@ defmodule ClubHomepage.BeerListTest do
     changeset = BeerList.changeset(%BeerList{}, @invalid_attrs)
     changeset.valid?
     refute changeset.valid?
+    assert Enum.count(changeset.errors) == 3
     assert changeset.errors[:user_id] == {"can't be blank", []}
     refute changeset.errors[:deputy_id] == {"can't be blank", []}
     assert changeset.errors[:title] == {"can't be blank", []}

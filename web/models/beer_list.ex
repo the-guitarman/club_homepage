@@ -17,9 +17,9 @@ defmodule ClubHomepage.BeerList do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, ~w(title user_id price_per_beer), ~w(deputy_id))
+    |> validate_required([:title, :user_id, :price_per_beer])
     |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:deputy_id)
-    |> validate_required([:title, :price_per_beer])
     |> validate_number(:price_per_beer, greater_than: 0)
     |> validate_deputy_is_not_the_owner
   end

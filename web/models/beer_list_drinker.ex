@@ -3,6 +3,7 @@ defmodule ClubHomepage.BeerListDrinker do
 
   schema "beer_list_drinkers" do
     field :beers, :integer
+    
     belongs_to :beer_list, ClubHomepage.BeerList
     belongs_to :user, ClubHomepage.User
 
@@ -14,7 +15,9 @@ defmodule ClubHomepage.BeerListDrinker do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:beers])
-    |> validate_required([:beers])
+    |> cast(params, [:beer_list_id, :user_id, :beers])
+    |> validate_required([:beer_list_id, :user_id, :beers])
+    |> foreign_key_constraint(:beer_list_id)
+    |> foreign_key_constraint(:user_id)
   end
 end
