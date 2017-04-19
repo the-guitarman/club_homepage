@@ -3,6 +3,9 @@ defmodule ClubHomepage.BeerListDrinkerController do
 
   alias ClubHomepage.BeerListDrinker
 
+  plug :is_administrator?
+  plug :scrub_params, "beer_list_drinker" when action in [:create, :update]
+
   def index(conn, _params) do
     beer_list_drinkers = Repo.all(BeerListDrinker)
     render(conn, "index.html", beer_list_drinkers: beer_list_drinkers)
@@ -20,7 +23,7 @@ defmodule ClubHomepage.BeerListDrinkerController do
       {:ok, _beer_list_drinker} ->
         conn
         |> put_flash(:info, "Beer list drinker created successfully.")
-        |> redirect(to: beer_list_drinker_path(conn, :index))
+        |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -40,12 +43,11 @@ defmodule ClubHomepage.BeerListDrinkerController do
   def update(conn, %{"id" => id, "beer_list_drinker" => beer_list_drinker_params}) do
     beer_list_drinker = Repo.get!(BeerListDrinker, id)
     changeset = BeerListDrinker.changeset(beer_list_drinker, beer_list_drinker_params)
-
     case Repo.update(changeset) do
-      {:ok, beer_list_drinker} ->
+      {:ok, _beer_list_drinker} ->
         conn
         |> put_flash(:info, "Beer list drinker updated successfully.")
-        |> redirect(to: beer_list_drinker_path(conn, :show, beer_list_drinker))
+        |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", beer_list_drinker: beer_list_drinker, changeset: changeset)
     end

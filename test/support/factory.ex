@@ -25,7 +25,7 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def beer_list_drinker_factopry do
+  def beer_list_drinker_factory do
     beer_list = insert(:beer_list)
     user = insert(:user)
     %ClubHomepage.BeerListDrinker{

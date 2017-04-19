@@ -1,5 +1,5 @@
 defmodule ClubHomepage.BeerListTest do
-  use ClubHomepage.ModelCase
+  use ClubHomepage.ModelCase, async: false
 
   alias ClubHomepage.BeerList
 
@@ -19,7 +19,6 @@ defmodule ClubHomepage.BeerListTest do
     valid_attrs = %{@valid_attrs | deputy_id: user.id}
 
     changeset = BeerList.changeset(%BeerList{}, valid_attrs)
-    IO.inspect changeset.errors
     refute changeset.valid?
     refute Enum.empty?(changeset.errors)
     assert changeset.errors[:deputy_id] == {"owner and deputy can't be the same person", []}
