@@ -1,5 +1,5 @@
 defmodule ClubHomepage.BeerListTest do
-  use ClubHomepage.ModelCase, async: false
+  use ClubHomepage.ModelCase
 
   alias ClubHomepage.BeerList
 
