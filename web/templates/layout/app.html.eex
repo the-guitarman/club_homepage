@@ -28,7 +28,7 @@
           <%= render @view_module, @view_template, assigns %>
         </section>
       </div>
-      
+
     </div> <!-- /container -->
 
     <footer class="footer">
