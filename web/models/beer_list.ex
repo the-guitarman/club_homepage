@@ -5,6 +5,8 @@ defmodule ClubHomepage.BeerList do
     belongs_to :user, ClubHomepage.User
     belongs_to :deputy, ClubHomepage.User
 
+    has_many :drinkers, ClubHomepage.BeerListDrinker
+
     field :title, :string
     field :price_per_beer, :float
 

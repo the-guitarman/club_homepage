@@ -14,7 +14,7 @@
 
   <body class="background-image-01" data-localization="<%= javascript_localization_options() %>">
     <div class="fluid-container <%= action_name(@conn) %>" role="main">
-      <%= render "navbar_top.html", conn: @conn, current_user: @current_user, weather_data: @weather_data, birthdays: @birthdays %>
+      <%= render "navbar_top.html", conn: @conn, current_user: @current_user, weather_data: @weather_data, birthdays: @birthdays, my_beer_lists: @my_beer_lists %>
       <%= render "flash_messages.html", conn: @conn %>
 
       <div class="content-container">
