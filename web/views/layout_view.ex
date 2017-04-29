@@ -1,6 +1,10 @@
 defmodule ClubHomepage.LayoutView do
   use ClubHomepage.Web, :view
 
+  def my_beer_lists_popover_content(beer_lists) do
+    ""
+  end
+
   def weather_data_popover_content(weather_data) do
     {:ok, date_string} = Timex.format(weather_data[:created_at], datetime_format(), :strftime)
     "<div class=\"row\">
