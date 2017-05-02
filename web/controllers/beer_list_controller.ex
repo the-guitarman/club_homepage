@@ -3,7 +3,7 @@ defmodule ClubHomepage.BeerListController do
 
   alias ClubHomepage.BeerList
 
-  plug :is_administrator?
+  plug :authenticate_user 
   plug :scrub_params, "beer_list" when action in [:create, :update]
   plug :get_user_select_options when action in [:new, :create, :edit, :update]
 
@@ -13,12 +13,13 @@ defmodule ClubHomepage.BeerListController do
   end
 
   def new(conn, _params) do
-    changeset = BeerList.changeset(%BeerList{})
+    changeset = BeerList.changeset(%BeerList{user_id: current_user(conn).id})
     render(conn, "new.html", changeset: changeset,
-           user_options: conn.assigns.user_options)
+           user_options: conn.assigns.user_options, action: :new)
   end
 
   def create(conn, %{"beer_list" => beer_list_params}) do
+    beer_list_params["user_id"] = current_user(conn).id
     changeset = BeerList.changeset(%BeerList{}, beer_list_params)
 
     case Repo.insert(changeset) do
@@ -41,7 +42,7 @@ defmodule ClubHomepage.BeerListController do
     beer_list = Repo.get!(BeerList, id)
     changeset = BeerList.changeset(beer_list)
     render(conn, "edit.html", beer_list: beer_list, changeset: changeset,
-           user_options: conn.assigns.user_options)
+           user_options: conn.assigns.user_options, action: :edit)
   end
 
   def update(conn, %{"id" => id, "beer_list" => beer_list_params}) do

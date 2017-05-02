@@ -5,7 +5,7 @@
 
       <%= render "form.html", changeset: @changeset,
       action: beer_list_path(@conn, :create),
-      user_options: @user_options %>
+      user_options: @user_options, action: @action %>
 
       <%= link gettext("all") <> " " <> gettext("beer_lists"), to: beer_list_path(@conn, :index) %>
     </div>
