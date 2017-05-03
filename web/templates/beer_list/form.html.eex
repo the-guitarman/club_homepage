@@ -1,7 +1,5 @@
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-    <%= inspect @changeset %>
-    <br />
     <%= form_for @changeset, @action, fn f -> %>
       <%= show_form_errors(@changeset, f) %>
 
