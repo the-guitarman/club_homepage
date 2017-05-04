@@ -54,8 +54,7 @@
         <% end %>
         <%= if logged_in?(@conn) do %>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle weather-icon" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-title="<%= gettext("beer_lists") %>" data-content="<%= my_beer_lists_popover_content(@conn, @my_beer_lists) %>">
-              <img src="<%= static_path(@conn, "/images/beer_mug.png") %>" alt="" title="<%= gettext("beer_lists") %>" />
+            <a href="#" class="dropdown-toggle glyphicon glyphicon-euro" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-title="<%= gettext("beer_lists") %>" data-content="<%= my_beer_lists_popover_content(@conn, @my_beer_lists) %>" title="<%= gettext("beer_lists") %>">
             </a>
           </li>
         <% end %>

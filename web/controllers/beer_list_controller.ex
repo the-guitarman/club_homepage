@@ -19,7 +19,7 @@ defmodule ClubHomepage.BeerListController do
   end
 
   def create(conn, %{"beer_list" => beer_list_params}) do
-    beer_list_params["user_id"] = current_user(conn).id
+    #beer_list_params["user_id"] = current_user(conn).id
     changeset = BeerList.changeset(%BeerList{}, beer_list_params)
 
     case Repo.insert(changeset) do
