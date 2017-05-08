@@ -59,7 +59,6 @@ defmodule ClubHomepage.Router do
 
     resources "/addresses", AddressController, except: [:show]
     resources "/beer_lists", BeerListController
-    resources "/beer_list_drinkers", BeerListDrinkerController
     resources "/competitions", CompetitionController, except: [:show]
     resources "/matches", MatchController, expect: [:show]
     get "/matches/bulk/new", MatchController, :new_bulk, as: :matches

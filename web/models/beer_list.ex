@@ -1,4 +1,5 @@
 defmodule ClubHomepage.BeerList do
+#defmodule ClubHomepage.PaymentList do
   use ClubHomepage.Web, :model
 
   schema "beer_lists" do
