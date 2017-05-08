@@ -14,24 +14,24 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def beer_list_factory do
+  def payment_list_factory do
     user = insert(:user)
     deputy = insert(:user)
-    %ClubHomepage.BeerList{
+    %ClubHomepage.PaymentList{
       user_id: user.id,
       deputy_id: user.id,
       title: sequence(:title, &"Team #{&1}"),
-      price_per_beer: 1.0
+      price_per_unit: 1.0
     }
   end
 
-  def beer_list_drinker_factory do
-    beer_list = insert(:beer_list)
+  def payment_list_debitor_factory do
+    payment_list = insert(:payment_list)
     user = insert(:user)
-    %ClubHomepage.BeerListDrinker{
-      beer_list_id: beer_list.id,
+    %ClubHomepage.PaymentListDebitor{
+      payment_list_id: payment_list.id,
       user_id: user.id,
-      beers: sequence(:beers, &(&1))
+      number_of_units: sequence(:number_of_units, &(&1))
     }
   end
 
