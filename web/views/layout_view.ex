@@ -1,9 +1,9 @@
 defmodule ClubHomepage.LayoutView do
   use ClubHomepage.Web, :view
 
-  def my_beer_lists_popover_content(conn, beer_lists) do
+  def my_payment_lists_popover_content(conn, payment_lists) do
     "<div class=\"list-group\">
-       <a href=\"#{beer_list_path(conn, :new)}\" class=\"list-group-item\">#{gettext("create_beer_list")}</a>
+       <a href=\"#{payment_list_path(conn, :new)}\" class=\"list-group-item\">#{gettext("create_payment_list")}</a>
      </div>"
   end
 

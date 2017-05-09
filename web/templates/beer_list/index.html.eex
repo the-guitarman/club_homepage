@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
-      <h2><%= gettext("all") <> " " <> gettext("beer_lists") %></h2>
+      <h2><%= gettext("all") <> " " <> gettext("payment_lists") %></h2>
 
       <p>
-        <%= link gettext("create_beer_list"), to: beer_list_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_payment_list"), to: payment_list_path(@conn, :new), class: "btn btn-default" %>
       </p>
 
       <table class="table">
         <thead>
           <tr>
-            <th><%= gettext("beer_list_creator") %></th>
-            <th><%= gettext("beer_list_deputy") %></th>
+            <th><%= gettext("payment_list_creator") %></th>
+            <th><%= gettext("payment_list_deputy") %></th>
             <th><%= gettext("title") %></th>
             <th><%= gettext("number_of_drinkers") %></th>
 
@@ -19,21 +19,21 @@
           </tr>
         </thead>
         <tbody>
-      <%= for beer_list <- @beer_lists do %>
+      <%= for payment_list <- @payment_lists do %>
           <tr>
-            <td><%= internal_user_name(beer_list.user) %></td>
+            <td><%= internal_user_name(payment_list.user) %></td>
             <td>
-              <%= if (beer_list.deputy_id) do %>
-                <%= internal_user_name(beer_list.deputy) %>
+              <%= if (payment_list.deputy_id) do %>
+                <%= internal_user_name(payment_list.deputy) %>
               <% end %>
             </td>
-            <td><%= beer_list.title %></td>
+            <td><%= payment_list.title %></td>
             <td></td>
 
             <td class="text-right">
-              <%= link "Show", to: beer_list_path(@conn, :show, beer_list), class: "btn btn-default" %>
-              <%= link "Edit", to: beer_list_path(@conn, :edit, beer_list), class: "btn btn-default" %>
-              <%= link "Delete", to: beer_list_path(@conn, :delete, beer_list), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+              <%= link "Show", to: payment_list_path(@conn, :show, payment_list), class: "btn btn-default" %>
+              <%= link "Edit", to: payment_list_path(@conn, :edit, payment_list), class: "btn btn-default" %>
+              <%= link "Delete", to: payment_list_path(@conn, :delete, payment_list), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
             </td>
           </tr>
       <% end %>
@@ -41,7 +41,7 @@
       </table>
 
       <p>
-        <%= link gettext("create_beer_list"), to: beer_list_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_payment_list"), to: payment_list_path(@conn, :new), class: "btn btn-default" %>
       </p>
     </div>
   </div>

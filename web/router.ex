@@ -13,7 +13,7 @@ defmodule ClubHomepage.Router do
     plug ClubHomepage.Locale
     plug ClubHomepage.WeatherData
     plug ClubHomepage.MemberBirthday
-    plug ClubHomepage.MyBeerLists
+    plug ClubHomepage.MyPaymentLists
 #    plug ClubHomepage.JavascriptLocalization
   end
 
