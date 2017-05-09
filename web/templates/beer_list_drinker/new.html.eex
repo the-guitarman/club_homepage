@@ -1,6 +1,0 @@
-<h2>New beer list drinker</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: beer_list_drinker_path(@conn, :create) %>
-
-<%= link "Back", to: beer_list_drinker_path(@conn, :index) %>
