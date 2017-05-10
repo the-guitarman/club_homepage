@@ -7,8 +7,8 @@ defmodule ClubHomepage.PaymentListControllerTest do
 
   import Ecto.Query, only: [from: 2]
 
-  @valid_attrs %{title: "Team 1", user_id: 1, price_per_payment: 1.5}
-  @invalid_attrs %{title: "", price_per_payment: nil}
+  @valid_attrs %{title: "Team 1", user_id: 1, price_per_unit: 1.5}
+  @invalid_attrs %{title: "", price_per_unit: nil}
 
   setup context do
     conn = build_conn()

@@ -1,3 +1,3 @@
-defmodule ClubHomepage.BeerListView do
+defmodule ClubHomepage.PaymentListView do
   use ClubHomepage.Web, :view
 end

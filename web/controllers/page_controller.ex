@@ -10,8 +10,6 @@ defmodule ClubHomepage.PageController do
   plug :put_seo
 
   def index(conn, _params) do
-    IO.inspect conn.assigns
-
     news  = Repo.all(news_query(conn))
     teams = Repo.all(Team)
     start_at = to_timex_ecto_datetime(Timex.local)

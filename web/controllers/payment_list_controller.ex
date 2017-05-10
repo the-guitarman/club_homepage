@@ -29,7 +29,7 @@ defmodule ClubHomepage.PaymentListController do
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset,
-               user_options: conn.assigns.user_options)
+               user_options: conn.assigns.user_options, action: :new)
     end
   end
 
@@ -56,7 +56,7 @@ defmodule ClubHomepage.PaymentListController do
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", payment_list: payment_list, changeset: changeset,
-               user_options: conn.assigns.user_options)
+               user_options: conn.assigns.user_options, action: :edit)
     end
   end
 
