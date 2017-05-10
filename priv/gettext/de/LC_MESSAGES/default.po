@@ -1279,41 +1279,41 @@ msgstr "Heute"
 
 #: web/templates/payment_list/show.html.eex:4
 msgid "payment_list"
-msgstr "Bierliste"
+msgstr "Bezahlliste"
 
 #: web/templates/payment_list/index.html.eex:13
 #: web/templates/payment_list/show.html.eex:9
 msgid "payment_list_creator"
-msgstr "Bierlisten-Ersteller"
+msgstr "Listen-Ersteller"
 
 #: web/templates/payment_list/index.html.eex:14
 msgid "payment_list_deputy"
-msgstr "Bierlisten-Vertreter"
+msgstr "Listen-Vertreter"
 
 #: web/templates/payment_list/edit.html.eex:10
 #: web/templates/payment_list/index.html.eex:4
 #: web/templates/payment_list/new.html.eex:10
 #: web/templates/layout/navbar_top.html.eex:144
 msgid "payment_lists"
-msgstr "Bierlisten"
+msgstr "Bezahllisten"
 
 #: web/templates/payment_list/index.html.eex:7
 #: web/templates/payment_list/index.html.eex:44
 #: web/templates/payment_list/new.html.eex:4
 msgid "create_payment_list"
-msgstr "Bierliste anlegen"
+msgstr "Bezahlliste anlegen"
 
 #: web/templates/payment_list/edit.html.eex:4
 msgid "edit_payment_list"
-msgstr "Bierliste ändern"
+msgstr "Bezahlliste ändern"
 
 #: web/templates/payment_list/index.html.eex:16
 msgid "number_of_drinkers"
-msgstr "Anzahl der Biertrinker"
+msgstr "Anzahl der Debitoren"
 
 #: web/templates/payment_list/form.html.eex:25
 msgid "price_per_payment"
-msgstr "Preis pro Bier"
+msgstr "Preis pro Einheit"
 
 #: web/templates/payment_list/form.html.eex:13
 #: web/templates/payment_list/form.html.eex:18
@@ -1331,20 +1331,20 @@ msgstr "EUR"
 
 #: web/templates/payment_list/form.html.eex:13
 msgid "select_payment_list_creator_placeholder"
-msgstr "Bierlisten-Ersteller auswählen ..."
+msgstr "Listen-Ersteller auswählen ..."
 
 #: web/templates/payment_list/form.html.eex:18
 msgid "select_payment_list_deputy_placeholder"
-msgstr "Bierlisten-Vertreter auswählen ..."
+msgstr "Listen-Vertreter auswählen ..."
 
 #: web/controllers/payment_list_controller.ex:27
 msgid "payment_list_created_successfully"
-msgstr "Die Bierliste wurde angelegt."
+msgstr "Die Bezahlliste wurde angelegt."
 
 #: web/controllers/payment_list_controller.ex:70
 msgid "payment_list_deleted_successfully"
-msgstr "Die Bierliste wurde gelöscht."
+msgstr "Die Bezahlliste wurde gelöscht."
 
 #: web/controllers/payment_list_controller.ex:54
 msgid "payment_list_updated_successfully"
-msgstr "Die Bierliste wurde aktualisiert."
+msgstr "Die Bezahlliste wurde aktualisiert."
