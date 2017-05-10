@@ -32,7 +32,7 @@ defmodule ClubHomepage.MyPaymentLists do
   end
 
   defp get_user_payment_lists_query(current_user) do
-    from(bl in PaymentList, where: bl.user_id == ^current_user.id or bl.deputy_id == ^current_user.id, preload: [:user, :deputy, :drinkers])
+    from(bl in PaymentList, where: bl.user_id == ^current_user.id or bl.deputy_id == ^current_user.id, preload: [:user, :deputy, :debitors])
   end
 
   defp get_user_payment_lists(query) do

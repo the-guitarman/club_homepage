@@ -13,7 +13,7 @@
             <th><%= gettext("payment_list_creator") %></th>
             <th><%= gettext("payment_list_deputy") %></th>
             <th><%= gettext("title") %></th>
-            <th><%= gettext("number_of_drinkers") %></th>
+            <th><%= gettext("number_of_debitors") %></th>
 
             <th></th>
           </tr>
