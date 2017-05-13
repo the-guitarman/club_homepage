@@ -6,6 +6,7 @@ defmodule ClubHomepage.PaymentListController do
   plug :authenticate_user 
   plug :scrub_params, "payment_list" when action in [:create, :update]
   plug :get_user_select_options when action in [:new, :create, :edit, :update]
+  plug :get_deputy_select_options when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
     payment_lists = Repo.all(from(bl in PaymentList, preload: [:user, :deputy]))
@@ -72,10 +73,17 @@ defmodule ClubHomepage.PaymentListController do
     |> redirect(to: payment_list_path(conn, :index))
   end
 
+  defp get_users do
+    from(s in ClubHomepage.User, select: {s.name, s.id}, order_by: [desc: s.name])
+    |> Repo.all
+  end
+
   defp get_user_select_options(conn, _) do
-    query = from(s in ClubHomepage.User,
-                 select: {s.name, s.id},
-                 order_by: [desc: s.name])
-    assign(conn, :user_options, Repo.all(query))
+    assign(conn, :user_options, get_users)
+  end
+
+  defp get_deputy_select_options(conn, _) do
+    deputy_options = Enum.filter(get_users, fn({_user_name, user_id}) -> current_user(conn).id != user_id end)
+    assign(conn, :deputy_options, deputy_options)
   end
 end
