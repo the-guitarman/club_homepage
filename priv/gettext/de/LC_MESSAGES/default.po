@@ -9,17 +9,14 @@ msgstr ""
 #: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
 #: web/templates/address/index.html.eex:8
 #: web/templates/address/index.html.eex:55 web/templates/address/new.html.eex:9
-#: web/templates/payment_list/edit.html.eex:10
-#: web/templates/payment_list/index.html.eex:4
-#: web/templates/payment_list/new.html.eex:10
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
-#: web/templates/layout/navbar_top.html.eex:126
-#: web/templates/layout/navbar_top.html.eex:131
-#: web/templates/layout/navbar_top.html.eex:136
-#: web/templates/layout/navbar_top.html.eex:141
-#: web/templates/layout/navbar_top.html.eex:144
+#: web/templates/layout/navbar_top.html.eex:132
+#: web/templates/layout/navbar_top.html.eex:137
+#: web/templates/layout/navbar_top.html.eex:142
+#: web/templates/layout/navbar_top.html.eex:147
+#: web/templates/layout/navbar_top.html.eex:150
 #: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
 #: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
 #: web/templates/match/show.html.eex:105
@@ -36,6 +33,9 @@ msgstr ""
 #: web/templates/opponent_team/index.html.eex:8
 #: web/templates/opponent_team/index.html.eex:37
 #: web/templates/opponent_team/new.html.eex:11
+#: web/templates/payment_list/edit.html.eex:10
+#: web/templates/payment_list/index.html.eex:4
+#: web/templates/payment_list/new.html.eex:10
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
@@ -121,7 +121,6 @@ msgid "form_input_errors_notice"
 msgstr "Es sind folgende Fehler aufgetreten:"
 
 #: web/templates/address/form.html.eex:41
-#: web/templates/payment_list/form.html.eex:32
 #: web/templates/competition/form.html.eex:20
 #: web/templates/match/form.html.eex:99
 #: web/templates/match/form_bulk.html.eex:36
@@ -129,6 +128,7 @@ msgstr "Es sind folgende Fehler aufgetreten:"
 #: web/templates/meeting_point/form.html.eex:15
 #: web/templates/news/form.html.eex:26
 #: web/templates/opponent_team/form.html.eex:15
+#: web/templates/payment_list/form.html.eex:32
 #: web/templates/permalink/form.html.eex:17
 #: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:9
 #: web/templates/sponsor_image/form.html.eex:17
@@ -141,7 +141,7 @@ msgstr "Es sind folgende Fehler aufgetreten:"
 msgid "save"
 msgstr "Speichern"
 
-#: web/templates/layout/navbar_top.html.eex:126
+#: web/templates/layout/navbar_top.html.eex:132
 #: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
 #: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
 #: web/templates/team/team_page.html.eex:11
@@ -288,7 +288,7 @@ msgstr "Saison ändern/bearbeiten"
 
 #: web/templates/address/index.html.eex:8
 #: web/templates/address/index.html.eex:55
-#: web/templates/layout/navbar_top.html.eex:131
+#: web/templates/layout/navbar_top.html.eex:137
 #: web/templates/meeting_point/edit.html.eex:11
 #: web/templates/meeting_point/index.html.eex:4
 #: web/templates/meeting_point/new.html.eex:11
@@ -371,7 +371,7 @@ msgstr "Neue Vereinsmannschaft anlegen"
 msgid "edit_team"
 msgstr "Vereinsmannschaft ändern/bearbeiten"
 
-#: web/templates/layout/navbar_top.html.eex:155
+#: web/templates/layout/navbar_top.html.eex:161
 #: web/templates/session/new.html.eex:15
 msgid "log_in"
 msgstr "Login"
@@ -389,7 +389,7 @@ msgstr "Login"
 msgid "password"
 msgstr "Passwort"
 
-#: web/templates/layout/navbar_top.html.eex:106
+#: web/templates/layout/navbar_top.html.eex:112
 #: web/templates/page/index.html.eex:40 web/templates/team/edit.html.eex:11
 #: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
 #: web/templates/team/show.html.eex:21
@@ -467,26 +467,26 @@ msgstr "News"
 msgid "edit_match"
 msgstr "Spiel ändern"
 
-#: web/templates/layout/navbar_top.html.eex:149
+#: web/templates/layout/navbar_top.html.eex:155
 msgid "logout"
 msgstr "Logout"
 
-#: web/templates/layout/navbar_top.html.eex:100
+#: web/templates/layout/navbar_top.html.eex:106
 msgid "members"
 msgstr "Vereinsmitglieder"
 
-#: web/templates/layout/navbar_top.html.eex:152
+#: web/templates/layout/navbar_top.html.eex:158
 #: web/templates/user/new.html.eex:4
 msgid "sign_up"
 msgstr "Anmelden"
 
-#: web/templates/layout/navbar_top.html.eex:83
+#: web/templates/layout/navbar_top.html.eex:89
 #: web/templates/user/form.html.eex:16
 #: web/templates/user/form_restricted.html.eex:21
 msgid "master_data"
 msgstr "Stammdaten"
 
-#: web/templates/layout/navbar_top.html.eex:88
+#: web/templates/layout/navbar_top.html.eex:94
 #: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
 #: web/templates/news/show.html.eex:26
 msgid "news"
@@ -531,7 +531,7 @@ msgstr "Es sind keine Spiele für diese Mannschaft gespeichert."
 
 #: lib/extension/match_view.ex:24 lib/extension/match_view.ex:29
 #: web/commands/match_calender_creator.ex:89
-#: web/templates/page/index.html.eex:14 web/views/layout_view.ex:7
+#: web/templates/page/index.html.eex:14 web/views/layout_view.ex:13
 msgid "o_clock"
 msgstr "Uhr"
 
@@ -589,7 +589,7 @@ msgstr "Wettbewerb"
 #: web/templates/competition/edit.html.eex:10
 #: web/templates/competition/index.html.eex:4
 #: web/templates/competition/new.html.eex:10
-#: web/templates/layout/navbar_top.html.eex:136
+#: web/templates/layout/navbar_top.html.eex:142
 msgid "competitions"
 msgstr "Wettbewerbe"
 
@@ -669,7 +669,7 @@ msgstr "Text Page bearbeiten"
 msgid "page"
 msgstr "Seite"
 
-#: web/templates/layout/navbar_top.html.eex:93
+#: web/templates/layout/navbar_top.html.eex:99
 #: web/templates/text_page/edit.html.eex:30
 #: web/templates/text_page/index.html.eex:4
 msgid "text_pages"
@@ -854,7 +854,7 @@ msgstr "Der Benutzer wurde gespeichert."
 msgid "select_failure_reason_placeholder"
 msgstr "Ausfallgrund wählen ..."
 
-#: web/templates/layout/navbar_top.html.eex:121
+#: web/templates/layout/navbar_top.html.eex:127
 msgid "all_opponent_teams"
 msgstr "Alle Gegnerischen Mannschaften"
 
@@ -887,7 +887,7 @@ msgstr "Secret"
 msgid "nickname"
 msgstr "Spitzname"
 
-#: web/templates/layout/navbar_top.html.eex:68
+#: web/templates/layout/navbar_top.html.eex:74
 msgid "signed_in_label"
 msgstr "Angemeldet"
 
@@ -1030,7 +1030,7 @@ msgstr "Vereinsmitglied"
 msgid "chat_messages"
 msgstr "Chat-Nachrichten"
 
-#: web/templates/layout/navbar_top.html.eex:141
+#: web/templates/layout/navbar_top.html.eex:147
 msgid "team_chat_messages"
 msgstr "Team Chat Nachrichten"
 
@@ -1086,15 +1086,16 @@ msgstr "Metadaten"
 msgid "roles"
 msgstr "Benutzerrollen"
 
-#: web/views/layout_view.ex:19
+#: web/views/layout_view.ex:25
 msgid "air_pressure"
 msgstr "Luftdruck"
 
+#: web/templates/layout/navbar_top.html.eex:33
 #: web/templates/layout/navbar_top.html.eex:36
 msgid "birthdays"
 msgstr "Geburtstag(e)"
 
-#: web/views/layout_view.ex:16
+#: web/views/layout_view.ex:22
 msgid "humidity"
 msgstr "Feuchtigkeit"
 
@@ -1104,11 +1105,11 @@ msgstr "Feuchtigkeit"
 msgid "password_forgotten_question"
 msgstr "Passwort vergessen?"
 
-#: web/views/layout_view.ex:10
+#: web/views/layout_view.ex:16
 msgid "temperature"
 msgstr "Termeratur"
 
-#: web/templates/layout/navbar_top.html.eex:61
+#: web/templates/layout/navbar_top.html.eex:67
 msgid "weather"
 msgstr "Wetter"
 
@@ -1174,8 +1175,8 @@ msgstr "Das neue Passwort wurde gespeichert."
 msgid "login_data"
 msgstr "Logindaten"
 
-#: web/templates/layout/navbar_top.html.eex:75
-#: web/templates/layout/navbar_top.html.eex:77
+#: web/templates/layout/navbar_top.html.eex:81
+#: web/templates/layout/navbar_top.html.eex:83
 #: web/templates/user/edit.html.eex:6
 #: web/templates/user/edit_restricted.html.eex:4
 msgid "settings"
@@ -1193,7 +1194,7 @@ msgstr "Deaktivieren"
 msgid "mobile_phone"
 msgstr "Handy-Nr."
 
-#: web/templates/layout/navbar_top.html.eex:57
+#: web/templates/layout/navbar_top.html.eex:63
 msgid "match_ground_weather"
 msgstr "Platzwetter"
 
@@ -1287,19 +1288,22 @@ msgid "payment_list_creator"
 msgstr "Listen-Ersteller"
 
 #: web/templates/payment_list/index.html.eex:14
+#: web/templates/payment_list/show.html.eex:14
 msgid "payment_list_deputy"
 msgstr "Listen-Vertreter"
 
+#: web/templates/layout/navbar_top.html.eex:57
+#: web/templates/layout/navbar_top.html.eex:57
+#: web/templates/layout/navbar_top.html.eex:150
 #: web/templates/payment_list/edit.html.eex:10
 #: web/templates/payment_list/index.html.eex:4
 #: web/templates/payment_list/new.html.eex:10
-#: web/templates/layout/navbar_top.html.eex:144
 msgid "payment_lists"
 msgstr "Bezahllisten"
 
 #: web/templates/payment_list/index.html.eex:7
 #: web/templates/payment_list/index.html.eex:44
-#: web/templates/payment_list/new.html.eex:4
+#: web/templates/payment_list/new.html.eex:4 web/views/layout_view.ex:6
 msgid "create_payment_list"
 msgstr "Bezahlliste anlegen"
 
@@ -1307,20 +1311,6 @@ msgstr "Bezahlliste anlegen"
 msgid "edit_payment_list"
 msgstr "Bezahlliste ändern"
 
-#: web/templates/payment_list/index.html.eex:16
-msgid "number_of_drinkers"
-msgstr "Anzahl der Debitoren"
-
-#: web/templates/payment_list/form.html.eex:25
-msgid "price_per_payment"
-msgstr "Preis pro Einheit"
-
-#: web/templates/payment_list/form.html.eex:13
-#: web/templates/payment_list/form.html.eex:18
-msgid "select_user_placeholder"
-msgstr "Benutzer auswählen ..."
-
-#: web/templates/payment_list/form.html.eex:8
 #: web/templates/payment_list/index.html.eex:15
 msgid "title"
 msgstr "Titel"
@@ -1330,21 +1320,37 @@ msgid "currency_unit"
 msgstr "EUR"
 
 #: web/templates/payment_list/form.html.eex:13
+#: web/templates/payment_list/form.html.eex:13
 msgid "select_payment_list_creator_placeholder"
 msgstr "Listen-Ersteller auswählen ..."
 
 #: web/templates/payment_list/form.html.eex:18
+#: web/templates/payment_list/form.html.eex:18
 msgid "select_payment_list_deputy_placeholder"
 msgstr "Listen-Vertreter auswählen ..."
 
-#: web/controllers/payment_list_controller.ex:27
+#: web/controllers/payment_list_controller.ex:28
 msgid "payment_list_created_successfully"
 msgstr "Die Bezahlliste wurde angelegt."
 
-#: web/controllers/payment_list_controller.ex:70
+#: web/controllers/payment_list_controller.ex:71
 msgid "payment_list_deleted_successfully"
 msgstr "Die Bezahlliste wurde gelöscht."
 
-#: web/controllers/payment_list_controller.ex:54
+#: web/controllers/payment_list_controller.ex:55
 msgid "payment_list_updated_successfully"
 msgstr "Die Bezahlliste wurde aktualisiert."
+
+#, fuzzy
+#: web/templates/payment_list/index.html.eex:16
+msgid "number_of_debitors"
+msgstr "Anzahl der Debitoren"
+
+#: web/templates/payment_list/form.html.eex:8
+msgid "payment_list_title"
+msgstr ""
+
+#, fuzzy
+#: web/templates/payment_list/form.html.eex:25
+msgid "price_per_piece"
+msgstr "Preis pro Einheit"
