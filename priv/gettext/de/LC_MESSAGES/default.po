@@ -1348,9 +1348,9 @@ msgstr "Anzahl der Debitoren"
 
 #: web/templates/payment_list/form.html.eex:8
 msgid "payment_list_title"
-msgstr ""
+msgstr "Listenname (Bier, 1 EUR Liste, Dressgeld, ...)"
 
 #, fuzzy
 #: web/templates/payment_list/form.html.eex:25
 msgid "price_per_piece"
-msgstr "Preis pro Einheit"
+msgstr "Preis pro Stück"

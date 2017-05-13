@@ -1348,9 +1348,9 @@ msgstr "Number Of Drinkers"
 
 #: web/templates/payment_list/form.html.eex:8
 msgid "payment_list_title"
-msgstr ""
+msgstr "List Name (Beer, ...)"
 
 #, fuzzy
 #: web/templates/payment_list/form.html.eex:25
 msgid "price_per_piece"
-msgstr "Price Per Payment"
+msgstr "Price Per Piece"
