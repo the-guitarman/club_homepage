@@ -8,7 +8,7 @@ defmodule ClubHomepage.PaymentList do
     has_many :debitors, ClubHomepage.PaymentListDebitor
 
     field :title, :string
-    field :price_per_unit, :float
+    field :price_per_piece, :float
 
     timestamps()
   end
@@ -18,11 +18,11 @@ defmodule ClubHomepage.PaymentList do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, ~w(title user_id price_per_unit), ~w(deputy_id))
-    |> validate_required([:title, :user_id, :price_per_unit])
+    |> cast(params, ~w(title user_id price_per_piece), ~w(deputy_id))
+    |> validate_required([:title, :user_id, :price_per_piece])
     |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:deputy_id)
-    |> validate_number(:price_per_unit, greater_than: 0)
+    |> validate_number(:price_per_piece, greater_than: 0)
     |> validate_deputy_is_not_the_owner
   end
 

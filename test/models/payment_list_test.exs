@@ -5,8 +5,8 @@ defmodule ClubHomepage.PaymentListTest do
 
   import ClubHomepage.Factory
 
-  @valid_attrs %{user_id: 1, deputy_id: nil, title: "Team 1", price_per_unit: 1.5}
-  @invalid_attrs %{title: "", price_per_unit: nil}
+  @valid_attrs %{user_id: 1, deputy_id: nil, title: "Team 1", price_per_piece: 1.5}
+  @invalid_attrs %{title: "", price_per_piece: nil}
 
   test "changeset with valid attributes" do
     user = insert(:user)
@@ -40,6 +40,6 @@ defmodule ClubHomepage.PaymentListTest do
     assert changeset.errors[:user_id] == {"can't be blank", []}
     refute changeset.errors[:deputy_id] == {"can't be blank", []}
     assert changeset.errors[:title] == {"can't be blank", []}
-    assert changeset.errors[:price_per_unit] == {"can't be blank", []}
+    assert changeset.errors[:price_per_piece] == {"can't be blank", []}
   end
 end
