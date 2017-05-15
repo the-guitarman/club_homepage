@@ -5,7 +5,7 @@
 
       <%= render "form.html", changeset: @changeset,
       action: payment_list_path(@conn, :create),
-      user_options: @user_options, deputy_options: @deputy_options, action: @action %>
+      user_options: @user_options, deputy_options: @deputy_options, form_mode: @form_mode %>
 
       <%= link gettext("all") <> " " <> gettext("payment_lists"), to: payment_list_path(@conn, :index) %>
     </div>

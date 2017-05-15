@@ -16,11 +16,14 @@ defmodule ClubHomepage.PaymentListController do
   def new(conn, _params) do
     changeset = PaymentList.changeset(%PaymentList{user_id: current_user(conn).id})
     render(conn, "new.html", changeset: changeset,
-           user_options: conn.assigns.user_options, action: :new)
+           user_options: conn.assigns.user_options,
+           deputy_options: conn.assigns.deputy_options,
+           form_mode: :new)
   end
 
   def create(conn, %{"payment_list" => payment_list_params}) do
-    #payment_list_params["user_id"] = current_user(conn).id
+    payment_list_params = Map.put(payment_list_params, "user_id", current_user(conn).id)
+    IO.inspect payment_list_params
     changeset = PaymentList.changeset(%PaymentList{}, payment_list_params)
 
     case Repo.insert(changeset) do
@@ -30,7 +33,9 @@ defmodule ClubHomepage.PaymentListController do
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset,
-               user_options: conn.assigns.user_options, action: :new)
+               user_options: conn.assigns.user_options,
+               deputy_options: conn.assigns.deputy_options,
+               form_mode: :new)
     end
   end
 
@@ -43,7 +48,9 @@ defmodule ClubHomepage.PaymentListController do
     payment_list = Repo.get!(PaymentList, id)
     changeset = PaymentList.changeset(payment_list)
     render(conn, "edit.html", payment_list: payment_list, changeset: changeset,
-           user_options: conn.assigns.user_options, action: :edit)
+           user_options: conn.assigns.user_options,
+           deputy_options: conn.assigns.deputy_options,
+           form_mode: :edit)
   end
 
   def update(conn, %{"id" => id, "payment_list" => payment_list_params}) do
@@ -57,7 +64,9 @@ defmodule ClubHomepage.PaymentListController do
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", payment_list: payment_list, changeset: changeset,
-               user_options: conn.assigns.user_options, action: :edit)
+               user_options: conn.assigns.user_options,
+               deputy_options: conn.assigns.deputy_options,
+               form_mode: :edit)
     end
   end
 
