@@ -23,7 +23,6 @@ defmodule ClubHomepage.PaymentListController do
 
   def create(conn, %{"payment_list" => payment_list_params}) do
     payment_list_params = Map.put(payment_list_params, "user_id", current_user(conn).id)
-    IO.inspect payment_list_params
     changeset = PaymentList.changeset(%PaymentList{}, payment_list_params)
 
     case Repo.insert(changeset) do

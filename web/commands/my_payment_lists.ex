@@ -5,6 +5,7 @@ defmodule ClubHomepage.MyPaymentLists do
 
   alias ClubHomepage.Repo
   alias ClubHomepage.PaymentList
+  alias ClubHomepage.PaymentListDebitor
   alias ClubHomepage.User
 
   import Plug.Conn
@@ -32,10 +33,11 @@ defmodule ClubHomepage.MyPaymentLists do
   end
 
   defp get_user_payment_lists_query(current_user) do
-    from(bl in PaymentList, where: bl.user_id == ^current_user.id or bl.deputy_id == ^current_user.id, preload: [:user, :deputy, :debitors])
+    from(bl in PaymentList, left_join: pld in PaymentListDebitor, on: pl.id == pld.payment_list_id,  where: pl.user_id == ^1, select: [pl.id, pl.user_id, pl.deputy_id, pl.title, pl.price_per_piece, count(pld.id)], order_by: [asc: pl.title], group_by: [pl.id, pl.user_id, pl.deputy_id, pl.title, pl.price_per_piece])
   end
 
   defp get_user_payment_lists(query) do
     Repo.all(query)
+    |> IO.inspect
   end
 end
