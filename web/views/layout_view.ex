@@ -2,12 +2,12 @@ defmodule ClubHomepage.LayoutView do
   use ClubHomepage.Web, :view
 
   def my_payment_lists_popover_content(conn, payment_lists) do
-    links = ["<a href=\"#{payment_list_path(conn, :new)}\" class=\"list-group-item\">#{gettext("create_payment_list")}</a>" | payment_list_link(conn, payment_lists)]
+    links = ["<a href=\"#{payment_list_path(conn, :new)}\" class=\"list-group-item\"><span class=\"glyphicon glyphicon-plus-sign\"></span> #{gettext("create_payment_list_button_text")}</a>" | payment_list_link(conn, payment_lists)]
     "<div class=\"list-group\">" <> Enum.join(links) <> "</div>"
   end
   defp payment_list_link(_conn, []), do: []
   defp payment_list_link(conn, [payment_list | payment_lists]) do
-    ["<a href=\"#{payment_list_path(conn, :show, payment_list)}\" class=\"list-group-item\"><span>#{payment_list.id}</span></a>" |  payment_list_link(conn, payment_lists)]
+    ["<a href=\"#{payment_list_path(conn, :show, payment_list)}\" class=\"list-group-item\"><span>#{payment_list.title}</span> <span class=\"badge\">#{payment_list.number_of_debitors}</span></a>" |  payment_list_link(conn, payment_lists)]
   end
 
   def weather_data_popover_content(weather_data) do

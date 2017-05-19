@@ -1,6 +1,6 @@
 defmodule ClubHomepage.MyPaymentLists do
   @moduledoc """
-  This module holds calculations around birthdays.
+  Provides payment lists for a user. You may be use it as a plug to assign the payment lists of the current user.
   """
 
   alias ClubHomepage.Repo
@@ -22,7 +22,7 @@ defmodule ClubHomepage.MyPaymentLists do
   end
 
   @doc """
-  Returns the birthdays of the next days.
+  Returns payment lists for the provided user.
   """
   @spec my_payment_lists(User | Nil) :: List
   def my_payment_lists(nil), do: []
@@ -46,6 +46,5 @@ defmodule ClubHomepage.MyPaymentLists do
     query
     |> Repo.all
     |> Enum.map(fn(map) -> struct(PaymentList, map) end)
-    |> IO.inspect
   end
 end
