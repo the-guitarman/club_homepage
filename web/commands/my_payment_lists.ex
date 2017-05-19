@@ -33,11 +33,19 @@ defmodule ClubHomepage.MyPaymentLists do
   end
 
   defp get_user_payment_lists_query(current_user) do
-    from(bl in PaymentList, left_join: pld in PaymentListDebitor, on: pl.id == pld.payment_list_id,  where: pl.user_id == ^1, select: [pl.id, pl.user_id, pl.deputy_id, pl.title, pl.price_per_piece, count(pld.id)], order_by: [asc: pl.title], group_by: [pl.id, pl.user_id, pl.deputy_id, pl.title, pl.price_per_piece])
+    from pl in PaymentList,
+    left_join: pld in PaymentListDebitor,
+    on: pl.id == pld.payment_list_id,
+    where: pl.user_id == ^1,
+    select: %{id: pl.id, user_id: pl.user_id, deputy_id: pl.deputy_id, title: pl.title, price_per_piece: pl.price_per_piece, number_of_debitors: count(pld.id)},
+    order_by: [asc: pl.title],
+    group_by: [pl.id, pl.user_id, pl.deputy_id, pl.title, pl.price_per_piece]
   end
 
   defp get_user_payment_lists(query) do
-    Repo.all(query)
+    query
+    |> Repo.all
+    |> Enum.map(fn(map) -> struct(PaymentList, map) end)
     |> IO.inspect
   end
 end

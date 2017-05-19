@@ -10,6 +10,8 @@ defmodule ClubHomepage.PaymentList do
     field :title, :string
     field :price_per_piece, :float
 
+    field :number_of_debitors, :integer, virtual: true
+
     timestamps()
   end
 
