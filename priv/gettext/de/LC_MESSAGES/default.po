@@ -1355,4 +1355,4 @@ msgstr "Preis pro Stück"
 
 #: web/views/layout_view.ex:5
 msgid "create_payment_list_button_text"
-msgstr ""
+msgstr "Neu"
