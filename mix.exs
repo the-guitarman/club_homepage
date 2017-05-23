@@ -60,7 +60,7 @@ defmodule ClubHomepage.Mixfile do
      #{:mix_test_watch, "~> 0.2.4", only: :dev},
      #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
      {:elixir_weather_data, "~> 0.1"},
-     {:number, "~> 0.4.2"},
+     {:number, "~> 0.5.1"},
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
 

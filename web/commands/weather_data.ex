@@ -41,7 +41,7 @@ defmodule ClubHomepage.WeatherData do
     result =
       data
       |> Map.drop([:centigrade, :fahrenheit])
-      |> Map.put_new(:temperature, Number.Delimit.number_to_delimited(number, precision: 1) <> "°C")
+      |> Map.put_new(:temperature, Number.Delimit.number_to_delimited(number, precision: precision(number)) <> "°C")
     {:ok, result}
   end
 
@@ -58,12 +58,19 @@ defmodule ClubHomepage.WeatherData do
     result =
       data
       |> Map.drop([:wind_in_kilometers_per_hour, :wind_in_meters_per_second])
-      |> Map.put_new(:wind_speed, Number.Delimit.number_to_delimited(number, precision: 0) <> " km/h")
+      |> Map.put_new(:wind_speed, Number.Delimit.number_to_delimited(number, precision: precision(number)) <> " km/h")
     {:ok, result}
   end
 
   defp format_created_at({:error, _}), do: {:error, %{}}
   defp format_created_at({:ok, data}) do
     {:ok, Map.put(data, :created_at, ClubHomepage.DateTime.Convert.to_timex_datetime(data[:created_at]))}
+  end
+
+  defp precision(number) do
+    case number == round(number) do
+      true -> 0
+      _ -> 1
+    end
   end
 end

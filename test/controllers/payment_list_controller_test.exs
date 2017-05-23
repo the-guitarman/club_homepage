@@ -62,7 +62,7 @@ defmodule ClubHomepage.PaymentListControllerTest do
   test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
     conn = post conn, payment_list_path(conn, :create), payment_list: valid_attrs
     assert redirected_to(conn) == page_path(conn, :index)
-    assert Repo.get_by(PaymentList, valid_attrs)
+    assert Repo.get_by(PaymentList, %{title: valid_attrs[:title]})
   end
 
   @tag login: true

@@ -52,6 +52,14 @@ config :number, delimiter: [
     delimiter: ",",
     separator: "."
   ]
+config :number, currency: [
+    unit: "€",
+    precision: 2,
+    delimiter: ".",
+    separator: ",",
+    format: "%n %u",           # "30,00 €"
+    negative_format: "(%n %u)" # "(30,00 €)"
+  ]
 
 # Configure your mail server
 config :club_homepage, ClubHomepage.Mailer,
