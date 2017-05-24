@@ -3,24 +3,41 @@
     <div class="jumbotron content-box">
     <h2><%= gettext("payment_list") %> - <%= @payment_list.title %></h2>
 
-    <ul>
+    <%= if logged_in?(@conn) && (current_user(@conn).id == @payment_list.user_id || current_user(@conn).id == @payment_list.deputy_id) do %>
+    <p>
+        <%= link gettext("edit"), to: payment_list_path(@conn, :edit, @payment_list), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("payment_lists"), to: payment_list_path(@conn, :index), class: "btn btn-default" %>
+    </p>
+    <% end %>
 
-      <li>
-        <strong><%= gettext("payment_list_creator") %>:</strong>
-        <%= internal_user_name(@payment_list.user) %>
-      </li>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+          <strong><%= gettext("payment_list_creator") %>:</strong>
+          <%= internal_user_name(@payment_list.user) %>
+      </div>
 
-      <li>
+      <div class="col-xs-12 col-sm-4">
         <strong><%= gettext("payment_list_deputy") %>:</strong>
         <%= if @payment_list.deputy_id do %>
           <%= internal_user_name(@payment_list.deputy) %>
         <% end %>
-      </li>
+      </div>
 
-    </ul>
+      <div class="col-xs-12 col-sm-4">
+        <strong><%= gettext("price_per_piece") %>:</strong>
+        <%= Number.Currency.number_to_currency(@payment_list.price_per_piece) %>
+      </div>
+    </div>
 
-    <%= link "Edit", to: payment_list_path(@conn, :edit, @payment_list) %>
-    <%= link "Back", to: payment_list_path(@conn, :index) %>
+    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span> <%= gettext("payment_list_debitor") %></a>
+
+    <%= if logged_in?(@conn) && (current_user(@conn).id == @payment_list.user_id || current_user(@conn).id == @payment_list.deputy_id) do %>
+      <p>
+        <%= link gettext("edit"), to: payment_list_path(@conn, :edit, @payment_list), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("payment_lists"), to: payment_list_path(@conn, :index), class: "btn btn-default" %>
+      </p>
+    <% end %>
+
     </div>
   </div>
 </div>

@@ -36,6 +36,8 @@ msgstr ""
 #: web/templates/payment_list/edit.html.eex:10
 #: web/templates/payment_list/index.html.eex:4
 #: web/templates/payment_list/new.html.eex:10
+#: web/templates/payment_list/show.html.eex:9
+#: web/templates/payment_list/show.html.eex:37
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
@@ -261,6 +263,8 @@ msgstr "Ortsteil"
 #: web/templates/meeting_point/show.html.eex:12
 #: web/templates/news/show.html.eex:25
 #: web/templates/opponent_team/index.html.eex:27
+#: web/templates/payment_list/show.html.eex:8
+#: web/templates/payment_list/show.html.eex:36
 #: web/templates/season/show.html.eex:12
 #: web/templates/sponsor_image/index.html.eex:22
 #: web/templates/team/index.html.eex:17
@@ -1283,12 +1287,12 @@ msgid "payment_list"
 msgstr "Bezahlliste"
 
 #: web/templates/payment_list/index.html.eex:13
-#: web/templates/payment_list/show.html.eex:9
+#: web/templates/payment_list/show.html.eex:15
 msgid "payment_list_creator"
 msgstr "Listen-Ersteller"
 
 #: web/templates/payment_list/index.html.eex:14
-#: web/templates/payment_list/show.html.eex:14
+#: web/templates/payment_list/show.html.eex:20
 msgid "payment_list_deputy"
 msgstr "Listen-Vertreter"
 
@@ -1298,6 +1302,8 @@ msgstr "Listen-Vertreter"
 #: web/templates/payment_list/edit.html.eex:10
 #: web/templates/payment_list/index.html.eex:4
 #: web/templates/payment_list/new.html.eex:10
+#: web/templates/payment_list/show.html.eex:9
+#: web/templates/payment_list/show.html.eex:37
 msgid "payment_lists"
 msgstr "Bezahllisten"
 
@@ -1350,6 +1356,7 @@ msgid "payment_list_title"
 msgstr "Listenname (Bier, 1 EUR Liste, Dressgeld, ...)"
 
 #: web/templates/payment_list/form.html.eex:25
+#: web/templates/payment_list/show.html.eex:27
 msgid "price_per_piece"
 msgstr "Preis pro Stück"
 
@@ -1360,3 +1367,7 @@ msgstr "Neu"
 #: web/views/layout_view.ex:13
 msgid "piece_abbreviation"
 msgstr "Stk"
+
+#: web/templates/payment_list/show.html.eex:32
+msgid "payment_list_debitor"
+msgstr ""
