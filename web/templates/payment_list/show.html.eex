@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span> <%= gettext("payment_list_debitor") %></a>
+    <a href="#" class="btn btn-default css-new-item-link"><span class="glyphicon glyphicon-plus-sign"></span> <%= gettext("payment_list_debitor") %></a>
 
     <%= if logged_in?(@conn) && (current_user(@conn).id == @payment_list.user_id || current_user(@conn).id == @payment_list.deputy_id) do %>
       <p>
