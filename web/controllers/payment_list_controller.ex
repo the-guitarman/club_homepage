@@ -2,10 +2,11 @@ defmodule ClubHomepage.PaymentListController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.PaymentList
+  alias ClubHomepage.PaymentListDebitor
 
   plug :authenticate_user 
   plug :scrub_params, "payment_list" when action in [:create, :update]
-  plug :get_user_select_options when action in [:new, :create, :edit, :update]
+  plug :get_user_select_options when action in [:new, :create, :edit, :update, :show]
   plug :get_deputy_select_options when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
@@ -39,8 +40,9 @@ defmodule ClubHomepage.PaymentListController do
   end
 
   def show(conn, %{"id" => id}) do
+    changeset = PaymentListDebitor.changeset(%PaymentListDebitor{payment_list_id: id})
     payment_list = Repo.one!(from(bl in PaymentList, preload: [:user, :deputy], where: bl.id == ^id))
-    render(conn, "show.html", payment_list: payment_list)
+    render(conn, "show.html", payment_list: payment_list, changeset: changeset, user_options: conn.assigns.user_options)
   end
 
   def edit(conn, %{"id" => id}) do

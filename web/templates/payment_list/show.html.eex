@@ -30,10 +30,22 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-12 text-center">
-        <a href="#" class="btn btn-default css-new-item-link">
-          <span class="glyphicon glyphicon-plus-sign"></span> <%= gettext("payment_list_debitor") %>
-        </a>
+      <div class="col-xs-12">
+        <%= form_for @changeset, payment_list_path(@conn, :show, @payment_list), [class: "form-inline"], fn f -> %>
+          <%= show_form_errors(@changeset, f) %>
+          <div class="form-group new-record-element <%= error_cls @changeset, f, :user_id %>">
+            <%= select(f, :user_id, @user_options, placeholder: gettext("payment_list_debitor_placeholder"), prompt: gettext("select_payment_list_creator_placeholder"), required: true) %>
+            <%= error_tag @changeset, f, :user_id %>
+          </div>
+          <div class="form-group <%= error_cls @changeset, f, :number_of_units %>">
+            <%#= label @f, :title, gettext("number_of_units"), class: "control-label" %>
+            <%= number_input f, :number_of_units, class: "form-control", placeholder: gettext("number_of_units") %>
+            <%= error_tag f, :number_of_units %>
+          </div>
+          <div class="form-group">
+            <%= content_tag :button, tag(:span, class: "glyphicon glyphicon-plus-sign"), class: "btn btn-default" %>
+          </div>
+        <% end %>
       </div>
     </div>
 
