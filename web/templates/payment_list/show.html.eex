@@ -30,8 +30,10 @@
     </div>
 
     <div class="row">
-      <div col="col-xs-12">
-        <a href="#" class="btn btn-default css-new-item-link"><span class="glyphicon glyphicon-plus-sign"></span> <%= gettext("payment_list_debitor") %></a>
+      <div class="col-xs-12 text-center">
+        <a href="#" class="btn btn-default css-new-item-link">
+          <span class="glyphicon glyphicon-plus-sign"></span> <%= gettext("payment_list_debitor") %>
+        </a>
       </div>
     </div>
 
