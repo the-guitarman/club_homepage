@@ -37,7 +37,7 @@ msgstr ""
 #: web/templates/payment_list/index.html.eex:4
 #: web/templates/payment_list/new.html.eex:10
 #: web/templates/payment_list/show.html.eex:9
-#: web/templates/payment_list/show.html.eex:41
+#: web/templates/payment_list/show.html.eex:55
 #: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
 #: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
 #: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
@@ -264,7 +264,7 @@ msgstr "Ortsteil"
 #: web/templates/news/show.html.eex:25
 #: web/templates/opponent_team/index.html.eex:27
 #: web/templates/payment_list/show.html.eex:8
-#: web/templates/payment_list/show.html.eex:40
+#: web/templates/payment_list/show.html.eex:54
 #: web/templates/season/show.html.eex:12
 #: web/templates/sponsor_image/index.html.eex:22
 #: web/templates/team/index.html.eex:17
@@ -1303,7 +1303,7 @@ msgstr "Listen-Vertreter"
 #: web/templates/payment_list/index.html.eex:4
 #: web/templates/payment_list/new.html.eex:10
 #: web/templates/payment_list/show.html.eex:9
-#: web/templates/payment_list/show.html.eex:41
+#: web/templates/payment_list/show.html.eex:55
 msgid "payment_lists"
 msgstr "Bezahllisten"
 
@@ -1327,6 +1327,7 @@ msgstr "EUR"
 
 #: web/templates/payment_list/form.html.eex:13
 #: web/templates/payment_list/form.html.eex:13
+#: web/templates/payment_list/show.html.eex:37
 msgid "select_payment_list_creator_placeholder"
 msgstr "Listen-Ersteller auswählen ..."
 
@@ -1335,15 +1336,15 @@ msgstr "Listen-Ersteller auswählen ..."
 msgid "select_payment_list_deputy_placeholder"
 msgstr "Listen-Vertreter auswählen ..."
 
-#: web/controllers/payment_list_controller.ex:31
+#: web/controllers/payment_list_controller.ex:32
 msgid "payment_list_created_successfully"
 msgstr "Die Bezahlliste wurde angelegt."
 
-#: web/controllers/payment_list_controller.ex:80
+#: web/controllers/payment_list_controller.ex:82
 msgid "payment_list_deleted_successfully"
 msgstr "Die Bezahlliste wurde gelöscht."
 
-#: web/controllers/payment_list_controller.ex:62
+#: web/controllers/payment_list_controller.ex:64
 msgid "payment_list_updated_successfully"
 msgstr "Die Bezahlliste wurde aktualisiert."
 
@@ -1368,6 +1369,11 @@ msgstr "Neu"
 msgid "piece_abbreviation"
 msgstr "Stk"
 
-#: web/templates/payment_list/show.html.eex:34
-msgid "payment_list_debitor"
+#: web/templates/payment_list/show.html.eex:42
+msgid "number_of_units"
+msgstr "Anzahl/Stück"
+
+#, fuzzy
+#: web/templates/payment_list/show.html.eex:37
+msgid "payment_list_debitor_placeholder"
 msgstr "Schuldner/-in"

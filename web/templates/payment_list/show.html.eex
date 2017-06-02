@@ -39,7 +39,11 @@
           </div>
           <div class="form-group <%= error_cls @changeset, f, :number_of_units %>">
             <%#= label @f, :title, gettext("number_of_units"), class: "control-label" %>
-            <%= number_input f, :number_of_units, class: "form-control", placeholder: gettext("number_of_units") %>
+            <div class="input-group ">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-minus"></span></div>
+              <%= number_input f, :number_of_units, class: "form-control text-center no-spin", placeholder: gettext("number_of_units"), min: 0 %>
+              <div class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></div>
+            </div>
             <%= error_tag f, :number_of_units %>
           </div>
           <div class="form-group">

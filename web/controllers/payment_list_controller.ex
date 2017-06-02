@@ -40,7 +40,7 @@ defmodule ClubHomepage.PaymentListController do
   end
 
   def show(conn, %{"id" => id}) do
-    changeset = PaymentListDebitor.changeset(%PaymentListDebitor{payment_list_id: id})
+    changeset = PaymentListDebitor.changeset(%PaymentListDebitor{payment_list_id: id, number_of_units: 1})
     payment_list = Repo.one!(from(bl in PaymentList, preload: [:user, :deputy], where: bl.id == ^id))
     render(conn, "show.html", payment_list: payment_list, changeset: changeset, user_options: conn.assigns.user_options)
   end
