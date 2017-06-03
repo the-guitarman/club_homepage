@@ -45,7 +45,7 @@
 
 
   <div class="form-group <%= error_cls @changeset, f, :failure_reason %>">
-    <%= select(f, :failure_reason, failure_reason_options, placeholder: gettext("select_failure_reason_placeholder"), prompt: gettext("select_failure_reason_placeholder")) %>
+    <%= select(f, :failure_reason, failure_reason_options(), placeholder: gettext("select_failure_reason_placeholder"), prompt: gettext("select_failure_reason_placeholder")) %>
     <%= error_tag @changeset, f, :failure_reason %>
   </div>
 

@@ -9,7 +9,7 @@ defmodule ClubHomepage.Email do
 
     body = gettext("secret_email_text", domain: domain, secret: secret.key, scheme: conn.scheme, user_registration_path: user_registration_path)
 
-    new_email
+    new_email()
     |> to(secret.email)
     |> from("noreply@#{domain}")
     |> subject(gettext("secret_email_subject"))
@@ -22,7 +22,7 @@ defmodule ClubHomepage.Email do
 
     body = gettext("forgot_password_email_text", domain: domain, scheme: conn.scheme, change_password_path: change_password_path)
 
-    new_email
+    new_email()
     |> to(user.email)
     |> from("noreply@#{domain}")
     |> subject(gettext("forgot_password_email_subject", domain: domain))

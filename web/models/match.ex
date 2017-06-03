@@ -24,7 +24,7 @@ defmodule ClubHomepage.Match do
     belongs_to :opponent_team, ClubHomepage.OpponentTeam
     belongs_to :meeting_point, ClubHomepage.MeetingPoint
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(competition_id season_id team_id opponent_team_id start_at home_match)

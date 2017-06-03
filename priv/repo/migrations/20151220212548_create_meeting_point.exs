@@ -5,7 +5,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateMeetingPoint do
     create table(:meeting_points) do
       add :address_id, references(:addresses)
 
-      timestamps
+      timestamps()
     end
     create index(:meeting_points, [:address_id])
   end

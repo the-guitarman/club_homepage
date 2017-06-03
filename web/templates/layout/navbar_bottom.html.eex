@@ -12,7 +12,7 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-        <li class="navbar-text"><%= copyright %></li>
+        <li class="navbar-text"><%= copyright() %></li>
         <li><a class="btn btn-de" href="https://github.com/the-guitarman" target="_blank">Designed By The Guitarman</a></li>
         <li><a class="btn btn-de" href="https://github.com/the-guitarman/club_homepage" target="_blank">Sources</a></li>
       </ul>

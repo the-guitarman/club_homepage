@@ -15,7 +15,7 @@ defmodule ClubHomepage.SeasonController do
 
   def new(conn, _params) do
     changeset = Season.changeset(%Season{})
-    render(conn, "new.html", changeset: changeset, years: new_years)
+    render(conn, "new.html", changeset: changeset, years: new_years())
   end
 
   def create(conn, %{"season" => season_params}) do
@@ -27,7 +27,7 @@ defmodule ClubHomepage.SeasonController do
         |> put_flash(:info, gettext("season_created_successfully."))
         |> redirect(to: season_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset, years: new_years)
+        render(conn, "new.html", changeset: changeset, years: new_years())
     end
   end
 

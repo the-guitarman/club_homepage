@@ -32,9 +32,9 @@ defmodule ClubHomepage.UserRole do
   def editable_roles(%ClubHomepage.User{} = user) do
     cond do
       has_role?(user, "administrator") ->
-        defined_roles_keys
+        defined_roles_keys()
       has_role?(user, "user-editor")   ->
-        defined_roles_keys
+        defined_roles_keys()
         |> List.delete("administrator")
       true -> []
     end
@@ -105,7 +105,7 @@ defmodule ClubHomepage.UserRole do
   end
 
   defp valid?(role) do
-    Enum.member?(defined_roles_keys, role)
+    Enum.member?(defined_roles_keys(), role)
   end
 
 
@@ -137,7 +137,7 @@ defmodule ClubHomepage.UserRole do
   defp clean_up_roles(roles) do
     roles
     |> split
-    |> Enum.filter(fn(s) -> Enum.member?(defined_roles_keys, s) end)
+    |> Enum.filter(fn(s) -> Enum.member?(defined_roles_keys(), s) end)
     |> Enum.uniq_by(fn role -> role end)
     |> ensure_member_role_exists
     |> Enum.join(" ")

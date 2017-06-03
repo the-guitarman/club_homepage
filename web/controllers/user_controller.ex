@@ -204,7 +204,7 @@ defmodule ClubHomepage.UserController do
 
   def reset_password(conn, %{"user" => %{"id" => id, "token" => token, "password" => password, "password_confirmation" => password_confirmation}}) do
     user = Repo.get_by!(User, [id: id, token: token])
-    changeset = User.registration_changeset(user, Map.merge(%{"password" => password, "password_confirmation" => password_confirmation}, user_token_attributes))
+    changeset = User.registration_changeset(user, Map.merge(%{"password" => password, "password_confirmation" => password_confirmation}, user_token_attributes()))
     case Repo.update(changeset) do
       {:ok, _user} ->
         conn
@@ -236,7 +236,7 @@ defmodule ClubHomepage.UserController do
   defp join_user_roles(user_params, _edited_user, _conn), do: user_params
 
   defp change_user_token(user) do
-    changeset = User.changeset(user, user_token_attributes)
+    changeset = User.changeset(user, user_token_attributes())
     case Repo.update(changeset) do
       {:ok, user} -> user
       {:error, _changeset} -> user

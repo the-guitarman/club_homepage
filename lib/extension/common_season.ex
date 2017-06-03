@@ -48,10 +48,10 @@ defmodule ClubHomepage.Extension.CommonSeason do
   end
 
   def current_season do
-    Repo.get_by!(Season, name: current_season_name)
+    Repo.get_by!(Season, name: current_season_name())
   end
 
   def current_season_id do
-    current_season.id
+    current_season().id
   end
 end

@@ -19,7 +19,7 @@ defmodule ClubHomepage.Factory do
     deputy = insert(:user)
     %ClubHomepage.PaymentList{
       user_id: user.id,
-      deputy_id: user.id,
+      deputy_id: deputy.id,
       title: sequence(:title, &"Team #{&1}"),
       price_per_piece: 1.0
     }

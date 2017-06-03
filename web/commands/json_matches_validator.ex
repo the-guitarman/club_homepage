@@ -12,12 +12,12 @@ defmodule ClubHomepage.JsonMatchesValidator do
   @spec changeset() :: Ecto.Changeset
   @spec changeset(List, Atom, Map) :: Ecto.Changeset
   def changeset do
-    new_changeset
+    new_changeset()
     |> set_changeset_data
     |> set_changeset_model
   end
   def changeset(params) when is_map(params) do
-    new_changeset
+    new_changeset()
     |> set_changeset_changes(params)
     |> set_changeset_params(params)
     |> set_changeset_data

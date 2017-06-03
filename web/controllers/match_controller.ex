@@ -176,7 +176,7 @@ defmodule ClubHomepage.MatchController do
     {:ok, start_at} =
       start_at
       |> Timex.add(Timex.Duration.from_days(7))
-      |> Timex.format(datetime_format, :strftime)
+      |> Timex.format(datetime_format(), :strftime)
     start_at
   end
 

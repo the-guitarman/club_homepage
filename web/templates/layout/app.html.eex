@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><%= assigns[:title] || full_club_name %></title>
+    <title><%= assigns[:title] || full_club_name() %></title>
     <meta name="description" content="<%= assigns[:meta] || "Default" %>" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
       <div class="content-container">
         <%= if controller_module(@conn) == ClubHomepage.PageController && action_name(@conn) == :index do %>
           <section class="header">
-            <h1><%= full_club_name %></h1>
+            <h1><%= full_club_name() %></h1>
           </section>
         <% end %>
 

@@ -51,7 +51,7 @@ defmodule ClubHomepage.TeamController do
     team = Repo.get_by!(Team, slug: slug)
     season =
       case team_seasons(team) do
-        [] -> current_season
+        [] -> current_season()
         [last_team_season | _] -> last_team_season
       end
     redirect(conn, to: team_page_with_season_path(conn, :show, slug, season.name))

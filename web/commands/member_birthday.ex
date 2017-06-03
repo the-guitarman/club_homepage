@@ -15,7 +15,7 @@ defmodule ClubHomepage.MemberBirthday do
   end
 
   def call(conn, _) do
-    assign(conn, :birthdays, next_birthdays)
+    assign(conn, :birthdays, next_birthdays())
   end
 
   @doc """

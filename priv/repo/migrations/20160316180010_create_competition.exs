@@ -5,7 +5,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateCompetition do
     create table(:competitions) do
       add :name, :string
 
-      timestamps
+      timestamps()
     end
 
   end

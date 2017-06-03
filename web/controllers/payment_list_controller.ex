@@ -89,11 +89,11 @@ defmodule ClubHomepage.PaymentListController do
   end
 
   defp get_user_select_options(conn, _) do
-    assign(conn, :user_options, get_users)
+    assign(conn, :user_options, get_users())
   end
 
   defp get_deputy_select_options(conn, _) do
-    deputy_options = Enum.filter(get_users, fn({_user_name, user_id}) -> current_user(conn).id != user_id end)
+    deputy_options = Enum.filter(get_users(), fn({_user_name, user_id}) -> current_user(conn).id != user_id end)
     assign(conn, :deputy_options, deputy_options)
   end
 end
