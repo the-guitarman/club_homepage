@@ -138,7 +138,7 @@ defmodule ClubHomepage.UserRole do
     roles
     |> split
     |> Enum.filter(fn(s) -> Enum.member?(defined_roles_keys, s) end)
-    |> Enum.uniq
+    |> Enum.uniq_by(fn role -> role end)
     |> ensure_member_role_exists
     |> Enum.join(" ")
   end
