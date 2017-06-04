@@ -6,7 +6,7 @@ defmodule ClubHomepage.TeamChatMessageControllerTest do
   import ClubHomepage.Factory
 
   @valid_attrs %{team_id: 0, user_id: 0, message: "Hi all!"}
-  @invalid_attrs %{}
+  #@invalid_attrs %{}
 
   setup context do
     conn = build_conn()

@@ -45,7 +45,7 @@ defmodule ClubHomepage.Match do
     |> foreign_key_constraint(:team_id)
     |> foreign_key_constraint(:opponent_team_id)
     |> ModelValidator.validate_uniqueness(:json, [:competition_id, :season_id, :team_id, :opponent_team_id, :home_match])
-    |> validate_inclusion(:failure_reason, [nil | failure_reasons])
+    |> validate_inclusion(:failure_reason, [nil | failure_reasons()])
     |> validate_team_goals
     |> validate_opponent_team_goals
   end

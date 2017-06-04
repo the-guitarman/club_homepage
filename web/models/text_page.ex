@@ -7,7 +7,7 @@ defmodule ClubHomepage.TextPage do
     field :key, :string
     field :text, :string
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(key)

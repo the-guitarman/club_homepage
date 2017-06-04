@@ -4,7 +4,7 @@ defmodule ClubHomepage.SecretTest do
   alias ClubHomepage.Secret
 
   @valid_attrs %{}
-  @invalid_attrs %{}
+  #@invalid_attrs %{}
 
   test "changeset with valid attributes" do
     changeset = Secret.changeset(%Secret{}, @valid_attrs)

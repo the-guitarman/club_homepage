@@ -8,7 +8,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
   alias ClubHomepage.MatchTimelineChannel
   alias ClubHomepage.Repo
 
-  @kick_off_match_event %{"type" => "kick-off"}
+  #@kick_off_match_event %{"type" => "kick-off"}
   @final_whistles_match_event %{"type" => "final-whistle"}
   @home_goal_match_event %{"type" => "goal", "position" => "left"}
   @home_penalty_match_event %{"type" => "penalty", "position" => "left"}

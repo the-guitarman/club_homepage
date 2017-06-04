@@ -5,7 +5,7 @@ defmodule ClubHomepage.Permalink do
     field :source_path, :string
     field :destination_path, :string
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(source_path destination_path)

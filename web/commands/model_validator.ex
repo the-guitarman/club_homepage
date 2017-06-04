@@ -24,7 +24,7 @@ defmodule ClubHomepage.ModelValidator do
     end
   end
   def validate_uniqueness(model, key, params) do
-    case is_sqlite_adapter? do
+    case is_sqlite_adapter?() do
       true ->
         model
         |> get_value_to_validate(key)
@@ -36,7 +36,7 @@ defmodule ClubHomepage.ModelValidator do
 
   def foreign_key_constraint(model, key), do: foreign_key_constraint(model, key, [])
   def foreign_key_constraint(model, key, params) do
-    case is_sqlite_adapter? do
+    case is_sqlite_adapter?() do
       true ->
         foreign_model = extract_model_from_foreign_key(key)
         foreign_changeset = foreign_model.changeset(foreign_model.__struct__)
@@ -47,7 +47,7 @@ defmodule ClubHomepage.ModelValidator do
     end
   end
 
-  def is_sqlite_adapter? do 
+  def is_sqlite_adapter?() do 
     case Application.get_env(:club_homepage, Repo)[:adapter] do
       Sqlite.Ecto -> true
       _ -> false

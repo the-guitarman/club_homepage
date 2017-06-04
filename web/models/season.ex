@@ -6,7 +6,7 @@ defmodule ClubHomepage.Season do
 
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(name)

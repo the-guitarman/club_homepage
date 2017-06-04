@@ -9,7 +9,7 @@ defmodule ClubHomepage.TeamChatMessageTest do
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    changeset = TeamChatMessage.changeset(%TeamChatMessage{}, valid_attrs)
+    changeset = TeamChatMessage.changeset(%TeamChatMessage{}, valid_attrs())
     assert changeset.valid?
   end
 

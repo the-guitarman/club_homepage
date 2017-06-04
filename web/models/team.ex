@@ -10,7 +10,7 @@ defmodule ClubHomepage.Team do
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
     belongs_to :competition, ClubHomepage.Competition
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(competition_id name)

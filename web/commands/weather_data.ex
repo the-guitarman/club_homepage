@@ -12,7 +12,7 @@ defmodule ClubHomepage.WeatherData do
   end
 
   def call(conn, _) do
-    {_, data} = get
+    {_, data} = get()
     assign(conn, :weather_data, data)
   end
 

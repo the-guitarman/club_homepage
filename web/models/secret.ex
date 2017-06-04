@@ -6,7 +6,7 @@ defmodule ClubHomepage.Secret do
     field :email, :string
     field :expires_at, Timex.Ecto.DateTime
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w()

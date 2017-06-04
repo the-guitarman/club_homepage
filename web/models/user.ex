@@ -22,7 +22,7 @@ defmodule ClubHomepage.User do
 
     has_many :team_chat_messages, ClubHomepage.TeamChatMessage
 
-    timestamps
+    timestamps()
   end
 
   def unregistered_changeset(model, params \\ %{}) do

@@ -9,7 +9,7 @@ defmodule ClubHomepage.MeetingPoint do
 
     field :name, :string
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(address_id)

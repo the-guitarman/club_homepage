@@ -10,7 +10,7 @@ defmodule ClubHomepage.MyPaymentLists do
 
   import Plug.Conn
   import Ecto.Query, only: [from: 2]
-  import ClubHomepage.Extension.CommonMatch, only: [internal_user_name: 1]
+  #import ClubHomepage.Extension.CommonMatch, only: [internal_user_name: 1]
   import ClubHomepage.Auth
 
   def init(_opts) do
@@ -36,7 +36,7 @@ defmodule ClubHomepage.MyPaymentLists do
     from pl in PaymentList,
     left_join: pld in PaymentListDebitor,
     on: pl.id == pld.payment_list_id,
-    where: pl.user_id == ^1,
+    where: pl.user_id == ^current_user.id,
     select: %{id: pl.id, user_id: pl.user_id, deputy_id: pl.deputy_id, title: pl.title, price_per_piece: pl.price_per_piece, number_of_debitors: count(pld.id)},
     order_by: [asc: pl.title],
     group_by: [pl.id, pl.user_id, pl.deputy_id, pl.title, pl.price_per_piece]

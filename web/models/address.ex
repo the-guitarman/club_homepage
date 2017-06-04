@@ -12,7 +12,7 @@ defmodule ClubHomepage.Address do
     has_many :meeting_points, ClubHomepage.MeetingPoint#, on_delete: :delete_all
     has_one :opponent_team, ClubHomepage.OpponentTeam#, on_delete: :delete_all
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(street zip_code city)

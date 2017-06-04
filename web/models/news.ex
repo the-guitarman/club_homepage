@@ -6,7 +6,7 @@ defmodule ClubHomepage.News do
     field :subject, :string
     field :body, :string
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(public subject body)
