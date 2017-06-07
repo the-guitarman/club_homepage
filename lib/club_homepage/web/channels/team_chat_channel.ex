@@ -46,7 +46,7 @@ defmodule ClubHomepage.TeamChatChannel do
 
         broadcast socket, "message:added", response
         # broadcast(topic_name, event_name, payload_map)
-        ClubHomepage.Endpoint.broadcast("team-chat-badges:#{team_id}", "message:added", response)
+        ClubHomepage.Web.Endpoint.broadcast("team-chat-badges:#{team_id}", "message:added", response)
         {:reply, :ok, socket}
       {:error, changeset} ->
         {:reply, {:error, %{errors: changeset}}, socket}

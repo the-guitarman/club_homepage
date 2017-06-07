@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Endpoint do
+defmodule ClubHomepage.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :club_homepage
 
   socket "/socket", ClubHomepage.UserSocket
@@ -41,5 +41,5 @@ defmodule ClubHomepage.Endpoint do
     key: "_club_homepage_key",
     signing_salt: "thJ9oU4r"
 
-  plug ClubHomepage.Router
+  plug ClubHomepage.Web.Router
 end

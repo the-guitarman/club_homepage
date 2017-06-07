@@ -35,7 +35,7 @@ defmodule ClubHomepage.LayoutView do
   
   defp wind_direction_abbrevation(weather_data) do
     if weather_data[:wind_direction_abbreviation] != "" do
-      Gettext.dgettext(ClubHomepage.Gettext, "additionals", "wind_direction_abbreviation_#{weather_data[:wind_direction_abbreviation]}")
+      Gettext.dgettext(ClubHomepage.Web.Gettext, "additionals", "wind_direction_abbreviation_#{weather_data[:wind_direction_abbreviation]}")
     end
   end
 

@@ -27,7 +27,7 @@ defmodule ClubHomepage.ErrorHelpers do
   """
   def error_tag(form, field) do
     if error = form.errors[field] do
-      field_translated = Gettext.dgettext(ClubHomepage.Gettext, "models", attr_underscored(field))
+      field_translated = Gettext.dgettext(ClubHomepage.Web.Gettext, "models", attr_underscored(field))
       content_tag :span, (field_translated <> " " <> translate_error(error)), class: "help-block"
       # content_tag :span, (humanize(field) <> " " <> translate_error(error)), class: "help-block"
     end
@@ -63,9 +63,9 @@ defmodule ClubHomepage.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(ClubHomepage.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(ClubHomepage.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(ClubHomepage.Gettext, "errors", msg, opts)
+      Gettext.dgettext(ClubHomepage.Web.Gettext, "errors", msg, opts)
     end
   end
 end

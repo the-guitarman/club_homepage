@@ -8,8 +8,8 @@ defmodule ClubHomepage.MatchCalendarCreator do
   alias ClubHomepage.Repo
 
   import Ecto.Query, only: [from: 2]
-  import ClubHomepage.Gettext
-  import ClubHomepage.Localization
+  import ClubHomepage.Web.Gettext
+  import ClubHomepage.Web.Localization
   import ClubHomepage.Extension.CommonTimex
 
   @doc """

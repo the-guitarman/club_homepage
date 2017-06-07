@@ -10,7 +10,7 @@ defmodule ClubHomepage.MatchController do
   alias ClubHomepage.JsonMatchesCreator
   alias ClubHomepage.JsonMatchesValidator
 
-  import ClubHomepage.Localization
+  import ClubHomepage.Web.Localization
 
   plug :is_match_editor? when not action in [:show]
   plug :scrub_params, "match" when action in [:create, :update]

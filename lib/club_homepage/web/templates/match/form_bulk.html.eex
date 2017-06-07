@@ -58,7 +58,7 @@
     }
   ]
 } </pre>
-  <%= if Application.get_env(:club_homepage, ClubHomepage.Endpoint)[:locale] == "de" do %>
+  <%= if Application.get_env(:club_homepage, ClubHomepage.Web.Endpoint)[:locale] == "de" do %>
     <p>
       <%= gettext("match_list_parser_notice") %>
       <%= link "fussball.de Match List Parser", to: "https://github.com/the-guitarman/fussball_de_match_list#fussball_de_match_list", target: "_blank" %>

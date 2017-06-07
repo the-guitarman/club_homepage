@@ -38,7 +38,7 @@ defmodule ClubHomepage.Web do
 
       import ClubHomepage.Web.Router.Helpers
       import ClubHomepage.Web.Gettext
-      import ClubHomepage.Localization
+      import ClubHomepage.Web.Localization
 
       import ClubHomepage.Extension.Controller
       import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0, internal_user_name: 1]
@@ -64,7 +64,7 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Web.Router.Helpers
       import ClubHomepage.Web.ErrorHelpers
       import ClubHomepage.Web.Gettext
-      import ClubHomepage.Localization
+      import ClubHomepage.Web.Localization
 
       import ClubHomepage.Extension.View
       import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0, internal_user_name: 1]
@@ -93,7 +93,7 @@ defmodule ClubHomepage.Web do
       import Ecto
       import Ecto.Query
       import ClubHomepage.Web.Gettext
-      import ClubHomepage.Localization
+      import ClubHomepage.Web.Localization
 
       import ClubHomepage.Extension.CommonMatch, only: [internal_user_name: 1]
     end

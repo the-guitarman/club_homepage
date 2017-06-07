@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Router do
+defmodule ClubHomepage.Web.Router do
   use ClubHomepage.Web, :router
 
   pipeline :browser do

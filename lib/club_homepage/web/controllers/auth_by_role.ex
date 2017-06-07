@@ -2,7 +2,7 @@ defmodule ClubHomepage.AuthByRole do
   import Phoenix.Controller
   import Plug.Conn
 
-  alias ClubHomepage.Router.Helpers
+  alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.UserRole
 
   def init(_opts) do

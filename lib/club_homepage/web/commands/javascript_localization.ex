@@ -4,8 +4,8 @@ defmodule ClubHomepage.JavascriptLocalization do
   """
 
   # import Plug.Conn
-  import ClubHomepage.Gettext
-  import ClubHomepage.Localization
+  import ClubHomepage.Web.Gettext
+  import ClubHomepage.Web.Localization
 
   # def init(_opts) do
   #   nil
@@ -43,7 +43,7 @@ defmodule ClubHomepage.JavascriptLocalization do
   end
 
   defp locale do
-    Application.get_env(:club_homepage, ClubHomepage.Endpoint)[:locale]
+    Application.get_env(:club_homepage, ClubHomepage.Web.Endpoint)[:locale]
     |> String.downcase
   end
 end

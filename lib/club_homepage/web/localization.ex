@@ -1,14 +1,14 @@
-defmodule ClubHomepage.Localization do
-  import ClubHomepage.Gettext
+defmodule ClubHomepage.Web.Localization do
+  import ClubHomepage.Web.Gettext
 
   @doc """
   Returns the localized date format.
 
   ## Example usage
-  iex> ClubHomepage.Localization.date_format()
+  iex> ClubHomepage.Web.Localization.date_format()
   "%Y-%m-%d"
 
-  iex> ClubHomepage.Localization.date_format("%Y")
+  iex> ClubHomepage.Web.Localization.date_format("%Y")
   "%Y"
   """
   def date_format, do: date_format(nil)
@@ -21,10 +21,10 @@ defmodule ClubHomepage.Localization do
   Returns the localized date format.
 
   ## Example usage
-  iex> ClubHomepage.Localization.datetime_format()
+  iex> ClubHomepage.Web.Localization.datetime_format()
   "%Y-%m-%d %H:%M"
 
-  iex> ClubHomepage.Localization.datetime_format("%H")
+  iex> ClubHomepage.Web.Localization.datetime_format("%H")
   "%H"
   """
   def datetime_format, do: datetime_format(nil)
@@ -37,10 +37,10 @@ defmodule ClubHomepage.Localization do
   Returns the localized date format.
 
   ## Example usage
-  iex> ClubHomepage.Localization.time_format()
+  iex> ClubHomepage.Web.Localization.time_format()
   "%H:%M"
 
-  iex> ClubHomepage.Localization.time_format("%H")
+  iex> ClubHomepage.Web.Localization.time_format("%H")
   "%H"
   """
   def time_format, do: time_format(nil)

@@ -3,7 +3,7 @@ defmodule ClubHomepage.Auth do
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2]
 
-  alias ClubHomepage.Router.Helpers
+  alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.User
 
   def init(opts) do

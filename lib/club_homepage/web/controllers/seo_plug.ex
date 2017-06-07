@@ -29,6 +29,6 @@ defmodule ClubHomepage.SEO.Plug do
   end
 
   defp gettext(text, options) do
-    Gettext.dgettext(ClubHomepage.Gettext, "meta", text, options)
+    Gettext.dgettext(ClubHomepage.Web.Gettext, "meta", text, options)
   end
 end
