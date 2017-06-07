@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("create_new_competition") %></h2>
+
+      <%= render "form.html", changeset: @changeset,
+                 action: competition_path(@conn, :create)
+      %>
+
+      <%= link gettext("all") <> " " <> gettext("competitions"), to: competition_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<div class="form-group new-record-element <%= error_cls @changeset, @f, :competition_id %>" data-href="<%= competition_path(@conn, :new) %>">
+    <%= select(@f, :competition_id, @competition_options, placeholder: gettext("select_competition_placeholder"), prompt: gettext("select_competition_placeholder")) %>
+    <%= error_tag @changeset, @f, :competition_id %>
+</div>

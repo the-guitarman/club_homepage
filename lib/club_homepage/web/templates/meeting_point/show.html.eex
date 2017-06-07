@@ -1,0 +1,14 @@
+<h2><%= gettext("show_meeting_point") %></h2>
+
+<ul>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @meeting_point.address_id %>
+  </li>
+
+</ul>
+
+<%= link gettext("edit"), to: meeting_point_path(@conn, :edit, @meeting_point), class: "btn btn-default" %>
+<%= link gettext("delete"), to: meeting_point_path(@conn, :delete, @meeting_point), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+<%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index), class: "btn btn-default" %>

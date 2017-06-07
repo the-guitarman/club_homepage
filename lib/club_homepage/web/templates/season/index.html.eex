@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+
+      <h2><%= gettext("all") <> " " <> gettext("seasons") %></h2>
+
+      <p>
+        <%= link gettext("create_new_season"), to: season_path(@conn, :new), class: "btn btn-default" %>
+      </p>
+
+      <table class="table">
+        <tbody>
+          <%= for season <- @seasons do %>
+            <tr>
+              <td class="hidden"><%= season.id %></td>
+              <td><%= season.name %></td>
+
+              <td class="text-right">
+                <%#= link gettext("show"), to: season_path(@conn, :show, season), class: "btn btn-default btn-xs" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p>
+        <%= link gettext("create_new_season"), to: season_path(@conn, :new), class: "btn btn-default" %>
+      </p>
+    </div>
+  </div>
+</div>

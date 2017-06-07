@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="jumbotron content-box">
+            <h2><%= gettext("all") %> <%= gettext("addresses") %></h2>
+
+            <p>
+              <%= link gettext("create_new_address"), to: address_path(@conn, :new), class: "btn btn-default" %>
+              <%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index), class: "btn btn-default" %>
+            </p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <%= gettext("street") %>
+                        </th>
+                        <th>
+                            <%= gettext("zip_code") %>
+                        </th>
+                        <th>
+                            <%= gettext("city") %>
+                        </th>
+                        <th>
+                            <%= gettext("district") %>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%= for address <- @addresses do %>
+                        <tr>
+                            <td>
+                                <%= address.street %>
+                            </td>
+                            <td>
+                                <%= address.zip_code %>
+                            </td>
+                            <td>
+                                <%= address.city %>
+                            </td>
+                            <td>
+                                <%= address.district %>
+                            </td>
+
+                            <td class="text-right">
+                                <%= link gettext("edit"), to: address_path(@conn, :edit, address), class: "btn btn-default" %>
+                            </td>
+                        </tr>
+                        <% end %>
+                </tbody>
+            </table>
+
+            <p>
+              <%= link gettext("create_new_address"), to: address_path(@conn, :new), class: "btn btn-default" %>
+              <%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index), class: "btn btn-default" %>
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h1><%= @team.name %><br /><%= gettext("matches") %></h1>
+
+      <%= render "team_page_link_header.html", active_tab: "matches", conn: @conn, team: @team, team_images_count: @team_images_count, current_user: @current_user %>
+
+      <%= if Enum.count(@seasons) > 0 do %>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="btn-group" role="group" aria-label="<%= gettext("seasons") %>">
+              <%= for season <- @seasons do %>
+                <% link_path = team_page_with_season_path(@conn, :show, @team.slug, season.name) %>
+                <%= if @conn.request_path == link_path do %>
+                  <button type="button" class="btn btn-default btn-primary" disabled="disabled"><h2><%= season.name %></h2></button>
+                <% else %>
+                  <%= link season.name, to: link_path, class: "btn btn-default" %>
+                <% end %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= if has_role?(@conn, ["match-editor"]) do %>
+            <div>
+              <%= if @next_match_parameters do %>
+                <%= link gettext("create_next_new_match"), to: match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
+              <% else %>
+                <%= link gettext("create_new_match"), to: match_path(@conn, :new), class: "btn btn-default" %>
+              <% end %>
+              <%= if has_role?(@conn, ["administrator"]) do %>
+                <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk, @next_match_parameters), class: "btn btn-default" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-xs-12">
+          <%= if Enum.count(@matches) > 0 || Enum.count(@latest_matches) > 0 do %>
+            <%= if Enum.count(@matches) > 0 do  %>
+              <h3><%= gettext("next_matches") %><%= link raw("<span class=\"glyphicon glyphicon-calendar\"></span>"), to: team_matches_download_path(@conn, :download_ical, @team.slug, @season.name), class: "pull-right" %></h3>
+              <%= render "team_page_match_table.html", conn: @conn, matches: @matches %>
+            <% end %>
+
+            <%= if Enum.count(@latest_matches) > 0 do  %>
+              <h3><%= gettext("last_matches") %></h3>
+              <%= render "team_page_match_table.html", conn: @conn, matches: @latest_matches %>
+            <% end %>
+          <% else %>
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-info text-center">
+                <%= gettext("saison_matches_missing") %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= link gettext("all") <> " " <> gettext("teams"), to: team_path(@conn, :index) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

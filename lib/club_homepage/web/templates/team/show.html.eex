@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("show_team") %></h2>
+        <ul>
+
+          <li>
+            <strong><%= gettext("name") %>:</strong>
+            <%= @team.name %>
+          </li>
+
+          <li>
+            <strong><%= gettext("slug") %>:</strong>
+            <%= @team.slug %>
+          </li>
+
+        </ul>
+
+        <%#= link gettext("edit"), to: team_path(@conn, :edit, @team), class: "btn btn-default" %>
+        <%#= link gettext("delete"), to: team_path(@conn, :delete, @team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+        <%= link gettext("all") <> " " <> gettext("teams"), to: team_path(@conn, :index), class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

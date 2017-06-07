@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("create_new_match") %></h2>
+
+      <%= render "form.html", conn: @conn, changeset: @changeset,
+      action: match_path(@conn, :create),
+      competition_options: @competition_options,
+      season_options: @season_options,
+      team_options: @team_options,
+      opponent_team_options: @opponent_team_options,
+      meeting_point_options: @meeting_point_options
+      %>
+
+      <%= link gettext("all") <> " " <> gettext("matches"), to: match_path(@conn, :index) %>
+    </div>
+  </div>
+</div>
