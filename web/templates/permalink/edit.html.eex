@@ -1,6 +1,0 @@
-<h2>Edit permalink</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: permalink_path(@conn, :update, @permalink) %>
-
-<%= link "Back", to: permalink_path(@conn, :index) %>

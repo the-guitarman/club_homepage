@@ -28,8 +28,8 @@ defmodule ClubHomepage.Mixfile do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_),     do: ["lib", "web"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -53,13 +53,13 @@ defmodule ClubHomepage.Mixfile do
      {:slugger, "~> 0.1.0"},
      {:json, "~> 0.3.0"},
      {:ex_json_schema, "~> 0.3.1"},
-     {:geocoder, "~> 0.6"},
+     {:geocoder, "~> 0.6.2"},
      {:dialyxir, "~> 0.3", only: [:dev]},
-     {:arc, "~> 0.5.3"},
-     {:arc_ecto, "~> 0.4.3"},
+     {:arc, "~> 0.8.0"},
+     {:arc_ecto, "~> 0.7.0"},
      #{:mix_test_watch, "~> 0.2.4", only: :dev},
-     #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
-     {:elixir_weather_data, "~> 0.1"},
+     {:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
+     #{:elixir_weather_data, "~> 0.1"},
      {:number, "~> 0.5.1"},
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
