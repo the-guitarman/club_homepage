@@ -1,4 +1,4 @@
-defmodule ClubHomepage.TeamMessagesChannel do
+defmodule ClubHomepage.Web.TeamMessagesChannel do
   use ClubHomepage.Web, :channel
 
   def join("team_messages:" <> team_id, _params, socket) do

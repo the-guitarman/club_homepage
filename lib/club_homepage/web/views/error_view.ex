@@ -1,4 +1,4 @@
-defmodule ClubHomepage.ErrorView do
+defmodule ClubHomepage.Web.ErrorView do
   use ClubHomepage.Web, :view
 
   def render("404.html", _assigns) do

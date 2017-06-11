@@ -1,13 +1,13 @@
-defmodule ClubHomepage.UserSocket do
+defmodule ClubHomepage.Web.UserSocket do
   use Phoenix.Socket
 
   @max_age 2 * 7 * 24 * 60 * 60
 
   ## Channels
   # channel "rooms:*", ClubHomepage.RoomChannel
-  channel "match-timelines:*", ClubHomepage.MatchTimelineChannel
-  channel "team-chats:*", ClubHomepage.TeamChatChannel
-  channel "team-chat-badges:*", ClubHomepage.TeamChatBadgeChannel
+  channel "match-timelines:*", ClubHomepage.Web.MatchTimelineChannel
+  channel "team-chats:*", ClubHomepage.Web.TeamChatChannel
+  channel "team-chat-badges:*", ClubHomepage.Web.TeamChatBadgeChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

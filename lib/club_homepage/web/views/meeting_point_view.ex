@@ -1,4 +1,4 @@
-defmodule ClubHomepage.MeetingPointView do
+defmodule ClubHomepage.Web.MeetingPointView do
   use ClubHomepage.Web, :view
 
   def full_address(meeting_point) do

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.ChangesetErrorsMerger do
+defmodule ClubHomepage.Web.ChangesetErrorsMerger do
   alias Ecto.Changeset
 
   def merge(changeset1, changeset2) do

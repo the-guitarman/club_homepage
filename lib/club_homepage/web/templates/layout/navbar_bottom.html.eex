@@ -18,10 +18,10 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="<%= current_link(@conn, ClubHomepage.PageController, :contact) %>">
+        <li class="<%= current_link(@conn, ClubHomepage.Web.PageController, :contact) %>">
           <%= link gettext("contact"), to: page_path(@conn, :contact), class: "btn btn-de", role: "button" %>
         </li>
-        <li class="<%= current_link(@conn, ClubHomepage.PageController, :registration_information) %>">
+        <li class="<%= current_link(@conn, ClubHomepage.Web.PageController, :registration_information) %>">
           <%= link gettext("registration_information"), to: page_path(@conn, :registration_information), class: "btn btn-de", role: "button" %>
         </li>
       </ul>

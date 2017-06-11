@@ -1,9 +1,9 @@
-defmodule ClubHomepage.UserController do
+defmodule ClubHomepage.Web.UserController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.User
-  alias ClubHomepage.Auth
-  alias ClubHomepage.UserRole
+  alias ClubHomepage.Web.Auth
+  alias ClubHomepage.Web.UserRole
 
   plug :is_user_editor? when action in [:show, :new_unregistered, :create_unregistered, :edit, :update, :delete]
   plug :authenticate_user when action in [:index, :edit_restricted, :update_restricted]

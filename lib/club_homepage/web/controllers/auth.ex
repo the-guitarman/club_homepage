@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Auth do
+defmodule ClubHomepage.Web.Auth do
   import Phoenix.Controller
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2]

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.SponsorImageController do
+defmodule ClubHomepage.Web.SponsorImageController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.SponsorImage
@@ -20,7 +20,7 @@ defmodule ClubHomepage.SponsorImageController do
     changeset1 = SponsorImage.changeset(%SponsorImage{}, sponsor_image_params)
     changeset2 = SponsorImage.image_changeset(%SponsorImage{}, sponsor_image_params)
 
-    changeset = ClubHomepage.ChangesetErrorsMerger.merge(changeset1, changeset2)
+    changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
 
     case Repo.insert(changeset) do
       {:ok, sponsor_image} ->
@@ -45,7 +45,7 @@ defmodule ClubHomepage.SponsorImageController do
     changeset1 = SponsorImage.changeset(sponsor_image, sponsor_image_params)
     changeset2 = SponsorImage.image_changeset(sponsor_image, sponsor_image_params)
 
-    changeset = ClubHomepage.ChangesetErrorsMerger.merge(changeset1, changeset2)
+    changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
 
     case Repo.update(changeset) do
       {:ok, sponsor_image} ->

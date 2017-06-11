@@ -1,4 +1,4 @@
-defmodule ClubHomepage.LayoutView do
+defmodule ClubHomepage.Web.LayoutView do
   use ClubHomepage.Web, :view
 
   import Number.Currency

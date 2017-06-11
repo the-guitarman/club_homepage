@@ -2,7 +2,7 @@ defmodule ClubHomepage.User do
   use ClubHomepage.Web, :model
 
   #alias ClubHomepage.ModelValidator
-  alias ClubHomepage.UserRole
+  alias ClubHomepage.Web.UserRole
 
   schema "users" do
     field :active, :boolean

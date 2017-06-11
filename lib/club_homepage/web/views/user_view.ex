@@ -1,4 +1,4 @@
-defmodule ClubHomepage.UserView do
+defmodule ClubHomepage.Web.UserView do
   use ClubHomepage.Web, :view
 
   def user_role_checked(user, role) do

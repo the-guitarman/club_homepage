@@ -1,4 +1,4 @@
-defmodule ClubHomepage.OpponentTeamView do
+defmodule ClubHomepage.Web.OpponentTeamView do
   use ClubHomepage.Web, :view
 
   def full_address(opponent_team) do

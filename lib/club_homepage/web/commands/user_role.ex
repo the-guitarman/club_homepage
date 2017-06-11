@@ -1,4 +1,4 @@
-defmodule ClubHomepage.UserRole do
+defmodule ClubHomepage.Web.UserRole do
   @moduledoc """
   Defines, checks and validates user roles.
   """

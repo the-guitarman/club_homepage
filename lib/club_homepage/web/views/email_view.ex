@@ -1,3 +1,3 @@
-defmodule ClubHomepage.EmailView do
+defmodule ClubHomepage.Web.EmailView do
   use ClubHomepage.Web, :view
 end

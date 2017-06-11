@@ -1,7 +1,7 @@
-defmodule ClubHomepage.SessionController do
+defmodule ClubHomepage.Web.SessionController do
   use ClubHomepage.Web, :controller
 
-  alias ClubHomepage.Auth
+  alias ClubHomepage.Web.Auth
 
   def new(conn, %{"redirect" => redirect}) do
     render conn, "new.html", redirect: redirect_path(conn, redirect)

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.PermalinkRedirection do
+defmodule ClubHomepage.Web.PermalinkRedirection do
   import Phoenix.Controller
   import Plug.Conn
 

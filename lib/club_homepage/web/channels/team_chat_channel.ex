@@ -1,4 +1,4 @@
-defmodule ClubHomepage.TeamChatChannel do
+defmodule ClubHomepage.Web.TeamChatChannel do
   use ClubHomepage.Web, :channel
 
   alias ClubHomepage.TeamChatMessage

@@ -1,7 +1,7 @@
 defmodule ClubHomepage.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :club_homepage
 
-  socket "/socket", ClubHomepage.UserSocket
+  socket "/socket", ClubHomepage.Web.UserSocket
 
   plug Plug.Static,
     at: "/uploads", from: Path.expand('./uploads'), gzip: false

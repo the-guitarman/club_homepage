@@ -44,10 +44,10 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0, internal_user_name: 1]
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
-      import ClubHomepage.Auth, only: [authenticate_user: 2, require_no_user: 2, current_user: 1, logged_in?: 1, logged_in?: 2]
-      import ClubHomepage.AuthByRole, only: [has_role?: 2, is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_team_editor?: 2, is_text_page_editor?: 2, is_user_editor?: 2, has_role_from_list?: 2]
+      import ClubHomepage.Web.Auth, only: [authenticate_user: 2, require_no_user: 2, current_user: 1, logged_in?: 1, logged_in?: 2]
+      import ClubHomepage.Web.AuthByRole, only: [has_role?: 2, is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_team_editor?: 2, is_text_page_editor?: 2, is_user_editor?: 2, has_role_from_list?: 2]
 
-      import ClubHomepage.SEO.Plug
+      import ClubHomepage.Web.SEO.Plug
     end
   end
 
@@ -70,8 +70,8 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0, internal_user_name: 1]
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
-      import ClubHomepage.Auth, only: [logged_in?: 1, current_user: 1]
-      import ClubHomepage.UserRole, only: [has_role?: 2]
+      import ClubHomepage.Web.Auth, only: [logged_in?: 1, current_user: 1]
+      import ClubHomepage.Web.UserRole, only: [has_role?: 2]
     end
   end
 
@@ -79,8 +79,8 @@ defmodule ClubHomepage.Web do
     quote do
       use Phoenix.Router
 
-      import ClubHomepage.Auth, only: [authenticate_user: 2, current_user: 1]
-      import ClubHomepage.AuthByRole, only: [is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_team_editor?: 2, is_text_page_editor?: 2, is_user_editor?: 2]
+      import ClubHomepage.Web.Auth, only: [authenticate_user: 2, current_user: 1]
+      import ClubHomepage.Web.AuthByRole, only: [is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_team_editor?: 2, is_text_page_editor?: 2, is_user_editor?: 2]
     end
   end
 

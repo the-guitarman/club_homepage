@@ -7,10 +7,10 @@ defmodule ClubHomepage.Web.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug ClubHomepage.PermalinkRedirection, path_prefixes: [:teams]
-    plug ClubHomepage.Auth, repo: ClubHomepage.Repo
-    plug ClubHomepage.AuthByRole
-    plug ClubHomepage.Locale
+    plug ClubHomepage.Web.PermalinkRedirection, path_prefixes: [:teams]
+    plug ClubHomepage.Web.Auth, repo: ClubHomepage.Repo
+    plug ClubHomepage.Web.AuthByRole
+    plug ClubHomepage.Web.Locale
     plug ClubHomepage.WeatherData
     plug ClubHomepage.MemberBirthday
     plug ClubHomepage.MyPaymentLists
@@ -19,7 +19,7 @@ defmodule ClubHomepage.Web.Router do
 
   # pipeline :api do
   #   plug :accepts, ["json"]
-  #   plug ClubHomepage.Auth, repo: ClubHomepage.Repo
+  #   plug ClubHomepage.Web.Auth, repo: ClubHomepage.Repo
   # end
 
   scope "/", ClubHomepage do

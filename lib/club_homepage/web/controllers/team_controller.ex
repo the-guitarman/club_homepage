@@ -1,4 +1,4 @@
-defmodule ClubHomepage.TeamController do
+defmodule ClubHomepage.Web.TeamController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.Match

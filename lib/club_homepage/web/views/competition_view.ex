@@ -1,3 +1,3 @@
-defmodule ClubHomepage.CompetitionView do
+defmodule ClubHomepage.Web.CompetitionView do
   use ClubHomepage.Web, :view
 end

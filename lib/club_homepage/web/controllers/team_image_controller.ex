@@ -1,4 +1,4 @@
-defmodule ClubHomepage.TeamImageController do
+defmodule ClubHomepage.Web.TeamImageController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.Team
@@ -24,7 +24,7 @@ defmodule ClubHomepage.TeamImageController do
     changeset1 = TeamImage.changeset(%TeamImage{}, team_image_params)
     changeset2 = TeamImage.image_changeset(%TeamImage{}, team_image_params)
 
-    changeset = ClubHomepage.ChangesetErrorsMerger.merge(changeset1, changeset2)
+    changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
 
     case Repo.insert(changeset) do
       {:ok, team_image} ->
@@ -51,7 +51,7 @@ defmodule ClubHomepage.TeamImageController do
     changeset1 = TeamImage.changeset(team_image, team_image_params)
     changeset2 = TeamImage.image_changeset(team_image, team_image_params)
 
-    changeset = ClubHomepage.ChangesetErrorsMerger.merge(changeset1, changeset2)
+    changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
 
     case Repo.update(changeset) do
       {:ok, team_image} ->

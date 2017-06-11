@@ -1,4 +1,4 @@
-defmodule ClubHomepage.SEO.Plug do
+defmodule ClubHomepage.Web.SEO.Plug do
   import Plug.Conn
   import ClubHomepage.Extension.Controller, only: [full_club_name: 0]
 

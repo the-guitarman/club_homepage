@@ -1,3 +1,3 @@
-defmodule ClubHomepage.SponsorImageView do
+defmodule ClubHomepage.Web.SponsorImageView do
   use ClubHomepage.Web, :view
 end

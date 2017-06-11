@@ -1,4 +1,4 @@
-defmodule ClubHomepage.TeamChatBadgeChannel do
+defmodule ClubHomepage.Web.TeamChatBadgeChannel do
   use ClubHomepage.Web, :channel
 
   alias ClubHomepage.UserMetaData

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.ErrorHelpers do
+defmodule ClubHomepage.Web.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.PageController do
+defmodule ClubHomepage.Web.PageController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.Repo

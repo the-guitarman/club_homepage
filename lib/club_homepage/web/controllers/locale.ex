@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Locale do
+defmodule ClubHomepage.Web.Locale do
   import Plug.Conn
 
   def init(opts) do

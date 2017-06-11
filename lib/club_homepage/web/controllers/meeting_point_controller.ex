@@ -1,4 +1,4 @@
-defmodule ClubHomepage.MeetingPointController do
+defmodule ClubHomepage.Web.MeetingPointController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.MeetingPoint
