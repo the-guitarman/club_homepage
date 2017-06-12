@@ -22,7 +22,7 @@ defmodule ClubHomepage.Web.Router do
   #   plug ClubHomepage.Web.Auth, repo: ClubHomepage.Repo
   # end
 
-  scope "/", ClubHomepage do
+  scope "/", ClubHomepage.Web do
     pipe_through [:browser] # Use the default browser stack
 
     get "/", PageController, :index
