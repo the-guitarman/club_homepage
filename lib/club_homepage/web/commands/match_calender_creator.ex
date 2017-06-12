@@ -1,4 +1,4 @@
-defmodule ClubHomepage.MatchCalendarCreator do
+defmodule ClubHomepage.Web.MatchCalendarCreator do
   @moduledoc """
   Generates an ical file content with matches in the future. 
   """

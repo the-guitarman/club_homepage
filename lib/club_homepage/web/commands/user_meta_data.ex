@@ -1,4 +1,4 @@
-defmodule ClubHomepage.UserMetaData do
+defmodule ClubHomepage.Web.UserMetaData do
   @moduledoc """
   """
 

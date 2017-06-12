@@ -11,10 +11,10 @@ defmodule ClubHomepage.Web.Router do
     plug ClubHomepage.Web.Auth, repo: ClubHomepage.Repo
     plug ClubHomepage.Web.AuthByRole
     plug ClubHomepage.Web.Locale
-    plug ClubHomepage.WeatherData
-    plug ClubHomepage.MemberBirthday
-    plug ClubHomepage.MyPaymentLists
-#    plug ClubHomepage.JavascriptLocalization
+    plug ClubHomepage.Web.WeatherData
+    plug ClubHomepage.Web.MemberBirthday
+    plug ClubHomepage.Web.MyPaymentLists
+#    plug ClubHomepage.Web.JavascriptLocalization
   end
 
   # pipeline :api do

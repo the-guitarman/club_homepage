@@ -7,8 +7,8 @@ defmodule ClubHomepage.Web.MatchController do
   alias ClubHomepage.Repo
   alias ClubHomepage.Season
   alias ClubHomepage.Team
-  alias ClubHomepage.JsonMatchesCreator
-  alias ClubHomepage.JsonMatchesValidator
+  alias ClubHomepage.Web.JsonMatchesCreator
+  alias ClubHomepage.Web.JsonMatchesValidator
 
   import ClubHomepage.Web.Localization
 

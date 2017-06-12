@@ -1,4 +1,4 @@
-defmodule ClubHomepage.JavascriptLocalization do
+defmodule ClubHomepage.Web.JavascriptLocalization do
   @moduledoc """
   This module holds calculations around birthdays.
   """

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.MemberBirthday do
+defmodule ClubHomepage.Web.MemberBirthday do
   @moduledoc """
   This module holds calculations around birthdays.
   """

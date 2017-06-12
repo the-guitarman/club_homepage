@@ -2,7 +2,7 @@ defmodule ClubHomepage.Web.TeamController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.Match
-  alias ClubHomepage.PermalinkGenerator
+  alias ClubHomepage.Web.PermalinkGenerator
   alias ClubHomepage.Team
   alias ClubHomepage.TeamImage
   alias ClubHomepage.Season
@@ -84,7 +84,7 @@ defmodule ClubHomepage.Web.TeamController do
     conn
     |> put_resp_content_type("text/calendar")
     |> put_resp_header("content-disposition", "attachment; filename=\"#{team.name}.ics\"")
-    |> send_resp(200, ClubHomepage.MatchCalendarCreator.run(team.id, season.id))
+    |> send_resp(200, ClubHomepage.Web.MatchCalendarCreator.run(team.id, season.id))
   end
 
   def edit(conn, %{"id" => id}) do

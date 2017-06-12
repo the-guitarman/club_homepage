@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.TeamChatChannel do
 
   alias ClubHomepage.TeamChatMessage
   alias ClubHomepage.Repo
-  alias ClubHomepage.UserMetaData
+  alias ClubHomepage.Web.UserMetaData
 
   @limit 10
 

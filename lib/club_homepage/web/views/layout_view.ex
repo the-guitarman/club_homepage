@@ -43,7 +43,7 @@ defmodule ClubHomepage.Web.LayoutView do
 
 
   def javascript_localization_options do
-    ClubHomepage.JavascriptLocalization.run
+    ClubHomepage.Web.JavascriptLocalization.run
     |> to_json
   end
 

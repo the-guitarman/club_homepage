@@ -1,7 +1,7 @@
 defmodule ClubHomepage.OpponentTeam do
   use ClubHomepage.Web, :model
 
-  #alias ClubHomepage.ModelValidator
+  #alias ClubHomepage.Web.ModelValidator
 
   schema "opponent_teams" do
     field :name, :string

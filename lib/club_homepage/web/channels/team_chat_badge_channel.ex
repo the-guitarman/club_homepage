@@ -1,7 +1,7 @@
 defmodule ClubHomepage.Web.TeamChatBadgeChannel do
   use ClubHomepage.Web, :channel
 
-  alias ClubHomepage.UserMetaData
+  alias ClubHomepage.Web.UserMetaData
 
   def join("team-chat-badges:" <> team_id, _payload, socket) do
     team_id = String.to_integer(team_id)

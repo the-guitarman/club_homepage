@@ -1,4 +1,4 @@
-defmodule ClubHomepage.SecretCheck do
+defmodule ClubHomepage.Web.SecretCheck do
   import Ecto.Query, only: [from: 2]
   import Ecto.Changeset, only: [add_error: 3]
 

@@ -59,7 +59,7 @@ defmodule ClubHomepage.Web.UserController do
     result = get_registration_changeset(user, user_params, secret_key)
     case result do
       {:ok, user} ->
-        ClubHomepage.SecretCheck.delete(secret_key)
+        ClubHomepage.Web.SecretCheck.delete(secret_key)
         conn
         |> Auth.login(user)
         |> put_flash(:info, gettext("user_created_successfully_and_loged_in"))
@@ -218,13 +218,13 @@ defmodule ClubHomepage.Web.UserController do
   defp get_registration_changeset(nil, user_params, secret_key) do
     changeset =
       User.registration_changeset(%User{}, user_params)
-      |> ClubHomepage.SecretCheck.run(secret_key)
+      |> ClubHomepage.Web.SecretCheck.run(secret_key)
     Repo.insert(changeset)
   end
   defp get_registration_changeset(user, user_params, secret_key) do
     changeset =
       User.registration_changeset(user, user_params)
-      |> ClubHomepage.SecretCheck.run(secret_key)
+      |> ClubHomepage.Web.SecretCheck.run(secret_key)
     Repo.update(changeset)
   end
 

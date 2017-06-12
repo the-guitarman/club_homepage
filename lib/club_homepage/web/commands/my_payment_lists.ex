@@ -1,4 +1,4 @@
-defmodule ClubHomepage.MyPaymentLists do
+defmodule ClubHomepage.Web.MyPaymentLists do
   @moduledoc """
   Provides payment lists for a user. You may be use it as a plug to assign the payment lists of the current user.
   """

@@ -1,7 +1,7 @@
 defmodule ClubHomepage.Team do
   use ClubHomepage.Web, :model
 
-  #alias ClubHomepage.ModelValidator
+  #alias ClubHomepage.Web.ModelValidator
 
   schema "teams" do
     field :name, :string
@@ -27,7 +27,7 @@ defmodule ClubHomepage.Team do
     |> cast(params, @required_fields, @optional_fields)
     |> foreign_key_constraint(:competition_id)
     |> unique_constraint(:name)
-    |> ClubHomepage.SlugGenerator.run(:name, :slug)
+    |> ClubHomepage.Web.SlugGenerator.run(:name, :slug)
     |> unique_constraint(:slug)
   end
 end
