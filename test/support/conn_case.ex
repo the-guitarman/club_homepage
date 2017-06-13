@@ -1,4 +1,4 @@
-defmodule ClubHomepage.ConnCase do
+defmodule ClubHomepage.Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -24,10 +24,10 @@ defmodule ClubHomepage.ConnCase do
       import Ecto.Model, except: [build: 2]
       import Ecto.Query, only: [from: 2]
 
-      import ClubHomepage.Router.Helpers
+      import ClubHomepage.Web.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint ClubHomepage.Endpoint
+      @endpoint ClubHomepage.Web.Endpoint
 
       defp get_highest_id(module) do
         query = from t in module, select: max(t.id)

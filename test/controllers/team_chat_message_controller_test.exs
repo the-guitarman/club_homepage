@@ -1,5 +1,5 @@
 defmodule ClubHomepage.TeamChatMessageControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
 
   alias ClubHomepage.TeamChatMessage
 

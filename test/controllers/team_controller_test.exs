@@ -1,5 +1,5 @@
 defmodule ClubHomepage.TeamControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
 
   alias ClubHomepage.Extension.CommonSeason
   alias ClubHomepage.Team

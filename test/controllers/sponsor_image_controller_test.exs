@@ -1,5 +1,5 @@
 defmodule ClubHomepage.SponsorImageControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
 
   alias ClubHomepage.SponsorImage
 

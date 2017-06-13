@@ -1,5 +1,5 @@
 defmodule ClubHomepage.MatchControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
 
   alias ClubHomepage.Match
 

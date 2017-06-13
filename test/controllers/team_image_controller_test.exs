@@ -1,5 +1,5 @@
 defmodule ClubHomepage.TeamImageControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
 
   alias ClubHomepage.Team
   alias ClubHomepage.TeamImage

@@ -1,5 +1,5 @@
 defmodule ClubHomepage.MeetingPointControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
 
   alias ClubHomepage.MeetingPoint
 

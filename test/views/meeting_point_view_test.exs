@@ -1,5 +1,5 @@
 defmodule ClubHomepage.MeetingPointViewTest do
-  use ClubHomepage.ConnCase, async: true
+  use ClubHomepage.Web.ConnCase, async: true
 
 #  import Phoenix.HTML, only: [safe_to_string: 1]
   import ClubHomepage.Factory

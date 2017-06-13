@@ -1,4 +1,4 @@
-defmodule ClubHomepage.ChannelCase do
+defmodule ClubHomepage.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -26,7 +26,7 @@ defmodule ClubHomepage.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint ClubHomepage.Endpoint
+      @endpoint ClubHomepage.Web.Endpoint
     end
   end
 
