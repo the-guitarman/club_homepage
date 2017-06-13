@@ -10,11 +10,11 @@ config :club_homepage,
   ecto_repos: [ClubHomepage.Repo]
 
 # Configures the endpoint
-config :club_homepage, ClubHomepage.Endpoint,
+config :club_homepage, ClubHomepage.Web.Endpoint,
   url: [host: "localhost"],
 #  root: Path.dirname(__DIR__),
   secret_key_base: "/FTNk/qEtZWOZhuUwYiry4YC9G5qDxjK/DSmSzkEiuH7kzG5AxheGYE4BPEA3H9X",
-  render_errors: [view: ClubHomepage.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: ClubHomepage.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: ClubHomepage.PubSub,
            adapter: Phoenix.PubSub.PG2],
   locale: "de"
