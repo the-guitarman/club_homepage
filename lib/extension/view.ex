@@ -5,7 +5,7 @@ defmodule ClubHomepage.Extension.View do
 
   import ClubHomepage.Web.ErrorHelpers 
   import ClubHomepage.Gettext
-  import ClubHomepage.Localization
+  import ClubHomepage.Web.Localization
   import ClubHomepage.Extension.CommonTimex
 
   def full_club_name do

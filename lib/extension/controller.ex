@@ -3,7 +3,7 @@ defmodule ClubHomepage.Extension.Controller do
   This module provides functions for recurring tasks within a controller.
   """
 
-  import ClubHomepage.Localization
+  import ClubHomepage.Web.Localization
 
   def full_club_name do
     Application.get_env(:club_homepage, :common)[:full_club_name]

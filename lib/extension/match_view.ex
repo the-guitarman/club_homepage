@@ -3,7 +3,7 @@ defmodule ClubHomepage.Extension.MatchView do
   alias Phoenix.HTML.Tag
 
   import ClubHomepage.Gettext
-  import ClubHomepage.Localization
+  import ClubHomepage.Web.Localization
 
   alias ClubHomepage.Match
 
