@@ -1,7 +1,7 @@
 defmodule ClubHomepage.Email do
   use Bamboo.Phoenix, view: ClubHomepage.EmailView
 
-  import ClubHomepage.Gettext
+  import ClubHomepage.Web.Gettext
 
   def secret_text_email(conn, secret) do
     domain = project_host(conn)

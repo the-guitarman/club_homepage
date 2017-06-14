@@ -4,7 +4,7 @@ defmodule ClubHomepage.Extension.View do
   alias Phoenix.HTML.Tag
 
   import ClubHomepage.Web.ErrorHelpers 
-  import ClubHomepage.Gettext
+  import ClubHomepage.Web.Gettext
   import ClubHomepage.Web.Localization
   import ClubHomepage.Extension.CommonTimex
 
@@ -160,7 +160,7 @@ defmodule ClubHomepage.Extension.View do
         ul_tag = Tag.content_tag(:ul) do
           for {attr, message} <- f.errors do
             Tag.content_tag(:li) do
-              Gettext.dgettext(ClubHomepage.Gettext, "models", attr_underscored(attr)) <> " " <> translate_error(message)
+              Gettext.dgettext(ClubHomepage.Web.Gettext, "models", attr_underscored(attr)) <> " " <> translate_error(message)
             end
           end
         end
