@@ -3,7 +3,7 @@ defmodule ClubHomepage.Extension.View do
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.Tag
 
-  import ClubHomepage.ErrorHelpers 
+  import ClubHomepage.Web.ErrorHelpers 
   import ClubHomepage.Gettext
   import ClubHomepage.Localization
   import ClubHomepage.Extension.CommonTimex
