@@ -1,6 +1,6 @@
 defmodule ClubHomepage.Extension.CommonSeason do
   import Ecto.Query, only: [from: 2]
-  import ClubHomepage.Router.Helpers
+  import ClubHomepage.Web.Router.Helpers
   import ClubHomepage.Extension.CommonTimex
 
   alias ClubHomepage.Match
