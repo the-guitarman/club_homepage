@@ -17,7 +17,7 @@ defmodule ClubHomepage.ModelCase do
   using do
     quote do
       alias ClubHomepage.Repo
-      import Ecto.Model, except: [build: 2]
+      # import Ecto.Model, except: [build: 2]
       import Ecto.Query, only: [from: 2]
       import ClubHomepage.ModelCase
     end

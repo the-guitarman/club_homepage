@@ -21,7 +21,6 @@ defmodule ClubHomepage.Web.ChannelCase do
       use Phoenix.ChannelTest
 
       alias ClubHomepage.Repo
-      import Ecto.Model
       import Ecto.Query, only: [from: 2]
 
 

@@ -21,7 +21,7 @@ defmodule ClubHomepage.Web.ConnCase do
       use Phoenix.ConnTest
 
       alias ClubHomepage.Repo
-      import Ecto.Model, except: [build: 2]
+      # import Ecto.Model, except: [build: 2]
       import Ecto.Query, only: [from: 2]
 
       import ClubHomepage.Web.Router.Helpers
