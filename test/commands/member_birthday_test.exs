@@ -1,9 +1,9 @@
 defmodule ClubHomepage.MemberBirthdayTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
-  doctest ClubHomepage.MemberBirthday
+  doctest ClubHomepage.Web.MemberBirthday
 
-  alias ClubHomepage.MemberBirthday
+  alias ClubHomepage.Web.MemberBirthday
   alias ClubHomepage.Repo
   alias ClubHomepage.User
 

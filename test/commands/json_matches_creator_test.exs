@@ -1,9 +1,9 @@
-defmodule ClubHomepage.Web.JsonMatchesCreatorTest do
+defmodule ClubHomepage.JsonMatchesCreatorTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
   doctest ClubHomepage.Web.JsonMatchesCreator
 
-  alias ClubHomepage.JsonMatchesValidator
+  alias ClubHomepage.Web.JsonMatchesValidator
   alias ClubHomepage.Web.JsonMatchesCreator
   alias ClubHomepage.Competition
   alias ClubHomepage.Match
