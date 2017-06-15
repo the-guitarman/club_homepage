@@ -27,8 +27,8 @@ defmodule ClubHomepage.Match do
     timestamps()
   end
 
-  @required_fields ~w(competition_id season_id team_id opponent_team_id start_at home_match)
-  @optional_fields ~w(meeting_point_id team_goals opponent_team_goals failure_reason description match_events meeting_point_at json_creation)
+  @cast_fields ~w(competition_id season_id team_id opponent_team_id start_at home_match meeting_point_id team_goals opponent_team_goals failure_reason description match_events meeting_point_at json_creation)
+  @required_fields [:competition_id, :season_id, :team_id, :opponent_team_id, :start_at, :home_match]
 
   @doc """ 
   Creates a changeset based on the `model` and `params`.
@@ -39,7 +39,8 @@ defmodule ClubHomepage.Match do
   @spec changeset( ClubHomepage.Match, Map ) :: Ecto.Changeset
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
+    |> validate_required(@required_fields)
     |> foreign_key_constraint(:competition_id)
     |> foreign_key_constraint(:season_id)
     |> foreign_key_constraint(:team_id)

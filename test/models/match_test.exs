@@ -23,11 +23,11 @@ defmodule ClubHomepage.MatchTest do
   test "changeset with invalid attributes" do
     changeset = Match.changeset(%Match{}, @invalid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:competition_id] == {"can't be blank", []}
-    assert changeset.errors[:season_id] == {"can't be blank", []}
-    assert changeset.errors[:team_id] == {"can't be blank", []}
-    assert changeset.errors[:opponent_team_id] == {"can't be blank", []}
-    assert changeset.errors[:start_at] == {"can't be blank", []}
+    assert changeset.errors[:competition_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:season_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:team_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:opponent_team_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:start_at] == {"can't be blank", [validation: :required]}
   end
 
   test "match is finished" do

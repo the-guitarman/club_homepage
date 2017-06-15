@@ -13,8 +13,8 @@ defmodule ClubHomepage.Competition do
     timestamps()
   end
 
-  @required_fields ~w(name matches_need_decition)
-  @optional_fields ~w()
+  @cast_fields ~w(name matches_need_decition)
+  @required_fields [:name, :matches_need_decition]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -24,7 +24,8 @@ defmodule ClubHomepage.Competition do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:name)
     #|> ModelValidator.validate_uniqueness(:name)
   end

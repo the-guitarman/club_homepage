@@ -15,8 +15,8 @@ defmodule ClubHomepage.Address do
     timestamps()
   end
 
-  @required_fields ~w(street zip_code city)
-  @optional_fields ~w(district latitude longitude)
+  @cast_fields ~w(street zip_code city district latitude longitude)
+  @required_fields [:street, :zip_code, :city]
 
   def required_field?(field) when is_binary(field) do
     Enum.member?(@required_fields, field)
@@ -33,7 +33,8 @@ defmodule ClubHomepage.Address do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
+    |> validate_required(@required_fields)
     |> validate_length(:zip_code, min: 5, message: "ist zu kurz (min. 5 Zeichen)")
     |> validate_length(:zip_code, max: 5, message: "ist zu lang (max. 5 Zeichen)")
     |> validate_format(:zip_code, ~r/\A[0-9]+\z/i, message: "enthält ungültige Zeichen (gültig: 0-9)")
