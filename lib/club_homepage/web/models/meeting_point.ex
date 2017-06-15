@@ -12,8 +12,8 @@ defmodule ClubHomepage.MeetingPoint do
     timestamps()
   end
 
-  @required_fields ~w(address_id)
-  @optional_fields ~w(name)
+  @cast_fields ~w(address_id name)
+  @required_fields [:address_id]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -23,7 +23,8 @@ defmodule ClubHomepage.MeetingPoint do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
+    |> validate_required(@required_fields)
     |> foreign_key_constraint(:address_id)
     |> unique_constraint(:address_id)
     #|> ModelValidator.foreign_key_constraint(:address_id)
