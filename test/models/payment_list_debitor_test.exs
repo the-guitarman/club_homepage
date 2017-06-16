@@ -22,8 +22,8 @@ defmodule ClubHomepage.PaymentListDebitorTest do
     changeset = PaymentListDebitor.changeset(%PaymentListDebitor{}, @invalid_attrs)
     refute changeset.valid?
     assert Enum.count(changeset.errors) == 3
-    assert changeset.errors[:payment_list_id] == {"can't be blank", []}
-    assert changeset.errors[:user_id] == {"can't be blank", []}
-    assert changeset.errors[:number_of_units] == {"can't be blank", []}
+    assert changeset.errors[:payment_list_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:user_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:number_of_units] == {"can't be blank", [validation: :required]}
   end
 end
