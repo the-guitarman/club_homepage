@@ -12,8 +12,8 @@ defmodule ClubHomepage.OpponentTeam do
     timestamps()
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w(address_id)
+  @cast_fields ~w(address_id name)
+  @required_fields [:name]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -23,7 +23,8 @@ defmodule ClubHomepage.OpponentTeam do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:name)
     #|> ModelValidator.validate_uniqueness(:name)
   end
