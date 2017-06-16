@@ -17,7 +17,7 @@ defmodule ClubHomepage.NewsTest do
     assert changeset.data.public     == false
     assert changeset.changes[:public] == nil
     assert changeset.errors[:public]  == nil
-    assert changeset.errors[:subject] == {"can't be blank", []}
-    assert changeset.errors[:body]    == {"can't be blank", []}
+    assert changeset.errors[:subject] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:body]    == {"can't be blank", [validation: :required]}
   end
 end
