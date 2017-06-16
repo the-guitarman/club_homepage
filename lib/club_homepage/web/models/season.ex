@@ -9,8 +9,8 @@ defmodule ClubHomepage.Season do
     timestamps()
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w()
+  @cast_fields ~w(name)
+  @required_fields [:name]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -20,7 +20,8 @@ defmodule ClubHomepage.Season do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
+    |> validate_required(@required_fields)
     |> validate_format(:name, ~r/\A20\d\d-20\d\d\z/i)
   end
 end
