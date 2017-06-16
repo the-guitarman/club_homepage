@@ -20,7 +20,7 @@ defmodule ClubHomepage.PaymentList do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, ~w(title user_id price_per_piece), ~w(deputy_id))
+    |> cast(params, ~w(title user_id price_per_piece deputy_id))
     |> validate_required([:title, :user_id, :price_per_piece])
     |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:deputy_id)

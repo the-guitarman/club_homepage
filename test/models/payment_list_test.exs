@@ -37,9 +37,9 @@ defmodule ClubHomepage.PaymentListTest do
     changeset.valid?
     refute changeset.valid?
     assert Enum.count(changeset.errors) == 3
-    assert changeset.errors[:user_id] == {"can't be blank", []}
-    refute changeset.errors[:deputy_id] == {"can't be blank", []}
-    assert changeset.errors[:title] == {"can't be blank", []}
-    assert changeset.errors[:price_per_piece] == {"can't be blank", []}
+    assert changeset.errors[:user_id] == {"can't be blank", [validation: :required]}
+    refute changeset.errors[:deputy_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:title] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:price_per_piece] == {"can't be blank", [validation: :required]}
   end
 end
