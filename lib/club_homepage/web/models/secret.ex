@@ -9,8 +9,8 @@ defmodule ClubHomepage.Secret do
     timestamps()
   end
 
-  @required_fields ~w()
-  @optional_fields ~w(key email)
+  @cast_fields ~w(key email)
+  @required_fields [:key, :expires_at]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -20,9 +20,10 @@ defmodule ClubHomepage.Secret do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
     |> check_email
     |> set_attributes
+    |> validate_required(@required_fields)
   end
 
   defp set_attributes(changeset) do

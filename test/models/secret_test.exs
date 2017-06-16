@@ -24,7 +24,7 @@ defmodule ClubHomepage.SecretTest do
 
     changeset = Secret.changeset(%Secret{}, valid_attrs)
     assert not changeset.valid?
-    assert changeset.errors[:email] == {"has invalid format", []}
+    assert changeset.errors[:email] == {"has invalid format", [validation: :format]}
   end
 
   test "changeset with valid email" do
