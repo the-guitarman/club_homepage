@@ -8,8 +8,8 @@ defmodule ClubHomepage.Permalink do
     timestamps()
   end
 
-  @required_fields ~w(source_path destination_path)
-  @optional_fields ~w()
+  @cast_fields ~w(source_path destination_path)
+  @required_fields [:source_path, :destination_path]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -19,6 +19,7 @@ defmodule ClubHomepage.Permalink do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
+    |> validate_required(@required_fields)
   end
 end
