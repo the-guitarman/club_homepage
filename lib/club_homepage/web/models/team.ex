@@ -13,8 +13,8 @@ defmodule ClubHomepage.Team do
     timestamps()
   end
 
-  @required_fields ~w(competition_id name)
-  @optional_fields ~w(slug)
+  @cast_fields ~w(competition_id name slug)
+  @required_fields [:competition_id, :name]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -24,7 +24,8 @@ defmodule ClubHomepage.Team do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
+    |> validate_required(@required_fields)
     |> foreign_key_constraint(:competition_id)
     |> unique_constraint(:name)
     |> ClubHomepage.Web.SlugGenerator.run(:name, :slug)
