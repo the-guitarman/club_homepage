@@ -16,9 +16,9 @@ defmodule ClubHomepage.TeamChatMessageTest do
   test "changeset with invalid attributes" do
     changeset = TeamChatMessage.changeset(%TeamChatMessage{}, @invalid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:team_id] == {"can't be blank", []}
-    assert changeset.errors[:user_id] == {"can't be blank", []}
-    assert changeset.errors[:message] == {"can't be blank", []}
+    assert changeset.errors[:team_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:user_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:message] == {"can't be blank", [validation: :required]}
   end
 
   defp valid_attrs do
