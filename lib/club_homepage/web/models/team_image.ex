@@ -12,8 +12,8 @@ defmodule ClubHomepage.TeamImage do
     timestamps()
   end
 
+  @cast_fields [:team_id, :year, :description]
   @required_fields [:team_id, :year]
-  @optional_fields [:description]
 
   @doc """
   Builds a changeset based on the `struct` and `params`.
@@ -25,7 +25,7 @@ defmodule ClubHomepage.TeamImage do
     params = Map.drop(params, [:attachment, "attachment"])
 
     struct
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @cast_fields)
     |> validate_required(@required_fields)
     |> foreign_key_constraint(:team_id)
     |> validate_inclusion(:year, start_year..current_year)
