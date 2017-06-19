@@ -80,7 +80,8 @@ defmodule ClubHomepage.Extension.View do
     date_format()
     |> String.replace("%", "")
     |> String.split(divider)
-    |> Enum.map(fn(el) -> if el == "Y", do: "#{el}#{el}#{el}#{el}", else: "#{el}#{el}" |> String.upcase() end)
+    |> Enum.map(fn(el) -> if el == "Y", do: "#{el}#{el}#{el}#{el}", else: "#{el}#{el}"
+    |> String.upcase() end)
     |> Enum.join(divider)
   end
 
@@ -113,7 +114,7 @@ defmodule ClubHomepage.Extension.View do
     timex_input(form, field, timex_datetime_input_format(), opts)
   end
 
-  defp timex_input(%{model: model, params: params} = form, field, format, opts) do
+  defp timex_input(%{data: model, params: params} = form, field, format, opts) do
     field_name = Atom.to_string(field)
     form = 
       case Map.fetch(params, field_name) do
@@ -149,6 +150,9 @@ defmodule ClubHomepage.Extension.View do
       end
       HTML.raw(HTML.safe_to_string(Form.text_input(form, field, opts)) <> HTML.safe_to_string(button))
     end
+  end
+  defp timex_input(%{model: model, params: params}, field, format, opts) do
+    timex_input(%{data: model, params: params}, field, format, opts)
   end
 
   def show_form_errors(changeset, f) do

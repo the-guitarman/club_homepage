@@ -71,7 +71,7 @@
     </div>
   </div>
 
-  <%= if match_finished?(f.model) do %>
+  <%= if match_finished?(f.data) do %>
 
     <div class="form-group <%= error_cls @changeset, f, :description %>">
       <%#= label f, :description, class: "control-label" %>
