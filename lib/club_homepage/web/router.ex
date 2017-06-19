@@ -46,7 +46,7 @@ defmodule ClubHomepage.Web.Router do
     get "/teams/:slug/images", TeamController, :show_images, as: :team_images_page
   end
 
-  scope "/manage", ClubHomepage do
+  scope "/manage", ClubHomepage.Web do
     pipe_through [:browser, :authenticate_user]
     
     get "/users/new", UserController, :new_unregistered, as: :unregistered_user
@@ -77,10 +77,10 @@ defmodule ClubHomepage.Web.Router do
     resources "/text_pages", TextPageController, except: [:show, :new, :create, :delete]
   end
 
-  # scope "/api", ClubHomepage do
+  # scope "/api", ClubHomepage.Web do
   #   pipe_through :api
 
-  #   scope "/manage", ClubHomepage do
+  #   scope "/manage", ClubHomepage.Web do
   #     pipe_through :authenticate_user
 
   #   end

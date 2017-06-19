@@ -170,7 +170,7 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def required_field(form, field) do
-    case form.model.__struct__.required_field?(field) do
+    case form.data.__struct__.required_field?(field) do
       true  -> " *"
       false -> ""
     end

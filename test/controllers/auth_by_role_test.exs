@@ -1,6 +1,6 @@
-defmodule ClubHomepage.AuthByRoleTest do
+defmodule ClubHomepage.Web.AuthByRoleTest do
   use ClubHomepage.Web.ConnCase
-  alias ClubHomepage.AuthByRole
+  alias ClubHomepage.Web.AuthByRole
 
   setup do
     conn =

@@ -1,6 +1,6 @@
 defmodule ClubHomepage.AuthTest do
   use ClubHomepage.Web.ConnCase
-  alias ClubHomepage.Auth
+  alias ClubHomepage.Web.Auth
 
   import ClubHomepage.Factory
 

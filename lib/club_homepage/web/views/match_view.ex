@@ -1,6 +1,6 @@
 require Ecto.Query
 
-defmodule ClubHomepage.MatchView do
+defmodule ClubHomepage.Web.MatchView do
   use ClubHomepage.Web, :view
 
   import ClubHomepage.Extension.MatchView
