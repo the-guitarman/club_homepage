@@ -27,7 +27,8 @@ defmodule ClubHomepage.User do
 
   def unregistered_changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(email name), ~w(nickname login birthday active roles meta_data token token_set_at mobile_phone))
+    |> cast(params, [:email, :name, :nickname, :login, :birthday, :active, :roles, :meta_data, :token, :token_set_at, :mobile_phone])
+    |> validate_required([:email, :name])
     |> validate_length(:name, max: 100)
     |> check_email
     |> UserRole.check_roles
@@ -43,7 +44,8 @@ defmodule ClubHomepage.User do
   def changeset(model, params \\ %{}) do
     model
     |> unregistered_changeset(params)
-    |> cast(params, ~w(login birthday), [])
+    |> cast(params, [:login, :birthday])
+    |> validate_required([:login, :birthday])
     |> validate_length(:login, min: 6)
     |> validate_length(:login, max: 20)
     |> validate_format(:login, ~r/\A[a-z0-9._-]+\z/i)
@@ -56,7 +58,8 @@ defmodule ClubHomepage.User do
   def registration_changeset(model, params) do
     model
     |> changeset(params)
-    |> cast(params, ~w(password password_confirmation), [])
+    |> cast(params, [:password, :password_confirmation])
+    |> validate_required([:password, :password_confirmation])
     |> validate_length(:password, min: 6, max: 100)
     |> validate_length(:password_confirmation, min: 6, max: 100)
     |> validate_confirmation(:password)

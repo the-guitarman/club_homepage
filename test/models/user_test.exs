@@ -38,29 +38,29 @@ defmodule ClubHomepage.UserTest do
   test "changeset with invalid attributes" do
     changeset = User.changeset(%User{}, @invalid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:birthday] == {"can't be blank", []}
-    assert changeset.errors[:login] == {"can't be blank", []}
-    assert changeset.errors[:email] == {"can't be blank", []}
-    assert changeset.errors[:name] == {"can't be blank", []}
+    assert changeset.errors[:birthday] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:login] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:email] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:name] == {"can't be blank", [validation: :required]}
 
     changeset = User.changeset(%User{}, %{login: "abc"})
     refute changeset.valid?
-    assert changeset.errors[:login] == {"should be at least %{count} character(s)", [count: 6]}
+    assert changeset.errors[:login] == {"should be at least %{count} character(s)", [count: 6, validation: :length, min: 6]}
 
     changeset = User.changeset(%User{}, %{login: "abcdefghijklmnopqrstu"})
     refute changeset.valid?
-    assert changeset.errors[:login] == {"should be at most %{count} character(s)", [count: 20]}
+    assert changeset.errors[:login] == {"should be at most %{count} character(s)", [count: 20, validation: :length, max: 20]}
 
     changeset = User.changeset(%User{}, %{login: "$%&§^#~@€()[]"})
     refute changeset.valid?
-    assert changeset.errors[:login] == {"has invalid format", []}
+    assert changeset.errors[:login] == {"has invalid format", [validation: :format]}
 
     changeset = User.changeset(%User{}, %{email: "mail[at]example_de"})
     refute changeset.valid?
-    assert changeset.errors[:email] == {"has invalid format", []}
+    assert changeset.errors[:email] == {"has invalid format", [validation: :format]}
 
     changeset = User.changeset(%User{}, %{name: String.duplicate("a", 101)})
     refute changeset.valid?
-    assert changeset.errors[:name] == {"should be at most %{count} character(s)", [count: 100]}
+    assert changeset.errors[:name] == {"should be at most %{count} character(s)", [count: 100, validation: :length, max: 100]}
   end
 end
