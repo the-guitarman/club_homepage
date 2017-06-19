@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("edit_team_image") %></h2>
+
+      <%= render "form.html", changeset: @changeset,
+                 action: team_image_path(@conn, :update, @team_image),
+                 team_options: @team_options
+      %>
+
+      <%= link gettext("all") <> " " <> gettext("team_images"), to: team_image_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

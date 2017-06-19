@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <li class="navbar-text"><%= copyright() %></li>
+        <li><a class="btn btn-de" href="https://github.com/the-guitarman" target="_blank">Designed By The Guitarman</a></li>
+        <li><a class="btn btn-de" href="https://github.com/the-guitarman/club_homepage" target="_blank">Sources</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="<%= current_link(@conn, ClubHomepage.Web.PageController, :contact) %>">
+          <%= link gettext("contact"), to: page_path(@conn, :contact), class: "btn btn-de", role: "button" %>
+        </li>
+        <li class="<%= current_link(@conn, ClubHomepage.Web.PageController, :registration_information) %>">
+          <%= link gettext("registration_information"), to: page_path(@conn, :registration_information), class: "btn btn-de", role: "button" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

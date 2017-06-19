@@ -1,0 +1,28 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= show_form_errors(@changeset, f) %>
+
+  <div class="form-group <%= error_cls @changeset, f, :subject %>">
+    <%#= label f, :subject, class: "control-label" %>
+    <%= text_input f, :subject, class: "form-control", placeholder: gettext("news_subject_placeholder") %>
+    <%= error_tag f, :subject %>
+  </div>
+
+  <div class="form-group <%= error_cls @changeset, f, :body %>">
+    <%#= label f, :body, class: "control-label" %>
+    <%= textarea f, :body, class: "form-control", placeholder: gettext("news_body_placeholder") %>
+    <%= error_tag f, :body %>
+  </div>
+
+  <div class="form-group <%= error_cls @changeset, f, :public %>">
+    <%#= label f, :public, class: "control-label" %>
+    <%= label f, :public, class: "control-label" do %>
+      <%= gettext("news_public_placeholder") %>
+    <% end %>
+    <%= checkbox f, :public, class: "form-control" %>
+    <%= error_tag f, :public %>
+  </div>
+
+  <div class="form-group">
+    <%= submit gettext("save"), class: "btn btn-primary" %>
+  </div>
+<% end %>

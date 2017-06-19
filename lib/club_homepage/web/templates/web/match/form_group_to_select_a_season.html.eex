@@ -1,0 +1,4 @@
+<div class="form-group <%= error_cls @changeset, @f, :season_id %>">
+    <%= select(@f, :season_id, @season_options, placeholder: gettext("select_season_placeholder"), prompt: gettext("select_season_placeholder")) %>
+    <%= error_tag @changeset, @f, :season_id %>
+</div>

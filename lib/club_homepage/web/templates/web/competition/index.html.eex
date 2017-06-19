@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("all") %> <%= gettext("competitions") %></h2>
+
+      <p>
+        <%= link gettext("create_new_competition"), to: competition_path(@conn, :new), class: "btn btn-default" %>
+      </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= gettext("name") %></th>
+            <th><%= gettext("matches_need_decition") %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= if Enum.count(@competitions) > 0 do %>
+            <%= for competition <- @competitions do %>
+                <tr>
+                  <td><a name="competition-<%= competition.id %>"><%= competition.name %></a></td>
+                  <td>
+                    <%= case competition.matches_need_decition do
+                          true -> dgettext("additionals", "yes")
+                          _    -> dgettext("additionals", "no")
+                        end
+                    %>
+                  </td>
+
+                  <td class="text-right">
+                    <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
+                      <%= link "Edit", to: competition_path(@conn, :edit, competition), class: "btn btn-default" %>
+                      <%= if has_role?(@conn, ["administrator"]) do %>
+                        <%= link "Delete", to: competition_path(@conn, :delete, competition), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                </tr>
+            <% end %>
+          <% else %>
+            <tr><td><%= gettext("competitions_missing") %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p>
+        <%= link gettext("create_new_competition"), to: competition_path(@conn, :new), class: "btn btn-default" %>
+      </p>
+    </div>
+  </div>
+</div>

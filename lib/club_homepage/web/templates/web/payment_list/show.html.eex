@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+    <h2><%= gettext("payment_list") %> - <%= @payment_list.title %></h2>
+
+    <%= if logged_in?(@conn) && (current_user(@conn).id == @payment_list.user_id || current_user(@conn).id == @payment_list.deputy_id) do %>
+    <p>
+        <%= link gettext("edit"), to: payment_list_path(@conn, :edit, @payment_list), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("payment_lists"), to: payment_list_path(@conn, :index), class: "btn btn-default" %>
+    </p>
+    <% end %>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+          <strong><%= gettext("payment_list_creator") %>:</strong>
+          <%= internal_user_name(@payment_list.user) %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <strong><%= gettext("payment_list_deputy") %>:</strong>
+        <%= if @payment_list.deputy_id do %>
+          <%= internal_user_name(@payment_list.deputy) %>
+        <% end %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <strong><%= gettext("price_per_piece") %>:</strong>
+        <%= Number.Currency.number_to_currency(@payment_list.price_per_piece) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= form_for @changeset, payment_list_path(@conn, :show, @payment_list), [class: "form-inline"], fn f -> %>
+          <%= show_form_errors(@changeset, f) %>
+          <div class="form-group new-record-element <%= error_cls @changeset, f, :user_id %>">
+            <%= select(f, :user_id, @user_options, placeholder: gettext("payment_list_debitor_placeholder"), prompt: gettext("select_payment_list_creator_placeholder"), required: true) %>
+            <%= error_tag @changeset, f, :user_id %>
+          </div>
+          <div class="form-group <%= error_cls @changeset, f, :number_of_units %>">
+            <%#= label @f, :title, gettext("number_of_units"), class: "control-label" %>
+            <div class="input-group ">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-minus"></span></div>
+              <%= number_input f, :number_of_units, class: "form-control text-center no-spin", placeholder: gettext("number_of_units"), min: 0 %>
+              <div class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></div>
+            </div>
+            <%= error_tag f, :number_of_units %>
+          </div>
+          <div class="form-group">
+            <%= content_tag :button, tag(:span, class: "glyphicon glyphicon-plus-sign"), class: "btn btn-default" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%= if logged_in?(@conn) && (current_user(@conn).id == @payment_list.user_id || current_user(@conn).id == @payment_list.deputy_id) do %>
+      <p>
+        <%= link gettext("edit"), to: payment_list_path(@conn, :edit, @payment_list), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("payment_lists"), to: payment_list_path(@conn, :index), class: "btn btn-default" %>
+      </p>
+    <% end %>
+
+    </div>
+  </div>
+</div>

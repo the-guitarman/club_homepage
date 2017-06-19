@@ -1,0 +1,14 @@
+<h2><%= gettext("show_season") %></h2>
+
+<ul>
+
+  <li>
+    <strong><%= gettext("name") %>:</strong>
+    <%= @season.name %>
+  </li>
+
+</ul>
+
+<%= link gettext("edit"), to: season_path(@conn, :edit, @season), class: "btn btn-default" %>
+<%#= link gettext("delete"), to: season_path(@conn, :delete, season), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+<%= link gettext("all") <> " " <> gettext("seasons"), to: season_path(@conn, :index), class: "btn btn-default" %>

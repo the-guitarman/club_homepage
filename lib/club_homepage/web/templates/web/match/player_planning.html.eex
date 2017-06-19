@@ -1,0 +1,129 @@
+<%= if has_role?(@conn, ["team-editor"]) && not(match_finished?(@match)) && not(match_in_progress?(@match)) do %>
+  <div class="row js-player-planning">
+    <div class="col-xs-12">
+
+      <div class="row js-system-of-play-buttons">
+        <div class="col-xs-12 text-center">
+          <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default">4-4-2</button>
+            <button type="button" class="btn btn-default">5-3-2</button>
+            <button type="button" class="btn btn-default">4-3-3</button>
+            <button type="button" class="btn btn-default">4-2-3-1</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="css-match-ground 4-4-2 hidden">
+        <div class="row keeper">
+          <div class="col-xs-12 text-center css-player-position">Keeper</div>
+        </div>
+
+        <div class="row defense">
+          <div class="col-xs-3 text-center css-player-position">Defense 1</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 2</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 3</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 4</div>
+        </div>
+
+        <div class="row midfield">
+          <div class="col-xs-3 text-center css-player-position">Midfield 1</div>
+          <div class="col-xs-3 text-center css-player-position">Midfield 2</div>
+          <div class="col-xs-3 text-center css-player-position">Midfield 3</div>
+          <div class="col-xs-3 text-center css-player-position">Midfield 4</div>
+        </div>
+
+        <div class="row forward-line">
+          <div class="col-xs-6 text-center css-player-position">Forward 1</div>
+          <div class="col-xs-6 text-center css-player-position">Forward 2</div>
+        </div>
+      </div>
+
+      <div class="css-match-ground 5-3-2 hidden">
+        <div class="row keeper">
+          <div class="col-xs-12 text-center css-player-position">Keeper</div>
+        </div>
+
+        <div class="row defense">
+          <div class="col-xs-3 text-center css-player-position"></div>
+          <div class="col-xs-2 text-center css-player-position">Defense 1</div>
+          <div class="col-xs-2 text-center css-player-position">Defense 2</div>
+          <div class="col-xs-2 text-center css-player-position">Defense 3</div>
+          <div class="col-xs-3 text-center css-player-position"></div>
+        </div>
+
+        <div class="row defense">
+          <div class="col-xs-3 text-center css-player-position">Defense 4</div>
+          <div class="col-xs-2 text-center css-player-position"></div>
+          <div class="col-xs-2 text-center css-player-position"></div>
+          <div class="col-xs-2 text-center css-player-position"></div>
+          <div class="col-xs-3 text-center css-player-position">Defense 5</div>
+        </div>
+
+        <div class="row midfield">
+          <div class="col-xs-4 text-center css-player-position">Midfield 1</div>
+          <div class="col-xs-4 text-center css-player-position">Midfield 2</div>
+          <div class="col-xs-4 text-center css-player-position">Midfield 3</div>
+        </div>
+
+        <div class="row forward-line">
+          <div class="col-xs-6 text-center css-player-position">Forward 1</div>
+          <div class="col-xs-6 text-center css-player-position">Forward 2</div>
+        </div>
+      </div>
+
+      <div class="css-match-ground 4-3-3 hidden">
+        <div class="row keeper">
+          <div class="col-xs-12 text-center css-player-position">Keeper</div>
+        </div>
+
+        <div class="row defense">
+          <div class="col-xs-3 text-center css-player-position">Defense 1</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 2</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 3</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 4</div>
+        </div>
+
+        <div class="row midfield">
+          <div class="col-xs-4 text-center css-player-position">Midfield 1</div>
+          <div class="col-xs-4 text-center css-player-position">Midfield 2</div>
+          <div class="col-xs-4 text-center css-player-position">Midfield 3</div>
+        </div>
+
+        <div class="row forward-line">
+          <div class="col-xs-4 text-center css-player-position">Forward 1</div>
+          <div class="col-xs-4 text-center css-player-position">Forward 2</div>
+          <div class="col-xs-4 text-center css-player-position">Forward 3</div>
+        </div>
+      </div>
+
+      <div class="css-match-ground 4-2-3-1 hidden">
+        <div class="row keeper">
+          <div class="col-xs-12 text-center css-player-position">Keeper</div>
+        </div>
+
+        <div class="row defense">
+          <div class="col-xs-3 text-center css-player-position">Defense 1</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 2</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 3</div>
+          <div class="col-xs-3 text-center css-player-position">Defense 4</div>
+        </div>
+
+        <div class="row defense">
+          <div class="col-xs-6 text-center css-player-position">Defense 5</div>
+          <div class="col-xs-6 text-center css-player-position">Defense 6</div>
+        </div>
+
+        <div class="row midfield">
+          <div class="col-xs-4 text-center css-player-position">Midfield 1</div>
+          <div class="col-xs-4 text-center css-player-position">Midfield 2</div>
+          <div class="col-xs-4 text-center css-player-position">Midfield 3</div>
+        </div>
+
+        <div class="row forward-line">
+          <div class="col-xs-12 text-center css-player-position">Forward 1</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<% end %>
