@@ -19,7 +19,7 @@
           <tr>
             <td><%= team_image.team_id %></td>
             <td><%= team_image.year %></td>
-            <td><%= uploader_image_tag ClubHomepage.TeamUploader, team_image, :normal %></td>
+            <td><%= uploader_image_tag ClubHomepage.Web.TeamUploader, team_image, :normal %></td>
             <td><%= team_image.description %></td>
 
             <td class="text-right">

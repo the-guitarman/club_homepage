@@ -4,7 +4,7 @@ defmodule ClubHomepage.SponsorImage do
 
   schema "sponsor_images" do
     field :name, :string
-    field :attachment, ClubHomepage.SponsorUploader.Type
+    field :attachment, ClubHomepage.Web.SponsorUploader.Type
 
     timestamps()
   end

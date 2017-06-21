@@ -1,4 +1,4 @@
-defmodule ClubHomepage.TeamUploader do
+defmodule ClubHomepage.Web.TeamUploader do
   use Arc.Definition
   use Arc.Ecto.Definition
 
@@ -23,6 +23,7 @@ defmodule ClubHomepage.TeamUploader do
   # Override the storage directory:
   def storage_dir(_version, {_file, record}) do
     uploads_path = Application.get_env(:club_homepage, :uploads)[:path]
+    IO.inspect uploads_path
     "#{uploads_path}/teams/#{record.id}"
   end
 

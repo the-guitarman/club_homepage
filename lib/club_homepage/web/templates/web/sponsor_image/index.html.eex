@@ -16,7 +16,7 @@
       <%= for sponsor_image <- @sponsor_images do %>
           <tr>
             <td><%= sponsor_image.name %></td>
-            <td><%= uploader_image_tag ClubHomepage.SponsorUploader, sponsor_image, :logo %></td>
+            <td><%= uploader_image_tag ClubHomepage.Web.SponsorUploader, sponsor_image, :logo %></td>
 
             <td class="text-right">
               <%= link gettext("edit"), to: sponsor_image_path(@conn, :edit, sponsor_image), class: "btn btn-default" %>

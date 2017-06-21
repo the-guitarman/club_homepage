@@ -71,7 +71,7 @@ defmodule ClubHomepage.SponsorImageControllerTest do
 
     sponsor_image = Repo.get!(SponsorImage, sponsor_image_id)
 
-    for {_version, web_path} <- ClubHomepage.SponsorUploader.urls({sponsor_image.attachment, sponsor_image}) do
+    for {_version, web_path} <- ClubHomepage.Web.SponsorUploader.urls({sponsor_image.attachment, sponsor_image}) do
       [file_path, _] = String.split(web_path, "?")
       assert File.exists?(Path.expand(file_path))
     end
@@ -110,10 +110,10 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     sponsor_image = insert(:sponsor_image)
     original_file = sponsor_image.attachment[:file_name]
 
-    destination_path = ClubHomepage.SponsorUploader.storage_dir(nil, {nil, sponsor_image})
+    destination_path = ClubHomepage.Web.SponsorUploader.storage_dir(nil, {nil, sponsor_image})
     File.mkdir_p!(destination_path)
 
-    web_paths = ClubHomepage.SponsorUploader.urls({sponsor_image.attachment, sponsor_image})
+    web_paths = ClubHomepage.Web.SponsorUploader.urls({sponsor_image.attachment, sponsor_image})
 
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")

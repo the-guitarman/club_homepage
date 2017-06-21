@@ -21,10 +21,13 @@ defmodule ClubHomepage.Web.TeamImageController do
   end
 
   def create(conn, %{"team_image" => team_image_params}) do
+    IO.inspect team_image_params
     changeset1 = TeamImage.changeset(%TeamImage{}, team_image_params)
+    IO.inspect changeset1.errors
     changeset2 = TeamImage.image_changeset(%TeamImage{}, team_image_params)
-
+    IO.inspect changeset2.errors
     changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
+    IO.inspect changeset.errors
 
     case Repo.insert(changeset) do
       {:ok, team_image} ->
@@ -74,7 +77,7 @@ defmodule ClubHomepage.Web.TeamImageController do
     # it to always work (and if it does not, it will raise).
     Repo.delete!(team_image)
 
-    File.rm_rf!(ClubHomepage.TeamUploader.storage_dir(nil, {nil, team_image}))
+    File.rm_rf!(ClubHomepage.Web.TeamUploader.storage_dir(nil, {nil, team_image}))
 
     conn
     |> put_flash(:info, gettext("team_image_deleted_successfully"))

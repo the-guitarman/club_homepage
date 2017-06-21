@@ -66,7 +66,7 @@ defmodule ClubHomepage.Web.SponsorImageController do
     # it to always work (and if it does not, it will raise).
     Repo.delete!(sponsor_image)
 
-    File.rm_rf!(ClubHomepage.SponsorUploader.storage_dir(nil, {nil, sponsor_image}))
+    File.rm_rf!(ClubHomepage.Web.SponsorUploader.storage_dir(nil, {nil, sponsor_image}))
 
     conn
     |> put_flash(:info, gettext("sponsor_image_deleted_successfully"))

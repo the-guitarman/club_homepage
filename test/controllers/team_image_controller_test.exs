@@ -69,16 +69,18 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
+    IO.puts "--- TEST 1"
+    IO.inspect valid_attrs
     conn = post conn, team_image_path(conn, :create), team_image: valid_attrs
     team_image_id = get_highest_id(TeamImage)
     team_image = Repo.get!(TeamImage, team_image_id)
     team = Repo.get!(Team, team_image.team_id)
     assert redirected_to(conn) == team_images_page_path(conn, :show_images, team.slug)
-
-    for {_version, web_path} <- ClubHomepage.TeamUploader.urls({team_image.attachment, team_image}) do
+    for {_version, web_path} <- ClubHomepage.Web.TeamUploader.urls({team_image.attachment, team_image}) do
       [file_path, _] = String.split(web_path, "?")
       assert File.exists?(Path.expand(file_path))
     end
+    IO.puts "--- TEST 2"
   end
 
   @tag login: true
@@ -118,10 +120,10 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
     original_file = team_image.attachment[:file_name]
 
-    destination_path = ClubHomepage.TeamUploader.storage_dir(nil, {nil, team_image})
+    destination_path = ClubHomepage.Web.TeamUploader.storage_dir(nil, {nil, team_image})
     File.mkdir_p!(destination_path)
 
-    web_paths = ClubHomepage.TeamUploader.urls({team_image.attachment, team_image})
+    web_paths = ClubHomepage.Web.TeamUploader.urls({team_image.attachment, team_image})
 
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")

@@ -4,7 +4,7 @@ defmodule ClubHomepage.TeamImage do
 
   schema "team_images" do
     field :year, :integer
-    field :attachment, ClubHomepage.TeamUploader.Type
+    field :attachment, ClubHomepage.Web.TeamUploader.Type
     field :description, :string
 
     belongs_to :team, ClubHomepage.Team
