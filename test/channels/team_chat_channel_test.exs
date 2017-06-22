@@ -2,7 +2,7 @@ defmodule ClubHomepage.TeamChatChannelTest do
   use ClubHomepage.Web.ChannelCase
 
   alias ClubHomepage.Repo
-  alias ClubHomepage.TeamChatChannel
+  alias ClubHomepage.Web.TeamChatChannel
   alias ClubHomepage.TeamChatMessage
   alias ClubHomepage.User
 
