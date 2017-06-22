@@ -5,7 +5,7 @@ defmodule ClubHomepage.MeetingPointViewTest do
   import ClubHomepage.Factory
 
 #  alias ClubHomepage.MeetingPoint
-  alias ClubHomepage.MeetingPointView
+  alias ClubHomepage.Web.MeetingPointView
   alias ClubHomepage.Repo
 
   test "full address of meeting point" do
