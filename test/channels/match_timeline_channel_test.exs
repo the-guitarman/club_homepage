@@ -5,7 +5,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
   
   alias ClubHomepage.Competition
   alias ClubHomepage.Match
-  alias ClubHomepage.MatchTimelineChannel
+  alias ClubHomepage.Web.MatchTimelineChannel
   alias ClubHomepage.Repo
 
   #@kick_off_match_event %{"type" => "kick-off"}
