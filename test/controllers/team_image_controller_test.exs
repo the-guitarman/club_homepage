@@ -70,7 +70,6 @@ defmodule ClubHomepage.TeamImageControllerTest do
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
     IO.puts "--- TEST 1"
-    IO.inspect valid_attrs
     conn = post conn, team_image_path(conn, :create), team_image: valid_attrs
     team_image_id = get_highest_id(TeamImage)
     team_image = Repo.get!(TeamImage, team_image_id)

@@ -21,13 +21,9 @@ defmodule ClubHomepage.Web.TeamImageController do
   end
 
   def create(conn, %{"team_image" => team_image_params}) do
-    IO.inspect team_image_params
     changeset1 = TeamImage.changeset(%TeamImage{}, team_image_params)
-    IO.inspect changeset1.errors
     changeset2 = TeamImage.image_changeset(%TeamImage{}, team_image_params)
-    IO.inspect changeset2.errors
     changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
-    IO.inspect changeset.errors
 
     case Repo.insert(changeset) do
       {:ok, team_image} ->
