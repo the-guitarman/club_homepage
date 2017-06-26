@@ -24,6 +24,7 @@ defmodule ClubHomepage.Web.TeamUploader do
   def storage_dir(_version, {_file, record}) do
     uploads_path = Application.get_env(:club_homepage, :uploads)[:path]
     "#{uploads_path}/teams/#{record.id}"
+    #|> IO.inspect
   end
 
   # Override the persisted filenames:

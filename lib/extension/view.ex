@@ -185,7 +185,7 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def uploader_image_source(module, model, version) do
-    "/" <> module.url({model.attachment, model}, version)
+    module.url({model.attachment, model}, version)
   end
 
   defp uploader_image_tag_alt(model, version) do

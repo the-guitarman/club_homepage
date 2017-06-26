@@ -7,11 +7,16 @@ defmodule ClubHomepage.TeamImageControllerTest do
   import ClubHomepage.Factory
 
   @root_path Application.app_dir(:club_homepage) <> "/../../../.."
+  @file_name Path.absname(@root_path <> "test/support/images/test_image.jpg")
+  IO.inspect File.dir?(@root_path)
+  IO.inspect File.exists?(@file_name)
+  IO.inspect File.exists?("test/support/images/test_image.jpg")
   @valid_attrs %{
     team_id: 0,
     year: 2016,
-    attachment: %Plug.Upload{path: Path.absname(@root_path <> "test/support/images/test_image.jpg"), filename: "test_image.jpg", content_type: "image/jpg"},
-    #attachment: @root_path <> "test/support/images/test_image.jpg",
+    #attachment: %Plug.Upload{content_type: "image/jpeg", filename: "test_image.jpg", path: "test/support/images/test_image.jpg"},
+    #attachment: %Plug.Upload{path: Path.absname(@root_path <> "test/support/images/test_image.jpg"), filename: "test_image.jpg", content_type: "image/jpg"},
+    attachment: "test/support/images/test_image.jpg",
     description: "test description"
   }
   @invalid_attrs %{team_id: 0, year: ""}
@@ -26,11 +31,6 @@ defmodule ClubHomepage.TeamImageControllerTest do
   end
 
   setup context do
-    dir = @root_path <> "/test/support/images"
-    IO.inspect dir
-    IO.inspect File.dir?(dir)
-    IO.inspect File.exists?(dir <> "/test_image.jpg")
-
     conn = build_conn()
     team_image = insert(:team_image)
     valid_attrs = %{@valid_attrs | team_id: team_image.team_id}
@@ -83,8 +83,9 @@ defmodule ClubHomepage.TeamImageControllerTest do
     team = Repo.get!(Team, team_image.team_id)
     assert redirected_to(conn) == team_images_page_path(conn, :show_images, team.slug)
     for {_version, web_path} <- ClubHomepage.Web.TeamUploader.urls({team_image.attachment, team_image}) do
-      [file_path, _] = String.split(web_path, "?")
-      assert File.exists?(Path.expand(file_path))
+      [path, _] = String.split(web_path, "?")
+      path = remove_trailing_slash(path)
+      assert File.exists?(Path.expand(path))
     end
     IO.puts "--- TEST 2"
   end
@@ -133,8 +134,8 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")
-      File.cp(original_file, path)
-      IO.inspect path
+      path = remove_trailing_slash(path)
+      File.cp_r(original_file, path)
       assert File.exists?(path)
     end
 
@@ -144,9 +145,17 @@ defmodule ClubHomepage.TeamImageControllerTest do
     refute Repo.get(TeamImage, team_image.id)
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")
+      path = remove_trailing_slash(path)
       refute File.exists?(path)
     end
 
     File.rm_rf!(destination_path)
+  end
+
+  defp remove_trailing_slash(path) do
+    path
+    |> String.split("/")
+    |> Enum.filter(fn(el) -> String.length(el) > 0 end)
+    |> Enum.join("/")
   end
 end
