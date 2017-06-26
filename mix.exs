@@ -22,7 +22,7 @@ defmodule ClubHomepage.Mixfile do
        :tzdata,
        :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
        :phoenix_ecto, :postgrex, :comeonin, :geocoder, 
-       :elixir_weather_data, :number, :bamboo
+       :elixir_weather_data, :number, :bamboo, :arc_ecto
      ]
     ]#:sqlite_ecto
   end
@@ -58,8 +58,8 @@ defmodule ClubHomepage.Mixfile do
      {:arc, "~> 0.8.0"},
      {:arc_ecto, "~> 0.7.0"},
      #{:mix_test_watch, "~> 0.2.4", only: :dev},
-     {:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
-     #{:elixir_weather_data, "~> 0.1"},
+     #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
+     {:elixir_weather_data, "~> 0.2"},
      {:number, "~> 0.5.1"},
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},

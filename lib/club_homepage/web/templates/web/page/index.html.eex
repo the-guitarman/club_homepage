@@ -51,38 +51,42 @@
     </div>
   </div>
 
-  <div class="row">
-    <%= if Enum.count(@next_matches) > 0 || Enum.count(@last_matches) > 0 do %>
-      <div class="col-xs-12 col-md-6">
-        <div class="jumbotron content-box">
-          <%= if Enum.count(@next_matches) > 0 do %>
-            <h2><%= gettext("next_matches") %></h2>
-            <div class="list-group">
-              <%= for match <- @next_matches do %>
-                <a class="list-group-item" href="<%= match_path(@conn, :show, match) %>">
-                  <%= render("match_row.html", match: match) %>
-                </a>
-              <% end %>
-            </div>
-          <% end %>
+  <%= if Enum.count(@next_matches) > 0 || Enum.count(@last_matches) > 0 do %>
+    <div class="row">
+      <%= if Enum.count(@next_matches) > 0 do %>
+        <div class="col-xs-12 col-md-<%= next_and_last_matches_cols(@next_matches, @last_matches) %>">
+          <div class="jumbotron content-box">
+            <%= if Enum.count(@next_matches) > 0 do %>
+              <h2><%= gettext("next_matches") %></h2>
+              <div class="list-group">
+                <%= for match <- @next_matches do %>
+                  <a class="list-group-item" href="<%= match_path(@conn, :show, match) %>">
+                    <%= render("match_row.html", match: match) %>
+                  </a>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
-      <div class="col-xs-12 col-md-6">
-        <div class="jumbotron content-box">
-          <%= if Enum.count(@last_matches) > 0 do %>
-            <h2><%= gettext("latest_match_results") %></h2>
-            <div class="list-group">
-              <%= for match <- @last_matches do %>
-                <a class="list-group-item" href="<%= match_path(@conn, :show, match) %>">
-                  <%= render("match_row.html", match: match) %>
-                </a>
-              <% end %>
-            </div>
-          <% end %>
+      <%= if Enum.count(@last_matches) > 0 do %>
+        <div class="col-xs-12 col-md-<%= next_and_last_matches_cols(@next_matches, @last_matches) %>">
+          <div class="jumbotron content-box">
+            <%= if Enum.count(@last_matches) > 0 do %>
+              <h2><%= gettext("latest_match_results") %></h2>
+              <div class="list-group">
+                <%= for match <- @last_matches do %>
+                  <a class="list-group-item" href="<%= match_path(@conn, :show, match) %>">
+                    <%= render("match_row.html", match: match) %>
+                  </a>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 
 </div>

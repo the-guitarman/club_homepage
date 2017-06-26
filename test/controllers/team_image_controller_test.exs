@@ -6,10 +6,12 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
   import ClubHomepage.Factory
 
+  @root_path Application.app_dir(:club_homepage) <> "/../../../.."
   @valid_attrs %{
     team_id: 0,
     year: 2016,
-    attachment: "test/support/images/test_image.jpg",
+    attachment: %Plug.Upload{path: Path.absname(@root_path <> "test/support/images/test_image.jpg"), filename: "test_image.jpg", content_type: "image/jpg"},
+    #attachment: @root_path <> "test/support/images/test_image.jpg",
     description: "test description"
   }
   @invalid_attrs %{team_id: 0, year: ""}
@@ -24,6 +26,11 @@ defmodule ClubHomepage.TeamImageControllerTest do
   end
 
   setup context do
+    dir = @root_path <> "/test/support/images"
+    IO.inspect dir
+    IO.inspect File.dir?(dir)
+    IO.inspect File.exists?(dir <> "/test_image.jpg")
+
     conn = build_conn()
     team_image = insert(:team_image)
     valid_attrs = %{@valid_attrs | team_id: team_image.team_id}
@@ -127,6 +134,7 @@ defmodule ClubHomepage.TeamImageControllerTest do
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")
       File.cp(original_file, path)
+      IO.inspect path
       assert File.exists?(path)
     end
 

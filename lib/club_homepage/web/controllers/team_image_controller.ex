@@ -23,6 +23,7 @@ defmodule ClubHomepage.Web.TeamImageController do
   def create(conn, %{"team_image" => team_image_params}) do
     changeset1 = TeamImage.changeset(%TeamImage{}, team_image_params)
     changeset2 = TeamImage.image_changeset(%TeamImage{}, team_image_params)
+    IO.puts "-ch-"
     changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
 
     case Repo.insert(changeset) do

@@ -32,8 +32,15 @@ defmodule ClubHomepage.TeamImage do
   end
 
   def image_changeset(model, params \\ %{}) do
+    IO.inspect model
+    IO.inspect params
+    IO.inspect __DIR__
+    
     model
+    |> cast(params, @cast_fields)
     |> cast_attachments(params, [:attachment])
     |> validate_required([:attachment])
+    |> IO.inspect
+    #|> prepare_changes(fn(changeset) -> cast_attachments(changeset, params, [:avatar]) end)
   end
 end

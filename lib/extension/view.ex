@@ -185,7 +185,6 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def uploader_image_source(module, model, version) do
-    IO.inspect module
     "/" <> module.url({model.attachment, model}, version)
   end
 
