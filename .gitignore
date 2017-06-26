@@ -30,7 +30,11 @@ erl_crash.dump
 /web/static/assets/images/backup
 /web/static/assets/images/logo.*
 /web/static/assets/images/logo_navbar.*
+/assets/static/images/backup
+/assets/static/images/logo.*
+/assets/static/images/logo_navbar.*
 /uploads
+/lib/club_homepage/uploads
 
 /config/club_homepage.exs
 /config/dev.exs
