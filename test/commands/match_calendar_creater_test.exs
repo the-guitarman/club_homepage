@@ -1,11 +1,11 @@
 defmodule ClubHomepage.MatchCalendarCreatorTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
-  doctest ClubHomepage.MatchCalendarCreator
+  doctest ClubHomepage.Web.MatchCalendarCreator
 
   alias ClubHomepage.Competition
   alias ClubHomepage.Match
-  alias ClubHomepage.MatchCalendarCreator
+  alias ClubHomepage.Web.MatchCalendarCreator
   alias ClubHomepage.OpponentTeam
   alias ClubHomepage.Repo
   alias ClubHomepage.Team

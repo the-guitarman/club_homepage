@@ -1,11 +1,12 @@
 defmodule ClubHomepage.WeatherDataTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
-  doctest ClubHomepage.WeatherData
+  doctest ClubHomepage.Web.WeatherData
+  alias ClubHomepage.Web.WeatherData
 
 
   test "test_sd" do
-    case ClubHomepage.WeatherData.get do
+    case WeatherData.get do
       {:ok, weather_data} ->
         %{year: current_year, month: current_month, day: current_day} = Timex.local
         %{year: year, month: month, day: day} = weather_data[:created_at]

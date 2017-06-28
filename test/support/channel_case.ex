@@ -1,4 +1,4 @@
-defmodule ClubHomepage.ChannelCase do
+defmodule ClubHomepage.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,12 +21,11 @@ defmodule ClubHomepage.ChannelCase do
       use Phoenix.ChannelTest
 
       alias ClubHomepage.Repo
-      import Ecto.Model
       import Ecto.Query, only: [from: 2]
 
 
       # The default endpoint for testing
-      @endpoint ClubHomepage.Endpoint
+      @endpoint ClubHomepage.Web.Endpoint
     end
   end
 

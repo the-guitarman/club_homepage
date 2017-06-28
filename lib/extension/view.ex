@@ -3,9 +3,9 @@ defmodule ClubHomepage.Extension.View do
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.Tag
 
-  import ClubHomepage.ErrorHelpers 
-  import ClubHomepage.Gettext
-  import ClubHomepage.Localization
+  import ClubHomepage.Web.ErrorHelpers 
+  import ClubHomepage.Web.Gettext
+  import ClubHomepage.Web.Localization
   import ClubHomepage.Extension.CommonTimex
 
   def full_club_name do
@@ -77,21 +77,22 @@ defmodule ClubHomepage.Extension.View do
 
 
   def js_date_input_format(divider \\ ".") do
-    date_format
+    date_format()
     |> String.replace("%", "")
     |> String.split(divider)
-    |> Enum.map(fn(el) -> if el == "Y", do: "#{el}#{el}#{el}#{el}", else: "#{el}#{el}" |> String.upcase() end)
+    |> Enum.map(fn(el) -> if el == "Y", do: "#{el}#{el}#{el}#{el}", else: "#{el}#{el}"
+    |> String.upcase() end)
     |> Enum.join(divider)
   end
 
   def timex_date_input(form, field, opts \\ []) do
-    opts = Keyword.put(opts, :"data-format", js_date_input_format)
-    timex_input(form, field, date_format, opts)
+    opts = Keyword.put(opts, :"data-format", js_date_input_format())
+    timex_input(form, field, date_format(), opts)
   end
 
   def js_time_input_format(divider \\ ":") do
     parts = 
-      time_format
+      time_format()
       |> String.replace("%", "")
       |> String.split(divider)
       |> Enum.map(fn(el) -> String.upcase("#{el}#{el}") end)
@@ -101,19 +102,19 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def timex_datetime_input_format do
-    "#{date_format} #{time_format}"
+    "#{date_format()} #{time_format()}"
   end
 
   def js_datetime_input_format do
-    "#{js_date_input_format} #{js_time_input_format}"
+    "#{js_date_input_format()} #{js_time_input_format()}"
   end
 
   def timex_datetime_input(form, field, opts \\ []) do
-    opts = Keyword.put(opts, :"data-format", js_datetime_input_format)
-    timex_input(form, field, timex_datetime_input_format, opts)
+    opts = Keyword.put(opts, :"data-format", js_datetime_input_format())
+    timex_input(form, field, timex_datetime_input_format(), opts)
   end
 
-  defp timex_input(%{model: model, params: params} = form, field, format, opts) do
+  defp timex_input(%{data: model, params: params} = form, field, format, opts) do
     field_name = Atom.to_string(field)
     form = 
       case Map.fetch(params, field_name) do
@@ -150,6 +151,9 @@ defmodule ClubHomepage.Extension.View do
       HTML.raw(HTML.safe_to_string(Form.text_input(form, field, opts)) <> HTML.safe_to_string(button))
     end
   end
+  defp timex_input(%{model: model, params: params}, field, format, opts) do
+    timex_input(%{data: model, params: params}, field, format, opts)
+  end
 
   def show_form_errors(changeset, f) do
     if changeset.action do
@@ -160,7 +164,7 @@ defmodule ClubHomepage.Extension.View do
         ul_tag = Tag.content_tag(:ul) do
           for {attr, message} <- f.errors do
             Tag.content_tag(:li) do
-              Gettext.dgettext(ClubHomepage.Gettext, "models", attr_underscored(attr)) <> " " <> translate_error(message)
+              Gettext.dgettext(ClubHomepage.Web.Gettext, "models", attr_underscored(attr)) <> " " <> translate_error(message)
             end
           end
         end
@@ -170,7 +174,7 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def required_field(form, field) do
-    case form.model.__struct__.required_field?(field) do
+    case form.data.__struct__.required_field?(field) do
       true  -> " *"
       false -> ""
     end
@@ -181,7 +185,7 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def uploader_image_source(module, model, version) do
-    "/" <> module.url({model.attachment, model}, version)
+    module.url({model.attachment, model}, version)
   end
 
   defp uploader_image_tag_alt(model, version) do

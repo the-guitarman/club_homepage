@@ -12,6 +12,7 @@ erl_crash.dump
 
 # Static artifacts
 /node_modules
+/assets/node_modules
 
 # Since we are building assets from web/static,
 # we ignore priv/static. You may want to comment
@@ -29,7 +30,11 @@ erl_crash.dump
 /web/static/assets/images/backup
 /web/static/assets/images/logo.*
 /web/static/assets/images/logo_navbar.*
+/assets/static/images/backup
+/assets/static/images/logo.*
+/assets/static/images/logo_navbar.*
 /uploads
+/lib/club_homepage/uploads
 
 /config/club_homepage.exs
 /config/dev.exs

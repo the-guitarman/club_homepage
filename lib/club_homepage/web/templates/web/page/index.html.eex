@@ -1,0 +1,92 @@
+<div class="container-fluid">
+
+  <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="jumbotron content-box">
+          <h2><%= gettext("latest_news") %></h2>
+          <%= if Enum.count(@news) > 0 do %>
+            <div class="list-group">
+              <%= for news <- @news do %>
+                <%
+                  link_text = content_tag(:span) do
+                    datetime = content_tag(:small) do
+                {:ok, date_string} = Timex.format(news.inserted_at, datetime_format(), :strftime)
+                      date_string <> " " <> gettext("o_clock")
+                    end
+                    raw(safe_to_string(datetime) <> safe_to_string(tag(:br)) <> news.subject) 
+                  end
+                %>
+                <%= link link_text, to: news_path(@conn, :index) <> "#news-#{news.id}", class: "list-group-item" %>
+              <% end %>
+            </div>
+          <% else %>
+            <p><%= gettext("no_news_notice") %></p>
+          <% end %>
+        </div>
+      </div>
+
+    <div class="col-xs-12 col-md-4">
+      <div class="jumbotron content-box">
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <img src="<%= templateable_asset_path("/images/logo.png") %>" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4">
+      <div class="jumbotron content-box">
+        <h2><%= gettext("teams") %></h2>
+        <%= if Enum.count(@teams) > 0 do %>
+          <div class="list-group">
+            <%= for team <- @teams do %>
+              <%= link team.name, to: team_with_season_path(@conn, team), class: "list-group-item" %>
+            <% end %>
+          </div>
+        <% else %>
+          <p><%= gettext("no_teams_notice") %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= if Enum.count(@next_matches) > 0 || Enum.count(@last_matches) > 0 do %>
+    <div class="row">
+      <%= if Enum.count(@next_matches) > 0 do %>
+        <div class="col-xs-12 col-md-<%= next_and_last_matches_cols(@next_matches, @last_matches) %>">
+          <div class="jumbotron content-box">
+            <%= if Enum.count(@next_matches) > 0 do %>
+              <h2><%= gettext("next_matches") %></h2>
+              <div class="list-group">
+                <%= for match <- @next_matches do %>
+                  <a class="list-group-item" href="<%= match_path(@conn, :show, match) %>">
+                    <%= render("match_row.html", match: match) %>
+                  </a>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <%= if Enum.count(@last_matches) > 0 do %>
+        <div class="col-xs-12 col-md-<%= next_and_last_matches_cols(@next_matches, @last_matches) %>">
+          <div class="jumbotron content-box">
+            <%= if Enum.count(@last_matches) > 0 do %>
+              <h2><%= gettext("latest_match_results") %></h2>
+              <div class="list-group">
+                <%= for match <- @last_matches do %>
+                  <a class="list-group-item" href="<%= match_path(@conn, :show, match) %>">
+                    <%= render("match_row.html", match: match) %>
+                  </a>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

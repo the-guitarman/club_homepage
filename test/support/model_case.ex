@@ -17,7 +17,7 @@ defmodule ClubHomepage.ModelCase do
   using do
     quote do
       alias ClubHomepage.Repo
-      import Ecto.Model, except: [build: 2]
+      # import Ecto.Model, except: [build: 2]
       import Ecto.Query, only: [from: 2]
       import ClubHomepage.ModelCase
     end
@@ -57,7 +57,7 @@ defmodule ClubHomepage.ModelCase do
   """
   def errors_on(struct, data) do
     struct.__struct__.changeset(struct, data)
-    |> Ecto.Changeset.traverse_errors(&ClubHomepage.ErrorHelpers.translate_error/1)
+    |> Ecto.Changeset.traverse_errors(&ClubHomepage.Web.ErrorHelpers.translate_error/1)
     |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
   end
 end

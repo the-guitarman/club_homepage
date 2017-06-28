@@ -1,0 +1,5 @@
+<%= if ClubHomepage.Web.Auth.logged_in?(@conn, %{}) do %>
+  <p>
+    <%= link gettext("create_new_news"), to: news_path(@conn, :new), class: "btn btn-default" %>
+  </p>
+<% end %>

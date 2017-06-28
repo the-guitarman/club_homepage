@@ -1,5 +1,5 @@
 defmodule ClubHomepage.SecretControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
   use Bamboo.Test
 
   alias ClubHomepage.Secret
@@ -61,7 +61,7 @@ defmodule ClubHomepage.SecretControllerTest do
     secret = Repo.get_by(Secret, @valid_attrs)
     assert secret
     assert redirected_to(conn) == secret_path(conn, :show, secret)
-    assert_no_emails_delivered
+    assert_no_emails_delivered()
   end
 
   @tag login: true

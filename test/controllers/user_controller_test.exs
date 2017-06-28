@@ -1,5 +1,5 @@
 defmodule ClubHomepage.UserControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
   use Bamboo.Test
 
   alias ClubHomepage.User

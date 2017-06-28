@@ -1,8 +1,8 @@
 defmodule ClubHomepage.TeamChatChannelTest do
-  use ClubHomepage.ChannelCase
+  use ClubHomepage.Web.ChannelCase
 
   alias ClubHomepage.Repo
-  alias ClubHomepage.TeamChatChannel
+  alias ClubHomepage.Web.TeamChatChannel
   alias ClubHomepage.TeamChatMessage
   alias ClubHomepage.User
 
@@ -20,10 +20,10 @@ defmodule ClubHomepage.TeamChatChannelTest do
   end
 
   test "new chat message replies with status ok", %{socket: socket} do
-    assert count == 0
+    assert count() == 0
     ref = push socket, "message:add", %{"message" => "Hello!"}
     assert_reply ref, :ok
-    assert count == 1
+    assert count() == 1
   end
 
   test "new chat message broadcasts to team-chats:<team_id>", %{socket: socket} do

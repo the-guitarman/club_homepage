@@ -47,7 +47,7 @@ defmodule ClubHomepage.TeamTest do
   test "changeset with invalid attributes" do
     changeset = Team.changeset(%Team{}, @invalid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:competition_id] == {"can't be blank", []}
-    assert changeset.errors[:name] == {"can't be blank", []}
+    assert changeset.errors[:competition_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:name] == {"can't be blank", [validation: :required]}
   end
 end

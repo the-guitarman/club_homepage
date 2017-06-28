@@ -1,13 +1,13 @@
 defmodule ClubHomepage.AuthTest do
-  use ClubHomepage.ConnCase
-  alias ClubHomepage.Auth
+  use ClubHomepage.Web.ConnCase
+  alias ClubHomepage.Web.Auth
 
   import ClubHomepage.Factory
 
   setup do
     conn =
       build_conn()
-      |> bypass_through(ClubHomepage.Router, :browser)
+      |> bypass_through(ClubHomepage.Web.Router, :browser)
       |> get("/")
     {:ok, %{conn: conn}}
   end

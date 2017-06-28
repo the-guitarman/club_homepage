@@ -2,8 +2,8 @@ defmodule ClubHomepage.Extension.MatchView do
   alias Phoenix.HTML
   alias Phoenix.HTML.Tag
 
-  import ClubHomepage.Gettext
-  import ClubHomepage.Localization
+  import ClubHomepage.Web.Gettext
+  import ClubHomepage.Web.Localization
 
   alias ClubHomepage.Match
 
@@ -86,6 +86,6 @@ defmodule ClubHomepage.Extension.MatchView do
   end
 
   defp match_failure_translation(match) do
-    Gettext.dgettext(ClubHomepage.Gettext, "additionals", "failure_reason_" <> match.failure_reason)
+    Gettext.dgettext(ClubHomepage.Web.Gettext, "additionals", "failure_reason_" <> match.failure_reason)
   end
 end

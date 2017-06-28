@@ -9,8 +9,8 @@ defmodule ClubHomepage.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers, 
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     aliases: aliases,
-     deps: deps]
+     aliases: aliases(),
+     deps: deps()]
   end
 
   # Configuration for the OTP application.
@@ -22,25 +22,25 @@ defmodule ClubHomepage.Mixfile do
        :tzdata,
        :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
        :phoenix_ecto, :postgrex, :comeonin, :geocoder, 
-       :elixir_weather_data, :number, :bamboo
+       :elixir_weather_data, :number, :bamboo, :arc_ecto
      ]
     ]#:sqlite_ecto
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_),     do: ["lib", "web"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
 
   # Specifies your project dependencies.
   #
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-     {:phoenix, "~> 1.2.0"},
+     {:phoenix, "~> 1.3.0-rc"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
+     {:phoenix_ecto, "~> 3.2"},
      {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.6"},
+     {:phoenix_html, "~> 2.9"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:dogma, "~> 0.0", only: :dev},
      {:cowboy, "~> 1.0"},
@@ -53,14 +53,14 @@ defmodule ClubHomepage.Mixfile do
      {:slugger, "~> 0.1.0"},
      {:json, "~> 0.3.0"},
      {:ex_json_schema, "~> 0.3.1"},
-     {:geocoder, "~> 0.6"},
+     {:geocoder, "~> 0.6.2"},
      {:dialyxir, "~> 0.3", only: [:dev]},
-     {:arc, "~> 0.5.3"},
-     {:arc_ecto, "~> 0.4.3"},
+     {:arc, "~> 0.8.0"},
+     {:arc_ecto, "~> 0.7.0"},
      #{:mix_test_watch, "~> 0.2.4", only: :dev},
      #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
-     {:elixir_weather_data, "~> 0.1"},
-     {:number, "~> 0.4.2"},
+     {:elixir_weather_data, "~> 0.2"},
+     {:number, "~> 0.5.1"},
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
 

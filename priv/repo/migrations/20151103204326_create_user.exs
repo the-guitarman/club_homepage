@@ -4,7 +4,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateUser do
   def change do
     create table(:users) do
       add :active, :boolean, default: true
-      add :birthday, :datetime
+      add :birthday, :utc_datetime
 
       add :login, :string
       add :email, :string
@@ -12,7 +12,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateUser do
       add :name, :string
       add :roles, :string, default: "member"
 
-      timestamps
+      timestamps()
     end
 
   end

@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :club_homepage, ClubHomepage.Endpoint,
+config :club_homepage, ClubHomepage.Web.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -14,16 +14,16 @@ config :club_homepage, ClubHomepage.Endpoint,
 #  cache_static_lookup: false,
   check_origin: false,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../", __DIR__)]]
+                    cd: Path.expand("../assets", __DIR__)]]
 
 # Watch static and templates for browser reloading.
-config :club_homepage, ClubHomepage.Endpoint,
+config :club_homepage, ClubHomepage.Web.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{web/views/.*(ex)$},
-      ~r{web/templates/.*(eex)$}
+      ~r{lib/club_homepage/web/views/.*(ex)$},
+      ~r{lib/club_homepage/web/templates/.*(eex)$}
     ]
   ]
 
@@ -51,6 +51,14 @@ config :number, delimiter: [
     precision: 2,
     delimiter: ",",
     separator: "."
+  ]
+config :number, currency: [
+    unit: "€",
+    precision: 2,
+    delimiter: ".",
+    separator: ",",
+    format: "%n %u",           # "30,00 €"
+    negative_format: "(%n %u)" # "(30,00 €)"
   ]
 
 # Configure your mail server

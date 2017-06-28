@@ -2,7 +2,7 @@ defmodule ClubHomepage.UserRoleTest do
   use ClubHomepage.ModelCase
 
   alias ClubHomepage.User
-  alias ClubHomepage.UserRole
+  alias ClubHomepage.Web.UserRole
 
   import ClubHomepage.Factory
 

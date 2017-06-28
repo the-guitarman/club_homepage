@@ -1,5 +1,5 @@
 defmodule ClubHomepage.NewsControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
 
   alias ClubHomepage.News
 

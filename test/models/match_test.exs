@@ -6,7 +6,7 @@ defmodule ClubHomepage.MatchTest do
   alias ClubHomepage.Repo
 
   import ClubHomepage.Factory
-  import ClubHomepage.Localization
+  import ClubHomepage.Web.Localization
 
   @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "2010-04-17 14:00"}
   @invalid_attrs %{}
@@ -46,11 +46,11 @@ defmodule ClubHomepage.MatchTest do
   test "changeset with invalid attributes" do
     changeset = Match.changeset(%Match{}, @invalid_attrs)
     refute changeset.valid?
-    assert changeset.errors[:competition_id] == {"can't be blank", []}
-    assert changeset.errors[:season_id] == {"can't be blank", []}
-    assert changeset.errors[:team_id] == {"can't be blank", []}
-    assert changeset.errors[:opponent_team_id] == {"can't be blank", []}
-    assert changeset.errors[:start_at] == {"can't be blank", []}
+    assert changeset.errors[:competition_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:season_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:team_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:opponent_team_id] == {"can't be blank", [validation: :required]}
+    assert changeset.errors[:start_at] == {"can't be blank", [validation: :required]}
   end
 
   test "match is finished" do

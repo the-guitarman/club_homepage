@@ -1,12 +1,13 @@
 defmodule ClubHomepage.SponsorImageControllerTest do
-  use ClubHomepage.ConnCase
+  use ClubHomepage.Web.ConnCase
 
   alias ClubHomepage.SponsorImage
 
   import ClubHomepage.Factory
 
+  @file_name "test/support/images/test_image.jpg"
   @valid_attrs %{
-    attachment: "test/support/images/test_image.jpg",
+    attachment: %Plug.Upload{content_type: "image/jpeg", filename: "test_image.jpg", path: @file_name},
     name: "test image"
   }
   @invalid_attrs %{name: ""}
@@ -71,9 +72,10 @@ defmodule ClubHomepage.SponsorImageControllerTest do
 
     sponsor_image = Repo.get!(SponsorImage, sponsor_image_id)
 
-    for {_version, web_path} <- ClubHomepage.SponsorUploader.urls({sponsor_image.attachment, sponsor_image}) do
-      [file_path, _] = String.split(web_path, "?")
-      assert File.exists?(Path.expand(file_path))
+    for {_version, web_path} <- ClubHomepage.Web.SponsorUploader.urls({sponsor_image.attachment, sponsor_image}) do
+      [path, _] = String.split(web_path, "?")
+      path = remove_trailing_slash(path)
+      assert File.exists?(Path.expand(path))
     end
   end
 
@@ -108,16 +110,16 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   @tag login: true
   test "deletes chosen resource", %{conn: conn} do
     sponsor_image = insert(:sponsor_image)
-    original_file = sponsor_image.attachment[:file_name]
 
-    destination_path = ClubHomepage.SponsorUploader.storage_dir(nil, {nil, sponsor_image})
+    destination_path = ClubHomepage.Web.SponsorUploader.storage_dir(nil, {nil, sponsor_image})
     File.mkdir_p!(destination_path)
 
-    web_paths = ClubHomepage.SponsorUploader.urls({sponsor_image.attachment, sponsor_image})
+    web_paths = ClubHomepage.Web.SponsorUploader.urls({sponsor_image.attachment, sponsor_image})
 
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")
-      File.cp(original_file, path)
+      path = remove_trailing_slash(path)
+      File.cp(@file_name, path)
       assert File.exists?(path)
     end
 
@@ -127,9 +129,17 @@ defmodule ClubHomepage.SponsorImageControllerTest do
     refute Repo.get(SponsorImage, sponsor_image.id)
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")
+      File.mkdir_p(Path.dirname(path))
       refute File.exists?(path)
     end
 
     File.rm_rf!(destination_path)
+  end
+
+  defp remove_trailing_slash(path) do
+    path
+    |> String.split("/")
+    |> Enum.filter(fn(el) -> String.length(el) > 0 end)
+    |> Enum.join("/")
   end
 end

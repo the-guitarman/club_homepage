@@ -7,7 +7,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateNews do
       add :subject, :string
       add :body, :text
 
-      timestamps
+      timestamps()
     end
 
   end

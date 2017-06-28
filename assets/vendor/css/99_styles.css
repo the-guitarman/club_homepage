@@ -1,0 +1,35 @@
+.input-group.date, .input-group.datetime {
+  cursor: pointer;
+}
+
+input[type=radio], input[type=checkbox] {
+  height: 34px;
+  width: 34px;
+}
+
+span.select2-container {
+  width: 100% !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 34px;
+}
+.select2-container .select2-selection--single {
+  height: 34px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 34px;
+}
+
+input[type=checkbox], input[type=radio] {
+  margin-top: 1px; 
+}
+
+.css-medium-editor {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.new-record-element .input-group-addon {
+  cursor: pointer;
+}
