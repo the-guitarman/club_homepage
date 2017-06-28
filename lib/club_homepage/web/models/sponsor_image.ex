@@ -13,13 +13,16 @@ defmodule ClubHomepage.SponsorImage do
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
+    params = Map.drop(params, [:attachment, "attachment"])
+
     struct
-    |> cast(Map.drop(params, [:attachment, "attachment"]), [:name])
+    |> cast(params, [:name])
     |> validate_required([:name])
   end
 
   def image_changeset(model, params \\ %{}) do
     model
+    |> cast(params, [:name])
     |> cast_attachments(params, [:attachment])
     |> validate_required([:attachment])
   end

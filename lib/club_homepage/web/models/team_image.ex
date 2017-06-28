@@ -36,6 +36,5 @@ defmodule ClubHomepage.TeamImage do
     |> cast(params, @cast_fields)
     |> cast_attachments(params, [:attachment])
     |> validate_required([:attachment])
-    #|> prepare_changes(fn(changeset) -> cast_attachments(changeset, params, [:avatar]) end)
   end
 end

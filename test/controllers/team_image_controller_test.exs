@@ -125,7 +125,6 @@ defmodule ClubHomepage.TeamImageControllerTest do
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")
       path = remove_trailing_slash(path)
-      File.mkdir_p(Path.dirname(path))
       File.cp_r(@file_name, path)
       assert File.exists?(path)
     end
