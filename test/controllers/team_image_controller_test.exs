@@ -6,17 +6,11 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
   import ClubHomepage.Factory
 
-  @root_path Application.app_dir(:club_homepage) <> "/../../../.."
-  @file_name Path.absname(@root_path <> "test/support/images/test_image.jpg")
-  IO.inspect File.dir?(@root_path)
-  IO.inspect File.exists?(@file_name)
-  IO.inspect File.exists?("test/support/images/test_image.jpg")
+  @file_name "test/support/images/test_image.jpg"
   @valid_attrs %{
     team_id: 0,
     year: 2016,
-    #attachment: %Plug.Upload{content_type: "image/jpeg", filename: "test_image.jpg", path: "test/support/images/test_image.jpg"},
-    #attachment: %Plug.Upload{path: Path.absname(@root_path <> "test/support/images/test_image.jpg"), filename: "test_image.jpg", content_type: "image/jpg"},
-    attachment: "test/support/images/test_image.jpg",
+    attachment: %Plug.Upload{content_type: "image/jpeg", filename: "test_image.jpg", path: @file_name},
     description: "test description"
   }
   @invalid_attrs %{team_id: 0, year: ""}
@@ -76,7 +70,6 @@ defmodule ClubHomepage.TeamImageControllerTest do
 
   @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
-    IO.puts "--- TEST 1"
     conn = post conn, team_image_path(conn, :create), team_image: valid_attrs
     team_image_id = get_highest_id(TeamImage)
     team_image = Repo.get!(TeamImage, team_image_id)
@@ -87,7 +80,6 @@ defmodule ClubHomepage.TeamImageControllerTest do
       path = remove_trailing_slash(path)
       assert File.exists?(Path.expand(path))
     end
-    IO.puts "--- TEST 2"
   end
 
   @tag login: true
@@ -125,8 +117,6 @@ defmodule ClubHomepage.TeamImageControllerTest do
     team_image = insert(:team_image)
     team = Repo.get!(Team, team_image.team_id)
 
-    original_file = team_image.attachment[:file_name]
-
     destination_path = ClubHomepage.Web.TeamUploader.storage_dir(nil, {nil, team_image})
     File.mkdir_p!(destination_path)
 
@@ -136,7 +126,7 @@ defmodule ClubHomepage.TeamImageControllerTest do
       [path, _query_string] = String.split(web_path, "?")
       path = remove_trailing_slash(path)
       File.mkdir_p(Path.dirname(path))
-      File.cp_r(original_file, path)
+      File.cp_r(@file_name, path)
       assert File.exists?(path)
     end
 
