@@ -30,12 +30,7 @@
       <ul class="nav navbar-nav navbar-right">
         <%= if not Enum.empty?(@birthdays) do %>
           <li class="dropdown">
-<<<<<<< HEAD:web/templates/layout/navbar_top.html.eex
-            <a href="#" class="dropdown-toggle glyphicon glyphicon-gift" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-title="<%= gettext("birthdays") %>" data-content="<%= birthdays_popover_content(@birthdays) %>">
-
-=======
             <a href="#" class="dropdown-toggle glyphicon glyphicon-gift" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="<%= gettext("birthdays") %>">
->>>>>>> phx_1_3_rc:lib/club_homepage/web/templates/web/layout/navbar_top.html.eex
             </a>
           </li>
         <% end %>

@@ -28,13 +28,8 @@ defmodule ClubHomepage.Match do
     timestamps()
   end
 
-<<<<<<< HEAD:web/models/match.ex
-  @required_fields ~w(competition_id season_id team_id opponent_team_id start_at home_match)
-  @optional_fields ~w(meeting_point_id team_goals opponent_team_goals failure_reason description match_events meeting_point_at json_creation uid)
-=======
   @cast_fields ~w(competition_id season_id team_id opponent_team_id start_at home_match meeting_point_id team_goals opponent_team_goals failure_reason description match_events meeting_point_at json_creation)
   @required_fields [:competition_id, :season_id, :team_id, :opponent_team_id, :start_at, :home_match]
->>>>>>> phx_1_3_rc:lib/club_homepage/web/models/match.ex
 
   @doc """ 
   Creates a changeset based on the `model` and `params`.
