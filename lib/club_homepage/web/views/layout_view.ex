@@ -15,16 +15,9 @@ defmodule ClubHomepage.Web.LayoutView do
 
   def weather_data_popover_content(weather_data) do
     {:ok, date_string} = Timex.format(weather_data[:created_at], datetime_format(), :strftime)
-<<<<<<< HEAD:web/views/layout_view.ex
-    "<div class=\"popover-content-box\">
-      <div class=\"row\">
-        <div class=\"col-xs-12 text-center\">#{date_string} #{gettext("o_clock")}</div>
-        <div class=\"col-xs-12 text-center\">#{weather_data[:weather]}<br /><br /></div>
-=======
     "<div class=\"row popover-content-box\">
       <div class=\"col-xs-12 text-center\">#{date_string} #{gettext("o_clock")}</div>
       <div class=\"col-xs-12 text-center\">#{weather_data[:weather]}<br /><br /></div>
->>>>>>> phx_1_3_rc:lib/club_homepage/web/views/layout_view.ex
 
         <div class=\"col-xs-6\"><small>#{gettext("temperature")}:</small></div>
         <div class=\"col-xs-6\">#{weather_data[:temperature]}</div>
