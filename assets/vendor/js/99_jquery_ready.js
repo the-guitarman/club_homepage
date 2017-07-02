@@ -112,4 +112,27 @@ $(document).ready(function() {
     });
     return false;
   });
+
+  $(document).on('click', '.input-group-addon.btn', function(e) {
+    e.preventDefault();
+    var self = $(this);
+    var input = self.parent().find('input');
+    var value = parseInt(input.val());
+
+    var step = input.attr('step');
+    if (_.isEmpty(step)) { step = 1; }
+
+    var operationEl = self.find('.glyphicon');
+    var operation = (operationEl.hasClass('glyphicon-minus') ? -1 : 1) * step;
+
+    value = value + operation;
+
+    var min = input.attr('min');
+    if (!_.isEmpty(min) && value < min) { value = min; }
+
+    var max = input.attr('max');
+    if (!_.isEmpty(max) && value > max) { value = max; }
+
+    input.val(value);
+  });
 });
