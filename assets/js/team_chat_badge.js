@@ -1,10 +1,8 @@
 let TeamChatBadge = {
   init(socket, teamId, userId) {
-    console.log("-1-");
     if (_.isEmpty(teamId) || _.isEmpty(userId)) {
       return
     }
-    console.log("-2-");
 
     let showNewMessagesBadge = (response) => {
       var unreadTeamChatMessagesNumber = response.unread_team_chat_messages_number;
