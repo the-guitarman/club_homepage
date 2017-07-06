@@ -58,7 +58,6 @@ defmodule ClubHomepage.Web.Router do
     end
 
     resources "/addresses", AddressController, except: [:show]
-    resources "/payment_lists", PaymentListController
     resources "/competitions", CompetitionController, except: [:show]
     resources "/matches", MatchController, expect: [:show]
     get "/matches/bulk/new", MatchController, :new_bulk, as: :matches
@@ -66,6 +65,9 @@ defmodule ClubHomepage.Web.Router do
     resources "/meeting_points", MeetingPointController, except: [:show]
     resources "/news", NewsController
     resources "/opponent_teams", OpponentTeamController, except: [:show]
+    resources "/payment_lists", PaymentListController do
+      resources "/debitors", PaymentListDebitorController
+    end
     resources "/permalinks", PermalinkController
     resources "/seasons", SeasonController
     resources "/secrets", SecretController, only: [:index, :show, :new, :create, :delete]
