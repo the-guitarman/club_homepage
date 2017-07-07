@@ -66,7 +66,7 @@ defmodule ClubHomepage.Web.Router do
     resources "/news", NewsController
     resources "/opponent_teams", OpponentTeamController, except: [:show]
     resources "/payment_lists", PaymentListController do
-      resources "/debitors", PaymentListDebitorController
+      resources "/debitors", PaymentListDebitorController, only: [:new, :create, :delete]
     end
     resources "/permalinks", PermalinkController
     resources "/seasons", SeasonController

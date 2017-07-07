@@ -5,14 +5,9 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
   alias ClubHomepage.PaymentListDebitor
 
   plug :authenticate_user 
-  plug :scrub_params, "payment_list" when action in [:create, :update]
+  plug :scrub_params, "payment_list_debitor" when action in [:create, :update]
   plug :get_user_select_options when action in [:new, :create, :edit, :update, :show]
   plug :get_deputy_select_options when action in [:new, :create, :edit, :update]
-
-  def index(conn, _params) do
-    payment_lists = Repo.all(from(bl in PaymentList, preload: [:user, :deputy]))
-    render(conn, "index.html", payment_lists: payment_lists)
-  end
 
   def new(conn, _params) do
     changeset = PaymentList.changeset(%PaymentList{user_id: current_user(conn).id})
@@ -36,38 +31,6 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
                user_options: conn.assigns.user_options,
                deputy_options: conn.assigns.deputy_options,
                form_mode: :new)
-    end
-  end
-
-  def show(conn, %{"id" => id}) do
-    changeset = PaymentListDebitor.changeset(%PaymentListDebitor{payment_list_id: id, number_of_units: 1})
-    payment_list = Repo.one!(from(bl in PaymentList, preload: [:user, :deputy], where: bl.id == ^id))
-    render(conn, "show.html", payment_list: payment_list, changeset: changeset, user_options: conn.assigns.user_options)
-  end
-
-  def edit(conn, %{"id" => id}) do
-    payment_list = Repo.get!(PaymentList, id)
-    changeset = PaymentList.changeset(payment_list)
-    render(conn, "edit.html", payment_list: payment_list, changeset: changeset,
-           user_options: conn.assigns.user_options,
-           deputy_options: conn.assigns.deputy_options,
-           form_mode: :edit)
-  end
-
-  def update(conn, %{"id" => id, "payment_list" => payment_list_params}) do
-    payment_list = Repo.get!(PaymentList, id)
-    changeset = PaymentList.changeset(payment_list, payment_list_params)
-
-    case Repo.update(changeset) do
-      {:ok, _payment_list} ->
-        conn
-        |> put_flash(:info, gettext("payment_list_updated_successfully"))
-        |> redirect(to: page_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "edit.html", payment_list: payment_list, changeset: changeset,
-               user_options: conn.assigns.user_options,
-               deputy_options: conn.assigns.deputy_options,
-               form_mode: :edit)
     end
   end
 
