@@ -47,6 +47,52 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="row">
+          <div class="col-xs-3">
+            <%= gettext("name") %>
+          </div>
+          <div class="col-xs-3">
+            <%= gettext("number_of_units") %>
+          </div>
+          <div class="col-xs-3">
+            <%= gettext("total_price") %>
+          </div>
+          <div class="col-xs-3 text-right">
+            <div class="btn"><span class="glyphicon glyphicon-pencil"></div>
+            <div class="btn"><span class="glyphicon glyphicon-trash"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= if Enum.count(@payment_list.debitors) > 0 do %>
+        <%= for debitor <- @payment_list.debitors do %>
+          <div class="row">
+            <div class="col-xs-3">
+              <%= debitor.id %>
+            </div>
+            <div class="col-xs-3">
+              <%= debitor.number_of_units %>
+            </div>
+            <div class="col-xs-3">
+              <%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %>
+            </div>
+            <div class="col-xs-3 text-right">
+              <div class="btn"><span class="glyphicon glyphicon-pencil"></div>
+              <div class="btn"><span class="glyphicon glyphicon-trash"></div>
+            </div>
+          </div>
+        <% end %>
+        <% else %>
+          <%= gettext("no_records_found") %>
+        <% end %>
+      </div>
+    </div>
+
     <%= if logged_in?(@conn) && (current_user(@conn).id == @payment_list.user_id || current_user(@conn).id == @payment_list.deputy_id) do %>
       <p>
         <%= link gettext("edit"), to: payment_list_path(@conn, :edit, @payment_list), class: "btn btn-default" %>

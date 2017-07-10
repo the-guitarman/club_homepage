@@ -6,26 +6,20 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
 
   plug :authenticate_user 
   plug :scrub_params, "payment_list_debitor" when action in [:create, :update]
-  plug :get_user_select_options when action in [:new, :create, :edit, :update, :show]
-  plug :get_deputy_select_options when action in [:new, :create, :edit, :update]
+  plug :get_user_select_options when action in [:create, :edit, :update]
+  plug :get_deputy_select_options when action in [:create, :edit, :update]
 
-  def new(conn, _params) do
-    changeset = PaymentList.changeset(%PaymentList{user_id: current_user(conn).id})
-    render(conn, "new.html", changeset: changeset,
-           user_options: conn.assigns.user_options,
-           deputy_options: conn.assigns.deputy_options,
-           form_mode: :new)
-  end
+  def create(conn, %{"payment_list_debitor" => payment_list_debitor_params}) do
+    payment_list = get_payment_list(conn)
 
-  def create(conn, %{"payment_list" => payment_list_params}) do
-    payment_list_params = Map.put(payment_list_params, "user_id", current_user(conn).id)
-    changeset = PaymentList.changeset(%PaymentList{}, payment_list_params)
+
+    changeset = PaymentListDebitor.changeset(%PaymentListDebitor{payment_list_id: payment_list.id}, payment_list_debitor_params)
 
     case Repo.insert(changeset) do
-      {:ok, _payment_list} ->
+      {:ok, _payment_list_debitor} ->
         conn
-        |> put_flash(:info, gettext("payment_list_created_successfully"))
-        |> redirect(to: page_path(conn, :index))
+        |> put_flash(:info, gettext("payment_list_debitor_created_successfully"))
+        |> redirect(to: payment_list_path(conn, :show, payment_list))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset,
                user_options: conn.assigns.user_options,
@@ -58,5 +52,9 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
   defp get_deputy_select_options(conn, _) do
     deputy_options = Enum.filter(get_users(), fn({_user_name, user_id}) -> current_user(conn).id != user_id end)
     assign(conn, :deputy_options, deputy_options)
+  end
+
+  defp get_payment_list(conn) do
+    Repo.get!(PaymentList, conn.params["payment_list_id"])
   end
 end
