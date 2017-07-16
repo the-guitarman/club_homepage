@@ -29,53 +29,48 @@
       </div>
     </div>
 
-    <%= form_for @changeset, payment_list_payment_list_debitor_path(@conn, :create, @payment_list), [class: "form-inline"], fn f -> %>
-      <%= show_form_errors(@changeset, f) %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= form_for @changeset, payment_list_payment_list_debitor_path(@conn, :create, @payment_list), [class: "form-inline"], fn f -> %>
+          <%#= show_form_errors(@changeset, f) %>
+              <div class="form-group new-record-element <%#= error_cls @changeset, f, :user_id %>">
+                <%= select(f, :user_id, @user_options, placeholder: gettext("payment_list_debitor_placeholder"), prompt: gettext("select_payment_list_creator_placeholder"), required: true) %>
+                <%= error_tag @changeset, f, :user_id %>
+              </div>
+            </td>
+              <%= number_field(f, :number_of_units, min: 0) %>
+              <div class="form-group">
+                <%= content_tag :button, gettext("add_record"), class: "btn btn-default" %>
+              </div>
+        <% end %>
+      </div>
+    </div>
 
-      <table class="table table-striped table-bordered css-vertical-align">
-        <tr>
-          <td><%= gettext("name") %></td>
-          <td class="text-center"><%= gettext("number_of_units") %></td>
-          <td class="text-right"><%= gettext("total_price") %></td>
-          <td class="text-center"></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="form-group new-record-element <%= error_cls @changeset, f, :user_id %>">
-              <%= select(f, :user_id, @user_options, placeholder: gettext("payment_list_debitor_placeholder"), prompt: gettext("select_payment_list_creator_placeholder"), required: true) %>
-              <%= error_tag @changeset, f, :user_id %>
-            </div>
-          </td>
-          <td class="text-center">
-            <%= number_field(f, :number_of_units, min: 0) %>
-          </td>
-          <td>
-          </td>
-          <td class="text-center">
-            <div class="form-group">
-              <%= content_tag :button, gettext("add_record"), class: "btn btn-default" %>
-            </div>
-          </td>
-        </tr>
-        <%= if Enum.count(@payment_list.debitors) > 0 do %>
-          <%= for debitor <- @payment_list.debitors do %>
-            <tr>
-              <td><%= debitor.id %></td>
-              <td class="text-center"><%= debitor.number_of_units %></td>
-              <td class="text-right"><%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %></td>
-              <td class="text-center">
-                <div class="btn"><span class="glyphicon glyphicon-pencil"></div>
-                <div class="btn"><span class="glyphicon glyphicon-trash"></div>
-              </td>
-            </tr>
-          <% end %>
-        <% else %>
+    <table class="table table-striped table-bordered css-vertical-align">
+      <tr>
+        <td><%= gettext("name") %></td>
+        <td class="text-center"><%= gettext("number_of_units") %></td>
+        <td class="text-right"><%= gettext("total_price") %></td>
+        <td class="text-center"></td>
+      </tr>
+      <%= if Enum.count(@payment_list.debitors) > 0 do %>
+        <%= for debitor <- @payment_list.debitors do %>
           <tr>
-            <td><%= gettext("no_records_found") %></td>
+            <td><%= internal_user_name(debitor.user_id) %></td>
+            <td class="text-center"><%= debitor.number_of_units %></td>
+            <td class="text-right"><%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %></td>
+            <td class="text-center">
+              <%= link raw("<span class=\"glyphicon glyphicon-pencil\"></div>"), to: payment_list_payment_list_debitor_path(@conn, :edit, @payment_list, debitor), class: "btn" %>
+              <%= link raw("<span class=\"glyphicon glyphicon-trash\"></div>"), to: payment_list_payment_list_debitor_path(@conn, :delete, @payment_list, debitor), method: :delete, data: [confirm: gettext("are_you_sure")], class: "btn" %>
+            </td>
           </tr>
         <% end %>
-      </table>
-    <% end %>
+      <% else %>
+        <tr>
+          <td><%= gettext("no_records_found") %></td>
+        </tr>
+      <% end %>
+    </table>
 
     <%= if logged_in?(@conn) && (current_user(@conn).id == @payment_list.user_id || current_user(@conn).id == @payment_list.deputy_id) do %>
       <p>
