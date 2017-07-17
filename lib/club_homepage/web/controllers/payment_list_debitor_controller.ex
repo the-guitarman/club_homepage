@@ -21,7 +21,7 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
         |> put_flash(:info, gettext("payment_list_debitor_created_successfully"))
         |> redirect(to: payment_list_path(conn, :show, payment_list))
       {:error, changeset} ->
-        render(conn, "../payment_lists/show.html", changeset: changeset,
+        render(ClubHomepage.Web.PaymentListView, "show.html", changeset: changeset,
                user_options: conn.assigns.user_options,
                deputy_options: conn.assigns.deputy_options,
                form_mode: :new)
