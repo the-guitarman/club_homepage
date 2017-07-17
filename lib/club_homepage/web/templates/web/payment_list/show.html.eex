@@ -31,7 +31,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <%= form_for @changeset, payment_list_payment_list_debitor_path(@conn, :create, @payment_list), [class: "form-inline"], fn f -> %>
+        <%= form_for @changeset, payment_list_debitor_path(@conn, :create, @payment_list), [class: "form-inline"], fn f -> %>
           <%#= show_form_errors(@changeset, f) %>
               <div class="form-group new-record-element <%#= error_cls @changeset, f, :user_id %>">
                 <%= select(f, :user_id, @user_options, placeholder: gettext("payment_list_debitor_placeholder"), prompt: gettext("select_payment_list_creator_placeholder"), required: true) %>
@@ -60,8 +60,8 @@
             <td class="text-center"><%= debitor.number_of_units %></td>
             <td class="text-right"><%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %></td>
             <td class="text-center">
-              <%= link raw("<span class=\"glyphicon glyphicon-pencil\"></div>"), to: payment_list_payment_list_debitor_path(@conn, :edit, @payment_list, debitor), class: "btn" %>
-              <%= link raw("<span class=\"glyphicon glyphicon-trash\"></div>"), to: payment_list_payment_list_debitor_path(@conn, :delete, @payment_list, debitor), method: :delete, data: [confirm: gettext("are_you_sure")], class: "btn" %>
+              <%= link raw("<span class=\"glyphicon glyphicon-pencil\"></div>"), to: payment_list_debitor_path(@conn, :edit, @payment_list, debitor), class: "btn" %>
+              <%= link raw("<span class=\"glyphicon glyphicon-trash\"></div>"), to: payment_list_debitor_path(@conn, :delete, @payment_list, debitor), method: :delete, data: [confirm: gettext("are_you_sure")], class: "btn" %>
             </td>
           </tr>
         <% end %>
