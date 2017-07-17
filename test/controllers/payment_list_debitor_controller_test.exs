@@ -9,12 +9,14 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   import Ecto.Query, only: [from: 2]
 
   @valid_attrs %{payment_list_id: 1, user_id: 1, number_of_units: 2}
-  @invalid_attrs %{payment_list_id: 0, user_id: 0, number_of_units: 0}
+  @invalid_attrs %{payment_list_id: 0, user_id: 0, number_of_units: -1}
 
   setup context do
     conn = build_conn()
     user = insert(:user)
-    valid_attrs = %{@valid_attrs | user_id: user.id}
+    payment_list = insert(:payment_list)
+    debitor = insert(:payment_list_debitor)
+    valid_attrs = %{@valid_attrs | payment_list_id: payment_list.id, user_id: debitor.id}
     if context[:login] do
       current_user = 
         if context[:user_roles] do
@@ -23,9 +25,9 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
           insert(:user)
         end
       conn = assign(conn, :current_user, current_user)
-      {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs}
+      {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs, payment_list: payment_list, debitor: debitor}
     else
-      {:ok, conn: conn, valid_attrs: valid_attrs}
+      {:ok, conn: conn, valid_attrs: valid_attrs, payment_list: payment_list, debitor: debitor}
     end
   end
 
@@ -46,11 +48,10 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   end
 
   @tag login: true
-  test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
-    payment_list = insert(:payment_list)
+  test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs, payment_list: payment_list, debitor: debitor} do
     conn = post conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: valid_attrs
-    assert redirected_to(conn) == page_path(conn, :index)
-    assert Repo.get_by(PaymentList, %{title: valid_attrs[:title]})
+    assert redirected_to(conn) == payment_list_path(conn, :show, payment_list)
+    assert Repo.get_by(PaymentListDebitor, valid_attrs)
   end
 
   @tag login: true
