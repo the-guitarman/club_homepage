@@ -1,7 +1,8 @@
 defmodule ClubHomepage.PaymentListDebitorControllerTest do
   use ClubHomepage.Web.ConnCase
 
-  alias ClubHomepage.PaymentList
+  # alias ClubHomepage.PaymentList
+  alias ClubHomepage.PaymentListDebitor
 
   import ClubHomepage.Factory
 
@@ -31,14 +32,12 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   @tag login: false
   test "requires user authentication on all actions", %{conn: conn, valid_attrs: valid_attrs} do
     payment_list = insert(:payment_list)
+    debitor = insert(:payment_list_debitor)
     Enum.each([
-      get(conn, payment_list_debitor_path(conn, :index)),
-      get(conn, payment_list_debitor_path(conn, :show, payment_list)),
-      get(conn, payment_list_debitor_path(conn, :new)),
-      post(conn, payment_list_debitor_path(conn, :create), payment_list: valid_attrs),
-      get(conn, payment_list_debitor_path(conn, :edit, payment_list)),
-      put(conn, payment_list_debitor_path(conn, :update, payment_list), payment_list: valid_attrs),
-      delete(conn, payment_list_debitor_path(conn, :delete, payment_list))
+      post(conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: valid_attrs),
+      get(conn, payment_list_debitor_path(conn, :edit, payment_list, debitor)),
+      put(conn, payment_list_debitor_path(conn, :update, payment_list, debitor), payment_list_debitor: valid_attrs),
+      delete(conn, payment_list_debitor_path(conn, :delete, payment_list, debitor))
     ], fn conn ->
       assert html_response(conn, 302)
       assert conn.halted
@@ -47,71 +46,51 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   end
 
   @tag login: true
-  test "lists all entries on index", %{conn: conn} do
-    conn = get conn, payment_list_debitor_path(conn, :index)
-    assert html_response(conn, 200) =~ "All Payment Lists"
-  end
-
-  @tag login: true
-  test "renders form for new resources", %{conn: conn} do
-    conn = get conn, payment_list_debitor_path(conn, :new)
-    assert html_response(conn, 200) =~ "Create Payment List"
-  end
-
-  @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
-    conn = post conn, payment_list_debitor_path(conn, :create), payment_list: valid_attrs
+    payment_list = insert(:payment_list)
+    conn = post conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: valid_attrs
     assert redirected_to(conn) == page_path(conn, :index)
     assert Repo.get_by(PaymentList, %{title: valid_attrs[:title]})
   end
 
   @tag login: true
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, payment_list_debitor_path(conn, :create), payment_list: @invalid_attrs
+    payment_list = insert(:payment_list)
+    conn = post conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: @invalid_attrs
     assert html_response(conn, 200) =~ "Create Payment List"
   end
 
   @tag login: true
-  test "shows chosen resource", %{conn: conn} do
-    payment_list = insert(:payment_list)
-    conn = get conn, payment_list_debitor_path(conn, :show, payment_list)
-    assert html_response(conn, 200) =~ "Payment List - #{payment_list.title}"
-  end
-
-  @tag login: true
-  test "renders page not found when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, payment_list_debitor_path(conn, :show, -1)
-    end
-  end
-
-  @tag login: true
   test "renders form for editing chosen resource", %{conn: conn} do
-    payment_list = Repo.insert! %PaymentList{}
-    conn = get conn, payment_list_debitor_path(conn, :edit, payment_list)
+    payment_list = insert(:payment_list)
+    debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
+    conn = get conn, payment_list_debitor_path(conn, :edit, payment_list, debitor)
     assert html_response(conn, 200) =~ "Edit Payment List"
   end
 
   @tag login: true
   test "updates chosen resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
-    payment_list = Repo.insert! %PaymentList{}
-    conn = put conn, payment_list_debitor_path(conn, :update, payment_list), payment_list: valid_attrs
+    payment_list = insert(:payment_list)
+    debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
+    conn = put conn, payment_list_debitor_path(conn, :update, payment_list, debitor), payment_list_debitor: valid_attrs
     assert redirected_to(conn) == page_path(conn, :index)
     assert Repo.get_by(PaymentList, valid_attrs)
   end
 
   @tag login: true
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    payment_list = Repo.insert! %PaymentList{}
-    conn = put conn, payment_list_debitor_path(conn, :update, payment_list), payment_list: @invalid_attrs
+    payment_list = insert(:payment_list)
+    debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
+    conn = put conn, payment_list_debitor_path(conn, :update, payment_list, debitor), payment_list_debitor: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit Payment List"
   end
 
   @tag login: true
   test "deletes chosen resource", %{conn: conn} do
-    payment_list = Repo.insert! %PaymentList{}
-    conn = delete conn, payment_list_debitor_path(conn, :delete, payment_list)
-    assert redirected_to(conn) == payment_list_debitor_path(conn, :index)
-    refute Repo.get(PaymentList, payment_list.id)
+    payment_list = insert(:payment_list)
+    debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
+    conn = delete conn, payment_list_debitor_path(conn, :delete, payment_list, debitor)
+    assert redirected_to(conn) == payment_list_path(conn, :show, payment_list)
+    refute Repo.get(PaymentListDebitor, debitor.id)
   end
 end

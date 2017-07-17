@@ -14,27 +14,6 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def payment_list_factory do
-    user = insert(:user)
-    deputy = insert(:user)
-    %ClubHomepage.PaymentList{
-      user_id: user.id,
-      deputy_id: deputy.id,
-      title: sequence(:title, &"Team #{&1}"),
-      price_per_piece: 1.0
-    }
-  end
-
-  def payment_list_debitor_factory do
-    payment_list = insert(:payment_list)
-    user = insert(:user)
-    %ClubHomepage.PaymentListDebitor{
-      payment_list_id: payment_list.id,
-      user_id: user.id,
-      number_of_units: sequence(:number_of_units, &(&1))
-    }
-  end
-
   def competition_factory do
     %ClubHomepage.Competition{
       name: sequence(:name, &"League #{&1}"),
@@ -61,14 +40,6 @@ defmodule ClubHomepage.Factory do
     }
   end
 
-  def news_factory do
-    %ClubHomepage.News{
-      subject: sequence(:subject, &"News Subject #{&1}"),
-      body: sequence(:body, &"This is the news message #{&1}."),
-      public: true
-    }
-  end
-
   def meeting_point_factory do
     address = insert(:address)
     %ClubHomepage.MeetingPoint{
@@ -77,9 +48,38 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def news_factory do
+    %ClubHomepage.News{
+      subject: sequence(:subject, &"News Subject #{&1}"),
+      body: sequence(:body, &"This is the news message #{&1}."),
+      public: true
+    }
+  end
+
   def opponent_team_factory do
     %ClubHomepage.OpponentTeam{
       name: sequence(:name, &"Opponent Team #{&1}")
+    }
+  end
+
+  def payment_list_factory do
+    user = insert(:user)
+    deputy = insert(:user)
+    %ClubHomepage.PaymentList{
+      user_id: user.id,
+      deputy_id: deputy.id,
+      title: sequence(:title, &"Team #{&1}"),
+      price_per_piece: 1.0
+    }
+  end
+
+  def payment_list_debitor_factory do
+    payment_list = insert(:payment_list)
+    user = insert(:user)
+    %ClubHomepage.PaymentListDebitor{
+      payment_list_id: payment_list.id,
+      user_id: user.id,
+      number_of_units: sequence(:number_of_units, &(&1))
     }
   end
 
