@@ -19,5 +19,6 @@ defmodule ClubHomepage.PaymentListDebitor do
     |> validate_required([:payment_list_id, :user_id, :number_of_units])
     |> foreign_key_constraint(:payment_list_id)
     |> foreign_key_constraint(:user_id)
+    |> validate_number(:number_of_units, greater_than_or_equal_to: 0)
   end
 end
