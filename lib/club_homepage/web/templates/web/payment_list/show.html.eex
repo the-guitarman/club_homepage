@@ -56,7 +56,7 @@
       <%= if Enum.count(@payment_list.debitors) > 0 do %>
         <%= for debitor <- @payment_list.debitors do %>
           <tr>
-            <td><%= internal_user_name(debitor.user_id) %></td>
+            <td><%= user_name(debitor.user_id) %></td>
             <td class="text-center"><%= debitor.number_of_units %></td>
             <td class="text-right"><%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %></td>
             <td class="text-center">

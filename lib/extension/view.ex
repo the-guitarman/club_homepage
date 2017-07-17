@@ -210,7 +210,6 @@ defmodule ClubHomepage.Extension.View do
           options
           |> Keyword.put(:class, "form-control text-center no-spin")
           |> Keyword.put(:placeholder, Gettext.gettext(ClubHomepage.Web.Gettext, Atom.to_string(field)))
-        e2 = Tag.tag(:input, options)
         e2 = Form.number_input form, field, options
         e3 = Tag.content_tag(:div, class: "input-group-addon btn btn-primary") do
           Tag.content_tag(:span, class: "glyphicon glyphicon-plus") do

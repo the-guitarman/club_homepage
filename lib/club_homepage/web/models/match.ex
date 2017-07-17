@@ -3,7 +3,7 @@ defmodule ClubHomepage.Match do
 
   alias ClubHomepage.Web.ModelValidator
 
-  import ClubHomepage.Extension.CommonMatch, only: [failure_reasons: 0]
+  import ClubHomepage.Extension.Common, only: [failure_reasons: 0]
 
   schema "matches" do
     field :start_at, Timex.Ecto.DateTime

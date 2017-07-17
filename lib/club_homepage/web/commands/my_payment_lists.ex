@@ -10,7 +10,7 @@ defmodule ClubHomepage.Web.MyPaymentLists do
 
   import Plug.Conn
   import Ecto.Query, only: [from: 2]
-  #import ClubHomepage.Extension.CommonMatch, only: [internal_user_name: 1]
+  #import ClubHomepage.Extension.Common, only: [internal_user_name: 1]
   import ClubHomepage.Web.Auth
 
   def init(_opts) do

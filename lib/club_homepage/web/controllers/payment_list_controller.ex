@@ -42,7 +42,7 @@ defmodule ClubHomepage.Web.PaymentListController do
   def show(conn, %{"id" => id}) do
     changeset = PaymentListDebitor.changeset(%PaymentListDebitor{payment_list_id: id, number_of_units: 1})
     payment_list = Repo.one!(from(bl in PaymentList, preload: [:user, :deputy, :debitors], where: bl.id == ^id))
-    render(conn, "show.html", payment_list: payment_list, changeset: changeset, user_options: conn.assigns.user_options)
+    render(conn, "show.html", payment_list: payment_list, changeset: changeset, user_options: get_possible_debitors(payment_list))
   end
 
   def edit(conn, %{"id" => id}) do
@@ -95,5 +95,11 @@ defmodule ClubHomepage.Web.PaymentListController do
   defp get_deputy_select_options(conn, _) do
     deputy_options = Enum.filter(get_users(), fn({_user_name, user_id}) -> current_user(conn).id != user_id end)
     assign(conn, :deputy_options, deputy_options)
+  end
+
+  defp get_possible_debitors(payment_list) do
+    debitor_ids = Enum.map(payment_list.debitors, fn(debitor) -> debitor.user_id end)
+    from(u in ClubHomepage.User, select: {u.name, u.id}, where: not u.id in ^debitor_ids, order_by: [desc: u.name])
+    |> Repo.all
   end
 end
