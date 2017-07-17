@@ -35,8 +35,7 @@ defmodule ClubHomepage.PaymentListDebitorTest do
     changeset = PaymentListDebitor.changeset(%PaymentListDebitor{}, valid_attrs)
     refute changeset.valid?
     refute Enum.empty?(changeset.errors)
-    IO.inspect changeset.errors[:number_of_units]
-    # assert changeset.errors = [number_of_units: {"must be greater than or equal to %{number}", [validation: :number, number: 0]}]
+    assert List.keymember?(changeset.errors, :number_of_units, 0)
 
     valid_attrs = %{@valid_attrs | payment_list_id: payment_list.id, user_id: user.id, number_of_units: 0}
     changeset = PaymentListDebitor.changeset(%PaymentListDebitor{}, valid_attrs)
