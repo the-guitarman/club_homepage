@@ -37,17 +37,24 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
     payment_list = Repo.get!(PaymentList, payment_list_id)
     debitor = Repo.get!(PaymentListDebitor, id)
     changeset = PaymentListDebitor.changeset(debitor)
-    render(conn, "edit.html", payment_list: payment_list, debitor: debitor, changeset: changeset,
-           user_options: conn.assigns.user_options, form_mode: :edit)
+    render(conn, "edit.html", payment_list: payment_list, debitor: debitor, changeset: changeset, user_options: conn.assigns.user_options, form_mode: :edit)
   end
 
-  def update(conn, %{"payment_list_debitor" => payment_list_debitor_params}) do
+  def update(conn, %{"payment_list_id" => payment_list_id, "id" => id, "payment_list_debitor" => payment_list_debitor_params}) do
     payment_list =
-      conn
-      |> get_payment_list()
+      Repo.get!(PaymentList, payment_list_id)
       |> Repo.preload([:user, :deputy, :debitors])
+    debitor = Repo.get!(PaymentListDebitor, id)
+    changeset = PaymentListDebitor.changeset(debitor, payment_list_debitor_params)
 
-    
+    case Repo.update(changeset) do
+      {:ok, _payment_list} ->
+        conn
+        |> put_flash(:info, gettext("payment_list_updated_successfully"))
+        |> redirect(to: payment_list_path(conn, :show, payment_list))
+      {:error, changeset} ->
+        render(conn, "edit.html", payment_list: payment_list, debitor: debitor, changeset: changeset, user_options: conn.assigns.user_options, form_mode: :edit)
+    end
   end
 
   def delete(conn, %{"payment_list_id" => payment_list_id, "id" => id}) do
