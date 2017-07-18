@@ -33,13 +33,30 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
     end
   end
 
+  def edit(conn, %{"payment_list_id" => payment_list_id, "id" => id}) do
+    payment_list = Repo.get!(PaymentList, payment_list_id)
+    debitor = Repo.get!(PaymentListDebitor, id)
+    changeset = PaymentListDebitor.changeset(debitor)
+    render(conn, "edit.html", payment_list: payment_list, debitor: debitor, changeset: changeset,
+           user_options: conn.assigns.user_options, form_mode: :edit)
+  end
+
+  def update(conn, %{"payment_list_debitor" => payment_list_debitor_params}) do
+    payment_list =
+      conn
+      |> get_payment_list()
+      |> Repo.preload([:user, :deputy, :debitors])
+
+    
+  end
+
   def delete(conn, %{"payment_list_id" => payment_list_id, "id" => id}) do
     payment_list = Repo.get!(PaymentList, payment_list_id)
-    payment_list_debitor = Repo.get!(PaymentListDebitor, id)
+    debitor = Repo.get!(PaymentListDebitor, id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
-    Repo.delete!(payment_list_debitor)
+    Repo.delete!(debitor)
 
     conn
     |> put_flash(:info, gettext("payment_list_debitor_deleted_successfully"))
