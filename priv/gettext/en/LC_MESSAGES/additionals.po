@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: web/templates/competition/index.html.eex:24
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:24
 msgid "yes"
 msgstr "yes"
 
-#: web/templates/competition/index.html.eex:25
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:25
 msgid "no"
 msgstr "no"
 

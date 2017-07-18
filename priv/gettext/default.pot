@@ -1,1056 +1,1119 @@
-#: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
-#: web/templates/address/index.html.eex:8
-#: web/templates/address/index.html.eex:55 web/templates/address/new.html.eex:9
-#: web/templates/competition/edit.html.eex:10
-#: web/templates/competition/index.html.eex:4
-#: web/templates/competition/new.html.eex:10
-#: web/templates/layout/navbar_top.html.eex:132
-#: web/templates/layout/navbar_top.html.eex:137
-#: web/templates/layout/navbar_top.html.eex:142
-#: web/templates/layout/navbar_top.html.eex:147
-#: web/templates/layout/navbar_top.html.eex:150
-#: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
-#: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:105
-#: web/templates/meeting_point/edit.html.eex:11
-#: web/templates/meeting_point/index.html.eex:4
-#: web/templates/meeting_point/index.html.eex:8
-#: web/templates/meeting_point/index.html.eex:35
-#: web/templates/meeting_point/new.html.eex:11
-#: web/templates/meeting_point/show.html.eex:14
-#: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
-#: web/templates/news/show.html.eex:26
-#: web/templates/opponent_team/edit.html.eex:11
-#: web/templates/opponent_team/index.html.eex:4
-#: web/templates/opponent_team/index.html.eex:8
-#: web/templates/opponent_team/index.html.eex:37
-#: web/templates/opponent_team/new.html.eex:11
-#: web/templates/payment_list/edit.html.eex:10
-#: web/templates/payment_list/index.html.eex:4
-#: web/templates/payment_list/new.html.eex:10
-#: web/templates/payment_list/show.html.eex:9
-#: web/templates/payment_list/show.html.eex:55
-#: web/templates/permalink/show.html.eex:18 web/templates/season/edit.html.eex:6
-#: web/templates/season/index.html.eex:5 web/templates/season/new.html.eex:8
-#: web/templates/season/show.html.eex:14 web/templates/secret/index.html.eex:4
-#: web/templates/secret/show.html.eex:16
-#: web/templates/sponsor_image/edit.html.eex:9
-#: web/templates/sponsor_image/index.html.eex:4
-#: web/templates/sponsor_image/new.html.eex:9
-#: web/templates/team/edit.html.eex:11 web/templates/team/index.html.eex:4
-#: web/templates/team/new.html.eex:11 web/templates/team/show.html.eex:21
-#: web/templates/team/team_images_page.html.eex:61
-#: web/templates/team/team_page.html.eex:67
-#: web/templates/team_chat_message/index.html.eex:4
-#: web/templates/team_image/edit.html.eex:11
-#: web/templates/team_image/index.html.eex:4
-#: web/templates/team_image/new.html.eex:11
-#: web/templates/text_page/edit.html.eex:30
-#: web/templates/text_page/edit.html.eex:31
-#: web/templates/text_page/index.html.eex:4 web/templates/user/edit.html.eex:19
-#: web/templates/user/index.html.eex:4 web/templates/user/new.html.eex:15
-#: web/templates/user/new_unregistered.html.eex:12
-#: web/templates/user/show.html.eex:7 web/templates/user/show.html.eex:51
+#: lib/club_homepage/web/templates/web/address/edit.html.eex:9
+#: lib/club_homepage/web/templates/web/address/index.html.eex:4
+#: lib/club_homepage/web/templates/web/address/index.html.eex:8
+#: lib/club_homepage/web/templates/web/address/index.html.eex:55
+#: lib/club_homepage/web/templates/web/address/new.html.eex:9
+#: lib/club_homepage/web/templates/web/competition/edit.html.eex:10
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:4
+#: lib/club_homepage/web/templates/web/competition/new.html.eex:10
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:114
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:119
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:124
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:129
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:132
+#: lib/club_homepage/web/templates/web/match/edit.html.eex:15
+#: lib/club_homepage/web/templates/web/match/index.html.eex:4
+#: lib/club_homepage/web/templates/web/match/new.html.eex:15
+#: lib/club_homepage/web/templates/web/match/new_bulk.html.eex:12
+#: lib/club_homepage/web/templates/web/match/show.html.eex:105
+#: lib/club_homepage/web/templates/web/meeting_point/edit.html.eex:11
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:4
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:8
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:35
+#: lib/club_homepage/web/templates/web/meeting_point/new.html.eex:11
+#: lib/club_homepage/web/templates/web/meeting_point/show.html.eex:14
+#: lib/club_homepage/web/templates/web/news/edit.html.eex:9
+#: lib/club_homepage/web/templates/web/news/new.html.eex:9
+#: lib/club_homepage/web/templates/web/news/show.html.eex:26
+#: lib/club_homepage/web/templates/web/opponent_team/edit.html.eex:11
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:4
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:8
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:37
+#: lib/club_homepage/web/templates/web/opponent_team/new.html.eex:11
+#: lib/club_homepage/web/templates/web/payment_list/edit.html.eex:10
+#: lib/club_homepage/web/templates/web/payment_list/index.html.eex:4
+#: lib/club_homepage/web/templates/web/payment_list/new.html.eex:10
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:9
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:71
+#: lib/club_homepage/web/templates/web/permalink/show.html.eex:18
+#: lib/club_homepage/web/templates/web/season/edit.html.eex:6
+#: lib/club_homepage/web/templates/web/season/index.html.eex:5
+#: lib/club_homepage/web/templates/web/season/new.html.eex:8
+#: lib/club_homepage/web/templates/web/season/show.html.eex:14
+#: lib/club_homepage/web/templates/web/secret/index.html.eex:4
+#: lib/club_homepage/web/templates/web/secret/show.html.eex:16
+#: lib/club_homepage/web/templates/web/sponsor_image/edit.html.eex:9
+#: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:4
+#: lib/club_homepage/web/templates/web/sponsor_image/new.html.eex:9
+#: lib/club_homepage/web/templates/web/team/edit.html.eex:11
+#: lib/club_homepage/web/templates/web/team/index.html.eex:4
+#: lib/club_homepage/web/templates/web/team/new.html.eex:11
+#: lib/club_homepage/web/templates/web/team/show.html.eex:21
+#: lib/club_homepage/web/templates/web/team/team_images_page.html.eex:61
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:67
+#: lib/club_homepage/web/templates/web/team_chat_message/index.html.eex:4
+#: lib/club_homepage/web/templates/web/team_image/edit.html.eex:11
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:4
+#: lib/club_homepage/web/templates/web/team_image/new.html.eex:11
+#: lib/club_homepage/web/templates/web/text_page/edit.html.eex:30
+#: lib/club_homepage/web/templates/web/text_page/edit.html.eex:31
+#: lib/club_homepage/web/templates/web/text_page/index.html.eex:4
+#: lib/club_homepage/web/templates/web/user/edit.html.eex:19
+#: lib/club_homepage/web/templates/web/user/index.html.eex:4
+#: lib/club_homepage/web/templates/web/user/new.html.eex:15
+#: lib/club_homepage/web/templates/web/user/new_unregistered.html.eex:12
+#: lib/club_homepage/web/templates/web/user/show.html.eex:7
+#: lib/club_homepage/web/templates/web/user/show.html.eex:51
 msgid "all"
 msgstr ""
 
-#: web/templates/match/index.html.eex:10 web/templates/match/index.html.eex:60
-#: web/templates/match/new.html.eex:4 web/templates/team/team_page.html.eex:33
+#: lib/club_homepage/web/templates/web/match/index.html.eex:10
+#: lib/club_homepage/web/templates/web/match/index.html.eex:60
+#: lib/club_homepage/web/templates/web/match/new.html.eex:4
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:33
 msgid "create_new_match"
 msgstr ""
 
-#: web/templates/match/index.html.eex:8 web/templates/match/index.html.eex:58
-#: web/templates/team/team_page.html.eex:31
+#: lib/club_homepage/web/templates/web/match/index.html.eex:8
+#: lib/club_homepage/web/templates/web/match/index.html.eex:58
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:31
 msgid "create_next_new_match"
 msgstr ""
 
-#: web/templates/match/index.html.eex:22
+#: lib/club_homepage/web/templates/web/match/index.html.eex:22
 msgid "date_and_time"
 msgstr ""
 
-#: web/templates/match/form.html.eex:30 web/templates/match/index.html.eex:23
+#: lib/club_homepage/web/templates/web/match/form.html.eex:30
+#: lib/club_homepage/web/templates/web/match/index.html.eex:23
 msgid "home_match"
 msgstr ""
 
-#: web/templates/match/edit.html.eex:15 web/templates/match/index.html.eex:4
-#: web/templates/match/new.html.eex:15 web/templates/match/new_bulk.html.eex:12
-#: web/templates/match/show.html.eex:105 web/templates/team/team_page.html.eex:4
-#: web/templates/team/team_page_link_header.html.eex:5
-#: web/templates/team/team_page_link_header.html.eex:7
+#: lib/club_homepage/web/templates/web/match/edit.html.eex:15
+#: lib/club_homepage/web/templates/web/match/index.html.eex:4
+#: lib/club_homepage/web/templates/web/match/new.html.eex:15
+#: lib/club_homepage/web/templates/web/match/new_bulk.html.eex:12
+#: lib/club_homepage/web/templates/web/match/show.html.eex:105
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:4
+#: lib/club_homepage/web/templates/web/team/team_page_link_header.html.eex:5
+#: lib/club_homepage/web/templates/web/team/team_page_link_header.html.eex:7
 msgid "matches"
 msgstr ""
 
-#: web/commands/match_calender_creator.ex:101
-#: web/templates/match/index.html.eex:21 web/templates/match/show.html.eex:64
-#: web/templates/meeting_point/index.html.eex:14 web/views/match_view.ex:34
+#: lib/club_homepage/web/commands/match_calender_creator.ex:96
+#: lib/club_homepage/web/templates/web/match/index.html.eex:21
+#: lib/club_homepage/web/templates/web/match/show.html.eex:64
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:14
+#: lib/club_homepage/web/views/match_view.ex:34
 msgid "meeting_point"
 msgstr ""
 
-#: web/templates/match/index.html.eex:20
+#: lib/club_homepage/web/templates/web/match/index.html.eex:20
 msgid "opponent_team"
 msgstr ""
 
-#: web/templates/match/index.html.eex:18
+#: lib/club_homepage/web/templates/web/match/index.html.eex:18
 msgid "season"
 msgstr ""
 
-#: web/templates/match/index.html.eex:19
-#: web/templates/team_chat_message/index.html.eex:9
-#: web/templates/team_image/index.html.eex:9
+#: lib/club_homepage/web/templates/web/match/index.html.eex:19
+#: lib/club_homepage/web/templates/web/team_chat_message/index.html.eex:9
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:9
 msgid "team"
 msgstr ""
 
-#: web/templates/season/index.html.eex:8 web/templates/season/index.html.eex:27
-#: web/templates/season/new.html.eex:4
+#: lib/club_homepage/web/templates/web/season/index.html.eex:8
+#: lib/club_homepage/web/templates/web/season/index.html.eex:27
+#: lib/club_homepage/web/templates/web/season/new.html.eex:4
 msgid "create_new_season"
 msgstr ""
 
-#: web/templates/match/show.html.eex:101
-#: web/templates/team/team_page_match_table.html.eex:11
+#: lib/club_homepage/web/templates/web/match/show.html.eex:101
+#: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:11
 msgid "delete_match"
 msgstr ""
 
-#: lib/extension/view.ex:158 web/templates/match/form_bulk.html.eex:4
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:4
+#: lib/extension/view.ex:162
 msgid "form_input_errors_notice"
 msgstr ""
 
-#: web/templates/address/form.html.eex:41
-#: web/templates/competition/form.html.eex:20
-#: web/templates/match/form.html.eex:99
-#: web/templates/match/form_bulk.html.eex:36
-#: web/templates/match/soccer_match_timeline.html.eex:105
-#: web/templates/meeting_point/form.html.eex:15
-#: web/templates/news/form.html.eex:26
-#: web/templates/opponent_team/form.html.eex:15
-#: web/templates/payment_list/form.html.eex:32
-#: web/templates/permalink/form.html.eex:17
-#: web/templates/season/form.html.eex:14 web/templates/secret/form.html.eex:9
-#: web/templates/sponsor_image/form.html.eex:17
-#: web/templates/team/form.html.eex:15 web/templates/team_image/form.html.eex:33
-#: web/templates/text_page/form.html.eex:17 web/templates/user/form.html.eex:55
-#: web/templates/user/form_restricted.html.eex:14
-#: web/templates/user/form_restricted.html.eex:27
-#: web/templates/user/form_restricted.html.eex:40
-#: web/templates/user/form_unregistered.html.eex:26
+#: lib/club_homepage/web/templates/web/address/form.html.eex:41
+#: lib/club_homepage/web/templates/web/competition/form.html.eex:20
+#: lib/club_homepage/web/templates/web/match/form.html.eex:99
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:36
+#: lib/club_homepage/web/templates/web/match/soccer_match_timeline.html.eex:105
+#: lib/club_homepage/web/templates/web/meeting_point/form.html.eex:15
+#: lib/club_homepage/web/templates/web/news/form.html.eex:26
+#: lib/club_homepage/web/templates/web/opponent_team/form.html.eex:15
+#: lib/club_homepage/web/templates/web/payment_list/form.html.eex:32
+#: lib/club_homepage/web/templates/web/payment_list_debitor/form.html.eex:15
+#: lib/club_homepage/web/templates/web/permalink/form.html.eex:17
+#: lib/club_homepage/web/templates/web/season/form.html.eex:14
+#: lib/club_homepage/web/templates/web/secret/form.html.eex:9
+#: lib/club_homepage/web/templates/web/sponsor_image/form.html.eex:17
+#: lib/club_homepage/web/templates/web/team/form.html.eex:15
+#: lib/club_homepage/web/templates/web/team_image/form.html.eex:33
+#: lib/club_homepage/web/templates/web/text_page/form.html.eex:17
+#: lib/club_homepage/web/templates/web/user/form.html.eex:55
+#: lib/club_homepage/web/templates/web/user/form_restricted.html.eex:14
+#: lib/club_homepage/web/templates/web/user/form_restricted.html.eex:27
+#: lib/club_homepage/web/templates/web/user/form_restricted.html.eex:40
+#: lib/club_homepage/web/templates/web/user/form_unregistered.html.eex:26
 msgid "save"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:132
-#: web/templates/season/edit.html.eex:6 web/templates/season/index.html.eex:5
-#: web/templates/season/new.html.eex:8 web/templates/season/show.html.eex:14
-#: web/templates/team/team_page.html.eex:11
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:114
+#: lib/club_homepage/web/templates/web/season/edit.html.eex:6
+#: lib/club_homepage/web/templates/web/season/index.html.eex:5
+#: lib/club_homepage/web/templates/web/season/new.html.eex:8
+#: lib/club_homepage/web/templates/web/season/show.html.eex:14
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:11
 msgid "seasons"
 msgstr ""
 
-#: web/templates/match/form.html.eex:24
+#: lib/club_homepage/web/templates/web/match/form.html.eex:24
 msgid "select_date_and_time_placeholder"
 msgstr ""
 
-#: web/templates/match/form.html.eex:92 web/templates/match/form.html.eex:92
+#: lib/club_homepage/web/templates/web/match/form.html.eex:92
+#: lib/club_homepage/web/templates/web/match/form.html.eex:92
 msgid "select_meeting_point_placeholder"
 msgstr ""
 
-#: web/templates/match/form.html.eex:17 web/templates/match/form.html.eex:17
+#: lib/club_homepage/web/templates/web/match/form.html.eex:17
+#: lib/club_homepage/web/templates/web/match/form.html.eex:17
 msgid "select_opponent_team_placeholder"
 msgstr ""
 
-#: web/templates/match/form_group_to_select_a_season.html.eex:2
-#: web/templates/match/form_group_to_select_a_season.html.eex:2
+#:
+#: lib/club_homepage/web/templates/web/match/form_group_to_select_a_season.html.eex:2
+#: lib/club_homepage/web/templates/web/match/form_group_to_select_a_season.html.eex:2
 msgid "select_season_placeholder"
 msgstr ""
 
-#: web/templates/match/form_group_to_select_a_team.html.eex:2
-#: web/templates/match/form_group_to_select_a_team.html.eex:2
-#: web/templates/team_image/form.html.eex:6
-#: web/templates/team_image/form.html.eex:6
+#:
+#: lib/club_homepage/web/templates/web/match/form_group_to_select_a_team.html.eex:2
+#: lib/club_homepage/web/templates/web/match/form_group_to_select_a_team.html.eex:2
+#: lib/club_homepage/web/templates/web/team_image/form.html.eex:6
+#: lib/club_homepage/web/templates/web/team_image/form.html.eex:6
 msgid "select_team_placeholder"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:19
-#: web/templates/page/about_us.html.eex:4
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:19
+#: lib/club_homepage/web/templates/web/page/about_us.html.eex:4
 msgid "about_us"
 msgstr ""
 
-#: web/templates/meeting_point/index.html.eex:14
-#: web/templates/opponent_team/index.html.eex:15
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:14
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:15
 msgid "address"
 msgstr ""
 
-#: web/templates/address/form.html.eex:24
+#: lib/club_homepage/web/templates/web/address/form.html.eex:24
 msgid "address_district_placeholder"
 msgstr ""
 
-#: web/templates/address/form.html.eex:6
+#: lib/club_homepage/web/templates/web/address/form.html.eex:6
 msgid "address_street_placeholder"
 msgstr ""
 
-#: web/templates/address/form.html.eex:12
+#: lib/club_homepage/web/templates/web/address/form.html.eex:12
 msgid "address_zip_code_placeholder"
 msgstr ""
 
-#: web/templates/address/edit.html.eex:9 web/templates/address/index.html.eex:4
-#: web/templates/address/new.html.eex:9
-#: web/templates/meeting_point/index.html.eex:8
-#: web/templates/meeting_point/index.html.eex:35
-#: web/templates/opponent_team/index.html.eex:8
-#: web/templates/opponent_team/index.html.eex:37
+#: lib/club_homepage/web/templates/web/address/edit.html.eex:9
+#: lib/club_homepage/web/templates/web/address/index.html.eex:4
+#: lib/club_homepage/web/templates/web/address/new.html.eex:9
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:8
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:35
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:8
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:37
 msgid "addresses"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:22
-#: web/templates/page/chronicle.html.eex:4
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:22
+#: lib/club_homepage/web/templates/web/page/chronicle.html.eex:4
 msgid "chronicle"
 msgstr ""
 
-#: web/templates/address/index.html.eex:21
+#: lib/club_homepage/web/templates/web/address/index.html.eex:21
 msgid "city"
 msgstr ""
 
-#: web/templates/layout/navbar_bottom.html.eex:22
-#: web/templates/page/contact.html.eex:4
+#: lib/club_homepage/web/templates/web/layout/navbar_bottom.html.eex:22
+#: lib/club_homepage/web/templates/web/page/contact.html.eex:4
 msgid "contact"
 msgstr ""
 
-#: web/templates/address/index.html.eex:7
-#: web/templates/address/index.html.eex:54 web/templates/address/new.html.eex:4
+#: lib/club_homepage/web/templates/web/address/index.html.eex:7
+#: lib/club_homepage/web/templates/web/address/index.html.eex:54
+#: lib/club_homepage/web/templates/web/address/new.html.eex:4
 msgid "create_new_address"
 msgstr ""
 
-#: web/templates/meeting_point/index.html.eex:7
-#: web/templates/meeting_point/index.html.eex:34
-#: web/templates/meeting_point/new.html.eex:4
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:7
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:34
+#: lib/club_homepage/web/templates/web/meeting_point/new.html.eex:4
 msgid "create_new_meeting_point"
 msgstr ""
 
-#: web/templates/opponent_team/index.html.eex:7
-#: web/templates/opponent_team/index.html.eex:36
-#: web/templates/opponent_team/new.html.eex:4
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:7
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:36
+#: lib/club_homepage/web/templates/web/opponent_team/new.html.eex:4
 msgid "create_new_opponent_team"
 msgstr ""
 
-#: web/templates/secret/index.html.eex:7 web/templates/secret/index.html.eex:33
-#: web/templates/secret/new.html.eex:4 web/templates/user/index.html.eex:10
-#: web/templates/user/index.html.eex:69
+#: lib/club_homepage/web/templates/web/secret/index.html.eex:7
+#: lib/club_homepage/web/templates/web/secret/index.html.eex:33
+#: lib/club_homepage/web/templates/web/secret/new.html.eex:4
+#: lib/club_homepage/web/templates/web/user/index.html.eex:10
+#: lib/club_homepage/web/templates/web/user/index.html.eex:69
 msgid "create_new_secret"
 msgstr ""
 
-#: web/templates/secret/new.html.eex:6
+#: lib/club_homepage/web/templates/web/secret/new.html.eex:6
 msgid "create_new_secret_notice"
 msgstr ""
 
-#: web/templates/meeting_point/show.html.eex:13
-#: web/templates/secret/index.html.eex:25
-#: web/templates/sponsor_image/index.html.eex:23
-#: web/templates/team/team_images_page.html.eex:37
-#: web/templates/team_image/index.html.eex:27
+#: lib/club_homepage/web/templates/web/meeting_point/show.html.eex:13
+#: lib/club_homepage/web/templates/web/secret/index.html.eex:25
+#: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:23
+#: lib/club_homepage/web/templates/web/team/team_images_page.html.eex:37
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:27
 msgid "delete"
 msgstr ""
 
-#: web/templates/address/index.html.eex:24
+#: lib/club_homepage/web/templates/web/address/index.html.eex:24
 msgid "district"
 msgstr ""
 
-#: web/templates/address/index.html.eex:46
-#: web/templates/meeting_point/index.html.eex:26
-#: web/templates/meeting_point/show.html.eex:12
-#: web/templates/news/show.html.eex:25
-#: web/templates/opponent_team/index.html.eex:27
-#: web/templates/payment_list/show.html.eex:8
-#: web/templates/payment_list/show.html.eex:54
-#: web/templates/season/show.html.eex:12
-#: web/templates/sponsor_image/index.html.eex:22
-#: web/templates/team/index.html.eex:17
-#: web/templates/team/team_images_page.html.eex:36
-#: web/templates/team_image/index.html.eex:26
-#: web/templates/user/index.html.eex:57
+#: lib/club_homepage/web/templates/web/address/index.html.eex:46
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:26
+#: lib/club_homepage/web/templates/web/meeting_point/show.html.eex:12
+#: lib/club_homepage/web/templates/web/news/show.html.eex:25
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:27
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:8
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:70
+#: lib/club_homepage/web/templates/web/season/show.html.eex:12
+#: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:22
+#: lib/club_homepage/web/templates/web/team/index.html.eex:17
+#: lib/club_homepage/web/templates/web/team/team_images_page.html.eex:36
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:26
+#: lib/club_homepage/web/templates/web/user/index.html.eex:57
 msgid "edit"
 msgstr ""
 
-#: web/templates/address/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/address/edit.html.eex:4
 msgid "edit_address"
 msgstr ""
 
-#: web/templates/meeting_point/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/meeting_point/edit.html.eex:4
 msgid "edit_meeting_point"
 msgstr ""
 
-#: web/templates/opponent_team/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/opponent_team/edit.html.eex:4
 msgid "edit_opponent_team"
 msgstr ""
 
-#: web/templates/season/edit.html.eex:1
+#: lib/club_homepage/web/templates/web/season/edit.html.eex:1
 msgid "edit_season"
 msgstr ""
 
-#: web/templates/address/index.html.eex:8
-#: web/templates/address/index.html.eex:55
-#: web/templates/layout/navbar_top.html.eex:137
-#: web/templates/meeting_point/edit.html.eex:11
-#: web/templates/meeting_point/index.html.eex:4
-#: web/templates/meeting_point/new.html.eex:11
-#: web/templates/meeting_point/show.html.eex:14
+#: lib/club_homepage/web/templates/web/address/index.html.eex:8
+#: lib/club_homepage/web/templates/web/address/index.html.eex:55
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:119
+#: lib/club_homepage/web/templates/web/meeting_point/edit.html.eex:11
+#: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:4
+#: lib/club_homepage/web/templates/web/meeting_point/new.html.eex:11
+#: lib/club_homepage/web/templates/web/meeting_point/show.html.eex:14
 msgid "meeting_points"
 msgstr ""
 
-#: web/templates/competition/index.html.eex:12
-#: web/templates/meeting_point/form.html.eex:6
-#: web/templates/opponent_team/form.html.eex:6
-#: web/templates/opponent_team/index.html.eex:14
-#: web/templates/season/show.html.eex:6
-#: web/templates/sponsor_image/index.html.eex:9
-#: web/templates/team/show.html.eex:8
-#: web/templates/user/form_unregistered.html.eex:14
-#: web/templates/user/index.html.eex:19
-#: web/templates/user/master_data_fields.html.eex:10
-#: web/templates/user/show.html.eex:16
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:12
+#: lib/club_homepage/web/templates/web/meeting_point/form.html.eex:6
+#: lib/club_homepage/web/templates/web/opponent_team/form.html.eex:6
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:14
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:44
+#: lib/club_homepage/web/templates/web/season/show.html.eex:6
+#: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:9
+#: lib/club_homepage/web/templates/web/team/show.html.eex:8
+#: lib/club_homepage/web/templates/web/user/form_unregistered.html.eex:14
+#: lib/club_homepage/web/templates/web/user/index.html.eex:19
+#: lib/club_homepage/web/templates/web/user/master_data_fields.html.eex:10
+#: lib/club_homepage/web/templates/web/user/show.html.eex:16
 msgid "name"
 msgstr ""
 
-#: web/templates/opponent_team/edit.html.eex:11
-#: web/templates/opponent_team/index.html.eex:4
-#: web/templates/opponent_team/new.html.eex:11
+#: lib/club_homepage/web/templates/web/opponent_team/edit.html.eex:11
+#: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:4
+#: lib/club_homepage/web/templates/web/opponent_team/new.html.eex:11
 msgid "opponent_teams"
 msgstr ""
 
-#: web/templates/layout/navbar_bottom.html.eex:25
-#: web/templates/page/registration_information.html.eex:4
+#: lib/club_homepage/web/templates/web/layout/navbar_bottom.html.eex:25
+#: lib/club_homepage/web/templates/web/page/registration_information.html.eex:4
 msgid "registration_information"
 msgstr ""
 
-#: web/templates/secret/index.html.eex:4 web/templates/secret/show.html.eex:16
+#: lib/club_homepage/web/templates/web/secret/index.html.eex:4
+#: lib/club_homepage/web/templates/web/secret/show.html.eex:16
 msgid "secrets"
 msgstr ""
 
-#: web/templates/season/form.html.eex:9 web/templates/season/form.html.eex:9
+#: lib/club_homepage/web/templates/web/season/form.html.eex:9
+#: lib/club_homepage/web/templates/web/season/form.html.eex:9
 msgid "select_season_years_placeholder"
 msgstr ""
 
-#: web/templates/meeting_point/show.html.eex:1
+#: lib/club_homepage/web/templates/web/meeting_point/show.html.eex:1
 msgid "show_meeting_point"
 msgstr ""
 
-#: web/templates/season/show.html.eex:1
+#: lib/club_homepage/web/templates/web/season/show.html.eex:1
 msgid "show_season"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:25
-#: web/templates/page/sponsors.html.eex:4
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:25
+#: lib/club_homepage/web/templates/web/page/sponsors.html.eex:4
 msgid "sponsors"
 msgstr ""
 
-#: web/templates/address/index.html.eex:15
+#: lib/club_homepage/web/templates/web/address/index.html.eex:15
 msgid "street"
 msgstr ""
 
-#: web/templates/address/index.html.eex:18
+#: lib/club_homepage/web/templates/web/address/index.html.eex:18
 msgid "zip_code"
 msgstr ""
 
-#: web/templates/address/form.html.eex:18
+#: lib/club_homepage/web/templates/web/address/form.html.eex:18
 msgid "address_city_place_holder"
 msgstr ""
 
-#: web/templates/secret/index.html.eex:14
+#: lib/club_homepage/web/templates/web/secret/index.html.eex:14
 msgid "expiry_date"
 msgstr ""
 
-#: web/templates/secret/index.html.eex:13 web/templates/user/form.html.eex:9
+#: lib/club_homepage/web/templates/web/secret/index.html.eex:13
+#: lib/club_homepage/web/templates/web/user/form.html.eex:9
 msgid "secret"
 msgstr ""
 
-#: web/templates/team/index.html.eex:7 web/templates/team/index.html.eex:26
-#: web/templates/team/new.html.eex:4
+#: lib/club_homepage/web/templates/web/team/index.html.eex:7
+#: lib/club_homepage/web/templates/web/team/index.html.eex:26
+#: lib/club_homepage/web/templates/web/team/new.html.eex:4
 msgid "create_new_team"
 msgstr ""
 
-#: web/templates/team/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/team/edit.html.eex:4
 msgid "edit_team"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:161
-#: web/templates/session/new.html.eex:15
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:143
+#: lib/club_homepage/web/templates/web/session/new.html.eex:15
 msgid "log_in"
 msgstr ""
 
-#: web/templates/session/new.html.eex:4 web/templates/session/new.html.eex:7
-#: web/templates/user/index.html.eex:18
-#: web/templates/user/login_data_fields.html.eex:10
-#: web/templates/user/show.html.eex:12
+#: lib/club_homepage/web/templates/web/session/new.html.eex:4
+#: lib/club_homepage/web/templates/web/session/new.html.eex:7
+#: lib/club_homepage/web/templates/web/user/index.html.eex:18
+#: lib/club_homepage/web/templates/web/user/login_data_fields.html.eex:10
+#: lib/club_homepage/web/templates/web/user/show.html.eex:12
 msgid "login"
 msgstr ""
 
-#: web/templates/session/new.html.eex:10 web/templates/user/form.html.eex:18
-#: web/templates/user/form_restricted.html.eex:34
-#: web/templates/user/password_fields.html.eex:11
+#: lib/club_homepage/web/templates/web/session/new.html.eex:10
+#: lib/club_homepage/web/templates/web/user/form.html.eex:18
+#: lib/club_homepage/web/templates/web/user/form_restricted.html.eex:34
+#: lib/club_homepage/web/templates/web/user/password_fields.html.eex:11
 msgid "password"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:112
-#: web/templates/page/index.html.eex:40 web/templates/team/edit.html.eex:11
-#: web/templates/team/index.html.eex:4 web/templates/team/new.html.eex:11
-#: web/templates/team/show.html.eex:21
-#: web/templates/team/team_images_page.html.eex:61
-#: web/templates/team/team_page.html.eex:67
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:94
+#: lib/club_homepage/web/templates/web/page/index.html.eex:40
+#: lib/club_homepage/web/templates/web/team/edit.html.eex:11
+#: lib/club_homepage/web/templates/web/team/index.html.eex:4
+#: lib/club_homepage/web/templates/web/team/new.html.eex:11
+#: lib/club_homepage/web/templates/web/team/show.html.eex:21
+#: lib/club_homepage/web/templates/web/team/team_images_page.html.eex:61
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:67
 msgid "teams"
 msgstr ""
 
-#: web/templates/user/form.html.eex:28 web/templates/user/index.html.eex:22
-#: web/templates/user/show.html.eex:28
+#: lib/club_homepage/web/templates/web/user/form.html.eex:28
+#: lib/club_homepage/web/templates/web/user/index.html.eex:22
+#: lib/club_homepage/web/templates/web/user/show.html.eex:28
 msgid "active"
 msgstr ""
 
-#: web/templates/user/form_unregistered.html.eex:21
-#: web/templates/user/index.html.eex:24
-#: web/templates/user/master_data_fields.html.eex:23
-#: web/templates/user/show.html.eex:32
+#: lib/club_homepage/web/templates/web/user/form_unregistered.html.eex:21
+#: lib/club_homepage/web/templates/web/user/index.html.eex:24
+#: lib/club_homepage/web/templates/web/user/master_data_fields.html.eex:23
+#: lib/club_homepage/web/templates/web/user/show.html.eex:32
 msgid "birthday"
 msgstr ""
 
-#: web/templates/user/new_unregistered.html.eex:10
+#: lib/club_homepage/web/templates/web/user/new_unregistered.html.eex:10
 msgid "create_new_unregistered_user_email_notice"
 msgstr ""
 
-#: web/templates/user/new_unregistered.html.eex:5
+#: lib/club_homepage/web/templates/web/user/new_unregistered.html.eex:5
 msgid "create_new_unregistered_user_notice"
 msgstr ""
 
-#: web/templates/user/index.html.eex:8 web/templates/user/index.html.eex:67
-#: web/templates/user/new_unregistered.html.eex:4
+#: lib/club_homepage/web/templates/web/user/index.html.eex:8
+#: lib/club_homepage/web/templates/web/user/index.html.eex:67
+#: lib/club_homepage/web/templates/web/user/new_unregistered.html.eex:4
 msgid "create_new_user"
 msgstr ""
 
-#: web/templates/user/new.html.eex:6
+#: lib/club_homepage/web/templates/web/user/new.html.eex:6
 msgid "create_new_user_notice"
 msgstr ""
 
-#: web/templates/user/edit.html.eex:8
+#: lib/club_homepage/web/templates/web/user/edit.html.eex:8
 msgid "edit_user"
 msgstr ""
 
-#: web/templates/user/form_unregistered.html.eex:8
-#: web/templates/user/index.html.eex:21
-#: web/templates/user/login_data_fields.html.eex:16
-#: web/templates/user/show.html.eex:24
+#: lib/club_homepage/web/templates/web/user/form_unregistered.html.eex:8
+#: lib/club_homepage/web/templates/web/user/index.html.eex:21
+#: lib/club_homepage/web/templates/web/user/login_data_fields.html.eex:16
+#: lib/club_homepage/web/templates/web/user/show.html.eex:24
 msgid "email"
 msgstr ""
 
-#: web/templates/team/show.html.eex:4
+#: lib/club_homepage/web/templates/web/team/show.html.eex:4
 msgid "show_team"
 msgstr ""
 
-#: web/templates/team/form.html.eex:10
+#: lib/club_homepage/web/templates/web/team/form.html.eex:10
 msgid "team_name_placeholder"
 msgstr ""
 
-#: web/templates/user/edit.html.eex:19 web/templates/user/index.html.eex:4
-#: web/templates/user/new.html.eex:15
-#: web/templates/user/new_unregistered.html.eex:12
-#: web/templates/user/show.html.eex:7 web/templates/user/show.html.eex:51
+#: lib/club_homepage/web/templates/web/user/edit.html.eex:19
+#: lib/club_homepage/web/templates/web/user/index.html.eex:4
+#: lib/club_homepage/web/templates/web/user/new.html.eex:15
+#: lib/club_homepage/web/templates/web/user/new_unregistered.html.eex:12
+#: lib/club_homepage/web/templates/web/user/show.html.eex:7
+#: lib/club_homepage/web/templates/web/user/show.html.eex:51
 msgid "users"
 msgstr ""
 
-#: web/templates/page/index.html.eex:74
+#: lib/club_homepage/web/templates/web/page/index.html.eex:77
 msgid "latest_match_results"
 msgstr ""
 
-#: web/templates/news/index.html.eex:4 web/templates/page/index.html.eex:6
+#: lib/club_homepage/web/templates/web/news/index.html.eex:4
+#: lib/club_homepage/web/templates/web/page/index.html.eex:6
 msgid "latest_news"
 msgstr ""
 
-#: web/templates/match/edit.html.eex:4 web/templates/match/index.html.eex:49
-#: web/templates/match/show.html.eex:99
-#: web/templates/team/team_page_match_table.html.eex:9
+#: lib/club_homepage/web/templates/web/match/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/match/index.html.eex:49
+#: lib/club_homepage/web/templates/web/match/show.html.eex:99
+#: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:9
 msgid "edit_match"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:155
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:137
 msgid "logout"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:106
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:88
 msgid "members"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:158
-#: web/templates/user/new.html.eex:4
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:140
+#: lib/club_homepage/web/templates/web/user/new.html.eex:4
 msgid "sign_up"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:89
-#: web/templates/user/form.html.eex:16
-#: web/templates/user/form_restricted.html.eex:21
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:71
+#: lib/club_homepage/web/templates/web/user/form.html.eex:16
+#: lib/club_homepage/web/templates/web/user/form_restricted.html.eex:21
 msgid "master_data"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:94
-#: web/templates/news/edit.html.eex:9 web/templates/news/new.html.eex:9
-#: web/templates/news/show.html.eex:26
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:76
+#: lib/club_homepage/web/templates/web/news/edit.html.eex:9
+#: lib/club_homepage/web/templates/web/news/new.html.eex:9
+#: lib/club_homepage/web/templates/web/news/show.html.eex:26
 msgid "news"
 msgstr ""
 
-#: web/templates/news/index_link_bar.html.eex:3
-#: web/templates/news/new.html.eex:4
+#: lib/club_homepage/web/templates/web/news/index_link_bar.html.eex:3
+#: lib/club_homepage/web/templates/web/news/new.html.eex:4
 msgid "create_new_news"
 msgstr ""
 
-#: web/templates/news/show.html.eex:4
+#: lib/club_homepage/web/templates/web/news/show.html.eex:4
 msgid "show_news"
 msgstr ""
 
-#: web/templates/news/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/news/edit.html.eex:4
 msgid "edit_news"
 msgstr ""
 
-#: web/templates/news/form.html.eex:12
+#: lib/club_homepage/web/templates/web/news/form.html.eex:12
 msgid "news_body_placeholder"
 msgstr ""
 
-#: web/templates/news/form.html.eex:19
+#: lib/club_homepage/web/templates/web/news/form.html.eex:19
 msgid "news_public_placeholder"
 msgstr ""
 
-#: web/templates/news/form.html.eex:6
+#: lib/club_homepage/web/templates/web/news/form.html.eex:6
 msgid "news_subject_placeholder"
 msgstr ""
 
-#: web/templates/news/index_item.html.eex:9
+#: lib/club_homepage/web/templates/web/news/index_item.html.eex:9
 msgid "published"
 msgstr ""
 
-#: web/templates/team/show.html.eex:13
+#: lib/club_homepage/web/templates/web/team/show.html.eex:13
 msgid "slug"
 msgstr ""
 
-#: web/templates/team/team_page.html.eex:58
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:58
 msgid "saison_matches_missing"
 msgstr ""
 
-#: lib/extension/match_view.ex:24 lib/extension/match_view.ex:29
-#: web/commands/match_calender_creator.ex:89
-#: web/templates/page/index.html.eex:14 web/views/layout_view.ex:19
+#: lib/club_homepage/web/commands/match_calender_creator.ex:84
+#: lib/club_homepage/web/templates/web/page/index.html.eex:14
+#: lib/club_homepage/web/views/layout_view.ex:19 lib/extension/match_view.ex:24
+#: lib/extension/match_view.ex:29
 msgid "o_clock"
 msgstr ""
 
-#: web/templates/match/index.html.eex:12 web/templates/match/index.html.eex:62
-#: web/templates/match/new_bulk.html.eex:4
-#: web/templates/team/team_page.html.eex:36
+#: lib/club_homepage/web/templates/web/match/index.html.eex:12
+#: lib/club_homepage/web/templates/web/match/index.html.eex:62
+#: lib/club_homepage/web/templates/web/match/new_bulk.html.eex:4
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:36
 msgid "create_new_matches"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:14
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:14
 msgid "create_new_matches_step_1"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:27
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:27
 msgid "create_new_matches_step_2"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:31
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:31
 msgid "matches_json_placeholder"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:14
-#: web/templates/match/form_bulk.html.eex:27
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:14
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:27
 msgid "step %{step}"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:39
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:39
 msgid "example"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:26
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:26
 msgid "help"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:63
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:63
 msgid "match_list_parser_notice"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:41
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:41
 msgid "json_matches_example_hint1"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:42
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:42
 msgid "json_matches_example_hint2"
 msgstr ""
 
-#: web/templates/match/form_bulk.html.eex:43
+#: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:43
 msgid "json_matches_example_hint3"
 msgstr ""
 
-#: web/templates/competition/form.html.eex:8
+#: lib/club_homepage/web/templates/web/competition/form.html.eex:8
 msgid "competition_placeholder"
 msgstr ""
 
-#: web/templates/competition/edit.html.eex:10
-#: web/templates/competition/index.html.eex:4
-#: web/templates/competition/new.html.eex:10
-#: web/templates/layout/navbar_top.html.eex:142
+#: lib/club_homepage/web/templates/web/competition/edit.html.eex:10
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:4
+#: lib/club_homepage/web/templates/web/competition/new.html.eex:10
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:124
 msgid "competitions"
 msgstr ""
 
-#: web/templates/competition/index.html.eex:7
-#: web/templates/competition/index.html.eex:47
-#: web/templates/competition/new.html.eex:4
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:7
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:47
+#: lib/club_homepage/web/templates/web/competition/new.html.eex:4
 msgid "create_new_competition"
 msgstr ""
 
-#: web/templates/competition/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/competition/edit.html.eex:4
 msgid "edit_competition"
 msgstr ""
 
-#: web/templates/match/form.html.eex:65
+#: lib/club_homepage/web/templates/web/match/form.html.eex:65
 msgid "opponent_team_goals_placeholder"
 msgstr ""
 
-#: web/templates/match/form_group_to_select_a_competition.html.eex:2
-#: web/templates/match/form_group_to_select_a_competition.html.eex:2
+#:
+#: lib/club_homepage/web/templates/web/match/form_group_to_select_a_competition.html.eex:2
+#: lib/club_homepage/web/templates/web/match/form_group_to_select_a_competition.html.eex:2
 msgid "select_competition_placeholder"
 msgstr ""
 
-#: web/templates/match/form.html.eex:65
+#: lib/club_homepage/web/templates/web/match/form.html.eex:65
 msgid "team_goals_placeholder"
 msgstr ""
 
-#: web/templates/competition/index.html.eex:41
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:41
 msgid "competitions_missing"
 msgstr ""
 
-#: web/templates/team/form_group_to_select_a_competition.html.eex:2
-#: web/templates/team/form_group_to_select_a_competition.html.eex:2
+#:
+#: lib/club_homepage/web/templates/web/team/form_group_to_select_a_competition.html.eex:2
+#: lib/club_homepage/web/templates/web/team/form_group_to_select_a_competition.html.eex:2
 msgid "select_default_competition_placeholder"
 msgstr ""
 
-#: web/templates/competition/form.html.eex:4
+#: lib/club_homepage/web/templates/web/competition/form.html.eex:4
 msgid "competition_form_notice"
 msgstr ""
 
-#: web/templates/season/form.html.eex:4
+#: lib/club_homepage/web/templates/web/season/form.html.eex:4
 msgid "season_form_notice"
 msgstr ""
 
-#: web/templates/match/form.html.eex:36
+#: lib/club_homepage/web/templates/web/match/form.html.eex:36
 msgid "away_match"
 msgstr ""
 
-#: web/templates/permalink/show.html.eex:17
+#: lib/club_homepage/web/templates/web/permalink/show.html.eex:17
 msgid "edit_permalink"
 msgstr ""
 
-#: web/templates/match/form.html.eex:56
+#: lib/club_homepage/web/templates/web/match/form.html.eex:56
 msgid "goals"
 msgstr ""
 
-#: web/templates/page/index.html.eex:59 web/templates/team/team_page.html.eex:47
+#: lib/club_homepage/web/templates/web/page/index.html.eex:60
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:47
 msgid "next_matches"
 msgstr ""
 
-#: web/templates/match/form.html.eex:68
+#: lib/club_homepage/web/templates/web/match/form.html.eex:68
 msgid "opponent_team_selected"
 msgstr ""
 
-#: web/templates/permalink/show.html.eex:18
+#: lib/club_homepage/web/templates/web/permalink/show.html.eex:18
 msgid "permalinks"
 msgstr ""
 
-#: web/templates/match/form.html.eex:61
+#: lib/club_homepage/web/templates/web/match/form.html.eex:61
 msgid "team_selected"
 msgstr ""
 
-#: web/templates/text_page/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/text_page/edit.html.eex:4
 msgid "edit_text_page"
 msgstr ""
 
-#: web/templates/text_page/index.html.eex:9
+#: lib/club_homepage/web/templates/web/text_page/index.html.eex:9
 msgid "page"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:99
-#: web/templates/text_page/edit.html.eex:30
-#: web/templates/text_page/index.html.eex:4
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:81
+#: lib/club_homepage/web/templates/web/text_page/edit.html.eex:30
+#: lib/club_homepage/web/templates/web/text_page/index.html.eex:4
 msgid "text_pages"
 msgstr ""
 
-#: web/templates/user/form.html.eex:37
+#: lib/club_homepage/web/templates/web/user/form.html.eex:37
 msgid "user_roles"
 msgstr ""
 
-#: web/templates/meeting_point/form_group_to_select_an_address.html.eex:2
-#: web/templates/meeting_point/form_group_to_select_an_address.html.eex:2
-#: web/templates/opponent_team/form_group_to_select_an_address.html.eex:2
-#: web/templates/opponent_team/form_group_to_select_an_address.html.eex:2
+#:
+#: lib/club_homepage/web/templates/web/meeting_point/form_group_to_select_an_address.html.eex:2
+#: lib/club_homepage/web/templates/web/meeting_point/form_group_to_select_an_address.html.eex:2
+#: lib/club_homepage/web/templates/web/opponent_team/form_group_to_select_an_address.html.eex:2
+#: lib/club_homepage/web/templates/web/opponent_team/form_group_to_select_an_address.html.eex:2
 msgid "select_address_placeholder"
 msgstr ""
 
-#: web/templates/meeting_point/form.html.eex:6
+#: lib/club_homepage/web/templates/web/meeting_point/form.html.eex:6
 msgid "short_description"
 msgstr ""
 
-#: web/templates/meeting_point/form.html.eex:6
+#: lib/club_homepage/web/templates/web/meeting_point/form.html.eex:6
 msgid "or"
 msgstr ""
 
-#: web/templates/address/form.html.eex:30
+#: lib/club_homepage/web/templates/web/address/form.html.eex:30
 msgid "address_latitude_place_holder"
 msgstr ""
 
-#: web/templates/address/form.html.eex:36
+#: lib/club_homepage/web/templates/web/address/form.html.eex:36
 msgid "address_longitude_place_holder"
 msgstr ""
 
-#: web/templates/match/show.html.eex:75 web/views/match_view.ex:27
+#: lib/club_homepage/web/templates/web/match/show.html.eex:75
+#: lib/club_homepage/web/views/match_view.ex:27
 msgid "match_address"
 msgstr ""
 
-#: web/controllers/address_controller.ex:25
+#: lib/club_homepage/web/controllers/address_controller.ex:25
 msgid "address_created_successfully"
 msgstr ""
 
-#: web/controllers/address_controller.ex:60
+#: lib/club_homepage/web/controllers/address_controller.ex:60
 msgid "address_deleted_successfully"
 msgstr ""
 
-#: web/controllers/address_controller.ex:45
+#: lib/club_homepage/web/controllers/address_controller.ex:45
 msgid "address_updated_successfully"
 msgstr ""
 
-#: web/controllers/session_controller.ex:21
+#: lib/club_homepage/web/controllers/session_controller.ex:21
 msgid "account_inactive"
 msgstr ""
 
-#: web/controllers/competition_controller.ex:25
+#: lib/club_homepage/web/controllers/competition_controller.ex:25
 msgid "competition_created_successfully"
 msgstr ""
 
-#: web/controllers/competition_controller.ex:60
+#: lib/club_homepage/web/controllers/competition_controller.ex:60
 msgid "competition_deleted_successfully"
 msgstr ""
 
-#: web/controllers/competition_controller.ex:45
+#: lib/club_homepage/web/controllers/competition_controller.ex:45
 msgid "competition_updated_successfully"
 msgstr ""
 
-#: web/controllers/session_controller.ex:26
+#: lib/club_homepage/web/controllers/session_controller.ex:26
 msgid "credentials_wrong"
 msgstr ""
 
-#: web/controllers/session_controller.ex:17
+#: lib/club_homepage/web/controllers/session_controller.ex:17
 msgid "logged_in_now"
 msgstr ""
 
-#: web/controllers/match_controller.ex:49
+#: lib/club_homepage/web/controllers/match_controller.ex:49
 msgid "match_created_successfully"
 msgstr ""
 
-#: web/controllers/match_controller.ex:127
+#: lib/club_homepage/web/controllers/match_controller.ex:127
 msgid "match_deleted_successfully"
 msgstr ""
 
-#: web/controllers/match_controller.ex:111
+#: lib/club_homepage/web/controllers/match_controller.ex:111
 msgid "match_updated_successfully"
 msgstr ""
 
-#: web/controllers/meeting_point_controller.ex:26
+#: lib/club_homepage/web/controllers/meeting_point_controller.ex:26
 msgid "meeting_point_created_successfully"
 msgstr ""
 
-#: web/controllers/meeting_point_controller.ex:61
+#: lib/club_homepage/web/controllers/meeting_point_controller.ex:61
 msgid "meeting_point_deleted_successfully"
 msgstr ""
 
-#: web/controllers/meeting_point_controller.ex:46
+#: lib/club_homepage/web/controllers/meeting_point_controller.ex:46
 msgid "meeting_point_updated_successfully"
 msgstr ""
 
-#: web/controllers/news_controller.ex:31
+#: lib/club_homepage/web/controllers/news_controller.ex:31
 msgid "news_created_successfully"
 msgstr ""
 
-#: web/controllers/news_controller.ex:71
+#: lib/club_homepage/web/controllers/news_controller.ex:71
 msgid "news_deleted_successfully"
 msgstr ""
 
-#: web/controllers/news_controller.ex:56
+#: lib/club_homepage/web/controllers/news_controller.ex:56
 msgid "news_updated_successfully"
 msgstr ""
 
-#: web/controllers/opponent_team_controller.ex:27
+#: lib/club_homepage/web/controllers/opponent_team_controller.ex:27
 msgid "opponent_team_created_successfully"
 msgstr ""
 
-#: web/controllers/opponent_team_controller.ex:62
+#: lib/club_homepage/web/controllers/opponent_team_controller.ex:62
 msgid "opponent_team_deleted_successfully"
 msgstr ""
 
-#: web/controllers/opponent_team_controller.ex:47
+#: lib/club_homepage/web/controllers/opponent_team_controller.ex:47
 msgid "opponent_team_updated_successfully"
 msgstr ""
 
-#: web/controllers/permalink_controller.ex:25
+#: lib/club_homepage/web/controllers/permalink_controller.ex:25
 msgid "permalink_created_successfully"
 msgstr ""
 
-#: web/controllers/permalink_controller.ex:65
+#: lib/club_homepage/web/controllers/permalink_controller.ex:65
 msgid "permalink_deleted_successfully"
 msgstr ""
 
-#: web/controllers/permalink_controller.ex:50
+#: lib/club_homepage/web/controllers/permalink_controller.ex:50
 msgid "permalink_updated_successfully"
 msgstr ""
 
-#: web/controllers/season_controller.ex:27
+#: lib/club_homepage/web/controllers/season_controller.ex:27
 msgid "season_created_successfully."
 msgstr ""
 
-#: web/controllers/season_controller.ex:67
+#: lib/club_homepage/web/controllers/season_controller.ex:67
 msgid "season_deleted_successfully"
 msgstr ""
 
-#: web/controllers/season_controller.ex:52
+#: lib/club_homepage/web/controllers/season_controller.ex:52
 msgid "season_updated_successfully"
 msgstr ""
 
-#: web/controllers/secret_controller.ex:35
+#: lib/club_homepage/web/controllers/secret_controller.ex:35
 msgid "secret_created_successfully"
 msgstr ""
 
-#: web/controllers/secret_controller.ex:54
+#: lib/club_homepage/web/controllers/secret_controller.ex:54
 msgid "secret_deleted_successfully"
 msgstr ""
 
-#: web/controllers/team_controller.ex:33
+#: lib/club_homepage/web/controllers/team_controller.ex:33
 msgid "team_created_successfully"
 msgstr ""
 
-#: web/controllers/team_controller.ex:119
+#: lib/club_homepage/web/controllers/team_controller.ex:119
 msgid "team_deleted_successfully"
 msgstr ""
 
-#: web/controllers/team_controller.ex:104
+#: lib/club_homepage/web/controllers/team_controller.ex:104
 msgid "team_updated_successfully"
 msgstr ""
 
-#: web/controllers/text_page_controller.ex:28
+#: lib/club_homepage/web/controllers/text_page_controller.ex:28
 msgid "text_page_updated_successfully"
 msgstr ""
 
-#: web/controllers/user_controller.ex:34
+#: lib/club_homepage/web/controllers/user_controller.ex:34
 msgid "user_created_successfully"
 msgstr ""
 
-#: web/controllers/user_controller.ex:65
+#: lib/club_homepage/web/controllers/user_controller.ex:65
 msgid "user_created_successfully_and_loged_in"
 msgstr ""
 
-#: web/controllers/user_controller.ex:125
+#: lib/club_homepage/web/controllers/user_controller.ex:125
 msgid "user_updated_successfully"
 msgstr ""
 
-#: web/templates/match/form.html.eex:48 web/templates/match/form.html.eex:48
+#: lib/club_homepage/web/templates/web/match/form.html.eex:48
+#: lib/club_homepage/web/templates/web/match/form.html.eex:48
 msgid "select_failure_reason_placeholder"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:127
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:109
 msgid "all_opponent_teams"
 msgstr ""
 
-#: web/templates/competition/form.html.eex:13
-#: web/templates/competition/form.html.eex:14
-#: web/templates/competition/index.html.eex:13
+#: lib/club_homepage/web/templates/web/competition/form.html.eex:13
+#: lib/club_homepage/web/templates/web/competition/form.html.eex:14
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:13
 msgid "matches_need_decition"
 msgstr ""
 
-#: web/templates/competition/form.html.eex:15
+#: lib/club_homepage/web/templates/web/competition/form.html.eex:15
 msgid "matches_need_decition_notice"
 msgstr ""
 
-#: web/templates/match/soccer_match_timeline.html.eex:106
+#: lib/club_homepage/web/templates/web/match/soccer_match_timeline.html.eex:106
 msgid "abort"
 msgstr ""
 
-#: web/templates/match/soccer_match_timeline.html.eex:80
-#: web/templates/match/soccer_match_timeline.html.eex:92
-#: web/templates/match/soccer_match_timeline.html.eex:100
+#: lib/club_homepage/web/templates/web/match/soccer_match_timeline.html.eex:80
+#: lib/club_homepage/web/templates/web/match/soccer_match_timeline.html.eex:92
+#: lib/club_homepage/web/templates/web/match/soccer_match_timeline.html.eex:100
 msgid "for_example_abbreviation"
 msgstr ""
 
-#: web/templates/secret/show.html.eex:4
+#: lib/club_homepage/web/templates/web/secret/show.html.eex:4
 msgid "show_secret"
 msgstr ""
 
-#: web/templates/user/master_data_fields.html.eex:16
-#: web/templates/user/show.html.eex:20
+#: lib/club_homepage/web/templates/web/user/master_data_fields.html.eex:16
+#: lib/club_homepage/web/templates/web/user/show.html.eex:20
 msgid "nickname"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:74
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:56
 msgid "signed_in_label"
 msgstr ""
 
-#: web/controllers/sponsor_image_controller.ex:30
+#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:30
 msgid "sponsor_image_created_successfully"
 msgstr ""
 
-#: web/controllers/sponsor_image_controller.ex:72
+#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:72
 msgid "sponsor_image_deleted_successfully"
 msgstr ""
 
-#: web/controllers/sponsor_image_controller.ex:55
+#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:55
 msgid "sponsor_image_updated_successfully"
 msgstr ""
 
-#: web/templates/sponsor_image/index.html.eex:30
-#: web/templates/sponsor_image/new.html.eex:4
+#: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:30
+#: lib/club_homepage/web/templates/web/sponsor_image/new.html.eex:4
 msgid "create_new_sponsor_image"
 msgstr ""
 
-#: web/templates/sponsor_image/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/sponsor_image/edit.html.eex:4
 msgid "edit_sponsor_image"
 msgstr ""
 
-#: web/templates/sponsor_image/index.html.eex:10
+#: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:10
 msgid "sponsor_image"
 msgstr ""
 
-#: web/templates/sponsor_image/edit.html.eex:9
-#: web/templates/sponsor_image/index.html.eex:4
-#: web/templates/sponsor_image/new.html.eex:9
-#: web/templates/text_page/edit.html.eex:11
-#: web/templates/text_page/edit.html.eex:31
+#: lib/club_homepage/web/templates/web/sponsor_image/edit.html.eex:9
+#: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:4
+#: lib/club_homepage/web/templates/web/sponsor_image/new.html.eex:9
+#: lib/club_homepage/web/templates/web/text_page/edit.html.eex:11
+#: lib/club_homepage/web/templates/web/text_page/edit.html.eex:31
 msgid "sponsor_images"
 msgstr ""
 
-#: web/templates/sponsor_image/index.html.eex:23
-#: web/templates/team/team_images_page.html.eex:37
-#: web/templates/team_chat_message/index.html.eex:24
-#: web/templates/team_image/index.html.eex:27
+#: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:23
+#: lib/club_homepage/web/templates/web/team/team_images_page.html.eex:37
+#: lib/club_homepage/web/templates/web/team_chat_message/index.html.eex:24
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:27
 msgid "confirm_question_are_you_sure"
 msgstr ""
 
-#: web/templates/team/team_images_page.html.eex:50
-#: web/templates/team_image/index.html.eex:34
-#: web/templates/team_image/new.html.eex:4
+#: lib/club_homepage/web/templates/web/team/team_images_page.html.eex:50
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:34
+#: lib/club_homepage/web/templates/web/team_image/new.html.eex:4
 msgid "create_new_team_image"
 msgstr ""
 
-#: web/templates/team_image/form.html.eex:26
-#: web/templates/team_image/form.html.eex:28
-#: web/templates/team_image/index.html.eex:12
+#: lib/club_homepage/web/templates/web/team_image/form.html.eex:26
+#: lib/club_homepage/web/templates/web/team_image/form.html.eex:28
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:12
 msgid "description"
 msgstr ""
 
-#: web/templates/team_image/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/team_image/edit.html.eex:4
 msgid "edit_team_image"
 msgstr ""
 
-#: web/templates/team/team_images_page.html.eex:4
-#: web/templates/team/team_page_link_header.html.eex:13
-#: web/templates/team/team_page_link_header.html.eex:15
-#: web/templates/team_image/edit.html.eex:11
-#: web/templates/team_image/index.html.eex:4
-#: web/templates/team_image/new.html.eex:11
+#: lib/club_homepage/web/templates/web/team/team_images_page.html.eex:4
+#: lib/club_homepage/web/templates/web/team/team_page_link_header.html.eex:13
+#: lib/club_homepage/web/templates/web/team/team_page_link_header.html.eex:15
+#: lib/club_homepage/web/templates/web/team_image/edit.html.eex:11
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:4
+#: lib/club_homepage/web/templates/web/team_image/new.html.eex:11
 msgid "team_images"
 msgstr ""
 
-#: web/templates/team_image/form.html.eex:12
-#: web/templates/team_image/index.html.eex:10
+#: lib/club_homepage/web/templates/web/team_image/form.html.eex:12
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:10
 msgid "year"
 msgstr ""
 
-#: web/templates/team_image/form.html.eex:18
-#: web/templates/team_image/form.html.eex:20
-#: web/templates/team_image/index.html.eex:11
+#: lib/club_homepage/web/templates/web/team_image/form.html.eex:18
+#: lib/club_homepage/web/templates/web/team_image/form.html.eex:20
+#: lib/club_homepage/web/templates/web/team_image/index.html.eex:11
 msgid "team_image"
 msgstr ""
 
-#: web/templates/text_page/edit.html.eex:12
+#: lib/club_homepage/web/templates/web/text_page/edit.html.eex:12
 msgid "sponsor_images_inclusion_note"
 msgstr ""
 
-#: web/controllers/team_image_controller.ex:35
+#: lib/club_homepage/web/controllers/team_image_controller.ex:34
 msgid "team_image_created_successfully"
 msgstr ""
 
-#: web/controllers/team_image_controller.ex:80
+#: lib/club_homepage/web/controllers/team_image_controller.ex:79
 msgid "team_image_deleted_successfully"
 msgstr ""
 
-#: web/controllers/team_image_controller.ex:62
+#: lib/club_homepage/web/controllers/team_image_controller.ex:61
 msgid "team_image_updated_successfully"
 msgstr ""
 
-#: web/templates/news/index_item.html.eex:18
+#: lib/club_homepage/web/templates/web/news/index_item.html.eex:18
 msgid "no"
 msgstr ""
 
-#: web/templates/news/index_item.html.eex:18
+#: lib/club_homepage/web/templates/web/news/index_item.html.eex:18
 msgid "publicly_visible"
 msgstr ""
 
-#: web/templates/news/index_item.html.eex:18
+#: lib/club_homepage/web/templates/web/news/index_item.html.eex:18
 msgid "yes"
 msgstr ""
 
-#: web/templates/page/index.html.eex:23
+#: lib/club_homepage/web/templates/web/page/index.html.eex:23
 msgid "no_news_notice"
 msgstr ""
 
-#: web/templates/page/index.html.eex:48
+#: lib/club_homepage/web/templates/web/page/index.html.eex:48
 msgid "no_teams_notice"
 msgstr ""
 
-#: web/templates/match/show.html.eex:50
+#: lib/club_homepage/web/templates/web/match/show.html.eex:50
 msgid "meeting_point_at"
 msgstr ""
 
-#: web/templates/match/form.html.eex:87
+#: lib/club_homepage/web/templates/web/match/form.html.eex:87
 msgid "select_meeting_point_at_placeholder"
 msgstr ""
 
-#: web/templates/team/team_chat_page.html.eex:4
-#: web/templates/team/team_page_link_header.html.eex:24
-#: web/templates/team/team_page_link_header.html.eex:26
+#: lib/club_homepage/web/templates/web/team/team_chat_page.html.eex:4
+#: lib/club_homepage/web/templates/web/team/team_page_link_header.html.eex:24
+#: lib/club_homepage/web/templates/web/team/team_page_link_header.html.eex:26
 msgid "team_chat"
 msgstr ""
 
-#: web/templates/team/team_chat_page.html.eex:18
-#: web/templates/team_chat_message/index.html.eex:11
+#: lib/club_homepage/web/templates/web/team/team_chat_page.html.eex:18
+#: lib/club_homepage/web/templates/web/team_chat_message/index.html.eex:11
 msgid "chat_message"
 msgstr ""
 
-#: web/templates/team_chat_message/index.html.eex:10
+#: lib/club_homepage/web/templates/web/team_chat_message/index.html.eex:10
 msgid "user"
 msgstr ""
 
-#: web/templates/team_chat_message/index.html.eex:4
+#: lib/club_homepage/web/templates/web/team_chat_message/index.html.eex:4
 msgid "chat_messages"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:147
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:129
 msgid "team_chat_messages"
 msgstr ""
 
-#: web/templates/team/team_chat_page.html.eex:10
+#: lib/club_homepage/web/templates/web/team/team_chat_page.html.eex:10
 msgid "show_older_team_chat_messages_button_text"
 msgstr ""
 
-#: web/templates/team/team_chat_page.html.eex:11
+#: lib/club_homepage/web/templates/web/team/team_chat_page.html.eex:11
 msgid "team_chat_messagesmoment_js_date_format"
 msgstr ""
 
-#: web/templates/user/form.html.eex:24
+#: lib/club_homepage/web/templates/web/user/form.html.eex:24
 msgid "user_is_active"
 msgstr ""
 
-#: web/templates/match/form.html.eex:78 web/templates/match/show.html.eex:39
+#: lib/club_homepage/web/templates/web/match/form.html.eex:78
+#: lib/club_homepage/web/templates/web/match/show.html.eex:39
 msgid "match_review"
 msgstr ""
 
-#: web/controllers/secret_controller.ex:33
+#: lib/club_homepage/web/controllers/secret_controller.ex:33
 msgid "secret_created_and_send_via_email_successfully"
 msgstr ""
 
-#: web/templates/secret/form.html.eex:5
+#: lib/club_homepage/web/templates/web/secret/form.html.eex:5
 msgid "optional"
 msgstr ""
 
@@ -1058,67 +1121,66 @@ msgstr ""
 msgid "secret_email_subject"
 msgstr ""
 
-#: lib/email.ex:10 web/templates/secret/show.html.eex:11
+#: lib/club_homepage/web/templates/web/secret/show.html.eex:11 lib/email.ex:10
 msgid "secret_email_text"
 msgstr ""
 
-#: web/templates/secret/show.html.eex:9
+#: lib/club_homepage/web/templates/web/secret/show.html.eex:9
 msgid "send_secret"
 msgstr ""
 
-#: web/controllers/match_controller.ex:76
+#: lib/club_homepage/web/controllers/match_controller.ex:76
 msgid "matches_created_successfully"
 msgstr ""
 
-#: web/templates/team/team_page.html.eex:52
+#: lib/club_homepage/web/templates/web/team/team_page.html.eex:52
 msgid "last_matches"
 msgstr ""
 
-#: web/templates/user/show.html.eex:45
+#: lib/club_homepage/web/templates/web/user/show.html.eex:45
 msgid "meta_data"
 msgstr ""
 
-#: web/templates/user/show.html.eex:41
+#: lib/club_homepage/web/templates/web/user/show.html.eex:41
 msgid "roles"
 msgstr ""
 
-#: web/views/layout_view.ex:31
+#: lib/club_homepage/web/views/layout_view.ex:31
 msgid "air_pressure"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:33
-#: web/templates/layout/navbar_top.html.eex:36
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:33
 msgid "birthdays"
 msgstr ""
 
-#: web/views/layout_view.ex:28
+#: lib/club_homepage/web/views/layout_view.ex:28
 msgid "humidity"
 msgstr ""
 
-#: web/templates/session/new.html.eex:18
-#: web/templates/user/forgot_password_step_1.html.eex:4
-#: web/templates/user/forgot_password_step_2.html.eex:4
+#: lib/club_homepage/web/templates/web/session/new.html.eex:18
+#: lib/club_homepage/web/templates/web/user/forgot_password_step_1.html.eex:4
+#: lib/club_homepage/web/templates/web/user/forgot_password_step_2.html.eex:4
 msgid "password_forgotten_question"
 msgstr ""
 
-#: web/views/layout_view.ex:22
+#: lib/club_homepage/web/views/layout_view.ex:22
 msgid "temperature"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:67
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:49
 msgid "weather"
 msgstr ""
 
-#: web/templates/user/forgot_password_form.html.eex:3
+#: lib/club_homepage/web/templates/web/user/forgot_password_form.html.eex:3
 msgid "login_or_email"
 msgstr ""
 
-#: web/templates/user/change_password.html.eex:22
-#: web/templates/user/forgot_password_form.html.eex:7
+#: lib/club_homepage/web/templates/web/user/change_password.html.eex:22
+#: lib/club_homepage/web/templates/web/user/forgot_password_form.html.eex:7
 msgid "send"
 msgstr ""
 
-#: web/templates/user/forgot_password_step_2.html.eex:5
+#: lib/club_homepage/web/templates/web/user/forgot_password_step_2.html.eex:5
 msgid "forgot_password_email_sent"
 msgstr ""
 
@@ -1130,241 +1192,270 @@ msgstr ""
 msgid "forgot_password_email_text"
 msgstr ""
 
-#: web/controllers/user_controller.ex:185
+#: lib/club_homepage/web/controllers/user_controller.ex:185
 msgid "account_not_found"
 msgstr ""
 
-#: web/templates/user/forgot_password_step_1.html.eex:5
+#: lib/club_homepage/web/templates/web/user/forgot_password_step_1.html.eex:5
 msgid "forgot_password_step_1_notice"
 msgstr ""
 
-#: web/controllers/user_controller.ex:196
+#: lib/club_homepage/web/controllers/user_controller.ex:196
 msgid "change_password_timed_out"
 msgstr ""
 
-#: web/controllers/user_controller.ex:189
+#: lib/club_homepage/web/controllers/user_controller.ex:189
 msgid "account_token_not_found"
 msgstr ""
 
-#: web/templates/user/change_password.html.eex:4
+#: lib/club_homepage/web/templates/web/user/change_password.html.eex:4
 msgid "reset_password_headline"
 msgstr ""
 
-#: web/templates/user/change_password.html.eex:17
+#: lib/club_homepage/web/templates/web/user/change_password.html.eex:17
 msgid "password_confirmation_placeholder"
 msgstr ""
 
-#: web/templates/user/change_password.html.eex:12
+#: lib/club_homepage/web/templates/web/user/change_password.html.eex:12
 msgid "password_placeholder"
 msgstr ""
 
-#: web/templates/user/password_fields.html.eex:19
+#: lib/club_homepage/web/templates/web/user/password_fields.html.eex:19
 msgid "password_confirmation"
 msgstr ""
 
-#: web/controllers/user_controller.ex:211
+#: lib/club_homepage/web/controllers/user_controller.ex:211
 msgid "password_reset_successful"
 msgstr ""
 
-#: web/templates/user/form.html.eex:14
-#: web/templates/user/form_restricted.html.eex:8
+#: lib/club_homepage/web/templates/web/user/form.html.eex:14
+#: lib/club_homepage/web/templates/web/user/form_restricted.html.eex:8
 msgid "login_data"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:81
-#: web/templates/layout/navbar_top.html.eex:83
-#: web/templates/user/edit.html.eex:6
-#: web/templates/user/edit_restricted.html.eex:4
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:63
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:65
+#: lib/club_homepage/web/templates/web/user/edit.html.eex:6
+#: lib/club_homepage/web/templates/web/user/edit_restricted.html.eex:4
 msgid "settings"
 msgstr ""
 
-#: web/templates/user/form_restricted.html.eex:49
+#: lib/club_homepage/web/templates/web/user/form_restricted.html.eex:49
 msgid "confirm_question_deactivate_account"
 msgstr ""
 
-#: web/templates/user/form_restricted.html.eex:49
+#: lib/club_homepage/web/templates/web/user/form_restricted.html.eex:49
 msgid "deactivate"
 msgstr ""
 
-#: web/templates/user/master_data_fields.html.eex:29
+#: lib/club_homepage/web/templates/web/user/master_data_fields.html.eex:29
 msgid "mobile_phone"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:63
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:45
 msgid "match_ground_weather"
 msgstr ""
 
-#: web/commands/match_calender_creator.ex:106
+#: lib/club_homepage/web/commands/match_calender_creator.ex:101
 msgid "match_location"
 msgstr ""
 
-#: web/commands/match_calender_creator.ex:89
+#: lib/club_homepage/web/commands/match_calender_creator.ex:84
 msgid "time_of_meeting"
 msgstr ""
 
-#: web/localization.ex:32
+#: lib/club_homepage/web/localization.ex:32
 msgid "date_and_time_format"
 msgstr ""
 
-#: web/localization.ex:16
+#: lib/club_homepage/web/localization.ex:16
 msgid "date_format"
 msgstr ""
 
-#: web/localization.ex:48
+#: lib/club_homepage/web/localization.ex:48
 msgid "time_format"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:28
+#: lib/club_homepage/web/commands/javascript_localization.ex:28
 msgid "clear_selection"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:29
+#: lib/club_homepage/web/commands/javascript_localization.ex:29
 msgid "close"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:40
+#: lib/club_homepage/web/commands/javascript_localization.ex:40
 msgid "next_century"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:38
+#: lib/club_homepage/web/commands/javascript_localization.ex:38
 msgid "next_decade"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:32
+#: lib/club_homepage/web/commands/javascript_localization.ex:32
 msgid "next_month"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:35
+#: lib/club_homepage/web/commands/javascript_localization.ex:35
 msgid "next_year"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:39
+#: lib/club_homepage/web/commands/javascript_localization.ex:39
 msgid "previous_century"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:37
+#: lib/club_homepage/web/commands/javascript_localization.ex:37
 msgid "previous_decade"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:31
+#: lib/club_homepage/web/commands/javascript_localization.ex:31
 msgid "previous_month"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:34
+#: lib/club_homepage/web/commands/javascript_localization.ex:34
 msgid "previous_year"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:36
+#: lib/club_homepage/web/commands/javascript_localization.ex:36
 msgid "select_decade"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:30
+#: lib/club_homepage/web/commands/javascript_localization.ex:30
 msgid "select_month"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:41
+#: lib/club_homepage/web/commands/javascript_localization.ex:41
 msgid "select_time"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:33
+#: lib/club_homepage/web/commands/javascript_localization.ex:33
 msgid "select_year"
 msgstr ""
 
-#: web/commands/javascript_localization.ex:27
+#: lib/club_homepage/web/commands/javascript_localization.ex:27
 msgid "today"
 msgstr ""
 
-#: web/templates/payment_list/show.html.eex:4
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:4
 msgid "payment_list"
 msgstr ""
 
-#: web/templates/payment_list/index.html.eex:13
-#: web/templates/payment_list/show.html.eex:15
+#: lib/club_homepage/web/templates/web/payment_list/index.html.eex:13
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:15
 msgid "payment_list_creator"
 msgstr ""
 
-#: web/templates/payment_list/index.html.eex:14
-#: web/templates/payment_list/show.html.eex:20
+#: lib/club_homepage/web/templates/web/payment_list/index.html.eex:14
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:20
 msgid "payment_list_deputy"
 msgstr ""
 
-#: web/templates/layout/navbar_top.html.eex:57
-#: web/templates/layout/navbar_top.html.eex:57
-#: web/templates/layout/navbar_top.html.eex:150
-#: web/templates/payment_list/edit.html.eex:10
-#: web/templates/payment_list/index.html.eex:4
-#: web/templates/payment_list/new.html.eex:10
-#: web/templates/payment_list/show.html.eex:9
-#: web/templates/payment_list/show.html.eex:55
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:39
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:39
+#: lib/club_homepage/web/templates/web/layout/navbar_top.html.eex:132
+#: lib/club_homepage/web/templates/web/payment_list/edit.html.eex:10
+#: lib/club_homepage/web/templates/web/payment_list/index.html.eex:4
+#: lib/club_homepage/web/templates/web/payment_list/new.html.eex:10
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:9
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:71
 msgid "payment_lists"
 msgstr ""
 
-#: web/templates/payment_list/index.html.eex:7
-#: web/templates/payment_list/index.html.eex:44
-#: web/templates/payment_list/new.html.eex:4
+#: lib/club_homepage/web/templates/web/payment_list/index.html.eex:7
+#: lib/club_homepage/web/templates/web/payment_list/index.html.eex:44
+#: lib/club_homepage/web/templates/web/payment_list/new.html.eex:4
 msgid "create_payment_list"
 msgstr ""
 
-#: web/templates/payment_list/edit.html.eex:4
+#: lib/club_homepage/web/templates/web/payment_list/edit.html.eex:4
 msgid "edit_payment_list"
 msgstr ""
 
-#: web/templates/payment_list/index.html.eex:15
+#: lib/club_homepage/web/templates/web/payment_list/index.html.eex:15
 msgid "title"
 msgstr ""
 
-#: web/templates/payment_list/form.html.eex:26
+#: lib/club_homepage/web/templates/web/payment_list/form.html.eex:26
 msgid "currency_unit"
 msgstr ""
 
-#: web/templates/payment_list/form.html.eex:13
-#: web/templates/payment_list/form.html.eex:13
-#: web/templates/payment_list/show.html.eex:37
+#: lib/club_homepage/web/templates/web/payment_list/form.html.eex:13
+#: lib/club_homepage/web/templates/web/payment_list/form.html.eex:13
+#: lib/club_homepage/web/templates/web/payment_list_debitor/form.html.eex:4
 msgid "select_payment_list_creator_placeholder"
 msgstr ""
 
-#: web/templates/payment_list/form.html.eex:18
-#: web/templates/payment_list/form.html.eex:18
+#: lib/club_homepage/web/templates/web/payment_list/form.html.eex:18
+#: lib/club_homepage/web/templates/web/payment_list/form.html.eex:18
 msgid "select_payment_list_deputy_placeholder"
 msgstr ""
 
-#: web/controllers/payment_list_controller.ex:32
+#: lib/club_homepage/web/controllers/payment_list_controller.ex:32
 msgid "payment_list_created_successfully"
 msgstr ""
 
-#: web/controllers/payment_list_controller.ex:82
+#: lib/club_homepage/web/controllers/payment_list_controller.ex:82
 msgid "payment_list_deleted_successfully"
 msgstr ""
 
-#: web/controllers/payment_list_controller.ex:64
+#: lib/club_homepage/web/controllers/payment_list_controller.ex:64
 msgid "payment_list_updated_successfully"
 msgstr ""
 
-#: web/templates/payment_list/index.html.eex:16
+#: lib/club_homepage/web/templates/web/payment_list/index.html.eex:16
 msgid "number_of_debitors"
 msgstr ""
 
-#: web/templates/payment_list/form.html.eex:8
+#: lib/club_homepage/web/templates/web/payment_list/form.html.eex:8
 msgid "payment_list_title"
 msgstr ""
 
-#: web/templates/payment_list/form.html.eex:25
-#: web/templates/payment_list/show.html.eex:27
+#: lib/club_homepage/web/templates/web/payment_list/form.html.eex:25
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:27
 msgid "price_per_piece"
 msgstr ""
 
-#: web/views/layout_view.ex:7
+#: lib/club_homepage/web/views/layout_view.ex:7
 msgid "create_payment_list_button_text"
 msgstr ""
 
-#: web/views/layout_view.ex:13
+#: lib/club_homepage/web/views/layout_view.ex:13
 msgid "piece_abbreviation"
 msgstr ""
 
-#: web/templates/payment_list/show.html.eex:42
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:45
 msgid "number_of_units"
 msgstr ""
 
-#: web/templates/payment_list/show.html.eex:37
+#: lib/club_homepage/web/templates/web/payment_list_debitor/form.html.eex:4
 msgid "payment_list_debitor_placeholder"
+msgstr ""
+
+#: lib/club_homepage/web/templates/web/payment_list_debitor/form.html.eex:13
+msgid "add_record"
+msgstr ""
+
+#: lib/club_homepage/web/templates/web/competition/index.html.eex:34
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:57
+msgid "are_you_sure"
+msgstr ""
+
+#: lib/club_homepage/web/templates/web/payment_list_debitor/edit.html.eex:4
+msgid "edit_payment_list_debitor"
+msgstr ""
+
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:63
+msgid "no_records_found"
+msgstr ""
+
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:23
+msgid "payment_list_debitor_created_successfully"
+msgstr ""
+
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:62
+msgid "payment_list_debitor_deleted_successfully"
+msgstr ""
+
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:46
+msgid "total_price"
 msgstr ""
