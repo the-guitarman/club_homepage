@@ -3,7 +3,7 @@ defmodule ClubHomepage.MatchCalendarCreatorTest do
   use ExUnit.Case
   doctest ClubHomepage.Web.MatchCalendarCreator
 
-  alias ClubHomepage.Competition
+  # alias ClubHomepage.Competition
   alias ClubHomepage.Match
   alias ClubHomepage.Web.MatchCalendarCreator
   alias ClubHomepage.OpponentTeam
@@ -40,11 +40,11 @@ defmodule ClubHomepage.MatchCalendarCreatorTest do
     assert MatchCalendarCreator.available?(team_id, season_id)
   end
 
-  defp uid(match) do
-    competition = Repo.get(Competition, match.competition_id)
-    :crypto.hash(:sha, "#{match.id}#{summary(match)}#{competition.name}")
-    |> Base.encode16(case: :lower)
-  end
+  # defp uid(match) do
+  #   competition = Repo.get(Competition, match.competition_id)
+  #   :crypto.hash(:sha, "#{match.id}#{summary(match)}#{competition.name}")
+  #   |> Base.encode16(case: :lower)
+  # end
 
   defp summary(match) do
     team = Repo.get(Team, match.team_id)
