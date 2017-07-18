@@ -13,7 +13,6 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
 
   setup context do
     conn = build_conn()
-    user = insert(:user)
     payment_list = insert(:payment_list)
     debitor = insert(:payment_list_debitor)
     valid_attrs = %{@valid_attrs | payment_list_id: payment_list.id, user_id: debitor.user_id}
@@ -48,7 +47,7 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   end
 
   @tag login: true
-  test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs, payment_list: payment_list, debitor: debitor} do
+  test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs, payment_list: payment_list, debitor: _debitor} do
     conn = post conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: valid_attrs
     assert redirected_to(conn) == payment_list_path(conn, :show, payment_list)
     assert Repo.get_by(PaymentListDebitor, valid_attrs)
@@ -58,7 +57,7 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     payment_list = insert(:payment_list)
     conn = post conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: @invalid_attrs
-    assert html_response(conn, 200) =~ "Create Payment List"
+    assert html_response(conn, 200) =~ "<h2>Payment List - #{payment_list.title}</h2>"
   end
 
   @tag login: true

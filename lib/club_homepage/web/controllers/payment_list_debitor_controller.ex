@@ -23,11 +23,13 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
         |> put_flash(:info, gettext("payment_list_debitor_created_successfully"))
         |> redirect(to: payment_list_path(conn, :show, payment_list))
       {:error, changeset} ->
-        Phoenix.View.render(ClubHomepage.Web.PaymentListView, "show.html", changeset: changeset,
+        {:safe, body} = Phoenix.View.render(ClubHomepage.Web.PaymentListView, "show.html", changeset: changeset,
                conn: conn,
                payment_list: payment_list, 
                user_options: conn.assigns.user_options)
         conn
+        |> put_resp_content_type("text/html")
+        |> send_resp(200, body)
     end
   end
 
