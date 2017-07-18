@@ -16,7 +16,7 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
     user = insert(:user)
     payment_list = insert(:payment_list)
     debitor = insert(:payment_list_debitor)
-    valid_attrs = %{@valid_attrs | payment_list_id: payment_list.id, user_id: debitor.id}
+    valid_attrs = %{@valid_attrs | payment_list_id: payment_list.id, user_id: debitor.user_id}
     if context[:login] do
       current_user = 
         if context[:user_roles] do

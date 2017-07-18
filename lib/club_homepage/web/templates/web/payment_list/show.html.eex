@@ -32,7 +32,7 @@
     <div class="row">
       <div class="col-xs-12">
         <%= form_for @changeset, payment_list_debitor_path(@conn, :create, @payment_list), [class: "form-inline"], fn f -> %>
-          <%#= show_form_errors(@changeset, f) %>
+          <%= show_form_errors(@changeset, f) %>
               <div class="form-group new-record-element <%#= error_cls @changeset, f, :user_id %>">
                 <%= select(f, :user_id, @user_options, placeholder: gettext("payment_list_debitor_placeholder"), prompt: gettext("select_payment_list_creator_placeholder"), required: true) %>
                 <%= error_tag @changeset, f, :user_id %>

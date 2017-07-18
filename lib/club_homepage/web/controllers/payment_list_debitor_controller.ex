@@ -10,8 +10,10 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
   plug :get_deputy_select_options when action in [:create, :edit, :update]
 
   def create(conn, %{"payment_list_debitor" => payment_list_debitor_params}) do
-    payment_list = get_payment_list(conn)
-
+    payment_list =
+      conn
+      |> get_payment_list()
+      |> Repo.preload([:user, :deputy, :debitors])
 
     changeset = PaymentListDebitor.changeset(%PaymentListDebitor{payment_list_id: payment_list.id}, payment_list_debitor_params)
 
@@ -24,9 +26,8 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
         Phoenix.View.render(ClubHomepage.Web.PaymentListView, "show.html", changeset: changeset,
                conn: conn,
                payment_list: payment_list, 
-               user_options: conn.assigns.user_options,
-               deputy_options: conn.assigns.deputy_options,
-               form_mode: :new)
+               user_options: conn.assigns.user_options)
+        conn
     end
   end
 
