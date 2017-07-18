@@ -1446,11 +1446,11 @@ msgstr ""
 #: lib/club_homepage/web/templates/web/competition/index.html.eex:34
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:57
 msgid "are_you_sure"
-msgstr ""
+msgstr "Are you sure"
 
 #: lib/club_homepage/web/templates/web/payment_list_debitor/edit.html.eex:4
 msgid "edit_payment_list_debitor"
-msgstr ""
+msgstr "Edit Payment List Debitor"
 
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:63
 msgid "no_records_found"

@@ -1441,12 +1441,12 @@ msgstr "Schuldner/-in"
 
 #: lib/club_homepage/web/templates/web/payment_list_debitor/form.html.eex:13
 msgid "add_record"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: lib/club_homepage/web/templates/web/competition/index.html.eex:34
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:57
 msgid "are_you_sure"
-msgstr ""
+msgstr "Bist Du sicher"
 
 #: lib/club_homepage/web/templates/web/payment_list_debitor/edit.html.eex:4
 msgid "edit_payment_list_debitor"
@@ -1454,7 +1454,7 @@ msgstr ""
 
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:63
 msgid "no_records_found"
-msgstr ""
+msgstr "Es wurden keine Einträge gefunden."
 
 #: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:23
 msgid "payment_list_debitor_created_successfully"
