@@ -74,7 +74,7 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
     debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
     conn = put conn, payment_list_debitor_path(conn, :update, payment_list, debitor), payment_list_debitor: valid_attrs
     assert redirected_to(conn) == payment_list_path(conn, :show, payment_list)
-    assert Repo.get_by(PaymentList, valid_attrs)
+    assert Repo.get_by(PaymentListDebitor, valid_attrs)
   end
 
   @tag login: true
