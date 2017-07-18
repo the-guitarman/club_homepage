@@ -65,7 +65,7 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
     payment_list = insert(:payment_list)
     debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
     conn = get conn, payment_list_debitor_path(conn, :edit, payment_list, debitor)
-    assert html_response(conn, 200) =~ "Edit Payment List"
+    assert html_response(conn, 200) =~ "Edit Payment List Debitor"
   end
 
   @tag login: true
@@ -82,7 +82,7 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
     payment_list = insert(:payment_list)
     debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
     conn = put conn, payment_list_debitor_path(conn, :update, payment_list, debitor), payment_list_debitor: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit Payment List"
+    assert html_response(conn, 200) =~ "Edit Payment List Debitor"
   end
 
   @tag login: true
