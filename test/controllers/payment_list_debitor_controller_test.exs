@@ -13,18 +13,18 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
 
   setup context do
     conn = build_conn()
-    payment_list = insert(:payment_list)
+    user = 
+      if context[:user_roles] do
+        insert(:user, roles: context[:user_roles])
+      else
+        insert(:user)
+      end
+    payment_list = insert(:payment_list, user_id: user.id)
     debitor = insert(:payment_list_debitor)
     valid_attrs = %{@valid_attrs | payment_list_id: payment_list.id, user_id: debitor.user_id}
     if context[:login] do
-      current_user = 
-        if context[:user_roles] do
-          insert(:user, roles: context[:user_roles])
-        else
-          insert(:user)
-        end
-      conn = assign(conn, :current_user, current_user)
-      {:ok, conn: conn, current_user: current_user, valid_attrs: valid_attrs, payment_list: payment_list, debitor: debitor}
+      conn = assign(conn, :current_user, user)
+      {:ok, conn: conn, current_user: user, valid_attrs: valid_attrs, payment_list: payment_list, debitor: debitor}
     else
       {:ok, conn: conn, valid_attrs: valid_attrs, payment_list: payment_list, debitor: debitor}
     end
@@ -54,23 +54,20 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   end
 
   @tag login: true
-  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    payment_list = insert(:payment_list)
+  test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: current_user, payment_list: payment_list} do
     conn = post conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: @invalid_attrs
     assert html_response(conn, 200) =~ "<h2>Payment List - #{payment_list.title}</h2>"
   end
 
   @tag login: true
-  test "renders form for editing chosen resource", %{conn: conn} do
-    payment_list = insert(:payment_list)
+  test "renders form for editing chosen resource", %{conn: conn, payment_list: payment_list} do
     debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
     conn = get conn, payment_list_debitor_path(conn, :edit, payment_list, debitor)
     assert html_response(conn, 200) =~ "Edit Payment List Debitor"
   end
 
   @tag login: true
-  test "updates chosen resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs} do
-    payment_list = insert(:payment_list)
+  test "updates chosen resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs, payment_list: payment_list} do
     debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
     conn = put conn, payment_list_debitor_path(conn, :update, payment_list, debitor), payment_list_debitor: valid_attrs
     assert redirected_to(conn) == payment_list_path(conn, :show, payment_list)
@@ -78,16 +75,14 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   end
 
   @tag login: true
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    payment_list = insert(:payment_list)
+  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, payment_list: payment_list} do
     debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
     conn = put conn, payment_list_debitor_path(conn, :update, payment_list, debitor), payment_list_debitor: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit Payment List Debitor"
   end
 
   @tag login: true
-  test "deletes chosen resource", %{conn: conn} do
-    payment_list = insert(:payment_list)
+  test "deletes chosen resource", %{conn: conn, payment_list: payment_list} do
     debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id)
     conn = delete conn, payment_list_debitor_path(conn, :delete, payment_list, debitor)
     assert redirected_to(conn) == payment_list_path(conn, :show, payment_list)

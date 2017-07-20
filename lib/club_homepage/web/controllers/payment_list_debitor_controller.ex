@@ -4,7 +4,8 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
   alias ClubHomepage.PaymentList
   alias ClubHomepage.PaymentListDebitor
 
-  plug :authenticate_user 
+  plug :authenticate_user
+  plug :authenticate_payment_list_owner_or_deputy, payment_list_id_param_name: "payment_list_id"
   plug :scrub_params, "payment_list_debitor" when action in [:create, :update]
   plug :get_user_select_options when action in [:create, :edit, :update]
   plug :get_deputy_select_options when action in [:create, :edit, :update]

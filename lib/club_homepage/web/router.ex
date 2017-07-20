@@ -14,7 +14,8 @@ defmodule ClubHomepage.Web.Router do
     plug ClubHomepage.Web.WeatherData
     plug ClubHomepage.Web.MemberBirthday
     plug ClubHomepage.Web.MyPaymentLists
-#    plug ClubHomepage.Web.JavascriptLocalization
+    # plug ClubHomepage.Web.AuthForPaymentList
+    # plug ClubHomepage.Web.JavascriptLocalization
   end
 
   # pipeline :api do
