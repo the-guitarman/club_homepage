@@ -54,7 +54,7 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   end
 
   @tag login: true
-  test "does not create resource and renders errors when data is invalid", %{conn: conn, current_user: current_user, payment_list: payment_list} do
+  test "does not create resource and renders errors when data is invalid", %{conn: conn, payment_list: payment_list} do
     conn = post conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: @invalid_attrs
     assert html_response(conn, 200) =~ "<h2>Payment List - #{payment_list.title}</h2>"
   end
