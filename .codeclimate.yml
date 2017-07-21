@@ -22,4 +22,4 @@ ratings:
   - "**.module"
 exclude_paths:
 - config/**/*
-- web/static/vendor/**/*
+- assets/vendor/**/*
