@@ -20,9 +20,11 @@ defmodule ClubHomepage.AuthForPaymentListTest do
   end
 
   test "authenticate_payment_list_owner_or_deputy halts when the current_user exists but is not owner or deputy of the payment_list", %{conn: conn} do
-    conn = assign(conn, :current_user, %ClubHomepage.User{})
+    user1 = insert(:user)
+    conn = assign(conn, :current_user, user1)
 
-    payment_list = insert(:payment_list)
+    user2 = insert(:user)
+    payment_list = insert(:payment_list, user_id: user2.id)
     conn = update_in(conn.params, fn (params) -> Map.put(params, "payment_list_id", payment_list.id) end)
 
     conn = Auth.authenticate_payment_list_owner_or_deputy(conn, payment_list_id_param_name: "payment_list_id")
@@ -30,4 +32,15 @@ defmodule ClubHomepage.AuthForPaymentListTest do
     assert conn.halted
   end
 
+  test "authenticate_payment_list_owner_or_deputy continues when the current_user exists but is not owner or deputy of the payment_list", %{conn: conn} do
+    user = insert(:user)
+    conn = assign(conn, :current_user, user)
+
+    payment_list = insert(:payment_list, user_id: user.id)
+    conn = update_in(conn.params, fn (params) -> Map.put(params, "payment_list_id", payment_list.id) end)
+
+    conn = Auth.authenticate_payment_list_owner_or_deputy(conn, payment_list_id_param_name: "payment_list_id")
+
+    refute conn.halted
+  end
 end
