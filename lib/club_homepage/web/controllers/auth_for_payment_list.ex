@@ -4,7 +4,6 @@ defmodule ClubHomepage.Web.AuthForPaymentList do
 
   alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.Repo
-  alias ClubHomepage.PaymentList
 
   # def init(opts) do
   #   opts
