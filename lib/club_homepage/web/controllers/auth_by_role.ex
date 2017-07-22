@@ -1,6 +1,7 @@
 defmodule ClubHomepage.Web.AuthByRole do
   import Phoenix.Controller
   import Plug.Conn
+  import ClubHomepage.Web.Gettext
 
   alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.Web.UserRole
@@ -66,7 +67,7 @@ defmodule ClubHomepage.Web.AuthByRole do
 
   defp halt_request(conn) do
     conn
-    |> put_flash(:error, "You are not authorized!")
+    |> put_flash(:error, gettext("error_auth_not_authorized"))
     |> redirect(to: Helpers.page_path(conn, :index))
     |> halt()
   end
