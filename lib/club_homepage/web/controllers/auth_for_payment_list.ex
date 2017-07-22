@@ -26,8 +26,9 @@ defmodule ClubHomepage.Web.AuthForPaymentList do
   end
 
   defp conn_halt(conn) do
+    #"Du musst Verantwortlicher oder Vertreter für diese Bezahlliste sein, um diese Seite sehen zu können."
     conn
-    |> put_flash(:error, "Du musst Verantwortlicher oder Vertreter für diese Bezahlliste sein, um diese Seite sehen zu können.")
+    |> put_flash(:error, Gettext.gettext(ClubHomepage.Web.Gettext, :error_auth_for_payment_list)
     |> redirect(to: Helpers.session_path(conn, :new, redirect: URI.encode(conn.request_path)))
     |> halt()
   end
