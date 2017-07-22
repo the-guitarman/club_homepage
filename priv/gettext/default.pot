@@ -1390,15 +1390,16 @@ msgstr ""
 msgid "select_payment_list_deputy_placeholder"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/payment_list_controller.ex:32
+#: lib/club_homepage/web/controllers/payment_list_controller.ex:34
 msgid "payment_list_created_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/payment_list_controller.ex:82
+#: lib/club_homepage/web/controllers/payment_list_controller.ex:84
 msgid "payment_list_deleted_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/payment_list_controller.ex:64
+#: lib/club_homepage/web/controllers/payment_list_controller.ex:66
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:54
 msgid "payment_list_updated_successfully"
 msgstr ""
 
@@ -1448,14 +1449,18 @@ msgstr ""
 msgid "no_records_found"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:23
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:24
 msgid "payment_list_debitor_created_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:62
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:70
 msgid "payment_list_debitor_deleted_successfully"
 msgstr ""
 
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:46
 msgid "total_price"
+msgstr ""
+
+#: lib/club_homepage/web/controllers/auth_for_payment_list.ex:32
+msgid "error_auth_for_payment_list"
 msgstr ""

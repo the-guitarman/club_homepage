@@ -1,6 +1,7 @@
 defmodule ClubHomepage.Web.AuthForPaymentList do
   import Phoenix.Controller
   import Plug.Conn
+  import ClubHomepage.Web.Gettext
 
   alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.Repo
@@ -28,7 +29,7 @@ defmodule ClubHomepage.Web.AuthForPaymentList do
   defp conn_halt(conn) do
     #"Du musst Verantwortlicher oder Vertreter für diese Bezahlliste sein, um diese Seite sehen zu können."
     conn
-    |> put_flash(:error, Gettext.gettext(ClubHomepage.Web.Gettext, :error_auth_for_payment_list)
+    |> put_flash(:error, gettext("error_auth_for_payment_list"))
     |> redirect(to: Helpers.session_path(conn, :new, redirect: URI.encode(conn.request_path)))
     |> halt()
   end
