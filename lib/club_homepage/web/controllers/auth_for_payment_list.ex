@@ -5,6 +5,7 @@ defmodule ClubHomepage.Web.AuthForPaymentList do
 
   alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.Repo
+  alias ClubHomepage.PaymentList
 
   # def init(opts) do
   #   opts
@@ -27,7 +28,6 @@ defmodule ClubHomepage.Web.AuthForPaymentList do
   end
 
   defp conn_halt(conn) do
-    #"Du musst Verantwortlicher oder Vertreter für diese Bezahlliste sein, um diese Seite sehen zu können."
     conn
     |> put_flash(:error, gettext("error_auth_for_payment_list"))
     |> redirect(to: Helpers.session_path(conn, :new, redirect: URI.encode(conn.request_path)))

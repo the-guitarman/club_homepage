@@ -4,7 +4,6 @@ defmodule ClubHomepage.AuthForPaymentListTest do
   import ClubHomepage.Factory
 
   alias ClubHomepage.Web.AuthForPaymentList, as: Auth
-  alias ClubHomepage.PaymentList
 
   setup do
     conn =
