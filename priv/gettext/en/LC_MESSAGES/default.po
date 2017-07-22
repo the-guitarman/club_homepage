@@ -1442,7 +1442,7 @@ msgstr "Debitor"
 
 #: lib/club_homepage/web/templates/web/payment_list_debitor/form.html.eex:13
 msgid "add_record"
-msgstr ""
+msgstr "Add"
 
 #: lib/club_homepage/web/templates/web/competition/index.html.eex:34
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:57
@@ -1455,20 +1455,32 @@ msgstr "Edit Payment List Debitor"
 
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:63
 msgid "no_records_found"
-msgstr ""
+msgstr "No records found."
 
 #: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:24
 msgid "payment_list_debitor_created_successfully"
-msgstr ""
+msgstr "Payment list debitor created successfully."
 
 #: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:70
 msgid "payment_list_debitor_deleted_successfully"
-msgstr ""
+msgstr "Payment list debitor deleted successfully."
 
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:46
 msgid "total_price"
-msgstr ""
+msgstr "Tital Price"
 
 #: lib/club_homepage/web/controllers/auth_for_payment_list.ex:32
 msgid "error_auth_for_payment_list"
 msgstr "You need to be the owner or deputy of the payment list to view this side."
+
+#: lib/club_homepage/web/controllers/auth.ex:45
+msgid "error_auth_login_needed"
+msgstr "You need to be logged in to view this page."
+
+#: lib/club_homepage/web/controllers/auth.ex:54
+msgid "error_auth_logout_needed"
+msgstr "You need to be logged out to view this page."
+
+#: lib/club_homepage/web/controllers/auth_by_role.ex:70
+msgid "error_auth_not_authorized"
+msgstr "You are not authorized to view this page."

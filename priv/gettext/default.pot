@@ -1464,3 +1464,15 @@ msgstr ""
 #: lib/club_homepage/web/controllers/auth_for_payment_list.ex:32
 msgid "error_auth_for_payment_list"
 msgstr ""
+
+#: lib/club_homepage/web/controllers/auth.ex:45
+msgid "error_auth_login_needed"
+msgstr ""
+
+#: lib/club_homepage/web/controllers/auth.ex:54
+msgid "error_auth_logout_needed"
+msgstr ""
+
+#: lib/club_homepage/web/controllers/auth_by_role.ex:70
+msgid "error_auth_not_authorized"
+msgstr ""

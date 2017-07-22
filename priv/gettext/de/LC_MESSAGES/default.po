@@ -1451,7 +1451,7 @@ msgstr "Bist Du sicher"
 
 #: lib/club_homepage/web/templates/web/payment_list_debitor/edit.html.eex:4
 msgid "edit_payment_list_debitor"
-msgstr ""
+msgstr "Schulden bearbeiten"
 
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:63
 msgid "no_records_found"
@@ -1459,16 +1459,28 @@ msgstr "Es wurden keine Einträge gefunden."
 
 #: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:24
 msgid "payment_list_debitor_created_successfully"
-msgstr ""
+msgstr "Schulden erfolgreich angelegt."
 
 #: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:70
 msgid "payment_list_debitor_deleted_successfully"
-msgstr ""
+msgstr "Schulden erfolgreich gelöscht."
 
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:46
 msgid "total_price"
-msgstr ""
+msgstr "Gesamtbetrag"
 
 #: lib/club_homepage/web/controllers/auth_for_payment_list.ex:32
 msgid "error_auth_for_payment_list"
 msgstr "Du musst Verantwortlicher oder Vertreter für diese Bezahlliste sein, um diese Seite sehen zu können."
+
+#: lib/club_homepage/web/controllers/auth.ex:45
+msgid "error_auth_login_needed"
+msgstr "Du musst ausgeloggt sein, um diese Seite sehen zu können."
+
+#: lib/club_homepage/web/controllers/auth.ex:54
+msgid "error_auth_logout_needed"
+msgstr "Du musst eingeloggt sein, um diese Seite sehen zu können."
+
+#: lib/club_homepage/web/controllers/auth_by_role.ex:70
+msgid "error_auth_not_authorized"
+msgstr "Du hast keine Berechtigung, um diese Seite zu sehen."

@@ -42,7 +42,7 @@ defmodule ClubHomepage.Web.Auth do
       conn
     else
       conn
-      |> put_flash(:error, gettext("error_auth_login_needed") #"Du musst eingeloggt sein, um diese Seite sehen zu können.")
+      |> put_flash(:error, gettext("error_auth_login_needed"))
       |> redirect(to: Helpers.session_path(conn, :new, redirect: URI.encode(conn.request_path)))
       |> halt()
     end
@@ -51,7 +51,7 @@ defmodule ClubHomepage.Web.Auth do
   def require_no_user(conn, _options) do
     if conn.assigns[:current_user] do
       conn
-      |> put_flash(:error, gettext("error_auth_logout_needed") #"Du musst ausgeloggt sein, um diese Seite sehen zu können.")
+      |> put_flash(:error, gettext("error_auth_logout_needed"))
       |> redirect(to: Helpers.page_path(conn, :index))
       |> halt()
     else
