@@ -16,6 +16,7 @@ defmodule ClubHomepage.AuthForPaymentListTest do
   test "authenticate_payment_list_owner_or_deputy halts when no current_user exists", %{conn: conn} do
     conn = Auth.authenticate_payment_list_owner_or_deputy(conn, [])
     assert conn.halted
+    assert flash_messages_contain?(conn, "You need to be the owner or deputy of the payment list to view this side.")
   end
 
   test "authenticate_payment_list_owner_or_deputy halts when the current_user exists but is not owner or deputy of the payment_list", %{conn: conn} do
@@ -29,6 +30,7 @@ defmodule ClubHomepage.AuthForPaymentListTest do
     conn = Auth.authenticate_payment_list_owner_or_deputy(conn, payment_list_id_param_name: "payment_list_id")
 
     assert conn.halted
+    assert flash_messages_contain?(conn, "You need to be the owner or deputy of the payment list to view this side.")
   end
 
   test "authenticate_payment_list_owner_or_deputy continues when the current_user exists but is not owner or deputy of the payment_list", %{conn: conn} do

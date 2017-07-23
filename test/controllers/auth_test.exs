@@ -15,6 +15,7 @@ defmodule ClubHomepage.AuthTest do
   test "authenticate_user halts when no current_user exists", %{conn: conn} do
     conn = Auth.authenticate_user(conn, [])
     assert conn.halted
+    assert flash_messages_contain?(conn, "You need to be logged in to view this page.")
   end
 
   test "authenticate_user continues when the current_user exists", %{conn: conn} do
@@ -23,6 +24,21 @@ defmodule ClubHomepage.AuthTest do
       |> assign(:current_user, %ClubHomepage.User{})
       |> Auth.authenticate_user([])
 
+    refute conn.halted
+  end
+
+  test "require_no_user halts when current_user exists", %{conn: conn} do
+    conn =
+      conn
+      |> assign(:current_user, %ClubHomepage.User{})
+      |> Auth.require_no_user([])
+
+    assert flash_messages_contain?(conn, "You need to be logged out to view this page.")
+    assert conn.halted
+  end
+
+  test "require_no_user continues when no current_user exists", %{conn: conn} do
+    conn = Auth.require_no_user(conn, [])
     refute conn.halted
   end
 
