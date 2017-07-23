@@ -12,6 +12,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
 
   test "is_administrator? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_administrator?(conn, [])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -20,6 +21,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
       conn
       |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
       |> AuthByRole.is_administrator?([])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -35,6 +37,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
 
   test "is_match_editor? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_match_editor?(conn, [])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -43,6 +46,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
       conn
       |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
       |> AuthByRole.is_match_editor?([])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -58,6 +62,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
 
   test "is_member? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_member?(conn, [])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -66,6 +71,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
       conn
       |> assign(:current_user, %ClubHomepage.User{roles: "player"})
       |> AuthByRole.is_member?([])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -81,6 +87,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
 
   test "is_news_editor? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_news_editor?(conn, [])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -89,6 +96,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
       conn
       |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
       |> AuthByRole.is_news_editor?([])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -104,6 +112,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
 
   test "is_player? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_player?(conn, [])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -112,6 +121,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
       conn
       |> assign(:current_user, %ClubHomepage.User{roles: "member"})
       |> AuthByRole.is_player?([])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -127,6 +137,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
 
   test "is_team_editor? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_team_editor?(conn, [])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -135,6 +146,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
       conn
       |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
       |> AuthByRole.is_team_editor?([])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -150,6 +162,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
 
   test "is_text_page_editor? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_text_page_editor?(conn, [])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -158,6 +171,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
       conn
       |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
       |> AuthByRole.is_text_page_editor?([])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -173,6 +187,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
 
   test "is_user_editor? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_user_editor?(conn, [])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -181,6 +196,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
       conn
       |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
       |> AuthByRole.is_user_editor?([])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -196,6 +212,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
 
   test "has_role_from_list? halts when no current_user exists", %{conn: conn} do
     conn = AuthByRole.is_user_editor?(conn, [])
+    assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
@@ -204,6 +221,7 @@ defmodule ClubHomepage.Web.AuthByRoleTest do
       conn
       |> assign(:current_user, %ClubHomepage.User{roles: "member player"})
       |> AuthByRole.has_role_from_list?(roles: ["trainer", "user-editor"])
+      assert flash_messages_contain?(conn, "You are not authorized to view this page.")
     assert conn.halted
   end
 
