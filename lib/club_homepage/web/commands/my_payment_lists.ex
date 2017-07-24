@@ -24,7 +24,7 @@ defmodule ClubHomepage.Web.MyPaymentLists do
   @doc """
   Returns payment lists for the provided user.
   """
-  @spec my_payment_lists(User | Nil) :: List
+  @spec my_payment_lists(User | Nil) :: List.t
   def my_payment_lists(nil), do: []
   def my_payment_lists(current_user) do
     current_user
