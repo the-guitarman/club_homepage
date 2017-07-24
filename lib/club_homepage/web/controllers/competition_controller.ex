@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.CompetitionController do
 
   alias ClubHomepage.Competition
 
-  plug :has_role_from_list?, [roles: ["match-editor", "team-editor"]]
+  plug :has_role_from_list, [roles: ["match-editor", "team-editor"]]
   plug :scrub_params, "competition" when action in [:create, :update]
 
   def index(conn, _params) do

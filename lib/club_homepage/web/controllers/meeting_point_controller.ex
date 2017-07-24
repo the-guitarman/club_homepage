@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.MeetingPointController do
 
   alias ClubHomepage.MeetingPoint
 
-  plug :is_match_editor?
+  plug :is_match_editor
   plug :scrub_params, "meeting_point" when action in [:create, :update]
   plug :get_address_select_options when action in [:new, :create, :edit, :update]
 

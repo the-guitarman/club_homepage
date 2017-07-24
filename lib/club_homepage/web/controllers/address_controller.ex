@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.AddressController do
 
   alias ClubHomepage.Address
 
-  plug :is_match_editor?
+  plug :is_match_editor
   plug :scrub_params, "address" when action in [:create, :update]
 
   def index(conn, _params) do

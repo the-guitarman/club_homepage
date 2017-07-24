@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.TextPageController do
 
   alias ClubHomepage.TextPage
 
-  plug :is_text_page_editor?
+  plug :is_text_page_editor
   plug :scrub_params, "text_page" when action in [:update]
 
   def index(conn, _params) do

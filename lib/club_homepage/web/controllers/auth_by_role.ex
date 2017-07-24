@@ -1,4 +1,8 @@
 defmodule ClubHomepage.Web.AuthByRole do
+  @moduledoc """
+  Provides plug methods to check wether the current logged in user has special user role.
+  """
+
   import Phoenix.Controller
   import Plug.Conn
   import ClubHomepage.Web.Gettext
@@ -14,39 +18,25 @@ defmodule ClubHomepage.Web.AuthByRole do
     conn
   end
 
-  def is_administrator?(conn, _options) do
-    has_role?(conn, "administrator")
+  for user_role_key <- UserRole.defined_roles_keys() do
+    function_name =
+      "is_#{String.replace(user_role_key, "-", "_")}"
+      |> String.to_atom()
+
+    @doc """
+    Returns the connection struct, if the current logged in user has the user role \"#{user_role_key}\". Otherwise halts the connection.
+    """
+    @spec unquote(function_name)(Plug.Conn.t, Keyword.t) :: Boolean
+    def unquote(function_name)(conn, _options) do
+      has_role(conn, unquote(user_role_key))
+    end
   end
 
-  def is_match_editor?(conn, _options) do
-    has_role?(conn, "match-editor")
-  end
-
-  def is_member?(conn, _options) do
-    has_role?(conn, "member")
-  end
-
-  def is_news_editor?(conn, _options) do
-    has_role?(conn, "news-editor")
-  end
-
-  def is_player?(conn, _options) do
-    has_role?(conn, "player")
-  end
-
-  def is_team_editor?(conn, _options) do
-    has_role?(conn, "team-editor")
-  end
-
-  def is_text_page_editor?(conn, _options) do
-    has_role?(conn, "text-page-editor")
-  end
-
-  def is_user_editor?(conn, _options) do
-    has_role?(conn, "user-editor")
-  end
-
-  def has_role_from_list?(conn, options) do
+  @doc """
+  Returns the connection struct, if the current logged in user has one of the given user roles. Otherwise it halts the connection.
+  """
+  @spec has_role_from_list(Plug.Conn.t, Keyword.t) :: Plug.Conn.t
+  def has_role_from_list(conn, options) do
     roles = Keyword.fetch!(options, :roles)
     case Enum.any?(roles, fn(role) -> UserRole.has_role?(conn, role) end) do
       true  -> conn
@@ -54,10 +44,19 @@ defmodule ClubHomepage.Web.AuthByRole do
     end
   end
 
+  @doc """
+  Returns true, if the current logged in user has the given user role or one of some given user roles. Otherwise false.
+  """
+  @spec has_role?(Plug.Conn.t, [String.t]) :: Boolean
   def has_role?(conn, roles) when is_list(roles) do
     Enum.any?(roles, fn(role) -> has_role?(conn, role) end)
   end
-  def has_role?(conn, role) do
+
+  @doc """
+  Returns the connection struct, if the current logged in user has the given user role. Otherwise it halts the connection.
+  """
+  @spec has_role(Plug.Conn.t, String.t) :: Plug.Conn.t
+  def has_role(conn, role) do
     if UserRole.has_role?(conn, role) || UserRole.has_role?(conn, "administrator") do
       conn
     else

@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.TeamChatMessageController do
 
   alias ClubHomepage.TeamChatMessage
 
-  plug :is_team_editor?
+  plug :is_team_editor
 
   def index(conn, _params) do
     team_chat_messages = Repo.all(TeamChatMessage)

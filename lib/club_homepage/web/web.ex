@@ -45,7 +45,7 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
       import ClubHomepage.Web.Auth, only: [authenticate_user: 2, require_no_user: 2, current_user: 1, logged_in?: 1, logged_in?: 2]
-      import ClubHomepage.Web.AuthByRole, only: [has_role?: 2, is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_team_editor?: 2, is_text_page_editor?: 2, is_user_editor?: 2, has_role_from_list?: 2]
+      import ClubHomepage.Web.AuthByRole, only: [has_role: 2, is_administrator: 2, is_match_editor: 2, is_member: 2, is_news_editor: 2, is_player: 2, is_team_editor: 2, is_text_page_editor: 2, is_user_editor: 2, has_role_from_list: 2]
       import ClubHomepage.Web.AuthForPaymentList, only: [authenticate_payment_list_owner_or_deputy: 2]
 
       import ClubHomepage.Web.SEO.Plug
@@ -81,7 +81,7 @@ defmodule ClubHomepage.Web do
       use Phoenix.Router
 
       import ClubHomepage.Web.Auth, only: [authenticate_user: 2, current_user: 1]
-      import ClubHomepage.Web.AuthByRole, only: [is_administrator?: 2, is_match_editor?: 2, is_member?: 2, is_news_editor?: 2, is_player?: 2, is_team_editor?: 2, is_text_page_editor?: 2, is_user_editor?: 2]
+      import ClubHomepage.Web.AuthByRole, only: [has_role: 2, is_administrator: 2, is_match_editor: 2, is_member: 2, is_news_editor: 2, is_player: 2, is_team_editor: 2, is_text_page_editor: 2, is_user_editor: 2]
     end
   end
 

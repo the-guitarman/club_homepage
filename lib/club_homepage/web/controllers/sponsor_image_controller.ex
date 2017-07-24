@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.SponsorImageController do
 
   alias ClubHomepage.SponsorImage
 
-  plug :is_text_page_editor?
+  plug :is_text_page_editor
   plug :scrub_params, "sponsor_image" when action in [:create, :update]
 
   def index(conn, _params) do

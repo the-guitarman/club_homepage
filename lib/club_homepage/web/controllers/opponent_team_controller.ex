@@ -4,7 +4,7 @@ defmodule ClubHomepage.Web.OpponentTeamController do
   alias ClubHomepage.OpponentTeam
   alias ClubHomepage.Repo
 
-  plug :has_role_from_list?, [roles: ["match-editor", "team-editor"]]
+  plug :has_role_from_list, [roles: ["match-editor", "team-editor"]]
   plug :scrub_params, "opponent_team" when action in [:create, :update]
   plug :get_address_select_options when action in [:new, :create, :edit, :update]
 

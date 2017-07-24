@@ -2,7 +2,7 @@ defmodule ClubHomepage.Web.UserView do
   use ClubHomepage.Web, :view
 
   def user_role_checked(user, role) do
-    case has_role?(user, role) do
+    case has_role?(user, [role]) do
       true  -> "checked=\"checked\""
       _     -> ""
     end

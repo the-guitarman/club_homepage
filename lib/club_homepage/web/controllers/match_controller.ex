@@ -12,7 +12,7 @@ defmodule ClubHomepage.Web.MatchController do
 
   import ClubHomepage.Web.Localization
 
-  plug :is_match_editor? when not action in [:show]
+  plug :is_match_editor when not action in [:show]
   plug :scrub_params, "match" when action in [:create, :update]
   plug :get_competition_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
   plug :get_season_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]

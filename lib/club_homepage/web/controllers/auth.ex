@@ -56,7 +56,7 @@ defmodule ClubHomepage.Web.Auth do
   @doc """
   Plug method to ensure, that a user is logged in. Otherwise it halts the connection.
   """
-  @spec authenticate_user(Plug.Conn.t) :: Plug.Conn.t
+  @spec authenticate_user(Plug.Conn.t, Keyword.t) :: Plug.Conn.t
   def authenticate_user(conn, _options) do
     if conn.assigns[:current_user] do
       conn
@@ -71,7 +71,7 @@ defmodule ClubHomepage.Web.Auth do
   @doc """
   Plug method to ensure, that no user is logged in. Otherwise it halts the connection.
   """
-  @spec require_no_user(Plug.Conn.t) :: Plug.Conn.t
+  @spec require_no_user(Plug.Conn.t, Keyword.t) :: Plug.Conn.t
   def require_no_user(conn, _options) do
     if conn.assigns[:current_user] do
       conn

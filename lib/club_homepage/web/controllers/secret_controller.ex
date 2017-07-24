@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.SecretController do
 
   alias ClubHomepage.Secret
 
-  plug :is_user_editor?
+  plug :is_user_editor
   plug :scrub_params, "secret" when action in [:update]
 
   def index(conn, _params) do

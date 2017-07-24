@@ -4,7 +4,7 @@ defmodule ClubHomepage.Web.TeamImageController do
   alias ClubHomepage.Team
   alias ClubHomepage.TeamImage
 
-  plug :is_team_editor?
+  plug :is_team_editor
   plug :scrub_params, "team_image" when action in [:create, :update]
   plug :get_team_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
 

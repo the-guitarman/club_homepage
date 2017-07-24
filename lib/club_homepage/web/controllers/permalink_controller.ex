@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.PermalinkController do
 
   alias ClubHomepage.Permalink
 
-  plug :is_administrator?
+  plug :is_administrator
   plug :scrub_params, "permalink" when action in [:create, :update]
 
   def index(conn, _params) do
