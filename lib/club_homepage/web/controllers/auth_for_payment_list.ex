@@ -1,4 +1,8 @@
 defmodule ClubHomepage.Web.AuthForPaymentList do
+  @moduledoc """
+  Provides an authentication method for payment lists. Only users who are owner or deputy of a payment list may edit or delete it.
+  """
+
   import Phoenix.Controller
   import Plug.Conn
   import ClubHomepage.Web.Gettext
@@ -15,6 +19,10 @@ defmodule ClubHomepage.Web.AuthForPaymentList do
   #   conn
   # end
 
+  @doc """
+  Plug method to authenticate a payment list owner or deputy.
+  """
+  @spec authenticate_payment_list_owner_or_deputy(Plug.Conn.t, Keyword.t) :: Plug.Conn.t
   def authenticate_payment_list_owner_or_deputy(conn, options) do
     case conn.assigns[:current_user] do
       nil -> conn_halt(conn)

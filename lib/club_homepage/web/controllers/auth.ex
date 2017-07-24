@@ -1,4 +1,8 @@
 defmodule ClubHomepage.Web.Auth do
+  @moduledoc """
+  Provides the central authentication system.
+  """
+
   import Phoenix.Controller
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2]
@@ -23,20 +27,36 @@ defmodule ClubHomepage.Web.Auth do
     end
   end
 
+  @doc """
+  Returns the current user of the given connection struct.
+  """
+  @spec current_user(Plug.Conn.t) :: User | Nil
   def current_user(conn) do
     conn.assigns[:current_user]
   end
 
+  @doc """
+  Returns wether a user is logged in or not.
+  """
+  @spec logged_in?(Plug.Conn.t) :: Boolean
   def logged_in?(conn), do: logged_in?(conn, %{})
   def logged_in?(conn, _options) do
     !!conn.assigns.current_user
   end
 
+  @doc """
+  Returns wether a user is logged out or not.
+  """
+  @spec logged_out?(Plug.Conn.t) :: Boolean
   def logged_out?(conn), do: logged_out?(conn, %{})
   def logged_out?(conn, options) do
     !logged_in?(conn, options)
   end
 
+  @doc """
+  Plug method to ensure, that a user is logged in. Otherwise it halts the connection.
+  """
+  @spec authenticate_user(Plug.Conn.t) :: Plug.Conn.t
   def authenticate_user(conn, _options) do
     if conn.assigns[:current_user] do
       conn
@@ -48,6 +68,10 @@ defmodule ClubHomepage.Web.Auth do
     end
   end
 
+  @doc """
+  Plug method to ensure, that no user is logged in. Otherwise it halts the connection.
+  """
+  @spec require_no_user(Plug.Conn.t) :: Plug.Conn.t
   def require_no_user(conn, _options) do
     if conn.assigns[:current_user] do
       conn
@@ -59,6 +83,10 @@ defmodule ClubHomepage.Web.Auth do
     end
   end
 
+  @doc """
+  Logs in the given user struct and renews the current session.
+  """
+  @spec login(Plug.Conn.t, User) :: Plug.Conn.t
   def login(conn, user) do
     conn
     |> assign(:current_user, user)
@@ -74,6 +102,10 @@ defmodule ClubHomepage.Web.Auth do
     |> assign(:user_token, token)
   end
 
+  @doc """
+  Trys to find a user to login by login or email and returns an :ok tuple. Otherwise returns an :error tuple.
+  """
+  @spec login_by_login_or_email_and_pass(Plug.Conn.t, String.t, String.t, Keyword.t) :: Tuple.t
   def login_by_login_or_email_and_pass(conn, login_or_email, given_pass, opts) do
     user = find_user(login_or_email, opts)
     cond do
@@ -88,6 +120,10 @@ defmodule ClubHomepage.Web.Auth do
     end
   end
 
+  @doc """
+  Logs out the current user and renews the current session.
+  """
+  @spec logout(Plug.Conn.t) :: Plug.Conn.t
   def logout(conn) do
     #delete_session(conn, :user_id)
     configure_session(conn, drop: true)
