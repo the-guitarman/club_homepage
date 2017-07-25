@@ -7,6 +7,9 @@ defmodule ClubHomepage.PaymentListDebitor do
     belongs_to :payment_list, ClubHomepage.PaymentList
     belongs_to :user, ClubHomepage.User
 
+    has_one :payment_list_owner, through: [:payment_list, :user]
+    has_one :payment_list_deputy, through: [:payment_list, :deputy]
+
     timestamps()
   end
 
