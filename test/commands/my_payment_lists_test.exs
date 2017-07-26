@@ -28,4 +28,9 @@ defmodule ClubHomepage.Web.MyPaymentListsTest do
     refute Enum.empty?(my_payment_lists)
     assert Enum.count(my_payment_lists) == 2
   end
+
+  test "my_payment_list_debts returns an empty list without a user" do
+    my_payment_list_debts = MyPaymentLists.my_payment_list_debts(nil)
+    assert Enum.empty?(my_payment_list_debts)
+  end
 end
