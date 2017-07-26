@@ -21,7 +21,7 @@ defmodule ClubHomepage.Web.MyPaymentLists do
     user = current_user(conn)
     conn
     |> assign(:my_payment_lists, my_payment_lists(user))
-    |> assign(:my_payment_listdebts, my_payment_list_debts(user))
+    |> assign(:my_payment_listdebts, my_payment_list_debitors(user))
   end
 
   @doc """
@@ -46,9 +46,9 @@ defmodule ClubHomepage.Web.MyPaymentLists do
     group_by: [pl.id, pl.user_id, pl.deputy_id, pl.title, pl.price_per_piece]
   end
 
-  @spec my_payment_list_debts(User | Nil) :: List.t
-  def my_payment_list_debts(nil), do: []
-  def my_payment_list_debts(user) do
+  @spec my_payment_list_debitors(User | Nil) :: List.t
+  def my_payment_list_debitors(nil), do: []
+  def my_payment_list_debitors(user) do
     user
     |> get_user_payment_list_debts_query
     |> get_user_records(PaymentListDebitor)
