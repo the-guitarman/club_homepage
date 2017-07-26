@@ -8,6 +8,25 @@ defmodule ClubHomepage.PaymentListDebitorTest do
   @valid_attrs %{payment_list_id: 1, user_id: 1, number_of_units: 42}
   @invalid_attrs %{}
 
+  test "associations" do
+    user1 = insert(:user)
+    user2 = insert(:user)
+    user3 = insert(:user)
+
+    payment_list =
+      insert(:payment_list, user_id: user1.id, deputy_id: user2.id)
+      |> Repo.preload([:user, :deputy])
+   
+    payment_list_debitor =
+      insert(:payment_list_debitor, payment_list_id: payment_list.id, user_id: user3.id)
+      |> Repo.preload([:payment_list, :user, :payment_list_owner, :payment_list_deputy])
+
+    assert payment_list_debitor.payment_list == payment_list
+    assert payment_list_debitor.user == user3
+    assert payment_list_debitor.payment_list_owner == user1
+    assert payment_list_debitor.payment_list_deputy == user2
+  end
+
   test "changeset with valid attributes" do
     payment_list = insert(:payment_list)
     user = insert(:user)
