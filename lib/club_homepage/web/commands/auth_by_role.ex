@@ -9,6 +9,7 @@ defmodule ClubHomepage.Web.AuthByRole do
 
   alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.Web.UserRole
+  alias ClubHomepage.Web.AuthByRole.Helper, as: AuthByRoleHelper
 
   def init(_opts) do
     nil
@@ -19,14 +20,12 @@ defmodule ClubHomepage.Web.AuthByRole do
   end
 
   for user_role_key <- UserRole.defined_roles_keys() do
-    function_name =
-      "is_#{String.replace(user_role_key, "-", "_")}"
-      |> String.to_atom()
+    function_name = AuthByRoleHelper.plug_function_name(user_role_key)
 
     @doc """
     Returns the connection struct, if the current logged in user has the user role \"#{user_role_key}\". Otherwise halts the connection.
     """
-    @spec unquote(function_name)(Plug.Conn.t, Keyword.t) :: Boolean
+    @spec unquote(function_name)(Plug.Conn.t, Keyword.t) :: Plug.Conn.t
     def unquote(function_name)(conn, _options) do
       has_role(conn, unquote(user_role_key))
     end

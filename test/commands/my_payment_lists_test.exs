@@ -49,12 +49,12 @@ defmodule ClubHomepage.Web.MyPaymentListsTest do
     assert Enum.empty?(my_payment_list_debitors)
     assert Enum.count(my_payment_list_debitors) == 0
 
-    payment_list_debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id, user_id: user2.id)
+    _payment_list_debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id, user_id: user2.id)
     my_payment_list_debitors = MyPaymentLists.my_payment_list_debitors(user2)
     refute Enum.empty?(my_payment_list_debitors)
     assert Enum.count(my_payment_list_debitors) == 1
 
-    payment_list_debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id, user_id: user2.id)
+    _payment_list_debitor = insert(:payment_list_debitor, payment_list_id: payment_list.id, user_id: user2.id)
     my_payment_list_debitors = MyPaymentLists.my_payment_list_debitors(user2)
     refute Enum.empty?(my_payment_list_debitors)
     assert Enum.count(my_payment_list_debitors) == 2
