@@ -53,7 +53,6 @@ defmodule ClubHomepage.Web.MyPaymentLists do
     |> get_user_payment_list_debts_query
     |> get_user_records(PaymentListDebitor)
     |> Enum.map(fn(struct) -> Repo.preload(struct, [:payment_list, :payment_list_owner, :payment_list_deputy]) end)
-    |> IO.inspect
   end
 
   defp get_user_payment_list_debts_query(user) do
