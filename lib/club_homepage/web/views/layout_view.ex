@@ -3,14 +3,35 @@ defmodule ClubHomepage.Web.LayoutView do
 
   import Number.Currency
 
-  def my_payment_lists_popover_content(conn, payment_lists) do
-    links = ["<a href=\"#{payment_list_path(conn, :new)}\" class=\"list-group-item css-new-item-link\"><span class=\"glyphicon glyphicon-plus-sign\"></span> #{gettext("create_payment_list_button_text")}</a>" | payment_list_link(conn, payment_lists)]
+  def my_payment_lists_popover_content(conn) do
+    payment_lists = conn.assigns[:my_payment_lists]
+    payment_list_debitors = conn.assigns[:my_payment_list_debitors]
+
+    links = [payment_list_links(conn, payment_lists) | payment_list_debitor_links(conn, payment_list_debitors)]
+    links = ["<a href=\"#{payment_list_path(conn, :new)}\" class=\"list-group-item css-new-item-link\"><span class=\"glyphicon glyphicon-plus-sign\"></span> #{gettext("create_payment_list_button_text")}</a>" | links]
     "<div class=\"list-group\">" <> Enum.join(links) <> "</div>"
   end
 
-  defp payment_list_link(_conn, []), do: []
-  defp payment_list_link(conn, [payment_list | payment_lists]) do
-    ["<a href=\"#{payment_list_path(conn, :show, payment_list)}\" class=\"list-group-item css-payment-list-link\"><span>#{payment_list.title}<br /><span class=\"costs\">#{number_to_currency(payment_list.price_per_piece)}/#{gettext("piece_abbreviation")}</span></span><span class=\"badge\">#{payment_list.number_of_debitors}</span></a>" |  payment_list_link(conn, payment_lists)]
+  defp payment_list_links(_conn, []), do: []
+  defp payment_list_links(conn, [payment_list | payment_lists]) do
+    ["<a href=\"#{payment_list_path(conn, :show, payment_list)}\" class=\"list-group-item css-payment-list-link\"><span>#{payment_list.title}<br /><span class=\"costs\">#{number_to_currency(payment_list.price_per_piece)}/#{gettext("piece_abbreviation")}</span></span><span class=\"badge\">#{payment_list.number_of_debitors}</span></a>" |  payment_list_links(conn, payment_lists)]
+  end
+
+  defp payment_list_debitor_links(_conn, []), do: []
+  defp payment_list_debitor_links(conn, [debitor | debitors]) do
+    if debitor.number_of_units > 0 do
+      payment_list = debitor.payment_list
+      owner_and_deputy =
+        case debitor.payment_list_deputy do
+          nil -> [debitor.payment_list_owner]
+          deputy -> [debitor.payment_list_owner, deputy]
+        end
+        |> Enum.map(fn(user) ->  user_name(user) end)
+        |> Enum.join(", ")
+      ["<a href=\"#\" class=\"list-group-item css-payment-list-debitor-link\"><span>#{payment_list.title}<br /><span class=\"costs\">#{number_to_currency(payment_list.price_per_piece)}/#{gettext("piece_abbreviation")}</span><br /><span class=\"costs\">#{gettext("responsible")}: #{owner_and_deputy}</span></span><span class=\"badge background-red\">#{number_to_currency(payment_list.price_per_piece * debitor.number_of_units)}</span></a>" | payment_list_debitor_links(conn, debitors)]
+    else
+      payment_list_debitor_links(conn, debitors)
+    end
   end
 
   def weather_data_popover_content(weather_data) do

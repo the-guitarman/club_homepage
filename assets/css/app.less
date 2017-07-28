@@ -99,6 +99,10 @@ td.buttons > a:last {
   border-top: none;
 }
 
+.background-red {
+  background-color: #FF0000;
+}
+
 
 .birthday-date {
   padding-bottom: 5px;
@@ -305,14 +309,17 @@ input.css-goals {
   color: green;
 }
 
-.css-payment-list-link {
+.css-payment-list-link,
+.css-payment-list-debitor-link {
   min-width: 200px;
 }
-.css-payment-list-link > span:first-child {
+.css-payment-list-link > span:first-child, 
+.css-payment-list-debitor-link > span:first-child {
   display: inline-block;
-  width: 80%;
+  // width: 80%;
 }
-.css-payment-list-link .costs {
+.css-payment-list-link .costs,
+.css-payment-list-debitor-link .costs {
   font-size: 70%;
   position: relative;
   top: -8px;

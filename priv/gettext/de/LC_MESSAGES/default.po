@@ -589,7 +589,7 @@ msgstr "Es sind keine Spiele für diese Mannschaft gespeichert."
 
 #: lib/club_homepage/web/commands/match_calender_creator.ex:84
 #: lib/club_homepage/web/templates/web/page/index.html.eex:14
-#: lib/club_homepage/web/views/layout_view.ex:19 lib/extension/match_view.ex:24
+#: lib/club_homepage/web/views/layout_view.ex:40 lib/extension/match_view.ex:24
 #: lib/extension/match_view.ex:29
 msgid "o_clock"
 msgstr "Uhr"
@@ -1153,7 +1153,7 @@ msgstr "Metadaten"
 msgid "roles"
 msgstr "Benutzerrollen"
 
-#: lib/club_homepage/web/views/layout_view.ex:31
+#: lib/club_homepage/web/views/layout_view.ex:52
 msgid "air_pressure"
 msgstr "Luftdruck"
 
@@ -1161,7 +1161,7 @@ msgstr "Luftdruck"
 msgid "birthdays"
 msgstr "Geburtstag(e)"
 
-#: lib/club_homepage/web/views/layout_view.ex:28
+#: lib/club_homepage/web/views/layout_view.ex:49
 msgid "humidity"
 msgstr "Feuchtigkeit"
 
@@ -1171,7 +1171,7 @@ msgstr "Feuchtigkeit"
 msgid "password_forgotten_question"
 msgstr "Passwort vergessen?"
 
-#: lib/club_homepage/web/views/layout_view.ex:22
+#: lib/club_homepage/web/views/layout_view.ex:43
 msgid "temperature"
 msgstr "Termeratur"
 
@@ -1424,11 +1424,12 @@ msgstr "Listenname (Bier, 1 EUR Liste, Dressgeld, ...)"
 msgid "price_per_piece"
 msgstr "Preis pro Stück"
 
-#: lib/club_homepage/web/views/layout_view.ex:7
+#: lib/club_homepage/web/views/layout_view.ex:11
 msgid "create_payment_list_button_text"
 msgstr "Neu"
 
-#: lib/club_homepage/web/views/layout_view.ex:13
+#: lib/club_homepage/web/views/layout_view.ex:17
+#: lib/club_homepage/web/views/layout_view.ex:31
 msgid "piece_abbreviation"
 msgstr "Stk"
 
@@ -1469,18 +1470,22 @@ msgstr "Schulden erfolgreich gelöscht."
 msgid "total_price"
 msgstr "Gesamtbetrag"
 
-#: lib/club_homepage/web/controllers/auth_for_payment_list.ex:32
+#: lib/club_homepage/web/commands/auth_for_payment_list.ex:40
 msgid "error_auth_for_payment_list"
 msgstr "Du musst Verantwortlicher oder Vertreter für diese Bezahlliste sein, um diese Seite sehen zu können."
 
-#: lib/club_homepage/web/controllers/auth.ex:45
+#: lib/club_homepage/web/commands/auth.ex:65
 msgid "error_auth_login_needed"
 msgstr "Du musst eingeloggt sein, um diese Seite sehen zu können."
 
-#: lib/club_homepage/web/controllers/auth.ex:54
+#: lib/club_homepage/web/commands/auth.ex:78
 msgid "error_auth_logout_needed"
 msgstr "Du musst ausgeloggt sein, um diese Seite sehen zu können."
 
-#: lib/club_homepage/web/controllers/auth_by_role.ex:70
+#: lib/club_homepage/web/commands/auth_by_role.ex:68
 msgid "error_auth_not_authorized"
 msgstr "Du hast keine Berechtigung, um diese Seite zu sehen."
+
+#: lib/club_homepage/web/views/layout_view.ex:31
+msgid "responsible"
+msgstr "verantwortlich"

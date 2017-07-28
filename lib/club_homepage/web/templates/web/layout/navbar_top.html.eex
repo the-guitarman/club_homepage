@@ -36,7 +36,7 @@
         <% end %>
         <%= if logged_in?(@conn) do %>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle glyphicon glyphicon-euro" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-title="<%= gettext("payment_lists") %>" data-content="<%= my_payment_lists_popover_content(@conn, @my_payment_lists) %>" title="<%= gettext("payment_lists") %>">
+            <a href="#" class="dropdown-toggle glyphicon glyphicon-euro" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-title="<%= gettext("payment_lists") %>" data-content="<%= my_payment_lists_popover_content(@conn) %>" title="<%= gettext("payment_lists") %>">
             </a>
           </li>
         <% end %>

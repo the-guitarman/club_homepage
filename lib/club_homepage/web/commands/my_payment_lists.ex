@@ -21,7 +21,7 @@ defmodule ClubHomepage.Web.MyPaymentLists do
     user = current_user(conn)
     conn
     |> assign(:my_payment_lists, my_payment_lists(user))
-    |> assign(:my_payment_listdebts, my_payment_list_debitors(user))
+    |> assign(:my_payment_list_debitors, my_payment_list_debitors(user))
   end
 
   @doc """
@@ -53,6 +53,7 @@ defmodule ClubHomepage.Web.MyPaymentLists do
     |> get_user_payment_list_debts_query
     |> get_user_records(PaymentListDebitor)
     |> Enum.map(fn(struct) -> Repo.preload(struct, [:payment_list, :payment_list_owner, :payment_list_deputy]) end)
+    |> IO.inspect
   end
 
   defp get_user_payment_list_debts_query(user) do
@@ -60,7 +61,7 @@ defmodule ClubHomepage.Web.MyPaymentLists do
     left_join: pl in PaymentList,
     on: pld.payment_list_id == pl.id,
     where: pld.user_id == ^user.id,
-    select: %{id: pld.id, user_id: pld.user_id, number_of_units: pld.number_of_units, price_per_piece: pl.price_per_piece},
+    select: %{id: pld.id, payment_list_id: pld.payment_list_id, user_id: pld.user_id, number_of_units: pld.number_of_units, price_per_piece: pl.price_per_piece},
     order_by: [desc: pld.inserted_at]
   end
 
