@@ -67,7 +67,7 @@ defmodule SecureRandom do
   """
   def hex(n \\ @default_length) when is_integer n do
     random_bytes(n)
-    |> to_char_list #|> bitstring_to_list
+    |> to_charlist #|> bitstring_to_list
     |> Enum.map(fn (x) -> to_string(x) end) #integer_to_binary(x, 16) end)
     |> Enum.join
     |> String.downcase

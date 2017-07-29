@@ -159,6 +159,6 @@ defmodule ClubHomepage.Web.UserRole do
   def split(roles) do
     roles
     |> String.split
-    |> Enum.map(fn(s) -> String.strip(s) end)
+    |> Enum.map(fn(s) -> String.trim(s) end)
   end
 end
