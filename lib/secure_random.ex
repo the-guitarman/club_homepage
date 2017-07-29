@@ -91,11 +91,11 @@ defmodule SecureRandom do
       iex> SecureRandom.random_number(42)
       31
 
-      iex> SecureRandom.random_number(14, 42)
-      18
+      iex> #SecureRandom.random_number(14, 42)
+      #18
 
-      iex> SecureRandom.random_number(14..42)
-      28
+      iex> #SecureRandom.random_number(14..42)
+      #28
 
   """
   def random_number do
@@ -105,16 +105,16 @@ defmodule SecureRandom do
   end
 
   def random_number(x) when is_integer x do
-    :crypto.rand_uniform(1, x)
+    :rand.uniform(x)
   end
 
-  def random_number(range) do #when is_range(range) do
-    :crypto.rand_uniform(range.first, range.last)
-  end
+  # def random_number(range) do #when is_range(range) do
+  #   :crypto.rand_uniform(range.first, range.last)
+  # end
 
-  def random_number(x, y) when is_integer(x) and is_integer(y) do
-    :crypto.rand_uniform(x, y)
-  end
+  # def random_number(x, y) when is_integer(x) and is_integer(y) do
+  #   :crypto.rand_uniform(x, y)
+  # end
 
   @doc """
   Returns random bytes.
