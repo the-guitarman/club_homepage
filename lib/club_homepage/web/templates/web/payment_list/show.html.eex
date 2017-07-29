@@ -35,7 +35,7 @@
               conn: @conn, 
               changeset: @changeset,
               action: payment_list_debitor_path(@conn, :create, @payment_list),
-              user_options: @user_options, form_mode: :new) %>
+              user_options: @user_options, payment_list: @payment_list, form_mode: :new) %>
       </div>
     </div>
 

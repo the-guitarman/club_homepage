@@ -6,7 +6,7 @@
       <%= render("form.html",
           changeset: @changeset,
           action: payment_list_debitor_path(@conn, :update, @payment_list, @debitor),
-          user_options: @user_options, form_mode: @form_mode) %>
+          user_options: @user_options, payment_list: @payment_list, form_mode: @form_mode) %>
     </div>
   </div>
 </div>

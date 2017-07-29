@@ -5,7 +5,7 @@
     <%= error_tag @changeset, f, :user_id %>
   </div>
 
-  <%= number_field(f, :number_of_units, min: 0) %>
+  <%= number_field(f, :number_of_units, min: 0, step: @payment_list.price_per_piece) %>
 
   <div class="form-group">
     <% text =
