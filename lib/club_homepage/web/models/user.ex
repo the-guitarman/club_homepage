@@ -21,6 +21,7 @@ defmodule ClubHomepage.User do
     field :mobile_phone, :string
 
     has_many :team_chat_messages, ClubHomepage.TeamChatMessage
+    has_many :payment_list_debitor_history_records, ClubHomepage.PaymentListDebitorHistoryRecord, on_delete: :nilify_all, foreign_key: :editor_id
 
     timestamps()
   end

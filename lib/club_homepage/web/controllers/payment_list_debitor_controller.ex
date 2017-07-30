@@ -36,9 +36,11 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
 
   def show(conn, %{"payment_list_id" => payment_list_id, "id" => id}) do
     payment_list = Repo.get!(PaymentList, payment_list_id)
-    debitor = Repo.get!(PaymentListDebitor, id)
-
-    render(conn, "show.html", payment_list: payment_list, debitor: debitor)
+    debitor =
+      Repo.get!(PaymentListDebitor, id)
+      |> Repo.preload([:history_records])
+    history_records = debitor.history_records
+    render(conn, "show.html", payment_list: payment_list, debitor: debitor, history_records: history_records)
   end
 
   def edit(conn, %{"payment_list_id" => payment_list_id, "id" => id}) do

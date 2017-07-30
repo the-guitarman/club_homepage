@@ -85,8 +85,10 @@ defmodule ClubHomepage.Factory do
 
   def payment_list_debitor_history_record_factory do
     debitor = insert(:payment_list_debitor)
+    editor = insert(:user)
     %ClubHomepage.PaymentListDebitorHistoryRecord{
       payment_list_debitor_id: debitor.id,
+      editor_id: editor.id,
       old_number_of_units: 0,
       new_number_of_units: 1
     }
