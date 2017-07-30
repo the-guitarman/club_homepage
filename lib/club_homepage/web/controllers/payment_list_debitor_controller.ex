@@ -38,7 +38,7 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
     payment_list = Repo.get!(PaymentList, payment_list_id)
     debitor =
       Repo.get!(PaymentListDebitor, id)
-      |> Repo.preload([:history_records])
+      |> Repo.preload([:history_records, :editor])
     history_records = debitor.history_records
     render(conn, "show.html", payment_list: payment_list, debitor: debitor, history_records: history_records)
   end

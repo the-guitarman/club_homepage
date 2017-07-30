@@ -35,6 +35,7 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
     payment_list = insert(:payment_list)
     debitor = insert(:payment_list_debitor)
     Enum.each([
+      get(conn, payment_list_debitor_path(conn, :show, payment_list, debitor)),
       post(conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: valid_attrs),
       get(conn, payment_list_debitor_path(conn, :edit, payment_list, debitor)),
       put(conn, payment_list_debitor_path(conn, :update, payment_list, debitor), payment_list_debitor: valid_attrs),
