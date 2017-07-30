@@ -19,12 +19,13 @@ defmodule ClubHomepage.PaymentListDebitorTest do
    
     payment_list_debitor =
       insert(:payment_list_debitor, payment_list_id: payment_list.id, user_id: user3.id)
-      |> Repo.preload([:payment_list, :user, :payment_list_owner, :payment_list_deputy])
+      |> Repo.preload([:payment_list, :user, :payment_list_owner, :payment_list_deputy, :history_records])
 
     assert payment_list_debitor.payment_list == payment_list
     assert payment_list_debitor.user == user3
     assert payment_list_debitor.payment_list_owner == user1
     assert payment_list_debitor.payment_list_deputy == user2
+    assert payment_list_debitor.history_records == []
   end
 
   test "changeset with valid attributes" do
