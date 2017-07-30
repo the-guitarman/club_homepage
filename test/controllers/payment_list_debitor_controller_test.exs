@@ -48,6 +48,29 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
   end
 
   @tag login: true
+  test "try to show payment list debitor details of another user", %{conn: conn} do
+    payment_list = insert(:payment_list)
+    debitor =
+      insert(:payment_list_debitor, payment_list_id: payment_list.id)
+      |> Repo.preload([:user])
+    conn = get conn, payment_list_debitor_path(conn, :show, payment_list, debitor)
+    assert html_response(conn, 302)
+    assert conn.halted
+    assert redirected_to(conn) =~ "/"
+  end
+
+  @tag login: true
+  test "show payment list debitor details if the current logged in user", %{conn: conn} do
+    current_user = conn.assigns[:current_user]
+    payment_list = insert(:payment_list)
+    debitor =
+      insert(:payment_list_debitor, payment_list_id: payment_list.id, user_id: current_user.id)
+      |> Repo.preload([:user])
+    conn = get conn, payment_list_debitor_path(conn, :show, payment_list, debitor)
+    assert html_response(conn, 200) =~ "<h2>Details - #{debitor.user.name}</h2>"
+  end
+
+  @tag login: true
   test "creates resource and redirects when data is valid", %{conn: conn, valid_attrs: valid_attrs, payment_list: payment_list, debitor: _debitor} do
     conn = post conn, payment_list_debitor_path(conn, :create, payment_list), payment_list_debitor: valid_attrs
     assert redirected_to(conn) == payment_list_path(conn, :show, payment_list)

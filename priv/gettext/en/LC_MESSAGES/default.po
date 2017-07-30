@@ -42,7 +42,7 @@ msgstr ""
 #: lib/club_homepage/web/templates/web/payment_list/index.html.eex:4
 #: lib/club_homepage/web/templates/web/payment_list/new.html.eex:10
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:9
-#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:71
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:76
 #: lib/club_homepage/web/templates/web/permalink/show.html.eex:18
 #: lib/club_homepage/web/templates/web/season/edit.html.eex:6
 #: lib/club_homepage/web/templates/web/season/index.html.eex:5
@@ -302,7 +302,7 @@ msgstr "District"
 #: lib/club_homepage/web/templates/web/news/show.html.eex:25
 #: lib/club_homepage/web/templates/web/opponent_team/index.html.eex:27
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:8
-#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:70
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:75
 #: lib/club_homepage/web/templates/web/season/show.html.eex:12
 #: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:22
 #: lib/club_homepage/web/templates/web/team/index.html.eex:17
@@ -1365,7 +1365,7 @@ msgstr "Payment List Deputy"
 #: lib/club_homepage/web/templates/web/payment_list/index.html.eex:4
 #: lib/club_homepage/web/templates/web/payment_list/new.html.eex:10
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:9
-#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:71
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:76
 msgid "payment_lists"
 msgstr "Payment Lists"
 
@@ -1407,7 +1407,7 @@ msgid "payment_list_deleted_successfully"
 msgstr "Payment list deleted successfully."
 
 #: lib/club_homepage/web/controllers/payment_list_controller.ex:66
-#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:54
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:63
 msgid "payment_list_updated_successfully"
 msgstr "Payment list updated successfully."
 
@@ -1446,7 +1446,7 @@ msgid "add_record"
 msgstr "Add"
 
 #: lib/club_homepage/web/templates/web/competition/index.html.eex:34
-#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:57
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:62
 msgid "are_you_sure"
 msgstr "Are you sure"
 
@@ -1454,7 +1454,8 @@ msgstr "Are you sure"
 msgid "edit_payment_list_debitor"
 msgstr "Edit Payment List Debitor"
 
-#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:63
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:68
+#: lib/club_homepage/web/templates/web/payment_list_debitor/show.html.eex:24
 msgid "no_records_found"
 msgstr "No records found."
 
@@ -1462,7 +1463,7 @@ msgstr "No records found."
 msgid "payment_list_debitor_created_successfully"
 msgstr "Payment list debitor created successfully."
 
-#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:70
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:79
 msgid "payment_list_debitor_deleted_successfully"
 msgstr "Payment list debitor deleted successfully."
 
@@ -1489,3 +1490,23 @@ msgstr "You are not authorized to view this page."
 #: lib/club_homepage/web/views/layout_view.ex:31
 msgid "responsible"
 msgstr "responsible"
+
+#: lib/club_homepage/web/templates/web/payment_list_debitor/show.html.eex:8
+msgid "date"
+msgstr "Date"
+
+#: lib/club_homepage/web/templates/web/payment_list_debitor/show.html.eex:11
+msgid "editor"
+msgstr "Editor"
+
+#: lib/club_homepage/web/templates/web/payment_list_debitor/show.html.eex:10
+msgid "new_number_of_units"
+msgstr "new number of units"
+
+#: lib/club_homepage/web/templates/web/payment_list_debitor/show.html.eex:9
+msgid "old_number_of_units"
+msgstr "old number of units"
+
+#: lib/club_homepage/web/templates/web/payment_list_debitor/show.html.eex:4
+msgid "details"
+msgstr "Details"

@@ -1,11 +1,13 @@
 defmodule ClubHomepage.Web.PaymentListDebitorController do
   use ClubHomepage.Web, :controller
 
+  alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.PaymentList
   alias ClubHomepage.PaymentListDebitor
 
   plug :authenticate_user
-  plug :authenticate_payment_list_owner_or_deputy, [payment_list_id_param_name: "payment_list_id"]
+  plug :current_user_is_payment_list_debitor when action in [:show]
+  plug :authenticate_payment_list_owner_or_deputy, [payment_list_id_param_name: "payment_list_id"] when not action in [:show]
   plug :scrub_params, "payment_list_debitor" when action in [:create, :update]
   plug :get_user_select_options when action in [:create, :edit, :update]
   plug :get_deputy_select_options when action in [:create, :edit, :update]
@@ -38,8 +40,10 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
     payment_list = Repo.get!(PaymentList, payment_list_id)
     debitor =
       Repo.get!(PaymentListDebitor, id)
-      |> Repo.preload([:history_records, :editor])
-    history_records = debitor.history_records
+      |> Repo.preload([:user, :history_records])
+    history_records =
+      debitor.history_records
+      |> Enum.map(fn(hr) -> Repo.preload(hr, [:editor]) end)
     render(conn, "show.html", payment_list: payment_list, debitor: debitor, history_records: history_records)
   end
 
@@ -96,5 +100,19 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
 
   defp get_payment_list(conn) do
     Repo.get!(PaymentList, conn.params["payment_list_id"])
+  end
+
+  defp current_user_is_payment_list_debitor(conn, _options) do
+    debitor =
+      Repo.get!(PaymentListDebitor, conn.params["id"])
+      |> Repo.preload([:user])
+    cond do
+      debitor.user == conn.assigns[:current_user] -> conn
+      true -> 
+        conn
+        |> put_flash(:error, gettext("error_auth_not_authorized"))
+        |> redirect(to: Helpers.page_path(conn, :index))
+        |> halt()
+      end
   end
 end
