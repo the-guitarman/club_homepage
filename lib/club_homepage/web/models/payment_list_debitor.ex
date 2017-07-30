@@ -10,6 +10,8 @@ defmodule ClubHomepage.PaymentListDebitor do
     has_one :payment_list_owner, through: [:payment_list, :user]
     has_one :payment_list_deputy, through: [:payment_list, :deputy]
 
+    has_many :payment_list_debitor_history_records, ClubHomepage.PaymentListDebitorHistoryRecord, on_delete: :delete_all
+
     timestamps()
   end
 

@@ -83,6 +83,15 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def payment_list_debitor_history_record_factory do
+    debitor = insert(:payment_list_debitor)
+    %ClubHomepage.PaymentListDebitorHistoryRecord{
+      payment_list_debitor_id: debitor.id,
+      old_number_of_units: 0,
+      new_number_of_units: 1
+    }
+  end
+
   def permalink_factory do
     team = insert(:team)
     %ClubHomepage.Permalink{
