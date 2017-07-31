@@ -1,4 +1,15 @@
 defmodule ClubHomepage.Extension.CommonTimex do
+  import ClubHomepage.Web.Gettext
+  import ClubHomepage.Web.Localization
+
+  def point_of_time(datetime, format \\ "#{datetime_format()} #{gettext("o_clock")}") do
+    {:ok, date_string} =
+      datetime
+    |> Timex.local
+    |> Timex.format(format, :strftime)
+    date_string
+  end
+
   def timex_datetime_to_string(datetime, format) do
     {:ok, date_string} = Timex.format(datetime, format, :strftime)
     date_string

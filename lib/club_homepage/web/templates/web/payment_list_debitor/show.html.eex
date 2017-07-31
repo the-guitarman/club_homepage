@@ -13,7 +13,7 @@
         <%= if Enum.count(@history_records) > 0 do %>
           <%= for history_record <- @history_records do %>
             <tr>
-              <td><%= history_record.inserted_at %></td>
+              <td><%= point_of_time(history_record.inserted_at) %></td>
               <td><%= history_record.old_number_of_units %></td>
               <td><%= history_record.new_number_of_units %></td>
               <td><%= user_name(history_record.editor) %></td>

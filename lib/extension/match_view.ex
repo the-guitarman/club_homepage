@@ -4,6 +4,7 @@ defmodule ClubHomepage.Extension.MatchView do
 
   import ClubHomepage.Web.Gettext
   import ClubHomepage.Web.Localization
+  import ClubHomepage.Extension.CommonTimex, only: [point_of_time: 2]
 
   alias ClubHomepage.Match
 
@@ -24,14 +25,6 @@ defmodule ClubHomepage.Extension.MatchView do
   def match_datetime(match, format \\ "#{datetime_format()} #{gettext("o_clock")}") do
     match.start_at
     |> point_of_time(format)
-  end
-
-  def point_of_time(datetime, format \\ "#{datetime_format()} #{gettext("o_clock")}") do
-    {:ok, date_string} =
-      datetime
-      |> Timex.local
-      |> Timex.format(format, :strftime)
-    date_string
   end
 
   def match_result(match) do
