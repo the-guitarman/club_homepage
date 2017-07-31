@@ -1,8 +1,8 @@
 language: elixir
 elixir:
-  - 1.4.4
+  - 1.5.0
 env:
-  - ELIXIR="v1.4.4"
+  - ELIXIR="v1.5.0"
 services:
   - postgresql
 addons:
