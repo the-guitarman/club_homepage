@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("details") %> - <%= user_name(@debitor.user) %></h2>
+
+      <table class="table table-striped table-bordered css-vertical-align">
+        <tr>
+          <td><%= gettext("date") %></td>
+          <td><%= gettext("old_number_of_units") %></td>
+          <td><%= gettext("new_number_of_units") %></td>
+          <td><%= gettext("editor") %></td>
+        </tr>
+        <%= if Enum.count(@history_records) > 0 do %>
+          <%= for history_record <- @history_records do %>
+            <tr>
+              <td><%= history_record.inserted_at %></td>
+              <td><%= history_record.old_number_of_units %></td>
+              <td><%= history_record.new_number_of_units %></td>
+              <td><%= user_name(history_record.editor) %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="4" class="text-center"><%= gettext("no_records_found") %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>
