@@ -53,7 +53,7 @@
             <td class="text-center">
               <%#= debitor.number_of_units %>
               <%= form_for ClubHomepage.PaymentListDebitor.changeset(debitor), "", [class: "form-inline"], fn f -> %>
-                <%= number_field(f, :number_of_units, min: 0, step: @payment_list.price_per_piece) %>
+                <%= number_field(f, :number_of_units, min: 0, step: 1) %>
               <% end %>
             </td>
             <td class="text-right"><%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %></td>

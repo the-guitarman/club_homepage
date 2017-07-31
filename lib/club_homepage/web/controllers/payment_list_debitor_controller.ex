@@ -4,6 +4,7 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
   alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.PaymentList
   alias ClubHomepage.PaymentListDebitor
+  alias ClubHomepage.Web.PaymentListDebitorHistoryRecordCreator, as: HistoryRecordCreator
 
   plug :authenticate_user
   plug :current_user_is_payment_list_debitor when action in [:show]
@@ -21,7 +22,8 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
     changeset = PaymentListDebitor.changeset(%PaymentListDebitor{payment_list_id: payment_list.id}, payment_list_debitor_params)
 
     case Repo.insert(changeset) do
-      {:ok, _payment_list_debitor} ->
+      {:ok, payment_list_debitor} ->
+        HistoryRecordCreator.run(payment_list_debitor, current_user(conn))
         conn
         |> put_flash(:info, gettext("payment_list_debitor_created_successfully"))
         |> redirect(to: payment_list_path(conn, :show, payment_list))
@@ -59,10 +61,12 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
       Repo.get!(PaymentList, payment_list_id)
       |> Repo.preload([:user, :deputy, :debitors])
     debitor = Repo.get!(PaymentListDebitor, id)
+    old_number_of_units = debitor.number_of_units
     changeset = PaymentListDebitor.changeset(debitor, payment_list_debitor_params)
 
     case Repo.update(changeset) do
-      {:ok, _payment_list} ->
+      {:ok, payment_list_debitor} ->
+        HistoryRecordCreator.run(debitor, payment_list_debitor, current_user(conn))
         conn
         |> put_flash(:info, gettext("payment_list_updated_successfully"))
         |> redirect(to: payment_list_path(conn, :show, payment_list))
