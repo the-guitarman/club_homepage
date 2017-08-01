@@ -61,7 +61,6 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
       Repo.get!(PaymentList, payment_list_id)
       |> Repo.preload([:user, :deputy, :debitors])
     debitor = Repo.get!(PaymentListDebitor, id)
-    old_number_of_units = debitor.number_of_units
     changeset = PaymentListDebitor.changeset(debitor, payment_list_debitor_params)
 
     case Repo.update(changeset) do

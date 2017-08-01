@@ -14,8 +14,22 @@
           <%= for history_record <- @history_records do %>
             <tr>
               <td><%= point_of_time(history_record.inserted_at) %></td>
-              <td><%= history_record.old_number_of_units %></td>
-              <td><%= history_record.new_number_of_units %></td>
+              <td>
+                <%= history_record.old_number_of_units %>
+                <span class="badge">
+                  <small>
+                    <%= Number.Currency.number_to_currency(@payment_list.price_per_piece * history_record.old_number_of_units) %>
+                  </small>
+                </span>
+              </td>
+              <td>
+                <%= history_record.new_number_of_units %>
+                <span class="badge">
+                  <small>
+                    <%= Number.Currency.number_to_currency(@payment_list.price_per_piece * history_record.new_number_of_units) %>
+                  </small>
+                </span>
+              </td>
               <td><%= user_name(history_record.editor) %></td>
             </tr>
           <% end %>

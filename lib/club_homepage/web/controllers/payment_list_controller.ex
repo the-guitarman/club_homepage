@@ -49,6 +49,8 @@ defmodule ClubHomepage.Web.PaymentListController do
 
   def edit(conn, %{"id" => id}) do
     payment_list = Repo.get!(PaymentList, id)
+    number_of_debitors = from(pld in PaymentListDebitor, select: count(pld.id), where: pld.payment_list_id == ^payment_list.id)
+    payment_list = Map.put(payment_list, :number_of_debitors, number_of_debitors)
     changeset = PaymentList.changeset(payment_list)
     render(conn, "edit.html", payment_list: payment_list, changeset: changeset,
            user_options: conn.assigns.user_options,
