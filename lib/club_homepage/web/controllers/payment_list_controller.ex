@@ -12,7 +12,7 @@ defmodule ClubHomepage.Web.PaymentListController do
   plug :get_deputy_select_options when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
-    payment_lists = Repo.all(from(bl in PaymentList, preload: [:user, :deputy]))
+    payment_lists = Repo.all(from(pl in PaymentList, preload: [:user, :deputy], where: pl.user_id == ^current_user(conn).id))
     render(conn, "index.html", payment_lists: payment_lists)
   end
 
