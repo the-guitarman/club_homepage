@@ -13,10 +13,12 @@ defmodule ClubHomepage.Web.MyPaymentLists do
   #import ClubHomepage.Extension.Common, only: [internal_user_name: 1]
   import ClubHomepage.Web.Auth
 
+  @doc false
   def init(_opts) do
     nil
   end
 
+  @doc false
   def call(conn, _) do
     user = current_user(conn)
     conn

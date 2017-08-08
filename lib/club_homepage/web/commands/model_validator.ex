@@ -12,7 +12,7 @@ defmodule ClubHomepage.Web.ModelValidator do
   Checks for a unique constraint in the given field or field list.
   Please see: https://hexdocs.pm/ecto/Ecto.Changeset.html#unique_constraint/3
   """
-  @spec validate_uniqueness( Ecto.Changeset, Atom | List, Keyword ) :: Ecto.Changeset
+  #@spec validate_uniqueness(Changeset.t, Atom.t | List, Keyword ) :: Changeset.t
   def validate_uniqueness(model, key), do: validate_uniqueness(model, key, %{})
   def validate_uniqueness(changeset, :json, keys) do
     case Changeset.get_change(changeset, :json_creation) do

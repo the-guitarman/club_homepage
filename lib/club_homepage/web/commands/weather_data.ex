@@ -7,10 +7,12 @@ defmodule ClubHomepage.Web.WeatherData do
 
   use Number
 
+  @doc false
   def init(_opts) do
     nil
   end
 
+  @doc false
   def call(conn, _) do
     {_, data} = get()
     assign(conn, :weather_data, data)

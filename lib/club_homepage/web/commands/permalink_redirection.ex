@@ -1,14 +1,20 @@
 defmodule ClubHomepage.Web.PermalinkRedirection do
+  @moduledoc """
+  Checks wether requested paths needs to be redirected.
+  """
+
   import Phoenix.Controller
   import Plug.Conn
 
   alias ClubHomepage.Permalink
   alias ClubHomepage.Repo
 
+  @doc false
   def init(opts) do
     Keyword.fetch!(opts, :path_prefixes)
   end
 
+  @doc false
   def call(conn, path_prefixes) do
     case String.starts_with?(conn.request_path, clean_path_prefixes(path_prefixes)) do
       true -> find_permalink(conn)

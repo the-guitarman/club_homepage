@@ -1,7 +1,15 @@
 defmodule ClubHomepage.Web.SEO.Plug do
+  @moduledoc """
+  Plug module finds/loads and sets seo data.
+  """
+
   import Plug.Conn
   import ClubHomepage.Extension.Controller, only: [full_club_name: 0]
 
+  @doc """
+  Sets configured meta data into the given conn struct.
+  """
+  @spec put_seo(Plug.Conn.t, Keyword.t) :: Plug.Conn.t
   def put_seo(%{private: %{phoenix_action: action_name, phoenix_controller: controller}} = conn, _options) do
     controller_name = extract_controller_name(controller)
     settings = apply(__MODULE__, controller_name, [controller, action_name]) || []
@@ -11,6 +19,10 @@ defmodule ClubHomepage.Web.SEO.Plug do
     |> assign(:meta, (settings[:meta] || ""))
   end
 
+  @doc """
+  Returns meta data for the given controller action.
+  """
+  @spec page_controller(String.t, String.t) :: Map.t
   def page_controller(controller, action_name) do
     controller_name = extract_controller_name(controller)
     %{

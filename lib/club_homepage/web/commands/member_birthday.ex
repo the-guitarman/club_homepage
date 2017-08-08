@@ -10,10 +10,12 @@ defmodule ClubHomepage.Web.MemberBirthday do
   import Ecto.Query, only: [from: 2]
   import ClubHomepage.Extension.Common, only: [internal_user_name: 1]
 
+  @doc false
   def init(_opts) do
     nil
   end
 
+  @doc false
   def call(conn, _) do
     assign(conn, :birthdays, next_birthdays())
   end
@@ -21,8 +23,8 @@ defmodule ClubHomepage.Web.MemberBirthday do
   @doc """
   Returns the birthdays of the next days.
   """
-  @spec next_birthdays() :: List
-  @spec next_birthdays(Integer) :: List
+  @spec next_birthdays() :: List.t
+  @spec next_birthdays(Integer.t) :: List.t
   def next_birthdays(days_from_now \\ 7) do
     days_from_now
     |> get_users_query

@@ -15,7 +15,7 @@ defmodule ClubHomepage.Web.MatchCalendarCreator do
   @doc """
   Returns an ical file content with matches in the future from now for a given team_id and a season_id.
   """
-  #@spec run(Integer, Integer) :: ICalendar
+  @spec run(Integer.t, Integer.t) :: String.t
   def run(team_id, season_id \\ nil) do
     events = 
       get_matches(team_id, season_id)
@@ -26,7 +26,7 @@ defmodule ClubHomepage.Web.MatchCalendarCreator do
   @doc """
   Returns true if there are matches in the future from now for a given team_id and a season_id. Otherwise false.
   """
-  @spec available?(Integer, Integer) :: Boolean
+  @spec available?(Integer.t, Integer.t) :: Boolean.t
   def available?(team_id, season_id \\ nil) do
     not Enum.empty?(get_matches(team_id, season_id))
   end

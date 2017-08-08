@@ -9,8 +9,9 @@ defmodule ClubHomepage.Web.JsonMatchesValidator do
   @doc """
   Returns a changeset. If params includes a json it validates it. Without a parameters it returns an empty changeset.
   """
-  @spec changeset() :: Ecto.Changeset
-  @spec changeset(List, Atom, Map) :: Ecto.Changeset
+  @spec changeset() :: Changeset.t
+  @spec changeset(Map.t) :: Changeset.t
+  @spec changeset(List.t, Atom.t, Map.t) :: Changeset.t
   def changeset do
     new_changeset()
     |> set_changeset_data

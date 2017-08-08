@@ -1,10 +1,18 @@
 defmodule ClubHomepage.Web.SecretCheck do
+  @moduledoc """
+  Holds secret logic to validate and delete old secrets.
+  """
+
   import Ecto.Query, only: [from: 2]
   import Ecto.Changeset, only: [add_error: 3]
 
   alias ClubHomepage.Repo
   alias ClubHomepage.Secret
 
+  @doc """
+  Checks a given secret is valid. When not, it adds an error to the given changeset.
+  """
+  @spec run(Changeset.t, String.t) :: Changeset.t
   def run(changeset, secret_key) do
     changeset 
     |> empty(secret_key)
@@ -12,12 +20,12 @@ defmodule ClubHomepage.Web.SecretCheck do
     |> expired
   end
 
+  @doc """
+  Deletes a given secret.
+  """
+  @spec delete(String.t) :: {integer, nil | [term]} | no_return
   def delete(secret_key) do
     from(s in Secret, where: s.key == ^secret_key) |> Repo.delete_all
-    # case Repo.one(from s in Secret, where: s.key == ^secret_key, select: s) do
-    #   _ -> nil
-    #   secret -> Repo.delete(secret)
-    # end
   end
 
   defp empty(changeset, nil), do: {:error, add_error(changeset, :secret, "can't be blank")}

@@ -12,7 +12,7 @@ defmodule ClubHomepage.Web.JsonMatchesCreator do
   @doc """
   Creates matches from a valid changeset returned by JsonMatchesValidator. 
   """
-  #@spec run(Ecto.Changeset) :: Integer
+  #@spec run(Ecto.Changeset.t, String.t) :: Integer.t
   def run(changeset, json_field) do
     params     = changeset.params
     season_id  = params["season_id"]
