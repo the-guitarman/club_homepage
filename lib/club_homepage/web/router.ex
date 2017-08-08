@@ -40,7 +40,7 @@ defmodule ClubHomepage.Web.Router do
     post "/users/forgot-password", UserController, :forgot_password_step_2, as: :forgot_password
     get "/users/change-password/:id/:token", UserController, :change_password, as: :change_password
     put "/users/reset-password", UserController, :reset_password, as: :reset_password
-    resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/sessions", SessionController, only: [:new, :create, :delete], singleton: true
     get "/teams/:slug", TeamController, :show, as: :team_page
     get "/teams/:slug/season/:season/download-ical", TeamController, :download_ical, as: :team_matches_download
     get "/teams/:slug/season/:season", TeamController, :show, as: :team_page_with_season
