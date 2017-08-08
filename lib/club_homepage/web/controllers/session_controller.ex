@@ -3,6 +3,9 @@ defmodule ClubHomepage.Web.SessionController do
 
   alias ClubHomepage.Web.Auth
 
+  plug :require_no_user when action in [:new, :create]
+  plug :authenticate_user when action in [:delete]
+
   def new(conn, %{"redirect" => redirect}) do
     render conn, "new.html", redirect: redirect_path(conn, redirect)
   end
@@ -31,7 +34,7 @@ defmodule ClubHomepage.Web.SessionController do
   def delete(conn, _) do
     conn
     |> Auth.logout()
-    |> put_flash(:info, "logged_out_now")
+    |> put_flash(:info, gettext("logged_out_now"))
     |> redirect(to: page_path(conn, :index))
   end
 

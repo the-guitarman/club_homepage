@@ -589,8 +589,8 @@ msgstr "Es sind keine Spiele für diese Mannschaft gespeichert."
 
 #: lib/club_homepage/web/commands/match_calender_creator.ex:84
 #: lib/club_homepage/web/templates/web/page/index.html.eex:14
-#: lib/club_homepage/web/views/layout_view.ex:40 lib/extension/match_view.ex:24
-#: lib/extension/match_view.ex:29
+#: lib/club_homepage/web/views/layout_view.ex:40 lib/extension/common_timex.ex:5
+#: lib/extension/match_view.ex:25
 msgid "o_clock"
 msgstr "Uhr"
 
@@ -1402,12 +1402,12 @@ msgstr "Listen-Vertreter auswählen ..."
 msgid "payment_list_created_successfully"
 msgstr "Die Bezahlliste wurde angelegt."
 
-#: lib/club_homepage/web/controllers/payment_list_controller.ex:84
+#: lib/club_homepage/web/controllers/payment_list_controller.ex:86
 msgid "payment_list_deleted_successfully"
 msgstr "Die Bezahlliste wurde gelöscht."
 
-#: lib/club_homepage/web/controllers/payment_list_controller.ex:66
-#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:65
+#: lib/club_homepage/web/controllers/payment_list_controller.ex:68
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:70
 msgid "payment_list_updated_successfully"
 msgstr "Die Bezahlliste wurde aktualisiert."
 
@@ -1455,15 +1455,15 @@ msgid "edit_payment_list_debitor"
 msgstr "Schulden bearbeiten"
 
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:68
-#: lib/club_homepage/web/templates/web/payment_list_debitor/show.html.eex:24
+#: lib/club_homepage/web/templates/web/payment_list_debitor/show.html.eex:38
 msgid "no_records_found"
 msgstr "Es wurden keine Einträge gefunden."
 
-#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:24
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:28
 msgid "payment_list_debitor_created_successfully"
 msgstr "Schulden erfolgreich angelegt."
 
-#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:81
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:86
 msgid "payment_list_debitor_deleted_successfully"
 msgstr "Schulden erfolgreich gelöscht."
 
@@ -1484,6 +1484,7 @@ msgid "error_auth_logout_needed"
 msgstr "Du musst ausgeloggt sein, um diese Seite sehen zu können."
 
 #: lib/club_homepage/web/commands/auth_by_role.ex:68
+#: lib/club_homepage/web/controllers/payment_list_debitor_controller.ex:116
 msgid "error_auth_not_authorized"
 msgstr "Du hast keine Berechtigung, um diese Seite zu sehen."
 
@@ -1510,3 +1511,7 @@ msgstr "alte Anzahl"
 #: lib/club_homepage/web/templates/web/payment_list_debitor/show.html.eex:4
 msgid "details"
 msgstr "Details"
+
+#: lib/club_homepage/web/controllers/session_controller.ex:34
+msgid "logged_out_now"
+msgstr "Du bist jetzt ausgeloggt."
