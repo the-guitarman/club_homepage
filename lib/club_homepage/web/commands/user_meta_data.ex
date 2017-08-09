@@ -12,7 +12,7 @@ defmodule ClubHomepage.Web.UserMetaData do
   @doc """
 
   """
-  @spec save_last_read_team_chat_message_id(Integer.t, Integer.t, User) :: {ok, User} | {:error, Ecto.Changeset.t}
+  @spec save_last_read_team_chat_message_id(Integer.t, Integer.t, User) :: {:ok, User} | {:error, Ecto.Changeset.t}
   def save_last_read_team_chat_message_id(team_id, chat_message_id, user) do
     meta_data = user_meta_data(user)
 
