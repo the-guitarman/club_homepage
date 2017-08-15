@@ -12,7 +12,7 @@ defmodule ClubHomepage.Web.Locale do
 
   @doc false
   def call(conn, _) do
-    locale = Application.get_env(:club_homepage, ClubHomepage.Web.Endpoint)[:locale]
+    locale = Application.get_env(:club_homepage, ClubHomepage.Web.Gettext)[:default_locale]
     case conn.params["locale"] || get_session(conn, :locale) || locale do
       nil     -> conn
       locale  ->

@@ -16,13 +16,15 @@ config :club_homepage, ClubHomepage.Web.Endpoint,
   secret_key_base: "/FTNk/qEtZWOZhuUwYiry4YC9G5qDxjK/DSmSzkEiuH7kzG5AxheGYE4BPEA3H9X",
   render_errors: [view: ClubHomepage.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: ClubHomepage.PubSub,
-           adapter: Phoenix.PubSub.PG2],
-  locale: "de"
+           adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logge
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+config :club_homepage, ClubHomepage.Web.Gettext,
+  default_locale: "de"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

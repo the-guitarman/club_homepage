@@ -783,7 +783,7 @@ msgstr "Address deleted successfully."
 msgid "address_updated_successfully"
 msgstr "Address updated successfully."
 
-#: lib/club_homepage/web/controllers/session_controller.ex:21
+#: lib/club_homepage/web/controllers/session_controller.ex:24
 msgid "account_inactive"
 msgstr "Your account is inactive."
 
@@ -799,11 +799,11 @@ msgstr "Competition deleted successfully."
 msgid "competition_updated_successfully"
 msgstr "Competition updated successfully."
 
-#: lib/club_homepage/web/controllers/session_controller.ex:26
+#: lib/club_homepage/web/controllers/session_controller.ex:29
 msgid "credentials_wrong"
 msgstr "Your credentials are wrong."
 
-#: lib/club_homepage/web/controllers/session_controller.ex:17
+#: lib/club_homepage/web/controllers/session_controller.ex:20
 msgid "logged_in_now"
 msgstr "You are logged in now."
 
@@ -1125,11 +1125,11 @@ msgstr "Secret created and sent successfully."
 msgid "optional"
 msgstr "optional"
 
-#: lib/email.ex:15
+#: lib/email.ex:16
 msgid "secret_email_subject"
 msgstr "Your Registration Secret"
 
-#: lib/club_homepage/web/templates/web/secret/show.html.eex:11 lib/email.ex:10
+#: lib/club_homepage/web/templates/web/secret/show.html.eex:11 lib/email.ex:11
 msgid "secret_email_text"
 msgstr "Hi, \n\nhere is your secret to register at #{domain}. \n\nSecret: #{secret} \n\nRegister now: #{scheme}://#{domain}#{user_registration_path} \n\nRegards \n\nThe Web-Team of #{domain}"
 
@@ -1192,11 +1192,11 @@ msgstr "Send"
 msgid "forgot_password_email_sent"
 msgstr "We sent you an email with a link in it. Click this link or copy and past it to the address line of your browser to change your password. It can take up to four hours to receive the email. Don't forget to check your spam/junk folder."
 
-#: lib/email.ex:28
+#: lib/email.ex:29
 msgid "forgot_password_email_subject"
 msgstr "Change Password - %{domain}"
 
-#: lib/email.ex:23
+#: lib/email.ex:24
 msgid "forgot_password_email_text"
 msgstr "Hi, \n\nsomebody requested a password change of your account at %{domain}. If you did it, then you could click this link to change your password: \n\n%{scheme}://%{domain}}%{change_password_path} \n\nIf you don't want to change your password or you didn't request the change, you can safely ignore this email. \n\nTo protect your account don't forward this email. \n\nRegards \n\nThe Web-Team of %{domain}."
 
@@ -1512,6 +1512,6 @@ msgstr "old number of units"
 msgid "details"
 msgstr "Details"
 
-#: lib/club_homepage/web/controllers/session_controller.ex:34
+#: lib/club_homepage/web/controllers/session_controller.ex:37
 msgid "logged_out_now"
 msgstr "You are logged out now."

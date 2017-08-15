@@ -2,6 +2,13 @@ defmodule ClubHomepage.Extension.Common do
   alias ClubHomepage.Repo
   alias ClubHomepage.User
 
+  def project_host(conn) do
+    case conn.port do
+      80 -> conn.host
+      port -> "#{conn.host}:#{port}"
+    end
+  end
+
   def failure_reasons do
     Application.get_env(:club_homepage, :match)[:failure_reasons]
   end

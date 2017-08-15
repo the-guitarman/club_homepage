@@ -43,7 +43,7 @@ defmodule ClubHomepage.Web.JavascriptLocalization do
   end
 
   defp locale do
-    Application.get_env(:club_homepage, ClubHomepage.Web.Endpoint)[:locale]
+    Application.get_env(:club_homepage, ClubHomepage.Web.Gettext)[:default_locale]
     |> String.downcase
   end
 end

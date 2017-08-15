@@ -2,6 +2,7 @@ defmodule ClubHomepage.Email do
   use Bamboo.Phoenix, view: ClubHomepage.EmailView
 
   import ClubHomepage.Web.Gettext
+  import ClubHomepage.Extension.Common
 
   def secret_text_email(conn, secret) do
     domain = project_host(conn)
@@ -27,12 +28,5 @@ defmodule ClubHomepage.Email do
     |> from("noreply@#{domain}")
     |> subject(gettext("forgot_password_email_subject", domain: domain))
     |> text_body(body)
-  end
-
-  defp project_host(conn) do
-    case conn.port do
-      80 -> conn.host
-      port -> "#{conn.host}:#{port}"
-    end
   end
 end

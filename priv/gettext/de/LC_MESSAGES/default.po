@@ -783,7 +783,7 @@ msgstr "Die Adresse wurde gelöscht."
 msgid "address_updated_successfully"
 msgstr "Die Adresse wurde gespeichert."
 
-#: lib/club_homepage/web/controllers/session_controller.ex:21
+#: lib/club_homepage/web/controllers/session_controller.ex:24
 msgid "account_inactive"
 msgstr "Dein Account ist deaktiviert."
 
@@ -799,11 +799,11 @@ msgstr "Der Wettbewerb wurde gelöscht."
 msgid "competition_updated_successfully"
 msgstr "Der Wettbewerb wurde gespeichert."
 
-#: lib/club_homepage/web/controllers/session_controller.ex:26
+#: lib/club_homepage/web/controllers/session_controller.ex:29
 msgid "credentials_wrong"
 msgstr "Die Zugangsdaten sind falsch."
 
-#: lib/club_homepage/web/controllers/session_controller.ex:17
+#: lib/club_homepage/web/controllers/session_controller.ex:20
 msgid "logged_in_now"
 msgstr "Du bist jetzt eingeloggt."
 
@@ -1125,11 +1125,11 @@ msgstr "Das Secret wurde angelegt und per E-Mail versendet."
 msgid "optional"
 msgstr "optional"
 
-#: lib/email.ex:15
+#: lib/email.ex:16
 msgid "secret_email_subject"
 msgstr "Dein Registrierungs-Secret"
 
-#: lib/club_homepage/web/templates/web/secret/show.html.eex:11 lib/email.ex:10
+#: lib/club_homepage/web/templates/web/secret/show.html.eex:11 lib/email.ex:11
 msgid "secret_email_text"
 msgstr "Hallo, \n\nhier ist Dein Registrierungs-Secret für %{domain}. \n\nSecret: %{secret} \n\nJetzt registrieren: %{scheme}://%{domain}%{user_registration_path} \n\nViele Grüße \n\nDas Web-Team von %{domain}"
 
@@ -1192,11 +1192,11 @@ msgstr "Senden"
 msgid "forgot_password_email_sent"
 msgstr "Wir haben Dir eine E-Mail mit einem Link gesendet. Klicke den Link an oder kopiere ihn in die Adresszeile Deines Browsers um Dein Passwort zu ändern. Es kann bis zu vier Stunden dauern, bis Du die E-Mail erhälst. Kontrolliere gegebenenfalls bitte auch Deinen Spam/Junk-Ordner."
 
-#: lib/email.ex:28
+#: lib/email.ex:29
 msgid "forgot_password_email_subject"
 msgstr "Passwort zurücksetzen - %{domain}"
 
-#: lib/email.ex:23
+#: lib/email.ex:24
 msgid "forgot_password_email_text"
 msgstr "Hallo, \n\njemand hat vor kurzem die Änderung des Kennworts Deines Accounts auf %{domain} angefordert. Wenn Du das warst, dann kannst Du mit folgendem Link ein neues Passwort festlegen: \n\n%{scheme}://%{domain}%{change_password_path} \n\nWenn Du Dein Passwort nicht ändern möchtest oder nicht um die Änderung gebeten hast, ignoriere diese Nachricht. \n\nZum schutz Deines Kontos sollte diese E-Mail an niemanden weitergeleitet werden. \n\nViele Grüße \n\nDas Web-Team von %{domain}"
 
@@ -1512,6 +1512,6 @@ msgstr "alte Anzahl"
 msgid "details"
 msgstr "Details"
 
-#: lib/club_homepage/web/controllers/session_controller.ex:34
+#: lib/club_homepage/web/controllers/session_controller.ex:37
 msgid "logged_out_now"
 msgstr "Du bist jetzt ausgeloggt."

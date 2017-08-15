@@ -775,7 +775,7 @@ msgstr ""
 msgid "address_updated_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/session_controller.ex:21
+#: lib/club_homepage/web/controllers/session_controller.ex:24
 msgid "account_inactive"
 msgstr ""
 
@@ -791,11 +791,11 @@ msgstr ""
 msgid "competition_updated_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/session_controller.ex:26
+#: lib/club_homepage/web/controllers/session_controller.ex:29
 msgid "credentials_wrong"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/session_controller.ex:17
+#: lib/club_homepage/web/controllers/session_controller.ex:20
 msgid "logged_in_now"
 msgstr ""
 
@@ -1117,11 +1117,11 @@ msgstr ""
 msgid "optional"
 msgstr ""
 
-#: lib/email.ex:15
+#: lib/email.ex:16
 msgid "secret_email_subject"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/secret/show.html.eex:11 lib/email.ex:10
+#: lib/club_homepage/web/templates/web/secret/show.html.eex:11 lib/email.ex:11
 msgid "secret_email_text"
 msgstr ""
 
@@ -1184,11 +1184,11 @@ msgstr ""
 msgid "forgot_password_email_sent"
 msgstr ""
 
-#: lib/email.ex:28
+#: lib/email.ex:29
 msgid "forgot_password_email_subject"
 msgstr ""
 
-#: lib/email.ex:23
+#: lib/email.ex:24
 msgid "forgot_password_email_text"
 msgstr ""
 
@@ -1504,6 +1504,6 @@ msgstr ""
 msgid "details"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/session_controller.ex:34
+#: lib/club_homepage/web/controllers/session_controller.ex:37
 msgid "logged_out_now"
 msgstr ""
