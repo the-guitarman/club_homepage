@@ -29,3 +29,6 @@ config :club_homepage, :uploads,
 # Configure your mail server
 config :club_homepage, ClubHomepage.Mailer,
   adapter: Bamboo.TestAdapter
+
+config :club_homepage, ClubHomepage.Web.Gettext,
+  default_locale: "en"
