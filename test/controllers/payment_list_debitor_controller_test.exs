@@ -6,8 +6,6 @@ defmodule ClubHomepage.PaymentListDebitorControllerTest do
 
   import ClubHomepage.Factory
 
-  import Ecto.Query, only: [from: 2]
-
   @valid_attrs %{payment_list_id: 1, user_id: 1, number_of_units: 2}
   @invalid_attrs %{payment_list_id: 0, user_id: 0, number_of_units: -1}
 

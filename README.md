@@ -23,8 +23,8 @@ This is a phoenixframework app. So you need to install some requirements like Er
 
 Current Project Versions: 
 
-- Elixir: v1.3.4
-- Phoenix: v1.2.0
+- Elixir: v1.5.1
+- Phoenix: v1.3.0
 
 Now clone the project and install the project dependencies. Run these commands:
 
@@ -54,6 +54,18 @@ Now create and migrate the database:
 mix ecto.create
 mix ecto.migrate
 ````
+
+### ImageMagick
+
+- Ubuntu: `sudo apt-get update && sudo apt-get install imagemagick`
+- Mac: `brew update && brew install imagemagick`
+
+### Problems
+
+If there are errors while uploading a sponsor or team image, then it could help to update imagemagick:
+
+- Ubuntu: `sudo apt-get update && sudo apt-get upgrade imagemagick`
+- Mac: `brew update && brew upgrade imagemagick`
 
 ## Configuration
 

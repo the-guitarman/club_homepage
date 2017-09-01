@@ -3,10 +3,6 @@ defmodule ClubHomepage.SponsorImageTest do
 
   alias ClubHomepage.SponsorImage
 
-  alias ClubHomepage.Repo
-  # import Ecto.Model, except: [build: 2]
-  import Ecto.Query, only: [from: 2]
-
   @valid_attrs %{attachment: %Plug.Upload{content_type: "image/jpeg", filename: "test_image.jpg", path: "test/support/images/test_image.jpg"}, name: "test image"}
   @invalid_attrs %{}
 
@@ -21,13 +17,5 @@ defmodule ClubHomepage.SponsorImageTest do
   test "changeset with invalid attributes" do
     changeset = SponsorImage.changeset(%SponsorImage{}, @invalid_attrs)
     refute changeset.valid?
-  end
-
-  defp get_highest_id(module) do
-    query = from t in module, select: max(t.id)
-    case Repo.all(query) do
-      [nil] -> 0
-      [id]  -> id
-    end
   end
 end

@@ -45,12 +45,4 @@ defmodule ClubHomepage.TeamImageTest do
     changeset = TeamImage.changeset(%TeamImage{}, invalid_attrs)
     refute changeset.valid?
   end
-
-  defp get_highest_id(module) do
-    query = from t in module, select: max(t.id)
-    case Repo.all(query) do
-      [nil] -> 0
-      [id]  -> id
-    end
-  end
 end

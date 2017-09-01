@@ -20,22 +20,15 @@ defmodule ClubHomepage.Web.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias ClubHomepage.Repo
-      # import Ecto.Model, except: [build: 2]
-      import Ecto.Query, only: [from: 2]
-
       import ClubHomepage.Web.Router.Helpers
 
       # The default endpoint for testing
       @endpoint ClubHomepage.Web.Endpoint
 
-      def get_highest_id(module) do
-        query = from t in module, select: max(t.id)
-        case Repo.all(query) do
-          [nil] -> 0
-          [id]  -> id
-        end
-      end
+      alias ClubHomepage.Repo
+      import Ecto.Query, only: [from: 2]
+
+      import ClubHomepage.Extension.CommonTest
 
       def flash_messages_contain?(conn, text) do
         conn
