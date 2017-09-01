@@ -29,7 +29,7 @@ defmodule ClubHomepage.Web.ConnCase do
       # The default endpoint for testing
       @endpoint ClubHomepage.Web.Endpoint
 
-      defp get_highest_id(module) do
+      def get_highest_id(module) do
         query = from t in module, select: max(t.id)
         case Repo.all(query) do
           [nil] -> 0

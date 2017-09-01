@@ -17,6 +17,9 @@ defmodule ClubHomepage.TeamImageTest do
   test "changeset with valid attributes", %{valid_attrs: valid_attrs} do
     changeset = TeamImage.changeset(%TeamImage{}, valid_attrs)
     assert changeset.valid?
+
+    {:ok, team_image} = Repo.insert(changeset)
+    assert team_image.id == get_highest_id(TeamImage)
   end
 
   test "changeset with invalid attributes" do
