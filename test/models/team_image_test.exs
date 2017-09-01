@@ -5,7 +5,7 @@ defmodule ClubHomepage.TeamImageTest do
 
   import ClubHomepage.Factory
 
-  @valid_attrs %{team_id: 0, year: 2016, attachment: "test/support/images/test_image.jpg", description: "some content"}
+  @valid_attrs %{team_id: 0, year: 2016, attachment: %Plug.Upload{content_type: "image/jpeg", filename: "test_image.jpg", path: "test/support/images/test_image.jpg"}, description: "some content"}
   @invalid_attrs %{}
 
   setup do
@@ -16,7 +16,7 @@ defmodule ClubHomepage.TeamImageTest do
 
   test "changeset with valid attributes", %{valid_attrs: valid_attrs} do
     changeset = TeamImage.changeset(%TeamImage{}, valid_attrs)
-    assert changeset.valid?
+    assert changeset.valid? 
 
     {:ok, team_image} = Repo.insert(changeset)
     assert team_image.id == get_highest_id(TeamImage)

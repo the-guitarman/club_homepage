@@ -17,11 +17,7 @@ defmodule ClubHomepage.Web.SponsorImageController do
   end
 
   def create(conn, %{"sponsor_image" => sponsor_image_params}) do
-    changeset1 = SponsorImage.changeset(%SponsorImage{}, sponsor_image_params)
-    changeset2 = SponsorImage.image_changeset(%SponsorImage{}, sponsor_image_params)
-
-    changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
-
+    changeset = SponsorImage.changeset(%SponsorImage{}, sponsor_image_params)
     case Repo.insert(changeset) do
       {:ok, sponsor_image} ->
         update_image(sponsor_image, sponsor_image_params)
@@ -42,11 +38,7 @@ defmodule ClubHomepage.Web.SponsorImageController do
 
   def update(conn, %{"id" => id, "sponsor_image" => sponsor_image_params}) do
     sponsor_image = Repo.get!(SponsorImage, id)
-    changeset1 = SponsorImage.changeset(sponsor_image, sponsor_image_params)
-    changeset2 = SponsorImage.image_changeset(sponsor_image, sponsor_image_params)
-
-    changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
-
+    changeset = SponsorImage.changeset(sponsor_image, sponsor_image_params)
     case Repo.update(changeset) do
       {:ok, sponsor_image} ->
         update_image(sponsor_image, sponsor_image_params)
@@ -74,7 +66,7 @@ defmodule ClubHomepage.Web.SponsorImageController do
   end
 
   def update_image(sponsor_image, sponsor_image_params) do
-    SponsorImage.image_changeset(sponsor_image, sponsor_image_params)
+    SponsorImage.changeset(sponsor_image, sponsor_image_params)
     |> Repo.update
   end
 end

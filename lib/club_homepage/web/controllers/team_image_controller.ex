@@ -21,10 +21,7 @@ defmodule ClubHomepage.Web.TeamImageController do
   end
 
   def create(conn, %{"team_image" => team_image_params}) do
-    changeset1 = TeamImage.changeset(%TeamImage{}, team_image_params)
-    changeset2 = TeamImage.image_changeset(%TeamImage{}, team_image_params)
-    changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
-
+    changeset = TeamImage.changeset(%TeamImage{}, team_image_params)
     case Repo.insert(changeset) do
       {:ok, team_image} ->
         update_image(team_image, team_image_params)
@@ -47,11 +44,7 @@ defmodule ClubHomepage.Web.TeamImageController do
 
   def update(conn, %{"id" => id, "team_image" => team_image_params}) do
     team_image = Repo.get!(TeamImage, id)
-    changeset1 = TeamImage.changeset(team_image, team_image_params)
-    changeset2 = TeamImage.image_changeset(team_image, team_image_params)
-
-    changeset = ClubHomepage.Web.ChangesetErrorsMerger.merge(changeset1, changeset2)
-
+    changeset = TeamImage.changeset(team_image, team_image_params)
     case Repo.update(changeset) do
       {:ok, team_image} ->
         update_image(team_image, team_image_params)
@@ -88,7 +81,7 @@ defmodule ClubHomepage.Web.TeamImageController do
   end
 
   defp update_image(team_image, team_image_params) do
-    TeamImage.image_changeset(team_image, team_image_params)
+    TeamImage.changeset(team_image, team_image_params)
     |> Repo.update
   end
 
