@@ -82,7 +82,7 @@ defmodule ClubHomepage.Web.TeamImageController do
 
   defp update_image(team_image, team_image_params) do
     TeamImage.changeset(team_image, team_image_params)
-    |> Repo.update
+    #|> Repo.update
   end
 
   defp extract_team_id_attribute_from_parameters(%{"team_id" => team_id}) do

@@ -67,6 +67,6 @@ defmodule ClubHomepage.Web.SponsorImageController do
 
   def update_image(sponsor_image, sponsor_image_params) do
     SponsorImage.changeset(sponsor_image, sponsor_image_params)
-    |> Repo.update
+    #|> Repo.update
   end
 end
