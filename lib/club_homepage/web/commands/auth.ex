@@ -131,7 +131,7 @@ defmodule ClubHomepage.Web.Auth do
 
   defp find_user(login_or_email, opts) do
     repo = Keyword.fetch!(opts, :repo)
-    case String.match?(login_or_email, ~r/@/) do
+    case String.match?(login_or_email, ~r/\w@\w/) do
       true -> repo.get_by(User, email: login_or_email)
       false -> repo.get_by(User, login: login_or_email)
     end
