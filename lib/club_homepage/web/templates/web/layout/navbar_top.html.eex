@@ -136,7 +136,7 @@
           </li>
           <li><%= link gettext("logout"), to: session_path(@conn, :delete), method: "delete", class: "navbar-text" %></li>
         <% else %>
-          <li class="<%= current_link(@conn, ClubHomepage.Web.TeamController, :new) %>">
+          <li class="<%= current_link(@conn, ClubHomepage.Web.UserController, :new) %>">
             <%= link gettext("sign_up"), to: user_path(@conn, :new) %>
           </li>
           <li class="<%= current_link(@conn, ClubHomepage.Web.SessionController, :new) %>">
