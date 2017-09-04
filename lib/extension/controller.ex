@@ -14,7 +14,7 @@ defmodule ClubHomepage.Extension.Controller do
 
   ## Example usage
   iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "2017-04-02"}, :date)
-  %{"date" => Timex.to_datetime({{2017, 4, 2}, {0, 0, 0}}, Timex.Timezone.get("Europe/Berlin", Timex.local))}
+  %{"date" => Timex.to_datetime({{2017, 4, 2}, {0, 0, 0}}, :local}
 
   iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "2017-04-02 12:30"}, :date)
   %{"date" => nil}
@@ -41,9 +41,7 @@ defmodule ClubHomepage.Extension.Controller do
     case Timex.parse(value, format, :strftime) do
       {:ok, timex_naive_datetime} ->
         timezone = Timex.Timezone.get(Timex.Timezone.Local.lookup, Timex.local)
-        IO.inspect timezone
         timex_datetime = Timex.to_datetime(timex_naive_datetime, timezone)
-        IO.inspect timex_datetime
         Map.put(params, field_name, timex_datetime)
       {:error, _error} ->
         Map.put(params, field_name, nil)
@@ -55,7 +53,7 @@ defmodule ClubHomepage.Extension.Controller do
 
   ## Example usage
   iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "2017-04-02 12:30"}, :datetime)
-  %{"datetime" => Timex.to_datetime({{2017, 4, 2}, {12, 30, 0}}, Timex.Timezone.get("Europe/Berlin", Timex.local))}
+  %{"datetime" => Timex.to_datetime({{2017, 4, 2}, {12, 30, 0}}, :local}
 
   iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "2017-04-02"}, :datetime)
   %{"datetime" => nil}
