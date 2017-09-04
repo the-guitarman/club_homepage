@@ -19,10 +19,12 @@ defmodule ClubHomepage.Web.PageController do
     next_matches =
       find_next_team_matches(next_matches_query, teams)
       |> Enum.reject(fn(x) -> x == nil end)
+      |> Enum.sort(fn(x, y) -> DateTime.compare(x.start_at, y.start_at) == :lt end)
     last_matches_query = from(m in matches_query, where: m.start_at < ^start_at, order_by: [desc: m.start_at])
     last_matches =
       find_next_team_matches(last_matches_query, teams)
       |> Enum.reject(fn(x) -> x == nil end)
+      |> Enum.sort(fn(x, y) -> DateTime.compare(x.start_at, y.start_at) == :gt end)
     {_, weather_data} = ClubHomepage.Web.WeatherData.get
     render conn, "index.html", teams: teams, news: news, next_matches: next_matches, last_matches: last_matches, weather_data: weather_data
   end
