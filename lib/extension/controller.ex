@@ -13,10 +13,8 @@ defmodule ClubHomepage.Extension.Controller do
   Parses a date string in the given parameters and replaces it with a timex object.
 
   ## Example usage
-  iex> original = Timex.now
-  iex> timezone = Timex.Timezone.get("Etc/UTC", original)
   iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "2017-04-02"}, :date)
-  %{"date" => Timex.to_datetime({{2017, 4, 2}, {0, 0, 0}}, timezone)}
+  %{"date" => Timex.to_datetime({{2017, 4, 2}, {0, 0, 0}}, Timex.Timezone.get("Europe/Berlin", Timex.local))}
 
   iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "2017-04-02 12:30"}, :date)
   %{"date" => nil}
@@ -57,7 +55,7 @@ defmodule ClubHomepage.Extension.Controller do
 
   ## Example usage
   iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "2017-04-02 12:30"}, :datetime)
-  %{"datetime" => Timex.to_datetime({{2017, 4, 2}, {12, 30, 0}}, :local)}
+  %{"datetime" => Timex.to_datetime({{2017, 4, 2}, {12, 30, 0}}, Timex.Timezone.get("Europe/Berlin", Timex.local))}
 
   iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "2017-04-02"}, :datetime)
   %{"datetime" => nil}
