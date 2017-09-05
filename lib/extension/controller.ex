@@ -14,7 +14,7 @@ defmodule ClubHomepage.Extension.Controller do
 
   ## Example usage
   iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "2017-04-02"}, :date)
-  %{"date" => Timex.to_datetime({{2017, 4, 2}, {0, 0, 0}}, :local}
+  %{"date" => Timex.to_datetime({{2017, 4, 2}, {0, 0, 0}}, Timex.Timezone.get(Timex.Timezone.Local.lookup, Timex.local))}
 
   iex> ClubHomepage.Extension.Controller.parse_date_field(%{"date" => "2017-04-02 12:30"}, :date)
   %{"date" => nil}
@@ -53,7 +53,7 @@ defmodule ClubHomepage.Extension.Controller do
 
   ## Example usage
   iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "2017-04-02 12:30"}, :datetime)
-  %{"datetime" => Timex.to_datetime({{2017, 4, 2}, {12, 30, 0}}, :local}
+  %{"datetime" => Timex.to_datetime({{2017, 4, 2}, {12, 30, 0}}, Timex.Timezone.get(Timex.Timezone.Local.lookup, Timex.local))}
 
   iex> ClubHomepage.Extension.Controller.parse_datetime_field(%{"datetime" => "2017-04-02"}, :datetime)
   %{"datetime" => nil}
