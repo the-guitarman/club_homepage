@@ -28,7 +28,7 @@ defmodule ClubHomepage.Web.LayoutView do
         end
         |> Enum.map(fn(user) ->  user_name(user) end)
         |> Enum.join(", ")
-      ["<a href=\"#{payment_list_debitor_path(conn, :show, payment_list, debitor)}\" class=\"list-group-item css-payment-list-debitor-link\"><span>#{payment_list.title}<br /><span class=\"costs\">#{number_to_currency(payment_list.price_per_piece)}/#{gettext("piece_abbreviation")}</span><br /><span class=\"costs\">#{gettext("responsible")}: #{owner_and_deputy}</span></span><span class=\"badge background-red\">#{number_to_currency(payment_list.price_per_piece * debitor.number_of_units)}</span></a>" | payment_list_debitor_links(conn, debitors)]
+        ["<a href=\"#{payment_list_debitor_path(conn, :show, payment_list, debitor)}\" class=\"list-group-item js-payment-list-debitor css-payment-list-debitor-link\" data-payment-list-debitor-id=\"#{debitor.id}\"><span>#{payment_list.title}<br /><span class=\"costs\">#{number_to_currency(payment_list.price_per_piece)}/#{gettext("piece_abbreviation")}</span><br /><span class=\"costs\">#{gettext("responsible")}: #{owner_and_deputy}</span></span><span class=\"badge background-red\">#{number_to_currency(payment_list.price_per_piece * debitor.number_of_units)}</span></a>" | payment_list_debitor_links(conn, debitors)]
     else
       payment_list_debitor_links(conn, debitors)
     end

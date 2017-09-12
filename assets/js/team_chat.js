@@ -103,10 +103,6 @@ let TeamChat = {
       messagesList.animate({scrollTop: divScrollTop});
     }
 
-    socket.onOpen( ev => console.log("OPEN", ev) )
-    socket.onError( ev => console.log("ERROR", ev) )
-    socket.onClose( e => console.log("CLOSE", e))
-
     socket.connect()
     let teamIdChannel = socket.channel("team-chats:" + teamId)
     teamIdChannel.onError(e => console.log("something went wrong", e))

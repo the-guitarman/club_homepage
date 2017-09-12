@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <table class="table table-striped table-bordered css-vertical-align">
+    <table class="table table-striped table-bordered css-vertical-align js-payment-list" data-payment-list-id="<%= @payment_list.id %>">
       <tr>
         <td><%= gettext("name") %></td>
         <td class="text-center"><%= gettext("number_of_units") %></td>
@@ -48,15 +48,14 @@
       </tr>
       <%= if Enum.count(@payment_list.debitors) > 0 do %>
         <%= for debitor <- @payment_list.debitors do %>
-          <tr>
+          <tr class="js-payment-list-debitor" data-payment-list-debitor-id="<%= debitor.id %>">
             <td><%= user_name(debitor.user_id) %></td>
             <td class="text-center">
-              <%#= debitor.number_of_units %>
               <%= form_for ClubHomepage.PaymentListDebitor.changeset(debitor), "", [class: "form-inline"], fn f -> %>
                 <%= number_field(f, :number_of_units, min: 0, step: 1) %>
               <% end %>
             </td>
-            <td class="text-right"><%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %></td>
+            <td class="text-right js-sum"><%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %></td>
             <td class="text-center">
               <%= link raw("<span class=\"glyphicon glyphicon-pencil\"></div>"), to: payment_list_debitor_path(@conn, :edit, @payment_list, debitor), class: "btn" %>
               <%= link raw("<span class=\"glyphicon glyphicon-trash\"></div>"), to: payment_list_debitor_path(@conn, :delete, @payment_list, debitor), method: :delete, data: [confirm: gettext("are_you_sure")], class: "btn" %>

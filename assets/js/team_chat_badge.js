@@ -17,10 +17,6 @@ let TeamChatBadge = {
       $('.js-new-team-chat-messages-badge').addClass('hidden').html('0');
     }
 
-    socket.onOpen( ev => console.log("OPEN", ev) )
-    socket.onError( ev => console.log("ERROR", ev) )
-    socket.onClose( e => console.log("CLOSE", e))
-
     socket.connect()
     let teamIdChannel = socket.channel("team-chat-badges:" + teamId)
     teamIdChannel.onError(e => console.log("something went wrong", e))

@@ -199,7 +199,7 @@ defmodule ClubHomepage.Extension.View do
 
   def number_field(form, field, options \\ []) do
     changeset = form.source
-    Tag.content_tag(:div, class: "css-number-field form-group #{error_cls(changeset, form, field)}") do
+    Tag.content_tag(:div, class: "js-number-field css-number-field form-group #{error_cls(changeset, form, field)}") do
       # label @f, :title, gettext("number_of_units"), class: "control-label"
       Tag.content_tag(:div, class: "input-group") do
         e1 = Tag.content_tag(:div, class: "input-group-addon btn btn-primary") do

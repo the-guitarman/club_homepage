@@ -8,6 +8,7 @@ defmodule ClubHomepage.Web.UserSocket do
   channel "match-timelines:*", ClubHomepage.Web.MatchTimelineChannel
   channel "team-chats:*", ClubHomepage.Web.TeamChatChannel
   channel "team-chat-badges:*", ClubHomepage.Web.TeamChatBadgeChannel
+  channel "payment-lists:*", ClubHomepage.Web.PaymentListChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -4,10 +4,6 @@ let MatchTimeline = {
       return
     }
 
-    socket.onOpen( ev => console.log("OPEN", ev) )
-    socket.onError( ev => console.log("ERROR", ev) )
-    socket.onClose( e => console.log("CLOSE", e))
-
     let matchTimelineEl = $(element) //$('#match-timeline')
 
     let getMatchEvents = function(){
