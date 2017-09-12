@@ -127,7 +127,7 @@ MIX_ENV=prod mix run priv/repo/seeds.exs
 For development environment:
 
 ````
-mix phoenix.server 
+mix phx.server 
 ````
 
 See `http://localhost:4000`
@@ -138,7 +138,7 @@ For production environment:
 At first open config/prod.exs and set your host name or ip address.
 
 ````
-MIX_ENV=prod PORT=80 mix phoenix.server 
+MIX_ENV=prod PORT=80 mix phx.server 
 ````
 
 At this point you should have a running app. Please log in with the administrator user, you seeded in before.
