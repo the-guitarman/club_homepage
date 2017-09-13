@@ -14,7 +14,9 @@ let PaymentListUpdates = {
       .receive("error", resp => { console.log("Unable to join", resp); });
 
     channel.on("apply_delta_value", payload => {
-      $('.js-payment-list[data-payment-list-id='+payload.payment_list_id+'] .js-sum').text(payload.sum);
+      var debitorRow = $('.js-payment-list[data-payment-list-id='+payload.payment_list_id+'] .js-payment-list-debitor[data-payment-list-debitor-id='+payload.debitor_id+']');
+      debitorRow.find('.js-sum').text(payload.sum);
+      debitorRow.find('input').val(payload.number_of_units);
     });
 
     let deltaValue = (numberField, button) => {
@@ -35,6 +37,14 @@ let PaymentListUpdates = {
         channel.push("apply_delta_value", {payment_list_id: paymentListId, debitor_id: debitorId, number_of_units_delta: deltaValue(self, $(this))});
       });
 
+      self.find('a.js-payment-list-debitor-reset').click(function() {
+        var result = confirm($(this).attr('data-confirm'));
+        if (result) {
+          channel.push("reset_value", {payment_list_id: paymentListId, debitor_id: debitorId, number_of_units: 0});
+
+        }
+        return false;
+      });
     });
   }
 };

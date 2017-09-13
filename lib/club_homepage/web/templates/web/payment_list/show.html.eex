@@ -51,14 +51,15 @@
           <tr class="js-payment-list-debitor" data-payment-list-debitor-id="<%= debitor.id %>">
             <td><%= user_name(debitor.user_id) %></td>
             <td class="text-center">
-              <%= form_for ClubHomepage.PaymentListDebitor.changeset(debitor), "", [class: "form-inline"], fn f -> %>
+              <%= form_for ClubHomepage.PaymentListDebitor.changeset(debitor), "", [class: "form-inline", style: "display:inline-block;"], fn f -> %>
                 <%= number_field(f, :number_of_units, min: 0, step: 1) %>
               <% end %>
+              <%= link(Number.Currency.number_to_currency(0), to: "#", class: "btn btn-default js-payment-list-debitor-reset", data: [confirm: gettext("modal_body_reset_payment_list_debitor") <> " " <> gettext("are_you_sure")], rel: "nofollow") %>
             </td>
             <td class="text-right js-sum"><%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %></td>
             <td class="text-center">
-              <%= link raw("<span class=\"glyphicon glyphicon-pencil\"></div>"), to: payment_list_debitor_path(@conn, :edit, @payment_list, debitor), class: "btn" %>
-              <%= link raw("<span class=\"glyphicon glyphicon-trash\"></div>"), to: payment_list_debitor_path(@conn, :delete, @payment_list, debitor), method: :delete, data: [confirm: gettext("are_you_sure")], class: "btn" %>
+              <%= link raw("<span class=\"glyphicon glyphicon-pencil\"></div>"), to: payment_list_debitor_path(@conn, :edit, @payment_list, debitor), class: "btn btn-default" %>
+              <%= link raw("<span class=\"glyphicon glyphicon-trash\"></div>"), to: payment_list_debitor_path(@conn, :delete, @payment_list, debitor), method: :delete, data: [confirm: gettext("this_record_will_be_deleted") <> " " <> gettext("are_you_sure")], class: "btn btn-danger" %>
             </td>
           </tr>
         <% end %>

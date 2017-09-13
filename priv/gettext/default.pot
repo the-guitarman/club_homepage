@@ -949,15 +949,15 @@ msgstr ""
 msgid "signed_in_label"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:30
+#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:26
 msgid "sponsor_image_created_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:72
+#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:64
 msgid "sponsor_image_deleted_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:55
+#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:47
 msgid "sponsor_image_updated_successfully"
 msgstr ""
 
@@ -1029,15 +1029,15 @@ msgstr ""
 msgid "sponsor_images_inclusion_note"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/team_image_controller.ex:34
+#: lib/club_homepage/web/controllers/team_image_controller.ex:31
 msgid "team_image_created_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/team_image_controller.ex:79
+#: lib/club_homepage/web/controllers/team_image_controller.ex:72
 msgid "team_image_deleted_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/team_image_controller.ex:61
+#: lib/club_homepage/web/controllers/team_image_controller.ex:54
 msgid "team_image_updated_successfully"
 msgstr ""
 
@@ -1438,6 +1438,7 @@ msgid "add_record"
 msgstr ""
 
 #: lib/club_homepage/web/templates/web/competition/index.html.eex:34
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:57
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:62
 msgid "are_you_sure"
 msgstr ""
@@ -1506,4 +1507,12 @@ msgstr ""
 
 #: lib/club_homepage/web/controllers/session_controller.ex:37
 msgid "logged_out_now"
+msgstr ""
+
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:57
+msgid "modal_body_reset_payment_list_debitor"
+msgstr ""
+
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:62
+msgid "this_record_will_be_deleted"
 msgstr ""

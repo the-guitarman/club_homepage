@@ -27,4 +27,19 @@ defmodule ClubHomepage.Web.PaymentListChannel do
     push socket, "apply_delta_value", %{"payment_list_id" => payment_list_id, debitor_id: debitor_id, number_of_units: value, sum: sum}
     {:noreply, socket}
   end
+
+  def handle_in("reset_value", %{"payment_list_id" => payment_list_id, "debitor_id" => debitor_id, "number_of_units" => _value}, socket) do
+    debitor =
+      Repo.get(PaymentListDebitor, debitor_id)
+      |> Repo.preload([:payment_list])
+    changeset = PaymentListDebitor.changeset(debitor, %{number_of_units: 0})
+    value =
+      case Repo.update(changeset) do
+        {:ok, updated_debitor} -> updated_debitor.number_of_units
+        {:error, _} -> debitor.number_of_units
+      end
+    sum = Currency.number_to_currency(value * debitor.payment_list.price_per_piece)
+    push socket, "apply_delta_value", %{"payment_list_id" => payment_list_id, debitor_id: debitor_id, number_of_units: value, sum: sum}
+    {:noreply, socket}
+  end
 end

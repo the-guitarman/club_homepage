@@ -957,15 +957,15 @@ msgstr "Spitzname"
 msgid "signed_in_label"
 msgstr "Angemeldet"
 
-#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:30
+#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:26
 msgid "sponsor_image_created_successfully"
 msgstr "Das Bild wurde gespeichert."
 
-#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:72
+#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:64
 msgid "sponsor_image_deleted_successfully"
 msgstr "Das Bild wurde gelöscht."
 
-#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:55
+#: lib/club_homepage/web/controllers/sponsor_image_controller.ex:47
 msgid "sponsor_image_updated_successfully"
 msgstr "Das Bild wurde aktualisiert."
 
@@ -1037,15 +1037,15 @@ msgstr "Mannschaftsbild"
 msgid "sponsor_images_inclusion_note"
 msgstr "Um ein Sponsoren-Logo auf der Sponsorenseite anzuzeigen bitte den Link aus der Tabelle kopieren, an der entsprechenden Stelle in die Textbox einfügen und in der Textbox markieren. Anschließend im Menu 'image' wählen."
 
-#: lib/club_homepage/web/controllers/team_image_controller.ex:34
+#: lib/club_homepage/web/controllers/team_image_controller.ex:31
 msgid "team_image_created_successfully"
 msgstr "Das Mannschaftsbild wurde angelegt."
 
-#: lib/club_homepage/web/controllers/team_image_controller.ex:79
+#: lib/club_homepage/web/controllers/team_image_controller.ex:72
 msgid "team_image_deleted_successfully"
 msgstr "Das Mannschaftsbild wurde gelöscht."
 
-#: lib/club_homepage/web/controllers/team_image_controller.ex:61
+#: lib/club_homepage/web/controllers/team_image_controller.ex:54
 msgid "team_image_updated_successfully"
 msgstr "Das Mannschaftsbild wurde aktualisiert."
 
@@ -1446,9 +1446,10 @@ msgid "add_record"
 msgstr "Hinzufügen"
 
 #: lib/club_homepage/web/templates/web/competition/index.html.eex:34
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:57
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:62
 msgid "are_you_sure"
-msgstr "Bist Du sicher"
+msgstr "Bist Du sicher?"
 
 #: lib/club_homepage/web/templates/web/payment_list_debitor/edit.html.eex:4
 msgid "edit_payment_list_debitor"
@@ -1515,3 +1516,11 @@ msgstr "Details"
 #: lib/club_homepage/web/controllers/session_controller.ex:37
 msgid "logged_out_now"
 msgstr "Du bist jetzt ausgeloggt."
+
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:57
+msgid "modal_body_reset_payment_list_debitor"
+msgstr "Die Anzahl wird auf 0 gesetzt."
+
+#: lib/club_homepage/web/templates/web/payment_list/show.html.eex:62
+msgid "this_will_delete_the_record"
+msgstr "Der Datensatz wird gelöscht."
