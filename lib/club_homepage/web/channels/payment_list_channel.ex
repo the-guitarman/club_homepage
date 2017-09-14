@@ -25,8 +25,9 @@ defmodule ClubHomepage.Web.PaymentListChannel do
     changeset = PaymentListDebitor.changeset(debitor, update_map_callback.(debitor))
     value = update_debitor(changeset, debitor)
     sum = Currency.number_to_currency(value * debitor.payment_list.price_per_piece)
-    push socket, "number_of_units:apply_delta", %{"payment_list_id" => payment_list_id, debitor_id: debitor_id, number_of_units: value, sum: sum}
-    {:noreply, socket}
+    #push socket, "number_of_units:apply_delta", %{"payment_list_id" => payment_list_id, debitor_id: debitor_id, number_of_units: value, sum: sum}
+    #{:noreply, socket}
+    {:reply, {:ok, %{"payment_list_id" => payment_list_id, debitor_id: debitor_id, number_of_units: value, sum: sum}}, socket}
   end
 
   defp get_debitor(id) do
