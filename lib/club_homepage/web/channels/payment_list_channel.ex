@@ -15,7 +15,7 @@ defmodule ClubHomepage.Web.PaymentListChannel do
 
     {_, _, _, number_of_units, sum} = result = update_debitor(socket, payment_list_id, debitor_id, update_map_callback)
 
-    broadcast! socket, "number_of_units:updated", %{payment_list_id: payment_list_id, debitor_id: debitor_id, number_of_units: number_of_units, sum: sum}
+    broadcast socket, "number_of_units:updated", %{payment_list_id: payment_list_id, debitor_id: debitor_id, number_of_units: number_of_units, sum: sum}
     get_reply(result)
   end
 
@@ -24,7 +24,7 @@ defmodule ClubHomepage.Web.PaymentListChannel do
 
     {_, _, _, number_of_units, sum} = result = update_debitor(socket, payment_list_id, debitor_id, update_map_callback)
 
-    broadcast! socket, "number_of_units:updated", %{payment_list_id: payment_list_id, debitor_id: debitor_id, number_of_units: number_of_units, sum: sum}
+    broadcast socket, "number_of_units:updated", %{payment_list_id: payment_list_id, debitor_id: debitor_id, number_of_units: number_of_units, sum: sum}
     get_reply(result)
   end
 
@@ -57,8 +57,8 @@ defmodule ClubHomepage.Web.PaymentListChannel do
   end
 
   defp get_reply({socket, payment_list_id, debitor_id, number_of_units, sum}) do
-    #    push socket, "number_of_units:apply_delta", %{"payment_list_id" => payment_list_id, debitor_id: debitor_id, number_of_units: number_of_units, sum: sum}
+    #    push socket, "number_of_units:apply_delta", %{payment_list_id: payment_list_id, debitor_id: debitor_id, number_of_units: number_of_units, sum: sum}
     #    {:noreply, socket}
-    {:reply, {:ok, %{"payment_list_id" => payment_list_id, debitor_id: debitor_id, number_of_units: number_of_units, sum: sum}}, socket}
+    {:reply, {:ok, %{payment_list_id: payment_list_id, debitor_id: debitor_id, number_of_units: number_of_units, sum: sum}}, socket}
   end
 end
