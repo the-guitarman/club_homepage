@@ -22,9 +22,10 @@ defmodule ClubHomepage.Web.PaymentListChannel do
   def handle_in("number_of_units:reset", %{"payment_list_id" => payment_list_id, "debitor_id" => debitor_id, "number_of_units" => _value}, socket) do
     update_map_callback = fn(_) -> %{number_of_units: 0} end
 
-    socket
-    |> update_debitor(payment_list_id, debitor_id, update_map_callback)
-    |> get_reply()
+    {_, _, _, number_of_units, sum} = result = update_debitor(socket, payment_list_id, debitor_id, update_map_callback)
+
+    broadcast! socket, "number_of_units:updated", %{payment_list_id: payment_list_id, debitor_id: debitor_id, number_of_units: number_of_units, sum: sum}
+    get_reply(result)
   end
 
   intercept ["number_of_units:updated"]

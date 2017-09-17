@@ -20,7 +20,7 @@ let PaymentListUpdates = {
     };
 
     channel.on("number_of_units:updated", payload => {
-      
+      $('.popover a.js-payment-list-debitor[data-payment-list-debitor-id='+payload.debitor_id+'] .badge.background-red').text(payload.sum);
     });
 
     let deltaValue = (numberField, button) => {
