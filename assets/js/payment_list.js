@@ -19,7 +19,8 @@ let PaymentListUpdates = {
       debitorRow.find('input').val(reply.number_of_units);
     };
 
-    channel.on("number_of_units:apply_delta", payload => {
+    channel.on("number_of_units:updated", payload => {
+      
     });
 
     let deltaValue = (numberField, button) => {
