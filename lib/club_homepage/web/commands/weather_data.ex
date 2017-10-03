@@ -24,10 +24,10 @@ defmodule ClubHomepage.Web.WeatherData do
   @spec get() :: {Atom, Map}
   def get do
     # {:ok, %{centigrade: 7.8, created_at: 1476902712, fahrenheit: 46.04, weather: "leichter Regen", wind_in_kilometers_per_hour: 18.0, wind_in_meters_per_second: 5.1}}
-    ElixirWeatherData.get
-    |> format_temperature
-    |> format_wind
-    |> format_created_at
+    ElixirWeatherData.get()
+    |> format_temperature()
+    |> format_wind()
+    |> format_created_at()
   end
 
   defp format_temperature({:error, _}), do: {:error, %{}}
