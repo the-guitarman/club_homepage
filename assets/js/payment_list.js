@@ -20,7 +20,18 @@ let PaymentListUpdates = {
     };
 
     channel.on("number_of_units:updated", payload => {
-      $('.popover a.js-payment-list-debitor[data-payment-list-debitor-id='+payload.debitor_id+'] .badge.background-red').text(payload.sum);
+      var selector = 'a.js-payment-list-debitor[data-payment-list-debitor-id=' + payload.debitor_id + '] .badge.background-red';
+
+      $('.popover ' + selector).text(payload.sum);
+
+      $('a[data-toggle="popover"]').each(function(index) {
+        var self = $(this);
+        console.log(self);
+        var popoverContent = self.data('content');
+        popoverContent = $('<div></div>').append(popoverContent);
+        popoverContent.find(selector).text(payload.sum);
+        self.attr('data-content', popoverContent.html())
+      });
     });
 
     let deltaValue = (numberField, button) => {
