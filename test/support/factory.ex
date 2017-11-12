@@ -21,6 +21,15 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def match_commitment_factory do
+    match = insert(:match)
+    player = insert(:user)
+    %ClubHomepage.MatchCommitment{
+      match_id: match.id,
+      user_id: player.id
+    }
+  end
+
   def match_factory do
     competition   = insert(:competition)
     season        = insert(:season)
@@ -123,6 +132,15 @@ defmodule ClubHomepage.Factory do
         updated_at: Ecto.DateTime.utc
       },
       name: sequence(:name, &"test image #{&1}")
+    }
+  end
+
+  def standard_team_player_factory do
+    team = insert(:team)
+    user = insert(:user)
+    %ClubHomepage.StandardTeamPlayer{
+      team_id: team.id,
+      user_id: user.id
     }
   end
 
