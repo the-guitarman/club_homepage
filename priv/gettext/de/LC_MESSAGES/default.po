@@ -891,11 +891,11 @@ msgstr "Das Secret wurde gelöscht."
 msgid "team_created_successfully"
 msgstr "Die Vereinsmannschaft wurde angelegt."
 
-#: lib/club_homepage/web/controllers/team_controller.ex:119
+#: lib/club_homepage/web/controllers/team_controller.ex:125
 msgid "team_deleted_successfully"
 msgstr "Die Vereinsmannschaft wurde gelöscht."
 
-#: lib/club_homepage/web/controllers/team_controller.ex:104
+#: lib/club_homepage/web/controllers/team_controller.ex:110
 msgid "team_updated_successfully"
 msgstr "Die Vereinsmannschaft wurde gespeichert."
 
@@ -1522,5 +1522,15 @@ msgid "modal_body_reset_payment_list_debitor"
 msgstr "Die Anzahl wird auf 0 gesetzt."
 
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:62
-msgid "this_will_delete_the_record"
-msgstr "Der Datensatz wird gelöscht."
+msgid "this_record_will_be_deleted"
+msgstr ""
+
+#:
+#: lib/club_homepage/web/templates/web/team/team_standard_players_page.html.eex:4
+msgid "standard_team_players"
+msgstr "Spieler des Teams"
+
+#:
+#: lib/club_homepage/web/templates/web/team/team_standard_players_page.html.eex:8
+msgid "standard_team_player_notice"
+msgstr "Hier werden alle Spieler eingetragen, die für gewöhnlich in diesem Team spielen."

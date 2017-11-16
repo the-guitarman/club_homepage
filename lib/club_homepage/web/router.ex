@@ -63,21 +63,22 @@ defmodule ClubHomepage.Web.Router do
     resources "/matches", MatchController, expect: [:show]
     get "/matches/bulk/new", MatchController, :new_bulk, as: :matches
     post "/matches/bulk", MatchController, :create_bulk, as: :matches
-    resources "/meeting_points", MeetingPointController, except: [:show]
+    resources "/meeting-points", MeetingPointController, except: [:show]
     resources "/news", NewsController
-    resources "/opponent_teams", OpponentTeamController, except: [:show]
-    resources "/payment_lists", PaymentListController do
+    resources "/opponent-teams", OpponentTeamController, except: [:show]
+    resources "/payment-lists", PaymentListController do
       resources "/debitors", PaymentListDebitorController, only: [:show, :create, :edit, :update, :delete], as: "debitor"
     end
     resources "/permalinks", PermalinkController
     resources "/seasons", SeasonController
     resources "/secrets", SecretController, only: [:index, :show, :new, :create, :delete]
-    resources "/sponsor_images", SponsorImageController, except: [:show]
+    resources "/sponsor-images", SponsorImageController, except: [:show]
     resources "/teams", TeamController, only: [:index, :new, :create, :edit, :update, :delete]
     get "/teams/:id/chat", TeamController, :show_chat, as: :team_chat_page
-    resources "/team_chat_messages", TeamChatMessageController, only: [:index, :delete]
-    resources "/team_images", TeamImageController, except: [:show]
-    resources "/text_pages", TextPageController, except: [:show, :new, :create, :delete]
+    resources "/team-chat-messages", TeamChatMessageController, only: [:index, :delete]
+    resources "/team-images", TeamImageController, except: [:show]
+    resources "/text-pages", TextPageController, except: [:show, :new, :create, :delete]
+    get "/teams/:slug/standard-players", TeamController, :show_standard_players, as: :team_standard_players
   end
 
   # scope "/api", ClubHomepage.Web do

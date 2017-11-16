@@ -6,8 +6,10 @@ defmodule ClubHomepage.Web.TeamController do
   alias ClubHomepage.Team
   alias ClubHomepage.TeamImage
   alias ClubHomepage.Season
+  alias ClubHomepage.StandardTeamPlayer
+  alias ClubHomepage.User
 
-  plug :is_team_editor when action in [:index, :new, :create, :edit, :update, :delete]
+  plug :is_team_editor when action in [:index, :new, :create, :edit, :update, :delete, :show_standard_players]
   plug :scrub_params, "team" when action in [:create, :update]
   plug :get_competition_select_options when action in [:new, :create, :edit, :update]
 
@@ -75,6 +77,14 @@ defmodule ClubHomepage.Web.TeamController do
   def show_chat(conn, %{"id" => id}) do
     team = Repo.get!(Team, id)
     render(conn, "team_chat_page.html", team: team, team_images_count: team_images_count(team))
+  end
+
+  def show_standard_players(conn, %{"slug" => slug}) do
+    team = Repo.get_by!(Team, slug: slug)
+    team_images = Repo.all(from ti in TeamImage, where: [team_id: ^team.id]) || []
+    all_players = Repo.all(from u in User, where: [roles: "player"], or_where: like(u.roles, "player %"), or_where: like(u.roles, "% player %"), or_where: like(u.roles, "% player"))
+    StandardTeamPlayer
+    render(conn, "team_standard_players_page.html", team: team, team_images: team_images, all_players: all_players)
   end
 
   def download_ical(conn, %{"slug" => slug, "season" => season_name} = _params) do

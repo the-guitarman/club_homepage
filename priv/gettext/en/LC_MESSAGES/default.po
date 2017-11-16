@@ -891,11 +891,11 @@ msgstr "secret_deleted_successfully."
 msgid "team_created_successfully"
 msgstr "Team created successfully."
 
-#: lib/club_homepage/web/controllers/team_controller.ex:119
+#: lib/club_homepage/web/controllers/team_controller.ex:125
 msgid "team_deleted_successfully"
 msgstr "Team deleted successfully."
 
-#: lib/club_homepage/web/controllers/team_controller.ex:104
+#: lib/club_homepage/web/controllers/team_controller.ex:110
 msgid "team_updated_successfully"
 msgstr "Team updated successfully."
 
@@ -1524,3 +1524,13 @@ msgstr "The number will be set to 0."
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:62
 msgid "this_record_will_be_deleted"
 msgstr "The record will be deleted."
+
+#:
+#: lib/club_homepage/web/templates/web/team/team_standard_players_page.html.eex:4
+msgid "standard_team_players"
+msgstr "Standard Team Players"
+
+#:
+#: lib/club_homepage/web/templates/web/team/team_standard_players_page.html.eex:8
+msgid "standard_team_player_notice"
+msgstr "Please mark all players they belong to this team usually."

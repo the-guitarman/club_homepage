@@ -1,4 +1,4 @@
-<%= if @team_images_count > 0 || has_role?(@conn, ["match-editor"]) || logged_in?(@conn) do %>
+<%= if @team_images_count > 0 || has_role?(@conn, ["match-editor", "team-editor"]) || logged_in?(@conn) do %>
 <ul class="nav nav-tabs">
   <li role="presentation" class="<%= if @active_tab === "matches", do: "active" %>">
     <%= if @active_tab === "matches" do %>
@@ -26,6 +26,9 @@
       <%= link raw(gettext("team_chat") <> " " <> render_to_string(ClubHomepage.Web.TeamView, "new_team_chat_messages_badge.html", conn: @conn)), to: team_chat_page_path(@conn, :show_chat, @team) %>
     <% end %>
     </li>
+  <% end %>
+  <%= if has_role?(@conn, ["team-editor"]) do %>
+    <%= render("team_page_link_header_item.html", conn: @conn, link: team_standard_players_path(@conn, :show_standard_players, @team.slug), tab: "team_standard_players", active_tab: @active_tab, gettext_key: "standard_team_players") %>
   <% end %>
 </ul>
 <% end %>
