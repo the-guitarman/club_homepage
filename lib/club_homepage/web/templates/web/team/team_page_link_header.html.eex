@@ -1,34 +1,26 @@
 <%= if @team_images_count > 0 || has_role?(@conn, ["match-editor", "team-editor"]) || logged_in?(@conn) do %>
-<ul class="nav nav-tabs">
-  <li role="presentation" class="<%= if @active_tab === "matches", do: "active" %>">
-    <%= if @active_tab === "matches" do %>
-      <a href="#"><%= gettext("matches") %></a>
-    <% else %>
-      <%= link gettext("matches"), to: team_with_season_path(@conn, @team) %>
+  <ul class="nav nav-tabs">
+    <%= render("team_page_link_header_item.html", conn: @conn, link: team_with_season_path(@conn, @team), tab: "matches", active_tab: @active_tab, gettext_key: "matches") %>
+
+    <%= if @team_images_count > 0 || has_role?(@conn, ["match-editor"]) do %>
+      <%= render("team_page_link_header_item.html", conn: @conn, link: team_images_page_path(@conn, :show_images, @team.slug), tab: "team_images", active_tab: @active_tab, gettext_key: "team_images") %>
     <% end %>
-  </li>
-  <%= if @team_images_count > 0 || has_role?(@conn, ["match-editor"]) do %>
-    <li role="presentation" class="<%= if @active_tab === "team_images", do: "active" %>">
-    <%= if @active_tab === "team_images" do %>
-      <a href="#"><%= gettext("team_images") %></a>
-    <% else %>
-      <%= link gettext("team_images"), to: team_images_page_path(@conn, :show_images, @team.slug) %>
+
+    <%= if logged_in?(@conn) do %>
+      <input type="hidden" id="team-id" value="<%= @team.id %>" />
+      <input type="hidden" id="user-id" value="<%= @current_user.id %>" />
+
+      <li role="presentation" class="<%= if @active_tab === "team_chat", do: "active" %>">
+      <%= if @active_tab === "team_chat" do %>
+        <a href="#"><%= gettext("team_chat") %> <%= render "new_team_chat_messages_badge.html" %></a>
+      <% else %>
+        <%= link raw(gettext("team_chat") <> " " <> render_to_string(ClubHomepage.Web.TeamView, "new_team_chat_messages_badge.html", conn: @conn)), to: team_chat_page_path(@conn, :show_chat, @team) %>
+      <% end %>
+      </li>
     <% end %>
-    </li>
-  <% end %>
-  <%= if logged_in?(@conn) do %>
-    <input type="hidden" id="team-id" value="<%= @team.id %>" />
-    <input type="hidden" id="user-id" value="<%= @current_user.id %>" />
-    <li role="presentation" class="<%= if @active_tab === "team_chat", do: "active" %>">
-    <%= if @active_tab === "team_chat" do %>
-      <a href="#"><%= gettext("team_chat") %> <%= render "new_team_chat_messages_badge.html" %></a>
-    <% else %>
-      <%= link raw(gettext("team_chat") <> " " <> render_to_string(ClubHomepage.Web.TeamView, "new_team_chat_messages_badge.html", conn: @conn)), to: team_chat_page_path(@conn, :show_chat, @team) %>
+
+    <%= if has_role?(@conn, ["team-editor"]) do %>
+      <%= render("team_page_link_header_item.html", conn: @conn, link: team_standard_players_path(@conn, :edit_standard_players, @team.slug), tab: "team_standard_players", active_tab: @active_tab, gettext_key: "standard_team_players") %>
     <% end %>
-    </li>
-  <% end %>
-  <%= if has_role?(@conn, ["team-editor"]) do %>
-    <%= render("team_page_link_header_item.html", conn: @conn, link: team_standard_players_path(@conn, :show_standard_players, @team.slug), tab: "team_standard_players", active_tab: @active_tab, gettext_key: "standard_team_players") %>
-  <% end %>
-</ul>
+  </ul>
 <% end %>

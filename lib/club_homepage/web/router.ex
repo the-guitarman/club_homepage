@@ -78,7 +78,8 @@ defmodule ClubHomepage.Web.Router do
     resources "/team-chat-messages", TeamChatMessageController, only: [:index, :delete]
     resources "/team-images", TeamImageController, except: [:show]
     resources "/text-pages", TextPageController, except: [:show, :new, :create, :delete]
-    get "/teams/:slug/standard-players", TeamController, :show_standard_players, as: :team_standard_players
+    get "/teams/:slug/standard-players", TeamController, :edit_standard_players, as: :team_standard_players
+    post "/teams/:slug/standard-players", TeamController, :update_standard_players, as: :team_standard_players
   end
 
   # scope "/api", ClubHomepage.Web do

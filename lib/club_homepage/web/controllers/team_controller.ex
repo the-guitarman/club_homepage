@@ -9,7 +9,7 @@ defmodule ClubHomepage.Web.TeamController do
   alias ClubHomepage.StandardTeamPlayer
   alias ClubHomepage.User
 
-  plug :is_team_editor when action in [:index, :new, :create, :edit, :update, :delete, :show_standard_players]
+  plug :is_team_editor when action in [:index, :new, :create, :edit, :update, :delete, :edit_standard_players]
   plug :scrub_params, "team" when action in [:create, :update]
   plug :get_competition_select_options when action in [:new, :create, :edit, :update]
 
@@ -79,13 +79,30 @@ defmodule ClubHomepage.Web.TeamController do
     render(conn, "team_chat_page.html", team: team, team_images_count: team_images_count(team))
   end
 
-  def show_standard_players(conn, %{"slug" => slug}) do
+  def edit_standard_players(conn, %{"slug" => slug}) do
     team = Repo.get_by!(Team, slug: slug)
     team_images = Repo.all(from ti in TeamImage, where: [team_id: ^team.id]) || []
-    all_players = Repo.all(from u in User, where: [roles: "player"], or_where: like(u.roles, "player %"), or_where: like(u.roles, "% player %"), or_where: like(u.roles, "% player"))
-    StandardTeamPlayer
+    all_players = Repo.all(
+      from u in User,
+      left_join: stp in StandardTeamPlayer,
+      on: u.id == stp.team_id,
+      where: [roles: "player"], or_where: like(u.roles, "player %"), or_where: like(u.roles, "% player %"), or_where: like(u.roles, "% player"),
+      order_by: [stp.id, u.name],
+      select: %{id: u.id, name: u.name, nickname: u.nickname, standard_team_player_id: stp.id}
+    )
     render(conn, "team_standard_players_page.html", team: team, team_images: team_images, all_players: all_players)
   end
+
+  # def update_standard_players(conn, %{"slug" => slug, "standard_team_player_ids" => standard_team_player_ids}) do
+  #   team = Repo.get_by!(Team, slug: slug)
+  #   Repo.delete_all(from stp in StandardTeamPlayer, where: [team_id: ^team.id])
+
+  #   inserts = Enum.map(standard_team_player_ids, fn(id) -> [team_id: team.id, user_id: String.to_integer(id)] end)
+  #   Repo.insert_all(StandardTeamPlayer, inserts)
+  #   conn
+  #   |> put_flash(:info, gettext("standard_team_players_updated_successfully"))
+  #   |> redirect(to: team_standard_players_path(conn, :edit_standard_players, team.slug))
+  # end
 
   def download_ical(conn, %{"slug" => slug, "season" => season_name} = _params) do
     team = Repo.get_by!(Team, slug: slug)

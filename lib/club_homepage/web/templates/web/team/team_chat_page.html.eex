@@ -5,6 +5,8 @@
 
       <%= render "team_page_link_header.html", active_tab: "team_chat", conn: @conn, team: @team, team_images_count: @team_images_count, current_user: @current_user %>
 
+      <input type="hidden" id="team-id" value="<%= @team.id %>" />
+
       <div class='row'>
         <div class='col-xs-12'>
           <button class="js-show-more-chat-messages css-show-more-chat-messages btn btn-primary btn-block" disabled="disabled"><%= gettext("show_older_team_chat_messages_button_text") %></button>

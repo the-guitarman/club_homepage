@@ -22,6 +22,7 @@ defmodule ClubHomepage.User do
 
     has_many :team_chat_messages, ClubHomepage.TeamChatMessage
     has_many :payment_list_debitor_history_records, ClubHomepage.PaymentListDebitorHistoryRecord, on_delete: :nilify_all, foreign_key: :editor_id
+    has_many :standard_team_players, ClubHomepage.StandardTeamPlayer, on_delete: :delete_all, foreign_key: :user_id
 
     timestamps()
   end

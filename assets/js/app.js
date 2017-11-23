@@ -27,6 +27,7 @@ import MatchTimeline from "./match"
 import TeamChat from "./team_chat"
 import TeamChatBadge from "./team_chat_badge"
 import PaymentListUpdates from "./payment_list"
+import StandardTeamPlayerUpdates from "./standard_team_player"
 
 MatchTimeline.init(socket, document.getElementById("match-timeline"))
 TeamChat.init(socket, $("#team-chat-input"), $('#team-id').val(), $('#user-id').val())
@@ -35,3 +36,4 @@ $('.js-payment-list').each(function(){
   let paymentListId = $(this).data('payment-list-id');
   PaymentListUpdates.init(socket, paymentListId);
 })
+StandardTeamPlayerUpdates.init(socket, $('.js-standard-team-players #team-id[type="hidden"]').val())
