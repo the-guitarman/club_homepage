@@ -8,5 +8,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateStandardTeamPlayers do
 
       timestamps()
     end
+
+    create unique_index(:standard_team_players, [:team_id, :user_id])
   end
 end

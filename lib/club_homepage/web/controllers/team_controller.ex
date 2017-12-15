@@ -85,8 +85,8 @@ defmodule ClubHomepage.Web.TeamController do
     all_players = Repo.all(
       from u in User,
       left_join: stp in StandardTeamPlayer,
-      on: u.id == stp.team_id,
-      where: [roles: "player"], or_where: like(u.roles, "player %"), or_where: like(u.roles, "% player %"), or_where: like(u.roles, "% player"),
+      on: u.id == stp.user_id,
+      where: stp.team_id == ^team.id ,where: [roles: "player"], or_where: like(u.roles, "player %"), or_where: like(u.roles, "% player %"), or_where: like(u.roles, "% player"),
       order_by: [stp.id, u.name],
       select: %{id: u.id, name: u.name, nickname: u.nickname, standard_team_player_id: stp.id}
     )

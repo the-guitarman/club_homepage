@@ -9,5 +9,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateMatchCommitments do
 
       timestamps()
     end
+
+    create unique_index(:match_commitments, [:match_id, :user_id])
   end
 end
