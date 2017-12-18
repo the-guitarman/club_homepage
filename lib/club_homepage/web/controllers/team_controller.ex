@@ -93,17 +93,6 @@ defmodule ClubHomepage.Web.TeamController do
     render(conn, "team_standard_players_page.html", team: team, team_images: team_images, all_players: all_players)
   end
 
-  # def update_standard_players(conn, %{"slug" => slug, "standard_team_player_ids" => standard_team_player_ids}) do
-  #   team = Repo.get_by!(Team, slug: slug)
-  #   Repo.delete_all(from stp in StandardTeamPlayer, where: [team_id: ^team.id])
-
-  #   inserts = Enum.map(standard_team_player_ids, fn(id) -> [team_id: team.id, user_id: String.to_integer(id)] end)
-  #   Repo.insert_all(StandardTeamPlayer, inserts)
-  #   conn
-  #   |> put_flash(:info, gettext("standard_team_players_updated_successfully"))
-  #   |> redirect(to: team_standard_players_path(conn, :edit_standard_players, team.slug))
-  # end
-
   def download_ical(conn, %{"slug" => slug, "season" => season_name} = _params) do
     team = Repo.get_by!(Team, slug: slug)
     season = Repo.get_by!(Season, name: season_name)
