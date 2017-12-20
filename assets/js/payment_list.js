@@ -1,6 +1,6 @@
 let PaymentListUpdates = {
   init(socket, paymentListId) {
-    if (_.isNaN(paymentListId)) {
+    if (_.isNumber(paymentListId) === false) {
       return;
     }
 

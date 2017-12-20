@@ -10,7 +10,7 @@
           <%= match_datetime(match) %>, <%= match.competition.name %>
         </td>
         <td rowspan="2" class="buttons">
-          <%= if has_role?(@conn, "player") do %>
+          <%= if finished?(match) != true &&  has_role?(@conn, "player") do %>
             <div class="btn-group btn-group-justified css-match-participation" role="group">
               <%= link tag(:span, class: "glyphicon glyphicon-plus-sign"), to: "#", class: "btn btn-default css-participation-yes active" %>
               <%= link tag(:span, class: "glyphicon glyphicon-question-sign"), to: "#", class: "btn btn-default css-participation-unknown active" %>

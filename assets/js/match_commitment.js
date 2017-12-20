@@ -1,6 +1,6 @@
 let MatchCommitmentUpdates = {
   init(socket, userId) {
-    if (_.isNaN(userId)) {
+    if (_.isNumber(userId) === false) {
       return;
     }
 
