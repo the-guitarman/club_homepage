@@ -26,7 +26,8 @@ defmodule ClubHomepage.Factory do
     player = insert(:user)
     %ClubHomepage.MatchCommitment{
       match_id: match.id,
-      user_id: player.id
+      user_id: player.id,
+      commitment: 0
     }
   end
 

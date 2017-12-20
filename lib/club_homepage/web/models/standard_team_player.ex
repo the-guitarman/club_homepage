@@ -12,8 +12,6 @@ defmodule ClubHomepage.StandardTeamPlayer do
     timestamps()
   end
 
-  #|> unique_constraint("match_commitments_match_id_user_id_index")
-
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """

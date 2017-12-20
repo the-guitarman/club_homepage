@@ -5,7 +5,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateMatchCommitments do
     create table(:match_commitments) do
       add :match_id, references(:matches)
       add :user_id, references(:users)
-      add :commitment, :integer, null: false, default: 0, limit: 1
+      add :commitment, :integer, null: true, limit: 1
 
       timestamps()
     end
