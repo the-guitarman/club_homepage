@@ -7,34 +7,38 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
   import ClubHomepage.Factory
 
   setup do
-    match = insert(:match)
-    user = insert(:user)
+    user = insert(:user, roles: "member player")
     {:ok, _, socket} =
-      socket("users_socket: #{user.id}", %{current_user: user})
-      |> subscribe_and_join(MatchCommitmentsChannel, "match-commitments:#{match.id}")
-    {:ok, socket: socket, current_user: user, match: match}
+      socket("user_socket: #{user.id}", %{current_user: user})
+      |> subscribe_and_join(MatchCommitmentsChannel, "match-commitments:#{user.id}")
+    {:ok, socket: socket, current_user: user}
   end
 
-  test "push participation:yes for non player", %{socket: socket, match: match} do
+  test "push participation:yes for non player", %{socket: _socket, current_user: _current_user} do
     user = insert(:user, roles: "member")
-    attributes = %{:match_id => match.id, :user_id => user.id}
+    {:ok, _, socket} = 
+      socket("user_socket: #{user.id}", %{current_user: user})
+      |> subscribe_and_join(MatchCommitmentsChannel, "match-commitments:#{user.id}")
+
+    match = insert(:match)
+    attributes = %{user_id: user.id, match_id: match.id}
 
     refute Repo.get_by(MatchCommitment, Map.to_list(attributes))
 
-    ref = push socket, "participation:yes", %{"user_id" => user.id}
+    ref = push socket, "participation:yes", %{"match_id" => match.id}
 
     assert_reply ref, :error, ^attributes
 
     refute Repo.get_by(MatchCommitment, Map.to_list(attributes))
   end
 
-  test "push participation:yes for a player", %{socket: socket, match: match} do
-    user = insert(:user, roles: "member player")
-    attributes = %{:match_id => match.id, :user_id => user.id}
+  test "push participation:yes for a player", %{socket: socket, current_user: current_user} do
+    match = insert(:match)
+    attributes = %{user_id: current_user.id, match_id: match.id}
 
     refute Repo.get_by(MatchCommitment, Map.to_list(attributes))
 
-    ref = push socket, "participation:yes", %{"user_id" => user.id}
+    ref = push socket, "participation:yes", %{"match_id" => match.id}
 
     assert_reply ref, :ok, ^attributes
 
@@ -43,15 +47,15 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
     assert match_commitment.commitment == 1
   end
 
-  test "push participation:no and update match commitment to no", %{socket: socket, match: match} do
-    user = insert(:user)
-    match_commitment = insert(:match_commitment, match_id: match.id, user_id: user.id, commitment: 1)
+  test "push participation:no and update user commitment to no", %{socket: socket, current_user: current_user} do
+    match = insert(:match)
+    match_commitment = insert(:match_commitment, user_id: current_user.id, match_id: match.id, commitment: 1)
 
     assert Repo.get(MatchCommitment, match_commitment.id)
 
-    ref = push socket, "participation:no", %{"user_id" => user.id}
+    ref = push socket, "participation:no", %{"match_id" => match.id}
 
-    expected_payload = %{:match_id => match.id, :user_id => user.id}
+    expected_payload = %{user_id: current_user.id, match_id: match.id}
     assert_reply ref, :ok, ^expected_payload
 
     match_commitment = Repo.get(MatchCommitment, match_commitment.id)
@@ -59,15 +63,15 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
     assert match_commitment.commitment == -1
   end
 
-  test "push participation:dont-no and update match commitment to don't no", %{socket: socket, match: match} do
-    user = insert(:user)
-    match_commitment = insert(:match_commitment, match_id: match.id, user_id: user.id, commitment: 0)
+  test "push participation:dont-no and update user commitment to don't no", %{socket: socket, current_user: current_user} do
+    match = insert(:match)
+    match_commitment = insert(:match_commitment, user_id: current_user.id, match_id: match.id, commitment: 0)
 
     assert Repo.get(MatchCommitment, match_commitment.id)
 
-    ref = push socket, "participation:dont-no", %{"user_id" => user.id}
+    ref = push socket, "participation:dont-no", %{"match_id" => match.id}
 
-    expected_payload = %{:match_id => match.id, :user_id => user.id}
+    expected_payload = %{user_id: current_user.id, match_id: match.id}
     assert_reply ref, :ok, ^expected_payload
 
     match_commitment = Repo.get(MatchCommitment, match_commitment.id)

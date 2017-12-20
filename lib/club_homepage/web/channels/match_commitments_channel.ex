@@ -4,26 +4,26 @@ defmodule ClubHomepage.Web.MatchCommitmentsChannel do
   alias ClubHomepage.Repo
   alias ClubHomepage.MatchCommitment
 
-  def join("match-commitments:" <> match_id, _payload, socket) do
-    match_id = String.to_integer(match_id)
-    {:ok, assign(socket, :match_id, match_id)}
+  def join("match-commitments:" <> user_id, _payload, socket) do
+    user_id = String.to_integer(user_id)
+    {:ok, assign(socket, :user_id, user_id)}
   end
 
-  def handle_in("participation:yes", %{"user_id" => user_id}, socket) do
-    state = set_match_commitment(socket.assigns.match_id, user_id, 1)
-    result =  %{:match_id => socket.assigns.match_id, :user_id => user_id}
+  def handle_in("participation:yes", %{"match_id" => match_id}, socket) do
+    state = set_match_commitment(socket.assigns.user_id, match_id, 1)
+    result =  %{:user_id => socket.assigns.user_id, :match_id => match_id}
     get_reply(socket, state, result)
   end
 
-  def handle_in("participation:dont-no", %{"user_id" => user_id}, socket) do
-    state = set_match_commitment(socket.assigns.match_id, user_id, 0)
-    result =  %{match_id: socket.assigns.match_id, user_id: user_id}
+  def handle_in("participation:dont-no", %{"match_id" => match_id}, socket) do
+    state = set_match_commitment(socket.assigns.user_id, match_id, 0)
+    result =  %{user_id: socket.assigns.user_id, match_id: match_id}
     get_reply(socket, state, result)
   end
 
-  def handle_in("participation:no", %{"user_id" => user_id}, socket) do
-    state = set_match_commitment(socket.assigns.match_id, user_id, -1)
-    result =  %{match_id: socket.assigns.match_id, user_id: user_id}
+  def handle_in("participation:no", %{"match_id" => match_id}, socket) do
+    state = set_match_commitment(socket.assigns.user_id, match_id, -1)
+    result =  %{user_id: socket.assigns.user_id, match_id: match_id}
     get_reply(socket, state, result)
   end
 
@@ -31,19 +31,19 @@ defmodule ClubHomepage.Web.MatchCommitmentsChannel do
     {:reply, {state, payload}, socket}
   end
 
-  defp set_match_commitment(match_id, user_id, commitment) do
-    case find_match_commitment(match_id, user_id) do
-      nil -> create_match_commitment(match_id, user_id, commitment)
+  defp set_match_commitment(user_id, match_id, commitment) do
+    case find_match_commitment(user_id, match_id) do
+      nil -> create_match_commitment(user_id, match_id, commitment)
       match_commitment -> update_match_commitment(match_commitment, commitment)
     end
   end
 
-  defp find_match_commitment(match_id, user_id) do
-    Repo.get_by(MatchCommitment, match_id: match_id, user_id: user_id)
+  defp find_match_commitment(user_id, match_id) do
+    Repo.get_by(MatchCommitment, user_id: user_id, match_id: match_id)
   end
 
-  defp create_match_commitment(match_id, user_id, commitment) do
-    changeset = MatchCommitment.changeset(%MatchCommitment{}, %{match_id: match_id, user_id: user_id, commitment: commitment})
+  defp create_match_commitment(user_id, match_id, commitment) do
+    changeset = MatchCommitment.changeset(%MatchCommitment{}, %{user_id: user_id, match_id: match_id, commitment: commitment})
     case Repo.insert(changeset) do
       {:ok, _match_commitment} -> :ok
       {:error, _changeset} -> :error
