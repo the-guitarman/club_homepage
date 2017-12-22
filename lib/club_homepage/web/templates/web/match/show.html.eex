@@ -52,7 +52,7 @@
               <thead>
                 <tr>
                   <td><%= gettext("name") %></td>
-                  <td><%= gettext("participation") %></td>
+                  <td class="text-center"><%= gettext("match_commitment_yes") %> / <%= gettext("match_commitment_no") %></td>
                 </tr>
               </thead>
               <tbody>
@@ -76,7 +76,7 @@
               <% end %>
               </tbody>
             </table>
-            <div>
+            <div class="text-center">
               <span class="text-success glyphicon glyphicon-plus-sign"></span> <%= gettext("match_commitment_yes") %>,
               <span class="glyphicon glyphicon-question-sign"></span> <%= gettext("match_commitment_dont_no") %>,
               <span class="text-danger glyphicon glyphicon-minus-sign"></span> <%= gettext("match_commitment_no") %>

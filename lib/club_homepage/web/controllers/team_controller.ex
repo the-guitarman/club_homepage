@@ -2,7 +2,6 @@ defmodule ClubHomepage.Web.TeamController do
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.Match
-  alias ClubHomepage.MatchCommitment
   alias ClubHomepage.Web.PermalinkGenerator
   alias ClubHomepage.Team
   alias ClubHomepage.TeamImage
