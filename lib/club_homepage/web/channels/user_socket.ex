@@ -10,6 +10,7 @@ defmodule ClubHomepage.Web.UserSocket do
   channel "team-chat-badges:*", ClubHomepage.Web.TeamChatBadgeChannel
   channel "payment-lists:*", ClubHomepage.Web.PaymentListChannel
   channel "standard-team-players:*", ClubHomepage.Web.StandardTeamPlayersChannel
+  channel "match-commitments:*", ClubHomepage.Web.MatchCommitmentsChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

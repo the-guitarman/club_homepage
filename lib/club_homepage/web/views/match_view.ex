@@ -7,6 +7,10 @@ defmodule ClubHomepage.Web.MatchView do
 
   alias ClubHomepage.Match
 
+  def finished?(match) do
+    Match.finished?(match)
+  end
+
   def meeting_point_showable?(conn, match) do
     !!match.meeting_point && not Match.finished?(match) && logged_in?(conn)
   end

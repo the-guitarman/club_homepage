@@ -44,6 +44,42 @@
 
       <%= render "soccer_match_timeline.html", conn: @conn, match: @match %>
 
+      <%= if not finished?(@match) && Enum.count(@match.match_commitments) > 0 do %>
+        <div class="row">
+          <div class="col-xs-12">
+            <h3><%= gettext("match_commitments") %></h3>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td><%= gettext("name") %></td>
+                  <td></td>
+                </tr>
+              </thead>
+              <tbody>
+              <%= for mc <- @match.match_commitments do %>
+                <tr>
+                  <td>
+                    <%= internal_user_name(mc.user) %>
+                  </td>
+                  <td class="text-center">
+                    <%
+                    sign_css =
+                      case mc.commitment do
+                       -1 -> "text-danger glyphicon glyphicon-minus-sign"
+                        1 -> "text-success glyphicon glyphicon-plus-sign"
+                        _ -> "glyphicon glyphicon-question-sign"
+                      end
+                    %>
+                    <span class="<%= sign_css %>"></span>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
+
       <%= if meeting_point_at_showable?(@conn, @match) do %>
         <div class="row">
           <div class="col-xs-12">

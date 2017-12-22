@@ -24,6 +24,7 @@ defmodule ClubHomepage.Match do
     belongs_to :team, ClubHomepage.Team
     belongs_to :opponent_team, ClubHomepage.OpponentTeam
     belongs_to :meeting_point, ClubHomepage.MeetingPoint
+    has_many :match_commitments, ClubHomepage.MatchCommitment
 
     timestamps()
   end

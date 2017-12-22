@@ -1,6 +1,6 @@
 let PaymentListUpdates = {
   init(socket, paymentListId) {
-    if (_.isNumber(paymentListId) === false) {
+    if (_.isEmpty(paymentListId) && !_.isNumber(paymentListId)) {
       return;
     }
 

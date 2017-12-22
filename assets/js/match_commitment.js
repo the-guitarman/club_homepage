@@ -1,6 +1,6 @@
 let MatchCommitmentUpdates = {
   init(socket, userId) {
-    if (_.isNumber(userId) === false) {
+    if (_.isEmpty(userId)) {
       return;
     }
 
@@ -14,47 +14,40 @@ let MatchCommitmentUpdates = {
       // .receive("error", resp => { console.log("Unable to join", resp); })
     ;
 
-    let toggleState = (userId, state) => {
-      $('.js-standard-team-players input[type="checkbox"][value="' + userId + '"]').toggleState(state, true);
-    };
+    let participate = (button, action) => {
+      let matchId = button.closest('tr').data("match-id");
 
-    $('.js-standard-team-players input[type="checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
-      let self = $(this);
-      let userId = self.val();
-
-      // console.log(this); // DOM element
-      // console.log(event); // jQuery event
-      // console.log(state); // true | false
-
-      let action = "remove";
-      if (state) {
-        action = "add";
-      }
       channel
-        .push("player:" + action, {user_id: userId})
+        .push("participation:" + action, {user_id: userId, match_id: matchId})
         .receive("ok", function(reply) {
-          toggleState(userId, state);
+          console.log(button.parent());
+          button.parent().find('a').removeClass('active');
+          button.addClass('active');
         })
         .receive("error", (reason) => {
-          //console.log("join failed", reason)
-          toggleState(userId, !!state);
         })
         .receive("ignore", () => {
-          //console.log("auth error")
-          toggleState(userId, !!state);
         })
         .receive("timeout", () => {
-          //console.log("connection interruption")
-          toggleState(userId, !!state);
         });
+    };
+
+    $('.js-match-participation a.js-participation-yes').on('click', function(e) {
+      e.preventDefault();
+      participate($(this), 'yes');
+      return false;
     });
 
-    channel.on("player:added", payload => {
-      toggleState(payload.user_id, true);
+    $('.js-match-participation a.js-participation-dont-no').on('click', function(e) {
+      e.preventDefault();
+      participate($(this), 'dont-no');
+      return false;
     });
 
-    channel.on("player:removed", payload => {
-      toggleState(payload.user_id, false);
+    $('.js-match-participation a.js-participation-no').on('click', function(e) {
+      e.preventDefault();
+      participate($(this), 'no');
+      return false;
     });
 
   }

@@ -1,6 +1,6 @@
 let StandardTeamPlayerUpdates = {
   init(socket, teamId) {
-    if (_.isNumber(teamId) === false) {
+    if (_.isEmpty(teamId)) {
       return;
     }
 

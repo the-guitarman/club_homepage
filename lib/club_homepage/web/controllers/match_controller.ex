@@ -88,8 +88,21 @@ defmodule ClubHomepage.Web.MatchController do
   def show(conn, %{"id" => id}) do
     meeting_point_address_preload_query = from(mp in MeetingPoint, preload: [:address])
     opponent_team_address_preload_query = from(ot in OpponentTeam, preload: [:address])
-    match = Repo.one!(from(m in Match, preload: [:season, :team, opponent_team: ^opponent_team_address_preload_query, meeting_point: ^meeting_point_address_preload_query], where: m.id == ^id))
-#    match = Repo.get!(Match, id)
+    match = Repo.one!(
+      from(
+        m in Match,
+        left_join: mc in assoc(m, :match_commitments),
+        left_join: u in assoc(mc, :user),
+        preload: [
+          :season, :team,
+          opponent_team: ^opponent_team_address_preload_query,
+          meeting_point: ^meeting_point_address_preload_query,
+          match_commitments: {mc, user: u}
+        ],
+        where: m.id == ^id,
+        order_by: [asc: mc.commitment]
+      )
+    )
     render(conn, "show.html", match: match)
   end
 
