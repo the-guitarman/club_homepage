@@ -14,15 +14,28 @@ defmodule ClubHomepage.Web.MatchController do
 
   plug :is_match_editor when not action in [:show]
   plug :scrub_params, "match" when action in [:create, :update]
-  plug :get_competition_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
-  plug :get_season_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
-  plug :get_team_select_options when action in [:new, :new_bulk, :create, :create_bulk, :edit, :update]
-  plug :get_opponent_team_select_options when action in [:new, :create, :edit, :update]
-  plug :get_meeting_point_select_options when action in [:new, :create, :edit, :update]
+  plug :get_competition_select_options when action in [:new, :new_successor_match, :new_bulk, :create, :create_bulk, :edit, :update]
+  plug :get_season_select_options when action in [:new, :new_successor_match, :new_bulk, :create, :create_bulk, :edit, :update]
+  plug :get_team_select_options when action in [:new, :new_successor_match, :new_bulk, :create, :create_bulk, :edit, :update]
+  plug :get_opponent_team_select_options when action in [:new, :new_successor_match, :create, :edit, :update]
+  plug :get_meeting_point_select_options when action in [:new, :new_successor_match, :create, :edit, :update]
 
   def index(conn, params) do
     matches = Repo.all(from(m in Match, preload: [:season, :team, :opponent_team, :meeting_point]))
     render(conn, "index.html", matches: matches, next_match_parameters: next_match_parameters(params))
+  end
+
+  def new_successor_match(conn, %{"parent_id" => parent_id}) do
+    match = Repo.get!(Match, parent_id)
+
+    changeset = Match.changeset(%Match{}, Map.from_struct(%{match | id: nil, uid: nil, parent_id: parent_id, start_at: nil, meeting_point_at: nil}))
+
+    render(conn, "new.html", changeset: changeset,
+           competition_options: conn.assigns.competition_options,
+           season_options: conn.assigns.season_options,
+           team_options: conn.assigns.team_options,
+           opponent_team_options: conn.assigns.opponent_team_options,
+           meeting_point_options: conn.assigns.meeting_point_options)
   end
 
   def new(conn, params) do

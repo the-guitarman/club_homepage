@@ -37,6 +37,7 @@ defmodule ClubHomepage.Factory do
     team          = insert(:team)
     opponent_team = insert(:opponent_team)
     %ClubHomepage.Match{
+      parent_id: nil,
       competition_id: competition.id,
       season_id: season.id,
       team_id: team.id,

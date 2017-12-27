@@ -15,7 +15,7 @@
 #: lib/club_homepage/web/templates/web/match/index.html.eex:4
 #: lib/club_homepage/web/templates/web/match/new.html.eex:15
 #: lib/club_homepage/web/templates/web/match/new_bulk.html.eex:12
-#: lib/club_homepage/web/templates/web/match/show.html.eex:146
+#: lib/club_homepage/web/templates/web/match/show.html.eex:149
 #: lib/club_homepage/web/templates/web/meeting_point/edit.html.eex:11
 #: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:4
 #: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:8
@@ -84,7 +84,7 @@ msgstr ""
 msgid "date_and_time"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:30
+#: lib/club_homepage/web/templates/web/match/form.html.eex:32
 #: lib/club_homepage/web/templates/web/match/index.html.eex:23
 msgid "home_match"
 msgstr ""
@@ -93,7 +93,7 @@ msgstr ""
 #: lib/club_homepage/web/templates/web/match/index.html.eex:4
 #: lib/club_homepage/web/templates/web/match/new.html.eex:15
 #: lib/club_homepage/web/templates/web/match/new_bulk.html.eex:12
-#: lib/club_homepage/web/templates/web/match/show.html.eex:146
+#: lib/club_homepage/web/templates/web/match/show.html.eex:149
 #: lib/club_homepage/web/templates/web/team/team_page.html.eex:4
 msgid "matches"
 msgstr ""
@@ -126,7 +126,7 @@ msgstr ""
 msgid "create_new_season"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/show.html.eex:142
+#: lib/club_homepage/web/templates/web/match/show.html.eex:145
 #: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:25
 msgid "delete_match"
 msgstr ""
@@ -138,7 +138,7 @@ msgstr ""
 
 #: lib/club_homepage/web/templates/web/address/form.html.eex:41
 #: lib/club_homepage/web/templates/web/competition/form.html.eex:20
-#: lib/club_homepage/web/templates/web/match/form.html.eex:99
+#: lib/club_homepage/web/templates/web/match/form.html.eex:101
 #: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:36
 #: lib/club_homepage/web/templates/web/match/soccer_match_timeline.html.eex:105
 #: lib/club_homepage/web/templates/web/meeting_point/form.html.eex:15
@@ -171,17 +171,17 @@ msgstr ""
 msgid "seasons"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:24
+#: lib/club_homepage/web/templates/web/match/form.html.eex:26
 msgid "select_date_and_time_placeholder"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:92
-#: lib/club_homepage/web/templates/web/match/form.html.eex:92
+#: lib/club_homepage/web/templates/web/match/form.html.eex:94
+#: lib/club_homepage/web/templates/web/match/form.html.eex:94
 msgid "select_meeting_point_placeholder"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:17
-#: lib/club_homepage/web/templates/web/match/form.html.eex:17
+#: lib/club_homepage/web/templates/web/match/form.html.eex:19
+#: lib/club_homepage/web/templates/web/match/form.html.eex:19
 msgid "select_opponent_team_placeholder"
 msgstr ""
 
@@ -512,7 +512,7 @@ msgstr ""
 
 #: lib/club_homepage/web/templates/web/match/edit.html.eex:4
 #: lib/club_homepage/web/templates/web/match/index.html.eex:49
-#: lib/club_homepage/web/templates/web/match/show.html.eex:140
+#: lib/club_homepage/web/templates/web/match/show.html.eex:143
 #: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:22
 msgid "edit_match"
 msgstr ""
@@ -656,7 +656,7 @@ msgstr ""
 msgid "edit_competition"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:65
+#: lib/club_homepage/web/templates/web/match/form.html.eex:67
 msgid "opponent_team_goals_placeholder"
 msgstr ""
 
@@ -666,7 +666,7 @@ msgstr ""
 msgid "select_competition_placeholder"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:65
+#: lib/club_homepage/web/templates/web/match/form.html.eex:67
 msgid "team_goals_placeholder"
 msgstr ""
 
@@ -688,7 +688,7 @@ msgstr ""
 msgid "season_form_notice"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:36
+#: lib/club_homepage/web/templates/web/match/form.html.eex:38
 msgid "away_match"
 msgstr ""
 
@@ -696,7 +696,7 @@ msgstr ""
 msgid "edit_permalink"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:56
+#: lib/club_homepage/web/templates/web/match/form.html.eex:58
 msgid "goals"
 msgstr ""
 
@@ -705,7 +705,7 @@ msgstr ""
 msgid "next_matches"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:68
+#: lib/club_homepage/web/templates/web/match/form.html.eex:70
 msgid "opponent_team_selected"
 msgstr ""
 
@@ -713,7 +713,7 @@ msgstr ""
 msgid "permalinks"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:61
+#: lib/club_homepage/web/templates/web/match/form.html.eex:63
 msgid "team_selected"
 msgstr ""
 
@@ -800,15 +800,15 @@ msgstr ""
 msgid "logged_in_now"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/match_controller.ex:49
+#: lib/club_homepage/web/controllers/match_controller.ex:64
 msgid "match_created_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/match_controller.ex:140
+#: lib/club_homepage/web/controllers/match_controller.ex:155
 msgid "match_deleted_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/match_controller.ex:124
+#: lib/club_homepage/web/controllers/match_controller.ex:139
 msgid "match_updated_successfully"
 msgstr ""
 
@@ -908,8 +908,8 @@ msgstr ""
 msgid "user_updated_successfully"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:48
-#: lib/club_homepage/web/templates/web/match/form.html.eex:48
+#: lib/club_homepage/web/templates/web/match/form.html.eex:50
+#: lib/club_homepage/web/templates/web/match/form.html.eex:50
 msgid "select_failure_reason_placeholder"
 msgstr ""
 
@@ -1066,7 +1066,7 @@ msgstr ""
 msgid "meeting_point_at"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:87
+#: lib/club_homepage/web/templates/web/match/form.html.eex:89
 msgid "select_meeting_point_at_placeholder"
 msgstr ""
 
@@ -1105,7 +1105,7 @@ msgstr ""
 msgid "user_is_active"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:78
+#: lib/club_homepage/web/templates/web/match/form.html.eex:80
 #: lib/club_homepage/web/templates/web/match/show.html.eex:39
 msgid "match_review"
 msgstr ""
@@ -1130,7 +1130,7 @@ msgstr ""
 msgid "send_secret"
 msgstr ""
 
-#: lib/club_homepage/web/controllers/match_controller.ex:76
+#: lib/club_homepage/web/controllers/match_controller.ex:91
 msgid "matches_created_successfully"
 msgstr ""
 
@@ -1532,10 +1532,12 @@ msgstr ""
 msgid "match_commitment_dont_no"
 msgstr ""
 
+#: lib/club_homepage/web/templates/web/match/show.html.eex:55
 #: lib/club_homepage/web/templates/web/match/show.html.eex:82
 msgid "match_commitment_no"
 msgstr ""
 
+#: lib/club_homepage/web/templates/web/match/show.html.eex:55
 #: lib/club_homepage/web/templates/web/match/show.html.eex:80
 msgid "match_commitment_yes"
 msgstr ""
@@ -1554,11 +1556,11 @@ msgstr ""
 msgid "no_player_members_registered_notice"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/show.html.eex:55
-msgid "participation"
-msgstr ""
-
 #:
 #: lib/club_homepage/web/templates/web/team/team_standard_players_page.html.eex:17
 msgid "standard_team_player"
+msgstr ""
+
+#: lib/club_homepage/web/templates/web/match/show.html.eex:141
+msgid "successor_match"
 msgstr ""

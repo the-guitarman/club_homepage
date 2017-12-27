@@ -23,7 +23,7 @@ msgstr ""
 #: lib/club_homepage/web/templates/web/match/index.html.eex:4
 #: lib/club_homepage/web/templates/web/match/new.html.eex:15
 #: lib/club_homepage/web/templates/web/match/new_bulk.html.eex:12
-#: lib/club_homepage/web/templates/web/match/show.html.eex:146
+#: lib/club_homepage/web/templates/web/match/show.html.eex:149
 #: lib/club_homepage/web/templates/web/meeting_point/edit.html.eex:11
 #: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:4
 #: lib/club_homepage/web/templates/web/meeting_point/index.html.eex:8
@@ -92,7 +92,7 @@ msgstr "Nächstes Spiel anlegen"
 msgid "date_and_time"
 msgstr "Datum und Zeit"
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:30
+#: lib/club_homepage/web/templates/web/match/form.html.eex:32
 #: lib/club_homepage/web/templates/web/match/index.html.eex:23
 msgid "home_match"
 msgstr "Heimspiel"
@@ -101,7 +101,7 @@ msgstr "Heimspiel"
 #: lib/club_homepage/web/templates/web/match/index.html.eex:4
 #: lib/club_homepage/web/templates/web/match/new.html.eex:15
 #: lib/club_homepage/web/templates/web/match/new_bulk.html.eex:12
-#: lib/club_homepage/web/templates/web/match/show.html.eex:146
+#: lib/club_homepage/web/templates/web/match/show.html.eex:149
 #: lib/club_homepage/web/templates/web/team/team_page.html.eex:4
 msgid "matches"
 msgstr "Spiele"
@@ -134,7 +134,7 @@ msgstr "Mannschaft"
 msgid "create_new_season"
 msgstr "Neue Saison anlegen"
 
-#: lib/club_homepage/web/templates/web/match/show.html.eex:142
+#: lib/club_homepage/web/templates/web/match/show.html.eex:145
 #: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:25
 msgid "delete_match"
 msgstr "Spiel löschen"
@@ -146,7 +146,7 @@ msgstr "Es sind folgende Fehler aufgetreten:"
 
 #: lib/club_homepage/web/templates/web/address/form.html.eex:41
 #: lib/club_homepage/web/templates/web/competition/form.html.eex:20
-#: lib/club_homepage/web/templates/web/match/form.html.eex:99
+#: lib/club_homepage/web/templates/web/match/form.html.eex:101
 #: lib/club_homepage/web/templates/web/match/form_bulk.html.eex:36
 #: lib/club_homepage/web/templates/web/match/soccer_match_timeline.html.eex:105
 #: lib/club_homepage/web/templates/web/meeting_point/form.html.eex:15
@@ -179,17 +179,17 @@ msgstr "Speichern"
 msgid "seasons"
 msgstr "Saisons"
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:24
+#: lib/club_homepage/web/templates/web/match/form.html.eex:26
 msgid "select_date_and_time_placeholder"
 msgstr "Anstoßzeitpunkt auswählen ..."
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:92
-#: lib/club_homepage/web/templates/web/match/form.html.eex:92
+#: lib/club_homepage/web/templates/web/match/form.html.eex:94
+#: lib/club_homepage/web/templates/web/match/form.html.eex:94
 msgid "select_meeting_point_placeholder"
 msgstr "Treffpunkt wählen ..."
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:17
-#: lib/club_homepage/web/templates/web/match/form.html.eex:17
+#: lib/club_homepage/web/templates/web/match/form.html.eex:19
+#: lib/club_homepage/web/templates/web/match/form.html.eex:19
 msgid "select_opponent_team_placeholder"
 msgstr "Gegnerisches Team wählen ..."
 
@@ -520,7 +520,7 @@ msgstr "News"
 
 #: lib/club_homepage/web/templates/web/match/edit.html.eex:4
 #: lib/club_homepage/web/templates/web/match/index.html.eex:49
-#: lib/club_homepage/web/templates/web/match/show.html.eex:140
+#: lib/club_homepage/web/templates/web/match/show.html.eex:143
 #: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:22
 msgid "edit_match"
 msgstr "Spiel ändern"
@@ -664,7 +664,7 @@ msgstr "Neuen Wettbewerb anlegen"
 msgid "edit_competition"
 msgstr "Wettbewerb bearbeiten"
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:65
+#: lib/club_homepage/web/templates/web/match/form.html.eex:67
 msgid "opponent_team_goals_placeholder"
 msgstr "Tor(e)"
 
@@ -674,7 +674,7 @@ msgstr "Tor(e)"
 msgid "select_competition_placeholder"
 msgstr "Wettbewerb wählen ..."
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:65
+#: lib/club_homepage/web/templates/web/match/form.html.eex:67
 msgid "team_goals_placeholder"
 msgstr "Tor(e)"
 
@@ -696,7 +696,7 @@ msgstr "Ein Wettbewerb wird benötigt um Spiele der Vereinsmannschaften anlegen 
 msgid "season_form_notice"
 msgstr "Eine Saison wird benötigt um Spiele der Vereinsmannschaften anlegen zu können."
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:36
+#: lib/club_homepage/web/templates/web/match/form.html.eex:38
 msgid "away_match"
 msgstr "Auswärtsspiel"
 
@@ -704,7 +704,7 @@ msgstr "Auswärtsspiel"
 msgid "edit_permalink"
 msgstr "Permalink ändern"
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:56
+#: lib/club_homepage/web/templates/web/match/form.html.eex:58
 msgid "goals"
 msgstr "Tore"
 
@@ -713,7 +713,7 @@ msgstr "Tore"
 msgid "next_matches"
 msgstr "Nächste Spiele"
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:68
+#: lib/club_homepage/web/templates/web/match/form.html.eex:70
 msgid "opponent_team_selected"
 msgstr "Gegnerische Mannschaft"
 
@@ -721,7 +721,7 @@ msgstr "Gegnerische Mannschaft"
 msgid "permalinks"
 msgstr "Permalinks"
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:61
+#: lib/club_homepage/web/templates/web/match/form.html.eex:63
 msgid "team_selected"
 msgstr "Vereinsmannschaft"
 
@@ -808,15 +808,15 @@ msgstr "Die Zugangsdaten sind falsch."
 msgid "logged_in_now"
 msgstr "Du bist jetzt eingeloggt."
 
-#: lib/club_homepage/web/controllers/match_controller.ex:49
+#: lib/club_homepage/web/controllers/match_controller.ex:64
 msgid "match_created_successfully"
 msgstr "Das Spiel wurde angelegt."
 
-#: lib/club_homepage/web/controllers/match_controller.ex:140
+#: lib/club_homepage/web/controllers/match_controller.ex:155
 msgid "match_deleted_successfully"
 msgstr "Das Spiel wurde gelöscht."
 
-#: lib/club_homepage/web/controllers/match_controller.ex:124
+#: lib/club_homepage/web/controllers/match_controller.ex:139
 msgid "match_updated_successfully"
 msgstr "Das Spiel wurde gespeichert."
 
@@ -916,8 +916,8 @@ msgstr "Der Benutzer wurde angelegt und ist nun eingeloggt."
 msgid "user_updated_successfully"
 msgstr "Der Benutzer wurde gespeichert."
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:48
-#: lib/club_homepage/web/templates/web/match/form.html.eex:48
+#: lib/club_homepage/web/templates/web/match/form.html.eex:50
+#: lib/club_homepage/web/templates/web/match/form.html.eex:50
 msgid "select_failure_reason_placeholder"
 msgstr "Ausfallgrund wählen ..."
 
@@ -1074,7 +1074,7 @@ msgstr "Momentan sind keine Vereinsmannschaften eingetragen."
 msgid "meeting_point_at"
 msgstr "Treff (Zeitpunkt)"
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:87
+#: lib/club_homepage/web/templates/web/match/form.html.eex:89
 msgid "select_meeting_point_at_placeholder"
 msgstr "Treff (Zeitpunkt)"
 
@@ -1113,7 +1113,7 @@ msgstr "DD.MM.YYYY"
 msgid "user_is_active"
 msgstr "Account ist aktiv"
 
-#: lib/club_homepage/web/templates/web/match/form.html.eex:78
+#: lib/club_homepage/web/templates/web/match/form.html.eex:80
 #: lib/club_homepage/web/templates/web/match/show.html.eex:39
 msgid "match_review"
 msgstr "Spielbericht"
@@ -1138,7 +1138,7 @@ msgstr "Hallo, \n\nhier ist Dein Registrierungs-Secret für %{domain}. \n\nSecre
 msgid "send_secret"
 msgstr "Senden"
 
-#: lib/club_homepage/web/controllers/match_controller.ex:76
+#: lib/club_homepage/web/controllers/match_controller.ex:91
 msgid "matches_created_successfully"
 msgstr "Das Spiel/die Spiele wurde/wurden angelegt."
 
@@ -1540,10 +1540,12 @@ msgstr "Hier werden alle Spieler eingetragen, die für gewöhnlich in diesem Tea
 msgid "match_commitment_dont_no"
 msgstr "weiß nicht"
 
+#: lib/club_homepage/web/templates/web/match/show.html.eex:55
 #: lib/club_homepage/web/templates/web/match/show.html.eex:82
 msgid "match_commitment_no"
 msgstr "Absage"
 
+#: lib/club_homepage/web/templates/web/match/show.html.eex:55
 #: lib/club_homepage/web/templates/web/match/show.html.eex:80
 msgid "match_commitment_yes"
 msgstr "Zusage"
@@ -1562,11 +1564,11 @@ msgstr "Der Benutzer muss ein Spieler sein."
 msgid "no_player_members_registered_notice"
 msgstr ""
 
-#: lib/club_homepage/web/templates/web/match/show.html.eex:55
-msgid "participation"
-msgstr "Zusage"
-
 #:
 #: lib/club_homepage/web/templates/web/team/team_standard_players_page.html.eex:17
 msgid "standard_team_player"
 msgstr "Teammitglied"
+
+#: lib/club_homepage/web/templates/web/match/show.html.eex:141
+msgid "successor_match"
+msgstr "Wiederholungsspiel anlegen"

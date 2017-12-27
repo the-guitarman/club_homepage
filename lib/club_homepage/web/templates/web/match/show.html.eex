@@ -44,7 +44,7 @@
 
       <%= render "soccer_match_timeline.html", conn: @conn, match: @match %>
 
-      <%= if not finished?(@match) && Enum.count(@match.match_commitments) > 0 do %>
+      <%= if logged_in?(@conn) && not finished?(@match) && Enum.count(@match.match_commitments) > 0 do %>
         <div class="row">
           <div class="col-xs-12">
             <h3><%= gettext("match_commitments") %></h3>
@@ -137,6 +137,9 @@
       <%#= render "player_planning.html", conn: @conn, match: @match %>
 
       <%= if has_role?(@conn, ["match-editor"]) do %>
+        <%= if @match.failure_reason do %>
+          <%= link gettext("successor_match"), to: match_path(@conn, :new_successor_match, @match.id), class: "btn btn-default" %>
+        <% end %>
         <%= link gettext("edit_match"), to: match_path(@conn, :edit, @match), class: "btn btn-default" %>
         <%= if Timex.compare(Timex.local, @match.start_at) == -1 && not within_hours_before_kick_off?(@match, 1) && not match_in_progress?(@match) && not match_finished?(@match) do %>
           <%= link gettext("delete_match"), to: match_path(@conn, :delete, @match), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>

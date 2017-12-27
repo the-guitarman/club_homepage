@@ -34,6 +34,7 @@ defmodule ClubHomepage.Web.Router do
     get "/sponsors.html", PageController, :sponsors
 
     resources "/matches", MatchController, only: [:show]
+    get "/manage/matches/new/:parent_id", MatchController, :new_successor_match, as: :match
     get "/news", NewsController, :index
     resources "/users", UserController, only: [:new, :create]
     get "/users/forgot-password", UserController, :forgot_password_step_1, as: :forgot_password
