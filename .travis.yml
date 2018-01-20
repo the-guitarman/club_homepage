@@ -2,7 +2,7 @@ language: elixir
 elixir:
   - 1.6
 env:
-  - ELIXIR="v1.6"
+  - ELIXIR="v1.6.0"
 services:
   - postgresql
 addons:
