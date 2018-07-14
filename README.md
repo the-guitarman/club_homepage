@@ -37,8 +37,9 @@ Now clone the project and install the project dependencies. Run these commands:
 ````
 git clone git@github.com:the-guitarman/club_homepage.git
 cd club_homepage
-npm install
 mix deps.get
+cd assets && npm install
+cd ..
 ````
 
 Rename config files:
@@ -79,6 +80,10 @@ If there are errors while uploading a sponsor or team image, then it could help 
 
 #### config/club_homepage.exs
 
+At first copy `config/club_homepage.exs.template` to `config/club_homepage.exs`.
+
+##### Settings
+
 - :club_homepage, :common
 
 Provide some information about your club.
@@ -104,11 +109,17 @@ Wind Speed: `:kilometers_per_hour` or `:meters_per_second`
 
 #### config/dev.exs
 
-For development environment configure your database settings (username/password) in *config/dev.exs*.
+For development environment copy `config/dev.exs.template` to `config/dev.exs` and configure your database settings (database name/username/password).
 
 #### config/prod.secret.exs
 
-For production environment configure your database settings (username/password) in *config/prod.secret.exs* and don't forget to set your own secret. Therefore execute `mix phoenix.gen.secret` at the command line.
+For production environment copy `prod.secret.exs.template` to `prod.secret.exs`, configure your database settings (database name/username/password) and don't forget to set your own secret. Therefore execute `mix phoenix.gen.secret` at the command line.
+
+#### config/test.exs
+
+Only needed, if you want to run the project tests.
+
+For test environment copy `test.exs.template` to `test.exs` and configure your database settings (database name/username/password).
 
 ### Translations
 
@@ -178,4 +189,5 @@ For commercial usage please contact me at first.
 
 # Help & Donation
 
-Better ideas and solutions are gladly accepted. If you want to donate this project please use this link: https://paypal.me/guitarman/5
+Better ideas and solutions are gladly accepted. If you want to donate this project please use this link: [Donate](https://paypal.me/guitarman/5)
+
