@@ -3,6 +3,13 @@ defmodule ClubHomepage.Web.LayoutView do
 
   import Number.Currency
 
+  def background_image_cls() do
+    #if templateable_asset_path?("/background_01.jpg") do
+    #  ...
+    #end
+    "background-image-01"
+  end
+
   def my_payment_lists_popover_content(conn) do
     payment_lists = conn.assigns[:my_payment_lists]
     payment_list_debitors = conn.assigns[:my_payment_list_debitors]

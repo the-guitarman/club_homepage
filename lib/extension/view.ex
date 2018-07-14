@@ -13,12 +13,16 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def templateable_asset_path(file_path) do
-    case File.exists?(absolute_asset_path(file_path)) do
+    case templateable_asset_path?(file_path) do
       true -> file_path
       _ ->
         extension_name = Path.extname(file_path)
         Path.dirname(file_path) <> "/" <> Path.basename(file_path, extension_name) <> ".template" <> extension_name
     end
+  end
+
+  def templateable_asset_path?(file_path) do
+    File.exists?(absolute_asset_path(file_path)
   end
 
   defp absolute_asset_path(file_path) do
