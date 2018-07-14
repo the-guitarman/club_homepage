@@ -164,13 +164,20 @@ At this point you should have a running app. Please log in with the administrato
 
 Please click to open "master data -> text pages" in the top navbar. Text pages are all static sites like "about us", "contact", "chronicle", "registration information" and "sponsors". These sites have no content right now. You may edit the pages now to fill them.
 
-### Logo & Background-Image
+### Favicon, Apple-Touch-Icon, Logo and Background-Image
 
-To change the logo at the homnepage you need to replace the image `web/static/assets/images/logo.png` with another one.
+Please create the following image files :
 
-To change the background image you need to replace the image `web/static/assets/images/background_01.jpg` with another one.
+- `assets/static/favicon.ico`
+- `assets/static/images/favicon_32x32.png`
+- `assets/static/images/favicon_96x96.png`
+- `assets/static/images/apple_touch_icon_180x180.png`
 
-To remove the background image open `web/templates/layout/app.html.eex` and remove the css class `background-image-01` from the body element.
+To change the logo at the homnepage you need to replace the image `assets/static/images/logo.png` with another one.
+
+To change the background image you need to replace the image `assets/static/images/background_01.jpg` with another one.
+
+To remove the background image open `lib/club_homepage/web/templates/web/layout/app.html.eex` and remove the css class `background-image-01` from the body element.
 
 ## Releases
 

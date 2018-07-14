@@ -33,6 +33,10 @@ erl_crash.dump
 /assets/static/images/backup
 /assets/static/images/logo.*
 /assets/static/images/logo_navbar.*
+/assets/static/favicon.ico
+/assets/static/images/favicon_*.png
+/assets/static/images/apple_touch_icon_*.png
+
 /uploads
 /lib/club_homepage/uploads
 
