@@ -65,7 +65,9 @@ defmodule ClubHomepage.Mixfile do
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
 
-     {:icalendar, "~> 0.2.1"}
+     {:icalendar, "~> 0.2.1"},
+
+     {:distillery, "~> 1.5.3", runtime: false} #run: mix do deps.get, compile
     ]
   end
 
