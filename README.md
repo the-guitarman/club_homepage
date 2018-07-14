@@ -161,6 +161,10 @@ To change the background image you need to replace the image `web/static/assets/
 
 To remove the background image open `web/templates/layout/app.html.eex` and remove the css class `background-image-01` from the body element.
 
+## Releases
+
+To create a release you my use [Distillery](https://hexdocs.pm/distillery). Therefore copy `rel/config.exs.template` to `rel/config.exs` and edit it to your needs.
+
 ## License
 
 This project has a dual license.
