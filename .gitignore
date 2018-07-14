@@ -40,3 +40,4 @@ erl_crash.dump
 /config/dev.exs
 /config/prod.secret.exs
 /config/test.exs
+/rel/config.exs

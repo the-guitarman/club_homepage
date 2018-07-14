@@ -8,7 +8,7 @@ Path.join(["rel", "plugins", "*.exs"])
 
 use Mix.Releases.Config,
     # This sets the default release built by `mix release`
-    default_release: :default,
+    default_release: :club_homepage, #:default, 
     # This sets the default environment used by `mix release`
     default_environment: Mix.env()
 
@@ -30,13 +30,15 @@ environment :dev do
   # dev mode.
   set dev_mode: true
   set include_erts: false
-  set cookie: :"m>Gi1sCQl>BXsc.gM{MlGa!,86D7U$QdEmt5X;2@[UK/VCRK;?$h2I:@kNR<hc=O"
+  set cookie: :test
+  #set cookie: :"eNL?5&{x}q((Z<GHmPu<bVOkt!?LNh:NowYq)A)~!>8^6_C5V[X;;3@tYAyi,|.C"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"fA$/c>b?QPe^jEqI.p9P1tdDEcrSRzvN17xXz$v^R7k~wY:r=zPjgfV5Lt08^V(J"
+  #set cookie: :crypto.hash(:sha256, System.get_env("COOKIE")) |> Base.encode16 |> String.to_atom
+  set cookie: :"JH5;n|QG{rG8Y%u2{E$v845]w3qkhIH|G:`8;y!6H$)Ipo&F`@wUF>XSjOdduhf["
 end
 
 # You may define one or more releases in this file.

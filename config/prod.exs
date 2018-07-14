@@ -54,7 +54,7 @@ config :logger, level: :info
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
 #
-#     config :club_homepage, ClubHomepage.Web.Endpoint, server: true
+#  config :club_homepage, ClubHomepage.Web.Endpoint, server: true
 #
 
 # Finally import the config/prod.secret.exs
@@ -63,3 +63,9 @@ import_config "prod.secret.exs"
 
 config :club_homepage, :uploads, 
   path: "uploads"
+
+# Distillery settings
+config :club_homepage, ClubHomepage.Web.Endpoint,
+  root: ".",
+  server: true,
+  version: Application.spec(:club_homepage, :vsn)
