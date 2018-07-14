@@ -24,7 +24,8 @@ defmodule ClubHomepage.Mixfile do
        :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
        :phoenix_ecto, :postgrex, :comeonin, :geocoder, 
        :elixir_weather_data, :number, :bamboo, :arc_ecto
-     ]
+     ],
+     included_applications: [:towel]
     ]
   end
 
@@ -46,8 +47,8 @@ defmodule ClubHomepage.Mixfile do
      {:dogma, "~> 0.0", only: :dev},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.0"},
-     {:timex, "~> 3.0"},
-     {:timex_ecto, "~> 3.0"},
+     {:timex, "~> 3.3"},
+     {:timex_ecto, "~> 3.3"},
      {:ex_machina, "~> 1.0", only: :test},
      {:gettext, "~> 0.11"},
      {:credo, "~> 0.2", only: [:dev, :test]},
@@ -67,7 +68,8 @@ defmodule ClubHomepage.Mixfile do
 
      {:icalendar, "~> 0.2.1"},
 
-     {:distillery, "~> 1.5.3", runtime: false} #run: mix do deps.get, compile
+     {:distillery, "~> 1.5.3", runtime: false}, #run: mix do deps.get, compile
+     {:hackney, "== 1.8.0", override: true}
     ]
   end
 
