@@ -164,16 +164,24 @@ At this point you should have a running app. Please log in with the administrato
 
 Please click to open "master data -> text pages" in the top navbar. Text pages are all static sites like "about us", "contact", "chronicle", "registration information" and "sponsors". These sites have no content right now. You may edit the pages now to fill them.
 
-### Favicon, Apple-Touch-Icon, Logo and Background-Image
+### Images Favicon, Apple-Touch-Icon, Logo and Background-Image
 
-Please create the following image files :
+#### Favicon and Apple-Touch-Icon
+
+You may create the image files:
 
 - `assets/static/favicon.ico`
 - `assets/static/images/favicon_32x32.png`
 - `assets/static/images/favicon_96x96.png`
 - `assets/static/images/apple_touch_icon_180x180.png`
 
-To change the logo at the homnepage you need to replace the image `assets/static/images/logo.png` with another one.
+#### Logo
+
+To show a small logo in the top navbar you need to create the image `assets/static/images/logo\_navbar\_20x20.png`. This image will be used as homepage link. 
+
+To show a logo at the homepage you need to create the image `assets/static/images/logo.png`. A good size may be 160x160 pixel. 
+
+#### Background
 
 To change the background image you need to replace the image `assets/static/images/background_01.jpg` with another one.
 
