@@ -4,9 +4,8 @@ defmodule ClubHomepage.Web.LayoutView do
   import Number.Currency
 
   def background_image_cls() do
-    #if templateable_asset_path?("/background_01.jpg") do
-    #  ...
-    #end
+    if templateable_asset_path?("/background_01.jpg") do
+    end
     "background-image-01"
   end
 

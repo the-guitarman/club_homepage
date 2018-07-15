@@ -22,7 +22,7 @@ defmodule ClubHomepage.Extension.View do
   end
 
   def templateable_asset_path?(file_path) do
-    File.exists?(absolute_asset_path(file_path)
+    File.exists?(absolute_asset_path(file_path))
   end
 
   defp absolute_asset_path(file_path) do
