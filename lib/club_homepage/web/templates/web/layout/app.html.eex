@@ -11,16 +11,16 @@
 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 
-    <%= if templateable_asset_path?("/favicon.ico") do %>
+    <%= if asset_path?("/favicon.ico") do %>
       <link rel="shortcut icon" href="/favicon.ico">
     <% end %>
-    <%= if templateable_asset_path?("/images/favicon_32x32.png") do %>
+    <%= if asset_path?("/images/favicon_32x32.png") do %>
       <link rel="icon" type="image/png" href="/images/favicon_32x32.png" sizes="32x32">
     <% end %>
-    <%= if templateable_asset_path?("/images/favicon_96x96.png") do %>
+    <%= if asset_path?("/images/favicon_96x96.png") do %>
       <link rel="icon" type="image/png" href="/images/favicon_96x96.png" sizes="96x96">
     <% end %>
-    <%= if templateable_asset_path?("/images/apple_touch_icon_180x180.png") do %>
+    <%= if asset_path?("/images/apple_touch_icon_180x180.png") do %>
       <link rel="apple-touch-icon" sizes="180x180" href="/images/apple_touch_icon_180x180.png">
     <% end %>
   </head>

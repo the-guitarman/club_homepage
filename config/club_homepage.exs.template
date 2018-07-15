@@ -2,7 +2,8 @@ use Mix.Config
 
 config :club_homepage, :common,
   founding_year: 1911,
-  full_club_name: "Full Club Name"
+  full_club_name: "Full Club Name",
+  short_club_name: "Short Club Name"
 
 config :elixir_weather_data, :api,
   key: "0my1openweathermap2org3api4key56",

@@ -177,9 +177,9 @@ You may create the image files:
 
 #### Logo
 
-To show a small logo in the top navbar you need to create the image `assets/static/images/logo\_navbar\_20x20.png`. This image will be used as homepage link. 
+To show a small logo instead of the short club name in the top navbar you need to create the image `assets/static/images/logo\_navbar\_20x20.png`. This image will be used as homepage link. 
 
-To show a logo at the homepage you need to create the image `assets/static/images/logo.png`. A good size may be 160x160 pixel. 
+To show a logo in the middle of the homepage you need to create the image `assets/static/images/logo.png`. A good size may be 160x160 pixel.
 
 #### Background
 

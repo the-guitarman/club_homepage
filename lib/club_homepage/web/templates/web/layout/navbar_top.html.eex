@@ -9,10 +9,10 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="<%= page_path(@conn, :index) %>">
-        <%= if templateable_asset_path("/images/logo_navbar_20x20.png") do %>
+        <%= if asset_path?("/images/logo_navbar_20x20.png") do %>
           <img alt="" src="<%= templateable_asset_path("/images/logo_navbar_20x20.png") %>" />
         <% else %>
-          <%= full_club_name() %>
+          <%= short_club_name() %>
         <% end %>
       </a>
     </div>

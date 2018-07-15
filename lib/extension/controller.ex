@@ -5,8 +5,20 @@ defmodule ClubHomepage.Extension.Controller do
 
   import ClubHomepage.Web.Localization
 
+  @doc """
+  Returns the full club name as configured in `config/club_homepage.exs`.
+  """
+  @spec full_club_name() :: String
   def full_club_name do
     Application.get_env(:club_homepage, :common)[:full_club_name]
+  end
+
+  @doc """
+  Returns the short club name as configured in `config/club_homepage.exs`.
+  """
+  @spec short_club_name() :: String
+  def short_club_name do
+    Application.get_env(:club_homepage, :common)[:short_club_name]
   end
 
   @doc """

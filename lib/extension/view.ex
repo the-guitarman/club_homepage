@@ -8,12 +8,36 @@ defmodule ClubHomepage.Extension.View do
   import ClubHomepage.Web.Localization
   import ClubHomepage.Extension.CommonTimex
 
+  @doc """
+  Returns the full club name as configured in `config/club_homepage.exs`.
+  """
+  @spec full_club_name() :: String
   def full_club_name do
     Application.get_env(:club_homepage, :common)[:full_club_name]
   end
 
+  @doc """
+  Returns the short club name as configured in `config/club_homepage.exs`.
+  """
+  @spec short_club_name() :: String
+  def short_club_name do
+    Application.get_env(:club_homepage, :common)[:short_club_name]
+  end
+
+  @doc """
+  Extends the given asset path with a template string,
+  if the asset does not exist.
+
+  ## Example usage
+      iex> templateable_asset_path("/images/logo.png")
+      "/images/logo.template.png"
+
+      iex> templateable_asset_path("/images/logo.template.png")
+      "/images/logo.template.png"
+  """
+  @spec templateable_asset_path(String) :: String
   def templateable_asset_path(file_path) do
-    case templateable_asset_path?(file_path) do
+    case asset_path?(file_path) do
       true -> file_path
       _ ->
         extension_name = Path.extname(file_path)
@@ -21,7 +45,11 @@ defmodule ClubHomepage.Extension.View do
     end
   end
 
-  def templateable_asset_path?(file_path) do
+  @doc """
+  Checks wether the given asset path exists.
+  """
+  @spec asset_path?(String) :: Boolean
+  def asset_path?(file_path) do
     File.exists?(absolute_asset_path(file_path))
   end
 
