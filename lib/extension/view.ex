@@ -29,11 +29,11 @@ defmodule ClubHomepage.Extension.View do
   if the asset does not exist.
 
   ## Example usage
-      iex> templateable_asset_path("/images/logo.png")
-      "/images/logo.template.png"
+      iex> ClubHomepage.Extension.View.templateable_asset_path("/favicon.ico")
+      "/favicon.ico"
 
-      iex> templateable_asset_path("/images/logo.template.png")
-      "/images/logo.template.png"
+      iex> ClubHomepage.Extension.View.templateable_asset_path("/fav_icon.ico")
+      "/fav_icon.template.ico"
   """
   @spec templateable_asset_path(String) :: String
   def templateable_asset_path(file_path) do
@@ -41,12 +41,26 @@ defmodule ClubHomepage.Extension.View do
       true -> file_path
       _ ->
         extension_name = Path.extname(file_path)
-        Path.dirname(file_path) <> "/" <> Path.basename(file_path, extension_name) <> ".template" <> extension_name
+        templateable_asset_path_dir_name(file_path) <> Path.basename(file_path, extension_name) <> ".template" <> extension_name
+    end
+  end
+
+  defp templateable_asset_path_dir_name(file_path) do
+    case Path.dirname(file_path) do
+      "/" -> "/"
+      dir -> dir <> "/"
     end
   end
 
   @doc """
   Checks wether the given asset path exists.
+
+  ## Example usage
+      iex> ClubHomepage.Extension.View.asset_path?("/favicon.ico")
+      true
+
+      iex> ClubHomepage.Extension.View.asset_path?("/fav_icon.ico")
+      false
   """
   @spec asset_path?(String) :: Boolean
   def asset_path?(file_path) do
