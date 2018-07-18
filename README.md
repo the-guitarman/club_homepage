@@ -164,7 +164,7 @@ At this point you should have a running app. Please log in with the administrato
 
 Please click to open "master data -> text pages" in the top navbar. Text pages are all static sites like "about us", "contact", "chronicle", "registration information" and "sponsors". These sites have no content right now. You may edit the pages now to fill them.
 
-### Images Favicon, Apple-Touch-Icon, Logo and Background-Image
+### Static Assets
 
 #### Favicon and Apple-Touch-Icon
 
@@ -186,6 +186,10 @@ To show a logo in the middle of the homepage you need to create the image `asset
 To change the background image you need to replace the image `assets/static/images/background_01.jpg` with another one.
 
 To remove the background image open `lib/club_homepage/web/templates/web/layout/app.html.eex` and remove the css class `background-image-01` from the body element.
+
+#### humans.txt
+
+You may provide a `/humans.txt`. Therefore copy `assets/static/humans.template.txt` to `assets/static/humans.txt` and edit its content. Here are more information about [humans.txt](http://humanstxt.org/).
 
 ## Releases
 

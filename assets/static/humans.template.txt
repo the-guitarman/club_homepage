@@ -1,0 +1,27 @@
+/* OWNER */
+
+Owner
+Contact: <first and last name> 
+Mail: <account name> [at] <host name> 
+From: <city>, <country>
+
+/* TEAM */
+
+Team Leader
+Contact: <first and last name>
+Mail: <account name> [at] <host name>
+From: <city>, <country>
+
+Webmaster, Hostmaster
+Contact: <first and last name>
+Twitter: <account name>
+Mail: <account name> [at] <host name>
+From: <city>, <country>
+
+
+/* THANKS */
+
+PhoenixFramework, Elixir, Distillery, Ansible
+
+Idea and more information: http://humanstxt.org/
+

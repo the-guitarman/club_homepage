@@ -37,6 +37,7 @@ erl_crash.dump
 /assets/static/favicon.ico
 /assets/static/images/favicon_*.png
 /assets/static/images/apple_touch_icon_*.png
+/assets/static/humans.txt
 
 /uploads
 /lib/club_homepage/uploads
