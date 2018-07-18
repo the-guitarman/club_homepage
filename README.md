@@ -189,7 +189,13 @@ To remove the background image open `lib/club_homepage/web/templates/web/layout/
 
 ## Releases
 
-To create a release you my use [Distillery](https://hexdocs.pm/distillery). Therefore copy `rel/config.exs.template` to `rel/config.exs` and edit it to your needs.
+To create a release you my use [Distillery](https://hexdocs.pm/distillery). Therefore copy `rel/config.exs.template` to `rel/config.exs` and edit it to your needs. Then run these commands in the project root: 
+
+```
+cd assets && ./node_modules/brunch/bin/brunch build --production && cd ..
+MIX_ENV=prod mix phoenix.digest
+MIX_ENV=prod mix release --env=prod
+```
 
 ## License
 
@@ -206,3 +212,6 @@ For commercial usage please contact me at first.
 
 Better ideas and solutions are gladly accepted. If you want to donate this project please use this link: [Donate](https://paypal.me/guitarman/5)
 
+# Todos
+
+- [ ] edit robots.txt and humans.txt in the back office from the administrator only
