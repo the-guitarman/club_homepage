@@ -6,6 +6,9 @@ defmodule ClubHomepage.Team do
   schema "teams" do
     field :name, :string
     field :slug, :string
+    field :fussball_de_team_url, :string
+    field :fussball_de_team_rewrite, :string
+    field :fussball_de_team_id, :string
 
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
     belongs_to :competition, ClubHomepage.Competition
@@ -13,7 +16,7 @@ defmodule ClubHomepage.Team do
     timestamps()
   end
 
-  @cast_fields ~w(competition_id name slug)
+  @cast_fields ~w(competition_id name slug fussball_de_team_url fussball_de_team_rewrite fussball_de_team_id)
   @required_fields [:competition_id, :name]
 
   @doc """
@@ -30,6 +33,7 @@ defmodule ClubHomepage.Team do
     |> unique_constraint(:name)
     |> ClubHomepage.Web.SlugGenerator.run(:name, :slug)
     |> unique_constraint(:slug)
+    |> ClubHomepage.Web.FussballDeTeamUrlChecker.run(:fussball_de_team_url, :fussball_de_team_rewrite, :fussball_de_team_id)
   end
 end
 

@@ -2,6 +2,18 @@ defmodule ClubHomepage.Web.Localization do
   import ClubHomepage.Web.Gettext
 
   @doc """
+  Returns the current local abbreviation.
+
+  ## Example usage
+  iex> ClubHomepage.Web.Localization.current_locale()
+  "en"
+  """
+  @spec current_locale :: String
+  def current_locale do
+    Gettext.get_locale(ClubHomepage.Web.Gettext)
+  end
+
+  @doc """
   Returns the localized date format.
 
   ## Example usage

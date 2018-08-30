@@ -11,6 +11,14 @@
     <%= error_tag f, :name %>
   </div>
 
+  <%= if current_locale() == "de" do %>
+    <div class="form-group <%= error_cls @changeset, f, :fussball_de_team_url %>">
+      <%#= label f, :fussball_de_team_url, "name", class: "control-label" %>
+      <%= textarea f, :fussball_de_team_url, class: "form-control", placeholder: gettext("fussball_de_team_url_placeholder") %>
+      <%= error_tag f, :fussball_de_team_url %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= submit gettext("save"), class: "btn btn-primary" %>
   </div>

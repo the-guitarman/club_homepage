@@ -62,6 +62,18 @@
         </div>
       </div>
 
+      <%= unless @current_table == nil do %>
+        <div class="row css-current-team-table">
+          <div class="col-xs-12">
+            <h3><%= gettext("current_table") %></h3>
+            <small><%= gettext("as_at") %>: <%= point_of_time(@current_table_created_at) %></small>
+          </div>
+          <div class="col-xs-12">
+            <%= raw(@current_table) %>
+          </div>
+        </div>
+      <% end %>
+
       <div class="row">
         <div class="col-xs-12">
           <%= link gettext("all") <> " " <> gettext("teams"), to: team_path(@conn, :index) %>

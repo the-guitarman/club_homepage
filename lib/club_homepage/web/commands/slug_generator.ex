@@ -20,7 +20,7 @@ defmodule ClubHomepage.Web.SlugGenerator  do
       true
   """
   @spec run(String) :: String
-  @spec run(Ecto.Changeset, String, String) :: Ecto.Changeset
+  @spec run(Ecto.Changeset, Atom|String, Atom|String) :: Ecto.Changeset
   def run(phrase), do: slugify(phrase)
   def run(changeset, from_field, to_field) do
     case get_change(changeset, convert_to_atom(from_field)) do
@@ -29,7 +29,7 @@ defmodule ClubHomepage.Web.SlugGenerator  do
     end
   end
 
-  defp convert_to_atom(text) when is_atom(text), do: text
+  defp convert_to_atom(atom) when is_atom(atom), do: atom
   defp convert_to_atom(text) when is_bitstring(text) do
     String.to_atom(text)
   end
