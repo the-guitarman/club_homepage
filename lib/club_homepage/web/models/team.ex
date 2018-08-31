@@ -9,6 +9,8 @@ defmodule ClubHomepage.Team do
     field :fussball_de_team_url, :string
     field :fussball_de_team_rewrite, :string
     field :fussball_de_team_id, :string
+    field :fussball_de_show_next_matches, :boolean
+    field :fussball_de_show_current_table, :boolean
 
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
     belongs_to :competition, ClubHomepage.Competition
@@ -16,7 +18,7 @@ defmodule ClubHomepage.Team do
     timestamps()
   end
 
-  @cast_fields ~w(competition_id name slug fussball_de_team_url fussball_de_team_rewrite fussball_de_team_id)
+  @cast_fields ~w(competition_id name slug fussball_de_team_url fussball_de_team_rewrite fussball_de_team_id fussball_de_show_next_matches fussball_de_show_current_table)
   @required_fields [:competition_id, :name]
 
   @doc """
