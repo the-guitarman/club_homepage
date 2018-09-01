@@ -3,7 +3,7 @@ defmodule ClubHomepage.Web.FussballDeTeamUrlChecker do
   Checks a fussball.de url and grabs some parameters from it.
   """
 
-  import Ecto.Changeset, only: [get_change: 2, put_change: 3, add_error: 3]
+  import Ecto.Changeset, only: [get_field: 2, put_change: 3, add_error: 3]
 
   @doc """
   It checks the given url. If it's a fussball.de url but there's a
@@ -12,7 +12,7 @@ defmodule ClubHomepage.Web.FussballDeTeamUrlChecker do
   """
   @spec run(Ecto.Changeset, Atom|String, Atom|String, Atom|String) :: Ecto.Changeset
   def run(changeset, team_url_field, team_rewrite_field, team_id_field) do
-    case get_change(changeset, convert_to_atom(team_url_field)) do
+    case get_field(changeset, convert_to_atom(team_url_field)) do
       nil -> clean_team_fields(changeset, team_rewrite_field, team_id_field)
       url -> set_team_fields(changeset, team_url_field, team_rewrite_field, team_id_field, ExFussballDeScraper.Url.parse(url))
     end

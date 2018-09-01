@@ -1,4 +1,4 @@
-<%= form_for @changeset, @action, fn f -> %>
+<%= form_for @changeset, @action, [class: "form-horizontal"], fn f -> %>
   <%= show_form_errors(@changeset, f) %>
 
   <%= render "form_group_to_select_a_competition.html", f: f, changeset: @changeset,
@@ -19,14 +19,22 @@
     </div>
 
     <div class="form-group <%= error_cls @changeset, f, :fussball_de_show_current_table %>">
-      <%#= label f, :fussball_de_show_current_table, "name", class: "control-label" %>
-      <%= checkbox f, :fussball_de_show_current_table, class: "form-control", placeholder: gettext("fussball_de_show_current_table_placeholder") %>
+      <div class="check-box">
+        <%= label f, :fussball_de_show_current_table, class: "control-label" do %>
+          <%= checkbox f, :fussball_de_show_current_table, class: "form-control", unchecked_value: false %>
+          <%= gettext("fussball_de_show_current_table") %>
+        <% end %>
+      </div>
       <%= error_tag f, :fussball_de_show_current_table %>
     </div>
 
     <div class="form-group <%= error_cls @changeset, f, :fussball_de_show_next_matches %>">
-      <%#= label f, :fussball_de_show_next_matches, "name", class: "control-label" %>
-      <%= checkbox f, :fussball_de_show_next_matches, class: "form-control", placeholder: gettext("fussball_de_show_next_matches_placeholder") %>
+      <div class="check-box">
+        <%= label f, :fussball_de_show_next_matches, class: "control-label" do %>
+          <%= checkbox f, :fussball_de_show_next_matches, class: "form-control", unchecked_value: false %>
+          <%= gettext("fussball_de_show_next_matches") %>
+        <% end %>
+      </div>
       <%= error_tag f, :fussball_de_show_next_matches %>
     </div>
   <% end %>

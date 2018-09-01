@@ -150,7 +150,7 @@ msgstr ""
 #: lib/club_homepage/web/templates/web/season/form.html.eex:14
 #: lib/club_homepage/web/templates/web/secret/form.html.eex:9
 #: lib/club_homepage/web/templates/web/sponsor_image/form.html.eex:17
-#: lib/club_homepage/web/templates/web/team/form.html.eex:35
+#: lib/club_homepage/web/templates/web/team/form.html.eex:51
 #: lib/club_homepage/web/templates/web/team/team_standard_players_page.html.eex:41
 #: lib/club_homepage/web/templates/web/team_image/form.html.eex:33
 #: lib/club_homepage/web/templates/web/text_page/form.html.eex:17
@@ -1581,11 +1581,11 @@ msgid "fussball_de_team_url_placeholder"
 msgstr ""
 
 #, elixir-format
-#: lib/club_homepage/web/templates/web/team/form.html.eex:29
-msgid "fussball_de_show_next_matches_placeholder"
+#: lib/club_homepage/web/templates/web/team/form.html.eex:27
+msgid "fussball_de_show_current_table"
 msgstr ""
 
 #, elixir-format
-#: lib/club_homepage/web/templates/web/team/form.html.eex:23
-msgid "fussball_de_show_current_table_placeholder"
+#: lib/club_homepage/web/templates/web/team/form.html.eex:41
+msgid "fussball_de_show_next_matches"
 msgstr ""

@@ -160,10 +160,19 @@ defmodule ClubHomepage.Web.TeamController do
   end
 
   defp current_table(team, club_rewrite, team_id) when is_binary(club_rewrite) and is_binary(team_id) do
+    created_at = Timex.local() |> Timex.to_unix()
+
     response =
-      case Localization.current_locale() do
-        "de" -> ExFussballDeScraper.Scraper.current_table(club_rewrite, team_id)
-        language -> {:error, "'#{language}' is the wrong language.", Timex.local() |> Timex.to_unix()}
+      case team.fussball_de_show_current_table do
+        true -> {:ok, Localization.current_locale(), created_at}
+        _ -> {:error, :show_current_table_is_off, created_at}
+      end
+
+    response =
+      case response do
+        {:ok, "de", _} -> ExFussballDeScraper.Scraper.current_table(club_rewrite, team_id)
+        {:ok, language, created_at} -> {:error, "'#{language}' is the wrong language.", created_at}
+        {:error, _, _} -> response
       end
 
     case response do

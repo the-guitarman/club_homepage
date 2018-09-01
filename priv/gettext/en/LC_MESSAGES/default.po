@@ -158,7 +158,7 @@ msgstr "Some errors occured:"
 #: lib/club_homepage/web/templates/web/season/form.html.eex:14
 #: lib/club_homepage/web/templates/web/secret/form.html.eex:9
 #: lib/club_homepage/web/templates/web/sponsor_image/form.html.eex:17
-#: lib/club_homepage/web/templates/web/team/form.html.eex:35
+#: lib/club_homepage/web/templates/web/team/form.html.eex:51
 #: lib/club_homepage/web/templates/web/team/team_standard_players_page.html.eex:41
 #: lib/club_homepage/web/templates/web/team_image/form.html.eex:33
 #: lib/club_homepage/web/templates/web/text_page/form.html.eex:17
@@ -1588,12 +1588,12 @@ msgstr "League Table"
 msgid "fussball_de_team_url_placeholder"
 msgstr "URL of the Team-Page at fussball.de"
 
-#, elixir-format
-#: lib/club_homepage/web/templates/web/team/form.html.eex:29
-msgid "fussball_de_show_next_matches_placeholder"
-msgstr "Show new matches to create (if available)"
-
-#, elixir-format
-#: lib/club_homepage/web/templates/web/team/form.html.eex:23
-msgid "fussball_de_show_current_table_placeholder"
+#, elixir-format, fuzzy
+#: lib/club_homepage/web/templates/web/team/form.html.eex:27
+msgid "fussball_de_show_current_table"
 msgstr "Show current league table (if available)"
+
+#, elixir-format, fuzzy
+#: lib/club_homepage/web/templates/web/team/form.html.eex:41
+msgid "fussball_de_show_next_matches"
+msgstr "Show new matches to create (if available)"
