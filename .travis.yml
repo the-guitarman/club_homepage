@@ -7,6 +7,8 @@ services:
   - postgresql
 addons:
   postgresql: "9.4"
+  code_climate:
+    repo_token: 9b11af9ea8801b2ccb0c284725494d4cb3e8b9db66c0c37f0305cb06fe67b9fa
 otp_release:
   - 19.0
 sudo: false
@@ -20,6 +22,3 @@ before_script:
   - mix deps.get --only test
 #script: MIX_ENV=test mix do deps.get, test
 script: MIX_ENV=test mix test
-addons:
- code_climate:
-   repo_token: 9b11af9ea8801b2ccb0c284725494d4cb3e8b9db66c0c37f0305cb06fe67b9fa
