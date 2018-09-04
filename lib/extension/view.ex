@@ -29,11 +29,11 @@ defmodule ClubHomepage.Extension.View do
   if the asset does not exist.
 
   ## Example usage
-      iex> ClubHomepage.Extension.View.templateable_asset_path("/favicon.ico")
-      "/favicon.ico"
+  iex> ClubHomepage.Extension.View.templateable_asset_path("/favicon.ico") =~ ~r|/favicon.(template.)*ico|
+  true
 
-      iex> ClubHomepage.Extension.View.templateable_asset_path("/fav_icon.ico")
-      "/fav_icon.template.ico"
+  iex> ClubHomepage.Extension.View.templateable_asset_path("/fav_icon.ico")
+  "/fav_icon.template.ico"
   """
   @spec templateable_asset_path(String) :: String
   def templateable_asset_path(file_path) do
@@ -56,18 +56,30 @@ defmodule ClubHomepage.Extension.View do
   Checks wether the given asset path exists.
 
   ## Example usage
-      iex> ClubHomepage.Extension.View.asset_path?("/favicon.ico")
-      true
+  iex> if File.exists?(ClubHomepage.Extension.View.absolute_asset_path("/favicon.ico")) do
+  ...>   ClubHomepage.Extension.View.asset_path?("/favicon.ico") == true
+  ...> else
+  ...>   ClubHomepage.Extension.View.asset_path?("/favicon.ico") == false
+  ...> end
+  true
 
-      iex> ClubHomepage.Extension.View.asset_path?("/fav_icon.ico")
-      false
+  iex> ClubHomepage.Extension.View.asset_path?("/fav_icon.ico")
+  false
   """
   @spec asset_path?(String) :: Boolean
   def asset_path?(file_path) do
     File.exists?(absolute_asset_path(file_path))
   end
 
-  defp absolute_asset_path(file_path) do
+  @doc """
+  Return the absolute/full path to the asset.
+
+  ## Example usage
+  iex> ClubHomepage.Extension.View.absolute_asset_path("/favicon.ico") =~ ~r|club_homepage/priv/static/favicon.ico$|
+  true
+  """
+  @spec absolute_asset_path(String) :: String
+  def absolute_asset_path(file_path) do
     Path.join([
       Application.app_dir(:club_homepage, "priv"),
       "static",
