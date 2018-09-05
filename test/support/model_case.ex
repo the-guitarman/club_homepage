@@ -21,7 +21,7 @@ defmodule ClubHomepage.ModelCase do
       alias ClubHomepage.Repo
       import Ecto.Query, only: [from: 2]
 
-      import ClubHomepage.Extension.CommonTest
+      import ClubHomepage.Extension.CommonTestExtension
     end
   end
 

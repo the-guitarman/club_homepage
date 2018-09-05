@@ -28,7 +28,7 @@ defmodule ClubHomepage.Web.ConnCase do
       alias ClubHomepage.Repo
       import Ecto.Query, only: [from: 2]
 
-      import ClubHomepage.Extension.CommonTest
+      import ClubHomepage.Extension.CommonTestExtension
 
       def flash_messages_contain?(conn, text) do
         conn

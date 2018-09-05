@@ -5,6 +5,9 @@ config :club_homepage, :common,
   full_club_name: "Full Club Name",
   short_club_name: "Short Club Name"
 
+config :club_homepage, :config,
+  show_match_timeline: false
+
 config :elixir_weather_data, :api,
   key: "0my1openweathermap2org3api4key56",
   language: "de",
