@@ -43,7 +43,7 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Web.Localization
 
       import ClubHomepage.Extension.Controller
-      import ClubHomepage.Extension.Common, only: [failure_reasons: 0, internal_user_name: 1]
+      import ClubHomepage.Extension.Common, only: [failure_reasons: 0, internal_user_name: 1, get_config: 1]
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
       import ClubHomepage.Web.Auth, only: [authenticate_user: 2, require_no_user: 2, current_user: 1, logged_in?: 1, logged_in?: 2]
@@ -70,7 +70,7 @@ defmodule ClubHomepage.Web do
       import ClubHomepage.Web.Localization
 
       import ClubHomepage.Extension.View
-      import ClubHomepage.Extension.Common, only: [failure_reasons: 0, internal_user_name: 1, user_name: 1]
+      import ClubHomepage.Extension.Common, only: [failure_reasons: 0, internal_user_name: 1, user_name: 1, get_config: 1]
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
       import ClubHomepage.Web.Auth, only: [logged_in?: 1, current_user: 1]

@@ -32,15 +32,8 @@
       <%= gettext("home_match") %>
     <% end %>
     <div class="col-xs-8 col-sm-9 col-md-10">
-      <%= radio_button f, :home_match, true, class: "form-control" %>
+      <%= checkbox f, :home_match, class: "form-control", unchecked_value: false %>
     </div>
-    <%= label f, :home_match_false, class: "col-xs-4 col-sm-3 col-md-2 control-label" do %>
-      <%= gettext("away_match") %>
-    <% end %>
-    <div class="col-xs-8 col-sm-9 col-md-10">
-      <%= radio_button f, :home_match, false, class: "form-control" %>
-    </div>
-    <%#= checkbox f, :home_match, class: "form-control" %>
     <%= error_tag @changeset, f, :home_match %>
     <div class="clearfix"></div>
   </div>
