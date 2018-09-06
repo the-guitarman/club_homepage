@@ -48,7 +48,6 @@ defmodule ClubHomepage.StandardTeamPlayerTest do
     assert changeset.valid?
 
     {:error, changeset} = Repo.insert(changeset)
-    IO.inspect changeset.errors
     refute changeset.valid?
     assert changeset.errors[:standard_shirt_number] == {"has already been taken", []}
   end
