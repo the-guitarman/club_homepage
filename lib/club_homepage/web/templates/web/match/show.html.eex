@@ -134,7 +134,7 @@
         </div>
       <% end %>
 
-      <%#= render "player_planning.html", conn: @conn, match: @match %>
+      <%= render "player_planning.html", conn: @conn, match: @match %>
 
       <%= if has_role?(@conn, ["match-editor"]) do %>
         <%= if @match.failure_reason do %>

@@ -59,13 +59,14 @@ defmodule ClubHomepage.Mixfile do
      {:dialyxir, "~> 0.3", only: [:dev]},
      {:arc, "~> 0.8.0"},
      {:arc_ecto, "~> 0.7.0"},
-#{:mix_test_watch, "~> 0.2.4", only: :dev},
+     #{:mix_test_watch, "~> 0.2.4", only: :dev},
 
-#{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
-{:elixir_weather_data, "~> 0.2.2"},
+     #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
+     {:elixir_weather_data, "~> 0.2.2"},
 
-#{:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
-{:ex_fussball_de_scraper, "~> 0.1"},
+     #{:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
+     {:ex_fussball_de_scraper, "~> 0.1"},
+     {:browser, "~> 0.4"},
 
      {:number, "~> 0.5.1"},
      {:bamboo, "~> 0.7"},
