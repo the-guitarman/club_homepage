@@ -182,8 +182,15 @@ defmodule ClubHomepage.MatchControllerTest do
         ~r|<h2>.+?#{opponent_team.name}.+? - .+?#{team.name}.+?</h2>|s
       end
     assert html_response(conn, 200) =~ headline
-    assert html_response(conn, 200) =~ ~r|<div class="row js-match-event-buttons css-match-event-buttons">|
-    assert html_response(conn, 200) =~ ~r|<div id="match-timeline"|
+    match_timeline_is_visible = html_response(conn, 200) =~ ~r|<div id="match-timeline"|
+    match_event_buttons_are_visible = html_response(conn, 200) =~ ~r|<div class="row js-match-event-buttons css-match-event-buttons">|
+    if ClubHomepage.Extension.Common.get_config(:show_match_timeline) do
+      assert match_timeline_is_visible
+      assert match_event_buttons_are_visible
+    else
+      assert !match_timeline_is_visible
+      assert !match_event_buttons_are_visible
+    end
   end
 
   @tag login: true
@@ -203,8 +210,15 @@ defmodule ClubHomepage.MatchControllerTest do
       ~r|<h2>.+?#{opponent_team.name}.+? - .+?#{team.name}.+?</h2>|s
     end
     assert html_response(conn, 200) =~ headline
-    assert not (html_response(conn, 200) =~ ~r|<div class="row js-match-event-buttons css-match-event-buttons">|)
-    assert html_response(conn, 200) =~ ~r|<div id="match-timeline"|
+    match_timeline_is_visible = html_response(conn, 200) =~ ~r|<div id="match-timeline"|
+    match_event_buttons_are_not_visible = not(html_response(conn, 200) =~ ~r|<div class="row js-match-event-buttons css-match-event-buttons">|)
+    if ClubHomepage.Extension.Common.get_config(:show_match_timeline) do
+      assert match_timeline_is_visible
+      assert match_event_buttons_are_not_visible
+    else
+      assert not(match_timeline_is_visible)
+      assert match_event_buttons_are_not_visible
+    end
   end
 
   @tag login: true
