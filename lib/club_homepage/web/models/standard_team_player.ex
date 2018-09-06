@@ -9,6 +9,8 @@ defmodule ClubHomepage.StandardTeamPlayer do
     belongs_to :team, ClubHomepage.Team
     belongs_to :user, ClubHomepage.User
 
+    field :standard_shirt_number, :integer
+
     timestamps()
   end
 
@@ -18,12 +20,13 @@ defmodule ClubHomepage.StandardTeamPlayer do
   @spec changeset( ClubHomepage.StandardTeamPlayer, Map ) :: Ecto.Changeset
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, ~w(team_id user_id))
+    |> cast(params, ~w(team_id user_id standard_shirt_number))
     |> validate_required([:team_id, :user_id])
     |> foreign_key_constraint(:team_id)
     |> foreign_key_constraint(:user_id)
     |> unique_constraint(:user_id, name: "standard_team_players_team_id_user_id_index")
     |> validate_user_is_a_player()
+    |> validate_standard_shirt_number()
   end
 
   defp validate_user_is_a_player(changeset) do
@@ -34,6 +37,16 @@ defmodule ClubHomepage.StandardTeamPlayer do
         add_error(changeset, :user_id, gettext("needs_to_be_a_player"))
       true ->
         changeset
+    end
+  end
+
+  defp validate_standard_shirt_number(changeset) do
+    case get_field(changeset, :standard_shirt_number) do
+      nil -> changeset
+      _number ->
+        changeset
+        |> validate_number(:standard_shirt_number, greater_than: 0, less_than: 100)
+        |> unique_constraint(:standard_shirt_number, name: :index_standard_shirt_number_on_team_id)
     end
   end
 

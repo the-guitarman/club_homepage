@@ -32,9 +32,24 @@ defmodule ClubHomepage.StandardTeamPlayerTest do
     {:ok, standard_team_player} = Repo.insert(changeset)
     assert standard_team_player.team_id == team.id
     assert standard_team_player.user_id == user.id
+    assert standard_team_player.standard_shirt_number == nil
 
 
     {:error, changeset} = Repo.insert(changeset)
     assert changeset.errors[:user_id] == {"has already been taken", []}
+  end
+
+  test "standard_shirt_number is unique per team" do
+    ssn = insert(:standard_team_player, standard_shirt_number: 13)
+    user = insert(:user)
+
+    changeset = StandardTeamPlayer.changeset(%StandardTeamPlayer{}, %{team_id: ssn.team_id, user_id: user.id, standard_shirt_number: 13})
+
+    assert changeset.valid?
+
+    {:error, changeset} = Repo.insert(changeset)
+    IO.inspect changeset.errors
+    refute changeset.valid?
+    assert changeset.errors[:standard_shirt_number] == {"has already been taken", []}
   end
 end
