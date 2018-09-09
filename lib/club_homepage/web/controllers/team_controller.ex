@@ -99,7 +99,7 @@ defmodule ClubHomepage.Web.TeamController do
       on: u.id == stp.user_id,
       where: stp.team_id == ^team.id ,where: [roles: "player"], or_where: like(u.roles, "player %"), or_where: like(u.roles, "% player %"), or_where: like(u.roles, "% player"),
       order_by: [stp.id, u.name],
-      select: %{id: u.id, name: u.name, nickname: u.nickname, standard_team_player_id: stp.id}
+      select: %{id: u.id, name: u.name, nickname: u.nickname, standard_team_player_id: stp.id, standard_shirt_number: stp.standard_shirt_number}
     )
     render(conn, "team_standard_players_page.html", team: team, team_images: team_images, all_players: all_players)
   end
