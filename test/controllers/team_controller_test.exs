@@ -87,10 +87,23 @@ defmodule ClubHomepage.TeamControllerTest do
 
   @tag login: false
   test "shows team with season page", %{conn: conn} do
-    team = insert(:team)
+    team = insert(:team, fussball_de_team_rewrite: "abc", fussball_de_team_id: "123", fussball_de_show_current_table: true)
     season = insert(:season)
     conn = get conn, team_page_with_season_path(conn, :show, team.slug, season.name)
     assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Matches</h1>"
+    assert html_response(conn, 200) =~ "row css-current-team-table"
+  end
+
+  @tag login: false
+  test "shows team with season page for bot or search engine without current table",  %{conn: conn} do
+    team = insert(:team, fussball_de_team_rewrite: "abc", fussball_de_team_id: "123", fussball_de_show_current_table: true)
+    season = insert(:season)
+    conn =
+      conn
+      |> put_req_header("user-agent", "googlebot")
+    conn = get(conn, team_page_with_season_path(conn, :show, team.slug, season.name))
+    assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Matches</h1>"
+    refute html_response(conn, 200) =~ "row css-current-team-table"
   end
 
   @tag login: false
