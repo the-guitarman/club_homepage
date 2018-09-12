@@ -53,6 +53,8 @@ defmodule ClubHomepage.Web.TeamController do
 
     matches = Repo.all(from m in query, where: m.start_at > ^start_at, order_by: [asc: m.start_at])
 
+    #new_matches = new_matches(conn, team, team.fussball_de_team_rewrite, team.fussball_de_team_id)
+
     latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at, order_by: [desc: m.start_at])
 
     {current_table, current_table_created_at} =
@@ -240,4 +242,9 @@ defmodule ClubHomepage.Web.TeamController do
       _ -> scraper_result
     end
   end
+
+  defp new_matches(conn, team, club_rewrite, team_id) when is_binary(club_rewrite) and is_binary(team_id) do
+    nil
+  end
+  defp new_matches, do: nil
 end
