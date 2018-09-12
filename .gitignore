@@ -30,6 +30,7 @@ erl_crash.dump
 /web/static/assets/images/backup
 /web/static/assets/images/logo.*
 /web/static/assets/images/logo_navbar.*
+/assets/backup/*
 /assets/static/images/background_*.jpg
 /assets/static/images/backup
 /assets/static/images/logo.png
