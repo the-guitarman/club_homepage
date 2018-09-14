@@ -32,6 +32,7 @@ defmodule ClubHomepage.StandardTeamPlayersChannelTest do
     assert_reply ref, :error, ^attrs
 
     refute Repo.get_by(StandardTeamPlayer, Map.to_list(attributes))
+    leave_socket(socket)
   end
 
   test "push player:add_or_update for a player", %{socket: socket, team: team} do
@@ -48,6 +49,7 @@ defmodule ClubHomepage.StandardTeamPlayersChannelTest do
     assert_reply ref, :ok, ^attrs
 
     assert Repo.get_by(StandardTeamPlayer, Map.to_list(attributes))
+    leave_socket(socket)
   end
 
   test "push player:remove", %{socket: socket, team: team} do
@@ -64,5 +66,6 @@ defmodule ClubHomepage.StandardTeamPlayersChannelTest do
     assert_reply ref, :ok, ^expected_payload
 
     refute Repo.get(StandardTeamPlayer, standard_team_player.id)
+    leave_socket(socket)
   end
 end

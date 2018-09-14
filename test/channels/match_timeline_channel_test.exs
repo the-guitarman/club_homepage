@@ -47,7 +47,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
     assert_broadcast("match-event:remove", _match_event)
     assert get_match_events(match) == json_encode([])
 
-    leave socket
+    leave_socket(socket)
   end
 
   test "match is finished after three final whistle match events", %{socket: socket, match: match} do
@@ -77,6 +77,8 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
       true  -> assert get_match_score(match) == "1:2"
       false -> assert get_match_score(match) == "2:1"
     end
+
+    leave_socket(socket)
   end
 
   test "match is finished after two final whistle match events and a team has won", %{socket: socket, match: match} do
@@ -104,6 +106,8 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
       true  -> assert get_match_score(match) == "1:2"
       false -> assert get_match_score(match) == "2:1"
     end
+
+    leave_socket(socket)
   end
 
   test "match is finished after a final whistle match event and if it's no deciding game", %{socket: socket, match: match} do
@@ -127,6 +131,8 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
       true  -> assert get_match_score(match) == "1:2"
       false -> assert get_match_score(match) == "2:1"
     end
+
+    leave_socket(socket)
   end
 
   defp get_match(match) do

@@ -30,6 +30,8 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
     assert_reply ref, :error, ^attributes
 
     refute Repo.get_by(MatchCommitment, Map.to_list(attributes))
+
+    leave_socket(socket)
   end
 
   test "push participation:yes for a player", %{socket: socket, current_user: current_user} do
@@ -45,6 +47,8 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
     match_commitment = Repo.get_by(MatchCommitment, Map.to_list(attributes))
     assert match_commitment
     assert match_commitment.commitment == 1
+
+    leave_socket(socket)
   end
 
   test "push participation:no and update user commitment to no", %{socket: socket, current_user: current_user} do
@@ -61,6 +65,8 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
     match_commitment = Repo.get(MatchCommitment, match_commitment.id)
     assert match_commitment
     assert match_commitment.commitment == -1
+
+    leave_socket(socket)
   end
 
   test "push participation:dont-no and update user commitment to don't no", %{socket: socket, current_user: current_user} do
@@ -77,5 +83,7 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
     match_commitment = Repo.get(MatchCommitment, match_commitment.id)
     assert match_commitment
     assert match_commitment.commitment == 0
+
+    leave_socket(socket)
   end
 end

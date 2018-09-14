@@ -47,6 +47,7 @@ defmodule ClubHomepage.Web.PaymentListChannel do
         {:ok, updated_debitor} -> updated_debitor.number_of_units
         {:error, _} -> debitor.number_of_units
       end
+    :timer.sleep(100)
     sum = Currency.number_to_currency(new_number_of_units * debitor.payment_list.price_per_piece)
     {socket, payment_list_id, debitor_id, new_number_of_units, sum}
   end

@@ -18,5 +18,6 @@ defmodule ClubHomepage.TeamChatBadgeChannelTest do
   test "join with status ok", %{socket: socket, response: response} do
     current_user = socket.assigns.current_user
     assert response == %{"current_user_id" => current_user.id, "unread_team_chat_messages_number" => 0}
+    leave_socket(socket)
   end
 end

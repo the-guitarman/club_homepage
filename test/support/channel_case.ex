@@ -26,6 +26,12 @@ defmodule ClubHomepage.Web.ChannelCase do
 
       # The default endpoint for testing
       @endpoint ClubHomepage.Web.Endpoint
+
+      defp leave_socket(socket) do
+        ref = leave(socket)
+        assert_reply ref, :ok
+        :timer.sleep(10)
+      end
     end
   end
 
