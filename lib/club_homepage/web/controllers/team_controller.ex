@@ -1,6 +1,4 @@
 defmodule ClubHomepage.Web.TeamController do
-  require Logger
-
   use ClubHomepage.Web, :controller
 
   alias ClubHomepage.Match
@@ -10,8 +8,6 @@ defmodule ClubHomepage.Web.TeamController do
   alias ClubHomepage.Season
   alias ClubHomepage.StandardTeamPlayer
   alias ClubHomepage.User
-
-  alias ClubHomepage.Web.Localization
 
   plug :is_team_editor when action in [:index, :new, :create, :edit, :update, :delete, :edit_standard_players]
   plug :scrub_params, "team" when action in [:create, :update]
@@ -53,12 +49,11 @@ defmodule ClubHomepage.Web.TeamController do
 
     matches = Repo.all(from m in query, where: m.start_at > ^start_at, order_by: [asc: m.start_at])
 
-    #new_matches = new_matches(conn, team, team.fussball_de_team_rewrite, team.fussball_de_team_id)
+    #new_matches = ClubHomepage.Web.NewTeamMatchesData.run(conn, team)
 
     latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at, order_by: [desc: m.start_at])
 
-    {current_table, current_table_created_at} =
-      current_table(conn, team, team.fussball_de_team_rewrite, team.fussball_de_team_id)
+    {current_table, current_table_created_at} = ClubHomepage.Web.CurrentTeamTableData.run(conn, team)
 
     render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches, next_match_parameters: %{"season_id" => season.id, "team_id" => team.id, "start_at" => params["start_at"], "competition_id" => params["competition_id"]}, team_images_count: team_images_count(team), current_table: current_table, current_table_created_at: current_table_created_at)
   end
@@ -160,91 +155,4 @@ defmodule ClubHomepage.Web.TeamController do
     [team_images_count] = Repo.all(from ti in TeamImage, select: count("id"), where: [team_id: ^team.id]) || 0
     team_images_count
   end
-
-  defp current_table(conn, team, club_rewrite, team_id) when is_binary(club_rewrite) and is_binary(team_id) do
-      team
-      |> current_table_language_check()
-      |> current_table_browser_check(conn)
-      |> current_table_scraper(club_rewrite, team_id)
-      |> current_table_log_error(Mix.env(), club_rewrite, team_id)
-      |> current_table_response(team)
-  end
-  defp current_table(_, _, _, _), do: {nil, nil}
-
-  defp current_table_language_check(%Team{} = team) do
-    case team.fussball_de_show_current_table do
-      true -> {:ok, current_table_current_locale(), created_at()}
-      _ -> {:error, :show_current_table_is_off, created_at()}
-    end
-  end
-
-  defp current_table_browser_check(language_check, conn) do
-    case language_check do
-      {:ok, "de", _} ->
-        case Browser.bot?(conn) do #|| Browser.search_engine?(conn) do
-          true -> {:error, :request_from_bot_or_search_engine, created_at()}
-          _ -> language_check
-        end
-      {:ok, language, created_at} -> {:error, "'#{language}' is the wrong language.", created_at}
-      {:error, _, _} -> language_check
-    end
-  end
-
-  defp current_table_current_locale do
-    case Mix.env() do
-      :test -> "de"
-      _ -> Localization.current_locale()
-    end
-  end
-
-  defp current_table_scraper(browser_check, club_rewrite, team_id) do
-    case browser_check do
-      {:ok, "de", _} -> ExFussballDeScraper.Scraper.current_table(club_rewrite, team_id)
-      {:error, _, _} -> browser_check
-    end
-  end
-
-  defp current_table_response(scraper_result, %Team{} = team) do
-    case scraper_result do
-      {:ok, %{team_name: team_name, current_table: html}, created_at} ->
-        {
-          replace_scraper_team_name(html, team_name, team),
-          scraper_result_time(created_at)
-        }
-      {:error, _, _} ->
-        {nil, nil}
-    end
-  end
-
-  defp replace_scraper_team_name(html, scraper_team_name, team) do
-    String.replace(html, scraper_team_name, team.name)
-  end
-
-  defp scraper_result_time(timestamp) do
-    timestamp
-    |> Timex.from_unix()
-    |> Timex.Timezone.convert(Timex.Timezone.Local.lookup())
-  end
-
-  defp created_at() do
-    Timex.local()
-    |> Timex.to_unix()
-  end
-
-  defp current_table_log_error(scraper_result, :test, _, _) do
-    scraper_result
-  end
-  defp current_table_log_error(scraper_result, _env, club_rewrite, team_id) do
-    case scraper_result do
-      {:error, reason, created_at} ->
-        Logger.error("ExFussballDeScraper.Scraper.current_table(\"#{club_rewrite}\", \"#{team_id}\"): #{reason}, at: #{scraper_result_time(created_at)}")
-        scraper_result
-      _ -> scraper_result
-    end
-  end
-
-  defp new_matches(conn, team, club_rewrite, team_id) when is_binary(club_rewrite) and is_binary(team_id) do
-    nil
-  end
-  defp new_matches, do: nil
 end

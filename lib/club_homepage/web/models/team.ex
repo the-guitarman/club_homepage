@@ -11,6 +11,8 @@ defmodule ClubHomepage.Team do
     field :fussball_de_team_id, :string
     field :fussball_de_show_next_matches, :boolean
     field :fussball_de_show_current_table, :boolean
+    field :current_table_html, :string
+    field :current_table_html_at, Timex.Ecto.DateTime
 
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
     belongs_to :competition, ClubHomepage.Competition
@@ -18,7 +20,7 @@ defmodule ClubHomepage.Team do
     timestamps()
   end
 
-  @cast_fields ~w(competition_id name slug fussball_de_team_url fussball_de_team_rewrite fussball_de_team_id fussball_de_show_next_matches fussball_de_show_current_table)
+  @cast_fields ~w(competition_id name slug fussball_de_team_url fussball_de_team_rewrite fussball_de_team_id fussball_de_show_next_matches fussball_de_show_current_table current_table_html current_table_html_at)
   @required_fields [:competition_id, :name]
 
   @doc """
