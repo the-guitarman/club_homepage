@@ -62,7 +62,7 @@ defmodule ClubHomepage.Mixfile do
      #{:mix_test_watch, "~> 0.2.4", only: :dev},
 
      #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
-     {:elixir_weather_data, "~> 0.2.2"},
+     {:elixir_weather_data, "~> 0.2"},
 
      #{:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
      {:ex_fussball_de_scraper, "~> 0.1"},
