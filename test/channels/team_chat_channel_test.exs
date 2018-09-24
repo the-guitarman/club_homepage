@@ -19,17 +19,18 @@ defmodule ClubHomepage.TeamChatChannelTest do
     {:ok, socket: socket}
   end
 
+  @tag reply: true
   test "new chat message replies with status ok", %{socket: socket} do
     assert count() == 0
     ref = push socket, "message:add", %{"message" => "Hello!"}
-    assert_reply ref, :ok
+    assert_reply ref, :ok, %{}, 5000
     assert count() == 1
     leave_socket(socket)
   end
 
   test "new chat message broadcasts to team-chats:<team_id>", %{socket: socket} do
     push socket, "message:add", %{"message" => "Hi"}
-    assert_broadcast "message:added", %{chat_message: %{"message" => "Hi"}}
+    assert_broadcast "message:added", %{chat_message: %{"message" => "Hi"}}, 5000
     leave_socket(socket)
   end
 
