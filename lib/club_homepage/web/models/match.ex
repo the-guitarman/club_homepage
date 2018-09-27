@@ -19,6 +19,7 @@ defmodule ClubHomepage.Match do
     field :match_events, :string, default: "[]"
     field :meeting_point_at, Timex.Ecto.DateTime
     field :uid, :string
+    field :fussball_de_match_id, :string
 
     field :json, :string, virtual: true
     field :json_creation, :boolean, virtual: true, default: false
@@ -36,7 +37,7 @@ defmodule ClubHomepage.Match do
     timestamps()
   end
 
-  @cast_fields ~w(parent_id competition_id season_id team_id opponent_team_id start_at home_match meeting_point_id team_goals opponent_team_goals failure_reason description match_events meeting_point_at json_creation)
+  @cast_fields ~w(parent_id competition_id season_id team_id opponent_team_id start_at home_match meeting_point_id team_goals opponent_team_goals failure_reason description match_events meeting_point_at json_creation fussball_de_match_id)
   @required_fields [:competition_id, :season_id, :team_id, :opponent_team_id, :start_at, :home_match]
 
   @doc """ 

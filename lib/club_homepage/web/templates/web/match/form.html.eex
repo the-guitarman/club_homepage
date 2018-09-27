@@ -27,6 +27,17 @@
     <%= error_tag @changeset, f, :start_at %>
   </div>
 
+  <%= if current_locale() == "de" do %>
+    <div class="form-group <%= error_cls @changeset, f, :fussball_de_match_id %>">
+      <%#= label f, :fussball_de_match_id, class: "control-label" %>
+      <div class="input-group">
+        <div class="input-group-addon">ME | </div>
+        <%= text_input f, :fussball_de_match_id, class: "form-control", placeholder: gettext("fussball_de_match_id") %>
+      </div>
+      <%= error_tag @changeset, f, :fussball_de_match_id %>
+    </div>
+  <% end %>
+
   <div class="form-group form-horizontal js-home-match css-home-match <%= error_cls @changeset, f, :home_match %>">
     <%= label f, :home_match_true, class: "col-xs-4 col-sm-3 col-md-2 control-label" do %>
       <%= gettext("home_match") %>

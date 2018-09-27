@@ -123,9 +123,7 @@ defmodule ClubHomepage.Web.CurrentTeamTableData do
   end
 
   defp current_table_log_error({:from_cache, _, _} = result, _, _, _), do: result
-  defp current_table_log_error(scraper_result, :test, _, _) do
-    scraper_result
-  end
+  defp current_table_log_error(result, :test, _, _), do: result
   defp current_table_log_error(scraper_result, _env, club_rewrite, team_id) do
     case scraper_result do
       {:error, reason, timestamp_now} ->
