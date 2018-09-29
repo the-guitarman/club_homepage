@@ -1607,4 +1607,4 @@ msgstr "Shirt Number"
 #, elixir-format
 #: lib/club_homepage/web/templates/web/match/form.html.eex:33
 msgid "fussball_de_match_id"
-msgstr "Match-ID (from fussball.de)"
+msgstr "Match-ID (from fussball.de like: ME | 998678678)"

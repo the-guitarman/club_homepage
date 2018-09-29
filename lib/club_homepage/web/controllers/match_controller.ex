@@ -70,7 +70,12 @@ defmodule ClubHomepage.Web.MatchController do
   def new_bulk(conn, params) do
     match_params = 
       case params do
-        %{"season_id" => season_id, "team_id" => team_id} -> %{"season_id" => season_id, "team_id" => team_id}
+        %{"season_id" => season_id, "team_id" => team_id} ->
+          json = 
+            conn
+            |> receive_new_matches(Repo.get(Team, team_id))
+            |> new_matches_to_json()
+          %{"season_id" => season_id, "team_id" => team_id, "json" => json}
         _ -> %{}
       end
     changeset = JsonMatchesValidator.changeset(match_params)
@@ -219,4 +224,19 @@ defmodule ClubHomepage.Web.MatchController do
     %{"season_id" => season_id, "team_id" => team_id}
   end
   defp set_next_match_parameters(_), do: %{}
+
+  defp receive_new_matches(conn, team) do
+    case ClubHomepage.Web.NewTeamMatchesData.run(conn, team) do
+      {:error, _, _} -> nil
+      {:ok, result, _created_at_timestamp} -> result
+    end
+  end
+
+  defp new_matches_to_json(nil), do: nil
+  defp new_matches_to_json(result) do
+    case Poison.encode(result) do
+      {:ok, json} -> json
+      _ -> nil
+    end
+  end
 end

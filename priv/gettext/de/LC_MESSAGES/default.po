@@ -1607,4 +1607,4 @@ msgstr "Trikotnummer"
 #, elixir-format
 #: lib/club_homepage/web/templates/web/match/form.html.eex:33
 msgid "fussball_de_match_id"
-msgstr "ID des Spiels (von fussball.de)"
+msgstr "ID des Spiels (von fussball.de, z. B.: ME | 998678678)"

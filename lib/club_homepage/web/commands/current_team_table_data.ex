@@ -70,9 +70,9 @@ defmodule ClubHomepage.Web.CurrentTeamTableData do
   defp current_table_from_cache({:ok, _team}, html, html_at) when is_nil(html) or is_nil(html_at), do: :cache_empty
   defp current_table_from_cache({:error, _, _} = error, _, _), do: error
 
+  defp current_table_language_check({:error, _, _} = error, _, _), do: error
   defp current_table_language_check({:from_cache, _, _} = result), do: result
   defp current_table_language_check(:cache_empty), do: {:ok, current_table_current_locale(), timestamp_now()}
-  defp current_table_language_check({:error, _, _} = error, _, _), do: error
 
   defp current_table_browser_check({:from_cache, _, _} = result, _conn), do: result
   defp current_table_browser_check(language_check, conn) do
@@ -133,7 +133,7 @@ defmodule ClubHomepage.Web.CurrentTeamTableData do
     end
   end
 
-  defp current_table_response({:from_cache, html, html_at} = result, _team), do: {html, html_at}
+  defp current_table_response({:from_cache, html, html_at}, _team), do: {html, html_at}
   defp current_table_response(scraper_result, %Team{} = team) do
     case scraper_result do
       {:ok, %{team_name: team_name, current_table: html}, timestamp_now} ->

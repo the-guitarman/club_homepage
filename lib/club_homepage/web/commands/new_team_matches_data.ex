@@ -7,7 +7,6 @@ defmodule ClubHomepage.Web.NewTeamMatchesData do
   alias ClubHomepage.Repo
   alias ClubHomepage.Match
   alias ClubHomepage.Team
-  alias ClubHomepage.Web.Localization
 
   import Ecto.Query, only: [from: 2]
 
@@ -24,31 +23,58 @@ defmodule ClubHomepage.Web.NewTeamMatchesData do
   defp new_matches(conn, team, club_rewrite, team_id) when is_binary(club_rewrite) and is_binary(team_id) do
     team
     |> new_matches_config_check()
+    |> last_new_matches_update_check()
+    |> new_matches_browser_check(conn)
     |> get_new_matches(club_rewrite, team_id)
     |> new_matches_log_error(Mix.env(), club_rewrite, team_id)
     |> new_matches_filter(team)
+    |> home_match_detection()
+    |> save_last_new_matches_check_at(team)
   end
-  defp new_matches, do: nil
 
-  defp new_matches_config_check(%Team{} = team) do
+  defp new_matches_config_check(team) do
     case team.fussball_de_show_next_matches do
-      true -> :ok
-      _ -> {:error, :show_next_matches_is_off}
+      true -> {:ok, team}
+      _ -> {:error, :show_next_matches_is_off, timestamp_now()}
     end
   end
 
-  defp get_new_matches({:error, _} = error, _club_rewrite, _team_id), do: error
+  defp last_new_matches_update_check({:error, _, _} = error, _conn), do: error
+  defp last_new_matches_update_check({:ok, team}) do
+    case team.fussball_de_last_next_matches_check_at do
+      nil -> :ok
+      last_update_at -> update_new_matches_now(last_update_at)
+    end
+  end
+
+  defp update_new_matches_now(last_update_at) do
+    case is_today(last_update_at) do
+      true -> {:error, :next_matches_check_done_today, timestamp_now()}
+      _ -> :ok
+    end
+  end
+
+  defp new_matches_browser_check({:error, _, _} = error, _conn), do: error
+  defp new_matches_browser_check(:ok, conn) do
+    case Browser.bot?(conn) || Browser.search_engine?(conn) do
+      true -> {:error, :request_from_bot_or_search_engine, timestamp_now()}
+      _ -> :ok
+    end
+  end
+
+  defp get_new_matches({:error, _, _} = error, _club_rewrite, _team_id), do: error
   defp get_new_matches(:ok, club_rewrite, team_id) do
     ExFussballDeScraper.Scraper.next_matches(club_rewrite, team_id)
   end
 
+  defp new_matches_log_error({:ok, _, _} = result, _env, _club_rewrite, _team_id), do: result
+  defp new_matches_log_error({:error, _, _} = error, :test, _club_rewrite, _team_id), do: error
   defp new_matches_log_error({:error, reason, created_at_timestamp} = error, _env, club_rewrite, team_id) do
     Logger.error("ExFussballDeScraper.Scraper.next_matches(\"#{club_rewrite}\", \"#{team_id}\"): #{reason}, at: #{timestamp_to_local_timex(created_at_timestamp)}")
     error
   end
-  defp new_matches_log_error({:ok, _, _} = result, _env, club_rewrite, team_id), do: result
 
-  defp new_matches_filter({:error, reason, created_at_timestamp} = error, _team), do: error
+  defp new_matches_filter({:error, _, _} = error, _team), do: error
   defp new_matches_filter({:ok, result, created_at_timestamp}, team) do
     new_matches_map_filtered =
       result.matches
@@ -79,9 +105,36 @@ defmodule ClubHomepage.Web.NewTeamMatchesData do
     |> Enum.filter(fn(match) -> not(Enum.member?(found_matches_ids, match.id)) end)
   end
 
+  defp home_match_detection({:error, _, _} = error), do: error
+  defp home_match_detection({:ok, result, created_at_timestamp}) do
+    new_matches_extended =
+      result.matches
+      |> Enum.map(fn(match) -> Map.put(match, :home_match, match.home == result.team_name) end)
+    {:ok, Map.put(result, :matches, new_matches_extended), created_at_timestamp}
+  end
+
+  defp save_last_new_matches_check_at({:error, _, _} = error, _team), do: error
+  defp save_last_new_matches_check_at({:ok, _, _} = result, team) do
+    team
+    |> Team.changeset(%{"fussball_de_last_next_matches_check_at" => Timex.now() |> Timex.to_datetime()})
+    |> Repo.update()
+
+    result
+  end
+
   defp timestamp_to_local_timex(timestamp) do
     timestamp
     |> Timex.from_unix()
     |> Timex.Timezone.convert(Timex.Timezone.Local.lookup())
+  end
+
+  defp timestamp_now() do
+    Timex.local()
+    |> Timex.to_unix()
+  end
+
+  defp is_today(timex) do
+    now = Timex.now
+    timex.year == now.year && timex.month == now.month && timex.day == now.day
   end
 end

@@ -40,16 +40,15 @@ defmodule ClubHomepage.Web.TeamController do
   end
 
   def show(conn, %{"slug" => slug, "season" => season_name} = params) do
-    team = Repo.get_by!(Team, slug: slug)
     season = Repo.get_by!(Season, name: season_name)
+    team = Repo.get_by!(Team, slug: slug)
+    receive_and_create_new_matches(conn, season, team)
 
     start_at = to_timex_ecto_datetime(Timex.local)
 
     query = from m in Match, preload: [:competition, :team, :opponent_team], where: [team_id: ^team.id, season_id: ^season.id]
 
     matches = Repo.all(from m in query, where: m.start_at > ^start_at, order_by: [asc: m.start_at])
-
-    #new_matches = ClubHomepage.Web.NewTeamMatchesData.run(conn, team)
 
     latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at, order_by: [desc: m.start_at])
 
@@ -154,5 +153,47 @@ defmodule ClubHomepage.Web.TeamController do
   defp team_images_count(team) do
     [team_images_count] = Repo.all(from ti in TeamImage, select: count("id"), where: [team_id: ^team.id]) || 0
     team_images_count
+  end
+
+  defp receive_and_create_new_matches(conn, season, team) do
+    conn
+    |> receive_new_matches(team)
+    |> new_matches_availabitity_check()
+    |> new_matches_to_json()
+    |> validate_new_matches_json(season, team)
+    |> create_new_matches()
+  end
+
+  defp receive_new_matches(conn, team) do
+    case ClubHomepage.Web.NewTeamMatchesData.run(conn, team) do
+      {:error, _, _} -> nil
+      {:ok, result, _created_at_timestamp} -> result
+    end
+  end
+
+  defp new_matches_availabitity_check(nil), do: nil
+  defp new_matches_availabitity_check(%{matches: []}), do: nil
+  defp new_matches_availabitity_check(result), do: result
+
+  defp new_matches_to_json(nil), do: nil
+  defp new_matches_to_json(result) do
+    case Poison.encode(result) do
+      {:ok, json} -> json
+      _ -> nil
+    end
+  end
+
+  defp validate_new_matches_json(nil, _, _), do: nil
+  defp validate_new_matches_json(json, season, team) do
+    changeset = ClubHomepage.Web.JsonMatchesValidator.changeset([:season_id, :team_id, "json"], "json", %{"season_id" => season.id, "team_id" => team.id, "json" => json})
+    case changeset.valid? do
+      true -> changeset
+      _ -> nil
+    end
+  end
+
+  defp create_new_matches(nil), do: nil
+  defp create_new_matches(changeset) do
+    ClubHomepage.Web.JsonMatchesCreator.run(changeset, "json")
   end
 end
