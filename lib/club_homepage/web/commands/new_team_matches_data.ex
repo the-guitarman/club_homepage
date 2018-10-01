@@ -39,7 +39,7 @@ defmodule ClubHomepage.Web.NewTeamMatchesData do
     end
   end
 
-  defp last_new_matches_update_check({:error, _, _} = error, _conn), do: error
+  defp last_new_matches_update_check({:error, _, _} = error), do: error
   defp last_new_matches_update_check({:ok, team}) do
     case team.fussball_de_last_next_matches_check_at do
       nil -> :ok

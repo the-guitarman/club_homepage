@@ -67,7 +67,8 @@ defmodule ClubHomepage.Mixfile do
      #{:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
      {:ex_fussball_de_scraper, "~> 0.1"},
      #{:browser, "~> 0.4"},
-     {:browser, git: "git@github.com:the-guitarman/elixir-browser.git"},
+     #{:browser, git: "git@github.com:the-guitarman/elixir-browser.git"},
+     {:browser, git: "https://github.com/the-guitarman/elixir-browser.git"},
 
      {:number, "~> 0.5.1"},
      {:bamboo, "~> 0.7"},
