@@ -16,6 +16,26 @@ defmodule ClubHomepage.Web.CurrentTeamTableDataTest do
     {:ok, %{conn: conn}}
   end
 
+  test "no download for current table because config is off", %{conn: conn} do
+    team = insert(:team, fussball_de_team_rewrite: "abc", fussball_de_team_id: "ghi123", fussball_de_show_current_table: false, current_table_html: nil, current_table_html_at: nil)
+
+    {nil, nil} = CurrentTeamTableData.run(conn, team)
+  end
+
+  test "no check for next team matches because of request from a bot", %{conn: conn} do
+    team = insert(:team, fussball_de_team_rewrite: "abc", fussball_de_team_id: "ghi123", fussball_de_show_current_table: true, current_table_html: nil, current_table_html_at: nil)
+
+    conn = conn |> put_req_header("user-agent", "DuckDuckBot")
+    {nil, nil} = CurrentTeamTableData.run(conn, team)
+  end
+
+  test "no check for next team matches because of request from a search engine", %{conn: conn} do
+    team = insert(:team, fussball_de_team_rewrite: "abc", fussball_de_team_id: "ghi123", fussball_de_show_current_table: true, current_table_html: nil, current_table_html_at: nil)
+
+    conn = conn |> put_req_header("user-agent", "duckduck")
+    {nil, nil} = CurrentTeamTableData.run(conn, team)
+  end
+
   test "caching of the current team table", %{conn: conn} do
     team = insert(:team, fussball_de_team_rewrite: "abc", fussball_de_team_id: "ghi123", fussball_de_show_current_table: true, current_table_html: nil, current_table_html_at: nil)
 
