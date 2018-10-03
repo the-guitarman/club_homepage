@@ -52,7 +52,7 @@ defmodule ClubHomepage.Web.TeamController do
 
     latest_matches = Repo.all(from m in query, where: m.start_at <= ^start_at, order_by: [desc: m.start_at])
 
-    {current_table, current_table_created_at} = ClubHomepage.Web.CurrentTeamTableData.run(conn, team)
+    {current_table, current_table_created_at} = receive_current_team_table(conn, team)
 
     render(conn, "team_page.html", team: team, season: season, seasons: team_seasons(team), matches: matches, latest_matches: latest_matches, next_match_parameters: %{"season_id" => season.id, "team_id" => team.id, "start_at" => params["start_at"], "competition_id" => params["competition_id"]}, team_images_count: team_images_count(team), current_table: current_table, current_table_created_at: current_table_created_at)
   end
@@ -153,6 +153,13 @@ defmodule ClubHomepage.Web.TeamController do
   defp team_images_count(team) do
     [team_images_count] = Repo.all(from ti in TeamImage, select: count("id"), where: [team_id: ^team.id]) || 0
     team_images_count
+  end
+
+  defp receive_current_team_table(conn, team) do
+    case ClubHomepage.Web.CurrentTeamTableData.run(conn, team) do
+      {:ok, current_table, current_table_created_at} -> {current_table, current_table_created_at}
+      {:error, _, _} -> {nil, nil}
+    end
   end
 
   defp receive_and_create_new_matches(conn, season, team) do

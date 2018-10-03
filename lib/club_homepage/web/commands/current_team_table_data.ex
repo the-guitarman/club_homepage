@@ -133,22 +133,21 @@ defmodule ClubHomepage.Web.CurrentTeamTableData do
     end
   end
 
-  defp current_table_response({:from_cache, html, html_at}, _team), do: {html, html_at}
+  defp current_table_response({:from_cache, html, html_at}, _team), do: {:ok, html, html_at}
   defp current_table_response(scraper_result, %Team{} = team) do
     case scraper_result do
       {:ok, %{team_name: team_name, current_table: html}, timestamp_now} ->
         {
+          :ok,
           replace_scraper_team_name(html, team_name, team),
           timestamp_to_local_timex(timestamp_now)
         }
-      {:error, _, _} ->
-        {nil, nil}
+      {:error, _, _} -> scraper_result
     end
   end
 
-  defp current_table_save_to_cache({nil, nil} = response, _team), do: response
-  defp current_table_save_to_cache({html, timex} = response, team) do
-    # save to team, if today is no match
+  defp current_table_save_to_cache({:error, _, _} = response, _team), do: response
+  defp current_table_save_to_cache({:ok, html, timex} = response, team) do
     team
     |> Team.changeset(%{
           "current_table_html" => html,
