@@ -16,6 +16,18 @@ defmodule ClubHomepage.Web.CurrentTeamTableDataTest do
     {:ok, %{conn: conn}}
   end
 
+  test "no club_rewrite or no team_id given", %{conn: conn} do
+    team = insert(:team, fussball_de_team_rewrite: nil, fussball_de_team_id: nil)
+
+    {:error, error, _} = CurrentTeamTableData.run(conn, team)
+
+    assert error == :no_club_rewrite_or_team_id_available
+
+    team = Repo.get(Team, team.id)
+    assert team.current_table_html == nil
+    assert team.current_table_html_at == nil
+  end
+
   test "no download for current table because config is off", %{conn: conn} do
     team = insert(:team, fussball_de_team_rewrite: "abc", fussball_de_team_id: "ghi123", fussball_de_show_current_table: false, current_table_html: nil, current_table_html_at: nil)
 

@@ -16,6 +16,18 @@ defmodule ClubHomepage.Web.NewTeamMatchesDataTest do
     {:ok, %{conn: conn}}
   end
 
+  test "no club_rewrite or no team_id given", %{conn: conn} do
+    team = insert(:team, fussball_de_team_rewrite: nil, fussball_de_team_id: nil)
+
+    {:error, error, _} = NewTeamMatchesData.run(conn, team)
+
+    assert error == :no_club_rewrite_or_team_id_available
+
+    team = Repo.get(Team, team.id)
+    assert team.current_table_html == nil
+    assert team.current_table_html_at == nil
+  end
+
   test "no check for next team matches because config is off", %{conn: conn} do
     team = insert(:team, fussball_de_team_rewrite: "abc", fussball_de_team_id: "ghi123", fussball_de_show_next_matches: false, fussball_de_last_next_matches_check_at: nil)
 
@@ -60,7 +72,8 @@ defmodule ClubHomepage.Web.NewTeamMatchesDataTest do
     assert error == :next_matches_check_done_today
 
     team = Repo.get(Team, team.id)
-    assert team.fussball_de_last_next_matches_check_at == now
+    format = "{YYYY}-{M}-{D} {T}"
+    assert Timex.format(team.fussball_de_last_next_matches_check_at, format) ==  Timex.format(now, format)
   end
 
   test "check for next team matches", %{conn: conn} do

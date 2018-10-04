@@ -31,6 +31,7 @@ defmodule ClubHomepage.Web.NewTeamMatchesData do
     |> home_match_detection()
     |> save_last_new_matches_check_at(team)
   end
+  defp new_matches(_conn, _team, _, _), do: {:error, :no_club_rewrite_or_team_id_available, timestamp_now()}
 
   defp new_matches_config_check(team) do
     case team.fussball_de_show_next_matches do

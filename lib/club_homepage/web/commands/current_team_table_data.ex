@@ -34,7 +34,7 @@ defmodule ClubHomepage.Web.CurrentTeamTableData do
     |> current_table_response(team)
     |> current_table_save_to_cache(team)
   end
-  defp current_table(_, _, _, _), do: {nil, nil}
+  defp current_table(_, _, _, _), do: {:error, :no_club_rewrite_or_team_id_available, timestamp_now()}
 
   defp current_table_config_check(%Team{} = team) do
     case team.fussball_de_show_current_table do
