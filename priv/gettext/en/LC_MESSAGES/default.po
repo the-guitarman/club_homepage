@@ -123,6 +123,7 @@ msgid "season"
 msgstr "Season"
 
 #: lib/club_homepage/web/templates/web/match/index.html.eex:19
+#: lib/club_homepage/web/templates/web/team/index.html.eex:14
 #: lib/club_homepage/web/templates/web/team_chat_message/index.html.eex:9
 #: lib/club_homepage/web/templates/web/team_image/index.html.eex:9
 msgid "team"
@@ -135,7 +136,7 @@ msgid "create_new_season"
 msgstr "Create Season"
 
 #: lib/club_homepage/web/templates/web/match/show.html.eex:145
-#: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:25
+#: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:26
 msgid "delete_match"
 msgstr "Delete"
 
@@ -158,7 +159,7 @@ msgstr "Some errors occured:"
 #: lib/club_homepage/web/templates/web/season/form.html.eex:14
 #: lib/club_homepage/web/templates/web/secret/form.html.eex:9
 #: lib/club_homepage/web/templates/web/sponsor_image/form.html.eex:17
-#: lib/club_homepage/web/templates/web/team/form.html.eex:43
+#: lib/club_homepage/web/templates/web/team/form.html.eex:49
 #: lib/club_homepage/web/templates/web/team/team_standard_players_page.html.eex:41
 #: lib/club_homepage/web/templates/web/team_image/form.html.eex:33
 #: lib/club_homepage/web/templates/web/text_page/form.html.eex:17
@@ -304,7 +305,7 @@ msgstr "District"
 #: lib/club_homepage/web/templates/web/payment_list/show.html.eex:75
 #: lib/club_homepage/web/templates/web/season/show.html.eex:12
 #: lib/club_homepage/web/templates/web/sponsor_image/index.html.eex:22
-#: lib/club_homepage/web/templates/web/team/index.html.eex:17
+#: lib/club_homepage/web/templates/web/team/index.html.eex:22
 #: lib/club_homepage/web/templates/web/team/team_images_page.html.eex:36
 #: lib/club_homepage/web/templates/web/team_image/index.html.eex:26
 #: lib/club_homepage/web/templates/web/user/index.html.eex:57
@@ -410,7 +411,7 @@ msgid "secret"
 msgstr "Secret"
 
 #: lib/club_homepage/web/templates/web/team/index.html.eex:7
-#: lib/club_homepage/web/templates/web/team/index.html.eex:26
+#: lib/club_homepage/web/templates/web/team/index.html.eex:31
 #: lib/club_homepage/web/templates/web/team/new.html.eex:4
 msgid "create_new_team"
 msgstr "Create Team"
@@ -521,7 +522,7 @@ msgstr "Latest News"
 #: lib/club_homepage/web/templates/web/match/edit.html.eex:4
 #: lib/club_homepage/web/templates/web/match/index.html.eex:49
 #: lib/club_homepage/web/templates/web/match/show.html.eex:143
-#: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:22
+#: lib/club_homepage/web/templates/web/team/team_page_match_table.html.eex:23
 msgid "edit_match"
 msgstr "Edit Match"
 
@@ -812,11 +813,11 @@ msgstr "You are logged in now."
 msgid "match_created_successfully"
 msgstr "Match created successfully."
 
-#: lib/club_homepage/web/controllers/match_controller.ex:153
+#: lib/club_homepage/web/controllers/match_controller.ex:158
 msgid "match_deleted_successfully"
 msgstr "Match deleted successfully."
 
-#: lib/club_homepage/web/controllers/match_controller.ex:137
+#: lib/club_homepage/web/controllers/match_controller.ex:142
 msgid "match_updated_successfully"
 msgstr "Match updated successfully."
 
@@ -892,11 +893,11 @@ msgstr "secret_deleted_successfully."
 msgid "team_created_successfully"
 msgstr "Team created successfully."
 
-#: lib/club_homepage/web/controllers/team_controller.ex:143
+#: lib/club_homepage/web/controllers/team_controller.ex:142
 msgid "team_deleted_successfully"
 msgstr "Team deleted successfully."
 
-#: lib/club_homepage/web/controllers/team_controller.ex:128
+#: lib/club_homepage/web/controllers/team_controller.ex:127
 msgid "team_updated_successfully"
 msgstr "Team updated successfully."
 
@@ -1138,7 +1139,7 @@ msgstr "Hi, \n\nhere is your secret to register at #{domain}. \n\nSecret: #{secr
 msgid "send_secret"
 msgstr "Send it"
 
-#: lib/club_homepage/web/controllers/match_controller.ex:89
+#: lib/club_homepage/web/controllers/match_controller.ex:94
 msgid "matches_created_successfully"
 msgstr "Matches created successfully."
 
@@ -1584,19 +1585,19 @@ msgid "current_table"
 msgstr "League Table"
 
 #, elixir-format
-#: lib/club_homepage/web/templates/web/team/form.html.eex:17
+#: lib/club_homepage/web/templates/web/team/form.html.eex:23
 msgid "fussball_de_team_url_placeholder"
 msgstr "URL of the Team-Page at fussball.de"
 
 #, elixir-format
-#: lib/club_homepage/web/templates/web/team/form.html.eex:25
+#: lib/club_homepage/web/templates/web/team/form.html.eex:31
 msgid "fussball_de_show_current_table"
-msgstr "Show current league table (if available)"
+msgstr "Show current league table (from fussball.de if available)"
 
 #, elixir-format
-#: lib/club_homepage/web/templates/web/team/form.html.eex:35
+#: lib/club_homepage/web/templates/web/team/form.html.eex:41
 msgid "fussball_de_show_next_matches"
-msgstr "Show new matches to create (if available)"
+msgstr "Show new matches to create (from fussball.de if available)"
 
 #, elixir-format
 #:
@@ -1608,3 +1609,13 @@ msgstr "Shirt Number"
 #: lib/club_homepage/web/templates/web/match/form.html.eex:33
 msgid "fussball_de_match_id"
 msgstr "Match-ID (from fussball.de like: ME | 998678678)"
+
+#, elixir-format
+#: lib/club_homepage/web/templates/web/team/index.html.eex:13
+msgid "order"
+msgstr "Order"
+
+#, elixir-format
+#: lib/club_homepage/web/templates/web/team/form.html.eex:16
+msgid "team_order_placeholder"
+msgstr "Position (Order)"

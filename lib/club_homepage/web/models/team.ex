@@ -5,6 +5,7 @@ defmodule ClubHomepage.Team do
 
   schema "teams" do
     field :name, :string
+    field :order, :integer
     field :slug, :string
     field :fussball_de_team_url, :string
     field :fussball_de_team_rewrite, :string
@@ -21,7 +22,7 @@ defmodule ClubHomepage.Team do
     timestamps()
   end
 
-  @cast_fields ~w(competition_id name slug fussball_de_team_url fussball_de_team_rewrite fussball_de_team_id fussball_de_show_next_matches fussball_de_last_next_matches_check_at fussball_de_show_current_table current_table_html current_table_html_at)
+  @cast_fields ~w(competition_id name order slug fussball_de_team_url fussball_de_team_rewrite fussball_de_team_id fussball_de_show_next_matches fussball_de_last_next_matches_check_at fussball_de_show_current_table current_table_html current_table_html_at)
   @required_fields [:competition_id, :name]
 
   @doc """

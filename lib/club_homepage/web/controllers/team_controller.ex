@@ -14,7 +14,7 @@ defmodule ClubHomepage.Web.TeamController do
   plug :get_competition_select_options when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
-    teams = Repo.all(Team)
+    teams = Repo.all(from t in Team, order_by: [asc: t.order, asc: t.inserted_at])
     render(conn, "index.html", teams: teams)
   end
 
