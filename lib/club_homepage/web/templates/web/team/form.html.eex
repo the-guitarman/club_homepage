@@ -17,6 +17,17 @@
     <%= error_tag f, :order %>
   </div>
 
+  <div class="form-group form-horizontal js-home-match css-home-match <%= error_cls @changeset, f, :active %>">
+    <%= label f, :active, class: "col-xs-4 col-sm-3 col-md-2 control-label" do %>
+      <%= gettext("active") %>
+    <% end %>
+    <div class="col-xs-8 col-sm-9 col-md-10">
+      <%= checkbox f, :active, class: "form-control", unchecked_value: false %>
+    </div>
+    <%= error_tag @changeset, f, :active %>
+    <div class="clearfix"></div>
+  </div>
+
   <%= if current_locale() == "de" do %>
     <div class="form-group <%= error_cls @changeset, f, :fussball_de_team_url %>">
       <%#= label f, :fussball_de_team_url, "name", class: "control-label" %>

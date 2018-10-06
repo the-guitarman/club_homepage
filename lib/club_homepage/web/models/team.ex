@@ -15,6 +15,7 @@ defmodule ClubHomepage.Team do
     field :fussball_de_show_current_table, :boolean
     field :current_table_html, :string
     field :current_table_html_at, Timex.Ecto.DateTime
+    field :active, :boolean, default: true
 
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
     belongs_to :competition, ClubHomepage.Competition
@@ -22,8 +23,8 @@ defmodule ClubHomepage.Team do
     timestamps()
   end
 
-  @cast_fields ~w(competition_id name order slug fussball_de_team_url fussball_de_team_rewrite fussball_de_team_id fussball_de_show_next_matches fussball_de_last_next_matches_check_at fussball_de_show_current_table current_table_html current_table_html_at)
-  @required_fields [:competition_id, :name]
+  @cast_fields ~w(competition_id name order slug fussball_de_team_url fussball_de_team_rewrite fussball_de_team_id fussball_de_show_next_matches fussball_de_last_next_matches_check_at fussball_de_show_current_table current_table_html current_table_html_at active)
+  @required_fields [:competition_id, :name, :active]
 
   @doc """
   Creates a changeset based on the `model` and `params`.

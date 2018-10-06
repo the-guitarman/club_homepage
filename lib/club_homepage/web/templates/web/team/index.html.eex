@@ -12,12 +12,14 @@
           <tr>
             <th><%= gettext("order") %></th>
             <th><%= gettext("team") %></th>
+            <th class="text-center"><%= gettext("active") %></th>
             <th>&nbsp;</th>
           </tr>
           <%= for team <- @teams do %>
             <tr>
               <td><%= team.order %></td>
               <td><%= link team.name, to: team_with_season_path(@conn, team), class: "btn" %></td>
+              <td class="text-center"><%= if team.active == true, do: gettext("yes"), else: gettext("no") %></td>
               <td class="text-right">
                 <%= link gettext("edit"), to: team_path(@conn, :edit, team), class: "btn btn-default" %>
                 <%#= link gettext("show"), to: team_path(@conn, :show, team), class: "btn btn-default btn-xs" %>

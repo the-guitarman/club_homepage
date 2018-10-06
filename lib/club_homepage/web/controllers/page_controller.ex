@@ -11,7 +11,7 @@ defmodule ClubHomepage.Web.PageController do
 
   def index(conn, _params) do
     news  = Repo.all(news_query(conn))
-    teams = Repo.all(from(t in Team, order_by: [asc: t.order, asc: t.inserted_at]))
+    teams = Repo.all(from(t in Team, where: t.active == true, order_by: [asc: t.order, asc: t.inserted_at]))
     start_at = to_timex_ecto_datetime(Timex.local)
 
     matches_query = from(m in Match, preload: [:competition, :team, :opponent_team], limit: 1)

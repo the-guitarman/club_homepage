@@ -24,16 +24,27 @@ defmodule ClubHomepage.PageControllerTest do
     assert html_response(conn, 200) =~ "<h2>Latest News</h2>"
     assert html_response(conn, 200) =~ "<h2>Next Matches</h2>"
     assert html_response(conn, 200) =~ "<h2>Latest Match Results</h2>"
+  end
 
-    query = from t in ClubHomepage.Team, select: count(t.id)
-    [team_count] = ClubHomepage.Repo.all(query)
-    if team_count > 0 do
-      assert html_response(conn, 200) =~ "<h2>Teams</h2>"
-      refute html_response(conn, 200) =~ "<p>There are no teams at the moment.</p>"
-    else
-      assert html_response(conn, 200) =~ "<h2>Teams</h2>"
-      assert html_response(conn, 200) =~ "<p>There are no teams at the moment.</p>"
-    end
+  test "GET / with no or inactive teams only", %{conn: conn} do
+    ClubHomepage.Repo.update_all(ClubHomepage.Team, set: [active: false])
+
+    conn = get build_conn(), page_path(conn, :index)
+
+    assert html_response(conn, 200) =~ "<h2>Teams</h2>"
+    assert html_response(conn, 200) =~ "<p>There are no teams at the moment.</p>"
+  end
+
+  test "GET / with active and inactive teams", %{conn: conn} do
+    team_1 = insert(:team, active: true)
+    team_2 = insert(:team, active: false)
+
+    conn = get build_conn(), page_path(conn, :index)
+
+    assert html_response(conn, 200) =~ "<h2>Teams</h2>"
+    refute html_response(conn, 200) =~ "<p>There are no teams at the moment.</p>"
+    assert html_response(conn, 200) =~ team_1.name
+    refute html_response(conn, 200) =~ team_2.name
   end
 
   test "GET /cronicle.html", %{conn: conn} do
