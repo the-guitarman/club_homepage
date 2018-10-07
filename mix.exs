@@ -76,7 +76,7 @@ defmodule ClubHomepage.Mixfile do
 
      {:icalendar, "~> 0.2.1"},
 
-     {:distillery, "~> 1.5.3", runtime: false}, #run: mix do deps.get, compile
+     {:distillery, "~> 2.0", runtime: false}, #run: mix do deps.get, compile
      {:hackney, "== 1.8.0", override: true}
     ]
   end
