@@ -15,6 +15,9 @@
         <li class="navbar-text"><%= copyright() %></li>
         <li><a class="btn btn-de" href="https://github.com/the-guitarman" target="_blank">Designed By The Guitarman</a></li>
         <li><a class="btn btn-de" href="https://github.com/the-guitarman/club_homepage" target="_blank">Sources</a></li>
+        <%= if hoster?() do %>
+          <li><%= hoster() %></li>
+        <% end %>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

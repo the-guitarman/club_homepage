@@ -9,6 +9,27 @@ defmodule ClubHomepage.Web.LayoutView do
     "background-image-01"
   end
 
+  def hoster?() do
+    not(is_nil(Application.get_env(:club_homepage, :hoster)))
+  end
+
+  def hoster() do
+    params = Application.get_env(:club_homepage, :hoster)
+    logo_or_name = "Hosted by " <> 
+      case asset_path?("/images/" <> params[:logo]) do
+        true -> "<img src=\"/images/" <> params[:logo] <> "\" alt=\"\" />"
+        _ -> params[:name]
+      end
+
+    link_or_text =
+      case is_nil(params[:href]) do
+        true -> logo_or_name
+        _ -> "<a class=\"btn btn-de\" href=\"" <> params[:href] <> "\" target=\"_blank\">" <> logo_or_name <> "</a>"
+      end
+
+    raw(link_or_text)
+  end
+
   def my_payment_lists_popover_content(conn) do
     payment_lists = conn.assigns[:my_payment_lists]
     payment_list_debitors = conn.assigns[:my_payment_list_debitors]
