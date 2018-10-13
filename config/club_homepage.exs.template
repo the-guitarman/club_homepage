@@ -6,7 +6,16 @@ config :club_homepage, :common,
   short_club_name: "Short Club Name"
 
 config :club_homepage, :config,
-  show_match_timeline: false
+  show_match_timeline: false,
+  show_match_players_planning: false,
+  show_team_images: true,
+  show_team_chat: true,
+  show_team_standard_players: true
+
+config :club_homepage, :hoster,
+  name: "Hoster Name",
+  href: "http://www.my-hoster.de",
+  logo: "hoster.svg"
 
 config :elixir_weather_data, :api,
   key: "0my1openweathermap2org3api4key56",
@@ -16,6 +25,27 @@ config :elixir_weather_data, :api,
 config :elixir_weather_data, :dev,
   mode: :sandbox
 
+config :elixir_weather_data, :gen_server,
+  call_timeout: if Mix.env() == :test, do: 5000, else: 100
+
 config :club_homepage, :weather_data_units,
   temperature: :centigrade,
   wind_speed: :kilometers_per_hour
+
+# config :ex_fussball_de_scraper, :css,
+#   team_name: ".stage-team h2",
+#   matches: "#id-team-matchplan-table tbody tr",
+#   matches_match_id: "td:last-child a",
+#   matches_match_id_splitter: " ",
+#   matches_match_headline: "td:first-child",
+#   matches_match_headline_splitter: "|",
+#   matches_match_club_names: "td.column-club .club-name",
+#   current_table: "#team-fixture-league-tables > table"
+
+# config :ex_fussball_de_scraper, :url,
+#   scheme: "https",
+#   host: "www.fussball.de",
+#   path_regex: ~r/\/mannschaft\/(?<team_rewrite>[^\/]+)\/-\/saison\/(?<saison>\d\d\d\d)\/team-id\/(?<team_id>[^\/]+)(#!(?<fragment>[^\/]+))*/
+
+config :ex_fussball_de_scraper, :gen_server,
+  call_timeout: if Mix.env() == :test, do: 5000, else: 100
