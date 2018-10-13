@@ -37,6 +37,7 @@ $(document).ready(function() {
 
   if (typeof(MediumEditor) != 'undefined') {
     var editor = new MediumEditor('.js-medium-editor', {
+      targetBlank: true, 
       toolbar: {
         buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'image']
       }
