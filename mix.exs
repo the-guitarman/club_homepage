@@ -23,7 +23,7 @@ defmodule ClubHomepage.Mixfile do
        :tzdata,
        :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
        :phoenix_ecto, :postgrex, :comeonin, :geocoder, 
-       :elixir_weather_data, :number, :bamboo, :arc_ecto
+       :elixir_weather_data, :number, :bamboo, :bamboo_smtp, :arc_ecto
      ],
      included_applications: [:towel]
     ]
@@ -52,14 +52,14 @@ defmodule ClubHomepage.Mixfile do
      {:ex_machina, "~> 2.2", only: :test},
      {:gettext, "~> 0.11"},
      {:credo, "~> 0.10", only: [:dev, :test]},
-     {:slugger, "~> 0.1.0"},
-     {:json, "~> 0.3.0"},
-     {:ex_json_schema, "~> 0.3.1"},
-     {:geocoder, "~> 0.6.2"},
+     {:slugger, "~> 0.1"},
+     {:json, "~> 0.3"},
+     {:ex_json_schema, "~> 0.3"},
+     {:geocoder, "~> 0.6"},
      {:dialyxir, "~> 0.3", only: [:dev]},
-     {:arc, "~> 0.11.0"},
-     {:arc_ecto, "~> 0.11.0"},
-     #{:mix_test_watch, "~> 0.2.4", only: :dev},
+     {:arc, "~> 0.11"},
+     {:arc_ecto, "~> 0.11"},
+     #{:mix_test_watch, "~> 0.2", only: :dev},
 
      #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
      {:elixir_weather_data, "~> 0.2"},
@@ -70,11 +70,11 @@ defmodule ClubHomepage.Mixfile do
      #{:browser, git: "git@github.com:the-guitarman/elixir-browser.git"},
      {:browser, git: "https://github.com/the-guitarman/elixir-browser.git"},
 
-     {:number, "~> 0.5.1"},
+     {:number, "~> 0.5"},
      {:bamboo, "~> 1.1"},
      {:bamboo_smtp, "~> 1.6"},
 
-     {:icalendar, "~> 0.2.1"},
+     {:icalendar, "~> 0.2"},
 
      {:distillery, "~> 2.0", runtime: false}, #run: mix do deps.get, compile
      {:hackney, "== 1.8.0", override: true}
