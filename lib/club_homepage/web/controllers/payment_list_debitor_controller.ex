@@ -8,7 +8,7 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
 
   plug :authenticate_user
   plug :current_user_is_payment_list_debitor when action in [:show]
-  plug :authenticate_payment_list_owner_or_deputy, [payment_list_id_param_name: "payment_list_id"] when not action in [:show]
+  plug :authenticate_payment_list_owner_or_deputy, [payment_list_id_param_name: "payment_list_id"] when action not in [:show]
   plug :scrub_params, "payment_list_debitor" when action in [:create, :update]
   plug :get_user_select_options when action in [:create, :edit, :update]
   plug :get_deputy_select_options when action in [:create, :edit, :update]

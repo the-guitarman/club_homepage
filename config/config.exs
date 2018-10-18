@@ -54,3 +54,8 @@ if System.get_env("TRAVIS") do
 else
   import_config "club_homepage.exs"
 end
+
+config :arc,
+  storage: Arc.Storage.Local
+#  storage: Arc.Storage.S3, # or Arc.Storage.Local
+#  bucket: {:system, "AWS_S3_BUCKET"} # if using Amazon S3

@@ -1,7 +1,6 @@
 defmodule ClubHomepage.PageControllerTest do
   use ClubHomepage.Web.ConnCase
 
-  import Ecto.Query, only: [from: 2]
   import ClubHomepage.Factory
 
   setup do

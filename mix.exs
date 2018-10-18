@@ -49,16 +49,16 @@ defmodule ClubHomepage.Mixfile do
      {:comeonin, "~> 2.0"},
      {:timex, "~> 3.3"},
      {:timex_ecto, "~> 3.3"},
-     {:ex_machina, "~> 1.0", only: :test},
+     {:ex_machina, "~> 2.2", only: :test},
      {:gettext, "~> 0.11"},
-     {:credo, "~> 0.2", only: [:dev, :test]},
+     {:credo, "~> 0.10", only: [:dev, :test]},
      {:slugger, "~> 0.1.0"},
      {:json, "~> 0.3.0"},
      {:ex_json_schema, "~> 0.3.1"},
      {:geocoder, "~> 0.6.2"},
      {:dialyxir, "~> 0.3", only: [:dev]},
-     {:arc, "~> 0.8.0"},
-     {:arc_ecto, "~> 0.7.0"},
+     {:arc, "~> 0.11.0"},
+     {:arc_ecto, "~> 0.11.0"},
      #{:mix_test_watch, "~> 0.2.4", only: :dev},
 
      #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
@@ -71,8 +71,8 @@ defmodule ClubHomepage.Mixfile do
      {:browser, git: "https://github.com/the-guitarman/elixir-browser.git"},
 
      {:number, "~> 0.5.1"},
-     {:bamboo, "~> 0.7"},
-     {:bamboo_smtp, "~> 1.2.1"},
+     {:bamboo, "~> 1.1"},
+     {:bamboo_smtp, "~> 1.6"},
 
      {:icalendar, "~> 0.2.1"},
 
@@ -90,6 +90,6 @@ defmodule ClubHomepage.Mixfile do
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
      "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.drop --quiet", "ecto.create --quiet", "ecto.migrate", "test"]]
+     test: ["ecto.drop --quiet", "ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

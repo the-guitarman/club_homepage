@@ -6,7 +6,7 @@ defmodule ClubHomepage.Web.PaymentListController do
 
   plug :authenticate_user 
   plug :is_administrator when action in [:index]
-  plug :authenticate_payment_list_owner_or_deputy, [payment_list_id_param_name: "id"] when not action in [:index, :new, :create]
+  plug :authenticate_payment_list_owner_or_deputy, [payment_list_id_param_name: "id"] when action not in [:index, :new, :create]
   plug :scrub_params, "payment_list" when action in [:create, :update]
   plug :get_user_select_options when action in [:new, :create, :edit, :update, :show]
   plug :get_deputy_select_options when action in [:new, :create, :edit, :update]
@@ -103,7 +103,7 @@ defmodule ClubHomepage.Web.PaymentListController do
 
   defp get_possible_debitors(payment_list) do
     debitor_ids = Enum.map(payment_list.debitors, fn(debitor) -> debitor.user_id end)
-    from(u in ClubHomepage.User, select: {u.name, u.id}, where: not u.id in ^debitor_ids, order_by: [desc: u.name])
+    from(u in ClubHomepage.User, select: {u.name, u.id}, where: u.id not in ^debitor_ids, order_by: [desc: u.name])
     |> Repo.all
   end
 end

@@ -6,11 +6,11 @@ defmodule ClubHomepage.Web.UserRole do
   alias Ecto.Changeset
 
   @roles %{
-    "administrator": "user with all rights",
-    "member": "a registered user",
+    administrator: "user with all rights",
+    member: "a registered user",
     "match-editor": "editor of matches and reporter of live match events",
     "news-editor": "author/editor of news",
-    "player": "an active sports man/woman",
+    player: "an active sports man/woman",
     "team-editor": "right to edit teams",
     "text-page-editor": "author/editor of static page contents",
     "user-editor": "user administrator"

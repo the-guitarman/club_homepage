@@ -131,7 +131,7 @@ defmodule ClubHomepage.Factory do
     %ClubHomepage.SponsorImage{
       attachment: %{
         file_name: "test/support/images/test_image.jpg",
-        updated_at: Ecto.DateTime.utc
+        updated_at: Timex.now() |> Timex.to_naive_datetime()
       },
       name: sequence(:name, &"test image #{&1}")
     }
@@ -172,7 +172,7 @@ defmodule ClubHomepage.Factory do
       year: 2016,
       attachment: %{
         file_name: "test/support/images/test_image.jpg",
-        updated_at: Ecto.DateTime.utc
+        updated_at: Timex.now() |> Timex.to_naive_datetime()
       },
       description: sequence(:description, &"team image description #{&1}")
     }
