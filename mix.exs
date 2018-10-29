@@ -46,7 +46,10 @@ defmodule ClubHomepage.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:dogma, "~> 0.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:comeonin, "~> 2.0"},
+
+     {:comeonin, "~> 4.1"},
+     {:bcrypt_elixir, "~> 1.1"},
+
      {:timex, "~> 3.3"},
      {:timex_ecto, "~> 3.3"},
      {:ex_machina, "~> 2.2", only: :test},
