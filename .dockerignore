@@ -1,0 +1,11 @@
+_build/
+deps/
+.git/
+.gitignore
+.hex/*
+.mix/*
+Dockerfile
+Makefile
+README*
+test/
+priv/static/

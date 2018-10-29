@@ -1,0 +1,43 @@
+#$ docker build -t elixir-ubuntu:18_04 -f DockerfileForBuildImage .
+
+# ubuntu 18.04 = bionic bever
+FROM ubuntu:18.04
+
+ENV REFRESHED_AT=2018-10-24 \
+    LANG=de_DE.UTF-8 \
+    HOME=/opt/build \
+    TERM=xterm
+
+WORKDIR /opt/build
+
+RUN \
+  apt-get update -y && \
+  apt-get install -y git wget vim locales gnupg2 apt-utils build-essential
+
+# Set the locale
+RUN sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen
+ENV LANG de_DE.UTF-8  
+ENV LANGUAGE de_DE:de  
+ENV LC_ALL de_DE.UTF-8
+#RUN update-locale LANG=de_DE.UTF-8 && \
+#  locale-gen --purge --no-archive && \
+#  locale-gen de_DE.UTF-8
+
+ENV TZ 'Europe/Berlin'
+ENV DEBIAN_FRONTEND noninteractive
+RUN echo $TZ > /etc/timezone && \
+  apt-get update && apt-get install -y tzdata && \
+  rm /etc/localtime && \
+  ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+  dpkg-reconfigure -f noninteractive tzdata && \
+  apt-get clean
+
+RUN \
+  wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
+  dpkg -i erlang-solutions_1.0_all.deb && \
+  rm erlang-solutions_1.0_all.deb && \
+  apt-get update -y && \
+  apt-get install -y erlang elixir
+
+CMD ["/bin/bash"]
