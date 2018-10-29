@@ -20,8 +20,8 @@ config :club_homepage, ClubHomepage.Repo,
  pool: Ecto.Adapters.SQL.Sandbox
 
 # set low number of password hashing rounds to speed up our test suite
-config :comeonin, :bcrypt_log_rounds, 4
-config :comeonin, :pbkdf2_rounds, 1
+config :bcrypt_elixir, log_rounds: 4
+#config :pbkdf2_elixir, rounds: 1
 
 config :club_homepage, :uploads, 
   path: "test/tmp/uploads"
