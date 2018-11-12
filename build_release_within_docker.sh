@@ -4,12 +4,26 @@
 
 set -e
 
-cd /opt/build
+BUILD_DIR="/opt/build"
+
+cd $BUILD_DIR
 
 APP_NAME="$(grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e 's/[:,]//g')"
 APP_VSN="$(grep 'version:' mix.exs | cut -d '"' -f2)"
+#APP_VSN="$(cat mix.exs| grep version: | head -n1 | awk -F: '{print $2}' | sed 's/[\",]//g' | tr -d '[[:space:]]')"
+echo $APP_VSN > .version
 
-mkdir -p /opt/build/rel/artifacts
+# App dependency stuff
+cd $BUILD_DIR/deps/bcrypt_elixir
+#cd $BUILD_DIR/deps/argon2_elixir
+echo $(pwd) && make clean && make
+
+cd $BUILD_DIR/assets && echo $(pwd) && npm install && ./node_modules/brunch/bin/brunch build --production && cd ..
+
+cd $BUILD_DIR
+echo $(pwd)
+
+mkdir -p $BUILD_DIR/rel/artifacts
 
 # Install updated versions of hex/rebar
 mix local.rebar --force
@@ -19,8 +33,16 @@ export MIX_ENV=prod
 
 # Fetch deps and compile
 mix deps.get
+
 # Run an explicit clean to remove any build artifacts from the host
 mix do clean, compile --force
+
+# Removes old versions of static assets.
+mix phx.digest.clean
+
+# Digests and compresses static files
+mix phx.digest
+
 # Build the release
 mix release
 

@@ -16,6 +16,7 @@
 erl_crash.dump
 
 # Static artifacts
+/.npm
 /node_modules
 /assets/node_modules
 

@@ -12,7 +12,7 @@ WORKDIR /opt/build
 
 RUN \
   apt-get update -y && \
-  apt-get install -y git wget vim locales gnupg2 apt-utils build-essential
+  apt-get install -y git wget vim locales gnupg2 apt-utils build-essential nodejs npm
 
 # Set the locale
 RUN sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen && \

@@ -49,6 +49,7 @@ defmodule ClubHomepage.Mixfile do
 
      {:comeonin, "~> 4.1"},
      {:bcrypt_elixir, "~> 1.1"},
+     #{:pbkdf2_elixir, "~> 0.12"},
 
      {:timex, "~> 3.3"},
      {:timex_ecto, "~> 3.3"},
@@ -64,8 +65,8 @@ defmodule ClubHomepage.Mixfile do
      {:arc_ecto, "~> 0.11"},
      #{:mix_test_watch, "~> 0.2", only: :dev},
 
-     #{:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
-     {:elixir_weather_data, "~> 0.2"},
+     {:elixir_weather_data, path: "/Users/sebastian/dev/elixir/elixir_weather_data"},
+     #{:elixir_weather_data, "~> 0.2"},
 
      #{:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
      {:ex_fussball_de_scraper, "~> 0.1"},
