@@ -24,7 +24,9 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :club_homepage, ClubHomepage.Web.Gettext,
-  default_locale: "de"
+  default_locale: "de",
+  locales: ~w(en de)
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
