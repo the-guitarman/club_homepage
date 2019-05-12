@@ -31,7 +31,8 @@ mkdir -p $BUILD_DIR/rel/artifacts
 
 # Install updated versions of hex/rebar
 mix local.rebar --force
-mix local.hex --if-missing --force
+#mix local.hex --if-missing --force
+mix local.hex --force
 
 export MIX_ENV=prod
 echo $MIX_ENV
@@ -40,7 +41,8 @@ echo $MIX_ENV
 mix deps.get
 
 # Run an explicit clean to remove any build artifacts from the host
-mix do clean, compile --force
+mix do clean --force
+mix do compile --force
 
 # Removes old versions of static assets.
 mix phx.digest.clean

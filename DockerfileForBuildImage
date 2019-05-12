@@ -1,4 +1,4 @@
-#$ docker build -t elixir-ubuntu:18_04 -f DockerfileForBuildImage .
+#$ docker image build -t elixir-ubuntu:18_04 -f DockerfileForBuildImage .
 
 # ubuntu 18.04 = bionic bever
 FROM ubuntu:18.04
