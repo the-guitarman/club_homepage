@@ -4,6 +4,11 @@ elixir:
 env:
   - ELIXIR="v1.9.1"
   - APP_VERSION="0.2.0"
+  - LANG=de_DE.UTF-8
+  - LANGUAGE=de_DE:de 
+  - LC_ALL=de_DE.UTF-8
+  - TZ='Europe/Berlin'
+  - DEBIAN_FRONTEND=noninteractive
 services:
   - postgresql
 addons:
@@ -13,12 +18,21 @@ addons:
 otp_release:
   - 22.0
 sudo: false
-before_install:
-  - export TZ=Berlin/Europe
-  - export ELIXIR=v1.9.1
 before_script:
-  - echo 'Berlin/Europe' | sudo tee /etc/timezone
-  - sudo dpkg-reconfigure --frontend noninteractive tzdata
+  - export ELIXIR=v1.9.1
+  - export LANG=de_DE.UTF-8
+  - export LANGUAGE=de_DE:de 
+  - export LC_ALL=de_DE.UTF-8
+  - export TZ='Europe/Berlin'
+  - export DEBIAN_FRONTEND=noninteractive
+  - sudo sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen
+  - sudo locale-gen
+  - sudo echo $TZ > /etc/timezone
+  - sudo apt-get update -y
+  - sudo apt-get install -y tzdata
+  - sudo rm /etc/localtime
+  - sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+  - sudo dpkg-reconfigure -f noninteractive tzdata
   - sudo ntpdate ntp.ubuntu.com 
   - date
   - mkdir -p vendor/elixir
