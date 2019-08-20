@@ -165,7 +165,6 @@ defmodule ClubHomepage.Web.TeamController do
   defp receive_and_create_new_matches(conn, team) do
     conn
     |> receive_new_matches(team)
-    |> IO.inspect
     |> new_matches_availabitity_check()
     |> find_or_create_season()
     |> new_matches_to_json()
@@ -186,7 +185,6 @@ defmodule ClubHomepage.Web.TeamController do
 
   defp find_or_create_season(nil), do: nil
   defp find_or_create_season(%{season: season_name} = result) do 
-    IO.inspect result
     season = 
       case Repo.get_by(Season, name: season_name) do
         nil ->
