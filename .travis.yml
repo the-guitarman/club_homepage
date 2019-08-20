@@ -1,14 +1,14 @@
 language: elixir
 elixir:
   - 1.9
-env:
-  - ELIXIR="v1.9.1"
-  - APP_VERSION="0.2.0"
-  - LANG=de_DE.UTF-8
-  - LANGUAGE=de_DE:de 
-  - LC_ALL=de_DE.UTF-8
-  - TZ='Europe/Berlin'
-  - DEBIAN_FRONTEND=noninteractive
+# env:
+#   - ELIXIR="v1.9.1"
+#   - APP_VERSION="0.2.0"
+#   - LANG=de_DE.UTF-8
+#   - LANGUAGE=de_DE:de 
+#   - LC_ALL=de_DE.UTF-8
+#   - TZ='Europe/Berlin'
+#   - DEBIAN_FRONTEND=noninteractive
 services:
   - postgresql
 addons:
@@ -36,8 +36,8 @@ before_script:
   - sudo ntpdate ntp.ubuntu.com 
   - date
   - mkdir -p vendor/elixir
-  - echo "wget -v https://github.com/elixir-lang/elixir/releases/download/$ELIXIR/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir"
-  - wget -v https://github.com/elixir-lang/elixir/releases/download/v1.9.1/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir
+  - echo "wget -v https://github.com/elixir-lang/elixir/releases/download/${ELIXIR}/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir"
+  - wget -v https://github.com/elixir-lang/elixir/releases/download/${ELIXIR}/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir
   - export PATH="$PATH:$PWD/vendor/elixir/bin"
   - mix local.hex --force
   - mix deps.get --only test
