@@ -27,7 +27,7 @@ before_script:
   - export DEBIAN_FRONTEND=noninteractive
   - sudo sed -i -e 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen
   - sudo locale-gen
-  - sudo echo $TZ > /etc/timezone
+  - echo $TZ | sudo tee /etc/timezone
   - sudo apt-get update -y
   - sudo apt-get install -y tzdata
   - sudo rm /etc/localtime
