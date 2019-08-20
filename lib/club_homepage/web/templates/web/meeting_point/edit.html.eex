@@ -4,11 +4,11 @@
       <h2><%= gettext("edit_meeting_point") %></h2>
 
       <%= render "form.html",
-          changeset: @changeset, action: meeting_point_path(@conn, :update, @meeting_point),
+          changeset: @changeset, action: Routes.meeting_point_path(@conn, :update, @meeting_point),
           address_options: @address_options
       %>
 
-      <%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("meeting_points"), to: Routes.meeting_point_path(@conn, :index) %>
     </div>
   </div>
 </div>

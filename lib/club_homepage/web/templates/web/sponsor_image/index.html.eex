@@ -19,15 +19,15 @@
             <td><%= uploader_image_tag ClubHomepage.Web.SponsorUploader, sponsor_image, :logo %></td>
 
             <td class="text-right">
-              <%= link gettext("edit"), to: sponsor_image_path(@conn, :edit, sponsor_image), class: "btn btn-default" %>
-              <%= link gettext("delete"), to: sponsor_image_path(@conn, :delete, sponsor_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
+              <%= link gettext("edit"), to: Routes.sponsor_image_path(@conn, :edit, sponsor_image), class: "btn btn-default" %>
+              <%= link gettext("delete"), to: Routes.sponsor_image_path(@conn, :delete, sponsor_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
             </td>
           </tr>
       <% end %>
         </tbody>
       </table>
 
-      <%= link gettext("create_new_sponsor_image"), to: sponsor_image_path(@conn, :new), class: "btn btn-default" %>
+      <%= link gettext("create_new_sponsor_image"), to: Routes.sponsor_image_path(@conn, :new), class: "btn btn-default" %>
     </div>
   </div>
 </div>

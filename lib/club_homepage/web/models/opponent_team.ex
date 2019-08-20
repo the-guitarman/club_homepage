@@ -9,10 +9,10 @@ defmodule ClubHomepage.OpponentTeam do
     belongs_to :address, ClubHomepage.Address
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(address_id name)
+  @cast_fields ~w(address_id name)a
   @required_fields [:name]
 
   @doc """

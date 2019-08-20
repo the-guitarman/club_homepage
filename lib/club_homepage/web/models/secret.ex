@@ -4,12 +4,12 @@ defmodule ClubHomepage.Secret do
   schema "secrets" do
     field :key, :string
     field :email, :string
-    field :expires_at, Timex.Ecto.DateTime
+    field :expires_at, :utc_datetime
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(key email)
+  @cast_fields ~w(key email)a
   @required_fields [:key, :expires_at]
 
   @doc """
@@ -30,6 +30,8 @@ defmodule ClubHomepage.Secret do
     expires_at =
       Timex.local
       |> Timex.add(Timex.Duration.from_days(7))
+      |> Timex.to_datetime()
+      |> DateTime.truncate(:second)
 
     changeset
     |> put_change(:key, SecureRandom.urlsafe_base64)

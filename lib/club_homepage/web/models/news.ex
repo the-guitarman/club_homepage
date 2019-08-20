@@ -6,10 +6,10 @@ defmodule ClubHomepage.News do
     field :subject, :string
     field :body, :string
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(public subject body)
+  @cast_fields ~w(public subject body)a
   @required_fields [:public, :subject, :body]
 
   @doc """

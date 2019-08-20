@@ -35,13 +35,13 @@ defmodule ClubHomepage.Web.LayoutView do
     payment_list_debitors = conn.assigns[:my_payment_list_debitors]
 
     links = [payment_list_links(conn, payment_lists) | payment_list_debitor_links(conn, payment_list_debitors)]
-    links = ["<a href=\"#{payment_list_path(conn, :new)}\" class=\"list-group-item css-new-item-link\"><span class=\"glyphicon glyphicon-plus-sign\"></span> #{gettext("create_payment_list_button_text")}</a>" | links]
+    links = ["<a href=\"#{Routes.payment_list_path(conn, :new)}\" class=\"list-group-item css-new-item-link\"><span class=\"glyphicon glyphicon-plus-sign\"></span> #{gettext("create_payment_list_button_text")}</a>" | links]
     "<div class=\"list-group\">" <> Enum.join(links) <> "</div>"
   end
 
   defp payment_list_links(_conn, []), do: []
   defp payment_list_links(conn, [payment_list | payment_lists]) do
-    ["<a href=\"#{payment_list_path(conn, :show, payment_list)}\" class=\"list-group-item css-payment-list-link\"><span>#{payment_list.title}<br /><span class=\"costs\">#{number_to_currency(payment_list.price_per_piece)}/#{gettext("piece_abbreviation")}</span></span><span class=\"badge\">#{payment_list.number_of_debitors}</span></a>" |  payment_list_links(conn, payment_lists)]
+    ["<a href=\"#{Routes.payment_list_path(conn, :show, payment_list)}\" class=\"list-group-item css-payment-list-link\"><span>#{payment_list.title}<br /><span class=\"costs\">#{number_to_currency(payment_list.price_per_piece)}/#{gettext("piece_abbreviation")}</span></span><span class=\"badge\">#{payment_list.number_of_debitors}</span></a>" |  payment_list_links(conn, payment_lists)]
   end
 
   defp payment_list_debitor_links(_conn, []), do: []
@@ -55,7 +55,7 @@ defmodule ClubHomepage.Web.LayoutView do
         end
         |> Enum.map(fn(user) ->  user_name(user) end)
         |> Enum.join(", ")
-        ["<div class=\"js-payment-list\" data-payment-list-id=\"#{payment_list.id}\"><a href=\"#{payment_list_debitor_path(conn, :show, payment_list, debitor)}\" class=\"list-group-item js-payment-list-debitor css-payment-list-debitor-link\" data-payment-list-debitor-id=\"#{debitor.id}\"><span>#{payment_list.title}<br /><span class=\"costs\">#{number_to_currency(payment_list.price_per_piece)}/#{gettext("piece_abbreviation")}</span><br /><span class=\"costs\">#{gettext("responsible")}: #{owner_and_deputy}</span></span><span class=\"badge background-red\">#{number_to_currency(payment_list.price_per_piece * debitor.number_of_units)}</span></a></div>" | payment_list_debitor_links(conn, debitors)]
+        ["<div class=\"js-payment-list\" data-payment-list-id=\"#{payment_list.id}\"><a href=\"#{Routes.payment_list_debitor_path(conn, :show, payment_list, debitor)}\" class=\"list-group-item js-payment-list-debitor css-payment-list-debitor-link\" data-payment-list-debitor-id=\"#{debitor.id}\"><span>#{payment_list.title}<br /><span class=\"costs\">#{number_to_currency(payment_list.price_per_piece)}/#{gettext("piece_abbreviation")}</span><br /><span class=\"costs\">#{gettext("responsible")}: #{owner_and_deputy}</span></span><span class=\"badge background-red\">#{number_to_currency(payment_list.price_per_piece * debitor.number_of_units)}</span></a></div>" | payment_list_debitor_links(conn, debitors)]
     else
       payment_list_debitor_links(conn, debitors)
     end

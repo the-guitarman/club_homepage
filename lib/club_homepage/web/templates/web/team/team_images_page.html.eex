@@ -33,8 +33,8 @@
                     <%= if has_role?(@conn, ["team-editor"]) do %>
                     <div class="row">
                       <div class="col-xs-12 text-right">
-                        <%= link gettext("edit"), to: team_image_path(@conn, :edit, team_image), class: "btn btn-default" %>
-                        <%= link gettext("delete"), to: team_image_path(@conn, :delete, team_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
+                        <%= link gettext("edit"), to: Routes.team_image_path(@conn, :edit, team_image), class: "btn btn-default" %>
+                        <%= link gettext("delete"), to: Routes.team_image_path(@conn, :delete, team_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
                       </div>
                     </div>
                     <% end %>
@@ -47,7 +47,7 @@
             <%= if has_role?(@conn, ["team-editor"]) do %>
               <div class="row">
                 <div class="col-xs-12">
-                    <%= link gettext("create_new_team_image"), to: team_image_path(@conn, :new, team_id: @team.id), class: "btn btn-default" %>
+                    <%= link gettext("create_new_team_image"), to: Routes.team_image_path(@conn, :new, team_id: @team.id), class: "btn btn-default" %>
                 </div>
               </div>
             <% end %>
@@ -58,7 +58,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <%= link gettext("all") <> " " <> gettext("teams"), to: team_path(@conn, :index) %>
+          <%= link gettext("all") <> " " <> gettext("teams"), to: Routes.team_path(@conn, :index) %>
         </div>
       </div>
     </div>

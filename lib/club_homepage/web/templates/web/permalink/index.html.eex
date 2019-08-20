@@ -16,13 +16,13 @@
       <td><%= permalink.destination_path %></td>
 
       <td class="text-right">
-        <%= link "Show", to: permalink_path(@conn, :show, permalink), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: permalink_path(@conn, :edit, permalink), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: permalink_path(@conn, :delete, permalink), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link "Show", to: Routes.permalink_path(@conn, :show, permalink), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: Routes.permalink_path(@conn, :edit, permalink), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: Routes.permalink_path(@conn, :delete, permalink), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%= link "New permalink", to: permalink_path(@conn, :new) %>
+<%= link "New permalink", to: Routes.permalink_path(@conn, :new) %>

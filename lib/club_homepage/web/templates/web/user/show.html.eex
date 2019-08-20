@@ -4,7 +4,7 @@
       <h2><%= @user.login %></h2>
 
       <p>
-        <%= link gettext("all") <> " " <> gettext("users"), to: managed_user_path(@conn, :index), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("users"), to: Routes.managed_user_path(@conn, :index), class: "btn btn-default" %>
       </p>
 
       <table class="table table-bordered table-striped">
@@ -48,7 +48,7 @@
       </table>
 
       <p>
-        <%= link gettext("all") <> " " <> gettext("users"), to: managed_user_path(@conn, :index), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("users"), to: Routes.managed_user_path(@conn, :index), class: "btn btn-default" %>
       </p>
     </div>
   </div>

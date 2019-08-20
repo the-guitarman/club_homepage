@@ -91,6 +91,7 @@ defmodule ClubHomepage.Web.JsonMatchesValidator do
         "type" => "object",
         "properties" => %{
           "team_name" => %{"type" => "string"},
+          "season" => %{"type" => "string"},
           "matches"   => %{
             "type"       => "array",
             "items" => %{
@@ -105,7 +106,7 @@ defmodule ClubHomepage.Web.JsonMatchesValidator do
             }
           }
         },
-        "required" => ["team_name", "matches"]
+        "required" => ["team_name", "season", "matches"]
       }
       |> ExJsonSchema.Schema.resolve
       |> ExJsonSchema.Validator.validate(map)
@@ -124,12 +125,11 @@ defmodule ClubHomepage.Web.JsonMatchesValidator do
     ) |> Enum.join(", ")
   end
 
-  defp validate_json_content(changeset, field, %{"team_name" => team_name, "matches" => matches} = _map) when is_list(matches) do
-    ret = 
+  defp validate_json_content(changeset, field, %{"team_name" => team_name, "season" => season, "matches" => matches} = _map) when is_list(matches) do
     changeset
     |> validate_json_matches(field, matches)
     |> validate_string_value(field, "team_name", team_name)
-    ret
+    |> validate_string_value(field, "season", season)
   end
   defp validate_json_content(change_set, _field, _map), do: change_set
 

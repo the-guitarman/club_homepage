@@ -5,11 +5,11 @@
 
       <p>
         <%= if @next_match_parameters do %>
-          <%= link gettext("create_next_new_match"), to: match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
+          <%= link gettext("create_next_new_match"), to: Routes.match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
         <% else %>
-          <%= link gettext("create_new_match"), to: match_path(@conn, :new), class: "btn btn-default" %>
+          <%= link gettext("create_new_match"), to: Routes.match_path(@conn, :new), class: "btn btn-default" %>
         <% end %>
-        <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk), class: "btn btn-default" %>
+        <%= link gettext("create_new_matches"), to: Routes.matches_path(@conn, :new_bulk), class: "btn btn-default" %>
       </p>
 
       <table class="table">
@@ -46,7 +46,7 @@
             <td><%= match.home_match %></td>
 
             <td class="text-right">
-              <%= link gettext("edit_match"), to: match_path(@conn, :edit, match), class: "btn btn-default" %>
+              <%= link gettext("edit_match"), to: Routes.match_path(@conn, :edit, match), class: "btn btn-default" %>
             </td>
           </tr>
       <% end %>
@@ -55,11 +55,11 @@
 
       <p>
         <%= if @next_match_parameters do %>
-            <%= link gettext("create_next_new_match"), to: match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
+            <%= link gettext("create_next_new_match"), to: Routes.match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
         <% else %>
-            <%= link gettext("create_new_match"), to: match_path(@conn, :new), class: "btn btn-default" %>
+            <%= link gettext("create_new_match"), to: Routes.match_path(@conn, :new), class: "btn btn-default" %>
         <% end %>
-        <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk), class: "btn btn-default" %>
+        <%= link gettext("create_new_matches"), to: Routes.matches_path(@conn, :new_bulk), class: "btn btn-default" %>
         <br />
       </p>
     </div>

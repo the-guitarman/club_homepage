@@ -6,7 +6,7 @@ defmodule ClubHomepage.TeamChatMessage do
     belongs_to :team, ClubHomepage.Team
     belongs_to :user, ClubHomepage.User
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
   @required_fields [:team_id, :user_id, :message]

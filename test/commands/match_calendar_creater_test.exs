@@ -20,7 +20,7 @@ defmodule ClubHomepage.MatchCalendarCreatorTest do
 
   test "run", %{season_id: season_id, team_id: team_id} do
     Repo.delete_all(Match)
-    assert MatchCalendarCreator.run(team_id, season_id) == "BEGIN:VCALENDAR\nCALSCALE:GREGORIAN\nVERSION:2.0\nEND:VCALENDAR\n"
+    assert MatchCalendarCreator.run(team_id, season_id) == "BEGIN:VCALENDAR\nCALSCALE:GREGORIAN\nVERSION:2.0\nPRODID:-//Elixir ICalendar//Elixir ICalendar//EN\nEND:VCALENDAR\n"
 
     match = insert(:match, season_id: season_id, team_id: team_id, start_at:  Timex.add(Timex.local, Timex.Duration.from_days(1)))
     result = MatchCalendarCreator.run(team_id, season_id)

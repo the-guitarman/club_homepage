@@ -12,9 +12,12 @@ defmodule ClubHomepage.Web.UserSocket do
   channel "standard-team-players:*", ClubHomepage.Web.StandardTeamPlayersChannel
   channel "match-commitments:*", ClubHomepage.Web.MatchCommitmentsChannel
 
+
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
-  transport :longpoll, Phoenix.Transports.LongPoll
+  ## - now configured in endpoint.ex
+  #transport :websocket, Phoenix.Transports.WebSocket
+  #transport :longpoll, Phoenix.Transports.LongPoll
+
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

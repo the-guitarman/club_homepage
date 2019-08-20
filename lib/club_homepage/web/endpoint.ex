@@ -1,17 +1,23 @@
 defmodule ClubHomepage.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :club_homepage
 
-  socket "/socket", ClubHomepage.Web.UserSocket
+  socket "/socket", ClubHomepage.Web.UserSocket,
+    websocket: true, # or list of options
+    longpoll: false # [] #[check_origin: ...]
 
   plug Plug.Static,
-    at: "/uploads", from: Path.expand('./uploads'), gzip: false
+    at: "/uploads",
+    from: Path.expand('./uploads'),
+    gzip: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :club_homepage, gzip: false,
+    at: "/",
+    from: :club_homepage,
+    gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt humans.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -23,12 +29,13 @@ defmodule ClubHomepage.Web.Endpoint do
   end
 
   plug Plug.RequestId
-  plug Plug.Logger
+  plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+#  plug Plug.Logger
 
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Phoenix.json_library()
 
   plug Plug.MethodOverride
   plug Plug.Head

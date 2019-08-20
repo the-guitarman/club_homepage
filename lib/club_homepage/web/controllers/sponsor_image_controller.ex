@@ -24,7 +24,7 @@ defmodule ClubHomepage.Web.SponsorImageController do
 
         conn
         |> put_flash(:info, gettext("sponsor_image_created_successfully"))
-        |> redirect(to: sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image.id}")
+        |> redirect(to: Routes.sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -45,7 +45,7 @@ defmodule ClubHomepage.Web.SponsorImageController do
 
         conn
         |> put_flash(:info, gettext("sponsor_image_updated_successfully"))
-        |> redirect(to: sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image.id}")
+        |> redirect(to: Routes.sponsor_image_path(conn, :index) <> "#sponsor-image-#{sponsor_image.id}")
       {:error, changeset} ->
         render(conn, "edit.html", sponsor_image: sponsor_image, changeset: changeset)
     end
@@ -62,7 +62,7 @@ defmodule ClubHomepage.Web.SponsorImageController do
 
     conn
     |> put_flash(:info, gettext("sponsor_image_deleted_successfully"))
-    |> redirect(to: sponsor_image_path(conn, :index))
+    |> redirect(to: Routes.sponsor_image_path(conn, :index))
   end
 
   def update_image(sponsor_image, sponsor_image_params) do

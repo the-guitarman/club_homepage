@@ -72,10 +72,9 @@ defmodule ClubHomepage.MatchControllerTest do
     query = from(m in Match, select: count(m.id))
     assert 0 == Repo.one(query)
     conn = post conn, match_path(conn, :create), match: valid_attrs
-
     {:ok, start_at} =
-      valid_attrs.start_at
-      |> Timex.parse("%Y-%m-%d %H:%M", :strftime) 
+    valid_attrs.start_at
+    |> Timex.parse("%Y-%m-%d %H:%M", :strftime)
     {:ok, start_at} =
       start_at
       |> Timex.add(Timex.Duration.from_days(7))

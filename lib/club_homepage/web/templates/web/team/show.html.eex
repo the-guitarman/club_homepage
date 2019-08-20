@@ -16,9 +16,9 @@
 
         </ul>
 
-        <%#= link gettext("edit"), to: team_path(@conn, :edit, @team), class: "btn btn-default" %>
-        <%#= link gettext("delete"), to: team_path(@conn, :delete, @team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
-        <%= link gettext("all") <> " " <> gettext("teams"), to: team_path(@conn, :index), class: "btn btn-default" %>
+        <%#= link gettext("edit"), to: Routes.team_path(@conn, :edit, @team), class: "btn btn-default" %>
+        <%#= link gettext("delete"), to: Routes.team_path(@conn, :delete, @team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+        <%= link gettext("all") <> " " <> gettext("teams"), to: Routes.team_path(@conn, :index), class: "btn btn-default" %>
     </div>
   </div>
 </div>

@@ -33,6 +33,6 @@ defmodule ClubHomepage.CompetitionTest do
       |> Repo.update()
 
     refute changeset.valid?
-    assert changeset.errors[:name] == {"has already been taken", []}
+    assert changeset.errors[:name] == {"has already been taken", [constraint: :unique, constraint_name: "competitions_name_index"]}
   end
 end

@@ -60,8 +60,8 @@ defmodule ClubHomepage.Web.MatchController do
         season = Repo.get(Season, match.season_id)
         conn
         |> put_flash(:info, gettext("match_created_successfully"))
-        #|> redirect(to: match_path(conn, :index, prepare_next_match_parameters(match_params)))
-        |> redirect(to: team_page_with_season_path(conn, :show, team.slug, season.name, prepare_next_match_parameters(match)))
+        #|> redirect(to: Routes.match_path(conn, :index, prepare_next_match_parameters(match_params)))
+        |> redirect(to: Routes.team_page_with_season_path(conn, :show, team.slug, season.name, prepare_next_match_parameters(match)))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -92,7 +92,7 @@ defmodule ClubHomepage.Web.MatchController do
       changeset = JsonMatchesValidator.changeset(Map.delete(match_params, "json"))
       conn
       |> put_flash(:info, gettext("matches_created_successfully"))
-      #|> redirect(to: match_path(conn, :index))
+      #|> redirect(to: Routes.match_path(conn, :index))
       |> render("new_bulk.html", changeset: changeset,
              season_options: conn.assigns.season_options,
              team_options: conn.assigns.team_options)
@@ -140,7 +140,7 @@ defmodule ClubHomepage.Web.MatchController do
       {:ok, match} ->
         conn
         |> put_flash(:info, gettext("match_updated_successfully"))
-        |> redirect(to: match_path(conn, :show, match))
+        |> redirect(to: Routes.match_path(conn, :show, match))
       {:error, changeset} ->
         render(conn, "edit.html", match: match, changeset: changeset)
     end
@@ -156,7 +156,7 @@ defmodule ClubHomepage.Web.MatchController do
 
     conn
     |> put_flash(:info, gettext("match_deleted_successfully"))
-    #|> redirect(to: match_path(conn, :index))
+    #|> redirect(to: Routes.match_path(conn, :index))
     |> redirect(to: team_with_season_path(conn, team))
   end
 
@@ -206,6 +206,7 @@ defmodule ClubHomepage.Web.MatchController do
   defp next_start_at(start_at) do
     {:ok, start_at} =
       start_at
+      |> Timex.local()
       |> Timex.add(Timex.Duration.from_days(7))
       |> Timex.format(datetime_format(), :strftime)
     start_at

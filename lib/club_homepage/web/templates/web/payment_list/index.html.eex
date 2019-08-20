@@ -4,7 +4,7 @@
       <h2><%= gettext("all") <> " " <> gettext("payment_lists") %></h2>
 
       <p>
-        <%= link gettext("create_payment_list"), to: payment_list_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_payment_list"), to: Routes.payment_list_path(@conn, :new), class: "btn btn-default" %>
       </p>
 
       <table class="table">
@@ -31,9 +31,9 @@
             <td></td>
 
             <td class="text-right">
-              <%= link "Show", to: payment_list_path(@conn, :show, payment_list), class: "btn btn-default" %>
-              <%= link "Edit", to: payment_list_path(@conn, :edit, payment_list), class: "btn btn-default" %>
-              <%= link "Delete", to: payment_list_path(@conn, :delete, payment_list), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+              <%= link "Show", to: Routes.payment_list_path(@conn, :show, payment_list), class: "btn btn-default" %>
+              <%= link "Edit", to: Routes.payment_list_path(@conn, :edit, payment_list), class: "btn btn-default" %>
+              <%= link "Delete", to: Routes.payment_list_path(@conn, :delete, payment_list), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
             </td>
           </tr>
       <% end %>
@@ -41,7 +41,7 @@
       </table>
 
       <p>
-        <%= link gettext("create_payment_list"), to: payment_list_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_payment_list"), to: Routes.payment_list_path(@conn, :new), class: "btn btn-default" %>
       </p>
     </div>
   </div>

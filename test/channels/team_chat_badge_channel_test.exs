@@ -9,7 +9,7 @@ defmodule ClubHomepage.TeamChatBadgeChannelTest do
     user = insert(:user)
     team = insert(:team)
     {:ok, response, socket} =
-      socket("users_socket: #{user.id}", %{current_user: user})
+      socket("users_socket: #{user.id}", %{current_user: user}, %{})
       |> subscribe_and_join(TeamChatBadgeChannel, "team-chat-badges:#{team.id}")
 
     {:ok, socket: socket, response: response}

@@ -5,7 +5,7 @@
       <h2><%= gettext("all") <> " " <> gettext("seasons") %></h2>
 
       <p>
-        <%= link gettext("create_new_season"), to: season_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_new_season"), to: Routes.season_path(@conn, :new), class: "btn btn-default" %>
       </p>
 
       <table class="table">
@@ -16,7 +16,7 @@
               <td><%= season.name %></td>
 
               <td class="text-right">
-                <%#= link gettext("show"), to: season_path(@conn, :show, season), class: "btn btn-default btn-xs" %>
+                <%#= link gettext("show"), to: Routes.season_path(@conn, :show, season), class: "btn btn-default btn-xs" %>
               </td>
             </tr>
           <% end %>
@@ -24,7 +24,7 @@
       </table>
 
       <p>
-        <%= link gettext("create_new_season"), to: season_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_new_season"), to: Routes.season_path(@conn, :new), class: "btn btn-default" %>
       </p>
     </div>
   </div>

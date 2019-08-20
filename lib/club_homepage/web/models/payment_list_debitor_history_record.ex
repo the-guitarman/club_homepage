@@ -8,7 +8,7 @@ defmodule ClubHomepage.PaymentListDebitorHistoryRecord do
     belongs_to :payment_list_debitor, ClubHomepage.PaymentListDebitor
     belongs_to :editor, ClubHomepage.User
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
   @doc """

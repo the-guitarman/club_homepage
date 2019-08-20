@@ -7,7 +7,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateMatchCommitments do
       add :user_id, references(:users)
       add :commitment, :integer, null: true, limit: 1
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
     create unique_index(:match_commitments, [:match_id, :user_id])

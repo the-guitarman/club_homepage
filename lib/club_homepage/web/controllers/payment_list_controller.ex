@@ -32,7 +32,7 @@ defmodule ClubHomepage.Web.PaymentListController do
       {:ok, _payment_list} ->
         conn
         |> put_flash(:info, gettext("payment_list_created_successfully"))
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: Routes.page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset,
                user_options: conn.assigns.user_options,
@@ -66,7 +66,7 @@ defmodule ClubHomepage.Web.PaymentListController do
       {:ok, _payment_list} ->
         conn
         |> put_flash(:info, gettext("payment_list_updated_successfully"))
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: Routes.page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", payment_list: payment_list, changeset: changeset,
                user_options: conn.assigns.user_options,
@@ -84,7 +84,7 @@ defmodule ClubHomepage.Web.PaymentListController do
 
     conn
     |> put_flash(:info, gettext("payment_list_deleted_successfully"))
-    |> redirect(to: payment_list_path(conn, :index))
+    |> redirect(to: Routes.payment_list_path(conn, :index))
   end
 
   defp get_users do

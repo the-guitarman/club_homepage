@@ -29,7 +29,7 @@ defmodule ClubHomepage.Web.NewsController do
       {:ok, _news} ->
         conn
         |> put_flash(:info, gettext("news_created_successfully"))
-        |> redirect(to: news_path(conn, :index))
+        |> redirect(to: Routes.news_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -54,7 +54,7 @@ defmodule ClubHomepage.Web.NewsController do
       {:ok, news} ->
         conn
         |> put_flash(:info, gettext("news_updated_successfully"))
-        |> redirect(to: news_path(conn, :index) <> "#news-#{news.id}")
+        |> redirect(to: Routes.news_path(conn, :index) <> "#news-#{news.id}")
       {:error, changeset} ->
         render(conn, "edit.html", news: news, changeset: changeset)
     end
@@ -69,6 +69,6 @@ defmodule ClubHomepage.Web.NewsController do
 
     conn
     |> put_flash(:info, gettext("news_deleted_successfully"))
-    |> redirect(to: news_path(conn, :index))
+    |> redirect(to: Routes.news_path(conn, :index))
   end
 end

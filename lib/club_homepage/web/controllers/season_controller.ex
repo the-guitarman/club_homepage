@@ -25,7 +25,7 @@ defmodule ClubHomepage.Web.SeasonController do
       {:ok, _season} ->
         conn
         |> put_flash(:info, gettext("season_created_successfully."))
-        |> redirect(to: season_path(conn, :index))
+        |> redirect(to: Routes.season_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset, years: new_years())
     end
@@ -50,7 +50,7 @@ defmodule ClubHomepage.Web.SeasonController do
       {:ok, season} ->
         conn
         |> put_flash(:info, gettext("season_updated_successfully"))
-        |> redirect(to: season_path(conn, :show, season))
+        |> redirect(to: Routes.season_path(conn, :show, season))
       {:error, changeset} ->
         render(conn, "edit.html", season: season, changeset: changeset)
     end
@@ -65,6 +65,6 @@ defmodule ClubHomepage.Web.SeasonController do
 
     conn
     |> put_flash(:info, gettext("season_deleted_successfully"))
-    |> redirect(to: season_path(conn, :index))
+    |> redirect(to: Routes.season_path(conn, :index))
   end
 end

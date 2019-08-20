@@ -12,10 +12,10 @@ defmodule ClubHomepage.Address do
     has_many :meeting_points, ClubHomepage.MeetingPoint#, on_delete: :delete_all
     has_one :opponent_team, ClubHomepage.OpponentTeam#, on_delete: :delete_all
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(street zip_code city district latitude longitude)
+  @cast_fields ~w(street zip_code city district latitude longitude)a
   @required_fields [:street, :zip_code, :city]
 
   def required_field?(field) when is_binary(field) do

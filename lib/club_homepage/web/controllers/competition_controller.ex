@@ -23,7 +23,7 @@ defmodule ClubHomepage.Web.CompetitionController do
       {:ok, competition} ->
         conn
         |> put_flash(:info, gettext("competition_created_successfully"))
-        |> redirect(to: competition_path(conn, :index) <> "#competition-#{competition.id}")
+        |> redirect(to: Routes.competition_path(conn, :index) <> "#competition-#{competition.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -43,7 +43,7 @@ defmodule ClubHomepage.Web.CompetitionController do
       {:ok, competition} ->
         conn
         |> put_flash(:info, gettext("competition_updated_successfully"))
-        |> redirect(to: competition_path(conn, :index) <> "#competition-#{competition.id}")
+        |> redirect(to: Routes.competition_path(conn, :index) <> "#competition-#{competition.id}")
       {:error, changeset} ->
         render(conn, "edit.html", competition: competition, changeset: changeset)
     end
@@ -58,6 +58,6 @@ defmodule ClubHomepage.Web.CompetitionController do
 
     conn
     |> put_flash(:info, gettext("competition_deleted_successfully"))
-    |> redirect(to: competition_path(conn, :index))
+    |> redirect(to: Routes.competition_path(conn, :index))
   end
 end

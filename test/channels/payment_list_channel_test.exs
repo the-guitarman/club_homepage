@@ -9,7 +9,7 @@ defmodule ClubHomepage.PaymentListChannelTest do
     user = insert(:user)
     payment_list = insert(:payment_list)
     {:ok, _, socket} =
-      socket("users_socket: #{user.id}", %{current_user: user})
+      socket("users_socket: #{user.id}", %{current_user: user}, %{})
       |> subscribe_and_join(PaymentListChannel, "payment-lists:#{payment_list.id}")
     {:ok, socket: socket, current_user: user, payment_list: payment_list}
   end

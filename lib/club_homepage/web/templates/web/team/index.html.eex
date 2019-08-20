@@ -4,7 +4,7 @@
       <h2><%= gettext("all") <> " " <> gettext("teams") %></h2>
 
       <p>
-        <%= link gettext("create_new_team"), to: team_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_new_team"), to: Routes.team_path(@conn, :new), class: "btn btn-default" %>
       </p>
 
       <table class="table">
@@ -21,8 +21,8 @@
               <td><%= link team.name, to: team_with_season_path(@conn, team), class: "btn" %></td>
               <td class="text-center"><%= if team.active == true, do: gettext("yes"), else: gettext("no") %></td>
               <td class="text-right">
-                <%= link gettext("edit"), to: team_path(@conn, :edit, team), class: "btn btn-default" %>
-                <%#= link gettext("show"), to: team_path(@conn, :show, team), class: "btn btn-default btn-xs" %>
+                <%= link gettext("edit"), to: Routes.team_path(@conn, :edit, team), class: "btn btn-default" %>
+                <%#= link gettext("show"), to: Routes.team_path(@conn, :show, team), class: "btn btn-default btn-xs" %>
               </td>
             </tr>
           <% end %>
@@ -30,7 +30,7 @@
       </table>
 
       <p>
-        <%= link gettext("create_new_team"), to: team_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_new_team"), to: Routes.team_path(@conn, :new), class: "btn btn-default" %>
       </p>
     </div>
   </div>

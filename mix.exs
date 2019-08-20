@@ -3,8 +3,8 @@ defmodule ClubHomepage.Mixfile do
 
   def project do
     [app: :club_homepage,
-     version: "0.2.0",
-     elixir: "~> 1.7",
+     version: System.get_env("APP_VERSION") || "0.0.1",
+     elixir: "~> 1.9",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers(), 
      build_embedded: Mix.env == :prod,
@@ -17,7 +17,7 @@ defmodule ClubHomepage.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {ClubHomepage, []},
+    [mod: {ClubHomepage.Application, []},
      #applications: [],
      extra_applications: [
        :tzdata,
@@ -38,50 +38,59 @@ defmodule ClubHomepage.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-     {:phoenix, "~> 1.3"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.2"},
-     {:postgrex, "~> 0.13"},
-     {:phoenix_html, "~> 2.9"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:dogma, "~> 0.0", only: :dev},
-     {:cowboy, "~> 1.0"},
+      #xxx{:ecto, "== 3.1.0", override: true},
 
-     {:comeonin, "~> 4.1"},
-     {:bcrypt_elixir, "~> 1.1"},
-     #{:pbkdf2_elixir, "~> 0.12"},
+      {:phoenix, "~> 1.4.9"},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:ecto_sql, "~> 3.1"},
+      {:phoenix_ecto, "~> 4.0"},
+      {:postgrex, "~> 0.13"},
+      {:phoenix_html, "~> 2.9"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:dogma, "~> 0.0", only: :dev},
+      {:plug_cowboy, "~> 2.1"},
+      {:plug, "~> 1.8"},
 
-     {:timex, "~> 3.3"},
-     {:timex_ecto, "~> 3.3"},
-     {:ex_machina, "~> 2.2", only: :test},
-     {:gettext, "~> 0.11"},
-     {:credo, "~> 0.10", only: [:dev, :test]},
-     {:slugger, "~> 0.1"},
-     {:json, "~> 0.3"},
-     {:ex_json_schema, "~> 0.3"},
-     {:geocoder, "~> 0.6"},
-     {:dialyxir, "~> 0.3", only: [:dev]},
-     {:arc, "~> 0.11"},
-     {:arc_ecto, "~> 0.11"},
-     #{:mix_test_watch, "~> 0.2", only: :dev},
+      {:jason, "~> 1.1"},
+      {:comeonin, "~> 4.1"},
+      {:bcrypt_elixir, "~> 1.1"},
+      #{:pbkdf2_elixir, "~> 0.12"},
 
-     #{:elixir_weather_data, path: "/home/franzi/dev/elixir/elixir_weather_data"},
-     {:elixir_weather_data, "~> 0.2.6"},
+      {:timex, "~> 3.6"},
+      #xxx{:timex_ecto, "~> 3.4"},
+      {:ex_machina, "~> 2.3", only: :test},
+      {:gettext, "~> 0.11"},
+      {:credo, "~> 0.10", only: [:dev, :test]},
+      {:slugger, "~> 0.1"},
+      {:json, "~> 0.3"},
+      #{:ex_json_schema, "~> 0.6"},
+      {:ex_json_schema, path: "/Users/sebastian/dev/elixir/ex_json_schema"},
+      {:geocoder, "~> 0.6"},
+      {:dialyxir, "~> 0.3", only: [:dev]},
+      {:arc, "~> 0.11"},
+      {:arc_ecto, "~> 0.11"},
+      #{:mix_test_watch, "~> 0.2", only: :dev},
 
-     #{:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
-     {:ex_fussball_de_scraper, "~> 0.1"},
-     #{:browser, "~> 0.4"},
-     #{:browser, git: "git@github.com:the-guitarman/elixir-browser.git"},
-     {:browser, git: "https://github.com/the-guitarman/elixir-browser.git"},
+      #{:elixir_weather_data, path: "/home/franzi/dev/elixir/elixir_weather_data"},
+      {:elixir_weather_data, "~> 0.2.6"},
 
-     {:number, "~> 0.5"},
-     {:bamboo, "~> 1.1"},
-     {:bamboo_smtp, "~> 1.6"},
+      #{:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
+      {:ex_fussball_de_scraper, "~> 0.1"},
+      {:httpoison, "~> 1.5", override: true},
 
-     {:icalendar, "~> 0.2"},
+      {:browser, "~> 0.4"},
+      #{:browser, git: "git@github.com:the-guitarman/elixir-browser.git"},
+      #{:browser, git: "https://github.com/the-guitarman/elixir-browser.git"},
 
-     {:distillery, "~> 2.0", runtime: false}, #run: mix do deps.get, compile
-     {:hackney, "== 1.8.0", override: true}
+      {:number, "~> 1.0"},
+      {:bamboo, "~> 1.1"},
+      {:bamboo_smtp, "~> 1.6"},
+
+      {:icalendar, "~> 0.2"},
+
+      {:distillery, "~> 2.0", runtime: false}, #run: mix do deps.get, compile
+      #{:hackney, "== 1.8.0", override: true}
+      {:hackney, "~> 1.15"}
     ]
   end
 

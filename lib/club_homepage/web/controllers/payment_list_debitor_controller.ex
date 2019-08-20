@@ -1,7 +1,6 @@
 defmodule ClubHomepage.Web.PaymentListDebitorController do
   use ClubHomepage.Web, :controller
 
-  alias ClubHomepage.Web.Router.Helpers
   alias ClubHomepage.PaymentList
   alias ClubHomepage.PaymentListDebitor
   alias ClubHomepage.Web.PaymentListDebitorHistoryRecordCreator, as: HistoryRecordCreator
@@ -26,7 +25,7 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
         HistoryRecordCreator.run(payment_list_debitor, current_user(conn))
         conn
         |> put_flash(:info, gettext("payment_list_debitor_created_successfully"))
-        |> redirect(to: payment_list_path(conn, :show, payment_list))
+        |> redirect(to: Routes.payment_list_path(conn, :show, payment_list))
       {:error, changeset} ->
         {:safe, body} = Phoenix.View.render(ClubHomepage.Web.PaymentListView, "show.html", changeset: changeset,
                conn: conn,
@@ -68,7 +67,7 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
         HistoryRecordCreator.run(debitor, payment_list_debitor, current_user(conn))
         conn
         |> put_flash(:info, gettext("payment_list_updated_successfully"))
-        |> redirect(to: payment_list_path(conn, :show, payment_list))
+        |> redirect(to: Routes.payment_list_path(conn, :show, payment_list))
       {:error, changeset} ->
         render(conn, "edit.html", payment_list: payment_list, debitor: debitor, changeset: changeset, user_options: conn.assigns.user_options, form_mode: :edit)
     end
@@ -84,7 +83,7 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
 
     conn
     |> put_flash(:info, gettext("payment_list_debitor_deleted_successfully"))
-    |> redirect(to: payment_list_path(conn, :show, payment_list))
+    |> redirect(to: Routes.payment_list_path(conn, :show, payment_list))
   end
 
   defp get_users do
@@ -114,7 +113,7 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
       true -> 
         conn
         |> put_flash(:error, gettext("error_auth_not_authorized"))
-        |> redirect(to: Helpers.page_path(conn, :index))
+        |> redirect(to: Routes.page_path(conn, :index))
         |> halt()
       end
   end

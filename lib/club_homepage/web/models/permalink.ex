@@ -5,10 +5,10 @@ defmodule ClubHomepage.Permalink do
     field :source_path, :string
     field :destination_path, :string
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(source_path destination_path)
+  @cast_fields ~w(source_path destination_path)a
   @required_fields [:source_path, :destination_path]
 
   @doc """

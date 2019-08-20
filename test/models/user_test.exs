@@ -23,7 +23,7 @@ defmodule ClubHomepage.UserTest do
       User.changeset(%User{}, @valid_attrs)
       |> Repo.insert
     refute changeset.valid?
-    assert changeset.errors[:login] == {"has already been taken", []}
+    assert changeset.errors[:login] == {"has already been taken", [constraint: :unique, constraint_name: "users_login_index"]}
     assert changeset.errors[:email] == nil
 
     valid_attrs = %{ @valid_attrs | login: "sdkfjdskjf"}
@@ -32,7 +32,7 @@ defmodule ClubHomepage.UserTest do
       |> Repo.insert
     refute changeset.valid?
     assert changeset.errors[:login] == nil
-    assert changeset.errors[:email] == {"has already been taken", []}
+    assert changeset.errors[:email] == {"has already been taken", [constraint: :unique, constraint_name: "users_email_index"]}
   end
 
   test "changeset with invalid attributes" do
@@ -45,11 +45,11 @@ defmodule ClubHomepage.UserTest do
 
     changeset = User.changeset(%User{}, %{login: "abc"})
     refute changeset.valid?
-    assert changeset.errors[:login] == {"should be at least %{count} character(s)", [count: 6, validation: :length, min: 6]}
+    assert changeset.errors[:login] == {"should be at least %{count} character(s)", [count: 6, validation: :length, kind: :min, type: :string]}
 
     changeset = User.changeset(%User{}, %{login: "abcdefghijklmnopqrstu"})
     refute changeset.valid?
-    assert changeset.errors[:login] == {"should be at most %{count} character(s)", [count: 20, validation: :length, max: 20]}
+    assert changeset.errors[:login] == {"should be at most %{count} character(s)", [count: 20, validation: :length, kind: :max, type: :string]}
 
     changeset = User.changeset(%User{}, %{login: "$%&§^#~@€()[]"})
     refute changeset.valid?
@@ -61,6 +61,6 @@ defmodule ClubHomepage.UserTest do
 
     changeset = User.changeset(%User{}, %{name: String.duplicate("a", 101)})
     refute changeset.valid?
-    assert changeset.errors[:name] == {"should be at most %{count} character(s)", [count: 100, validation: :length, max: 100]}
+    assert changeset.errors[:name] == {"should be at most %{count} character(s)", [count: 100, validation: :length, kind: :max, type: :string]}
   end
 end

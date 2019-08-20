@@ -24,7 +24,7 @@ defmodule ClubHomepage.TeamTest do
       |> Repo.insert()
 
     refute changeset.valid?
-    assert changeset.errors[:name] == {"has already been taken", []}
+    assert changeset.errors[:name] == {"has already been taken", [constraint: :unique, constraint_name: "teams_name_index"]}
   end
 
   test "edit a team" do
@@ -40,7 +40,7 @@ defmodule ClubHomepage.TeamTest do
       Team.changeset(team2, %{name: team1.name})
       |> Repo.update()
     refute changeset.valid?
-    assert changeset.errors[:name] == {"has already been taken", []}
+    assert changeset.errors[:name] == {"has already been taken", [constraint: :unique, constraint_name: "teams_name_index"]}
     #assert changeset.errors[:slug] == nil #"already exists"
   end
 

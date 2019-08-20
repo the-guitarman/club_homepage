@@ -46,7 +46,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Account deaktivieren</div>
         <div class="panel-body">
-          <%= link gettext("deactivate"), to: managed_user_deactivate_account_path(@conn, :deactivate_account, @current_user.id), method: :delete, data: [confirm: gettext("confirm_question_deactivate_account")], class: "btn btn-block btn-danger" %>
+          <%= link gettext("deactivate"), to: Routes.managed_user_deactivate_account_path(@conn, :deactivate_account, @current_user.id), method: :delete, data: [confirm: gettext("confirm_question_deactivate_account")], class: "btn btn-block btn-danger" %>
         </div>
       </div>
 

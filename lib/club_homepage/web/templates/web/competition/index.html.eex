@@ -4,7 +4,7 @@
       <h2><%= gettext("all") %> <%= gettext("competitions") %></h2>
 
       <p>
-        <%= link gettext("create_new_competition"), to: competition_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_new_competition"), to: Routes.competition_path(@conn, :new), class: "btn btn-default" %>
       </p>
       <table class="table">
         <thead>
@@ -29,9 +29,9 @@
 
                   <td class="text-right">
                     <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
-                      <%= link "Edit", to: competition_path(@conn, :edit, competition), class: "btn btn-default" %>
+                      <%= link "Edit", to: Routes.competition_path(@conn, :edit, competition), class: "btn btn-default" %>
                       <%= if has_role?(@conn, ["administrator"]) do %>
-                        <%= link "Delete", to: competition_path(@conn, :delete, competition), method: :delete, data: [confirm: gettext("are_you_sure")], class: "btn btn-danger" %>
+                        <%= link "Delete", to: Routes.competition_path(@conn, :delete, competition), method: :delete, data: [confirm: gettext("are_you_sure")], class: "btn btn-danger" %>
                       <% end %>
                     <% end %>
                   </td>
@@ -44,7 +44,7 @@
       </table>
 
       <p>
-        <%= link gettext("create_new_competition"), to: competition_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("create_new_competition"), to: Routes.competition_path(@conn, :new), class: "btn btn-default" %>
       </p>
     </div>
   </div>

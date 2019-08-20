@@ -6,10 +6,10 @@ defmodule ClubHomepage.Season do
 
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(name)
+  @cast_fields ~w(name)a
   @required_fields [:name]
 
   @doc """

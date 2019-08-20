@@ -4,12 +4,12 @@
       <h2><%= gettext("create_new_user") %></h2>
       <p><%= gettext("create_new_unregistered_user_notice") %></p>
       <%= render "form_unregistered.html", changeset: @changeset,
-                        action: unregistered_user_path(@conn, :create_unregistered),
+                        action: Routes.unregistered_user_path(@conn, :create_unregistered),
       conn: @conn %>
 
       <p><small><%= gettext("create_new_unregistered_user_email_notice") %></small></p>
 
-      <%= link gettext("all") <> " " <> gettext("users"), to: managed_user_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("users"), to: Routes.managed_user_path(@conn, :index) %>
     </div>
   </div>
 </div>

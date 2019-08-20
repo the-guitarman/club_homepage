@@ -23,7 +23,7 @@ defmodule ClubHomepage.Web.AddressController do
       {:ok, address} ->
         conn
         |> put_flash(:info, gettext("address_created_successfully"))
-        |> redirect(to: address_path(conn, :index) <> "#address-#{address.id}")
+        |> redirect(to: Routes.address_path(conn, :index) <> "#address-#{address.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -43,7 +43,7 @@ defmodule ClubHomepage.Web.AddressController do
       {:ok, address} ->
         conn
         |> put_flash(:info, gettext("address_updated_successfully"))
-        |> redirect(to: address_path(conn, :index) <> "#address-#{address.id}")
+        |> redirect(to: Routes.address_path(conn, :index) <> "#address-#{address.id}")
       {:error, changeset} ->
         render(conn, "edit.html", address: address, changeset: changeset)
     end
@@ -58,6 +58,6 @@ defmodule ClubHomepage.Web.AddressController do
 
     conn
     |> put_flash(:info, gettext("address_deleted_successfully"))
-    |> redirect(to: address_path(conn, :index))
+    |> redirect(to: Routes.address_path(conn, :index))
   end
 end

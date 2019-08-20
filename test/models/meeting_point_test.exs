@@ -23,6 +23,7 @@ defmodule ClubHomepage.MeetingPointTest do
       MeetingPoint.changeset(%MeetingPoint{}, @invalid_attrs)
       |> Repo.insert()
     refute changeset.valid?
-    assert changeset.errors[:address_id] == {"does not exist", []}
+    assert changeset.errors[:address_id] == {"does not exist", [constraint: :foreign, constraint_name: "meeting_points_address_id_fkey"]}
+    #assert changeset.errors[:address_id] == {"does not exist", [constraint: :unique, constraint_name: "match_commitments_match_id_user_id_index"]}
   end
 end

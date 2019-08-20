@@ -19,6 +19,6 @@ defmodule ClubHomepage.Web.TeamChatMessageController do
 
     conn
     |> put_flash(:info, "Team chat message deleted successfully.")
-    |> redirect(to: team_chat_message_path(conn, :index))
+    |> redirect(to: Routes.team_chat_message_path(conn, :index))
   end
 end

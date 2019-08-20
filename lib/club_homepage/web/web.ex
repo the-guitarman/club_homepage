@@ -19,7 +19,6 @@ defmodule ClubHomepage.Web do
   def model do
     quote do
       use Ecto.Schema
-      use Timex.Ecto.Timestamps
 
       import Ecto
       import Ecto.Changeset
@@ -38,7 +37,9 @@ defmodule ClubHomepage.Web do
       import Ecto
       import Ecto.Query
 
-      import ClubHomepage.Web.Router.Helpers
+      alias ClubHomepage.Web.Router.Helpers, as: Routes
+      #import ClubHomepage.Web.Router.Helpers
+
       import ClubHomepage.Web.Gettext
       import ClubHomepage.Web.Localization
 
@@ -64,7 +65,9 @@ defmodule ClubHomepage.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import ClubHomepage.Web.Router.Helpers
+      alias ClubHomepage.Web.Router.Helpers, as: Routes
+      #import ClubHomepage.Web.Router.Helpers
+
       import ClubHomepage.Web.ErrorHelpers
       import ClubHomepage.Web.Gettext
       import ClubHomepage.Web.Localization

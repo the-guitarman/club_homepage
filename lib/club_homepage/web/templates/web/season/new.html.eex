@@ -3,9 +3,9 @@
     <div class="jumbotron content-box">
       <h2><%= gettext("create_new_season") %></h2>
 
-      <%= render "form.html", changeset: @changeset, action: season_path(@conn, :create), years: @years %>
+      <%= render "form.html", changeset: @changeset, action: Routes.season_path(@conn, :create), years: @years %>
 
-      <%= link gettext("all") <> " " <> gettext("seasons"), to: season_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("seasons"), to: Routes.season_path(@conn, :index) %>
     </div>
   </div>
 </div>

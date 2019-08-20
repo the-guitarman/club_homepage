@@ -35,13 +35,13 @@ defmodule ClubHomepage.Web.SessionController do
     conn
     |> Auth.logout()
     |> put_flash(:info, gettext("logged_out_now"))
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 
   defp redirect_path(conn, redirect) do
     case is_bitstring(redirect) do
       true  -> URI.decode(redirect)
-      false -> page_path(conn, :index)
+      false -> Routes.page_path(conn, :index)
     end
   end
 end

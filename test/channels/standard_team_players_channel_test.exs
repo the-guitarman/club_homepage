@@ -10,7 +10,7 @@ defmodule ClubHomepage.StandardTeamPlayersChannelTest do
     user = insert(:user)
     team = insert(:team)
     {:ok, _, socket} =
-      socket("users_socket: #{user.id}", %{current_user: user})
+      socket("users_socket: #{user.id}", %{current_user: user}, %{})
       |> subscribe_and_join(StandardTeamPlayersChannel, "standard-team-players:#{team.id}")
     {:ok, socket: socket, current_user: user, team: team}
   end

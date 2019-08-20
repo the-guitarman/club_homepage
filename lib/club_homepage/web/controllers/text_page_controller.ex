@@ -26,7 +26,7 @@ defmodule ClubHomepage.Web.TextPageController do
       {:ok, _text_page} ->
         conn
         |> put_flash(:info, gettext("text_page_updated_successfully"))
-        |> redirect(to: text_page_path(conn, :index))
+        |> redirect(to: Routes.text_page_path(conn, :index))
       {:error, changeset} ->
         sponsor_images = get_sponsor_images(text_page)
         render(conn, "edit.html", text_page: text_page, changeset: changeset, sponsor_images: sponsor_images)

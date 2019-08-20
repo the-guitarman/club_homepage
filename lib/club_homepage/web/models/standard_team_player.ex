@@ -11,7 +11,7 @@ defmodule ClubHomepage.StandardTeamPlayer do
 
     field :standard_shirt_number, :integer
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
   @doc """
@@ -20,7 +20,7 @@ defmodule ClubHomepage.StandardTeamPlayer do
   @spec changeset( ClubHomepage.StandardTeamPlayer, Map ) :: Ecto.Changeset
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, ~w(team_id user_id standard_shirt_number))
+    |> cast(params, ~w(team_id user_id standard_shirt_number)a)
     |> validate_required([:team_id, :user_id])
     |> foreign_key_constraint(:team_id)
     |> foreign_key_constraint(:user_id)

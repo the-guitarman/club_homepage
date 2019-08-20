@@ -5,8 +5,8 @@
 
     <%= if logged_in?(@conn) && (current_user(@conn).id == @payment_list.user_id || current_user(@conn).id == @payment_list.deputy_id) do %>
     <p>
-        <%= link gettext("edit"), to: payment_list_path(@conn, :edit, @payment_list), class: "btn btn-default" %>
-        <%= link gettext("all") <> " " <> gettext("payment_lists"), to: payment_list_path(@conn, :index), class: "btn btn-default" %>
+        <%= link gettext("edit"), to: Routes.payment_list_path(@conn, :edit, @payment_list), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("payment_lists"), to: Routes.payment_list_path(@conn, :index), class: "btn btn-default" %>
     </p>
     <% end %>
 
@@ -34,7 +34,7 @@
         <%= Phoenix.View.render(ClubHomepage.Web.PaymentListDebitorView, "form.html",
               conn: @conn, 
               changeset: @changeset,
-              action: payment_list_debitor_path(@conn, :create, @payment_list),
+              action: Routes.payment_list_debitor_path(@conn, :create, @payment_list),
               user_options: @user_options, payment_list: @payment_list, form_mode: :new) %>
       </div>
     </div>
@@ -58,8 +58,8 @@
             </td>
             <td class="text-right js-sum"><%= Number.Currency.number_to_currency(debitor.number_of_units * @payment_list.price_per_piece) %></td>
             <td class="text-center">
-              <%= link raw("<span class=\"glyphicon glyphicon-pencil\"></div>"), to: payment_list_debitor_path(@conn, :edit, @payment_list, debitor), class: "btn btn-default" %>
-              <%= link raw("<span class=\"glyphicon glyphicon-trash\"></div>"), to: payment_list_debitor_path(@conn, :delete, @payment_list, debitor), method: :delete, data: [confirm: gettext("this_record_will_be_deleted") <> " " <> gettext("are_you_sure")], class: "btn btn-danger" %>
+              <%= link raw("<span class=\"glyphicon glyphicon-pencil\"></div>"), to: Routes.payment_list_debitor_path(@conn, :edit, @payment_list, debitor), class: "btn btn-default" %>
+              <%= link raw("<span class=\"glyphicon glyphicon-trash\"></div>"), to: Routes.payment_list_debitor_path(@conn, :delete, @payment_list, debitor), method: :delete, data: [confirm: gettext("this_record_will_be_deleted") <> " " <> gettext("are_you_sure")], class: "btn btn-danger" %>
             </td>
           </tr>
         <% end %>
@@ -72,8 +72,8 @@
 
     <%= if logged_in?(@conn) && (current_user(@conn).id == @payment_list.user_id || current_user(@conn).id == @payment_list.deputy_id) do %>
       <p>
-        <%= link gettext("edit"), to: payment_list_path(@conn, :edit, @payment_list), class: "btn btn-default" %>
-        <%= link gettext("all") <> " " <> gettext("payment_lists"), to: payment_list_path(@conn, :index), class: "btn btn-default" %>
+        <%= link gettext("edit"), to: Routes.payment_list_path(@conn, :edit, @payment_list), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("payment_lists"), to: Routes.payment_list_path(@conn, :index), class: "btn btn-default" %>
       </p>
     <% end %>
 

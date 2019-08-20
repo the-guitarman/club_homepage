@@ -4,9 +4,9 @@
             <h2><%= gettext("create_new_news") %></h2>
 
             <%= render "form.html", changeset: @changeset,
-                        action: news_path(@conn, :create) %>
+                        action: Routes.news_path(@conn, :create) %>
 
-                <%= link gettext("all") <> " " <> gettext("news"), to: news_path(@conn, :index), class: "btn btn-default" %>
+                <%= link gettext("all") <> " " <> gettext("news"), to: Routes.news_path(@conn, :index), class: "btn btn-default" %>
         </div>
     </div>
 </div>

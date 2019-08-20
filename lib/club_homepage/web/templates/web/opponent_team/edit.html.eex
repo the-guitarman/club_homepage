@@ -4,11 +4,11 @@
       <h2><%= gettext("edit_opponent_team") %></h2>
 
       <%= render "form.html", changeset: @changeset,
-          action: opponent_team_path(@conn, :update, @opponent_team),
+          action: Routes.opponent_team_path(@conn, :update, @opponent_team),
           address_options: @address_options
       %>
 
-      <%= link gettext("all") <> " " <> gettext("opponent_teams"), to: opponent_team_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("opponent_teams"), to: Routes.opponent_team_path(@conn, :index) %>
     </div>
   </div>
 </div>

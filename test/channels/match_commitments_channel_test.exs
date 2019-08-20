@@ -9,7 +9,8 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
   setup do
     user = insert(:user, roles: "member player")
     {:ok, _, socket} =
-      socket("user_socket: #{user.id}", %{current_user: user})
+      socket(ClubHomepage.UserSocket, "#{user.id}", %{current_user: user})
+#      socket("user_socket: #{user.id}", %{current_user: user}, %{})
       |> subscribe_and_join(MatchCommitmentsChannel, "match-commitments:#{user.id}")
     {:ok, socket: socket, current_user: user}
   end
@@ -17,7 +18,7 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
   test "push participation:yes for non player", %{socket: _socket, current_user: _current_user} do
     user = insert(:user, roles: "member")
     {:ok, _, socket} = 
-      socket("user_socket: #{user.id}", %{current_user: user})
+      socket("user_socket: #{user.id}", %{current_user: user}, %{})
       |> subscribe_and_join(MatchCommitmentsChannel, "match-commitments:#{user.id}")
 
     match = insert(:match)

@@ -29,7 +29,7 @@ defmodule ClubHomepage.Web.TeamImageController do
 
         conn
         |> put_flash(:info, gettext("team_image_created_successfully"))
-        |> redirect(to: team_images_page_path(conn, :show_images, team.slug))
+        |> redirect(to: Routes.team_images_page_path(conn, :show_images, team.slug))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -52,7 +52,7 @@ defmodule ClubHomepage.Web.TeamImageController do
 
         conn
         |> put_flash(:info, gettext("team_image_updated_successfully"))
-        |> redirect(to: team_images_page_path(conn, :show_images, team.slug))
+        |> redirect(to: Routes.team_images_page_path(conn, :show_images, team.slug))
       {:error, changeset} ->
         render(conn, "edit.html", team_image: team_image, changeset: changeset)
     end
@@ -70,7 +70,7 @@ defmodule ClubHomepage.Web.TeamImageController do
 
     conn
     |> put_flash(:info, gettext("team_image_deleted_successfully"))
-    |> redirect(to: team_images_page_path(conn, :show_images, team.slug))
+    |> redirect(to: Routes.team_images_page_path(conn, :show_images, team.slug))
   end
 
   defp get_team_select_options(conn, _) do

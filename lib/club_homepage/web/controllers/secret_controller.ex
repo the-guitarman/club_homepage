@@ -37,7 +37,7 @@ defmodule ClubHomepage.Web.SecretController do
 
         conn
         |> put_flash(:info, flash_info)
-        |> redirect(to: secret_path(conn, :show, secret))
+        |> redirect(to: Routes.secret_path(conn, :show, secret))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -52,6 +52,6 @@ defmodule ClubHomepage.Web.SecretController do
 
     conn
     |> put_flash(:info, gettext("secret_deleted_successfully"))
-    |> redirect(to: secret_path(conn, :index))
+    |> redirect(to: Routes.secret_path(conn, :index))
   end
 end

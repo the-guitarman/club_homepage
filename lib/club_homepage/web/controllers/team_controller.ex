@@ -33,7 +33,7 @@ defmodule ClubHomepage.Web.TeamController do
         PermalinkGenerator.run(changeset, :teams)
         conn
         |> put_flash(:info, gettext("team_created_successfully"))
-        |> redirect(to: team_path(conn, :index) <> "#team-#{team.id}")
+        |> redirect(to: Routes.team_path(conn, :index) <> "#team-#{team.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -42,7 +42,7 @@ defmodule ClubHomepage.Web.TeamController do
   def show(conn, %{"slug" => slug, "season" => season_name} = params) do
     season = Repo.get_by!(Season, name: season_name)
     team = Repo.get_by!(Team, slug: slug)
-    receive_and_create_new_matches(conn, season, team)
+    receive_and_create_new_matches(conn, team)
 
     start_at = to_timex_ecto_datetime(Timex.local)
 
@@ -63,7 +63,7 @@ defmodule ClubHomepage.Web.TeamController do
         [] -> current_season()
         [last_team_season | _] -> last_team_season
       end
-    redirect(conn, to: team_page_with_season_path(conn, :show, slug, season.name))
+    redirect(conn, to: Routes.team_page_with_season_path(conn, :show, slug, season.name))
   end
 
   def show_images(conn, %{"slug" => slug}) do
@@ -125,7 +125,7 @@ defmodule ClubHomepage.Web.TeamController do
         PermalinkGenerator.run(changeset, :teams)
         conn
         |> put_flash(:info, gettext("team_updated_successfully"))
-        |> redirect(to: team_path(conn, :index) <> "#team-#{team.id}")
+        |> redirect(to: Routes.team_path(conn, :index) <> "#team-#{team.id}")
       {:error, changeset} ->
         render(conn, "edit.html", team: team, changeset: changeset)
     end
@@ -140,7 +140,7 @@ defmodule ClubHomepage.Web.TeamController do
 
     conn
     |> put_flash(:info, gettext("team_deleted_successfully"))
-    |> redirect(to: team_path(conn, :index))
+    |> redirect(to: Routes.team_path(conn, :index))
   end
 
   defp get_competition_select_options(conn, _) do
@@ -162,12 +162,14 @@ defmodule ClubHomepage.Web.TeamController do
     end
   end
 
-  defp receive_and_create_new_matches(conn, season, team) do
+  defp receive_and_create_new_matches(conn, team) do
     conn
     |> receive_new_matches(team)
+    |> IO.inspect
     |> new_matches_availabitity_check()
+    |> find_or_create_season()
     |> new_matches_to_json()
-    |> validate_new_matches_json(season, team)
+    |> validate_new_matches_json(team)
     |> create_new_matches()
   end
 
@@ -182,17 +184,32 @@ defmodule ClubHomepage.Web.TeamController do
   defp new_matches_availabitity_check(%{matches: []}), do: nil
   defp new_matches_availabitity_check(result), do: result
 
+  defp find_or_create_season(nil), do: nil
+  defp find_or_create_season(%{season: season_name} = result) do 
+    IO.inspect result
+    season = 
+      case Repo.get_by(Season, name: season_name) do
+        nil ->
+          {:ok, season} = 
+            Season.changeset(%Season{}, %{name: season_name})
+            |> Repo.insert()
+          season
+        season -> season
+      end
+    {result, season}
+  end
+
   defp new_matches_to_json(nil), do: nil
-  defp new_matches_to_json(result) do
+  defp new_matches_to_json({result, season}) do
     case Poison.encode(result) do
-      {:ok, json} -> json
+      {:ok, json} -> {json, season}
       _ -> nil
     end
   end
 
-  defp validate_new_matches_json(nil, _, _), do: nil
-  defp validate_new_matches_json(json, season, team) do
-    changeset = ClubHomepage.Web.JsonMatchesValidator.changeset([:season_id, :team_id, "json"], "json", %{"season_id" => season.id, "team_id" => team.id, "json" => json})
+  defp validate_new_matches_json(nil, _), do: nil
+  defp validate_new_matches_json({json, season}, team) do
+    changeset = ClubHomepage.Web.JsonMatchesValidator.changeset([:season_id, :team_id, :json], "json", %{"season_id" => season.id, "team_id" => team.id, "json" => json})
     case changeset.valid? do
       true -> changeset
       _ -> nil

@@ -5,7 +5,7 @@
 
       <%= render "form_restricted.html",
                 changeset: @changeset, conn: @conn,
-                action: managed_user_edit_restricted_path(@conn, :update_restricted, @user.id),
+                action: Routes.managed_user_edit_restricted_path(@conn, :update_restricted, @user.id),
                 user: @user, current_user: @current_user,
                 editable_user_roles: @editable_user_roles,
                 current_user_roles: @current_user_roles %>

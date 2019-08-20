@@ -36,6 +36,6 @@ defmodule ClubHomepage.MatchCommitmentTest do
 
 
     {:error, changeset} = Repo.insert(changeset)
-    assert changeset.errors[:user_id] == {"has already been taken", []}
+    assert changeset.errors[:user_id] == {"has already been taken", [constraint: :unique, constraint_name: "match_commitments_match_id_user_id_index"]}
   end
 end

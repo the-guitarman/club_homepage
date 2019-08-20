@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
 
     <%= if asset_path?("/favicon.ico") do %>
       <link rel="shortcut icon" href="/favicon.ico">
@@ -48,6 +48,6 @@
     </footer>
 
     <script>window.userToken = "<%= assigns[:user_token] %>"</script>
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

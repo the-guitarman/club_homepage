@@ -4,7 +4,7 @@
       <h2><%= gettext("edit_text_page") %></h2>
 
       <%= render "form.html", changeset: @changeset,
-                              action: text_page_path(@conn, :update, @text_page) %>
+                              action: Routes.text_page_path(@conn, :update, @text_page) %>
       <%= if Enum.count(@sponsor_images) > 0 do %>
         <div class="row">
           <div class="col-xs-12">
@@ -27,8 +27,8 @@
         </div>
       <% end %>
 
-      <%= link gettext("all") <> " " <> gettext("text_pages"), to: text_page_path(@conn, :index) %>
-      <%= link gettext("all") <> " " <> gettext("sponsor_images"), to: sponsor_image_path(@conn, :index), class: "btn btn-default" %>
+      <%= link gettext("all") <> " " <> gettext("text_pages"), to: Routes.text_page_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("sponsor_images"), to: Routes.sponsor_image_path(@conn, :index), class: "btn btn-default" %>
     </div>
   </div>
 </div>

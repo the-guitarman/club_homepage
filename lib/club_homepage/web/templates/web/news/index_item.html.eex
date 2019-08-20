@@ -21,9 +21,9 @@
     </div>
     <%= if has_role?(@conn, "news-editor") do %>
       <div class="pull-right">
-        <%#= link "Show", to: news_path(@conn, :show, @news), class: "btn btn-default" %>
-        <%= link "Edit", to: news_path(@conn, :edit, @news), class: "btn btn-default" %>
-        <%= link "Delete", to: news_path(@conn, :delete, @news), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+        <%#= link "Show", to: Routes.news_path(@conn, :show, @news), class: "btn btn-default" %>
+        <%= link "Edit", to: Routes.news_path(@conn, :edit, @news), class: "btn btn-default" %>
+        <%= link "Delete", to: Routes.news_path(@conn, :delete, @news), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
       </div>
     <% end %>
   </div>

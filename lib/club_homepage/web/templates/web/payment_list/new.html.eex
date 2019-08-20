@@ -4,10 +4,10 @@
       <h2><%= gettext("create_payment_list") %></h2>
 
       <%= render "form.html", changeset: @changeset,
-      action: payment_list_path(@conn, :create),
+      action: Routes.payment_list_path(@conn, :create),
       payment_list: nil, user_options: @user_options, deputy_options: @deputy_options, form_mode: @form_mode %>
 
-      <%= link gettext("all") <> " " <> gettext("payment_lists"), to: payment_list_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("payment_lists"), to: Routes.payment_list_path(@conn, :index) %>
     </div>
   </div>
 </div>

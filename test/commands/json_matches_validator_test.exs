@@ -5,7 +5,7 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
 
   alias ClubHomepage.Web.JsonMatchesValidator
 
-  @params %{"json" => "{\r\n  \"team_name\": \"Name meiner Vereinsmannschaft\",\r\n  \"matches\": [\r\n    {\r\n      \"competition\": \"League 1\",\r\n      \"start_at\": \"2016-11-20T14:00:00+01:00\",\r\n      \"home\": \"Name der gegnerischen Mannschaft 1\",\r\n      \"guest\": \"Name meiner Vereinsmannschaft\"\r\n    },\r\n    {\r\n      \"competition\": \"Super Cup\",\r\n      \"start_at\": \"2016-11-27T14:00:00+01:00\",\r\n      \"home\": \"Name meiner Vereinsmannschaft\",\r\n      \"guest\": \"Name def gegnerischen Mannschaft 2\"\r\n    }\r\n  ]\r\n}"}
+  @params %{"json" => "{\r\n  \"season\": \"2015-2016\",\r\n  \"team_name\": \"Name meiner Vereinsmannschaft\",\r\n  \"matches\": [\r\n    {\r\n      \"competition\": \"League 1\",\r\n      \"start_at\": \"2016-11-20T14:00:00+01:00\",\r\n      \"home\": \"Name der gegnerischen Mannschaft 1\",\r\n      \"guest\": \"Name meiner Vereinsmannschaft\"\r\n    },\r\n    {\r\n      \"competition\": \"Super Cup\",\r\n      \"start_at\": \"2016-11-27T14:00:00+01:00\",\r\n      \"home\": \"Name meiner Vereinsmannschaft\",\r\n      \"guest\": \"Name def gegnerischen Mannschaft 2\"\r\n    }\r\n  ]\r\n}"}
   #@invalid_params %{"json" => "{\r\n  \"team_name\": \"Name meiner Vereinsmannschaft\",\r\n  \"matches\": [\r\n    {\r\n      \"competition\": \"League 1\",\r\n      \"start_at\": \"Sonntag, 13.03.2016 - 12:00 Uhr\",\r\n      \"home\": \"Name der gegnerischen Mannschaft 1\",\r\n      \"guest\": \"Name meiner Vereinsmannschaft\"\r\n    },\r\n    {\r\n      \"competition\": \"Super Cup\",\r\n      \"start_at\": \"Sonntag, 03.04.2016 - 14:00 Uhr\",\r\n      \"home\": \"Name meiner Vereinsmannschaft\",\r\n      \"guest\": \"Name def gegnerischen Mannschaft 2\"\r\n    }\r\n  ]\r\n}"}
 
   test "get an empty changeset" do
@@ -34,6 +34,16 @@ defmodule ClubHomepage.JsonMatchesValidatorTest do
     assert changeset.changes == params
     assert changeset.params == params
     assert changeset.errors == [json: {"#: Required property team_name was not present.", []}]
+  end
+
+  test "get a changeset for json with season is missing" do
+    params = delete_key_from_json(@params, "season")
+    changeset = JsonMatchesValidator.changeset([:json], :json, params)
+    assert changeset.action == "errors"
+    assert changeset.valid? == false
+    assert changeset.changes == params
+    assert changeset.params == params
+    assert changeset.errors == [json: {"#: Required property season was not present.", []}]
   end
 
   test "get a changeset for json with matches is missing" do

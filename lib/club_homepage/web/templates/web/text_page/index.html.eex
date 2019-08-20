@@ -17,7 +17,7 @@
               <td><a href="<%= text_page.key %>" target="_blank"><%= text_page.key %></a></td>
 
               <td class="text-right">
-                <%= link "Edit", to: text_page_path(@conn, :edit, text_page), class: "btn btn-default" %>
+                <%= link "Edit", to: Routes.text_page_path(@conn, :edit, text_page), class: "btn btn-default" %>
               </td>
             </tr>
         <% end %>

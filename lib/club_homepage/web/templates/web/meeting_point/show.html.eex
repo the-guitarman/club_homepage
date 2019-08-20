@@ -9,6 +9,6 @@
 
 </ul>
 
-<%= link gettext("edit"), to: meeting_point_path(@conn, :edit, @meeting_point), class: "btn btn-default" %>
-<%= link gettext("delete"), to: meeting_point_path(@conn, :delete, @meeting_point), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
-<%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index), class: "btn btn-default" %>
+<%= link gettext("edit"), to: Routes.meeting_point_path(@conn, :edit, @meeting_point), class: "btn btn-default" %>
+<%= link gettext("delete"), to: Routes.meeting_point_path(@conn, :delete, @meeting_point), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+<%= link gettext("all") <> " " <> gettext("meeting_points"), to: Routes.meeting_point_path(@conn, :index), class: "btn btn-default" %>

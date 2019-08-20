@@ -44,6 +44,9 @@ end
 config :phoenix, :filter_parameters, 
   ["password", "password_hash", "secret"]
 
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
+
 config :geocoder, Geocoder.Worker, [size: 4, max_overflow: 2]
 config :geocoder, Geocoder.Store, [precision: 4]
 

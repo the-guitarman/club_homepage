@@ -23,15 +23,15 @@
             <td><%= team_image.description %></td>
 
             <td class="text-right">
-              <%= link gettext("edit"), to: team_image_path(@conn, :edit, team_image), class: "btn btn-default" %>
-              <%= link gettext("delete"), to: team_image_path(@conn, :delete, team_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
+              <%= link gettext("edit"), to: Routes.team_image_path(@conn, :edit, team_image), class: "btn btn-default" %>
+              <%= link gettext("delete"), to: Routes.team_image_path(@conn, :delete, team_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
             </td>
           </tr>
       <% end %>
         </tbody>
       </table>
 
-      <%= link gettext("create_new_team_image"), to: team_image_path(@conn, :new), class: "btn btn-default" %>
+      <%= link gettext("create_new_team_image"), to: Routes.team_image_path(@conn, :new), class: "btn btn-default" %>
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@ defmodule ClubHomepage.SponsorImage do
     field :name, :string
     field :attachment, ClubHomepage.Web.SponsorUploader.Type
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
   @doc """

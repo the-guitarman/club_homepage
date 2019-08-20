@@ -5,9 +5,9 @@
 
       <%= if has_role?(@conn, ["user-editor"]) do %>
         <p>
-          <%= link gettext("create_new_user"), to: unregistered_user_path(@conn, :new_unregistered), class: "btn btn-default" %>
+          <%= link gettext("create_new_user"), to: Routes.unregistered_user_path(@conn, :new_unregistered), class: "btn btn-default" %>
           <%= if has_role?(@conn, "administrator") do %>
-            <%= link gettext("create_new_secret"), to: secret_path(@conn, :new), class: "btn btn-default" %>
+            <%= link gettext("create_new_secret"), to: Routes.secret_path(@conn, :new), class: "btn btn-default" %>
           <% end %>
         </p>
       <% end %>
@@ -34,7 +34,7 @@
             <td>
               <%= if user.login do %>
                 <%= if has_role?(@conn, ["user-editor"]) do %>
-                  <%= link user.login, to: managed_user_path(@conn, :show, user) %>
+                  <%= link user.login, to: Routes.managed_user_path(@conn, :show, user) %>
                 <% else %>
                   <%= user.login %>
                 <% end %>
@@ -54,7 +54,7 @@
 
             <%= if has_role?(@conn, ["user-editor"]) do %>
               <td class="text-right">
-                <%= link gettext("edit"), to: managed_user_path(@conn, :edit, user), class: "btn btn-default" %>
+                <%= link gettext("edit"), to: Routes.managed_user_path(@conn, :edit, user), class: "btn btn-default" %>
               </td>
             <% end %>
           </tr>
@@ -64,9 +64,9 @@
 
       <%= if has_role?(@conn, ["user-editor"]) do %>
         <p>
-          <%= link gettext("create_new_user"), to: unregistered_user_path(@conn, :new_unregistered), class: "btn btn-default" %>
+          <%= link gettext("create_new_user"), to: Routes.unregistered_user_path(@conn, :new_unregistered), class: "btn btn-default" %>
           <%= if has_role?(@conn, "administrator") do %>
-            <%= link gettext("create_new_secret"), to: secret_path(@conn, :new), class: "btn btn-default" %>
+            <%= link gettext("create_new_secret"), to: Routes.secret_path(@conn, :new), class: "btn btn-default" %>
           <% end %>
         </p>
       <% end %>

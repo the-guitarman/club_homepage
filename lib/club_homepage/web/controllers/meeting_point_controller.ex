@@ -24,7 +24,7 @@ defmodule ClubHomepage.Web.MeetingPointController do
       {:ok, meeting_point} ->
         conn
         |> put_flash(:info, gettext("meeting_point_created_successfully"))
-        |> redirect(to: meeting_point_path(conn, :index) <> "#meeting-point-#{meeting_point.id}")
+        |> redirect(to: Routes.meeting_point_path(conn, :index) <> "#meeting-point-#{meeting_point.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -44,7 +44,7 @@ defmodule ClubHomepage.Web.MeetingPointController do
       {:ok, meeting_point} ->
         conn
         |> put_flash(:info, gettext("meeting_point_updated_successfully"))
-        |> redirect(to: meeting_point_path(conn, :index) <> "#meeting-point-#{meeting_point.id}")
+        |> redirect(to: Routes.meeting_point_path(conn, :index) <> "#meeting-point-#{meeting_point.id}")
       {:error, changeset} ->
         render(conn, "edit.html", meeting_point: meeting_point, changeset: changeset)
     end
@@ -59,7 +59,7 @@ defmodule ClubHomepage.Web.MeetingPointController do
 
     conn
     |> put_flash(:info, gettext("meeting_point_deleted_successfully"))
-    |> redirect(to: meeting_point_path(conn, :index))
+    |> redirect(to: Routes.meeting_point_path(conn, :index))
   end
 
   defp get_address_select_options(conn, _) do

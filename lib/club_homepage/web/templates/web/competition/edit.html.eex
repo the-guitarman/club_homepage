@@ -4,10 +4,10 @@
       <h2><%= gettext("edit_competition") %></h2>
 
       <%= render "form.html", changeset: @changeset,
-                 action: competition_path(@conn, :update, @competition)
+                 action: Routes.competition_path(@conn, :update, @competition)
       %>
 
-      <%= link gettext("all") <> " " <> gettext("competitions"), to: competition_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("competitions"), to: Routes.competition_path(@conn, :index) %>
     </div>
   </div>
 </div>

@@ -9,10 +9,10 @@ defmodule ClubHomepage.MeetingPoint do
 
     field :name, :string
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(address_id name)
+  @cast_fields ~w(address_id name)a
   @required_fields [:address_id]
 
   @doc """

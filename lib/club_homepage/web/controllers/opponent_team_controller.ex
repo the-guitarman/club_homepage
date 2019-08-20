@@ -25,7 +25,7 @@ defmodule ClubHomepage.Web.OpponentTeamController do
       {:ok, opponent_team} ->
         conn
         |> put_flash(:info, gettext("opponent_team_created_successfully"))
-        |> redirect(to: opponent_team_path(conn, :index) <> "#opponent-team-#{opponent_team.id}")
+        |> redirect(to: Routes.opponent_team_path(conn, :index) <> "#opponent-team-#{opponent_team.id}")
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -45,7 +45,7 @@ defmodule ClubHomepage.Web.OpponentTeamController do
       {:ok, opponent_team} ->
         conn
         |> put_flash(:info, gettext("opponent_team_updated_successfully"))
-        |> redirect(to: opponent_team_path(conn, :index) <> "#opponent-team-#{opponent_team.id}")
+        |> redirect(to: Routes.opponent_team_path(conn, :index) <> "#opponent-team-#{opponent_team.id}")
       {:error, changeset} ->
         render(conn, "edit.html", opponent_team: opponent_team, changeset: changeset)
     end
@@ -60,7 +60,7 @@ defmodule ClubHomepage.Web.OpponentTeamController do
 
     conn
     |> put_flash(:info, gettext("opponent_team_deleted_successfully"))
-    |> redirect(to: opponent_team_path(conn, :index))
+    |> redirect(to: Routes.opponent_team_path(conn, :index))
   end
 
   defp get_address_select_options(conn, _) do

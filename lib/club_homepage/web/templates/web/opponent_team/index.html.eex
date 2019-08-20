@@ -4,8 +4,8 @@
       <h2><%= gettext("all") <> " " <> gettext("opponent_teams") %></h2>
 
       <p>
-        <%= link gettext("create_new_opponent_team"), to: opponent_team_path(@conn, :new), class: "btn btn-default" %>
-        <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default" %>
+        <%= link gettext("create_new_opponent_team"), to: Routes.opponent_team_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: Routes.address_path(@conn, :index), class: "btn btn-default" %>
       </p>
 
       <table class="table">
@@ -24,8 +24,8 @@
             <td><%= full_address(opponent_team) %></td>
 
             <td class="text-right">
-              <%= link gettext("edit"), to: opponent_team_path(@conn, :edit, opponent_team), class: "btn btn-default" %>
-              <%#= link gettext("delete"), to: opponent_team_path(@conn, :delete, opponent_team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+              <%= link gettext("edit"), to: Routes.opponent_team_path(@conn, :edit, opponent_team), class: "btn btn-default" %>
+              <%#= link gettext("delete"), to: Routes.opponent_team_path(@conn, :delete, opponent_team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
             </td>
           </tr>
       <% end %>
@@ -33,8 +33,8 @@
       </table>
 
       <p>
-        <%= link gettext("create_new_opponent_team"), to: opponent_team_path(@conn, :new), class: "btn btn-default" %>
-        <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default" %>
+        <%= link gettext("create_new_opponent_team"), to: Routes.opponent_team_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: Routes.address_path(@conn, :index), class: "btn btn-default" %>
       </p>
     </div>
   </div>

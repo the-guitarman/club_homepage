@@ -4,8 +4,8 @@
       <h2><%= gettext("all") <> " " <> gettext("meeting_points") %></h2>
 
       <p>
-        <%= link gettext("create_new_meeting_point"), to: meeting_point_path(@conn, :new), class: "btn btn-default" %>
-        <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default" %>
+        <%= link gettext("create_new_meeting_point"), to: Routes.meeting_point_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: Routes.address_path(@conn, :index), class: "btn btn-default" %>
       </p>
       
       <table class="table">
@@ -23,7 +23,7 @@
             </td>
 
             <td class="text-ht">
-              <%= link gettext("edit"), to: meeting_point_path(@conn, :edit, meeting_point), class: "btn btn-default" %>
+              <%= link gettext("edit"), to: Routes.meeting_point_path(@conn, :edit, meeting_point), class: "btn btn-default" %>
             </td>
           </tr>
       <% end %>
@@ -31,8 +31,8 @@
       </table>
 
       <p>
-        <%= link gettext("create_new_meeting_point"), to: meeting_point_path(@conn, :new), class: "btn btn-default" %>
-        <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index), class: "btn btn-default" %>
+        <%= link gettext("create_new_meeting_point"), to: Routes.meeting_point_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: Routes.address_path(@conn, :index), class: "btn btn-default" %>
       </p>
     </div>
   </div>

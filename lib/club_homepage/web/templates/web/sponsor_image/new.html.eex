@@ -4,9 +4,9 @@
       <h2><%= gettext("create_new_sponsor_image") %></h2>
 
       <%= render "form.html", changeset: @changeset,
-                              action: sponsor_image_path(@conn, :create) %>
+                              action: Routes.sponsor_image_path(@conn, :create) %>
 
-      <%= link gettext("all") <> " " <> gettext("sponsor_images"), to: sponsor_image_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("sponsor_images"), to: Routes.sponsor_image_path(@conn, :index) %>
     </div>
   </div>
 </div>

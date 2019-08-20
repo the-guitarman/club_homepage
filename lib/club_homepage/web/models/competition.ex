@@ -10,10 +10,10 @@ defmodule ClubHomepage.Competition do
     has_many :teams, ClubHomepage.Team#, on_delete: :delete_all
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(name matches_need_decition)
+  @cast_fields ~w(name matches_need_decition)a
   @required_fields [:name, :matches_need_decition]
 
   @doc """

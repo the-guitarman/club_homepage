@@ -23,7 +23,7 @@ defmodule ClubHomepage.Web.PermalinkController do
       {:ok, _permalink} ->
         conn
         |> put_flash(:info, gettext("permalink_created_successfully"))
-        |> redirect(to: permalink_path(conn, :index))
+        |> redirect(to: Routes.permalink_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -48,7 +48,7 @@ defmodule ClubHomepage.Web.PermalinkController do
       {:ok, permalink} ->
         conn
         |> put_flash(:info, gettext("permalink_updated_successfully"))
-        |> redirect(to: permalink_path(conn, :show, permalink))
+        |> redirect(to: Routes.permalink_path(conn, :show, permalink))
       {:error, changeset} ->
         render(conn, "edit.html", permalink: permalink, changeset: changeset)
     end
@@ -63,6 +63,6 @@ defmodule ClubHomepage.Web.PermalinkController do
 
     conn
     |> put_flash(:info, gettext("permalink_deleted_successfully"))
-    |> redirect(to: permalink_path(conn, :index))
+    |> redirect(to: Routes.permalink_path(conn, :index))
   end
 end

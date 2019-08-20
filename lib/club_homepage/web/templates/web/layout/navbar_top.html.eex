@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<%= page_path(@conn, :index) %>">
+      <a class="navbar-brand" href="<%= Routes.page_path(@conn, :index) %>">
         <%= if asset_path?("/images/logo_navbar_20x20.png") do %>
           <img alt="" src="<%= templateable_asset_path("/images/logo_navbar_20x20.png") %>" />
         <% else %>
@@ -20,13 +20,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="<%= current_link(@conn, ClubHomepage.Web.PageController, :about_us) %>">
-          <%= link gettext("about_us"), to: page_path(@conn, :about_us) %>
+          <%= link gettext("about_us"), to: Routes.page_path(@conn, :about_us) %>
         </li>
         <li class="<%= current_link(@conn, ClubHomepage.Web.PageController, :chronicle) %>">
-          <%= link gettext("chronicle"), to: page_path(@conn, :chronicle) %>
+          <%= link gettext("chronicle"), to: Routes.page_path(@conn, :chronicle) %>
         </li>
         <li class="<%= current_link(@conn, ClubHomepage.Web.PageController, :sponsors) %>">
-          <%= link gettext("sponsors"), to: page_path(@conn, :sponsors) %>
+          <%= link gettext("sponsors"), to: Routes.page_path(@conn, :sponsors) %>
         </li>
       </ul>
 
@@ -64,10 +64,10 @@
             <ul class="dropdown-menu">
               <li class="<%= current_link(@conn, ClubHomepage.Web.NewsController, [:index, :new]) %>">
                 <%= unless has_role?(@conn, ["user-editor"]) do %>
-                <%= link gettext("settings"), to: managed_user_edit_restricted_path(@conn, :edit_restricted, @current_user.id) %>
+                <%= link gettext("settings"), to: Routes.managed_user_edit_restricted_path(@conn, :edit_restricted, @current_user.id) %>
                 <% else %>
-                  <%= link gettext("settings"), to: managed_user_path(@conn, :edit, @current_user) %>
-                <% end %>
+                <%= link gettext("settings"), to: Routes.managed_user_path(@conn, :edit, @current_user) %>
+        <% end %>
               </li>
             </ul>
           </li>
@@ -77,74 +77,74 @@
               <%= if has_role?(@conn, ["text-page-editor", "news-editor"]) do %>
                 <%= if has_role?(@conn, "news-editor") do %>
                   <li class="<%= current_link(@conn, ClubHomepage.Web.NewsController, [:index, :new]) %>">
-                    <%= link gettext("news"), to: news_path(@conn, :index) %>
+                    <%= link gettext("news"), to: Routes.news_path(@conn, :index) %>
                   </li>
                 <% end %>
                 <%= if has_role?(@conn, "text-page-editor") do %>
                   <li class="<%= current_link(@conn, ClubHomepage.PagesController, [:chronicle, :contact, :registration_information, :sponsors, :about_us]) %>">
-                    <%= link gettext("text_pages"), to: text_page_path(@conn, :index) %>
+                    <%= link gettext("text_pages"), to: Routes.text_page_path(@conn, :index) %>
                   </li>
                 <% end %>
                 <li role="separator" class="divider"></li>
               <% end %>
               <%= if has_role?(@conn, "user-editor") do %>
                 <li class="<%= current_link(@conn, ClubHomepage.Web.UserController, :new_unregistered) %>">
-                  <%= link gettext("members"), to: managed_user_path(@conn, :index) %>
+                  <%= link gettext("members"), to: Routes.managed_user_path(@conn, :index) %>
                 </li>
                 <li role="separator" class="divider"></li>
               <% end %>
               <%= if has_role?(@conn, "team-editor") do %>
                 <li class="<%= current_link(@conn, ClubHomepage.Web.TeamController, [:index, :show, :new, :create, :edit, :update]) %>">
-                  <%= link gettext("teams"), to: team_path(@conn, :index) %>
+                  <%= link gettext("teams"), to: Routes.team_path(@conn, :index) %>
                 </li>
               <% end %>
               <!--
               <%#= if has_role?(@conn, "match-editor") do %>
                 <li class="<%#= current_link(@conn, ClubHomepage.Web.MatchController, [:index, :show, :new, :create, :edit, :update]) %>">
-                  <%#= link gettext("matches"), to: match_path(@conn, :index) %>
-                </li>
-              <%# end %>
-              -->
+                   <%#= link gettext("matches"), to: Routes.match_path(@conn, :index) %>
+                   </li>
+                   <%# end %>
+                 -->
               <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
                 <li role="separator" class="divider"></li>
               <% end %>
               <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
                 <li class="<%= current_link(@conn, ClubHomepage.Web.OpponentTeamController, [:index, :show, :new, :create, :edit, :update]) %>">
-                  <%= link gettext("all_opponent_teams"), to: opponent_team_path(@conn, :index) %>
+                  <%= link gettext("all_opponent_teams"), to: Routes.opponent_team_path(@conn, :index) %>
                 </li>
               <% end %>
               <%= if has_role?(@conn, "match-editor") do %>
                 <li class="<%= current_link(@conn, ClubHomepage.Web.SeasonController, [:index, :show, :new, :create, :edit, :update]) %>">
-                  <%= link gettext("all") <> " " <> gettext("seasons"), to: season_path(@conn, :index) %>
+                  <%= link gettext("all") <> " " <> gettext("seasons"), to: Routes.season_path(@conn, :index) %>
                 </li>
               <% end %>
               <%= if has_role?(@conn, "match-editor") do %>
                 <li class="<%= current_link(@conn, ClubHomepage.Web.MeetingPointController, [:index, :show, :new, :create, :edit, :update]) %>">
-                  <%= link gettext("all") <> " " <> gettext("meeting_points"), to: meeting_point_path(@conn, :index) %>
+                  <%= link gettext("all") <> " " <> gettext("meeting_points"), to: Routes.meeting_point_path(@conn, :index) %>
                 </li>
               <% end %>
               <%= if has_role?(@conn, ["match-editor", "team-editor"]) do %>
                 <li class="<%= current_link(@conn, ClubHomepage.Web.CompetitionController, [:index, :show, :new, :create, :edit, :update]) %>">
-                  <%= link gettext("all") <> " " <> gettext("competitions"), to: competition_path(@conn, :index) %>
+                  <%= link gettext("all") <> " " <> gettext("competitions"), to: Routes.competition_path(@conn, :index) %>
                 </li>
               <% end %>
               <%= if has_role?(@conn, ["administrator"]) do %>
                 <li class="<%= current_link(@conn, ClubHomepage.TeamChatMessagesController, [:index]) %>">
-                  <%= link gettext("all") <> " " <> gettext("team_chat_messages"), to: team_chat_message_path(@conn, :index) %>
+                  <%= link gettext("all") <> " " <> gettext("team_chat_messages"), to: Routes.team_chat_message_path(@conn, :index) %>
                 </li>
                 <li class="<%= current_link(@conn, ClubHomepage.Web.PaymentListController, [:index]) %>">
-                  <%= link gettext("all") <> " " <> gettext("payment_lists"), to: payment_list_path(@conn, :index) %>
+                  <%= link gettext("all") <> " " <> gettext("payment_lists"), to: Routes.payment_list_path(@conn, :index) %>
                 </li>
               <% end %>
             </ul>
           </li>
-          <li><%= link gettext("logout"), to: session_path(@conn, :delete), method: "delete", class: "navbar-text" %></li>
+          <li><%= link gettext("logout"), to: Routes.session_path(@conn, :delete), method: "delete", class: "navbar-text" %></li>
         <% else %>
           <li class="<%= current_link(@conn, ClubHomepage.Web.UserController, :new) %>">
-            <%= link gettext("sign_up"), to: user_path(@conn, :new) %>
+            <%= link gettext("sign_up"), to: Routes.user_path(@conn, :new) %>
           </li>
           <li class="<%= current_link(@conn, ClubHomepage.Web.SessionController, :new) %>">
-            <%= link gettext("log_in"), to: session_path(@conn, :new) %>
+            <%= link gettext("log_in"), to: Routes.session_path(@conn, :new) %>
           </li>
         <% end %>
       </ul>

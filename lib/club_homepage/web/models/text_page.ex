@@ -7,7 +7,7 @@ defmodule ClubHomepage.TextPage do
     field :key, :string
     field :text, :string
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
   @cast_fields [:key, :text]

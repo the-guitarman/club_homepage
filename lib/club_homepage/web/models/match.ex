@@ -10,14 +10,14 @@ defmodule ClubHomepage.Match do
   import ClubHomepage.Extension.Common, only: [failure_reasons: 0]
 
   schema "matches" do
-    field :start_at, Timex.Ecto.DateTime
+    field :start_at, :utc_datetime
     field :home_match, :boolean, default: false
     field :team_goals, :integer
     field :opponent_team_goals, :integer
     field :failure_reason, :string
     field :description, :string
     field :match_events, :string, default: "[]"
-    field :meeting_point_at, Timex.Ecto.DateTime
+    field :meeting_point_at, :utc_datetime
     field :uid, :string
     field :fussball_de_match_id, :string
 
@@ -34,10 +34,10 @@ defmodule ClubHomepage.Match do
     belongs_to :meeting_point, ClubHomepage.MeetingPoint
     has_many :match_commitments, MatchCommitment
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(parent_id competition_id season_id team_id opponent_team_id start_at home_match meeting_point_id team_goals opponent_team_goals failure_reason description match_events meeting_point_at json_creation fussball_de_match_id)
+  @cast_fields ~w(parent_id competition_id season_id team_id opponent_team_id start_at home_match meeting_point_id team_goals opponent_team_goals failure_reason description match_events meeting_point_at json_creation fussball_de_match_id)a
   @required_fields [:competition_id, :season_id, :team_id, :opponent_team_id, :start_at, :home_match]
 
   @doc """ 

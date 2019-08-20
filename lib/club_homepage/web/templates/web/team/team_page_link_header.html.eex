@@ -3,7 +3,7 @@
     <%= render("team_page_link_header_item.html", conn: @conn, link: team_with_season_path(@conn, @team), tab: "matches", active_tab: @active_tab, gettext_key: "matches") %>
 
     <%= if (@team_images_count > 0 || has_role?(@conn, ["match-editor"])) && get_config(:show_team_images) do %>
-      <%= render("team_page_link_header_item.html", conn: @conn, link: team_images_page_path(@conn, :show_images, @team.slug), tab: "team_images", active_tab: @active_tab, gettext_key: "team_images") %>
+      <%= render("team_page_link_header_item.html", conn: @conn, link: Routes.team_images_page_path(@conn, :show_images, @team.slug), tab: "team_images", active_tab: @active_tab, gettext_key: "team_images") %>
     <% end %>
 
     <%= if logged_in?(@conn) && get_config(:show_team_chat) do %>
@@ -11,13 +11,13 @@
       <%= if @active_tab === "team_chat" do %>
         <a href="#"><%= gettext("team_chat") %> <%= render "new_team_chat_messages_badge.html" %></a>
       <% else %>
-        <%= link raw(gettext("team_chat") <> " " <> render_to_string(ClubHomepage.Web.TeamView, "new_team_chat_messages_badge.html", conn: @conn)), to: team_chat_page_path(@conn, :show_chat, @team) %>
+        <%= link raw(gettext("team_chat") <> " " <> render_to_string(ClubHomepage.Web.TeamView, "new_team_chat_messages_badge.html", conn: @conn)), to: Routes.team_chat_page_path(@conn, :show_chat, @team) %>
       <% end %>
       </li>
     <% end %>
 
     <%= if has_role?(@conn, ["team-editor"]) && get_config(:show_team_standard_players) do %>
-      <%= render("team_page_link_header_item.html", conn: @conn, link: team_standard_players_path(@conn, :edit_standard_players, @team.slug), tab: "team_standard_players", active_tab: @active_tab, gettext_key: "standard_team_players") %>
+      <%= render("team_page_link_header_item.html", conn: @conn, link: Routes.team_standard_players_path(@conn, :edit_standard_players, @team.slug), tab: "team_standard_players", active_tab: @active_tab, gettext_key: "standard_team_players") %>
     <% end %>
   </ul>
 <% end %>

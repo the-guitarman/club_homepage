@@ -5,7 +5,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateSeason do
     create table(:seasons) do
       add :name, :string
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
     create unique_index(:seasons, [:name])

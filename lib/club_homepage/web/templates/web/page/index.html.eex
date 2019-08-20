@@ -16,7 +16,7 @@
                   raw(safe_to_string(datetime) <> safe_to_string(tag(:br)) <> news.subject) 
                 end
               %>
-              <%= link link_text, to: news_path(@conn, :index) <> "#news-#{news.id}", class: "list-group-item" %>
+              <%= link link_text, to: Routes.news_path(@conn, :index) <> "#news-#{news.id}", class: "list-group-item" %>
             <% end %>
           </div>
         <% else %>
@@ -62,7 +62,7 @@
               <h2><%= gettext("next_matches") %></h2>
               <div class="list-group">
                 <%= for match <- @next_matches do %>
-                  <a class="list-group-item" href="<%= match_path(@conn, :show, match) %>">
+                  <a class="list-group-item" href="<%= Routes.match_path(@conn, :show, match) %>">
                     <%= render("match_row.html", match: match) %>
                   </a>
                 <% end %>
@@ -79,7 +79,7 @@
               <h2><%= gettext("latest_match_results") %></h2>
               <div class="list-group">
                 <%= for match <- @last_matches do %>
-                  <a class="list-group-item" href="<%= match_path(@conn, :show, match) %>">
+                  <a class="list-group-item" href="<%= Routes.match_path(@conn, :show, match) %>">
                     <%= render("match_row.html", match: match) %>
                   </a>
                 <% end %>

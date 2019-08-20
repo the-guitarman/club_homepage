@@ -11,7 +11,7 @@ defmodule ClubHomepage.MatchCommitment do
     belongs_to :match, ClubHomepage.Match
     belongs_to :user, ClubHomepage.User
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
 
@@ -21,7 +21,7 @@ defmodule ClubHomepage.MatchCommitment do
   @spec changeset( ClubHomepage.StandardTeamPlayer, Map ) :: Ecto.Changeset
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, ~w(match_id user_id commitment))
+    |> cast(params, ~w(match_id user_id commitment)a)
     |> validate_required([:match_id, :user_id, :commitment])
     |> foreign_key_constraint(:match_id)
     |> foreign_key_constraint(:user_id)

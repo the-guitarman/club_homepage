@@ -9,6 +9,6 @@
 
 </ul>
 
-<%= link gettext("edit"), to: season_path(@conn, :edit, @season), class: "btn btn-default" %>
-<%#= link gettext("delete"), to: season_path(@conn, :delete, season), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
-<%= link gettext("all") <> " " <> gettext("seasons"), to: season_path(@conn, :index), class: "btn btn-default" %>
+<%= link gettext("edit"), to: Routes.season_path(@conn, :edit, @season), class: "btn btn-default" %>
+<%#= link gettext("delete"), to: Routes.season_path(@conn, :delete, season), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+<%= link gettext("all") <> " " <> gettext("seasons"), to: Routes.season_path(@conn, :index), class: "btn btn-default" %>

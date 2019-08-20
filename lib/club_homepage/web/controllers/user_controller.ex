@@ -32,7 +32,7 @@ defmodule ClubHomepage.Web.UserController do
       {:ok, _user} ->
         conn
         |> put_flash(:info, gettext("user_created_successfully"))
-        |> redirect(to: unregistered_user_path(conn, :new_unregistered))
+        |> redirect(to: Routes.unregistered_user_path(conn, :new_unregistered))
       {:error, changeset} ->
         render(conn, "new_unregistered.html", changeset: changeset)
     end
@@ -63,7 +63,7 @@ defmodule ClubHomepage.Web.UserController do
         conn
         |> Auth.login(user)
         |> put_flash(:info, gettext("user_created_successfully_and_loged_in"))
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: Routes.page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset, secret: secret_key,
                user: nil,
@@ -117,8 +117,8 @@ defmodule ClubHomepage.Web.UserController do
       {:ok, user} ->
         redirection_url =
           case String.contains?(template, "restricted") do
-            true -> managed_user_edit_restricted_path(conn, :edit_restricted, user.id)
-            _ -> managed_user_path(conn, :edit, user.id)
+            true -> Routes.managed_user_edit_restricted_path(conn, :edit_restricted, user.id)
+            _ -> Routes.managed_user_path(conn, :edit, user.id)
           end
 
         conn
@@ -141,7 +141,7 @@ defmodule ClubHomepage.Web.UserController do
         conn
         |> Auth.logout()
         |> put_flash(:info, "logged_out_now")
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: Routes.page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit_restricted.html", user: user, changeset: changeset,
                editable_user_roles: UserRole.editable_roles(current_user(conn)),
@@ -183,18 +183,18 @@ defmodule ClubHomepage.Web.UserController do
       user == nil ->
         conn
         |> put_flash(:error, gettext("account_not_found"))
-        |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
+        |> redirect(to: Routes.forgot_password_path(conn, :forgot_password_step_1))
       user && user.token != token ->
         conn
         |> put_flash(:error, gettext("account_token_not_found"))
-        |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
+        |> redirect(to: Routes.forgot_password_path(conn, :forgot_password_step_1))
       user && user.token == token ->
         datetime = Timex.add(user.token_set_at, Timex.Duration.from_days(2))
         case Timex.compare(datetime, Timex.now) do
           -1 ->
             conn
             |> put_flash(:error, gettext("change_password_timed_out"))
-            |> redirect(to: forgot_password_path(conn, :forgot_password_step_1))
+            |> redirect(to: Routes.forgot_password_path(conn, :forgot_password_step_1))
           _ ->
             changeset = User.changeset(user)
             render(conn, "change_password.html", changeset: changeset, user: user)
@@ -209,7 +209,7 @@ defmodule ClubHomepage.Web.UserController do
       {:ok, _user} ->
         conn
         |> put_flash(:info, gettext("password_reset_successful"))
-        |> redirect(to: session_path(conn, :new))
+        |> redirect(to: Routes.session_path(conn, :new))
       {:error, changeset} ->
         render(conn, "change_password.html", changeset: changeset, user: user)
     end

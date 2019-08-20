@@ -4,12 +4,12 @@
       <h2><%= gettext("create_new_matches") %></h2>
 
       <%= render "form_bulk.html", conn: @conn, changeset: @changeset,
-      action: matches_path(@conn, :create_bulk),
+      action: Routes.matches_path(@conn, :create_bulk),
       season_options: @season_options,
       team_options: @team_options
       %>
 
-      <%= link gettext("all") <> " " <> gettext("matches"), to: match_path(@conn, :index) %>
+      <%= link gettext("all") <> " " <> gettext("matches"), to: Routes.match_path(@conn, :index) %>
     </div>
   </div>
 </div>

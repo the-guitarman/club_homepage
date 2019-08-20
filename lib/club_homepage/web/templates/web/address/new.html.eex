@@ -4,9 +4,9 @@
             <h2><%= gettext("create_new_address") %></h2>
 
             <%= render "form.html", changeset: @changeset,
-                        action: address_path(@conn, :create) %>
+                        action: Routes.address_path(@conn, :create) %>
 
-            <%= link gettext("all") <> " " <> gettext("addresses"), to: address_path(@conn, :index) %>
+            <%= link gettext("all") <> " " <> gettext("addresses"), to: Routes.address_path(@conn, :index) %>
         </div>
     </div>
 </div>

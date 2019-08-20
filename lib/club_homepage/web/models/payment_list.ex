@@ -12,7 +12,7 @@ defmodule ClubHomepage.PaymentList do
 
     field :number_of_debitors, :integer, virtual: true
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
   @doc """
@@ -20,7 +20,7 @@ defmodule ClubHomepage.PaymentList do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, ~w(title user_id price_per_piece deputy_id))
+    |> cast(params, ~w(title user_id price_per_piece deputy_id)a)
     |> validate_required([:title, :user_id, :price_per_piece])
     |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:deputy_id)

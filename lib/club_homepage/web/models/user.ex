@@ -6,7 +6,7 @@ defmodule ClubHomepage.User do
 
   schema "users" do
     field :active, :boolean
-    field :birthday, Timex.Ecto.DateTime
+    field :birthday, :utc_datetime
     field :login, :string
     field :email, :string
     field :password, :string, virtual: true
@@ -17,14 +17,14 @@ defmodule ClubHomepage.User do
     field :roles, :string
     field :meta_data, :map
     field :token, :string
-    field :token_set_at, Timex.Ecto.DateTime
+    field :token_set_at, :utc_datetime
     field :mobile_phone, :string
 
     has_many :team_chat_messages, ClubHomepage.TeamChatMessage
     has_many :payment_list_debitor_history_records, ClubHomepage.PaymentListDebitorHistoryRecord, on_delete: :nilify_all, foreign_key: :editor_id
     has_many :standard_team_players, ClubHomepage.StandardTeamPlayer, on_delete: :delete_all, foreign_key: :user_id
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
   def unregistered_changeset(model, params \\ %{}) do

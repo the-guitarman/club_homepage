@@ -10,7 +10,7 @@
           <div class="col-xs-12">
             <div class="btn-group" role="group" aria-label="<%= gettext("seasons") %>">
               <%= for season <- @seasons do %>
-                <% link_path = team_page_with_season_path(@conn, :show, @team.slug, season.name) %>
+                <% link_path = Routes.team_page_with_season_path(@conn, :show, @team.slug, season.name) %>
                 <%= if @conn.request_path == link_path do %>
                   <button type="button" class="btn btn-default btn-primary" disabled="disabled"><h2><%= season.name %></h2></button>
                 <% else %>
@@ -28,12 +28,12 @@
           <%= if has_role?(@conn, ["match-editor"]) do %>
             <div>
               <%= if @next_match_parameters do %>
-                <%= link gettext("create_next_new_match"), to: match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
+                <%= link gettext("create_next_new_match"), to: Routes.match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
               <% else %>
-                <%= link gettext("create_new_match"), to: match_path(@conn, :new), class: "btn btn-default" %>
+                <%= link gettext("create_new_match"), to: Routes.match_path(@conn, :new), class: "btn btn-default" %>
               <% end %>
               <%= if has_role?(@conn, ["administrator"]) do %>
-                <%= link gettext("create_new_matches"), to: matches_path(@conn, :new_bulk, @next_match_parameters), class: "btn btn-default" %>
+                <%= link gettext("create_new_matches"), to: Routes.matches_path(@conn, :new_bulk, @next_match_parameters), class: "btn btn-default" %>
               <% end %>
             </div>
           <% end %>
@@ -44,7 +44,7 @@
         <div class="col-xs-12">
           <%= if Enum.count(@matches) > 0 || Enum.count(@latest_matches) > 0 do %>
             <%= if Enum.count(@matches) > 0 do  %>
-              <h3><%= gettext("next_matches") %><%= link raw("<span class=\"glyphicon glyphicon-calendar\"></span>"), to: team_matches_download_path(@conn, :download_ical, @team.slug, @season.name), class: "pull-right" %></h3>
+              <h3><%= gettext("next_matches") %><%= link raw("<span class=\"glyphicon glyphicon-calendar\"></span>"), to: Routes.team_matches_download_path(@conn, :download_ical, @team.slug, @season.name), class: "pull-right" %></h3>
               <%= render "team_page_match_table.html", conn: @conn, matches: @matches, current_user: @current_user %>
             <% end %>
 
@@ -76,7 +76,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <%= link gettext("all") <> " " <> gettext("teams"), to: team_path(@conn, :index) %>
+          <%= link gettext("all") <> " " <> gettext("teams"), to: Routes.team_path(@conn, :index) %>
         </div>
       </div>
     </div>

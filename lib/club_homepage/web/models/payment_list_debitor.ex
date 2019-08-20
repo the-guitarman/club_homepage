@@ -12,7 +12,7 @@ defmodule ClubHomepage.PaymentListDebitor do
 
     has_many :history_records, ClubHomepage.PaymentListDebitorHistoryRecord, on_delete: :delete_all, foreign_key: :payment_list_debitor_id
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
   @doc """

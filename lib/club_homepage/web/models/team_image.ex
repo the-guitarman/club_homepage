@@ -9,7 +9,7 @@ defmodule ClubHomepage.TeamImage do
 
     belongs_to :team, ClubHomepage.Team
 
-    timestamps()
+    timestamps([type: :utc_datetime])
   end
 
   @cast_fields [:team_id, :year, :description]

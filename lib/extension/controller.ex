@@ -3,7 +3,8 @@ defmodule ClubHomepage.Extension.Controller do
   This module provides functions for recurring tasks within a controller.
   """
 
-  import ClubHomepage.Web.Localization
+  alias ClubHomepage.Web.Localization
+  alias ClubHomepage.Extension.CommonTimex
 
   @doc """
   Returns the full club name as configured in `config/club_homepage.exs`.
@@ -34,7 +35,7 @@ defmodule ClubHomepage.Extension.Controller do
   # https://github.com/bitwalker/timex#formatting-a-datetime-via-strftime
   @spec parse_date_field(Map, Atom, String | Nil) :: Map
   def parse_date_field(params, field, format \\ nil) do
-    format = date_format(format)
+    format = Localization.date_format(format)
     field_name = Atom.to_string(field)
 
     params
@@ -52,9 +53,7 @@ defmodule ClubHomepage.Extension.Controller do
   defp parse_value({:ok, params, value}, field_name, format) do
     case Timex.parse(value, format, :strftime) do
       {:ok, timex_naive_datetime} ->
-        timezone = Timex.Timezone.get(Timex.Timezone.Local.lookup, Timex.local)
-        timex_datetime = Timex.to_datetime(timex_naive_datetime, timezone)
-        Map.put(params, field_name, timex_datetime)
+        Map.put(params, field_name, CommonTimex.utc_to_local_datetime(timex_naive_datetime))
       {:error, _error} ->
         Map.put(params, field_name, nil)
     end
@@ -72,7 +71,7 @@ defmodule ClubHomepage.Extension.Controller do
   """
   @spec parse_datetime_field(Map, Atom, String | Nil) :: Map
   def parse_datetime_field(params, field, format \\ nil) do
-    format = datetime_format(format)
+    format = Localization.datetime_format(format)
     parse_date_field(params, field, format)
   end
 end
