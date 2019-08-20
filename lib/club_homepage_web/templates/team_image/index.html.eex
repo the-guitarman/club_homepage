@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("all") <> " " <> gettext("team_images") %></h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= gettext("team") %></th>
+            <th><%= gettext("year") %></th>
+            <th><%= gettext("team_image") %></th>
+            <th><%= gettext("description") %></th>
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+      <%= for team_image <- @team_images do %>
+          <tr>
+            <td><%= team_image.team_id %></td>
+            <td><%= team_image.year %></td>
+            <td><%= uploader_image_tag ClubHomepage.Web.TeamUploader, team_image, :normal %></td>
+            <td><%= team_image.description %></td>
+
+            <td class="text-right">
+              <%= link gettext("edit"), to: Routes.team_image_path(@conn, :edit, team_image), class: "btn btn-default" %>
+              <%= link gettext("delete"), to: Routes.team_image_path(@conn, :delete, team_image), method: :delete, data: [confirm: gettext("confirm_question_are_you_sure")], class: "btn btn-danger" %>
+            </td>
+          </tr>
+      <% end %>
+        </tbody>
+      </table>
+
+      <%= link gettext("create_new_team_image"), to: Routes.team_image_path(@conn, :new), class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

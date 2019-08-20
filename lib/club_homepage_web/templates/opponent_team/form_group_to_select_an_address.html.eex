@@ -1,0 +1,4 @@
+<div class="form-group <%= error_cls @changeset, @f, :address_id %>">
+    <%= select(@f, :address_id, @address_options, placeholder: gettext("select_address_placeholder"), prompt: gettext("select_address_placeholder")) %>
+    <%= error_tag @changeset, @f, :address_id %>
+</div>

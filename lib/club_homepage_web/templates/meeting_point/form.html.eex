@@ -1,0 +1,17 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= show_form_errors(@changeset, f) %>
+
+  <div class="form-group <%= error_cls @changeset, f, :name %>">
+    <%#= label f, :name, "Name", class: "control-label" %>
+    <%= text_input f, :name, class: "form-control", placeholder: gettext("name") <> " " <> gettext("or") <> " " <> gettext("short_description") %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <%= render "form_group_to_select_an_address.html", f: f, changeset: @changeset,
+      address_options: @address_options
+  %>
+
+  <div class="form-group">
+    <%= submit gettext("save"), class: "btn btn-primary" %>
+  </div>
+<% end %>

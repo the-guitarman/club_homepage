@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box js-standard-team-players css-standard-team-players">
+      <h1><%= @team.name %><br /><%= gettext("standard_team_players") %></h1>
+      <input type="hidden" id="team-id" value="<%= @team.id %>" />
+
+      <%= render "team_page_link_header.html", active_tab: "team_standard_players", conn: @conn, team: @team, team_images_count: Enum.count(@team_images), current_user: @current_user %>
+
+      <p><%= gettext("standard_team_player_notice") %></p>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><%= gettext("name") %></th>
+              <th><%= gettext("nickname") %></th>
+              <th><%= gettext("standard_team_player") %></th>
+              <th><%= gettext("standard_shirt_number") %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= if Enum.count(@all_players) do %>
+              <%= for player <- @all_players do %>
+                <tr data-player-id="<%= player.id %>">
+                  <td><%= player.name %></td>
+                  <td><%= if player.nickname, do: player.nickname %></td>
+                  <td>
+                    <div class="form-group">
+                      <%= tag("input", type: "checkbox", name: "user_id", value: player.id, class: "form-control", checked: !!player.standard_team_player_id) %>
+                      <span class="help-block hidden"></span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <%= tag("input", type: "number", name: "standard_shirt_number", value: player.standard_shirt_number, class: "form-control", maxlength: 2, min: 0, max: 99) %>
+                      <span class="help-block hidden"></span>
+                    </div>
+                  </td>
+                  <td class="text-right">
+                    <%= content_tag(:button, gettext("save"), class: "btn btn-primary") %>
+                  </td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="5"><%= gettext("no_player_members_registered_notice") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

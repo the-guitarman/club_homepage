@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("create_new_opponent_team") %></h2>
+
+      <%= render "form.html",
+          changeset: @changeset, action: Routes.opponent_team_path(@conn, :create), 
+          address_options: @address_options
+      %>
+
+      <%= link gettext("all") <> " " <> gettext("opponent_teams"), to: Routes.opponent_team_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("all") <> " " <> gettext("opponent_teams") %></h2>
+
+      <p>
+        <%= link gettext("create_new_opponent_team"), to: Routes.opponent_team_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: Routes.address_path(@conn, :index), class: "btn btn-default" %>
+      </p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= gettext("name") %></th>
+            <th><%= gettext("address") %></th>
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+      <%= for opponent_team <- @opponent_teams do %>
+          <tr>
+            <td><a class="anchor" name="opponent-team-<%= opponent_team.id %>"><%= opponent_team.name %></a></td>
+            <td><%= full_address(opponent_team) %></td>
+
+            <td class="text-right">
+              <%= link gettext("edit"), to: Routes.opponent_team_path(@conn, :edit, opponent_team), class: "btn btn-default" %>
+              <%#= link gettext("delete"), to: Routes.opponent_team_path(@conn, :delete, opponent_team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+            </td>
+          </tr>
+      <% end %>
+        </tbody>
+      </table>
+
+      <p>
+        <%= link gettext("create_new_opponent_team"), to: Routes.opponent_team_path(@conn, :new), class: "btn btn-default" %>
+        <%= link gettext("all") <> " " <> gettext("addresses"), to: Routes.address_path(@conn, :index), class: "btn btn-default" %>
+      </p>
+    </div>
+  </div>
+</div>

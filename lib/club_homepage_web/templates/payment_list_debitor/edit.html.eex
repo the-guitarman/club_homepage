@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("edit_payment_list_debitor") %></h2>
+
+      <%= render("form.html",
+          changeset: @changeset,
+          action: Routes.payment_list_debitor_path(@conn, :update, @payment_list, @debitor),
+          user_options: @user_options, payment_list: @payment_list, form_mode: @form_mode) %>
+    </div>
+  </div>
+</div>

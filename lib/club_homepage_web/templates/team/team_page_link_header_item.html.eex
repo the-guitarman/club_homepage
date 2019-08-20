@@ -1,0 +1,7 @@
+<li role="presentation" class="<%= if @active_tab === @tab, do: "active" %>">
+  <%= if @active_tab === @tab do %>
+    <a href="#"><%= Gettext.gettext(ClubHomepage.Web.Gettext, @gettext_key) %></a>
+  <% else %>
+    <%= link Gettext.gettext(ClubHomepage.Web.Gettext, @gettext_key), to: @link %>
+  <% end %>
+</li>

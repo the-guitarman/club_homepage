@@ -1,0 +1,62 @@
+<%= form_for @changeset, @action, [class: "form-horizontal"], fn f -> %>
+  <%= show_form_errors(@changeset, f) %>
+
+  <%= render "form_group_to_select_a_competition.html", f: f, changeset: @changeset,
+      competition_options: @competition_options
+  %>
+
+  <div class="form-group <%= error_cls @changeset, f, :name %>">
+    <%#= label f, :name, "name", class: "control-label" %>
+    <%= text_input f, :name, class: "form-control", placeholder: gettext("team_name_placeholder") %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="form-group <%= error_cls @changeset, f, :order %>">
+    <%#= label f, :order, "order", class: "control-label" %>
+    <%= number_input f, :order, class: "form-control", placeholder: gettext("team_order_placeholder"), min: 1 %>
+    <%= error_tag f, :order %>
+  </div>
+
+  <div class="form-group form-horizontal js-home-match css-home-match <%= error_cls @changeset, f, :active %>">
+    <%= label f, :active, class: "col-xs-4 col-sm-3 col-md-2 control-label" do %>
+      <%= gettext("active") %>
+    <% end %>
+    <div class="col-xs-8 col-sm-9 col-md-10">
+      <%= checkbox f, :active, class: "form-control", unchecked_value: false %>
+    </div>
+    <%= error_tag @changeset, f, :active %>
+    <div class="clearfix"></div>
+  </div>
+
+  <%= if current_locale() == "de" do %>
+    <div class="form-group <%= error_cls @changeset, f, :fussball_de_team_url %>">
+      <%#= label f, :fussball_de_team_url, "name", class: "control-label" %>
+      <%= textarea f, :fussball_de_team_url, class: "form-control", placeholder: gettext("fussball_de_team_url_placeholder") %>
+      <%= error_tag f, :fussball_de_team_url %>
+    </div>
+
+    <div class="form-group <%= error_cls @changeset, f, :fussball_de_show_current_table %>">
+      <div class="check-box">
+        <%= label f, :fussball_de_show_current_table, class: "control-label" do %>
+          <%= checkbox f, :fussball_de_show_current_table, class: "form-control", unchecked_value: false %>
+          <%= gettext("fussball_de_show_current_table") %>
+        <% end %>
+      </div>
+      <%= error_tag f, :fussball_de_show_current_table %>
+    </div>
+
+    <div class="form-group <%= error_cls @changeset, f, :fussball_de_show_next_matches %>">
+      <div class="check-box">
+        <%= label f, :fussball_de_show_next_matches, class: "control-label" do %>
+          <%= checkbox f, :fussball_de_show_next_matches, class: "form-control", unchecked_value: false %>
+          <%= gettext("fussball_de_show_next_matches") %>
+        <% end %>
+      </div>
+      <%= error_tag f, :fussball_de_show_next_matches %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= submit gettext("save"), class: "btn btn-primary" %>
+  </div>
+<% end %>
