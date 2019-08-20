@@ -1,6 +1,0 @@
-<h2>New permalink</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: Routes.permalink_path(@conn, :create) %>
-
-<%= link "Back", to: Routes.permalink_path(@conn, :index) %>

@@ -1,6 +1,0 @@
-<h2><%= gettext("edit_season") %></h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: Routes.season_path(@conn, :update, @season), years: @years %>
-
-<%= link gettext("all") <> " " <> gettext("seasons"), to: Routes.season_path(@conn, :index) %>

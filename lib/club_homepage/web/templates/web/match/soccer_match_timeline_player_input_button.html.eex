@@ -1,8 +1,0 @@
-<div class="input-group-btn <%= @position %> hidden">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" area-haspopup="true" area-expanded="false"><img src="/images/one_click_selection.png" height="18" /> <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <%= for match_player <- match_players(@match, @position) do %>
-      <li><a href="#"><%= match_player %></a></li>
-    <% end %>
-  </ul>
-</div>
