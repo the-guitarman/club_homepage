@@ -1,6 +1,6 @@
 language: elixir
 elixir:
-  - 1.9.1
+  - 1.9
 env:
   - ELIXIR="v1.9.1"
   - APP_VERSION="0.2.0"
