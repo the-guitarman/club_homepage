@@ -13,11 +13,15 @@ addons:
 otp_release:
   - 22.0
 sudo: false
+before_install:
+  - export TZ=Berlin/Europe
+  - export ELIXIR=v1.9.1
 before_script:
   - echo 'Berlin/Europe' | sudo tee /etc/timezone
   - sudo dpkg-reconfigure --frontend noninteractive tzdata
+  - date
   - mkdir -p vendor/elixir
-  - echo "wget -v https://github.com/elixir-lang/elixir/releases/download/v1.9.1/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir"
+  - echo "wget -v https://github.com/elixir-lang/elixir/releases/download/$ELIXIR/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir"
   - wget -v https://github.com/elixir-lang/elixir/releases/download/v1.9.1/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir
   - export PATH="$PATH:$PWD/vendor/elixir/bin"
   - mix local.hex --force
