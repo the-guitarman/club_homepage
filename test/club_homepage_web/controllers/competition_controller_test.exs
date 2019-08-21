@@ -1,5 +1,5 @@
 defmodule ClubHomepage.CompetitionControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   alias ClubHomepage.Competition
   @valid_attrs %{name: "some content", matches_need_decition: false}

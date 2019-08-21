@@ -1,5 +1,5 @@
 defmodule ClubHomepage.SponsorImageControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   alias ClubHomepage.SponsorImage
 
@@ -72,7 +72,7 @@ defmodule ClubHomepage.SponsorImageControllerTest do
 
     sponsor_image = Repo.get!(SponsorImage, sponsor_image_id)
 
-    for {_version, web_path} <- ClubHomepage.Web.SponsorUploader.urls({sponsor_image.attachment, sponsor_image}) do
+    for {_version, web_path} <- ClubHomepageWeb.SponsorUploader.urls({sponsor_image.attachment, sponsor_image}) do
       [path, _] = String.split(web_path, "?")
       path = remove_trailing_slash(path)
       assert File.exists?(Path.expand(path))
@@ -111,10 +111,10 @@ defmodule ClubHomepage.SponsorImageControllerTest do
   test "deletes chosen resource", %{conn: conn} do
     sponsor_image = insert(:sponsor_image)
 
-    destination_path = ClubHomepage.Web.SponsorUploader.storage_dir(nil, {nil, sponsor_image})
+    destination_path = ClubHomepageWeb.SponsorUploader.storage_dir(nil, {nil, sponsor_image})
     File.mkdir_p!(destination_path)
 
-    web_paths = ClubHomepage.Web.SponsorUploader.urls({sponsor_image.attachment, sponsor_image})
+    web_paths = ClubHomepageWeb.SponsorUploader.urls({sponsor_image.attachment, sponsor_image})
 
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")

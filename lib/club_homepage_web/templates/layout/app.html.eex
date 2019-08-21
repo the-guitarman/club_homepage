@@ -30,7 +30,7 @@
       <%= render "flash_messages.html", conn: @conn %>
 
       <div class="content-container">
-        <%= if controller_module(@conn) == ClubHomepage.Web.PageController && action_name(@conn) == :index do %>
+        <%= if controller_module(@conn) == ClubHomepageWeb.PageController && action_name(@conn) == :index do %>
           <section class="header">
             <h1><%= full_club_name() %></h1>
           </section>

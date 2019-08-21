@@ -1,9 +1,9 @@
-defmodule ClubHomepage.Web.JsonMatchesCreator do
+defmodule ClubHomepageWeb.JsonMatchesCreator do
   @moduledoc """
   Creates matches from a json.
   """
 
-  alias ClubHomepage.Web.JsonMatchesValidator
+  alias ClubHomepageWeb.JsonMatchesValidator
   alias ClubHomepage.Competition
   alias ClubHomepage.Match
   alias ClubHomepage.OpponentTeam

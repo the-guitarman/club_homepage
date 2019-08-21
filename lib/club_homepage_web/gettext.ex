@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.Gettext do
+defmodule ClubHomepageWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 

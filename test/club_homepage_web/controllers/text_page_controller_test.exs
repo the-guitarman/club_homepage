@@ -1,5 +1,5 @@
 defmodule ClubHomepage.TextPageControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   alias ClubHomepage.TextPage
 

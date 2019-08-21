@@ -1,9 +1,9 @@
-defmodule ClubHomepage.Web.TeamChatChannel do
-  use ClubHomepage.Web, :channel
+defmodule ClubHomepageWeb.TeamChatChannel do
+  use ClubHomepageWeb, :channel
 
   alias ClubHomepage.TeamChatMessage
   alias ClubHomepage.Repo
-  alias ClubHomepage.Web.UserMetaData
+  alias ClubHomepageWeb.UserMetaData
 
   @limit 10
 
@@ -46,7 +46,7 @@ defmodule ClubHomepage.Web.TeamChatChannel do
 
         broadcast socket, "message:added", response
         # broadcast(topic_name, event_name, payload_map)
-        ClubHomepage.Web.Endpoint.broadcast("team-chat-badges:#{team_id}", "message:added", response)
+        ClubHomepageWeb.Endpoint.broadcast("team-chat-badges:#{team_id}", "message:added", response)
         {:reply, :ok, socket}
       {:error, changeset} ->
         {:reply, {:error, %{errors: changeset}}, socket}

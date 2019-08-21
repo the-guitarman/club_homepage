@@ -1,3 +1,3 @@
-defmodule ClubHomepage.Web.PermalinkView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.PermalinkView do
+  use ClubHomepageWeb, :view
 end

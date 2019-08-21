@@ -1,3 +1,3 @@
-defmodule ClubHomepage.Web.PaymentListView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.PaymentListView do
+  use ClubHomepageWeb, :view
 end

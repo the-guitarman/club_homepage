@@ -1,9 +1,9 @@
 defmodule ClubHomepage.JsonMatchesValidatorTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
-  doctest ClubHomepage.Web.JsonMatchesValidator
+  doctest ClubHomepageWeb.JsonMatchesValidator
 
-  alias ClubHomepage.Web.JsonMatchesValidator
+  alias ClubHomepageWeb.JsonMatchesValidator
 
   @params %{"json" => "{\r\n  \"season\": \"2015-2016\",\r\n  \"team_name\": \"Name meiner Vereinsmannschaft\",\r\n  \"matches\": [\r\n    {\r\n      \"competition\": \"League 1\",\r\n      \"start_at\": \"2016-11-20T14:00:00+01:00\",\r\n      \"home\": \"Name der gegnerischen Mannschaft 1\",\r\n      \"guest\": \"Name meiner Vereinsmannschaft\"\r\n    },\r\n    {\r\n      \"competition\": \"Super Cup\",\r\n      \"start_at\": \"2016-11-27T14:00:00+01:00\",\r\n      \"home\": \"Name meiner Vereinsmannschaft\",\r\n      \"guest\": \"Name def gegnerischen Mannschaft 2\"\r\n    }\r\n  ]\r\n}"}
   #@invalid_params %{"json" => "{\r\n  \"team_name\": \"Name meiner Vereinsmannschaft\",\r\n  \"matches\": [\r\n    {\r\n      \"competition\": \"League 1\",\r\n      \"start_at\": \"Sonntag, 13.03.2016 - 12:00 Uhr\",\r\n      \"home\": \"Name der gegnerischen Mannschaft 1\",\r\n      \"guest\": \"Name meiner Vereinsmannschaft\"\r\n    },\r\n    {\r\n      \"competition\": \"Super Cup\",\r\n      \"start_at\": \"Sonntag, 03.04.2016 - 14:00 Uhr\",\r\n      \"home\": \"Name meiner Vereinsmannschaft\",\r\n      \"guest\": \"Name def gegnerischen Mannschaft 2\"\r\n    }\r\n  ]\r\n}"}

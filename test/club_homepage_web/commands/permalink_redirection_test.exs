@@ -1,5 +1,5 @@
 defmodule ClubHomepage.PermalinkRedirectionTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   import ClubHomepage.Factory
 

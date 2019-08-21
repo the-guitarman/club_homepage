@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.AddressController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.AddressController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.Address
 

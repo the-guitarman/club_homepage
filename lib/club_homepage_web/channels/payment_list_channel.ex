@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.PaymentListChannel do
-  use ClubHomepage.Web, :channel
+defmodule ClubHomepageWeb.PaymentListChannel do
+  use ClubHomepageWeb, :channel
 
   alias Number.Currency
   alias ClubHomepage.Repo

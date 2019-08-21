@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.ChangesetErrorsMerger do
+defmodule ClubHomepageWeb.ChangesetErrorsMerger do
   @moduledoc """
   A helper module to merge errors of two changesets into one changeset.
   """

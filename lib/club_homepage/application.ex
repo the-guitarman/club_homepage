@@ -11,7 +11,7 @@ defmodule ClubHomepage.Application do
       # Start the Ecto repository
       ClubHomepage.Repo,
       # Start the endpoint when the application starts
-      ClubHomepage.Web.Endpoint,
+      ClubHomepageWeb.Endpoint,
       # Starts a worker by calling: Hello.Worker.start_link(arg)
       # {Hello.Worker, arg},
     ]
@@ -25,7 +25,7 @@ defmodule ClubHomepage.Application do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    ClubHomepage.Web.Endpoint.config_change(changed, removed)
+    ClubHomepageWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

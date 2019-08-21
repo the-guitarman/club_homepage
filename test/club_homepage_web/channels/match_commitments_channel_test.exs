@@ -1,7 +1,7 @@
 defmodule ClubHomepage.MatchCommitmentsChannelTest do
-  use ClubHomepage.Web.ChannelCase
+  use ClubHomepageWeb.ChannelCase
 
-  alias ClubHomepage.Web.MatchCommitmentsChannel
+  alias ClubHomepageWeb.MatchCommitmentsChannel
   alias ClubHomepage.MatchCommitment
 
   import ClubHomepage.Factory

@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.NewsController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.NewsController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.News
 
@@ -9,7 +9,7 @@ defmodule ClubHomepage.Web.NewsController do
   def index(conn, _params) do
     query = from(n in News, order_by: [desc: n.updated_at])
     query =
-      case ClubHomepage.Web.Auth.logged_in?(conn, %{}) do
+      case ClubHomepageWeb.Auth.logged_in?(conn, %{}) do
         true -> query
         false -> from(n in query, where: n.public == true)
       end

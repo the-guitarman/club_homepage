@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.Router do
-  use ClubHomepage.Web, :router
+defmodule ClubHomepageWeb.Router do
+  use ClubHomepageWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -7,23 +7,23 @@ defmodule ClubHomepage.Web.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug ClubHomepage.Web.PermalinkRedirection, path_prefixes: [:teams]
-    plug ClubHomepage.Web.Auth, repo: ClubHomepage.Repo
-    plug ClubHomepage.Web.AuthByRole
-    plug ClubHomepage.Web.Locale
-    plug ClubHomepage.Web.WeatherData
-    plug ClubHomepage.Web.MemberBirthday
-    plug ClubHomepage.Web.MyPaymentLists
-    # plug ClubHomepage.Web.AuthForPaymentList
-    # plug ClubHomepage.Web.JavascriptLocalization
+    plug ClubHomepageWeb.PermalinkRedirection, path_prefixes: [:teams]
+    plug ClubHomepageWeb.Auth, repo: ClubHomepage.Repo
+    plug ClubHomepageWeb.AuthByRole
+    plug ClubHomepageWeb.Locale
+    plug ClubHomepageWeb.WeatherData
+    plug ClubHomepageWeb.MemberBirthday
+    plug ClubHomepageWeb.MyPaymentLists
+    # plug ClubHomepageWeb.AuthForPaymentList
+    # plug ClubHomepageWeb.JavascriptLocalization
   end
 
   # pipeline :api do
   #   plug :accepts, ["json"]
-  #   plug ClubHomepage.Web.Auth, repo: ClubHomepage.Repo
+  #   plug ClubHomepageWeb.Auth, repo: ClubHomepage.Repo
   # end
 
-  scope "/", ClubHomepage.Web do
+  scope "/", ClubHomepageWeb do
     pipe_through [:browser] # Use the default browser stack
 
     get "/", PageController, :index
@@ -48,7 +48,7 @@ defmodule ClubHomepage.Web.Router do
     get "/teams/:slug/images", TeamController, :show_images, as: :team_images_page
   end
 
-  scope "/manage", ClubHomepage.Web do
+  scope "/manage", ClubHomepageWeb do
     pipe_through [:browser, :authenticate_user]
     
     get "/users/new", UserController, :new_unregistered, as: :unregistered_user
@@ -82,10 +82,10 @@ defmodule ClubHomepage.Web.Router do
     get "/teams/:slug/standard-players", TeamController, :edit_standard_players, as: :team_standard_players
   end
 
-  # scope "/api", ClubHomepage.Web do
+  # scope "/api", ClubHomepageWeb do
   #   pipe_through :api
 
-  #   scope "/manage", ClubHomepage.Web do
+  #   scope "/manage", ClubHomepageWeb do
   #     pipe_through :authenticate_user
 
   #   end

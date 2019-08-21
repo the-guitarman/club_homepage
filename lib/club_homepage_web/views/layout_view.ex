@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.LayoutView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.LayoutView do
+  use ClubHomepageWeb, :view
 
   import Number.Currency
 
@@ -84,7 +84,7 @@ defmodule ClubHomepage.Web.LayoutView do
 
   defp wind_direction_abbrevation(weather_data) do
     if weather_data[:wind_direction_abbreviation] != "" do
-      Gettext.dgettext(ClubHomepage.Web.Gettext, "additionals", "wind_direction_abbreviation_#{weather_data[:wind_direction_abbreviation]}")
+      Gettext.dgettext(ClubHomepageWeb.Gettext, "additionals", "wind_direction_abbreviation_#{weather_data[:wind_direction_abbreviation]}")
     end
   end
 
@@ -127,7 +127,7 @@ defmodule ClubHomepage.Web.LayoutView do
 
 
   def javascript_localization_options do
-    ClubHomepage.Web.JavascriptLocalization.run
+    ClubHomepageWeb.JavascriptLocalization.run
     |> to_json
   end
 

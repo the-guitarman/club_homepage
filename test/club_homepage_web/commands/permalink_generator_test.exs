@@ -1,10 +1,10 @@
 defmodule ClubHomepage.PermalinkGeneratorTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
-  doctest ClubHomepage.Web.PermalinkGenerator
+  doctest ClubHomepageWeb.PermalinkGenerator
 
   alias ClubHomepage.Permalink
-  alias ClubHomepage.Web.PermalinkGenerator
+  alias ClubHomepageWeb.PermalinkGenerator
   alias ClubHomepage.Team
 
   import ClubHomepage.Factory

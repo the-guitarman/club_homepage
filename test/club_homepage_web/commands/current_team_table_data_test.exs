@@ -1,17 +1,17 @@
-defmodule ClubHomepage.Web.CurrentTeamTableDataTest do
-  use ClubHomepage.Web.ConnCase
+defmodule ClubHomepageWeb.CurrentTeamTableDataTest do
+  use ClubHomepageWeb.ConnCase
 
   #alias ClubHomepage.Match
   alias ClubHomepage.Team
   alias ClubHomepage.Repo
-  alias ClubHomepage.Web.CurrentTeamTableData
+  alias ClubHomepageWeb.CurrentTeamTableData
 
   import ClubHomepage.Factory
 
   setup do
     conn =
       build_conn()
-      |> bypass_through(ClubHomepage.Web.Router, :browser)
+      |> bypass_through(ClubHomepageWeb.Router, :browser)
       |> get("/")
     {:ok, %{conn: conn}}
   end

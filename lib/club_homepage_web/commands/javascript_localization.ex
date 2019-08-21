@@ -1,11 +1,11 @@
-defmodule ClubHomepage.Web.JavascriptLocalization do
+defmodule ClubHomepageWeb.JavascriptLocalization do
   @moduledoc """
   This module holds calculations around birthdays.
   """
 
   # import Plug.Conn
-  import ClubHomepage.Web.Gettext
-  import ClubHomepage.Web.Localization
+  import ClubHomepageWeb.Gettext
+  import ClubHomepageWeb.Localization
 
   # def init(_opts) do
   #   nil
@@ -43,7 +43,7 @@ defmodule ClubHomepage.Web.JavascriptLocalization do
   end
 
   defp locale do
-    Application.get_env(:club_homepage, ClubHomepage.Web.Gettext)[:default_locale]
+    Application.get_env(:club_homepage, ClubHomepageWeb.Gettext)[:default_locale]
     |> String.downcase
   end
 end

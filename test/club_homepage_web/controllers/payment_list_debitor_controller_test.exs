@@ -1,5 +1,5 @@
 defmodule ClubHomepage.PaymentListDebitorControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   # alias ClubHomepage.PaymentList
   alias ClubHomepage.PaymentListDebitor

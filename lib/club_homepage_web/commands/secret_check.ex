@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.SecretCheck do
+defmodule ClubHomepageWeb.SecretCheck do
   @moduledoc """
   Holds secret logic to validate and delete old secrets.
   """

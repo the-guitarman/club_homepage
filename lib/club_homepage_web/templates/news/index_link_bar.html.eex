@@ -1,4 +1,4 @@
-<%= if ClubHomepage.Web.Auth.logged_in?(@conn, %{}) do %>
+<%= if ClubHomepageWeb.Auth.logged_in?(@conn, %{}) do %>
   <p>
     <%= link gettext("create_new_news"), to: Routes.news_path(@conn, :new), class: "btn btn-default" %>
   </p>

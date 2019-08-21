@@ -3,7 +3,7 @@ defmodule ClubHomepage.Extension.Controller do
   This module provides functions for recurring tasks within a controller.
   """
 
-  alias ClubHomepage.Web.Localization
+  alias ClubHomepageWeb.Localization
   alias ClubHomepage.Extension.CommonTimex
 
   @doc """

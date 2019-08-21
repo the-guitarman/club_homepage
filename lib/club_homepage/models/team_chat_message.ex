@@ -1,5 +1,5 @@
 defmodule ClubHomepage.TeamChatMessage do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
 
   schema "team_chat_messages" do
     field :message, :string

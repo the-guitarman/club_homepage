@@ -1,16 +1,15 @@
-defmodule ClubHomepage.News do
-  use ClubHomepage.Web, :model
+defmodule ClubHomepage.Permalink do
+  use ClubHomepageWeb, :model
 
-  schema "news" do
-    field :public, :boolean, default: false
-    field :subject, :string
-    field :body, :string
+  schema "permalinks" do
+    field :source_path, :string
+    field :destination_path, :string
 
     timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(public subject body)a
-  @required_fields [:public, :subject, :body]
+  @cast_fields ~w(source_path destination_path)a
+  @required_fields [:source_path, :destination_path]
 
   @doc """
   Creates a changeset based on the `model` and `params`.

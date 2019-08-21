@@ -1,5 +1,5 @@
 defmodule ClubHomepage.PaymentList do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
 
   schema "payment_lists" do
     belongs_to :user, ClubHomepage.User

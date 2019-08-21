@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.SecretController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.SecretController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.Secret
 

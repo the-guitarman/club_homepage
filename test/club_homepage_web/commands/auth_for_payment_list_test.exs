@@ -1,14 +1,14 @@
 defmodule ClubHomepage.AuthForPaymentListTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   import ClubHomepage.Factory
 
-  alias ClubHomepage.Web.AuthForPaymentList, as: Auth
+  alias ClubHomepageWeb.AuthForPaymentList, as: Auth
 
   setup do
     conn =
       build_conn()
-      |> bypass_through(ClubHomepage.Web.Router, :browser)
+      |> bypass_through(ClubHomepageWeb.Router, :browser)
       |> get("/")
     {:ok, %{conn: conn}}
   end

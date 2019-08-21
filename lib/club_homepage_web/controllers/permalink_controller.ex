@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.PermalinkController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.PermalinkController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.Permalink
 

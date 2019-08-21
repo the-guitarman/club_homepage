@@ -1,8 +1,8 @@
-defmodule ClubHomepage.Web.TeamController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.TeamController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.Match
-  alias ClubHomepage.Web.PermalinkGenerator
+  alias ClubHomepageWeb.PermalinkGenerator
   alias ClubHomepage.Team
   alias ClubHomepage.TeamImage
   alias ClubHomepage.Season
@@ -107,7 +107,7 @@ defmodule ClubHomepage.Web.TeamController do
     conn
     |> put_resp_content_type("text/calendar")
     |> put_resp_header("content-disposition", "attachment; filename=\"#{team.name}.ics\"")
-    |> send_resp(200, ClubHomepage.Web.MatchCalendarCreator.run(team.id, season.id))
+    |> send_resp(200, ClubHomepageWeb.MatchCalendarCreator.run(team.id, season.id))
   end
 
   def edit(conn, %{"id" => id}) do
@@ -156,7 +156,7 @@ defmodule ClubHomepage.Web.TeamController do
   end
 
   defp receive_current_team_table(conn, team) do
-    case ClubHomepage.Web.CurrentTeamTableData.run(conn, team) do
+    case ClubHomepageWeb.CurrentTeamTableData.run(conn, team) do
       {:ok, current_table, current_table_created_at} -> {current_table, current_table_created_at}
       {:error, _, _} -> {nil, nil}
     end
@@ -173,7 +173,7 @@ defmodule ClubHomepage.Web.TeamController do
   end
 
   defp receive_new_matches(conn, team) do
-    case ClubHomepage.Web.NewTeamMatchesData.run(conn, team) do
+    case ClubHomepageWeb.NewTeamMatchesData.run(conn, team) do
       {:error, _, _} -> nil
       {:ok, result, _created_at_timestamp} -> result
     end
@@ -207,7 +207,7 @@ defmodule ClubHomepage.Web.TeamController do
 
   defp validate_new_matches_json(nil, _), do: nil
   defp validate_new_matches_json({json, season}, team) do
-    changeset = ClubHomepage.Web.JsonMatchesValidator.changeset([:season_id, :team_id, :json], "json", %{"season_id" => season.id, "team_id" => team.id, "json" => json})
+    changeset = ClubHomepageWeb.JsonMatchesValidator.changeset([:season_id, :team_id, :json], "json", %{"season_id" => season.id, "team_id" => team.id, "json" => json})
     case changeset.valid? do
       true -> changeset
       _ -> nil
@@ -216,6 +216,6 @@ defmodule ClubHomepage.Web.TeamController do
 
   defp create_new_matches(nil), do: nil
   defp create_new_matches(changeset) do
-    ClubHomepage.Web.JsonMatchesCreator.run(changeset, "json")
+    ClubHomepageWeb.JsonMatchesCreator.run(changeset, "json")
   end
 end

@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.PaymentListController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.PaymentListController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.PaymentList
   alias ClubHomepage.PaymentListDebitor

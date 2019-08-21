@@ -1,5 +1,5 @@
 defmodule ClubHomepage.TeamImageControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   alias ClubHomepage.Team
   alias ClubHomepage.TeamImage
@@ -75,7 +75,7 @@ defmodule ClubHomepage.TeamImageControllerTest do
     team_image = Repo.get!(TeamImage, team_image_id)
     team = Repo.get!(Team, team_image.team_id)
     assert redirected_to(conn) == team_images_page_path(conn, :show_images, team.slug)
-    for {_version, web_path} <- ClubHomepage.Web.TeamUploader.urls({team_image.attachment, team_image}) do
+    for {_version, web_path} <- ClubHomepageWeb.TeamUploader.urls({team_image.attachment, team_image}) do
       [path, _] = String.split(web_path, "?")
       path = remove_trailing_slash(path)
       assert File.exists?(Path.expand(path))
@@ -117,10 +117,10 @@ defmodule ClubHomepage.TeamImageControllerTest do
     team_image = insert(:team_image)
     team = Repo.get!(Team, team_image.team_id)
 
-    destination_path = ClubHomepage.Web.TeamUploader.storage_dir(nil, {nil, team_image})
+    destination_path = ClubHomepageWeb.TeamUploader.storage_dir(nil, {nil, team_image})
     File.mkdir_p!(destination_path)
 
-    web_paths = ClubHomepage.Web.TeamUploader.urls({team_image.attachment, team_image})
+    web_paths = ClubHomepageWeb.TeamUploader.urls({team_image.attachment, team_image})
 
     for {_version, web_path} <- web_paths do
       [path, _query_string] = String.split(web_path, "?")

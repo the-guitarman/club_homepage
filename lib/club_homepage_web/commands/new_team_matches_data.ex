@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.NewTeamMatchesData do
+defmodule ClubHomepageWeb.NewTeamMatchesData do
   @moduledoc """
   Checks wether there are new matches for the given team available.
   """

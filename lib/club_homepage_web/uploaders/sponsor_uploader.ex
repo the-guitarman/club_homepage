@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.SponsorUploader do
+defmodule ClubHomepageWeb.SponsorUploader do
   use Arc.Definition
   use Arc.Ecto.Definition
 

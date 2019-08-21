@@ -1,9 +1,9 @@
-defmodule ClubHomepage.Web.PaymentListDebitorHistoryRecordCreatorTest do
-  use ClubHomepage.Web.ConnCase
+defmodule ClubHomepageWeb.PaymentListDebitorHistoryRecordCreatorTest do
+  use ClubHomepageWeb.ConnCase
 
   alias ClubHomepage.PaymentListDebitor
   alias ClubHomepage.PaymentListDebitorHistoryRecord, as: HistoryRecord
-  alias ClubHomepage.Web.PaymentListDebitorHistoryRecordCreator, as: HistoryRecordCreator
+  alias ClubHomepageWeb.PaymentListDebitorHistoryRecordCreator, as: HistoryRecordCreator
 
   import ClubHomepage.Factory
 

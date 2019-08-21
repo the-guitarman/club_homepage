@@ -11,7 +11,7 @@
       <%= if @active_tab === "team_chat" do %>
         <a href="#"><%= gettext("team_chat") %> <%= render "new_team_chat_messages_badge.html" %></a>
       <% else %>
-        <%= link raw(gettext("team_chat") <> " " <> render_to_string(ClubHomepage.Web.TeamView, "new_team_chat_messages_badge.html", conn: @conn)), to: Routes.team_chat_page_path(@conn, :show_chat, @team) %>
+        <%= link raw(gettext("team_chat") <> " " <> render_to_string(ClubHomepageWeb.TeamView, "new_team_chat_messages_badge.html", conn: @conn)), to: Routes.team_chat_page_path(@conn, :show_chat, @team) %>
       <% end %>
       </li>
     <% end %>

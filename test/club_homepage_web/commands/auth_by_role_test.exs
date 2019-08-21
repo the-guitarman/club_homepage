@@ -1,14 +1,14 @@
-defmodule ClubHomepage.Web.AuthByRolePlugTest do
-  use ClubHomepage.Web.ConnCase
+defmodule ClubHomepageWeb.AuthByRolePlugTest do
+  use ClubHomepageWeb.ConnCase
 
-  alias ClubHomepage.Web.UserRole
-  alias ClubHomepage.Web.AuthByRole
-  alias ClubHomepage.Web.AuthByRole.Helper, as: AuthByRoleHelper
+  alias ClubHomepageWeb.UserRole
+  alias ClubHomepageWeb.AuthByRole
+  alias ClubHomepageWeb.AuthByRole.Helper, as: AuthByRoleHelper
 
   setup do
     conn =
       build_conn()
-      |> bypass_through(ClubHomepage.Web.Router, :browser)
+      |> bypass_through(ClubHomepageWeb.Router, :browser)
       |> get("/")
     {:ok, %{conn: conn}}
   end

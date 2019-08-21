@@ -1,9 +1,9 @@
-defmodule ClubHomepage.Web.UserController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.UserController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.User
-  alias ClubHomepage.Web.Auth
-  alias ClubHomepage.Web.UserRole
+  alias ClubHomepageWeb.Auth
+  alias ClubHomepageWeb.UserRole
 
   plug :is_user_editor when action in [:show, :new_unregistered, :create_unregistered, :edit, :update, :delete]
   plug :authenticate_user when action in [:index, :edit_restricted, :update_restricted]
@@ -59,7 +59,7 @@ defmodule ClubHomepage.Web.UserController do
     result = get_registration_changeset(user, user_params, secret_key)
     case result do
       {:ok, user} ->
-        ClubHomepage.Web.SecretCheck.delete(secret_key)
+        ClubHomepageWeb.SecretCheck.delete(secret_key)
         conn
         |> Auth.login(user)
         |> put_flash(:info, gettext("user_created_successfully_and_loged_in"))
@@ -218,13 +218,13 @@ defmodule ClubHomepage.Web.UserController do
   defp get_registration_changeset(nil, user_params, secret_key) do
     changeset =
       User.registration_changeset(%User{}, user_params)
-      |> ClubHomepage.Web.SecretCheck.run(secret_key)
+      |> ClubHomepageWeb.SecretCheck.run(secret_key)
     Repo.insert(changeset)
   end
   defp get_registration_changeset(user, user_params, secret_key) do
     changeset =
       User.registration_changeset(user, user_params)
-      |> ClubHomepage.Web.SecretCheck.run(secret_key)
+      |> ClubHomepageWeb.SecretCheck.run(secret_key)
     Repo.update(changeset)
   end
 

@@ -1,3 +1,3 @@
-defmodule ClubHomepage.Web.SessionView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.SessionView do
+  use ClubHomepageWeb, :view
 end

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.PaymentListDebitorHistoryRecordCreator do
+defmodule ClubHomepageWeb.PaymentListDebitorHistoryRecordCreator do
   @moduledoc """
   This module helps to create history records for payment list debitor changes.
   """

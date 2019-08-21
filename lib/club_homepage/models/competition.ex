@@ -1,16 +1,20 @@
-defmodule ClubHomepage.Season do
-  use ClubHomepage.Web, :model
+defmodule ClubHomepage.Competition do
+  use ClubHomepageWeb, :model
 
-  schema "seasons" do
+  #alias ClubHomepageWeb.ModelValidator
+
+  schema "competitions" do
     field :name, :string
+    field :matches_need_decition, :boolean
 
+    has_many :teams, ClubHomepage.Team#, on_delete: :delete_all
     has_many :matches, ClubHomepage.Match#, on_delete: :delete_all
 
     timestamps([type: :utc_datetime])
   end
 
-  @cast_fields ~w(name)a
-  @required_fields [:name]
+  @cast_fields ~w(name matches_need_decition)a
+  @required_fields [:name, :matches_need_decition]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -22,6 +26,7 @@ defmodule ClubHomepage.Season do
     model
     |> cast(params, @cast_fields)
     |> validate_required(@required_fields)
-    |> validate_format(:name, ~r/\A20\d\d-20\d\d\z/i)
+    |> unique_constraint(:name)
+    #|> ModelValidator.validate_uniqueness(:name)
   end
 end

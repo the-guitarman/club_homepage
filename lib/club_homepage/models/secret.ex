@@ -1,5 +1,5 @@
 defmodule ClubHomepage.Secret do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
 
   schema "secrets" do
     field :key, :string

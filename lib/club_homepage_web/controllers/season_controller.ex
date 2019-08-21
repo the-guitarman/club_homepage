@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.SeasonController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.SeasonController do
+  use ClubHomepageWeb, :controller
 
   import ClubHomepage.Extension.SeasonController
 

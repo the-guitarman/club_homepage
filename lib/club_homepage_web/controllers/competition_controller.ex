@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.CompetitionController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.CompetitionController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.Competition
 

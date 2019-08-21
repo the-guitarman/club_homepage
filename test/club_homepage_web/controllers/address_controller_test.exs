@@ -1,5 +1,5 @@
 defmodule ClubHomepage.AddressControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   alias ClubHomepage.Address
 

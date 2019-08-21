@@ -1,5 +1,5 @@
 defmodule ClubHomepage.SecretControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
   use Bamboo.Test
 
   alias ClubHomepage.Secret

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.UserMetaData do
+defmodule ClubHomepageWeb.UserMetaData do
   @moduledoc """
   Module provides helper methods for serialized user meta_data field.
   """

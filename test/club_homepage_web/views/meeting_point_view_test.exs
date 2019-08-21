@@ -1,11 +1,11 @@
 defmodule ClubHomepage.MeetingPointViewTest do
-  use ClubHomepage.Web.ConnCase, async: true
+  use ClubHomepageWeb.ConnCase, async: true
 
 #  import Phoenix.HTML, only: [safe_to_string: 1]
   import ClubHomepage.Factory
 
 #  alias ClubHomepage.MeetingPoint
-  alias ClubHomepage.Web.MeetingPointView
+  alias ClubHomepageWeb.MeetingPointView
   alias ClubHomepage.Repo
 
   test "full address of meeting point" do

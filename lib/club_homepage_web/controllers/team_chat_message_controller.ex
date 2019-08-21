@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.TeamChatMessageController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.TeamChatMessageController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.TeamChatMessage
 

@@ -1,10 +1,10 @@
 defmodule ClubHomepage.JsonMatchesCreatorTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
-  doctest ClubHomepage.Web.JsonMatchesCreator
+  doctest ClubHomepageWeb.JsonMatchesCreator
 
-  alias ClubHomepage.Web.JsonMatchesValidator
-  alias ClubHomepage.Web.JsonMatchesCreator
+  alias ClubHomepageWeb.JsonMatchesValidator
+  alias ClubHomepageWeb.JsonMatchesCreator
   alias ClubHomepage.Competition
   alias ClubHomepage.Match
   alias ClubHomepage.OpponentTeam

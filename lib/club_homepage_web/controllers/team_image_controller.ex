@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.TeamImageController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.TeamImageController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.Team
   alias ClubHomepage.TeamImage
@@ -66,7 +66,7 @@ defmodule ClubHomepage.Web.TeamImageController do
     # it to always work (and if it does not, it will raise).
     Repo.delete!(team_image)
 
-    File.rm_rf!(ClubHomepage.Web.TeamUploader.storage_dir(nil, {nil, team_image}))
+    File.rm_rf!(ClubHomepageWeb.TeamUploader.storage_dir(nil, {nil, team_image}))
 
     conn
     |> put_flash(:info, gettext("team_image_deleted_successfully"))

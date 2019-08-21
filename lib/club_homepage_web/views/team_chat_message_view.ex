@@ -1,3 +1,3 @@
-defmodule ClubHomepage.Web.TeamChatMessageView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.TeamChatMessageView do
+  use ClubHomepageWeb, :view
 end

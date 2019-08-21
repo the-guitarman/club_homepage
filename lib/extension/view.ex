@@ -3,9 +3,9 @@ defmodule ClubHomepage.Extension.View do
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.Tag
 
-  import ClubHomepage.Web.ErrorHelpers 
-  import ClubHomepage.Web.Gettext
-  import ClubHomepage.Web.Localization
+  import ClubHomepageWeb.ErrorHelpers 
+  import ClubHomepageWeb.Gettext
+  import ClubHomepageWeb.Localization
   import ClubHomepage.Extension.CommonTimex
 
   @doc """
@@ -222,7 +222,7 @@ defmodule ClubHomepage.Extension.View do
         ul_tag = Tag.content_tag(:ul) do
           for {attr, message} <- f.errors do
             Tag.content_tag(:li) do
-              Gettext.dgettext(ClubHomepage.Web.Gettext, "models", attr_underscored(attr)) <> " " <> translate_error(message)
+              Gettext.dgettext(ClubHomepageWeb.Gettext, "models", attr_underscored(attr)) <> " " <> translate_error(message)
             end
           end
         end
@@ -267,7 +267,7 @@ defmodule ClubHomepage.Extension.View do
         options =
           options
           |> Keyword.put(:class, "form-control text-center no-spin")
-          |> Keyword.put(:placeholder, Gettext.gettext(ClubHomepage.Web.Gettext, Atom.to_string(field)))
+          |> Keyword.put(:placeholder, Gettext.gettext(ClubHomepageWeb.Gettext, Atom.to_string(field)))
         e2 = Form.number_input form, field, options
         e3 = Tag.content_tag(:div, class: "input-group-addon btn btn-primary") do
           Tag.content_tag(:span, class: "glyphicon glyphicon-plus") do

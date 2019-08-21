@@ -1,5 +1,5 @@
 defmodule ClubHomepage.SessionControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   #alias ClubHomepage.User
 

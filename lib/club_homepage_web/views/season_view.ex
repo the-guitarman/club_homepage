@@ -1,3 +1,3 @@
-defmodule ClubHomepage.Web.SeasonView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.SeasonView do
+  use ClubHomepageWeb, :view
 end

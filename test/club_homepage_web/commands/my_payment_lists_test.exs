@@ -1,6 +1,6 @@
-defmodule ClubHomepage.Web.MyPaymentListsTest do
-  use ClubHomepage.Web.ConnCase
-  alias ClubHomepage.Web.MyPaymentLists
+defmodule ClubHomepageWeb.MyPaymentListsTest do
+  use ClubHomepageWeb.ConnCase
+  alias ClubHomepageWeb.MyPaymentLists
 
   import ClubHomepage.Factory
 

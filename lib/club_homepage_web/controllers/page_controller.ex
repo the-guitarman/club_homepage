@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.PageController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.PageController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.Repo
   alias ClubHomepage.Match
@@ -25,7 +25,7 @@ defmodule ClubHomepage.Web.PageController do
       find_next_team_matches(last_matches_query, teams)
       |> Enum.reject(fn(x) -> x == nil end)
       |> Enum.sort(fn(x, y) -> DateTime.compare(x.start_at, y.start_at) == :gt end)
-    {_, weather_data} = ClubHomepage.Web.WeatherData.get()
+    {_, weather_data} = ClubHomepageWeb.WeatherData.get()
     render conn, "index.html", teams: teams, news: news, next_matches: next_matches, last_matches: last_matches, weather_data: weather_data
   end
 

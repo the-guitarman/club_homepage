@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.StandardTeamPlayersChannel do
-  use ClubHomepage.Web, :channel
+defmodule ClubHomepageWeb.StandardTeamPlayersChannel do
+  use ClubHomepageWeb, :channel
 
   alias ClubHomepage.Repo
   alias ClubHomepage.StandardTeamPlayer

@@ -1,3 +1,3 @@
-defmodule ClubHomepage.Web.TextPageView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.TextPageView do
+  use ClubHomepageWeb, :view
 end

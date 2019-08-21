@@ -1,3 +1,3 @@
 defmodule ClubHomepage.PageViewTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 end

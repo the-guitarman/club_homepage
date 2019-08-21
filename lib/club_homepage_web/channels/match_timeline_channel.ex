@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.MatchTimelineChannel do
-  use ClubHomepage.Web, :channel
+defmodule ClubHomepageWeb.MatchTimelineChannel do
+  use ClubHomepageWeb, :channel
 
   alias ClubHomepage.Match
   alias ClubHomepage.Repo

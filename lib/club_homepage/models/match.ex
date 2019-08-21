@@ -1,7 +1,7 @@
 defmodule ClubHomepage.Match do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
 
-  #alias ClubHomepage.Web.MatchValidator
+  #alias ClubHomepageWeb.MatchValidator
   alias ClubHomepage.Competition
   alias ClubHomepage.Match
   alias ClubHomepage.MatchCommitment

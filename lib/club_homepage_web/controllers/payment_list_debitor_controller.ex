@@ -1,9 +1,9 @@
-defmodule ClubHomepage.Web.PaymentListDebitorController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.PaymentListDebitorController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.PaymentList
   alias ClubHomepage.PaymentListDebitor
-  alias ClubHomepage.Web.PaymentListDebitorHistoryRecordCreator, as: HistoryRecordCreator
+  alias ClubHomepageWeb.PaymentListDebitorHistoryRecordCreator, as: HistoryRecordCreator
 
   plug :authenticate_user
   plug :current_user_is_payment_list_debitor when action in [:show]
@@ -27,7 +27,7 @@ defmodule ClubHomepage.Web.PaymentListDebitorController do
         |> put_flash(:info, gettext("payment_list_debitor_created_successfully"))
         |> redirect(to: Routes.payment_list_path(conn, :show, payment_list))
       {:error, changeset} ->
-        {:safe, body} = Phoenix.View.render(ClubHomepage.Web.PaymentListView, "show.html", changeset: changeset,
+        {:safe, body} = Phoenix.View.render(ClubHomepageWeb.PaymentListView, "show.html", changeset: changeset,
                conn: conn,
                payment_list: payment_list, 
                user_options: conn.assigns.user_options)

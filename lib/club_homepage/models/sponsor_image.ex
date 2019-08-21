@@ -1,10 +1,10 @@
 defmodule ClubHomepage.SponsorImage do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
   use Arc.Ecto.Schema
 
   schema "sponsor_images" do
     field :name, :string
-    field :attachment, ClubHomepage.Web.SponsorUploader.Type
+    field :attachment, ClubHomepageWeb.SponsorUploader.Type
 
     timestamps([type: :utc_datetime])
   end

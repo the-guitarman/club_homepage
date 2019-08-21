@@ -1,7 +1,7 @@
 require Ecto.Query
 
-defmodule ClubHomepage.Web.MatchView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.MatchView do
+  use ClubHomepageWeb, :view
 
   import ClubHomepage.Extension.MatchView
 
@@ -59,7 +59,7 @@ defmodule ClubHomepage.Web.MatchView do
   end
 
   def failure_reason_options do
-    Enum.map(failure_reasons(), fn(key) -> {Gettext.dgettext(ClubHomepage.Web.Gettext, "additionals", "failure_reason_" <> key), key} end)
+    Enum.map(failure_reasons(), fn(key) -> {Gettext.dgettext(ClubHomepageWeb.Gettext, "additionals", "failure_reason_" <> key), key} end)
   end
 
   def match_character(match) do

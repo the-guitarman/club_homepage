@@ -1,5 +1,5 @@
 defmodule ClubHomepage.Address do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
 
   schema "addresses" do
     field :district, :string

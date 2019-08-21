@@ -1,3 +1,3 @@
-defmodule ClubHomepage.Web.AddressView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.AddressView do
+  use ClubHomepageWeb, :view
 end

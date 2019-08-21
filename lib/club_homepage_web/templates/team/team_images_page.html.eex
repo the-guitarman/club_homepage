@@ -18,7 +18,7 @@
                       <div class="col-xs-12">
                         <h2><%= team_image.year %></h2>
                         <div class="text-center">
-                          <%= uploader_image_tag ClubHomepage.Web.TeamUploader, team_image, :normal %>
+                          <%= uploader_image_tag ClubHomepageWeb.TeamUploader, team_image, :normal %>
                         </div>
                       </div>
                     </div>

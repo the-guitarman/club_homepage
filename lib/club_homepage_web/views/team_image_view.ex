@@ -1,3 +1,3 @@
-defmodule ClubHomepage.Web.TeamImageView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.TeamImageView do
+  use ClubHomepageWeb, :view
 end

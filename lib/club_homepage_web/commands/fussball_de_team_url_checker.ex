@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.FussballDeTeamUrlChecker do
+defmodule ClubHomepageWeb.FussballDeTeamUrlChecker do
   @moduledoc """
   Checks a fussball.de url and grabs some parameters from it.
   """

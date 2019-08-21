@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.SEO.Plug do
+defmodule ClubHomepageWeb.SEO.Plug do
   @moduledoc """
   Plug module finds/loads and sets seo data.
   """
@@ -41,6 +41,6 @@ defmodule ClubHomepage.Web.SEO.Plug do
   end
 
   defp gettext(text, options) do
-    Gettext.dgettext(ClubHomepage.Web.Gettext, "meta", text, options)
+    Gettext.dgettext(ClubHomepageWeb.Gettext, "meta", text, options)
   end
 end

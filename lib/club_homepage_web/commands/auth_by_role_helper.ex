@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.AuthByRole.Helper do
+defmodule ClubHomepageWeb.AuthByRole.Helper do
   @doc """
   Returns the plug function name for a given user role key. This is used to generate one plug function and test methods for each user role key. 
   """

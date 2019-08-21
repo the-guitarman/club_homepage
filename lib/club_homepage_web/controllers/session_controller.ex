@@ -1,7 +1,7 @@
-defmodule ClubHomepage.Web.SessionController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.SessionController do
+  use ClubHomepageWeb, :controller
 
-  alias ClubHomepage.Web.Auth
+  alias ClubHomepageWeb.Auth
 
   plug :require_no_user when action in [:new, :create]
   plug :authenticate_user when action in [:delete]

@@ -1,5 +1,5 @@
 defmodule ClubHomepage.PageControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   import ClubHomepage.Factory
 

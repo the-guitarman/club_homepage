@@ -1,10 +1,10 @@
 defmodule ClubHomepage.TeamImage do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
   use Arc.Ecto.Schema
 
   schema "team_images" do
     field :year, :integer
-    field :attachment, ClubHomepage.Web.TeamUploader.Type
+    field :attachment, ClubHomepageWeb.TeamUploader.Type
     field :description, :string
 
     belongs_to :team, ClubHomepage.Team

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.MyPaymentLists do
+defmodule ClubHomepageWeb.MyPaymentLists do
   @moduledoc """
   Provides payment lists for a user. You may be use it as a plug to assign the payment lists of the current user.
   """
@@ -11,7 +11,7 @@ defmodule ClubHomepage.Web.MyPaymentLists do
   import Plug.Conn
   import Ecto.Query, only: [from: 2]
   #import ClubHomepage.Extension.Common, only: [internal_user_name: 1]
-  import ClubHomepage.Web.Auth
+  import ClubHomepageWeb.Auth
 
   @doc false
   def init(_opts) do

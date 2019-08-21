@@ -1,5 +1,5 @@
 defmodule ClubHomepage.PaymentListDebitorHistoryRecord do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
 
   schema "payment_list_debitor_history_records" do
     field :old_number_of_units, :integer

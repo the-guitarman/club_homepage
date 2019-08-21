@@ -1,26 +1,26 @@
-defmodule ClubHomepage.Web.Localization do
-  import ClubHomepage.Web.Gettext
+defmodule ClubHomepageWeb.Localization do
+  import ClubHomepageWeb.Gettext
 
   @doc """
   Returns the current local abbreviation.
 
   ## Example usage
-  iex> ClubHomepage.Web.Localization.current_locale()
+  iex> ClubHomepageWeb.Localization.current_locale()
   "en"
   """
   @spec current_locale :: String
   def current_locale do
-    Gettext.get_locale(ClubHomepage.Web.Gettext)
+    Gettext.get_locale(ClubHomepageWeb.Gettext)
   end
 
   @doc """
   Returns the localized date format.
 
   ## Example usage
-  iex> ClubHomepage.Web.Localization.date_format()
+  iex> ClubHomepageWeb.Localization.date_format()
   "%Y-%m-%d"
 
-  iex> ClubHomepage.Web.Localization.date_format("%Y")
+  iex> ClubHomepageWeb.Localization.date_format("%Y")
   "%Y"
   """
   def date_format, do: date_format(nil)
@@ -33,10 +33,10 @@ defmodule ClubHomepage.Web.Localization do
   Returns the localized date format.
 
   ## Example usage
-  iex> ClubHomepage.Web.Localization.datetime_format()
+  iex> ClubHomepageWeb.Localization.datetime_format()
   "%Y-%m-%d %H:%M"
 
-  iex> ClubHomepage.Web.Localization.datetime_format("%H")
+  iex> ClubHomepageWeb.Localization.datetime_format("%H")
   "%H"
   """
   def datetime_format, do: datetime_format(nil)
@@ -49,10 +49,10 @@ defmodule ClubHomepage.Web.Localization do
   Returns the localized date format.
 
   ## Example usage
-  iex> ClubHomepage.Web.Localization.time_format()
+  iex> ClubHomepageWeb.Localization.time_format()
   "%H:%M"
 
-  iex> ClubHomepage.Web.Localization.time_format("%H")
+  iex> ClubHomepageWeb.Localization.time_format("%H")
   "%H"
   """
   def time_format, do: time_format(nil)

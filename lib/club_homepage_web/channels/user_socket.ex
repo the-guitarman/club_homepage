@@ -1,16 +1,16 @@
-defmodule ClubHomepage.Web.UserSocket do
+defmodule ClubHomepageWeb.UserSocket do
   use Phoenix.Socket
 
   @max_age 2 * 7 * 24 * 60 * 60
 
   ## Channels
   # channel "rooms:*", ClubHomepage.RoomChannel
-  channel "match-timelines:*", ClubHomepage.Web.MatchTimelineChannel
-  channel "team-chats:*", ClubHomepage.Web.TeamChatChannel
-  channel "team-chat-badges:*", ClubHomepage.Web.TeamChatBadgeChannel
-  channel "payment-lists:*", ClubHomepage.Web.PaymentListChannel
-  channel "standard-team-players:*", ClubHomepage.Web.StandardTeamPlayersChannel
-  channel "match-commitments:*", ClubHomepage.Web.MatchCommitmentsChannel
+  channel "match-timelines:*", ClubHomepageWeb.MatchTimelineChannel
+  channel "team-chats:*", ClubHomepageWeb.TeamChatChannel
+  channel "team-chat-badges:*", ClubHomepageWeb.TeamChatBadgeChannel
+  channel "payment-lists:*", ClubHomepageWeb.PaymentListChannel
+  channel "standard-team-players:*", ClubHomepageWeb.StandardTeamPlayersChannel
+  channel "match-commitments:*", ClubHomepageWeb.MatchCommitmentsChannel
 
 
   ## Transports
@@ -50,7 +50,7 @@ defmodule ClubHomepage.Web.UserSocket do
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:
   #
-  #     ClubHomepage.Web.Endpoint.broadcast("users_socket:" <> user.id, "disconnect", %{})
+  #     ClubHomepageWeb.Endpoint.broadcast("users_socket:" <> user.id, "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
   # def id(_socket), do: nil

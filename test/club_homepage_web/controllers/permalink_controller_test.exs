@@ -1,5 +1,5 @@
 defmodule ClubHomepage.PermalinkControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   alias ClubHomepage.Permalink
 

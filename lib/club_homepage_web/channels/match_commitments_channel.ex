@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.MatchCommitmentsChannel do
-  use ClubHomepage.Web, :channel
+defmodule ClubHomepageWeb.MatchCommitmentsChannel do
+  use ClubHomepageWeb, :channel
 
   alias ClubHomepage.Repo
   alias ClubHomepage.MatchCommitment

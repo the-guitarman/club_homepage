@@ -1,7 +1,7 @@
 defmodule ClubHomepage.PaymentListChannelTest do
-  use ClubHomepage.Web.ChannelCase
+  use ClubHomepageWeb.ChannelCase
 
-  alias ClubHomepage.Web.PaymentListChannel
+  alias ClubHomepageWeb.PaymentListChannel
 
   import ClubHomepage.Factory
 

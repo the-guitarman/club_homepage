@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.ErrorView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.ErrorView do
+  use ClubHomepageWeb, :view
 
   def render("404.html", _assigns) do
     "Page not found"

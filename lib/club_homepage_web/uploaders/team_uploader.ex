@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.TeamUploader do
+defmodule ClubHomepageWeb.TeamUploader do
   use Arc.Definition
   use Arc.Ecto.Definition
 

@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.CurrentTeamTableData do
+defmodule ClubHomepageWeb.CurrentTeamTableData do
   @moduledoc """
   Checks wether there is a table for the given team available.
   """
@@ -8,7 +8,7 @@ defmodule ClubHomepage.Web.CurrentTeamTableData do
   alias ClubHomepage.Match
   alias ClubHomepage.Team
   alias ClubHomepage.Repo
-  alias ClubHomepage.Web.Localization
+  alias ClubHomepageWeb.Localization
 
   import Ecto.Query, only: [from: 2]
   import ClubHomepage.Extension.CommonTimex

@@ -18,7 +18,7 @@
                     <%= sponsor_image.name %>
                   </td>
                   <td>
-                    <%= uploader_image_source(ClubHomepage.Web.SponsorUploader, sponsor_image, :logo) %>
+                    <%= uploader_image_source(ClubHomepageWeb.SponsorUploader, sponsor_image, :logo) %>
                   </td>
                 </tr>
               <% end %>

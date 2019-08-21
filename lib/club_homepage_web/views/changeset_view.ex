@@ -1,11 +1,11 @@
-defmodule ClubHomepage.Web.ChangesetView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.ChangesetView do
+  use ClubHomepageWeb, :view
 
   @doc """
   Traverses and translates changeset errors.
 
   See `Ecto.Changeset.traverse_errors/2` and
-  `ClubHomepage.Web.ErrorHelpers.translate_error/1` for more details.
+  `ClubHomepageWeb.ErrorHelpers.translate_error/1` for more details.
   """
   def translate_errors(changeset) do
     Ecto.Changeset.traverse_errors(changeset, &translate_error/1)

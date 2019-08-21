@@ -1,7 +1,7 @@
 defmodule ClubHomepage.StandardTeamPlayersChannelTest do
-  use ClubHomepage.Web.ChannelCase
+  use ClubHomepageWeb.ChannelCase
 
-  alias ClubHomepage.Web.StandardTeamPlayersChannel
+  alias ClubHomepageWeb.StandardTeamPlayersChannel
   alias ClubHomepage.StandardTeamPlayer
 
   import ClubHomepage.Factory

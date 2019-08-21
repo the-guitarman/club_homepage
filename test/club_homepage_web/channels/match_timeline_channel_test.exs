@@ -1,11 +1,11 @@
 defmodule ClubHomepage.MatchTimelineChannelTest do
-  use ClubHomepage.Web.ChannelCase
+  use ClubHomepageWeb.ChannelCase
 
   import ClubHomepage.Factory
   
   alias ClubHomepage.Competition
   alias ClubHomepage.Match
-  alias ClubHomepage.Web.MatchTimelineChannel
+  alias ClubHomepageWeb.MatchTimelineChannel
   alias ClubHomepage.Repo
 
   #@kick_off_match_event %{"type" => "kick-off"}

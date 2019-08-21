@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.Auth do
+defmodule ClubHomepageWeb.Auth do
   @moduledoc """
   Provides the central authentication system.
   """
@@ -6,9 +6,9 @@ defmodule ClubHomepage.Web.Auth do
   import Phoenix.Controller
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2]
-  import ClubHomepage.Web.Gettext
+  import ClubHomepageWeb.Gettext
 
-  alias ClubHomepage.Web.Router.Helpers
+  alias ClubHomepageWeb.Router.Helpers
   alias ClubHomepage.User
 
   def init(opts) do

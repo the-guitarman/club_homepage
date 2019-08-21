@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.WeatherData do
+defmodule ClubHomepageWeb.WeatherData do
   @moduledoc """
   Receives weather data from an external api.
   """

@@ -1,5 +1,5 @@
 defmodule ClubHomepage.PaymentListDebitor do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
 
   schema "payment_list_debitors" do
     field :number_of_units, :integer

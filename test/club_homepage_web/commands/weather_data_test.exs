@@ -1,8 +1,8 @@
 defmodule ClubHomepage.WeatherDataTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
-  doctest ClubHomepage.Web.WeatherData
-  alias ClubHomepage.Web.WeatherData
+  doctest ClubHomepageWeb.WeatherData
+  alias ClubHomepageWeb.WeatherData
 
 
   test "test_sd" do

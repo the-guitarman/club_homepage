@@ -1,6 +1,6 @@
 defmodule ClubHomepage.Extension.CommonTimex do
-  import ClubHomepage.Web.Gettext
-  import ClubHomepage.Web.Localization
+  import ClubHomepageWeb.Gettext
+  import ClubHomepageWeb.Localization
 
   @doc """
   Converts a datetime into a string with given format and local timezone.

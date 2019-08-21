@@ -1,13 +1,13 @@
-defmodule ClubHomepage.Web.AuthForPaymentList do
+defmodule ClubHomepageWeb.AuthForPaymentList do
   @moduledoc """
   Provides an authentication method for payment lists. Only users who are owner or deputy of a payment list may edit or delete it.
   """
 
   import Phoenix.Controller
   import Plug.Conn
-  import ClubHomepage.Web.Gettext
+  import ClubHomepageWeb.Gettext
 
-  alias ClubHomepage.Web.Router.Helpers
+  alias ClubHomepageWeb.Router.Helpers
   alias ClubHomepage.Repo
   alias ClubHomepage.PaymentList
 

@@ -1,12 +1,12 @@
 defmodule ClubHomepage.MatchControllerTest do
-  use ClubHomepage.Web.ConnCase
+  use ClubHomepageWeb.ConnCase
 
   alias ClubHomepage.Match
 
   import ClubHomepage.Factory
 
   import Ecto.Query, only: [from: 2]
-  import ClubHomepage.Web.UserRole, only: [has_role?: 2]
+  import ClubHomepageWeb.UserRole, only: [has_role?: 2]
 
   @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "2010-04-17 14:00"}
   @invalid_attrs %{}

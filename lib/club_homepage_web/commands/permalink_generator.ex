@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.PermalinkGenerator  do
+defmodule ClubHomepageWeb.PermalinkGenerator  do
   @moduledoc """
   Generates permalinks to redirect paths with old slugs to new ones. 
   """
@@ -15,7 +15,7 @@ defmodule ClubHomepage.Web.PermalinkGenerator  do
       iex> query = from(p in ClubHomepage.Permalink, select: count(p.id))
       iex> 0 == Repo.one(query)
       true
-      iex> ClubHomepage.Web.PermalinkGenerator.run("old-slug", "new-slug", :teams)
+      iex> ClubHomepageWeb.PermalinkGenerator.run("old-slug", "new-slug", :teams)
       iex> 1 == Repo.one(query)
       true
       iex> permalink = Repo.one(ClubHomepage.Permalink)

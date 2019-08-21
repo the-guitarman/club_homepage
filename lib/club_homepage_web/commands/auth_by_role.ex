@@ -1,15 +1,15 @@
-defmodule ClubHomepage.Web.AuthByRole do
+defmodule ClubHomepageWeb.AuthByRole do
   @moduledoc """
   Provides plug methods to check wether the current logged in user has special user role.
   """
 
   import Phoenix.Controller
   import Plug.Conn
-  import ClubHomepage.Web.Gettext
+  import ClubHomepageWeb.Gettext
 
-  alias ClubHomepage.Web.Router.Helpers
-  alias ClubHomepage.Web.UserRole
-  alias ClubHomepage.Web.AuthByRole.Helper, as: AuthByRoleHelper
+  alias ClubHomepageWeb.Router.Helpers
+  alias ClubHomepageWeb.UserRole
+  alias ClubHomepageWeb.AuthByRole.Helper, as: AuthByRoleHelper
 
   def init(_opts) do
     nil

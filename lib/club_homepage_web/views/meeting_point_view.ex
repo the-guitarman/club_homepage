@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.MeetingPointView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.MeetingPointView do
+  use ClubHomepageWeb, :view
 
   def full_address(meeting_point) do
     case address_loaded?(meeting_point) do

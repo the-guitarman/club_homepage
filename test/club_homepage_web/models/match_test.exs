@@ -6,7 +6,7 @@ defmodule ClubHomepage.MatchTest do
   alias ClubHomepage.Repo
 
   import ClubHomepage.Factory
-  import ClubHomepage.Web.Localization
+  import ClubHomepageWeb.Localization
 
   @valid_attrs %{competition_id: 1, season_id: 1, team_id: 1, opponent_team_id: 1, home_match: true, start_at: "2010-04-17 14:00"}
   @invalid_attrs %{}

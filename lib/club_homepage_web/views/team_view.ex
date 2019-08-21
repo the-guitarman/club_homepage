@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.TeamView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.TeamView do
+  use ClubHomepageWeb, :view
 
   import ClubHomepage.Extension.MatchView
 

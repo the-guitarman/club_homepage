@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.MatchCalendarCreator do
+defmodule ClubHomepageWeb.MatchCalendarCreator do
   @moduledoc """
   Generates an ical file content with matches in the future. 
   """
@@ -8,8 +8,8 @@ defmodule ClubHomepage.Web.MatchCalendarCreator do
   alias ClubHomepage.Repo
 
   import Ecto.Query, only: [from: 2]
-  import ClubHomepage.Web.Gettext
-  import ClubHomepage.Web.Localization
+  import ClubHomepageWeb.Gettext
+  import ClubHomepageWeb.Localization
   import ClubHomepage.Extension.CommonTimex
 
   @doc """

@@ -1,12 +1,12 @@
-defmodule ClubHomepage.Web do
+defmodule ClubHomepageWeb do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use ClubHomepage.Web, :controller
-      use ClubHomepage.Web, :view
+      use ClubHomepageWeb, :controller
+      use ClubHomepageWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -24,34 +24,34 @@ defmodule ClubHomepage.Web do
       import Ecto.Changeset
       import Ecto.Query
 
-      import ClubHomepage.Web.Gettext
+      import ClubHomepageWeb.Gettext
     end
   end
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: ClubHomepage.Web
+      use Phoenix.Controller, namespace: ClubHomepageWeb
 
       alias ClubHomepage.Repo
 #      import Ecto.Schema
       import Ecto
       import Ecto.Query
 
-      alias ClubHomepage.Web.Router.Helpers, as: Routes
-      #import ClubHomepage.Web.Router.Helpers
+      alias ClubHomepageWeb.Router.Helpers, as: Routes
+      #import ClubHomepageWeb.Router.Helpers
 
-      import ClubHomepage.Web.Gettext
-      import ClubHomepage.Web.Localization
+      import ClubHomepageWeb.Gettext
+      import ClubHomepageWeb.Localization
 
       import ClubHomepage.Extension.Controller
       import ClubHomepage.Extension.Common, only: [failure_reasons: 0, internal_user_name: 1, get_config: 1]
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
-      import ClubHomepage.Web.Auth, only: [authenticate_user: 2, require_no_user: 2, current_user: 1, logged_in?: 1, logged_in?: 2]
-      import ClubHomepage.Web.AuthByRole, only: [has_role: 2, is_administrator: 2, is_match_editor: 2, is_member: 2, is_news_editor: 2, is_player: 2, is_team_editor: 2, is_text_page_editor: 2, is_user_editor: 2, has_role_from_list: 2]
-      import ClubHomepage.Web.AuthForPaymentList, only: [authenticate_payment_list_owner_or_deputy: 2]
+      import ClubHomepageWeb.Auth, only: [authenticate_user: 2, require_no_user: 2, current_user: 1, logged_in?: 1, logged_in?: 2]
+      import ClubHomepageWeb.AuthByRole, only: [has_role: 2, is_administrator: 2, is_match_editor: 2, is_member: 2, is_news_editor: 2, is_player: 2, is_team_editor: 2, is_text_page_editor: 2, is_user_editor: 2, has_role_from_list: 2]
+      import ClubHomepageWeb.AuthForPaymentList, only: [authenticate_payment_list_owner_or_deputy: 2]
 
-      import ClubHomepage.Web.SEO.Plug
+      import ClubHomepageWeb.SEO.Plug
     end
   end
 
@@ -59,7 +59,7 @@ defmodule ClubHomepage.Web do
     quote do
       use Phoenix.View,
         root: "lib/club_homepage_web/templates",
-        namespace: ClubHomepage.Web
+        namespace: ClubHomepageWeb
         #pattern: "**/*.eex"
 
       # Import convenience functions from controllers
@@ -68,19 +68,19 @@ defmodule ClubHomepage.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      alias ClubHomepage.Web.Router.Helpers, as: Routes
-      #import ClubHomepage.Web.Router.Helpers
+      alias ClubHomepageWeb.Router.Helpers, as: Routes
+      #import ClubHomepageWeb.Router.Helpers
 
-      import ClubHomepage.Web.ErrorHelpers
-      import ClubHomepage.Web.Gettext
-      import ClubHomepage.Web.Localization
+      import ClubHomepageWeb.ErrorHelpers
+      import ClubHomepageWeb.Gettext
+      import ClubHomepageWeb.Localization
 
       import ClubHomepage.Extension.View
       import ClubHomepage.Extension.Common, only: [failure_reasons: 0, internal_user_name: 1, user_name: 1, get_config: 1]
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
-      import ClubHomepage.Web.Auth, only: [logged_in?: 1, current_user: 1]
-      import ClubHomepage.Web.UserRole, only: [has_role?: 2]
+      import ClubHomepageWeb.Auth, only: [logged_in?: 1, current_user: 1]
+      import ClubHomepageWeb.UserRole, only: [has_role?: 2]
     end
   end
 
@@ -88,8 +88,8 @@ defmodule ClubHomepage.Web do
     quote do
       use Phoenix.Router
 
-      import ClubHomepage.Web.Auth, only: [authenticate_user: 2, current_user: 1]
-      import ClubHomepage.Web.AuthByRole, only: [has_role: 2, is_administrator: 2, is_match_editor: 2, is_member: 2, is_news_editor: 2, is_player: 2, is_team_editor: 2, is_text_page_editor: 2, is_user_editor: 2]
+      import ClubHomepageWeb.Auth, only: [authenticate_user: 2, current_user: 1]
+      import ClubHomepageWeb.AuthByRole, only: [has_role: 2, is_administrator: 2, is_match_editor: 2, is_member: 2, is_news_editor: 2, is_player: 2, is_team_editor: 2, is_text_page_editor: 2, is_user_editor: 2]
     end
   end
 
@@ -101,8 +101,8 @@ defmodule ClubHomepage.Web do
 #      import Ecto.Schema
       import Ecto
       import Ecto.Query
-      import ClubHomepage.Web.Gettext
-      import ClubHomepage.Web.Localization
+      import ClubHomepageWeb.Gettext
+      import ClubHomepageWeb.Localization
 
       import ClubHomepage.Extension.Common, only: [internal_user_name: 1]
     end

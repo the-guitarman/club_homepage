@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.PermalinkRedirection do
+defmodule ClubHomepageWeb.PermalinkRedirection do
   @moduledoc """
   Checks wether requested paths needs to be redirected.
   """

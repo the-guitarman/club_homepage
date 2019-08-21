@@ -1,3 +1,3 @@
-defmodule ClubHomepage.Web.SecretView do
-  use ClubHomepage.Web, :view
+defmodule ClubHomepageWeb.SecretView do
+  use ClubHomepageWeb, :view
 end

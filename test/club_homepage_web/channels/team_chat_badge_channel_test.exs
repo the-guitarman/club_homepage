@@ -1,7 +1,7 @@
 defmodule ClubHomepage.TeamChatBadgeChannelTest do
-  use ClubHomepage.Web.ChannelCase
+  use ClubHomepageWeb.ChannelCase
 
-  alias ClubHomepage.Web.TeamChatBadgeChannel
+  alias ClubHomepageWeb.TeamChatBadgeChannel
 
   import ClubHomepage.Factory
 

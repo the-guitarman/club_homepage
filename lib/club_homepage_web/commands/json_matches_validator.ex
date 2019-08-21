@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.JsonMatchesValidator do
+defmodule ClubHomepageWeb.JsonMatchesValidator do
   @moduledoc """
   This module creates a changeset and validates a json string for its schema and content. The changeset could be used with a form_for in the frontend to show te errors.
   """

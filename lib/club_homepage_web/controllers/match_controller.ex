@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.MatchController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.MatchController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.Match
   alias ClubHomepage.MeetingPoint
@@ -7,10 +7,10 @@ defmodule ClubHomepage.Web.MatchController do
   alias ClubHomepage.Repo
   alias ClubHomepage.Season
   alias ClubHomepage.Team
-  alias ClubHomepage.Web.JsonMatchesCreator
-  alias ClubHomepage.Web.JsonMatchesValidator
+  alias ClubHomepageWeb.JsonMatchesCreator
+  alias ClubHomepageWeb.JsonMatchesValidator
 
-  import ClubHomepage.Web.Localization
+  import ClubHomepageWeb.Localization
 
   plug :is_match_editor when action not in [:show]
   plug :scrub_params, "match" when action in [:create, :update]
@@ -227,7 +227,7 @@ defmodule ClubHomepage.Web.MatchController do
   defp set_next_match_parameters(_), do: %{}
 
   defp receive_new_matches(conn, team) do
-    case ClubHomepage.Web.NewTeamMatchesData.run(conn, team) do
+    case ClubHomepageWeb.NewTeamMatchesData.run(conn, team) do
       {:error, _, _} -> nil
       {:ok, result, _created_at_timestamp} -> result
     end

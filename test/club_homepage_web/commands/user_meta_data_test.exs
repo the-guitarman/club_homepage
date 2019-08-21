@@ -2,7 +2,7 @@ defmodule ClubHomepage.UserMetaDataTest do
   use ClubHomepage.ModelCase
   use ExUnit.Case
 
-  alias ClubHomepage.Web.UserMetaData
+  alias ClubHomepageWeb.UserMetaData
 
   import ClubHomepage.Factory
   #import Ecto.Query, only: [from: 2]

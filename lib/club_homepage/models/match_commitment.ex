@@ -1,9 +1,9 @@
 defmodule ClubHomepage.MatchCommitment do
-  use ClubHomepage.Web, :model
+  use ClubHomepageWeb, :model
 
   alias ClubHomepage.Repo
   alias ClubHomepage.User
-  alias ClubHomepage.Web.UserRole
+  alias ClubHomepageWeb.UserRole
 
   schema "match_commitments" do
     field :commitment, :integer

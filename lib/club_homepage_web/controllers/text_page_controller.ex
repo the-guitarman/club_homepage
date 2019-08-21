@@ -1,5 +1,5 @@
-defmodule ClubHomepage.Web.TextPageController do
-  use ClubHomepage.Web, :controller
+defmodule ClubHomepageWeb.TextPageController do
+  use ClubHomepageWeb, :controller
 
   alias ClubHomepage.TextPage
 
