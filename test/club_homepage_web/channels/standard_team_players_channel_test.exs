@@ -10,7 +10,7 @@ defmodule ClubHomepage.StandardTeamPlayersChannelTest do
     user = insert(:user)
     team = insert(:team)
     {:ok, _, socket} =
-      socket("users_socket: #{user.id}", %{current_user: user}, %{})
+      socket(ClubHomepageWeb.UserSocket, "users_socket: #{user.id}", %{current_user: user})
       |> subscribe_and_join(StandardTeamPlayersChannel, "standard-team-players:#{team.id}")
     {:ok, socket: socket, current_user: user, team: team}
   end
@@ -32,7 +32,7 @@ defmodule ClubHomepage.StandardTeamPlayersChannelTest do
     assert_reply ref, :error, ^attrs
 
     refute Repo.get_by(StandardTeamPlayer, Map.to_list(attributes))
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   test "push player:add_or_update for a player", %{socket: socket, team: team} do
@@ -49,7 +49,7 @@ defmodule ClubHomepage.StandardTeamPlayersChannelTest do
     assert_reply ref, :ok, ^attrs
 
     assert Repo.get_by(StandardTeamPlayer, Map.to_list(attributes))
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   test "push player:remove", %{socket: socket, team: team} do
@@ -66,6 +66,6 @@ defmodule ClubHomepage.StandardTeamPlayersChannelTest do
     assert_reply ref, :ok, ^expected_payload
 
     refute Repo.get(StandardTeamPlayer, standard_team_player.id)
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 end

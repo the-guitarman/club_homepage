@@ -13,9 +13,8 @@ defmodule ClubHomepage.TeamChatChannelTest do
     user = insert(:user)
     team = insert(:team)
     {:ok, _, socket} =
-      socket("users_socket: #{user.id}", %{current_user: user}, %{})
+      socket(ClubHomepageWeb.UserSocket, "users_socket: #{user.id}", %{current_user: user})
       |> subscribe_and_join(TeamChatChannel, "team-chats:#{team.id}")
-
     {:ok, socket: socket}
   end
 
@@ -25,13 +24,13 @@ defmodule ClubHomepage.TeamChatChannelTest do
     ref = push socket, "message:add", %{"message" => "Hello!"}
     assert_reply ref, :ok, %{}, 5000
     assert count() == 1
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   test "new chat message broadcasts to team-chats:<team_id>", %{socket: socket} do
     push socket, "message:add", %{"message" => "Hi"}
     assert_broadcast "message:added", %{chat_message: %{"message" => "Hi"}}, 5000
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   test "new chat messages has been seen for team-chats:<team_id>", %{socket: socket} do
@@ -44,13 +43,13 @@ defmodule ClubHomepage.TeamChatChannelTest do
     assert_reply ref, :ok
     user = Repo.get!(User, current_user_id)
     assert user.meta_data["last_read_team_chat_message_ids"][Integer.to_string(team_id)] == 72
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   test "broadcasts are pushed to the client", %{socket: socket} do
     broadcast_from! socket, "broadcast", %{"some" => "data"}
     assert_push "broadcast", %{"some" => "data"}
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   defp count do

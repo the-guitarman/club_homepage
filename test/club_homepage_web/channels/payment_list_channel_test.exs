@@ -9,7 +9,7 @@ defmodule ClubHomepage.PaymentListChannelTest do
     user = insert(:user)
     payment_list = insert(:payment_list)
     {:ok, _, socket} =
-      socket("users_socket: #{user.id}", %{current_user: user}, %{})
+      socket(ClubHomepageWeb.UserSocket, "users_socket: #{user.id}", %{current_user: user})
       |> subscribe_and_join(PaymentListChannel, "payment-lists:#{payment_list.id}")
     {:ok, socket: socket, current_user: user, payment_list: payment_list}
   end
@@ -21,7 +21,7 @@ defmodule ClubHomepage.PaymentListChannelTest do
     #assert_push "number_of_units:updated", ^expected_payload
     assert_broadcast "number_of_units:updated", ^expected_payload, 5000
     assert_reply ref, :ok, ^expected_payload
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   test "push number_of_units:reset", %{socket: socket, payment_list: payment_list} do
@@ -31,6 +31,6 @@ defmodule ClubHomepage.PaymentListChannelTest do
     #assert_push "number_of_units:updated", ^expected_payload
     assert_broadcast "number_of_units:updated", ^expected_payload, 5000
     assert_reply ref, :ok, ^expected_payload
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 end

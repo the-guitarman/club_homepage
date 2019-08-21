@@ -9,8 +9,7 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
   setup do
     user = insert(:user, roles: "member player")
     {:ok, _, socket} =
-      socket(ClubHomepage.UserSocket, "#{user.id}", %{current_user: user})
-#      socket("user_socket: #{user.id}", %{current_user: user}, %{})
+      socket(ClubHomepageWeb.UserSocket, "users_socket: #{user.id}", %{current_user: user})
       |> subscribe_and_join(MatchCommitmentsChannel, "match-commitments:#{user.id}")
     {:ok, socket: socket, current_user: user}
   end
@@ -18,7 +17,7 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
   test "push participation:yes for non player", %{socket: _socket, current_user: _current_user} do
     user = insert(:user, roles: "member")
     {:ok, _, socket} = 
-      socket("user_socket: #{user.id}", %{current_user: user}, %{})
+      socket(ClubHomepageWeb.UserSocket, "user_socket: #{user.id}", %{current_user: user})
       |> subscribe_and_join(MatchCommitmentsChannel, "match-commitments:#{user.id}")
 
     match = insert(:match)
@@ -32,7 +31,7 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
 
     refute Repo.get_by(MatchCommitment, Map.to_list(attributes))
 
-    leave_socket(socket)
+    # leave_socket(socket)
   end
 
   test "push participation:yes for a player", %{socket: socket, current_user: current_user} do
@@ -49,7 +48,7 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
     assert match_commitment
     assert match_commitment.commitment == 1
 
-    leave_socket(socket)
+    # leave_socket(socket)
   end
 
   test "push participation:no and update user commitment to no", %{socket: socket, current_user: current_user} do
@@ -67,7 +66,7 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
     assert match_commitment
     assert match_commitment.commitment == -1
 
-    leave_socket(socket)
+    # leave_socket(socket)
   end
 
   test "push participation:dont-no and update user commitment to don't no", %{socket: socket, current_user: current_user} do
@@ -85,6 +84,6 @@ defmodule ClubHomepage.MatchCommitmentsChannelTest do
     assert match_commitment
     assert match_commitment.commitment == 0
 
-    leave_socket(socket)
+    # leave_socket(socket)
   end
 end

@@ -27,6 +27,15 @@ defmodule ClubHomepageWeb.MatchCommitmentsChannel do
     get_reply(socket, state, result)
   end
 
+  # def terminate({what, why}, socket) do
+  #   IO.inspect "terminate: #{what} - #{why}"
+  #   IO.inspect socket
+  #   IO.inspect "/terminate"
+  # end
+
+
+
+
   defp get_reply(socket, state, payload) do
     {:reply, {state, payload}, socket}
   end

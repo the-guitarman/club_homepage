@@ -19,9 +19,8 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
     user  = insert(:user)
 
     {:ok, _, sock} = 
-      socket("users_socket: #{user.id}", %{current_user: user}, %{})
+      socket(ClubHomepageWeb.UserSocket, "users_socket: #{user.id}", %{current_user: user})
       |> subscribe_and_join(MatchTimelineChannel, "match-timelines:#{match.id}")
-
     {:ok, socket: sock, match: match}
   end
 
@@ -47,7 +46,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
     assert_broadcast("match-event:remove", _match_event)
     assert get_match_events(match) == json_encode([])
 
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   test "match is finished after three final whistle match events", %{socket: socket, match: match} do
@@ -78,7 +77,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
       false -> assert get_match_score(match) == "2:1"
     end
 
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   test "match is finished after two final whistle match events and a team has won", %{socket: socket, match: match} do
@@ -107,7 +106,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
       false -> assert get_match_score(match) == "2:1"
     end
 
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   test "match is finished after a final whistle match event and if it's no deciding game", %{socket: socket, match: match} do
@@ -132,7 +131,7 @@ defmodule ClubHomepage.MatchTimelineChannelTest do
       false -> assert get_match_score(match) == "2:1"
     end
 
-    leave_socket(socket)
+    #leave_socket(socket)
   end
 
   defp get_match(match) do
