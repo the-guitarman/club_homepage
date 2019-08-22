@@ -6,7 +6,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateTextPage do
       add :key, :string
       add :text, :text
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
     create unique_index(:text_pages, [:key])

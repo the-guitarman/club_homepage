@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("all") %> <%= gettext("matches") %></h2>
+
+      <p>
+        <%= if @next_match_parameters do %>
+          <%= link gettext("create_next_new_match"), to: Routes.match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
+        <% else %>
+          <%= link gettext("create_new_match"), to: Routes.match_path(@conn, :new), class: "btn btn-default" %>
+        <% end %>
+        <%= link gettext("create_new_matches"), to: Routes.matches_path(@conn, :new_bulk), class: "btn btn-default" %>
+      </p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= gettext("season") %></th>
+            <th><%= gettext("team") %></th>
+            <th><%= gettext("opponent_team") %></th>
+            <th><%= gettext("meeting_point") %></th>
+            <th><%= gettext("date_and_time") %></th>
+            <th><%= gettext("home_match") %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+      <%= for match <- @matches do %>
+          <tr>
+            <td><%= match.season.name %></td>
+            <td><%= match.team.name %></td>
+            <td><%= match.opponent_team.name %></td>
+            <%= if match.meeting_point do %>
+              <td>
+                <%= if match.meeting_point.name do %>
+                  <%= match.meeting_point.name %>
+                <% end %>
+              </td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <td>
+              <%#= match.start_at %>
+              <%= Timex.format!(match.start_at, datetime_format(), :strftime) %>
+            </td>
+            <td><%= match.home_match %></td>
+
+            <td class="text-right">
+              <%= link gettext("edit_match"), to: Routes.match_path(@conn, :edit, match), class: "btn btn-default" %>
+            </td>
+          </tr>
+      <% end %>
+        </tbody>
+      </table>
+
+      <p>
+        <%= if @next_match_parameters do %>
+            <%= link gettext("create_next_new_match"), to: Routes.match_path(@conn, :new, @next_match_parameters), class: "btn btn-default" %>
+        <% else %>
+            <%= link gettext("create_new_match"), to: Routes.match_path(@conn, :new), class: "btn btn-default" %>
+        <% end %>
+        <%= link gettext("create_new_matches"), to: Routes.matches_path(@conn, :new_bulk), class: "btn btn-default" %>
+        <br />
+      </p>
+    </div>
+  </div>
+</div>

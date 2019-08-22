@@ -2,8 +2,8 @@ defmodule ClubHomepage.Extension.MatchView do
   alias Phoenix.HTML
   alias Phoenix.HTML.Tag
 
-  import ClubHomepage.Web.Gettext
-  import ClubHomepage.Web.Localization
+  import ClubHomepageWeb.Gettext
+  import ClubHomepageWeb.Localization
   import ClubHomepage.Extension.CommonTimex, only: [point_of_time: 2]
 
   alias ClubHomepage.Match
@@ -79,6 +79,6 @@ defmodule ClubHomepage.Extension.MatchView do
   end
 
   defp match_failure_translation(match) do
-    Gettext.dgettext(ClubHomepage.Web.Gettext, "additionals", "failure_reason_" <> match.failure_reason)
+    Gettext.dgettext(ClubHomepageWeb.Gettext, "additionals", "failure_reason_" <> match.failure_reason)
   end
 end

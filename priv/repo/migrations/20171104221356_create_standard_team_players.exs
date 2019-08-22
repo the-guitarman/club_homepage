@@ -6,7 +6,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateStandardTeamPlayers do
       add :team_id, references(:teams)
       add :user_id, references(:users)
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
     create unique_index(:standard_team_players, [:team_id, :user_id])

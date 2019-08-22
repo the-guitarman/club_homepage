@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2><%= gettext("all") <> " " <> gettext("text_pages") %></h2>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= gettext("page") %></th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+        <%= for text_page <- @text_pages do %>
+            <tr>
+              <td><a href="<%= text_page.key %>" target="_blank"><%= text_page.key %></a></td>
+
+              <td class="text-right">
+                <%= link "Edit", to: Routes.text_page_path(@conn, :edit, text_page), class: "btn btn-default" %>
+              </td>
+            </tr>
+        <% end %>
+          </tbody>
+        </table>
+
+    </div>
+  </div>
+</div>

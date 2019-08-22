@@ -6,7 +6,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateSponsorImage do
       add :name, :string
       add :attachment, :string
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
   end

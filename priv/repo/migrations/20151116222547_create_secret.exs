@@ -6,7 +6,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateSecret do
       add :key, :string
       add :expires_at, :utc_datetime
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
   end

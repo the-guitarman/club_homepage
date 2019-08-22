@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.ConnCase do
+defmodule ClubHomepageWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,10 +20,10 @@ defmodule ClubHomepage.Web.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      import ClubHomepage.Web.Router.Helpers
+      import ClubHomepageWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint ClubHomepage.Web.Endpoint
+      @endpoint ClubHomepageWeb.Endpoint
 
       alias ClubHomepage.Repo
       import Ecto.Query, only: [from: 2]

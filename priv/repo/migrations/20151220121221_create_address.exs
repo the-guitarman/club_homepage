@@ -10,7 +10,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateAddress do
       add :latitude, :float 
       add :longitude, :float
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
   end

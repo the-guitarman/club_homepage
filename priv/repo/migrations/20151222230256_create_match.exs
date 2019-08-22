@@ -10,7 +10,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateMatch do
       add :opponent_team_id, references(:opponent_teams)
       add :meeting_point_id, references(:meeting_points)
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
     create index(:matches, [:season_id])
