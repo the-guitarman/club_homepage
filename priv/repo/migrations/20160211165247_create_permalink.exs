@@ -6,7 +6,7 @@ defmodule ClubHomepage.Repo.Migrations.CreatePermalink do
       add :source_path, :string
       add :destination_path, :string
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
   end

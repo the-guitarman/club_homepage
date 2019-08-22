@@ -8,7 +8,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateTeamImage do
       add :description, :text
       add :team_id, references(:teams, on_delete: :nothing)
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
     create index(:team_images, [:team_id])
 

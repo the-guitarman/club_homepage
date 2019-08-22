@@ -12,7 +12,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateUser do
       add :name, :string
       add :roles, :string, default: "member"
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
   end

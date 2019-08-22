@@ -6,7 +6,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateOpponentTeam do
       add :name, :string
       add :address_id, references(:addresses)
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
     create index(:opponent_teams, [:address_id])

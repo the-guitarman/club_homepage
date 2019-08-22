@@ -8,7 +8,7 @@ defmodule ClubHomepage.Repo.Migrations.CreatePaymentListDebitorHistoryRecords do
       add :old_number_of_units, :integer
       add :new_number_of_units, :integer
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
   end

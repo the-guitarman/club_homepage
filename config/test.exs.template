@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :club_homepage, ClubHomepage.Web.Endpoint,
+config :club_homepage, ClubHomepageWeb.Endpoint,
   http: [port: 4001],
   server: false,
   locale: "en"
@@ -30,5 +30,5 @@ config :club_homepage, :uploads,
 config :club_homepage, ClubHomepage.Mailer,
   adapter: Bamboo.TestAdapter
 
-config :club_homepage, ClubHomepage.Web.Gettext,
+config :club_homepage, ClubHomepageWeb.Gettext,
   default_locale: "en"

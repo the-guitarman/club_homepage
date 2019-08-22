@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="jumbotron content-box">
+      <h2>
+        <%= if @user && @user === @current_user do %>
+          <%= gettext("settings") %>
+        <% else %>
+          <%= gettext("edit_user") %>
+        <% end %>
+      </h2>
+
+      <%= render "form.html",
+                changeset: @changeset, conn: @conn,
+                action: Routes.managed_user_path(@conn, :update, @user),
+                user: @user, current_user: @current_user,
+                editable_user_roles: @editable_user_roles,
+                current_user_roles: @current_user_roles %>
+
+      <%= link gettext("all") <> " " <> gettext("users"), to: Routes.managed_user_path(@conn, :index) %>
+    </div>
+  </div>
+</div>

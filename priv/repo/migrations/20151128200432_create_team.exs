@@ -6,7 +6,7 @@ defmodule ClubHomepage.Repo.Migrations.CreateTeam do
       add :name, :string
       add :slug, :string
 
-      timestamps()
+      timestamps([type: :utc_datetime])
     end
 
     create unique_index(:teams, [:name])

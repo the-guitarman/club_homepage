@@ -1,4 +1,4 @@
-defmodule ClubHomepage.Web.ChannelCase do
+defmodule ClubHomepageWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -25,7 +25,7 @@ defmodule ClubHomepage.Web.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint ClubHomepage.Web.Endpoint
+      @endpoint ClubHomepageWeb.Endpoint
 
       defp leave_socket(socket) do
         ref = leave(socket)

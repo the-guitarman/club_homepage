@@ -10,11 +10,11 @@ config :club_homepage,
   ecto_repos: [ClubHomepage.Repo]
 
 # Configures the endpoint
-config :club_homepage, ClubHomepage.Web.Endpoint,
+config :club_homepage, ClubHomepageWeb.Endpoint,
   url: [host: "localhost"],
 #  root: Path.dirname(__DIR__),
   secret_key_base: "/FTNk/qEtZWOZhuUwYiry4YC9G5qDxjK/DSmSzkEiuH7kzG5AxheGYE4BPEA3H9X",
-  render_errors: [view: ClubHomepage.Web.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: ClubHomepageWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: ClubHomepage.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -23,7 +23,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :club_homepage, ClubHomepage.Web.Gettext,
+config :club_homepage, ClubHomepageWeb.Gettext,
   default_locale: "de",
   locales: ~w(en de)
 
@@ -43,6 +43,9 @@ end
 
 config :phoenix, :filter_parameters, 
   ["password", "password_hash", "secret"]
+
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
 
 config :geocoder, Geocoder.Worker, [size: 4, max_overflow: 2]
 config :geocoder, Geocoder.Store, [precision: 4]

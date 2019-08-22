@@ -1,3 +1,10 @@
+# deployment files
+BUILD_VERSION
+COMMIT_HASH
+
+# dev stuff
+routes.sh
+
 # Release build stuff
 .hex/*
 .mix/*
