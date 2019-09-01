@@ -1,5 +1,37 @@
+window.$ = window.jQuery = window.jquery = require('../vendor/js/01_01_jquery.min.js');
+require('../vendor/js/01_02_jquery-ui-1.12.1.custom.min.js');
+window.m = window.moment = require('../vendor/js/01_03_moment-with-locales.js');
+window._ = window.underscore = require('../vendor/js/01_04_underscore.min.js');
+require('../vendor/js/02_bootstrap.min.js');
+require('../vendor/js/05_bootstrap-datetimepicker.js');
+require('../vendor/js/06_select2.js');
+require('../vendor/js/07_bootstrap-switch.min.js');
+require('../vendor/js/08_medium-editor.min.js');
+require('../vendor/js/09_bootstrap-tooltip.js');
+require('../vendor/js/15_leaflet_routing_maschine_highlight.pack.js');
+require('../vendor/js/16_leaflet_0.7.7.js');
+require('../vendor/js/17_leaflet_iconlabel.js');
+require('../vendor/js/18_control_geocoder.js');
+require('../vendor/js/19_leaflet_routing_maschine.js');
+require('../vendor/js/20_open_street_map.js');
+require('../vendor/js/25_soccer-match-timeline.javascript-extensions.js');
+require('../vendor/js/26_soccer-match-timeline.lang.js');
+require('../vendor/js/27_soccer-match-timeline.js');
+require('../vendor/js/28_soccer-match-timeline.events.js');
+require('../vendor/js/29_soccer-match-timeline.extensions.js');
+require('../vendor/js/35_player_planning.js');
+require('../vendor/js/99_jquery_ready.js');
+
+//import "./../css/app.less"
+
+// import font_eot from '../static/fonts/glyphicons-halflings-regular.eot';
+// import font_svg from '../static/fonts/glyphicons-halflings-regular.svg';
+// import font_ttf from '../static/fonts/glyphicons-halflings-regular.ttf';
+// import font_woff from '../static/fonts/glyphicons-halflings-regular.woff';
+// import font_woff2 from '../static/fonts/glyphicons-halflings-regular.woff2';
+
 // Brunch automatically concatenates all files in your
-// watched paths. Those paths can be configured at
+// watched paths. Those paths can be configured at 
 // config.paths.watched in "brunch-config.js".
 //
 // However, those files will only be executed if
@@ -19,6 +51,7 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 import socket from "./socket"
+
 /*
 socket.onOpen( ev => console.log("OPEN", ev) )
 socket.onError( ev => console.log("ERROR", ev) )
@@ -35,17 +68,6 @@ import MatchCommitmentUpdates from "./match_commitment"
 MatchTimeline.init(socket, document.getElementById("match-timeline"));
 TeamChat.init(socket, $("#team-chat-input"), $('.js-team-chat #team-id[type=hidden]').val(), $('.js-team-chat #user-id[type=hidden]').val());
 TeamChatBadge.init(socket, $('#team-id').val(), $('#user-id').val());
-$('.js-payment-list').each(function(){
-  var paymentListId = $(this).data('payment-list-id');
-  PaymentListUpdates.init(socket, paymentListId);
-});
-$('[data-toggle=popover]').each(function(){
-  var content = $(this).data('content');
-  var paymentLists = $(content).find('.js-payment-list');
-  paymentLists.each(function(){
-    var paymentListId = $(this).data('payment-list-id');
-    PaymentListUpdates.init(socket, paymentListId);
-  });
-});
+PaymentListUpdates.init(socket);
 StandardTeamPlayerUpdates.init(socket, $('.js-standard-team-players #team-id[type="hidden"]').val());
 MatchCommitmentUpdates.init(socket, $('.js-match-commitments #user-id[type="hidden"]').val());

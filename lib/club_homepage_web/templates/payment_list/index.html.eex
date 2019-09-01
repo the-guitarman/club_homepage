@@ -33,7 +33,7 @@
             <td class="text-right">
               <%= link "Show", to: Routes.payment_list_path(@conn, :show, payment_list), class: "btn btn-default" %>
               <%= link "Edit", to: Routes.payment_list_path(@conn, :edit, payment_list), class: "btn btn-default" %>
-              <%= link "Delete", to: Routes.payment_list_path(@conn, :delete, payment_list), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+              <%= link "Delete", to: Routes.payment_list_path(@conn, :delete, payment_list), method: :delete, data: [confirm: gettext("are_you_sure")], class: "btn btn-danger" %>
             </td>
           </tr>
       <% end %>

@@ -26,6 +26,7 @@ defmodule ClubHomepage.UserRoleTest do
     assert Enum.member?(defined_roles, "player")
     assert Enum.member?(defined_roles, "text-page-editor")
     assert Enum.member?(defined_roles, "user-editor")
+    assert Enum.member?(defined_roles, "payment-list-editor")
   end
 
   test "editable roles for nobody" do

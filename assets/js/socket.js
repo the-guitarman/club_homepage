@@ -1,8 +1,10 @@
-import {Socket} from "phoenix"
+import {Socket, Presence} from "phoenix"
+
 let socket = new Socket("/socket", {
   params: {token: window.userToken}//,
   //logger: (kind, msg, data) => { console.log(`${kind}: ${msg}`, data) }
 })
+
 export default socket
 
 // NOTE: The contents of this file will only be executed if

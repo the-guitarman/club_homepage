@@ -46,7 +46,9 @@ defmodule ClubHomepageWeb.MatchCalendarCreator do
       dtstart: timex_datetime_to_utc(match.start_at), #meeting_point_at
       dtend: timex_datetime_to_utc(Timex.shift(match.start_at, hours: 3)),
       description: match.competition.name,
-      location: location(match)
+      location: location(match),
+      geo: geo(match)#,
+      #trigger: trigger(match)
     }
     Map.put(struct, :uid, match.uid)
   end
@@ -65,30 +67,30 @@ defmodule ClubHomepageWeb.MatchCalendarCreator do
   end
 
   defp location(match) do
-    ret = meeting_point(match.meeting_point)
     ret = 
       case match.home_match do
-        true -> meeting_point_label(ret)
-        _ -> meeting_point_label(ret) <> "\n\n" <> match_location_label(address(match.opponent_team.address_id))
+        true ->
+          match.meeting_point
+          |> meeting_point_address()
+          |> meeting_point_label()
+        _ ->
+          temp_1 =
+            match.meeting_point
+            |> meeting_point_address()
+            |> meeting_point_label()
+          temp_2 =
+            match.opponent_team.address_id
+            |> address()
+            |> match_location_label()
+          temp_1 <> "\n\n" <> temp_2
       end
     time_of_meeting(match.meeting_point_at) <> ret
   end
 
-  defp time_of_meeting(nil), do: ""
-  defp time_of_meeting(meeting_point_at) do
-    ret = 
-      meeting_point_at
-      |> Timex.local
-      |> Timex.format(datetime_format(), :strftime)
-    case ret do
-      {:ok, datetime} -> gettext("time_of_meeting") <> ":\n" <> datetime <> " " <> gettext("o_clock") <> "\n\n"
-      _ -> ""
-    end
-  end
-
-  defp meeting_point(nil), do: ""
-  defp meeting_point(meeting_point) do
-    address(meeting_point.address_id)
+  defp meeting_point_address(nil), do: ""
+  defp meeting_point_address(meeting_point) do
+    meeting_point.address_id
+    |> address()
   end
 
   defp meeting_point_label(""), do: ""
@@ -101,13 +103,34 @@ defmodule ClubHomepageWeb.MatchCalendarCreator do
     gettext("match_location") <> ":\n" <> address
   end
 
+  defp time_of_meeting(nil), do: ""
+  defp time_of_meeting(meeting_point_at) do
+    ret = 
+      meeting_point_at
+    |> Timex.local
+    |> Timex.format(datetime_format(), :strftime)
+    case ret do
+      {:ok, datetime} -> gettext("time_of_meeting") <> ":\n" <> datetime <> " " <> gettext("o_clock") <> "\n\n"
+      _ -> ""
+    end
+  end
+
   def address(nil), do: ""
   def address(address_id) do
-    case Repo.get(Address, address_id) do
+    case get_address(address_id) do
       nil -> ""
       address -> "#{address.street}, \n#{address.zip_code} #{address.city}#{district(address)}#{coordinates(address)}"
     end
   end
+
+  defp get_address(nil), do: nil
+  defp get_address(address_id) when is_integer(address_id) do
+    case Repo.get(Address, address_id) do
+      nil -> ""
+      address -> address
+    end
+  end
+  defp get_address(model), do: get_address(model.address_id)
 
   defp district(address) do
     case address.district do
@@ -120,6 +143,45 @@ defmodule ClubHomepageWeb.MatchCalendarCreator do
     case address.latitude do
       nil -> ""
       latitude -> ", \nlat: #{latitude}, lng: #{address.longitude}"
+    end
+  end
+
+  defp geo(match) do
+    case match.home_match do
+      true ->
+        match.meeting_point
+        |> get_address()
+        |> geo_coordinates()
+        |> geo_coordinates_fallback()
+      _ ->
+        match.opponent_team
+        |> get_address()
+        |> geo_coordinates()
+    end
+    |> nil_to_empty_string()
+  end
+
+  defp geo_coordinates(nil), do: ""
+  defp geo_coordinates(address) do
+    case address.latitude do
+      nil -> ""
+      latitude -> "#{latitude};#{address.longitude}"
+    end
+  end
+
+  defp geo_coordinates_fallback(nil) do
+    coordinates = Application.get_env(:club_homepage, :common)[:coordinates]
+    "#{coordinates[:lat]};#{coordinates[:lon]}"
+  end
+  defp geo_coordinates_fallback(ret), do: ret
+
+  defp nil_to_empty_string(nil), do: ""
+  defp nil_to_empty_string(ret), do: ret
+
+  defp trigger(match) do
+    case match.home_match do
+      true -> "-P1H"
+      _ -> "-P2H"
     end
   end
 end
