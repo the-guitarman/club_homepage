@@ -14,6 +14,7 @@ defmodule ClubHomepage.MatchCommitment do
     timestamps([type: :utc_datetime])
   end
 
+  @required_fields ~w(match_id user_id commitment)a
 
   @doc """
   Builds a changeset based on the `struct` and `params`.
@@ -21,8 +22,8 @@ defmodule ClubHomepage.MatchCommitment do
   @spec changeset( ClubHomepage.StandardTeamPlayer, Map ) :: Ecto.Changeset
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, ~w(match_id user_id commitment)a)
-    |> validate_required([:match_id, :user_id, :commitment])
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
     |> foreign_key_constraint(:match_id)
     |> foreign_key_constraint(:user_id)
     |> unique_constraint(:user_id, name: "match_commitments_match_id_user_id_index")

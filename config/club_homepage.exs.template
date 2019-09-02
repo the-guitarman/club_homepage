@@ -3,7 +3,8 @@ use Mix.Config
 config :club_homepage, :common,
   founding_year: 1911,
   full_club_name: "Full Club Name",
-  short_club_name: "Short Club Name"
+  short_club_name: "Short Club Name",
+  coordinates: [lat: 50.939583, lon: 12.886244]
 
 config :club_homepage, :config,
   show_match_timeline: false,

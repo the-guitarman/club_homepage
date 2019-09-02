@@ -37,9 +37,14 @@ else
 end
 
 ## Configure phoenix generators
-#config :phoenix, :generators,
-#  migration: true,
-#  binary_id: false
+config :club_homepage, :generators,
+  migration: true#,
+#  binary_id: false,
+#  sample_binary_id: "11111111-1111-1111-1111-111111111111"
+
+## Configure phoenix context
+config :club_homepage, :generators,
+  context_app: :models
 
 config :phoenix, :filter_parameters, 
   ["password", "password_hash", "secret"]
