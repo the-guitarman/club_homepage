@@ -1,4 +1,4 @@
-defmodule ClubHomepage.SeasonTeamTable do
+defmodule ClubHomepage.FussballDeData.SeasonTeamTable do
   use Ecto.Schema
 
   import Ecto.Changeset

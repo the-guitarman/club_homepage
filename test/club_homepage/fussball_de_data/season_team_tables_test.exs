@@ -1,7 +1,7 @@
-defmodule ClubHomepage.SeasonTeamTableTest do
+defmodule ClubHomepage.FussballDeData.SeasonTeamTableTest do
   use ClubHomepage.ModelCase
 
-  alias ClubHomepage.SeasonTeamTable
+  alias ClubHomepage.FussballDeData.SeasonTeamTable
 
   import ClubHomepage.Factory
 
