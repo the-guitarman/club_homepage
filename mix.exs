@@ -38,8 +38,6 @@ defmodule ClubHomepage.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      #xxx{:ecto, "== 3.1.0", override: true},
-
       {:phoenix, "~> 1.4.9"},
       {:phoenix_pubsub, "~> 1.0"},
       {:ecto_sql, "~> 3.1"},
