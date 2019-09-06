@@ -23,6 +23,22 @@ let PaymentListUpdates = {
     return PaymentListUpdates.channels[paymantListId];
   },
 
+  initChannelEvents: (channel) => {
+    channel.on("number_of_units:updated", payload => {
+      var selector = 'a' + PaymentListUpdates.jsPaymentListDebitorSelector + '[data-payment-list-debitor-id=' + payload.debitor_id + '] .badge.background-red';
+
+      $('.popover ' + selector).text(payload.sum);
+
+      $('a[data-toggle="popover"]').each(function(index) {
+        var self = $(this);
+        var popoverContent = self.data('content');
+        popoverContent = $('<div></div>').append(popoverContent);
+        popoverContent.find(selector).text(payload.sum);
+        self.attr('data-content', popoverContent.html())
+      });
+    });
+  },
+
   connectAndJoin: (paymentListId, socket) => {
     if (_.isEmpty(paymentListId) && !_.isNumber(paymentListId)) {
       return;
@@ -37,20 +53,7 @@ let PaymentListUpdates = {
       .receive("ok", (resp) => { console.log("Joined successfully", resp); })
       .receive("error", (resp) => { console.log("Unable to join", resp); });
 
-    channel.on("number_of_units:updated", payload => {
-      var selector = 'a' + PaymentListUpdates.jsPaymentListDebitorSelector + '[data-payment-list-debitor-id=' + payload.debitor_id + '] .badge.background-red';
-
-      $('.popover ' + selector).text(payload.sum);
-
-      $('a[data-toggle="popover"]').each(function(index) {
-        var self = $(this);
-        var popoverContent = self.data('content');
-        popoverContent = $('<div></div>').append(popoverContent);
-        popoverContent.find(selector).text(payload.sum);
-        self.attr('data-content', popoverContent.html())
-      });
-    });
-
+    PaymentListUpdates.initChannelEvents(channel);
     PaymentListUpdates.addChannel(paymentListId, channel);
   },
 
@@ -70,7 +73,7 @@ let PaymentListUpdates = {
     return step;
   },
 
-  initUIEvents: () => {
+  initUIEventResetAmount: () => {
     $(document).on('click', PaymentListUpdates.jsPaymentListDebitorSelector + ' a.js-payment-list-debitor-reset', function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -91,7 +94,9 @@ let PaymentListUpdates = {
 
       return false;
     });
+  },
 
+  initUIEventChangeAmount: () => {
     $(document).on('click', PaymentListUpdates.jsPaymentListDebitorSelector + ' .js-number-field .input-group-addon', function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -110,9 +115,12 @@ let PaymentListUpdates = {
 
       return false;
     });
-    
   },
 
+  initUIEvents: () => {
+    PaymentListUpdates.initUIEventResetAmount();
+    PaymentListUpdates.initUIEventChangeAmount();
+  },
 
   init: (socket) => {
     socket.connect();
