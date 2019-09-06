@@ -1,55 +1,69 @@
 let MatchCommitmentUpdates = {
-  init(socket, userId) {
+  socket: null,
+  userId: 0,
+  channel: null,
+
+  init: (socket, userId) => {
     if (_.isEmpty(userId)) {
       return;
     }
 
-    socket.connect();
-    let channel = socket.channel("match-commitments:" + userId);
-    // channel.onError(e => console.log("something went wrong", e));
-    // channel.onClose(e => console.log("channel closed", e));
+    MatchCommitmentUpdates.socket = socket;
+    MatchCommitmentUpdates.userId = userId;
+    MatchCommitmentUpdates.connectAndJoin();
+    MatchCommitmentUpdates.initUIEvents();
+  },
 
-    channel.join()
-      // .receive("ok", resp => { console.log("Joined successfully", resp); })
-      // .receive("error", resp => { console.log("Unable to join", resp); })
+  connectAndJoin: () => {
+    MatchCommitmentUpdates.socket.connect();
+    MatchCommitmentUpdates.channel = MatchCommitmentUpdates.socket.channel("match-commitments:" + MatchCommitmentUpdates.userId);
+
+    MatchCommitmentUpdates.channel
+      .join()
+    //  .onError(e => console.log("something went wrong", e))
+    //  .onClose(e => console.log("channel closed", e))
+    //  .receive("ok", resp => { console.log("Joined successfully", resp); })
+    //  .receive("error", resp => { console.log("Unable to join", resp); })
     ;
+  },
 
-    let participate = (button, action) => {
-      let matchId = button.closest('tr').data("match-id");
+  participate: (button, action) => {
+    let matchId = button.closest('tr').data("match-id");
 
-      channel
-        .push("participation:" + action, {user_id: userId, match_id: matchId})
-        .receive("ok", function(reply) {
-          console.log(button.parent());
-          button.parent().find('a').removeClass('active');
-          button.addClass('active');
-        })
-        .receive("error", (reason) => {
-        })
-        .receive("ignore", () => {
-        })
-        .receive("timeout", () => {
-        });
-    };
+    MatchCommitmentUpdates.channel
+      .push("participation:" + action, {user_id: MatchCommitmentUpdates.userId, match_id: matchId})
+      .receive("ok", function(reply) {
+        console.log(button.parent());
+        button.parent().find('a').removeClass('active');
+        button.addClass('active');
+      })
+      // .receive("error", (reason) => {
+      // })
+      // .receive("ignore", () => {
+      // })
+      // .receive("timeout", () => {
+      // })
+    ;
+  },
 
+  initUIEvents: () => {
     $('.js-match-participation a.js-participation-yes').on('click', function(e) {
       e.preventDefault();
-      participate($(this), 'yes');
+      MatchCommitmentUpdates.participate($(this), 'yes');
       return false;
     });
 
     $('.js-match-participation a.js-participation-dont-no').on('click', function(e) {
       e.preventDefault();
-      participate($(this), 'dont-no');
+      MatchCommitmentUpdates.participate($(this), 'dont-no');
       return false;
     });
 
     $('.js-match-participation a.js-participation-no').on('click', function(e) {
       e.preventDefault();
-      participate($(this), 'no');
+      MatchCommitmentUpdates.participate($(this), 'no');
       return false;
     });
-
   }
 };
 
