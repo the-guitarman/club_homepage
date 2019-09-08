@@ -43,17 +43,20 @@ let StandardTeamPlayerUpdates = {
     $('.js-standard-team-players tr[data-player-id="' + userId + '"]').effect("highlight", {color: color}, 1000);
   },
 
-  init: (socket, teamId) => {
-    if (_.isEmpty(teamId)) {
-      return;
-    }
+  canInit: () => {
+    return _.isNumber(StandardTeamPlayerUpdates.teamId) && StandardTeamPlayerUpdates.teamId > 0;
+  },
 
+  init: (socket) => {
     StandardTeamPlayerUpdates.socket = socket;
-    StandardTeamPlayerUpdates.teamId = teamId;
+    StandardTeamPlayerUpdates.teamId = parseInt($('.js-team-page.js-standard-team-players').data('team-id'));
 
-    StandardTeamPlayerUpdates.connectAndJoin();
-    StandardTeamPlayerUpdates.initUIEvents();
-    StandardTeamPlayerUpdates.initChannelEvents();
+    if (StandardTeamPlayerUpdates.canInit()) {
+      console.log('StandardTeamPlayerUpdates', '-1-');
+      StandardTeamPlayerUpdates.connectAndJoin();
+      StandardTeamPlayerUpdates.initUIEvents();
+      StandardTeamPlayerUpdates.initChannelEvents();
+    }
   },
 
   getTableRow: (jQueryEl) => {

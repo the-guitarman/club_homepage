@@ -24,7 +24,7 @@
       <link rel="apple-touch-icon" sizes="180x180" href="/images/apple_touch_icon_180x180.png">
     <% end %>
   </head>
-  <body class="<%= background_image_cls() %>" data-localization="<%= javascript_localization_options() %>">
+  <body class="<%= background_image_cls() %>" data-localization="<%= javascript_localization_options() %>"<%= if logged_in?(@conn) do %> data-current-user-id="<%= current_user_id(@conn) %>"<% end %>>
     <div class="fluid-container <%= action_name(@conn) %>" role="main">
       <%= render "navbar_top.html", conn: @conn, current_user: @current_user, weather_data: @weather_data, birthdays: @birthdays, my_payment_lists: @my_payment_lists %>
       <%= render "flash_messages.html", conn: @conn %>

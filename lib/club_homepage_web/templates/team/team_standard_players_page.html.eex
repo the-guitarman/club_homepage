@@ -1,8 +1,7 @@
-<div class="row">
+<div class="row js-team-page js-standard-team-players" data-team-id="<%= @team.id %>">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-    <div class="jumbotron content-box js-standard-team-players css-standard-team-players">
+    <div class="jumbotron content-box css-standard-team-players">
       <h1><%= @team.name %><br /><%= gettext("standard_team_players") %></h1>
-      <input type="hidden" id="team-id" value="<%= @team.id %>" />
 
       <%= render "team_page_link_header.html", active_tab: "team_standard_players", conn: @conn, team: @team, team_images_count: Enum.count(@team_images), current_user: @current_user %>
 

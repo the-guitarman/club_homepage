@@ -3,15 +3,17 @@ let MatchCommitmentUpdates = {
   userId: 0,
   channel: null,
 
-  init: (socket, userId) => {
-    if (_.isEmpty(userId)) {
-      return;
-    }
+  canInit: () => {
+    return _.isNumber(MatchCommitmentUpdates.userId) && MatchCommitmentUpdates.userId > 0;
+  },
 
+  init: (socket, userId) => {
     MatchCommitmentUpdates.socket = socket;
-    MatchCommitmentUpdates.userId = userId;
-    MatchCommitmentUpdates.connectAndJoin();
-    MatchCommitmentUpdates.initUIEvents();
+    MatchCommitmentUpdates.userId = parseInt($('.js-match-commitments').data('user-id'));
+    if (MatchCommitmentUpdates.canInit()) {
+      MatchCommitmentUpdates.connectAndJoin();
+      MatchCommitmentUpdates.initUIEvents();
+    }
   },
 
   connectAndJoin: () => {

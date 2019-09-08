@@ -79,7 +79,7 @@ defmodule ClubHomepageWeb do
       import ClubHomepage.Extension.Common, only: [failure_reasons: 0, internal_user_name: 1, user_name: 1, get_config: 1]
       import ClubHomepage.Extension.CommonSeason
       import ClubHomepage.Extension.CommonTimex
-      import ClubHomepageWeb.Auth, only: [logged_in?: 1, current_user: 1]
+      import ClubHomepageWeb.Auth, only: [logged_in?: 1, current_user: 1, current_user_id: 1]
       import ClubHomepageWeb.UserRole, only: [has_role?: 2]
     end
   end

@@ -36,6 +36,17 @@ defmodule ClubHomepageWeb.Auth do
   end
 
   @doc """
+  Returns the current user id of the given connection struct or an empty string.
+  """
+  @spec current_user_id(Plug.Conn.t) :: Integer.t | String.t
+  def current_user_id(conn) do
+    case logged_in?(conn) do
+      false -> ""
+      true -> current_user(conn).id
+    end
+  end
+
+  @doc """
   Returns wether a user is logged in or not.
   """
   @spec logged_in?(Plug.Conn.t) :: Boolean

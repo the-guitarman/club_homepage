@@ -1,8 +1,4 @@
-<div class="js-match-commitments">
-  <%= if has_role?(@conn, "player") do %>
-    <input type="hidden" id="user-id" value="<%= @current_user.id %>" />
-  <% end %>
-
+<div class="js-match-commitments"<%= if has_role?(@conn, "player") do %> data-user-id="<%= @current_user.id %>"<% end %>>
   <table class="table table-striped table-bordered css-matches">
     <%= for match <- @matches do %>
       <tr data-match-id="<%= match.id %>">

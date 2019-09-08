@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row js-team-page" data-team-id="<%= @team.id %>">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
     <div class="jumbotron content-box">
       <h1><%= @team.name %><br /><%= gettext("matches") %></h1>

@@ -67,7 +67,7 @@ import MatchCommitmentUpdates from "./match_commitment"
 
 MatchTimeline.init(socket, document.getElementById("match-timeline"));
 TeamChat.init(socket, $("#team-chat-input"), $('.js-team-chat #team-id[type=hidden]').val(), $('.js-team-chat #user-id[type=hidden]').val());
-TeamChatBadge.init(socket, $('#team-id').val(), $('#user-id').val());
+TeamChatBadge.init(socket);
 PaymentListUpdates.init(socket);
-StandardTeamPlayerUpdates.init(socket, $('.js-standard-team-players #team-id[type="hidden"]').val());
-MatchCommitmentUpdates.init(socket, $('.js-match-commitments #user-id[type="hidden"]').val());
+StandardTeamPlayerUpdates.init(socket);
+MatchCommitmentUpdates.init(socket);
