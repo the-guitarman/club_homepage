@@ -1,5 +1,9 @@
 let TeamChat = {
-  init(socket, messageInput, teamId, userId) {
+  init(socket) {
+    let messageInput = $("#team-chat-input");
+    let teamId = $('.js-team-page.js-team-chat').data('team-id');
+    let userId = $('body').data('current-user-id');
+
     if (messageInput.length === 0) {
       return
     }

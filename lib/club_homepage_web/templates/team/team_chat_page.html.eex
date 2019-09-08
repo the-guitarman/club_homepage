@@ -1,6 +1,6 @@
-<div class="row js-team-page" data-team-id="<%= @team.id %>">
+<div class="row js-team-page js-team-chat" data-team-id="<%= @team.id %>">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-    <div class="jumbotron content-box js-team-chat">
+    <div class="jumbotron content-box">
       <h1><%= @team.name %><br /><%= gettext("team_chat") %></h1>
 
       <%= render "team_page_link_header.html", active_tab: "team_chat", conn: @conn, team: @team, team_images_count: @team_images_count, current_user: @current_user %>
