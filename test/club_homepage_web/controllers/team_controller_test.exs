@@ -119,7 +119,7 @@ defmodule ClubHomepage.TeamControllerTest do
     team = insert(:team)
     conn = get conn, team_chat_page_path(conn, :show_chat, team)
     assert html_response(conn, 200) =~ "<h1>#{team.name}<br />Team Chat</h1>"
-    assert html_response(conn, 200) =~ "<div class=\"row js-team-page\" data-team-id=\"#{team.id}\">"
+    assert html_response(conn, 200) =~ "<div class=\"row js-team-page js-team-chat\" data-team-id=\"#{team.id}\">"
   end
 
   @tag login: false
