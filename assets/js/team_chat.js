@@ -37,9 +37,9 @@ let TeamChat = {
   olderChatMessagesButtonHandler: (olderChatMessagesAvailable) => {
     var button = $('.js-show-more-chat-messages');
     if (olderChatMessagesAvailable === true) {
-      button.removeProp('disabled').removeAttr('disabled');
+      button.removeProp('disabled').removeAttr('disabled').removeClass('hidden');
     } else {
-      button.prop('disabled', 'disabled').attr('disabled', 'disabled');
+      button.prop('disabled', 'disabled').attr('disabled', 'disabled').addClass('hidden');
     }
   },
 
@@ -83,29 +83,74 @@ let TeamChat = {
     $('.js-new-team-chat-messages-badge').addClass('hidden').html('0');
   },
 
-  scrollMessagesList: (response) => {
-    var divScrollTop = 0;
-    var lastReadTeamChatMessageId = response.last_read_team_chat_message_id;
-    var element = [];
-    var newMessagesHint = TeamChat.messagesList.find('.js-new-messages-hint:last');
-    if (newMessagesHint.length > 0) {
-      element = newMessagesHint.last();
-      var lastMessage = TeamChat.messagesList.find('.message:last');
-      if (lastMessage.offset().top - element.offset().top < TeamChat.messagesList.outerHeight()) {
-        element = lastMessage;
-      }
+  hasMessagesHint: () => {
+    return TeamChat.findLastMessagesHint().length > 0;
+  },
 
-    } else if (_.isNumber(lastReadTeamChatMessageId)) {
-      element = TeamChat.messagesList.find('.message[data-id=' + lastReadTeamChatMessageId + ']');
-    } else {
-      element = TeamChat.messagesList.find('.message:last');
-    }
+  findLastMessagesHint: () => {
+    return TeamChat.messagesList.find('.js-new-messages-hint:last');
+  },
+
+  findLastMessage: () => {
+    return TeamChat.messagesList.find('.message:last');
+  },
+
+  findLastReadMessage: (messageId) => {
+    return TeamChat.messagesList.find('.message[data-id=' + messageId + ']');
+  },
+
+  isMessageVisible: (message) => {
+    element = TeamChat.findLastMessagesHint();
+    return message.length > 0 && message.offset().top - element.offset().top < TeamChat.messagesList.outerHeight();
+  },
+
+  getMessageListScrollPositionForElement: (element) => {
+    var result = TeamChat.messagesList.outerHeight();
     if (element.length > 0) {
-      divScrollTop = element.offset().top - TeamChat.messagesList.offset().top;
-    } else {
-      divScrollTop = TeamChat.messagesList.outerHeight();
+      result = element.offset().top - TeamChat.messagesList.offset().top;
     }
-    TeamChat.messagesList.animate({scrollTop: divScrollTop});
+    return result;
+  },
+
+  findVisibleMessageElementAtFirst: () => {
+    var element = null;
+
+    if (TeamChat.hasMessagesHint()) {
+      var lastMessage = TeamChat.findLastMessage();
+      if (TeamChat.isMessageVisible(lastMessage)) {
+        element = lastMessage;
+      } else {
+        element = TeamChat.findLastMessagesHint();
+      }
+    }
+
+    return element;
+  },
+
+  findMessageElementToScrollTo: (response) => {
+    var element = null;
+
+    if (_.isNumber(response.last_read_team_chat_message_id)) {
+      element = TeamChat.findLastReadMessage(response.last_read_team_chat_message_id);
+    }
+
+    if (_.isEmpty(element)) {
+      element = TeamChat.findVisibleMessageElementAtFirst();
+    }
+
+    if (_.isEmpty(element)) {
+      element = TeamChat.findLastMessage();
+    }
+
+    return element;
+  },
+
+  scrollMessagesList: (response) => {
+    var element = TeamChat.findMessageElementToScrollTo(response);
+    if (!_.isEmpty(element) && element.length > 0) {
+      var scrollPosition = TeamChat.getMessageListScrollPositionForElement(element);
+      TeamChat.messagesList.animate({scrollTop: scrollPosition});
+    }
   },
 
   connectAndJoin: () => {
@@ -196,9 +241,7 @@ let TeamChat = {
     TeamChat.messageInput = $(".js-team-page #team-chat-input");
     TeamChat.messagesList = $('.js-team-page #message-list');
 
-    console.log('TeamChat -0-');
     if (TeamChat.canInit()) {
-      console.log('TeamChat -1-');
       TeamChat.connectAndJoin();
       TeamChat.initChannelEvents();
       TeamChat.initUIEvents();
