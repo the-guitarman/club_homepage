@@ -14,11 +14,6 @@ require('../vendor/js/17_leaflet_iconlabel.js');
 require('../vendor/js/18_control_geocoder.js');
 require('../vendor/js/19_leaflet_routing_maschine.js');
 require('../vendor/js/20_open_street_map.js');
-require('../vendor/js/25_soccer-match-timeline.javascript-extensions.js');
-require('../vendor/js/26_soccer-match-timeline.lang.js');
-require('../vendor/js/27_soccer-match-timeline.js');
-require('../vendor/js/28_soccer-match-timeline.events.js');
-require('../vendor/js/29_soccer-match-timeline.extensions.js');
 require('../vendor/js/35_player_planning.js');
 require('../vendor/js/99_jquery_ready.js');
 
@@ -58,14 +53,14 @@ socket.onError( ev => console.log("ERROR", ev) )
 socket.onClose( e => console.log("CLOSE", e))
 */
 
-import MatchTimeline from "./match"
+import MatchTimeline from "./match_timeline"
 import TeamChat from "./team_chat"
 import TeamChatBadge from "./team_chat_badge"
 import PaymentListUpdates from "./payment_list"
 import StandardTeamPlayerUpdates from "./standard_team_player"
 import MatchCommitmentUpdates from "./match_commitment"
 
-MatchTimeline.init(socket, document.getElementById("match-timeline"));
+MatchTimeline.init(socket);
 TeamChat.init(socket);
 TeamChatBadge.init(socket);
 PaymentListUpdates.init(socket);
