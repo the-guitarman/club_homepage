@@ -1,17 +1,4 @@
-let TeamChat = {
-  socket: null,
-  channel: null,
-  teamId: 0,
-  userId: 0,
-  messagesList: null,
-  messageInput: null,
-
-  canInit: () => {
-    return _.isNumber(TeamChat.teamId) && TeamChat.teamId > 0 &&
-      _.isNumber(TeamChat.userId) && TeamChat.userId &&
-      TeamChat.messagesList.length > 0 && TeamChat.messageInput.length > 0;
-  },
-
+let TeamChatCommon = {
   createTime: (at) => {
     return moment(at).format('HH:mm:ss');
   },
@@ -31,7 +18,7 @@ let TeamChat = {
 
   createChatMessage: (payload) => {
     var ownMessage = payload.user_id === parseInt(TeamChat.userId) ? ' own-message' : '';
-    return `<div class="message${ownMessage}" data-id="${payload.id}" data-date="${TeamChat.createDate(payload.at)}"><div class="user-name">${payload.user_name || 'Anonymous'}:</div><div>${payload.message}</div><div class="time text-right">${TeamChat.createTime(payload.at)}</div></div>`;
+    return `<div class="message${ownMessage}" data-id="${payload.id}" data-date="${TeamChatCommon.createDate(payload.at)}"><div class="user-name">${payload.user_name || 'Anonymous'}:</div><div>${payload.message}</div><div class="time text-right">${TeamChatCommon.createTime(payload.at)}</div></div>`;
   },
 
   olderChatMessagesButtonHandler: (olderChatMessagesAvailable) => {
@@ -51,7 +38,7 @@ let TeamChat = {
       var date = messageEl.data('date');
       if (currentDate != date) {
         currentDate = date;
-        messageEl.before(TeamChat.createDateEl(date));
+        messageEl.before(TeamChatCommon.createDateEl(date));
       }
     });
   },
@@ -64,7 +51,7 @@ let TeamChat = {
         messageEl = $(messageEl);
         var id = messageEl.data('id');
         if (id == last_read_team_chat_message_id) {
-          messageEl.after(TeamChat.createNewMessagesEl());
+          messageEl.after(TeamChatCommon.createNewMessagesEl());
         }
       });
     }
@@ -75,7 +62,7 @@ let TeamChat = {
     if (_.isNumber(unreadTeamChatMessagesNumber)) {
       $('.js-new-team-chat-messages-badge').removeClass('hidden').html(unreadTeamChatMessagesNumber);
     } else {
-      TeamChat.hideNewMessagesBadge();
+      TeamChatCommon.hideNewMessagesBadge();
     }
   },
 
@@ -84,7 +71,7 @@ let TeamChat = {
   },
 
   hasMessagesHint: () => {
-    return TeamChat.findLastMessagesHint().length > 0;
+    return TeamChatCommon.findLastMessagesHint().length > 0;
   },
 
   findLastMessagesHint: () => {
@@ -100,7 +87,7 @@ let TeamChat = {
   },
 
   isMessageVisible: (message) => {
-    element = TeamChat.findLastMessagesHint();
+    element = TeamChatCommon.findLastMessagesHint();
     return message.length > 0 && message.offset().top - element.offset().top < TeamChat.messagesList.outerHeight();
   },
 
@@ -115,12 +102,12 @@ let TeamChat = {
   findVisibleMessageElementAtFirst: () => {
     var element = null;
 
-    if (TeamChat.hasMessagesHint()) {
-      var lastMessage = TeamChat.findLastMessage();
-      if (TeamChat.isMessageVisible(lastMessage)) {
+    if (TeamChatCommon.hasMessagesHint()) {
+      var lastMessage = TeamChatCommon.findLastMessage();
+      if (TeamChatCommon.isMessageVisible(lastMessage)) {
         element = lastMessage;
       } else {
-        element = TeamChat.findLastMessagesHint();
+        element = TeamChatCommon.findLastMessagesHint();
       }
     }
 
@@ -131,27 +118,43 @@ let TeamChat = {
     var element = null;
 
     if (_.isNumber(response.last_read_team_chat_message_id)) {
-      element = TeamChat.findLastReadMessage(response.last_read_team_chat_message_id);
+      element = TeamChatCommon.findLastReadMessage(response.last_read_team_chat_message_id);
     }
 
     if (_.isEmpty(element)) {
-      element = TeamChat.findVisibleMessageElementAtFirst();
+      element = TeamChatCommon.findVisibleMessageElementAtFirst();
     }
 
     if (_.isEmpty(element)) {
-      element = TeamChat.findLastMessage();
+      element = TeamChatCommon.findLastMessage();
     }
 
     return element;
   },
 
   scrollMessagesList: (response) => {
-    var element = TeamChat.findMessageElementToScrollTo(response);
+    var element = TeamChatCommon.findMessageElementToScrollTo(response);
     if (!_.isEmpty(element) && element.length > 0) {
-      var scrollPosition = TeamChat.getMessageListScrollPositionForElement(element);
+      var scrollPosition = TeamChatCommon.getMessageListScrollPositionForElement(element);
       TeamChat.messagesList.animate({scrollTop: scrollPosition});
     }
+  }
+};
+
+let TeamChat = {
+  socket: null,
+  channel: null,
+  teamId: 0,
+  userId: 0,
+  messagesList: null,
+  messageInput: null,
+
+  canInit: () => {
+    return _.isNumber(TeamChat.teamId) && TeamChat.teamId > 0 &&
+      _.isNumber(TeamChat.userId) && TeamChat.userId &&
+      TeamChat.messagesList.length > 0 && TeamChat.messageInput.length > 0;
   },
+
 
   connectAndJoin: () => {
     TeamChat.socket.connect();
@@ -162,13 +165,13 @@ let TeamChat = {
     TeamChat.channel.join()
       .receive("ok", (response) => {
         $.each(response.chat_messages, function(index, chatMessage){
-          TeamChat.messagesList.append(TeamChat.createChatMessage(chatMessage));
+          TeamChat.messagesList.append(TeamChatCommon.createChatMessage(chatMessage));
         });
-        TeamChat.addDates();
-        TeamChat.addNewMessagesHint(response);
-        TeamChat.showNewMessagesBadge(response);
-        TeamChat.olderChatMessagesButtonHandler(response.older_chat_messages_available);
-        TeamChat.scrollMessagesList(response);
+        TeamChatCommon.addDates();
+        TeamChatCommon.addNewMessagesHint(response);
+        TeamChatCommon.showNewMessagesBadge(response);
+        TeamChatCommon.olderChatMessagesButtonHandler(response.older_chat_messages_available);
+        TeamChatCommon.scrollMessagesList(response);
       })
       // .receive("error", (reason) => {
       //   console.log("join failed", reason)
@@ -184,11 +187,11 @@ let TeamChat = {
 
   initChannelEventAddMessage: () => {
     TeamChat.channel.on("message:added", (payload) => {
-      TeamChat.messagesList.append(TeamChat.createChatMessage(payload.chat_message));
-      TeamChat.addDates();
+      TeamChat.messagesList.append(TeamChatCommon.createChatMessage(payload.chat_message));
+      TeamChatCommon.addDates();
       if (TeamChat.userId != payload.current_user_id) {
-        TeamChat.addNewMessagesHint(payload);
-        TeamChat.showNewMessagesBadge(payload);
+        TeamChatCommon.addNewMessagesHint(payload);
+        TeamChatCommon.showNewMessagesBadge(payload);
       }
       //TeamChat.scrollMessagesList(payload);
       TeamChat.messagesList.prop({scrollTop: TeamChat.messagesList.prop("scrollHeight")});
@@ -198,10 +201,10 @@ let TeamChat = {
   initChannelEventShowOlderMessages: () => {
     TeamChat.channel.on("message:show-older", (payload) => {
       $.each(payload.chat_messages, function(index, chatMessage){
-        TeamChat.messagesList.prepend(TeamChat.createChatMessage(chatMessage));
+        TeamChat.messagesList.prepend(TeamChatCommon.createChatMessage(chatMessage));
       });
-      TeamChat.addDates();
-      TeamChat.olderChatMessagesButtonHandler(payload.older_chat_messages_available);
+      TeamChatCommon.addDates();
+      TeamChatCommon.olderChatMessagesButtonHandler(payload.older_chat_messages_available);
     });
   },
 
@@ -230,7 +233,7 @@ let TeamChat = {
       if (messages.length > 0 && $('.js-new-team-chat-messages-badge').hasClass('hidden') === false) {
         TeamChat.channel.push('message:seen', {message_id: messages.last().data('id')});
       }
-      TeamChat.hideNewMessagesBadge();
+      TeamChatCommon.hideNewMessagesBadge();
     });
   },
 
@@ -249,4 +252,4 @@ let TeamChat = {
   }
 }
 
-export default TeamChat
+export default TeamChat;
