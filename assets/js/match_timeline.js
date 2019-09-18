@@ -1,24 +1,22 @@
-// window.$ = window.jQuery = window.jquery = require('../vendor/js/01_01_jquery.min.js');
-// window._ = window.underscore = require('../vendor/js/01_04_underscore.min.js');
-
-// require('../vendor/js/25_soccer-match-timeline.javascript-extensions.js');
-// require('../vendor/js/26_soccer-match-timeline.lang.js');
-// require('../vendor/js/27_soccer-match-timeline.js');
-// require('../vendor/js/28_soccer-match-timeline.events.js');
-// require('../vendor/js/29_soccer-match-timeline.extensions.js');
+import MatchTimelineConstants from "./match_timeline.constants";
+import buttonTextTranslator from './match_timeline.button_text_translator';
+import formTextTranslator from './match_timeline.form_text_translator';
+import matchEventsRenderer from './match_timeline.match_events_renderer';
+import matchEventButtonHandler from './match_timeline.match_event_button_handler';
+import matchTimelineTranslationProvider from './match_timeline.lang';
 
 let MatchTimeline = {
   socket: null,
   channel: null,
-  matchTimelineSelector: '#match-timeline',
-  matchTimelineEl: null,
-
+  selector: MatchTimelineConstants.timelineSelector,
+  element: MatchTimelineConstants.timelineEl,
+ 
   getMatchEvents: () => {
-    return MatchTimeline.matchTimelineEl.data('match-events') || [];
+    return MatchTimeline.element.data('match-events') || [];
   },
 
   getMatchId: () => {
-    return MatchTimeline.matchTimelineEl.data("match-id");
+    return MatchTimeline.element.data("match-id");
   },
 
   connectAndJoin: () => {
@@ -53,10 +51,10 @@ let MatchTimeline = {
 
   renderMatchEvents: (matchEvents, removeCloseButton = false) => {
     $(document).ready(function(){
-      MatchTimeline.matchTimelineEl.data('match-events', matchEvents)
-      matchEventsRenderer.init()
+      MatchTimeline.element.data('match-events', matchEvents);
+      matchEventsRenderer.init();
       if (removeCloseButton === true) {
-        MatchTimeline.matchTimelineEl.find('button.close').parent().remove()
+        MatchTimeline.element.find('button.close').parent().remove();
       }
       matchEventButtonHandler.switchButtons();
       matchEventButtonHandler.hideEventForm();
@@ -64,22 +62,54 @@ let MatchTimeline = {
   },
 
   canInit: () => {
-    return MatchTimeline.matchTimelineEl.length > 0;
+    return MatchTimeline.element.length > 0;
   },
 
-  initUIEvents: () => {
+  initUIEventAdd: () => {
     $(document)
-      .on('match-event:add', '#match-timeline', function(event, matchEvent) {
+      .on('match-event:add', MatchTimeline.selector, function(event, matchEvent) {
         MatchTimeline.channel
           .push('match-event:add', matchEvent)
           .receive("error", e => console.log(e));
       })
-      .on('match-event:remove', '#match-timeline', function(event, matchEventIndex) {
+      .on('match-event:afterAdd', MatchTimeline.selector, function(event, matchEvent, matchEvents) {
+        matchEventButtonHandler.switchButtons();
+        matchEventButtonHandler.hideEventForm();
+      });
+  },
+
+  initUIEventRemove: () => {
+    $(document)
+      .on('match-event:remove', MatchTimeline.selector, function(event, matchEventIndex) {
         MatchTimeline.channel
           .push('match-event:remove', matchEventIndex)
           .receive("error", e => console.log(e));
       })
-    ;
+      .on('match-event:afterRemove', MatchTimeline.selector, function(event, removedElementIndex, removedElement, matchEvents) {
+        matchEventButtonHandler.switchButtons();
+        matchEventButtonHandler.hideEventForm();
+      });
+  },
+
+  initUIEventShowForm: () => {
+    $(document)
+      .on('match-event:show-event-form', MatchTimeline.selector, function(event) {
+        var matchEventFormEl = $('.js-match-event-form');
+        var position = matchEventFormEl.find('input[name=position]').val();
+        var inputGroupButtons = matchEventFormEl.find('.input-group-btn');
+        inputGroupButtons.addClass('hidden');
+        inputGroupButtons.filter('.' + position).removeClass('hidden');
+      })
+      .on('click', '.js-match-event-form .input-group-btn .dropdown-menu a', function() {
+        var self = $(this);
+        self.closest('.input-group').find('input').val(self.text());
+      });
+  },
+
+  initUIEvents: () => {
+    MatchTimeline.initUIEventAdd();
+    MatchTimeline.initUIEventRemove();
+    MatchTimeline.initUIEventShowForm();
   },
 
   initChannelEventAdd: () => {
@@ -109,11 +139,17 @@ let MatchTimeline = {
 
   init: (socket) => {
     MatchTimeline.socket = socket;
-    MatchTimeline.matchTimelineEl = $(MatchTimeline.matchTimelineSelector);
+    MatchTimeline.element = $(MatchTimeline.selector);
 
     if (MatchTimeline.canInit()) {
-      if (_.isEmpty(MatchTimeline.matchTimelineEl.data('channelize')) === true) {
-        MatchTimeline.renderMatchEvents(MatchTimeline.matchTimelineEl.data('match-events'), true);
+      matchTimelineTranslationProvider.init();
+      buttonTextTranslator.init();
+      formTextTranslator.init();
+      matchEventsRenderer.init();
+      matchEventButtonHandler.init();
+
+      if (_.isEmpty(MatchTimeline.element.data('channelize')) === true) {
+        MatchTimeline.renderMatchEvents(MatchTimeline.element.data('match-events'), true);
       } else {
         MatchTimeline.connectAndJoin();
         MatchTimeline.initChannelEvents();
@@ -121,6 +157,6 @@ let MatchTimeline = {
       }
     }
   }
-}
+};
 
 export default MatchTimeline;

@@ -1,10 +1,30 @@
-window.$ = window.jQuery = window.jquery = require('../vendor/js/01_01_jquery.min.js');
-require('../vendor/js/01_02_jquery-ui-1.12.1.custom.min.js');
-window.m = window.moment = require('../vendor/js/01_03_moment-with-locales.js');
-window._ = window.underscore = require('../vendor/js/01_04_underscore.min.js');
-require('../vendor/js/02_bootstrap.min.js');
+import $ from 'jquery';
+window.$ = window.jQuery = window.jquery = $;
+
+//require('../vendor/js/01_02_jquery-ui-1.12.1.custom.min.js');
+// import 'jquery-ui/themes/base/core.css';
+// import 'jquery-ui/themes/base/theme.css';
+// import 'jquery-ui/themes/base/selectable.css';
+// import 'jquery-ui/ui/core';
+// import 'jquery-ui/ui/widgets/selectable';
+//import 'jquery-ui';
+
+import _ from 'underscore';
+window._ = window.underscore = _;
+
+import * as moment from 'moment';
+import 'moment/locale/de';
+window.m = window.moment = moment;
+
+import 'bootstrap';
+//import 'bootstrap/dist/css/bootstrap.css';
+//require('../vendor/js/02_bootstrap.min.js');
+
 require('../vendor/js/05_bootstrap-datetimepicker.js');
-require('../vendor/js/06_select2.js');
+
+import 'select2';
+//require('../vendor/js/06_select2.js');
+
 require('../vendor/js/07_bootstrap-switch.min.js');
 require('../vendor/js/08_medium-editor.min.js');
 require('../vendor/js/09_bootstrap-tooltip.js');
@@ -52,6 +72,10 @@ socket.onOpen( ev => console.log("OPEN", ev) )
 socket.onError( ev => console.log("ERROR", ev) )
 socket.onClose( e => console.log("CLOSE", e))
 */
+
+import MatchTimelineConstants from "./match_timeline.constants";
+import matchStateMethods from './match_timeline.match_state_methods';
+import buttonTextTranslator from './match_timeline.button_text_translator';
 
 import MatchTimeline from "./match_timeline"
 import TeamChat from "./team_chat"
