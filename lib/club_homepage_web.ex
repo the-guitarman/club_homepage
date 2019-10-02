@@ -28,6 +28,39 @@ defmodule ClubHomepageWeb do
     end
   end
 
+  def club_homepage_model do
+    quote do
+      alias ClubHomepage.Repo
+
+      def get_by(%{} = find_by_attributes) do
+        Repo.get_by(__MODULE__, find_by_attributes)
+      end
+
+      def find_or_create(%{} = attributes) do
+        case get_by(attributes) do
+          nil ->
+            __MODULE__.changeset(__MODULE__.__struct__, attributes)
+            |> Repo.insert
+          record ->
+            {:ok, record}
+        end
+      end
+
+      def create_or_update(%{} = find_by_attributes, %{} = new_attributes) do
+        case get_by(find_by_attributes) do
+          nil ->
+            attributes = Map.merge(new_attributes, find_by_attributes)
+            __MODULE__.changeset(__MODULE__.__struct__, attributes)
+            |> Repo.insert
+          record ->
+            record
+            |> __MODULE__.changeset(new_attributes)
+            |> Repo.update
+        end
+      end
+    end
+  end
+
   def controller do
     quote do
       use Phoenix.Controller, namespace: ClubHomepageWeb

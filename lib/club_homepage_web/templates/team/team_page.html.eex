@@ -62,14 +62,14 @@
         </div>
       </div>
 
-      <%= unless @current_table == nil do %>
+      <%= unless @season_team_table == nil do %>
         <div class="row css-current-team-table">
           <div class="col-xs-12">
             <h3><%= gettext("current_table") %></h3>
-            <small><%= gettext("as_at") %>: <%= point_of_time(@current_table_created_at) %></small>
+            <small><%= gettext("as_at") %>: <%= point_of_time(@season_team_table.updated_at) %></small>
           </div>
           <div class="col-xs-12">
-            <%= raw(@current_table) %>
+            <%= raw(@season_team_table.html) %>
           </div>
         </div>
       <% end %>

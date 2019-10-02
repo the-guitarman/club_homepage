@@ -74,4 +74,20 @@ defmodule ClubHomepage.Extension.Controller do
     format = Localization.datetime_format(format)
     parse_date_field(params, field, format)
   end
+
+  @doc """
+  Returns to current locale.
+
+  ## Example usage
+  iex> ClubHomepage.Extension.Controller.is_bot_or_search_engine?(%Plug.Conn{})
+  false
+
+  iex> conn = %Plug.Conn{} |> Plug.Conn.put_req_header("user-agent", "DuckDuckBot")
+  iex> ClubHomepage.Extension.Controller.is_bot_or_search_engine?(conn)
+  true
+  """
+  @spec is_bot_or_search_engine?(Plug.Conn.t) :: Boolean
+  def is_bot_or_search_engine?(conn) do
+    Browser.bot?(conn) || Browser.search_engine?(conn)
+  end
 end

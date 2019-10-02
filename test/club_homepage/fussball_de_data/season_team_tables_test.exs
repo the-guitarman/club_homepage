@@ -5,7 +5,7 @@ defmodule ClubHomepage.FussballDeData.SeasonTeamTableTest do
 
   import ClubHomepage.Factory
 
-  @valid_attrs %{season_id: 1, team_id: 1, html: "season team table"}
+  #@valid_attrs %{season_id: 1, team_id: 1, html: "season team table"}
   @invalid_attrs %{season_id: nil, team_id: nil, html: ""}
 
   test "changeset with invalid attributes" do

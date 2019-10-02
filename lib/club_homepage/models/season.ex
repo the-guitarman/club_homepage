@@ -1,4 +1,5 @@
 defmodule ClubHomepage.Season do
+  use ClubHomepageWeb, :club_homepage_model
   use ClubHomepageWeb, :model
 
   schema "seasons" do

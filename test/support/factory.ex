@@ -120,6 +120,16 @@ defmodule ClubHomepage.Factory do
     }
   end
 
+  def season_team_table_factory do
+    season = insert(:season)
+    team = insert(:team)
+    %ClubHomepage.FussballDeData.SeasonTeamTable{
+      season_id: season.id,
+      team_id: team.id,
+      html: "<div>SeasonTeamTableData</div>"
+    }
+  end
+
   def secret_factory do
     %ClubHomepage.Secret{
       key: SecureRandom.urlsafe_base64,

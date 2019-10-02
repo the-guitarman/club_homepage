@@ -3,9 +3,9 @@ defmodule ClubHomepage.Repo.Migrations.CreateSeasonTeamTables do
 
   def change do
     create table(:season_team_tables) do
-      add :html, :text
       add :season_id, references(:seasons, on_delete: :delete_all)
       add :team_id, references(:teams, on_delete: :delete_all)
+      add :html, :text
 
       timestamps()
     end

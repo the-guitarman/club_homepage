@@ -22,10 +22,6 @@ defmodule ClubHomepageWeb.NewTeamMatchesDataTest do
     {:error, error, _} = NewTeamMatchesData.run(conn, team)
 
     assert error == :no_club_rewrite_or_team_id_available
-
-    team = Repo.get(Team, team.id)
-    assert team.current_table_html == nil
-    assert team.current_table_html_at == nil
   end
 
   test "no check for next team matches because config is off", %{conn: conn} do
@@ -82,8 +78,9 @@ defmodule ClubHomepageWeb.NewTeamMatchesDataTest do
     {:ok, %{matches: matches, team_name: team_name}, _} = NewTeamMatchesData.run(conn, team)
 
     assert is_list(matches)
-    assert Enum.empty?(matches)
-    assert team_name == ""
+    refute Enum.empty?(matches)
+    assert Enum.count(matches) == 10
+    assert team_name == "Spvgg. Blau-Weiß Chemnitz 02"
 
     team = Repo.get(Team, team.id)
     assert not(is_nil(team.fussball_de_last_next_matches_check_at))

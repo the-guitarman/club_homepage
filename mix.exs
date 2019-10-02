@@ -73,8 +73,8 @@ defmodule ClubHomepage.Mixfile do
       #{:elixir_weather_data, path: "/home/franzi/dev/elixir/elixir_weather_data"},
       {:elixir_weather_data, "~> 0.2.6"},
 
-      #{:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
-      {:ex_fussball_de_scraper, "~> 0.1"},
+      {:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
+      #{:ex_fussball_de_scraper, "~> 0.1"},
       {:httpoison, "~> 1.5", override: true},
 
       {:browser, "~> 0.4"},

@@ -1,4 +1,5 @@
 defmodule ClubHomepage.FussballDeData.SeasonTeamTable do
+  use ClubHomepageWeb, :club_homepage_model
   use Ecto.Schema
 
   import Ecto.Changeset
