@@ -71,7 +71,7 @@ defmodule ClubHomepageWeb.NewTeamMatchesData do
   defp new_matches_log_error({:ok, _, _} = result, _env, _club_rewrite, _team_id), do: result
   defp new_matches_log_error({:error, _, _} = error, :test, _club_rewrite, _team_id), do: error
   defp new_matches_log_error({:error, reason, created_at_timestamp} = error, _env, club_rewrite, team_id) do
-    #Logger.error("ExFussballDeScraper.Scraper.next_matches(\"#{club_rewrite}\", \"#{team_id}\"): #{reason}, at: #{timestamp_to_local_timex(created_at_timestamp)}")
+    Logger.error("ExFussballDeScraper.Scraper.next_matches(\"#{club_rewrite}\", \"#{team_id}\"): #{reason}, at: #{timestamp_to_local_timex(created_at_timestamp)}")
     error
   end
 
