@@ -40,10 +40,10 @@ defmodule ClubHomepage.FussballDeData do
   defp get_this_season_team_table(%Ecto.Changeset{} = _changeset, team, season) do
     get_season_team_table(team, season)
   end
-  defp get_this_season_team_table(season_team_table, _team, season) do
+  defp get_this_season_team_table(season_team_table, team, season) do
     case season_team_table.season_id == season.id do
       true -> season_team_table
-      _ -> nil
+      _ -> get_season_team_table(team, season)
     end
   end
 
