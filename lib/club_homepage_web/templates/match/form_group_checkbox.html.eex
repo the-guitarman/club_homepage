@@ -1,0 +1,10 @@
+<div class="form-group form-horizontal <%= @form_group_class %> <%= error_cls @changeset, @f, @field_name %>">
+  <%= label @f, :"#{@field_name}_true", class: "col-xs-4 col-sm-3 col-md-2 control-label" do %>
+    <%= Gettext.gettext(ClubHomepageWeb.Gettext, "#{@field_name}") %>
+  <% end %>
+  <div class="col-xs-8 col-sm-9 col-md-10">
+    <%= checkbox @f, @field_name, class: "form-control", unchecked_value: false %>
+  </div>
+  <%= error_tag @changeset, @f, @field_name %>
+  <div class="clearfix"></div>
+</div>

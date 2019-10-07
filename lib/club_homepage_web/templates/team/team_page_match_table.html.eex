@@ -29,13 +29,13 @@
         <%= if match.home_match do %>
           <td class="text-right"><%= match.team.name %></td>
           <td class="text-center css-nowrap">
-            <%= match_result(match) %>
+            <%= render("team_page_match_result.html", match: match) %>
           </td>
           <td class="text-left"><%= match.opponent_team.name %></td>
         <% else %>
           <td class="text-right"><%= match.opponent_team.name %></td>
           <td class="text-center css-nowrap">
-            <%= match_result(match) %>
+            <%= render("team_page_match_result.html", match: match) %>
           </td>
           <td class="text-left"><%= match.team.name %></td>
         <% end %>

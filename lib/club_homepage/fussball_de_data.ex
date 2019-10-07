@@ -151,7 +151,7 @@ defmodule ClubHomepage.FussballDeData do
   defp current_table_scraper({:ok, team}) do
     ExFussballDeScraper.Scraper.current_table(team.fussball_de_team_rewrite, team.fussball_de_team_id)
   end
-  defp current_table_scraper(error), do: error |> IO.inspect()
+  defp current_table_scraper(error), do: error
 
   defp save_scraper_response({:ok, %{team_name: team_name, season: season_name, current_table: html}, _timestamp}, team) do
     html = replace_scraper_team_name(html, team_name, team.name)

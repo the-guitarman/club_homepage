@@ -10,6 +10,10 @@ defmodule ClubHomepage.Extension.View do
 
   @doc """
   Returns the full club name as configured in `config/club_homepage.exs`.
+
+  ## Example usage
+  iex> ClubHomepage.Extension.View.full_club_name()
+  "TSV Einheit Claußnitz 1864 e.V."
   """
   @spec full_club_name() :: String
   def full_club_name do
@@ -18,6 +22,10 @@ defmodule ClubHomepage.Extension.View do
 
   @doc """
   Returns the short club name as configured in `config/club_homepage.exs`.
+
+  ## Example usage
+  iex> ClubHomepage.Extension.View.short_club_name()
+  "TSV Einheit Claußnitz"
   """
   @spec short_club_name() :: String
   def short_club_name do
@@ -124,6 +132,16 @@ defmodule ClubHomepage.Extension.View do
     "© Copyright #{year}"
   end
 
+  @doc """
+  Returns the current domain with port, if it's not 80.
+
+  ## Example usage
+  iex> ClubHomepage.Extension.View.current_domain(%Plug.Conn{host: "www.example.com", port: 80})
+  "www.example.com"
+  iex> ClubHomepage.Extension.View.current_domain(%Plug.Conn{host: "www.example.com", port: 8080})
+  "www.example.com:8080"
+  """
+  @spec current_domain(Plug.Conn) :: String
   def current_domain(conn) do
     case conn.port do
       80 -> conn.host
@@ -134,13 +152,27 @@ defmodule ClubHomepage.Extension.View do
 
 
 
-  def js_date_input_format(divider \\ ".") do
+  @doc """
+  Returns a javascript date format string.
+
+  ## Example Usage
+  iex> ClubHomepage.Extension.View.js_date_input_format()
+  "YYYY-MM-DD"
+  """
+  @spec js_date_input_format(String) :: String
+  def js_date_input_format(divider \\ gettext("date_format_divider")) do
     date_format()
     |> String.replace("%", "")
     |> String.split(divider)
-    |> Enum.map(fn(el) -> if el == "Y", do: "#{el}#{el}#{el}#{el}", else: "#{el}#{el}"
-    |> String.upcase() end)
+    |> Enum.map(fn(el) ->
+          cond do
+            el == "Y" -> "#{el}#{el}#{el}#{el}"
+            el =~ ~r/\w/ -> "#{el}#{el}"
+            true -> el
+          end
+       end)
     |> Enum.join(divider)
+    |> String.upcase()
   end
 
   def timex_date_input(form, field, opts \\ []) do
@@ -148,7 +180,15 @@ defmodule ClubHomepage.Extension.View do
     timex_input(form, field, date_format(), opts)
   end
 
-  def js_time_input_format(divider \\ ":") do
+  @doc """
+  Returns a javascript time format string.
+
+  ## Example Usage
+  iex> ClubHomepage.Extension.View.js_time_input_format()
+  "HH:mm"
+  """
+  @spec js_time_input_format(String) :: String
+  def js_time_input_format(divider \\ gettext("time_format_divider")) do
     parts = 
       time_format()
       |> String.replace("%", "")
@@ -163,6 +203,14 @@ defmodule ClubHomepage.Extension.View do
     "#{date_format()} #{time_format()}"
   end
 
+  @doc """
+  Returns a javascript datetime format string.
+
+  ## Example Usage
+  iex> ClubHomepage.Extension.View.js_datetime_input_format()
+  "YYYY-MM-DD HH:mm"
+  """
+  @spec js_datetime_input_format() :: String
   def js_datetime_input_format do
     "#{js_date_input_format()} #{js_time_input_format()}"
   end

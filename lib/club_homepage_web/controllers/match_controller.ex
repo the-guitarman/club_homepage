@@ -161,10 +161,24 @@ defmodule ClubHomepageWeb.MatchController do
   end
 
   defp get_competition_select_options(conn, _) do
-    query = from(s in ClubHomepage.Competition,
-                 select: {s.name, s.id},
-                 order_by: [desc: s.name])
-    assign(conn, :competition_options, Repo.all(query))
+    query = from(c in ClubHomepage.Competition,
+      select: %{name: c.name, id: c.id, mnd: c.matches_need_decition},
+      order_by: [desc: c.name])
+    competitions = Repo.all(query)
+
+    competition_options = Enum.map(competitions, fn(c) ->
+      {}
+      |> Tuple.append(c.name)
+      |> Tuple.append(c.id)
+    end)
+    competition_ids_need_decition =
+      competitions
+      |> Enum.filter(fn(c) -> c.mnd end)
+      |> Enum.map(&(&1.id))
+
+    conn
+    |> assign(:competition_options, competition_options)
+    |> assign(:competition_ids_need_decition, competition_ids_need_decition)
   end
 
   defp get_season_select_options(conn, _) do

@@ -34,6 +34,31 @@ defmodule ClubHomepage.Extension.MatchView do
     end
   end
 
+  @doc """
+  Returns a string, which shows the match result has been made after
+  an extra time or after penalties. 
+
+  ## Example usage
+  iex> ClubHomepage.Extension.MatchView.match_result_extension(%ClubHomepage.Match{after_extra_time: false, after_penalty_shootout: false})
+  {:safe, "<div></div>"}
+  iex> ClubHomepage.Extension.MatchView.match_result_extension(%ClubHomepage.Match{after_extra_time: true, after_penalty_shootout: false})
+  {:safe, "<div>AET</div>"}
+  iex> ClubHomepage.Extension.MatchView.match_result_extension(%ClubHomepage.Match{after_extra_time: true, after_penalty_shootout: true})
+  {:safe, "<div>APS</div>"}
+  """
+  @spec match_result_extension(ClubHomepage.Match) :: String
+  def match_result_extension(match) do
+    Tag.content_tag(:div) do
+      cond do
+        match.after_penalty_shootout -> gettext("after_penalty_shootout_abbreviation")
+        match.after_extra_time -> gettext("after_extra_time_abbreviation")
+        true -> ""
+      end
+    end
+    |> HTML.safe_to_string()
+    |> HTML.raw()
+  end
+
   def match_failure_class(match) do
     case match_failure?(match) do
       true -> "text-danger"

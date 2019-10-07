@@ -6,6 +6,7 @@
       <%= render "form.html", conn: @conn, changeset: @changeset,
         action: Routes.match_path(@conn, :update, @match),
         competition_options: @competition_options,
+        competition_ids_need_decition: @competition_ids_need_decition,
         season_options: @season_options,
         team_options: @team_options,
         opponent_team_options: @opponent_team_options,

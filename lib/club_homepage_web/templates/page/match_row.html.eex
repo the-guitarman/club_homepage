@@ -11,6 +11,9 @@
   </div>
   <div class="col-xs-4 text-center <%= match_failure_class(@match) %> css-result">
     <%= match_result(@match) %>
+    <%= if @match.competition.matches_need_decition do %>
+      <%= match_result_extension(@match) %>
+    <% end %>
   </div>
   <div class="col-xs-4">
     <%= if @match.home_match do %>
