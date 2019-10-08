@@ -136,4 +136,25 @@ $(document).ready(function() {
 
     input.val(value);
   });
+
+  var matchCompetitionSelectSelector = '.js-match-competition-select';
+  var matchCompetitionCheckboxesSelector = '.js-match-competition-checkboxes';
+  var matchNeedDecitionCheckboxesFn = function() {
+    var matchCompetitionCheckboxesEl = $(matchCompetitionCheckboxesSelector);
+    if (matchCompetitionCheckboxesEl.length > 0) {
+      var selectEl = $(matchCompetitionSelectSelector);
+      var competitionIds = selectEl.data('competition-ids-mnd');
+      if (_.indexOf(competitionIds, parseInt(selectEl.val())) >= 0) {
+        matchCompetitionCheckboxesEl.removeClass('hidden');
+      } else {
+        matchCompetitionCheckboxesEl.addClass('hidden');
+      }
+    }
+  };
+
+  matchNeedDecitionCheckboxesFn();
+
+  $(document).on('change', matchCompetitionSelectSelector, function(e) {
+    matchNeedDecitionCheckboxesFn();
+  });
 });

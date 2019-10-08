@@ -67,7 +67,7 @@
 
   <%= if match_finished?(f.data) do %>
 
-    <div class="js-match-competition-checkboxes">
+    <div class="js-match-competition-checkboxes hidden">
       <%= render "form_group_checkbox.html", f: f, field_name: :after_extra_time, changeset: @changeset, form_group_class: "js-match-competition-checkbox css-match-competition-checkbox" %>
 
       <%= render "form_group_checkbox.html", f: f, field_name: :after_penalty_shootout, changeset: @changeset, form_group_class: "js-match-competition-checkbox css-match-competition-checkbox" %>
