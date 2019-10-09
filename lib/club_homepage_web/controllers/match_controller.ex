@@ -112,7 +112,7 @@ defmodule ClubHomepageWeb.MatchController do
         left_join: mc in assoc(m, :match_commitments),
         left_join: u in assoc(mc, :user),
         preload: [
-          :season, :team,
+          :season, :team, :competition,
           opponent_team: ^opponent_team_address_preload_query,
           meeting_point: ^meeting_point_address_preload_query,
           match_commitments: {mc, user: u}
