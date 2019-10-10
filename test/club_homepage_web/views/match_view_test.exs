@@ -1,3 +1,4 @@
-defmodule ClubHomepage.MatchViewTest do
+defmodule ClubHomepageWeb.MatchViewTest do
   use ClubHomepageWeb.ConnCase
+  doctest ClubHomepageWeb.MatchView
 end

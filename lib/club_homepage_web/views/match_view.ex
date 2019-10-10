@@ -19,6 +19,25 @@ defmodule ClubHomepageWeb.MatchView do
     !!match.meeting_point_at && not Match.finished?(match) && logged_in?(conn)
   end
 
+  @doc """
+  Returns wether the given meeting point 
+
+  # Examples
+  iex> import ClubHomepage.Factory
+  ...> ClubHomepageWeb.MatchView.meeting_point_has_coords?(nil)
+  false
+  ...> address = insert(:address, latitude: nil, longitude: nil)
+  ...> meeting_point = insert(:meeting_point, address_id: address.id)
+  ...> meeting_point = ClubHomepage.Repo.preload(meeting_point, :address)
+  ...> ClubHomepageWeb.MatchView.meeting_point_has_coords?(meeting_point)
+  false
+  iex> address = insert(:address, latitude: 1, longitude: 1)
+  ...> meeting_point = insert(:meeting_point, address_id: address.id)
+  ...> meeting_point = ClubHomepage.Repo.preload(meeting_point, :address)
+  ...> ClubHomepageWeb.MatchView.meeting_point_has_coords?(meeting_point)
+  true
+  """
+  @spec meeting_point_has_coords?(ClubHomepage.MeetingPoint | nil) :: Boolean
   def meeting_point_has_coords?(nil), do: false
   def meeting_point_has_coords?(meeting_point) do
     address_has_coords?(meeting_point.address)
