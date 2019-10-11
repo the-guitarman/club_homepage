@@ -10,10 +10,6 @@ defmodule ClubHomepage.Extension.View do
 
   @doc """
   Returns the full club name as configured in `config/club_homepage.exs`.
-
-  ## Example usage
-  iex> ClubHomepage.Extension.View.full_club_name()
-  "TSV Einheit Claußnitz 1864 e.V."
   """
   @spec full_club_name() :: String
   def full_club_name do
@@ -22,10 +18,6 @@ defmodule ClubHomepage.Extension.View do
 
   @doc """
   Returns the short club name as configured in `config/club_homepage.exs`.
-
-  ## Example usage
-  iex> ClubHomepage.Extension.View.short_club_name()
-  "TSV Einheit Claußnitz"
   """
   @spec short_club_name() :: String
   def short_club_name do
