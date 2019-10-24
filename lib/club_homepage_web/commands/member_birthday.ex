@@ -17,7 +17,10 @@ defmodule ClubHomepageWeb.MemberBirthday do
 
   @doc false
   def call(conn, _) do
-    assign(conn, :birthdays, next_birthdays())
+    case ClubHomepageWeb.Auth.logged_in?(conn) do
+      true -> assign(conn, :birthdays, next_birthdays())
+      _ -> assign(conn, :birthdays, [])
+    end
   end
 
   @doc """
