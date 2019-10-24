@@ -94,10 +94,8 @@ defmodule ClubHomepageWeb.LayoutView do
   def birthdays_popover_content(birthdays) do
     birthdays |> IO.inspect()
     date_keys = Keyword.keys(birthdays)
-    |> IO.inspect()
     Enum.map_join(birthday_dates(date_keys, birthdays), &(&1))
     |> birthday_list_group
-    |> IO.inspect()
   end
 
   defp birthday_list_group([]), do: ""
