@@ -22,4 +22,5 @@ ratings:
   - "**.module"
 exclude_paths:
 - config/**/*
+- assets/js/match_timeline.*.js
 - assets/vendor/**/*
