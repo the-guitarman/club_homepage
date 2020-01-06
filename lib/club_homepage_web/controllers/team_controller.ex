@@ -46,7 +46,13 @@ defmodule ClubHomepageWeb.TeamController do
 
     start_at = to_timex_ecto_datetime(Timex.local)
 
-    query = from m in Match, preload: [:competition, :team, :opponent_team], where: [team_id: ^team.id, season_id: ^season.id]
+    query_cond = [team_id: team.id, season_id: season.id]
+    query_cond =
+      cond do
+        logged_in?(conn) && has_role(conn, "team-editor") -> query_cond
+        true -> Keyword.put(query_cond, :active, true)
+      end
+    query = from m in Match, preload: [:competition, :team, :opponent_team], where: ^query_cond
 
     matches = Repo.all(from m in query, where: m.start_at > ^start_at, order_by: [asc: m.start_at])
 
@@ -97,7 +103,7 @@ defmodule ClubHomepageWeb.TeamController do
       from u in User,
       left_join: stp in StandardTeamPlayer,
       on: u.id == stp.user_id,
-      where: stp.team_id == ^team.id ,where: [roles: "player"], or_where: like(u.roles, "player %"), or_where: like(u.roles, "% player %"), or_where: like(u.roles, "% player"),
+      where: stp.team_id == ^team.id, where: [roles: "player"], or_where: like(u.roles, "player %"), or_where: like(u.roles, "% player %"), or_where: like(u.roles, "% player"),
       order_by: [stp.id, u.name],
       select: %{id: u.id, name: u.name, nickname: u.nickname, standard_team_player_id: stp.id, standard_shirt_number: stp.standard_shirt_number}
     )

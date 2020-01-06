@@ -3,6 +3,8 @@
 
   <%= hidden_input(f, :parent_id) %>
 
+  <%= render "form_group_checkbox.html", f: f, field_name: :active, changeset: @changeset, form_group_class: "js-home-match css-home-match" %>
+
   <%= render "form_group_to_select_a_competition.html", f: f, conn: @conn, changeset: @changeset,
       competition_options: @competition_options,
       competition_ids_need_decition: @competition_ids_need_decition
