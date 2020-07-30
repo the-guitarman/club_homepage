@@ -63,3 +63,5 @@ erl_crash.dump
 /config/prod.secret.exs
 /config/test.exs
 /rel/config.exs
+
+test/tmp/*
