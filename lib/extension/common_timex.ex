@@ -23,12 +23,20 @@ defmodule ClubHomepage.Extension.CommonTimex do
   "18.08.2019 some text"
   """
   @spec point_of_time(DateTime.t, String.t) :: String.t
-  def point_of_time(datetime, format \\ "#{datetime_format()} #{gettext("o_clock")}") do
+  def point_of_time(datetime, format \\ nil) do
+    format = point_of_time_format(format)
     {:ok, date_string} =
       datetime
       |> Timex.local()
       |> Timex.format(format, :strftime)
     date_string
+  end
+
+  defp point_of_time_format(format \\ nil) do
+    case format do
+      nil -> "#{datetime_format()} #{gettext("o_clock")}"
+      format -> format
+    end
   end
 
   @doc """
