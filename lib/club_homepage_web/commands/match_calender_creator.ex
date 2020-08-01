@@ -178,10 +178,10 @@ defmodule ClubHomepageWeb.MatchCalendarCreator do
   defp nil_to_empty_string(nil), do: ""
   defp nil_to_empty_string(ret), do: ret
 
-  defp trigger(match) do
-    case match.home_match do
-      true -> "-P1H"
-      _ -> "-P2H"
-    end
-  end
+  #defp trigger(match) do
+  #  case match.home_match do
+  #    true -> "-P1H"
+  #    _ -> "-P2H"
+  #  end
+  #end
 end

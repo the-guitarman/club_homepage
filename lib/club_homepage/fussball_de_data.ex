@@ -168,8 +168,8 @@ defmodule ClubHomepage.FussballDeData do
   end
 
   defp log_update_current_team_table_error({:ok, season_team_table}, _team, _env), do: season_team_table
-  defp log_update_current_team_table_error({:error, reason, timestamp}, team, env) when is_atom(env) and env != :test do
-    #Logger.error("#{timestamp_to_local_timex(timestamp)}: ClubHomepage.FussballDeData.update_current_team_table(team.id:\"#{team.id}\"), #{reason}")
+  defp log_update_current_team_table_error({:error, reason, timestamp} = error, team, env) when is_atom(env) and env != :test do
+    Logger.error("#{timestamp_to_local_timex(timestamp)}: ClubHomepage.FussballDeData.update_current_team_table(team.id:\"#{team.id}\"), #{reason}")
     nil
   end
   defp log_update_current_team_table_error(_error, _team, _env), do: nil

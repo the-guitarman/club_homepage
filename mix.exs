@@ -75,7 +75,7 @@ defmodule ClubHomepage.Mixfile do
 
       #{:ex_fussball_de_scraper, path: "/Users/sebastian/dev/elixir/ex_fussball_de_scraper"},
       {:ex_fussball_de_scraper, "~> 0.1"},
-      {:httpoison, "~> 1.5", override: true},
+      {:httpoison, "~> 1.7", override: true},
 
       {:browser, "~> 0.4"},
       #{:browser, git: "git@github.com:the-guitarman/elixir-browser.git"},
@@ -89,7 +89,7 @@ defmodule ClubHomepage.Mixfile do
 
       {:distillery, "~> 2.0", runtime: false}, #run: mix do deps.get, compile
       #{:hackney, "== 1.8.0", override: true}
-      {:hackney, "~> 1.15"}
+      {:hackney, "~> 1.16"}
     ]
   end
 

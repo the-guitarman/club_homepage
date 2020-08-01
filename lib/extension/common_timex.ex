@@ -32,7 +32,7 @@ defmodule ClubHomepage.Extension.CommonTimex do
     date_string
   end
 
-  defp point_of_time_format(format \\ nil) do
+  defp point_of_time_format(format) do
     case format do
       nil -> "#{datetime_format()} #{gettext("o_clock")}"
       format -> format

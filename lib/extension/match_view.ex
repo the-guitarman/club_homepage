@@ -22,14 +22,13 @@ defmodule ClubHomepage.Extension.MatchView do
     Timex.compare(match.start_at, Timex.local) == 1 && Timex.compare(match.start_at, Timex.add(Timex.now, Timex.Duration.from_hours(hours))) == -1
   end
 
-  #def match_datetime(match, format \\ "#{datetime_format()} #{gettext("o_clock")}")
   def match_datetime(match, format \\ nil) do
     format = match_datetime_format(format)
     match.start_at
     |> point_of_time(format)
   end
 
-  defp match_datetime_format(format \\ nil) do
+  defp match_datetime_format(format) do
     case format do
       nil -> "#{datetime_format()} #{gettext("o_clock")}"
       format -> format
