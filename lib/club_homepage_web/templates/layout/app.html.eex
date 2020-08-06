@@ -25,7 +25,7 @@
     <% end %>
   </head>
   <body class="<%= background_image_cls() %>" data-localization="<%= javascript_localization_options() %>"<%= if logged_in?(@conn) do %> data-current-user-id="<%= current_user_id(@conn) %>"<% end %>>
-    <div class="fluid-container <%= action_name(@conn) %>" role="main">
+    <div class="fluid-container <%= "css-" <> controller_name(@conn) %> <%= action_name(@conn) %>" role="main">
       <%= render "navbar_top.html", conn: @conn, current_user: @current_user, weather_data: @weather_data, birthdays: @birthdays, my_payment_lists: @my_payment_lists %>
       <%= render "flash_messages.html", conn: @conn %>
 

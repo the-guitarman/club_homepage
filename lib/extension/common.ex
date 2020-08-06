@@ -6,6 +6,18 @@ defmodule ClubHomepage.Extension.Common do
   alias ClubHomepage.Repo
   alias ClubHomepage.User
 
+  @doc """
+  Returns the lowercased controller name without higher module names.
+  """
+  def controller_name(conn) do
+    conn
+    |> Phoenix.Controller.controller_module()
+    |> Atom.to_string()
+    |> String.replace(~r/^.*\./, "")
+    |> String.replace(~r/Controller$/, "")
+    |> String.downcase()
+  end
+
   def project_host(conn) do
     case conn.port do
       80 -> conn.host
